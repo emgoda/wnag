@@ -111,32 +111,32 @@ function ContextMenu({ isOpen, x, y, onClose, onDuplicate, onDelete, onCopyStyle
           onClick={onSelectAllInstances}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
         >
-          <span>🔍</span> Select All Instances
+          <span>🔍</span> 选择所有实例
         </button>
         <button
           onClick={onDuplicate}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
         >
-          <span>📋</span> Duplicate
+          <span>📋</span> 复制
         </button>
         <button
           onClick={onDelete}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
         >
-          <span>🗑️</span> Delete
+          <span>🗑️</span> 删除
         </button>
         <div className="border-t my-1" />
         <button
           onClick={onSaveAsTemplate}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
         >
-          <span>💾</span> Save as template
+          <span>💾</span> 保存为模板
         </button>
         <button
           onClick={onCopyStyle}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
         >
-          <span>🎨</span> Copy Style
+          <span>🎨</span> 复制样式
         </button>
       </div>
     </>
@@ -281,7 +281,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
         {renderElement()}
         {isSelected && (
           <>
-            {/* 选择��示器 */}
+            {/* 选择指示器 */}
             <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
             <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
             <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -693,7 +693,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关���我���', route: '/about', isActive: false },
+    { id: 'about', name: '关����我���', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -772,7 +772,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('样式已复制！选择其他元���后可以粘贴样式');
+    alert('样式已复制！选择其他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -1066,7 +1066,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
-      alert('HTML解析失败，请检查代码格式');
+      alert('HTML解析失败，请检��代码格式');
     }
   };
 
@@ -1602,7 +1602,7 @@ body {
   }
 }
 
-/* 滚动����为 */
+/* 滚动������为 */
 html {
   scroll-behavior: smooth;
 }
@@ -1901,7 +1901,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </button>
                   <button
                     onClick={() => {
-                      alert('正在��载落地页模板...');
+                      alert('正在加载落地页模板...');
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
@@ -2373,7 +2373,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和�����属性</li>
+                      <li>• 会完整还原项目的所有��置和�����属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
