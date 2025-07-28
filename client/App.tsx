@@ -57,6 +57,7 @@ const App = () => (
                 <PlaceholderPage title="系统设置" description="系统设置功能正在开发中" />
               </AdminLayout>
             } />
+            <Route path="/published/:siteId" element={<PublishedSite />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
