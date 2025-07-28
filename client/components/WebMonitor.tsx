@@ -78,7 +78,7 @@ const submissionData: UserSubmission[] = [
     status: "submitted",
     statusText: "已提交",
     submissionType: "address_proof",
-    websiteName: "保险服务网",
+    websiteName: "保��服务网",
     currentPage: "/registration/address-verification",
     userName: "赵小丽",
     userLocation: "深圳市南山区",
@@ -143,8 +143,19 @@ const getSubmissionTypeName = (type: string) => {
 };
 
 export function WebMonitor() {
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const onlineCount = submissionData.filter(s => s.status === "processing").length;
   const todaySubmissions = submissionData.length;
+
+  const toggleExpanded = (id: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id);
+    } else {
+      newExpanded.add(id);
+    }
+    setExpandedItems(newExpanded);
+  };
 
   return (
     <div className="flex-1 bg-background">
@@ -404,7 +415,7 @@ export function WebMonitor() {
           </div>
           
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82% • 高风险检出率 15%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理��长 3.2 分钟 • 验证通过率 82% • 高风险检出率 15%
           </div>
         </div>
       </div>
