@@ -1545,7 +1545,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里可以添加切换页���时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -2084,134 +2084,259 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <Button
               onClick={() => {
-                const bankHtml = `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank of Cyprus - 账户异常处理中心</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background: #f5f5f5; }
-        .header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; }
-        .logo-icon { width: 40px; height: 40px; background: #1e40af; border-radius: 8px; }
-        .bank-name { font-size: 1.25rem; font-weight: bold; color: #1e40af; }
-        .bank-subtitle { font-size: 0.875rem; color: #666; }
-        .security-center { color: #666; font-size: 0.875rem; }
-        .main-content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-        .title { text-align: center; font-size: 2rem; font-weight: bold; color: #333; margin-bottom: 1rem; }
-        .subtitle { text-align: center; color: #666; margin-bottom: 2rem; }
-        .progress-bar { display: flex; justify-content: center; margin-bottom: 3rem; }
-        .progress-step { display: flex; align-items: center; }
-        .step-number { width: 32px; height: 32px; border-radius: 50%; background: #1e40af; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .step-text { margin-left: 0.5rem; margin-right: 2rem; }
-        .form-container { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-        .form-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; }
-        .form-description { color: #666; margin-bottom: 1.5rem; }
-        .input-group { margin-bottom: 1.5rem; }
-        .input-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .input-field { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
-        .submit-btn { width: 100%; background: #6b7280; color: white; padding: 0.75rem; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
-        .submit-btn:hover { background: #4b5563; }
-        .sidebar { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .help-section { margin-bottom: 2rem; }
-        .help-title { font-weight: bold; margin-bottom: 1rem; }
-        .contact-info { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
-        .security-tips { }
-        .security-tip { display: flex; align-items: flex-start; gap: 0.5rem; }
-        .container { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <div>
-                    <div class="bank-name">Bank of Cyprus</div>
-                    <div class="bank-subtitle">塞浦路斯银行</div>
-                </div>
-            </div>
-            <div class="security-center">账户安全中心</div>
-        </div>
-    </header>
+                // 清空当前元素
+                setElements([]);
 
-    <main class="main-content">
-        <h1 class="title">账户异常处理中心</h1>
-        <p class="subtitle">请按照以下步骤完成账户异常检测和解除流程</p>
+                // 直接创建编辑器元素，而不是解析HTML
+                const bankElements = [
+                  {
+                    id: 'bank_header',
+                    type: 'container',
+                    content: '',
+                    style: {
+                      background: 'white',
+                      padding: '1rem 2rem',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                      marginBottom: '2rem'
+                    },
+                    children: [
+                      {
+                        id: 'bank_logo',
+                        type: 'text',
+                        content: '🏦 Bank of Cyprus - 塞浦路斯银行',
+                        style: {
+                          fontSize: '1.5rem',
+                          fontWeight: 'bold',
+                          color: '#1e40af',
+                          marginBottom: '0.5rem'
+                        }
+                      },
+                      {
+                        id: 'security_center',
+                        type: 'text',
+                        content: '账户安全中心',
+                        style: {
+                          color: '#666',
+                          fontSize: '0.875rem',
+                          textAlign: 'right'
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    id: 'main_title',
+                    type: 'text',
+                    content: '账户异常处理中心',
+                    style: {
+                      fontSize: '2rem',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      color: '#333',
+                      marginBottom: '1rem'
+                    }
+                  },
+                  {
+                    id: 'subtitle',
+                    type: 'text',
+                    content: '请按照以下步骤完成账户异常检测和解除流程',
+                    style: {
+                      textAlign: 'center',
+                      color: '#666',
+                      marginBottom: '2rem'
+                    }
+                  },
+                  {
+                    id: 'progress_bar',
+                    type: 'container',
+                    content: '',
+                    style: {
+                      display: 'flex',
+                      justifyContent: 'center',
+                      gap: '2rem',
+                      marginBottom: '3rem'
+                    },
+                    children: [
+                      {
+                        id: 'step1',
+                        type: 'text',
+                        content: '1️⃣ 输入手机号',
+                        style: {
+                          background: '#1e40af',
+                          color: 'white',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '20px',
+                          fontWeight: 'bold'
+                        }
+                      },
+                      {
+                        id: 'step2',
+                        type: 'text',
+                        content: '2️⃣ 检测异常',
+                        style: {
+                          background: '#d1d5db',
+                          color: '#666',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '20px'
+                        }
+                      },
+                      {
+                        id: 'step3',
+                        type: 'text',
+                        content: '3️⃣ 填写资料',
+                        style: {
+                          background: '#d1d5db',
+                          color: '#666',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '20px'
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    id: 'form_container',
+                    type: 'container',
+                    content: '',
+                    style: {
+                      background: 'white',
+                      borderRadius: '12px',
+                      padding: '2rem',
+                      boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                      marginBottom: '2rem',
+                      maxWidth: '600px',
+                      margin: '0 auto 2rem auto'
+                    },
+                    children: [
+                      {
+                        id: 'form_title',
+                        type: 'text',
+                        content: '🔍 第一步：输入手机号码查询',
+                        style: {
+                          fontSize: '1.25rem',
+                          fontWeight: 'bold',
+                          marginBottom: '1rem'
+                        }
+                      },
+                      {
+                        id: 'form_description',
+                        type: 'text',
+                        content: '请输入您在银行预留的手机号码，我们将检查您的账户状态',
+                        style: {
+                          color: '#666',
+                          marginBottom: '1.5rem'
+                        }
+                      },
+                      {
+                        id: 'phone_input',
+                        type: 'input',
+                        inputType: 'tel',
+                        placeholder: '请输入手机号码（如：+357 99 123456）',
+                        style: {
+                          width: '100%',
+                          padding: '0.75rem',
+                          border: '1px solid #ddd',
+                          borderRadius: '6px',
+                          fontSize: '1rem',
+                          marginBottom: '1rem'
+                        }
+                      },
+                      {
+                        id: 'submit_button',
+                        type: 'button',
+                        content: '🔍 开始查询',
+                        style: {
+                          width: '100%',
+                          background: '#6b7280',
+                          color: 'white',
+                          padding: '0.75rem',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontSize: '1rem',
+                          cursor: 'pointer'
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    id: 'help_sidebar',
+                    type: 'container',
+                    content: '',
+                    style: {
+                      background: 'white',
+                      borderRadius: '12px',
+                      padding: '1.5rem',
+                      boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                      maxWidth: '300px',
+                      margin: '0 auto'
+                    },
+                    children: [
+                      {
+                        id: 'help_title',
+                        type: 'text',
+                        content: '需要帮助？',
+                        style: {
+                          fontWeight: 'bold',
+                          marginBottom: '1rem'
+                        }
+                      },
+                      {
+                        id: 'contact_phone',
+                        type: 'text',
+                        content: '📞 客服热线：+357 22 12 2 100',
+                        style: {
+                          marginBottom: '0.5rem'
+                        }
+                      },
+                      {
+                        id: 'contact_email',
+                        type: 'text',
+                        content: '📧 邮箱支持：security@bankofcyprus.com',
+                        style: {
+                          marginBottom: '1rem'
+                        }
+                      },
+                      {
+                        id: 'security_title',
+                        type: 'text',
+                        content: '🛡️ 安全提示',
+                        style: {
+                          fontWeight: 'bold',
+                          marginBottom: '0.5rem'
+                        }
+                      },
+                      {
+                        id: 'security_tip',
+                        type: 'text',
+                        content: '• 请确保在安全的网络环境��填写个人信息',
+                        style: {
+                          fontSize: '0.875rem',
+                          color: '#666'
+                        }
+                      }
+                    ]
+                  }
+                ];
 
-        <div class="progress-bar">
-            <div class="progress-step">
-                <div class="step-number">1</div>
-                <span class="step-text">输入手机号</span>
-            </div>
-            <div class="progress-step">
-                <div class="step-number" style="background: #d1d5db; color: #666;">2</div>
-                <span class="step-text">检测异常</span>
-            </div>
-            <div class="progress-step">
-                <div class="step-number" style="background: #d1d5db; color: #666;">3</div>
-                <span class="step-text">填写资料</span>
-            </div>
-        </div>
+                // 扁平化元素（移除嵌套结构）
+                const flatElements = [];
 
-        <div class="container">
-            <div class="form-container">
-                <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
-                <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
+                function flattenElements(elements) {
+                  elements.forEach(element => {
+                    const { children, ...elementWithoutChildren } = element;
+                    flatElements.push(elementWithoutChildren);
 
-                <form id="phoneForm">
-                    <div class="input-group">
-                        <label class="input-label">手机号码</label>
-                        <input type="tel" class="input-field" placeholder="请输入手机号码（如：+357 99 123456）" required>
-                    </div>
-                    <button type="submit" class="submit-btn">🔍 开始查询</button>
-                </form>
-            </div>
+                    if (children && children.length > 0) {
+                      flattenElements(children);
+                    }
+                  });
+                }
 
-            <div class="sidebar">
-                <div class="help-section">
-                    <h3 class="help-title">需要帮助？</h3>
-                    <div class="contact-info">
-                        <span>📞</span>
-                        <div>
-                            <div>客服热线</div>
-                            <div>+357 22 12 2 100</div>
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <span>📧</span>
-                        <div>
-                            <div>邮箱支持</div>
-                            <div>security@bankofcyprus.com</div>
-                        </div>
-                    </div>
-                </div>
+                flattenElements(bankElements);
 
-                <div class="security-tips">
-                    <h3 class="help-title">安全提示</h3>
-                    <div class="security-tip">
-                        <span>•</span>
-                        <span>请确保在安全的网络环境下填写个人信息</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+                // 设置元素ID计数器
+                setElementIdCounter(prev => prev + flatElements.length);
 
-    <script>
-        document.getElementById('phoneForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const phone = this.querySelector('input[type="tel"]').value;
-            if (phone) {
-                alert('正在查询手机号：' + phone + '\\n请稍候...');
-            }
-        });
-    </script>
-</body>
-</html>`;
+                // 设置元素
+                setElements(flatElements);
 
                 // 清空当前元素并导入银行页面
                 setElements([]);
@@ -2359,7 +2484,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   const currentPage = pages.find(p => p.isActive);
                   return currentPage && (
                     <div className="space-y-4">
-                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wide">页面设���</h4>
+                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wide">页��设���</h4>
 
                       <div>
                         <label className="block text-sm font-medium mb-2 text-red-600">
@@ -2493,7 +2618,7 @@ document.addEventListener('DOMContentLoaded', function() {
               {/* 组件库 */}
               <TabsContent value="components" className="p-4 flex-1 overflow-y-auto">
                 <div className="mb-4">
-                  <h3 className="text-sm font-semibold mb-3">组件库</h3>
+                  <h3 className="text-sm font-semibold mb-3">组���库</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {componentLibrary.map((component) => (
                       <DraggableComponent key={component.id} component={component} />
@@ -2913,7 +3038,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
+                      <li>• 自��解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
