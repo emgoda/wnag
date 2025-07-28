@@ -119,58 +119,76 @@ export function DashboardContent() {
         </div>
 
         {/* Data Table */}
-        <div className="bg-white rounded-lg border border-border">
-          <div className="px-6 py-4 border-b border-border">
-            <h2 className="text-base font-medium">最近任务</h2>
+        <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-border bg-gradient-to-r from-white to-muted/20">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-semibold text-foreground">最近任务</h2>
+                <p className="text-sm text-muted-foreground">查看和管理您的最新任务</p>
+              </div>
+              <Button variant="outline" size="sm" className="hover:bg-muted/50">
+                <span className="flex items-center gap-2">
+                  🔄 刷新
+                </span>
+              </Button>
+            </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-muted/50">
+              <thead className="bg-gradient-to-r from-muted/30 to-muted/10">
                 <tr>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">任务ID</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">状态</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">时间</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">描述</th>
-                  <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">操作</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-foreground">任务ID</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-foreground">状态</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-foreground">时间</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-foreground">描述</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-foreground">操作</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
-                {sampleData.map((row) => (
-                  <tr key={row.id} className="hover:bg-muted/50">
-                    <td className="px-6 py-4 text-sm font-mono text-foreground">
-                      #{row.id}
+              <tbody className="divide-y divide-border/50">
+                {sampleData.map((row, index) => (
+                  <tr key={row.id} className="hover:bg-gradient-to-r hover:from-muted/20 hover:to-transparent transition-all duration-200 group">
+                    <td className="px-6 py-5 text-sm font-mono text-foreground">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-success rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                        #{row.id}
+                      </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-5">
                       <Badge
                         variant="outline"
                         className={
                           row.status === "active"
-                            ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-50"
-                            : "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-50"
+                            ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-100 shadow-sm"
+                            : "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100 shadow-sm"
                         }
                       >
-                        {row.statusText}
+                        <span className="flex items-center gap-1">
+                          {row.status === "active" ? "🟢" : "🟡"}
+                          {row.statusText}
+                        </span>
                       </Badge>
                     </td>
-                    <td className="px-6 py-4 text-sm text-muted-foreground">
-                      {row.timestamp}
+                    <td className="px-6 py-5 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        🕒 {row.timestamp}
+                      </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-foreground">
-                      <div>{row.description}</div>
+                    <td className="px-6 py-5 text-sm text-foreground">
+                      <div className="font-medium">{row.description}</div>
                       {row.fileName && (
-                        <div className="text-xs text-muted-foreground mt-1">
-                          文件: {row.fileName}
+                        <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                          📄 文件: {row.fileName}
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm">
-                          查看
+                    <td className="px-6 py-5">
+                      <div className="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <Button variant="outline" size="sm" className="hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600">
+                          👁️ 查看
                         </Button>
-                        <Button variant="outline" size="sm">
-                          编辑
+                        <Button variant="outline" size="sm" className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600">
+                          ✏️ 编辑
                         </Button>
                       </div>
                     </td>
@@ -179,17 +197,17 @@ export function DashboardContent() {
               </tbody>
             </table>
           </div>
-          
-          <div className="px-6 py-4 border-t border-border flex items-center justify-between">
-            <div className="text-sm text-muted-foreground">
-              显示 1-2 条，共 2 条记录
+
+          <div className="px-6 py-4 border-t border-border bg-gradient-to-r from-muted/10 to-transparent flex items-center justify-between">
+            <div className="text-sm text-muted-foreground flex items-center gap-2">
+              📋 显示 1-2 条，共 2 条记录
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" disabled>
-                上一页
+              <Button variant="outline" size="sm" disabled className="opacity-50">
+                ← 上一页
               </Button>
-              <Button variant="outline" size="sm" disabled>
-                下一页
+              <Button variant="outline" size="sm" disabled className="opacity-50">
+                下一页 →
               </Button>
             </div>
           </div>
