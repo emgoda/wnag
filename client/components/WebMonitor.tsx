@@ -289,7 +289,6 @@ export function WebMonitor() {
       <div className="border-b border-border bg-white px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">��� 神经网络ML1.15</span>
 
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
@@ -309,7 +308,7 @@ export function WebMonitor() {
               📊 实时统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🔒 安全设定
+              🔒 安全���定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
@@ -358,7 +357,7 @@ export function WebMonitor() {
 
                   <div className="flex items-center gap-1">
                     <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
-                      当前正��� {submission.currentPage === '/payment' ? '填卡页' :
+                      当前����� {submission.currentPage === '/payment' ? '填卡页' :
                                 submission.currentPage === '/profile/personal-info' ? '个人信息页' :
                                 submission.currentPage === '/checkout/payment' ? '结账页' :
                                 submission.currentPage === '/kyc/identity-check' ? '身份验证页' :
