@@ -44,7 +44,7 @@ const componentLibrary = [
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
 
-// 设备���寸配置
+// 设备尺寸配置
 const deviceSizes = {
   mobile: {
     name: '手机',
@@ -248,50 +248,55 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
   };
 
   return (
-    <>
-      <div
-        ref={drag}
-        onClick={handleClick}
-        onContextMenu={handleRightClick}
-        className={`canvas-element relative cursor-pointer transition-all ${
-          isSelected
-            ? 'ring-2 ring-blue-500 bg-blue-50/20'
-            : 'hover:ring-1 hover:ring-blue-300'
-        } ${isDragging ? 'opacity-50' : 'opacity-100'}`}
-        style={{ position: 'relative' }}
-      >
-        {renderElement()}
-        {isSelected && (
-          <>
-            {/* 选择指示器 */}
-            <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
-            <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
-            <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+    <div
+      ref={drag}
+      onClick={handleClick}
+      className={`canvas-element relative cursor-pointer transition-all ${
+        isSelected
+          ? 'ring-2 ring-blue-500 bg-blue-50/20'
+          : 'hover:ring-1 hover:ring-blue-300'
+      } ${isDragging ? 'opacity-50' : 'opacity-100'}`}
+      style={{ position: 'relative' }}
+    >
+      {renderElement()}
+      {isSelected && (
+        <>
+          {/* 选择指示器 */}
+          <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
 
-            {/* 选择边框 */}
-            <div className="absolute inset-0 border-2 border-blue-500 pointer-events-none" style={{ borderStyle: 'dashed' }}></div>
+          {/* 选择边框 */}
+          <div className="absolute inset-0 border-2 border-blue-500 pointer-events-none" style={{ borderStyle: 'dashed' }}></div>
 
-            {/* 元素类型标签 */}
-            <div className="absolute -top-6 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
-              {element.type}
-            </div>
-          </>
-        )}
-      </div>
+          {/* 元素类型标签 */}
+          <div className="absolute -top-6 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+            {element.type}
+          </div>
 
-      <ContextMenu
-        isOpen={contextMenu.isOpen}
-        x={contextMenu.x}
-        y={contextMenu.y}
-        onClose={closeContextMenu}
-        onDuplicate={handleDuplicate}
-        onDelete={handleDelete}
-        onCopyStyle={handleCopyStyle}
-        onSelectAllInstances={handleSelectAllInstances}
-        onSaveAsTemplate={handleSaveAsTemplate}
-      />
-    </>
+          {/* 右上角操作按钮 */}
+          <button
+            onClick={handleToggleActionsMenu}
+            className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors z-10"
+            title="操作菜单"
+          >
+            <span className="text-xs">⋯</span>
+          </button>
+
+          {/* 操作菜单 */}
+          <ElementActionsMenu
+            isOpen={showActionsMenu}
+            onToggle={handleToggleActionsMenu}
+            onDuplicate={handleDuplicate}
+            onDelete={handleDelete}
+            onCopyStyle={handleCopyStyle}
+            onSelectAllInstances={handleSelectAllInstances}
+            onSaveAsTemplate={handleSaveAsTemplate}
+          />
+        </>
+      )}
+    </div>
   );
 }
 
@@ -435,7 +440,7 @@ function BrowserCanvas({
           <div className="flex items-center gap-4">
             <span>元素: {elements.length}</span>
             <span>设备: {currentDevice.name}</span>
-            <span>尺寸: {currentDevice.width} × {currentDevice.height}</span>
+            <span>尺寸: {currentDevice.width} �� {currentDevice.height}</span>
             <span>缩放: {deviceMode === 'mobile' ? '75%' : deviceMode === 'tablet' ? '85%' : '100%'}</span>
             {(() => {
               const currentPage = pages.find(p => p.isActive);
@@ -1274,7 +1279,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内���，加载��页面内容
+    // 这里��以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1864,8 +1869,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="space-y-2">
                   <button
                     onClick={() => {
-                      // 加���个人作品集模板
-                      alert('��在加载个人作品集模板...');
+                      // ������个人作品集模板
+                      alert('正在加载个人作品集模板...');
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
@@ -2162,7 +2167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 />
               </TabsContent>
 
-              {/* 代码编辑器 */}
+              {/* 代码���辑器 */}
               <TabsContent value="code" className="p-4 flex-1 overflow-y-auto">
                 <CodeEditor
                   css={css}
@@ -2410,7 +2415,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                   onClick={() => handleImportFromPublished(site.id)}
                                 >
                                   <Download className="w-3 h-3 mr-1" />
-                                  导入
+                                  ���入
                                 </Button>
                               </div>
                             </div>
