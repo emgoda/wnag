@@ -627,7 +627,7 @@ export function WebEditor() {
   };
 
   // 加载已发布的网站
-  React.useEffect(() => {
+  useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
   }, []);
