@@ -379,7 +379,7 @@ function BrowserCanvas({
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
-          {/* 窗口控制按钮 */}
+          {/* ��口控制按钮 */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex gap-2">
@@ -440,6 +440,19 @@ function BrowserCanvas({
             onClick={() => onSelectElement(null)}
           >
             <div className="space-y-4">
+              {/* 调试信息：显示当前元素数量 */}
+              {elements.length === 0 && (
+                <div className="text-center py-12 text-gray-500">
+                  <div className="text-lg mb-2">🎨 画布为空</div>
+                  <div className="text-sm">
+                    从左侧拖拽组件或使用"高级导入"来添加内容
+                  </div>
+                  <div className="text-xs mt-2 opacity-60">
+                    当前元素数量: {elements.length}
+                  </div>
+                </div>
+              )}
+
               {elements.map((element) => (
                 <CanvasElement
                   key={element.id}
@@ -1286,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出���编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1838,7 +1851,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ���择�����颜色 */
+/* ����择�����颜色 */
 ::selection {
   background-color: #2196f3;
   color: white;
@@ -2461,7 +2474,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     placeholder="例如：/、/about、/contact"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    路径必须以 / 开头，用于网站导航
+                    路径必须以 / 开头，用于网站��航
                   </p>
                 </div>
 
@@ -2663,7 +2676,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {/* ���发布网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
-                    <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
+                    <h3 className="text-sm font-medium mb-3">选择要导入的已发布网����：</h3>
                     {publishedSites.length === 0 ? (
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
