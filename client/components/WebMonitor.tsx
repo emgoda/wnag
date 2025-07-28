@@ -331,14 +331,14 @@ export function WebMonitor() {
 
               {/* 底部：处理进度和操作按钮 */}
               <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {submission.progress ? (
-                    <div className="min-w-[180px]">
+                    <div className="min-w-[160px]">
                       <div className="flex justify-between text-xs mb-1">
                         <span className="text-muted-foreground">处理进度</span>
                         <span className="font-medium text-blue-600">{submission.progressText}</span>
                       </div>
-                      <Progress value={submission.progress} className="h-2" />
+                      <Progress value={submission.progress} className="h-1.5" />
                     </div>
                   ) : (
                     <span className="text-sm text-muted-foreground">等待处理...</span>
@@ -349,14 +349,14 @@ export function WebMonitor() {
                   </div>
                 </div>
 
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="text-xs px-3">
+                <div className="flex gap-1.5">
+                  <Button variant="outline" size="sm" className="text-xs px-2.5">
                     监控
                   </Button>
-                  <Button variant="outline" size="sm" className="text-xs px-3">
+                  <Button variant="outline" size="sm" className="text-xs px-2.5">
                     暂停
                   </Button>
-                  <Button variant="destructive" size="sm" className="text-xs px-3">
+                  <Button variant="destructive" size="sm" className="text-xs px-2.5">
                     阻止
                   </Button>
                 </div>
