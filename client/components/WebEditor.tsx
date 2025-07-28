@@ -367,6 +367,9 @@ export function WebEditor() {
   const [js, setJs] = useState('');
   const [previewMode, setPreviewMode] = useState(false);
   const [elementIdCounter, setElementIdCounter] = useState(1);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishedSites, setPublishedSites] = useState([]);
+  const [siteName, setSiteName] = useState('');
 
   const handleDrop = useCallback((component) => {
     const newElement = {
