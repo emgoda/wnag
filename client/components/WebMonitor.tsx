@@ -228,7 +228,7 @@ export function WebMonitor() {
       <div className="p-6">
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-2">
-          {submissionData.map((submission, index) => (
+          {submissions.map((submission, index) => (
             <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-2">
               {/* 顶部：编号、前台页面、正在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
@@ -366,7 +366,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监�� {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
           </div>
         </div>
       </div>
