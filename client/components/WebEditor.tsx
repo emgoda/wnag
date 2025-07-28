@@ -5,18 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Type, 
-  Image, 
-  Square, 
-  MousePointer, 
-  Code, 
-  Eye, 
-  Save, 
+import {
+  Type,
+  Image,
+  Square,
+  MousePointer,
+  Code,
+  Eye,
+  Save,
   Download,
   Trash2,
   Copy,
-  Settings
+  Settings,
+  Globe,
+  Link
 } from 'lucide-react';
 
 // 定义拖拽项目类型
