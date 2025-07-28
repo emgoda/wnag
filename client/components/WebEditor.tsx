@@ -596,7 +596,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到��地存储（实际应用中会发送到后端）
+      // 保存到��地存储（实际应用中会发送到���端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -1414,16 +1414,19 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button onClick={handleNewProject} variant="outline" size="sm">
-              <FileText className="w-4 h-4 mr-2" />
+            <button
+              onClick={handleNewProject}
+              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
+            >
+              <FileText className="w-4 h-4" />
               新建
-            </Button>
+            </button>
             <input
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
               placeholder="输入网站名称"
-              className="px-3 py-1 border rounded text-sm w-40"
+              className="px-3 py-1 bg-gray-700 border border-gray-600 rounded text-sm w-40 text-gray-200 placeholder-gray-400 focus:outline-none focus:border-blue-400"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
               <Eye className="w-4 h-4 mr-2" />
@@ -1784,7 +1787,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
+                      <li>• 会解析网站HTML并重建���可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
