@@ -36,6 +36,11 @@ const App = () => (
               <WebMonitor />
             </AdminLayout>
           } />
+          <Route path="/web-creation" element={
+            <AdminLayout>
+              <WebEditor />
+            </AdminLayout>
+          } />
           <Route path="/data-access" element={
               <AdminLayout>
                 <PlaceholderPage title="数据访问" description="数据访问功能正在开发中" />
