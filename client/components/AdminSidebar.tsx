@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
   { id: "dashboard", label: "首页", icon: Home, path: "/" },
-  { id: "control", label: "控制面板", icon: BarChart3, path: "/control-panel" },
+  { id: "control", label: "控制台终端", icon: BarChart3, path: "/control-panel" },
   { id: "data", label: "数据访问", icon: Database, path: "/data-access" },
   { id: "tasks", label: "所有任务", icon: CheckSquare, path: "/tasks", hasSubmenu: true },
   { id: "settings", label: "系统设置", icon: Settings, path: "/settings" },
