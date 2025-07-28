@@ -200,15 +200,15 @@ export function WebMonitor() {
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-4">
           {submissionData.map((submission, index) => (
-            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
               {/* 顶部：编号、前台页面、正在payment页面 */}
-              <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
-                <div className="flex items-center gap-6">
+              <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
+                <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-muted-foreground">编号:</span>
                     <Badge
                       variant="outline"
-                      className={`cursor-pointer text-sm px-3 py-1 font-mono ${
+                      className={`cursor-pointer text-sm px-2 py-1 font-mono ${
                         submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-300" :
                         submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-300" :
                         submission.status === "verified" ? "bg-green-50 text-green-600 border-green-300" :
@@ -241,9 +241,9 @@ export function WebMonitor() {
                       "bg-green-50 text-green-600 border-green-200"
                     }`}
                   >
-                    {submission.riskLevel === "high" ? "🔴 高风险" :
-                     submission.riskLevel === "medium" ? "🟡 中风险" :
-                     "🟢 低风险"}
+                    {submission.riskLevel === "high" ? "高风险" :
+                     submission.riskLevel === "medium" ? "中风险" :
+                     "低风险"}
                   </Badge>
                   <div className="text-sm text-muted-foreground">{submission.statusText}</div>
                 </div>
@@ -292,7 +292,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 底��：处理进度和操作按钮 */}
+              {/* 底部：处理进度和操作按钮 */}
               <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-6">
                   {submission.progress ? (
