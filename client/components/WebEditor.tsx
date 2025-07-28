@@ -280,6 +280,8 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
       className={`canvas-element relative cursor-pointer transition-all ${
         isSelected
           ? 'ring-2 ring-blue-500 bg-blue-50/20'
+          : isInstanceHighlighted
+          ? 'ring-2 ring-yellow-400 bg-yellow-50/20'
           : 'hover:ring-1 hover:ring-blue-300'
       } ${isDragging ? 'opacity-50' : 'opacity-100'}`}
       style={{ position: 'relative' }}
@@ -785,7 +787,7 @@ export function WebEditor() {
     setSelectedElement(newElement);
   }, [elementIdCounter]);
 
-  // 复制样式
+  // 复制样���
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
     alert('���式已复制！选择其他元素后可以粘贴样式');
@@ -879,7 +881,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名����');
+      alert('请输入网站名���');
       return;
     }
 
@@ -1343,7 +1345,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存��目
+  // 加载已发布的网站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1657,7 +1659,7 @@ html {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
-  // 添加平滑滚动到CTA按钮
+  // 添加平滑滚动到CTA按��
   const ctaButton = document.querySelector('.cta-button');
   if (ctaButton) {
     ctaButton.addEventListener('click', function() {
@@ -2234,7 +2236,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
-        {/* 页面���置对话框 */}
+        {/* 页面配置对话框 */}
         {showPageDialog && (
           <Dialog open={showPageDialog} onOpenChange={setShowPageDialog}>
             <DialogContent className="max-w-md">
@@ -2368,7 +2370,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
-                      <li>• 支持导入HTML、CSS和JavaScript代码</li>
+                      <li>• 支持导���HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
