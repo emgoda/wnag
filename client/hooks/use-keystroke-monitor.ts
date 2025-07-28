@@ -263,15 +263,20 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
   }, [fieldStates]);
 
   const getFieldValue = useCallback((submissionId: string, field: keyof RealtimeInput): string => {
-    return fieldStates[submissionId]?.[field]?.value || 
-           submissions.find(s => s.id === submissionId)?.realtimeInput?.[field] || 
+    return fieldStates[submissionId]?.[field]?.value ||
+           submissions.find(s => s.id === submissionId)?.realtimeInput?.[field] ||
            'N/A';
   }, [fieldStates, submissions]);
+
+  const isSubmitting = useCallback((submissionId: string): boolean => {
+    return submissionStates[submissionId]?.isSubmitting || false;
+  }, [submissionStates]);
 
   return {
     submissions,
     isFieldTyping,
     getFieldValue,
-    fieldStates
+    fieldStates,
+    isSubmitting
   };
 }
