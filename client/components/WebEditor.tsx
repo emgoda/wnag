@@ -724,6 +724,16 @@ export function WebEditor() {
   const [savedTemplates, setSavedTemplates] = useState([]);
   const [selectedInstances, setSelectedInstances] = useState([]);
 
+  // 网站项目管理
+  const [currentProject, setCurrentProject] = useState({
+    id: 'project_' + Date.now(),
+    name: '未命名网站',
+    description: '',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    status: 'editing' // 'editing', 'published', 'archived'
+  });
+
   const handleDrop = useCallback((component) => {
     const newElement = {
       id: `element_${elementIdCounter}`,
@@ -1405,7 +1415,7 @@ export function WebEditor() {
               {
                 "id": "demo_4",
                 "type": "text",
-                "content": "��注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "��注于创���现代化的Web应用程序，拥有丰富的前端和后端开发��验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1922,7 +1932,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 新建页面
               </button>
 
-              {/* 快速模板 */}
+              {/* ��速模板 */}
               <div className="mb-4">
                 <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">快速模板</h4>
                 <div className="space-y-2">
