@@ -301,15 +301,7 @@ export function WebMonitor() {
           </div>
           
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ��� ���点管理
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              📊 实时统计
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🔒 安全���定
-            </Button>
+
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
             </Button>
@@ -411,7 +403,7 @@ export function WebMonitor() {
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/admin', '_blank')}>
-                        👤 管理员页面
+                        👤 ���理员页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/logs', '_blank')}>
                         📝 日志页面
