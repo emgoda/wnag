@@ -468,7 +468,7 @@ export function WebEditor() {
         submissionType: "personal_info",
         websiteName: siteName,
         currentPage: "/",
-        userName: "访客��户",
+        userName: "访客用户",
         userLocation: "未知",
         timestamp: new Date().toLocaleString(),
         riskLevel: "low",
@@ -694,7 +694,7 @@ export function WebEditor() {
           setShowImportDialog(false);
           alert(`成功导入网站：${site.name}`);
         } catch (error) {
-          console.error('网站导入失败:', error);
+          console.error('网站���入失败:', error);
           alert('网站导入失败，请重试');
         }
       }
@@ -819,11 +819,15 @@ export function WebEditor() {
             </Button>
             <Button onClick={() => setShowImportDialog(true)} variant="outline" size="sm">
               <Upload className="w-4 h-4 mr-2" />
-              导入HTML
+              高级导入
             </Button>
             <Button onClick={handleExport} variant="outline" size="sm">
               <Download className="w-4 h-4 mr-2" />
               导出HTML
+            </Button>
+            <Button onClick={handleExportProject} variant="outline" size="sm">
+              <Save className="w-4 h-4 mr-2" />
+              导出项目
             </Button>
             <Button
               onClick={handlePublish}
@@ -913,7 +917,7 @@ export function WebEditor() {
           <div className="w-80 bg-white border-l">
             <Tabs defaultValue="properties" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="properties">���性</TabsTrigger>
+                <TabsTrigger value="properties">属性</TabsTrigger>
                 <TabsTrigger value="code">代码</TabsTrigger>
               </TabsList>
               <TabsContent value="properties" className="p-4">
