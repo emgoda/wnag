@@ -38,7 +38,7 @@ const componentLibrary = [
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
 
-// 拖拽组件���
+// 拖拽组件项
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
@@ -356,7 +356,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('页面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -776,6 +776,22 @@ export function WebEditor() {
     URL.revokeObjectURL(url);
   };
 
+  // 新建项目
+  const handleNewProject = () => {
+    const confirmNew = elements.length === 0 ||
+      window.confirm('新建项目将清除当前所有内容，是否继续？');
+
+    if (confirmNew) {
+      setElements([]);
+      setCss('');
+      setJs('');
+      setSiteName('');
+      setSelectedElement(null);
+      localStorage.removeItem('webeditor_last_project');
+      alert('已创建新项目');
+    }
+  };
+
   // 加载已发布的网站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
@@ -801,7 +817,7 @@ export function WebEditor() {
     }
   }, []);
 
-  // 自动保存当前项目
+  // 自动保存��前项目
   useEffect(() => {
     if (elements.length > 0) {
       const autoSaveData = {
@@ -890,7 +906,7 @@ export function WebEditor() {
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              placeholder="输入网站名��"
+              placeholder="��入网站名��"
               className="px-3 py-1 border rounded text-sm w-40"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
