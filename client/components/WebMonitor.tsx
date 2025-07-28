@@ -256,6 +256,27 @@ export function WebMonitor() {
     }
   };
 
+  // ��算相对时间
+  const getRelativeTime = (timeString: string, prefix: string) => {
+    const now = new Date();
+    const [hours, minutes, seconds] = timeString.split(':').map(Number);
+    const targetTime = new Date();
+    targetTime.setHours(hours, minutes, seconds || 0, 0);
+
+    const diffMs = now.getTime() - targetTime.getTime();
+    const diffSeconds = Math.floor(Math.abs(diffMs) / 1000);
+    const diffMinutes = Math.floor(diffSeconds / 60);
+    const diffHours = Math.floor(diffMinutes / 60);
+
+    if (diffHours > 0) {
+      return `${prefix}${diffHours}小时前`;
+    } else if (diffMinutes > 0) {
+      return `${prefix}${diffMinutes}分钟前`;
+    } else {
+      return `${prefix}${diffSeconds}秒前`;
+    }
+  };
+
   return (
     <TooltipProvider>
       <div className="flex-1 bg-background">
@@ -475,7 +496,7 @@ export function WebMonitor() {
                                 </tbody>
                               </table>
                             ) : (
-                              <div className="text-xs text-gray-500 text-center py-4">暂无填写记录</div>
+                              <div className="text-xs text-gray-500 text-center py-4">暂无填��记录</div>
                             )}
                           </div>
                         </div>
