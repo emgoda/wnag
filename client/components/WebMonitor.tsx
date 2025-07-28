@@ -284,7 +284,7 @@ export function WebMonitor() {
                       "bg-green-50 text-green-600 border-green-200"
                     }`}
                   >
-                    {submission.riskLevel === "high" ? "���风险" :
+                    {submission.riskLevel === "high" ? "高风险" :
                      submission.riskLevel === "medium" ? "中风险" :
                      "低风险"}
                   </Badge>
@@ -473,7 +473,6 @@ export function WebMonitor() {
           </div>
         </div>
       </div>
-      <Toaster />
     </div>
   );
 }
