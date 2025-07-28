@@ -321,6 +321,16 @@ export function WebMonitor() {
           </div>
           
           <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mr-4">
+              <label htmlFor="hide-empty" className="text-sm text-muted-foreground">
+                隐藏无数据
+              </label>
+              <Switch
+                id="hide-empty"
+                checked={hideEmptyData}
+                onCheckedChange={setHideEmptyData}
+              />
+            </div>
 
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
