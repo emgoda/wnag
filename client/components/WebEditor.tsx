@@ -592,7 +592,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到��地存储（实际应用中会发送到后端）
+      // 保存到��地存储（实际��用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -634,7 +634,7 @@ export function WebEditor() {
       alert(`网站发布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
-      console.error('发布失败:', error);
+      console.error('发��失败:', error);
       alert('发布失败，请重试');
     } finally {
       setIsPublishing(false);
@@ -881,7 +881,7 @@ export function WebEditor() {
 
     if (site) {
       const confirmImport = elements.length === 0 ||
-        window.confirm('导入网站将替换当前内容，是否继续？');
+        window.confirm('导入网站将替换当前内容，是否继���？');
 
       if (confirmImport) {
         // 解析HTML重新构建项目
@@ -927,7 +927,7 @@ export function WebEditor() {
   // 新建项目
   const handleNewProject = () => {
     const confirmNew = elements.length === 0 ||
-      window.confirm('新建项目将清除当前所有内容，是否继续？');
+      window.confirm('新建项目将清除当前所有内容，是否继续��');
 
     if (confirmNew) {
       setElements([]);
@@ -1252,7 +1252,7 @@ html {
 }`,
         "js": `// 页面加载动画
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('个人作品集网站加载完成');
+  console.log('个人作品集网站加��完成');
 
   // 添加平滑滚动到CTA按钮
   const ctaButton = document.querySelector('.cta-button');
@@ -1459,8 +1459,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
         {/* 主要编辑区域 */}
         <div className="flex-1 flex">
-          {/* 左侧：组件库和网站管理 */}
-          <div className="w-64 bg-white border-r p-4 overflow-y-auto">
+          {/* 左侧：属性编辑器和代码编辑器 */}
+          <div className="w-80 bg-white border-r">
+            <Tabs defaultValue="properties" className="h-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="properties">属性</TabsTrigger>
+                <TabsTrigger value="code">代码</TabsTrigger>
+              </TabsList>
+              <TabsContent value="properties" className="p-4">
+                <PropertyEditor
+                  selectedElement={selectedElement}
+                  onUpdateElement={handleUpdateElement}
+                />
+              </TabsContent>
+              <TabsContent value="code" className="p-4">
+                <CodeEditor
+                  css={css}
+                  js={js}
+                  onCssChange={setCss}
+                  onJsChange={setJs}
+                />
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          {/* 中间：浏览器风格画布 */}
+          <div className="flex-1">
+            <BrowserCanvas
+              elements={elements}
+              onDrop={handleDrop}
+              onSelectElement={handleSelectElement}
+              selectedElement={selectedElement}
+              onDeleteElement={handleDeleteElement}
+              deviceMode={deviceMode}
+              siteName={siteName}
+              onDeviceChange={setDeviceMode}
+            />
+          </div>
+
+          {/* 右侧：组件库和网站管理 */}
+          <div className="w-64 bg-white border-l p-4 overflow-y-auto">
             <h3 className="text-sm font-semibold mb-4">组件库</h3>
             <div className="grid grid-cols-2 gap-2 mb-6">
               {componentLibrary.map((component) => (
@@ -1507,44 +1545,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
               )}
             </div>
-          </div>
-
-          {/* 中间：浏览器风格画布 */}
-          <div className="flex-1">
-            <BrowserCanvas
-              elements={elements}
-              onDrop={handleDrop}
-              onSelectElement={handleSelectElement}
-              selectedElement={selectedElement}
-              onDeleteElement={handleDeleteElement}
-              deviceMode={deviceMode}
-              siteName={siteName}
-              onDeviceChange={setDeviceMode}
-            />
-          </div>
-
-          {/* 右侧：属性编辑器和代码编辑器 */}
-          <div className="w-80 bg-white border-l">
-            <Tabs defaultValue="properties" className="h-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="properties">属性</TabsTrigger>
-                <TabsTrigger value="code">代码</TabsTrigger>
-              </TabsList>
-              <TabsContent value="properties" className="p-4">
-                <PropertyEditor
-                  selectedElement={selectedElement}
-                  onUpdateElement={handleUpdateElement}
-                />
-              </TabsContent>
-              <TabsContent value="code" className="p-4">
-                <CodeEditor
-                  css={css}
-                  js={js}
-                  onCssChange={setCss}
-                  onJsChange={setJs}
-                />
-              </TabsContent>
-            </Tabs>
           </div>
         </div>
 
