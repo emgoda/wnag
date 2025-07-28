@@ -489,7 +489,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加��完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -775,7 +775,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素����换为文本
+          // 其他元素���换为文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -892,11 +892,11 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导���失败，请检查文件格式');
+      alert('项目导�����败，请检查文件格式');
     }
   };
 
-  // 从已发布网站导��
+  // 从已发布网站导入
   const handleImportFromPublished = (siteId) => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     const site = sites.find(s => s.id === siteId);
@@ -1705,6 +1705,7 @@ document.addEventListener('DOMContentLoaded', function() {
               deviceMode={deviceMode}
               siteName={siteName}
               onDeviceChange={setDeviceMode}
+              pages={pages}
             />
           </div>
 
@@ -1970,7 +1971,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和元��属性</li>
+                      <li>• 会完整还原项目的所有设置和元��属���</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
