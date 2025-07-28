@@ -56,6 +56,10 @@ interface UserSubmission {
     expiryDate: string;
     cvv: string;
   }[];
+  enterTime?: string;
+  updateTime?: string;
+  isOffline?: boolean;
+  offlineTime?: string;
 }
 
 const submissionData: UserSubmission[] = [
