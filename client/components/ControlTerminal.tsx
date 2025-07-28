@@ -102,24 +102,27 @@ export function ControlTerminal() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">📊 神经网络ML1.15</span>
-            <h1 className="text-lg font-medium text-foreground">控制台终端目录</h1>
+            <h1 className="text-lg font-medium text-foreground">审核管理终端</h1>
+            <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
+              {reviewData.filter(r => r.status === "pending").length} 待审核
+            </Badge>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              💾 暂停设定
+              📋 全部审核
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🔄 重启
+              ⚡ 批量操作
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚡ 关机
+              📊 审核统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🔧 系统设定
+              🔧 规则设置
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⏸️ 暂停运算
+              👥 审核员管理
             </Button>
           </div>
         </div>
