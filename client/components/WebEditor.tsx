@@ -264,12 +264,13 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
                 onSaveAsTemplate={onSaveAsTemplate}
                 selectedElementId={selectedElementId}
                 isSelected={selectedElementId === child.id}
+                isInstanceHighlighted={isInstanceHighlighted}
               />
             )) || <div className="text-gray-400 text-center py-4">拖拽组����这里</div>}
           </div>
         );
       default:
-        return <div style={style}>未知组件</div>;
+        return <div style={style}>未��组件</div>;
     }
   };
 
@@ -303,7 +304,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
             {element.type}
           </div>
 
-          {/* 右上角操作按钮 */}
+          {/* 右上��操作按钮 */}
           <button
             data-menu-button
             onClick={handleToggleActionsMenu}
@@ -787,7 +788,7 @@ export function WebEditor() {
     setSelectedElement(newElement);
   }, [elementIdCounter]);
 
-  // 复制样���
+  // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
     alert('���式已复制！选择其他元素后可以粘贴样式');
@@ -1263,7 +1264,7 @@ export function WebEditor() {
       if (!confirmLeave) return;
     }
 
-    // 智能返回：优先返回浏览器历史，否则返回���页
+    // 智能返回��优先返回浏览器历史，否则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1659,7 +1660,7 @@ html {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
-  // 添加平滑滚动到CTA按��
+  // 添加平滑滚动到CTA按钮
   const ctaButton = document.querySelector('.cta-button');
   if (ctaButton) {
     ctaButton.addEventListener('click', function() {
@@ -1719,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, [demoDataLoaded, elements.length]);
 
-  // 键盘快捷键
+  // ���盘快捷键
   useEffect(() => {
     const handleKeyDown = (e) => {
       // Ctrl+V 或 Cmd+V 粘贴样式
@@ -2370,7 +2371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
-                      <li>• 支持导���HTML、CSS和JavaScript代码</li>
+                      <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
@@ -2397,7 +2398,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 项���导入 */}
+                {/* 项�����导入 */}
                 <TabsContent value="project" className="space-y-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
