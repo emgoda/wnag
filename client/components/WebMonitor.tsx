@@ -239,6 +239,7 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const [hideEmptyData, setHideEmptyData] = useState(false);
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
   const onlineCount = submissions.filter(s => s.status === "processing").length;
