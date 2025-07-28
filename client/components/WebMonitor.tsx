@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { useKeystrokeMonitor } from "@/hooks/use-keystroke-monitor";
-import { useToast } from "@/hooks/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 
 interface UserSubmission {
   id: string;
@@ -286,7 +284,7 @@ export function WebMonitor() {
                       "bg-green-50 text-green-600 border-green-200"
                     }`}
                   >
-                    {submission.riskLevel === "high" ? "高风险" :
+                    {submission.riskLevel === "high" ? "���风险" :
                      submission.riskLevel === "medium" ? "中风险" :
                      "低风险"}
                   </Badge>
