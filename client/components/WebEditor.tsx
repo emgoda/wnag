@@ -412,7 +412,22 @@ export function WebEditor() {
   }, []);
 
   const handleDeleteElement = useCallback((elementId) => {
-    setElements(prev => prev.filter(el => el.id !== elementId));
+    const deleteElementRecursively = (elements) => {
+      return elements.reduce((acc, el) => {
+        if (el.id === elementId) {
+          return acc; // 跳过要删除的元素
+        }
+        if (el.children) {
+          return [...acc, {
+            ...el,
+            children: deleteElementRecursively(el.children)
+          }];
+        }
+        return [...acc, el];
+      }, []);
+    };
+
+    setElements(prev => deleteElementRecursively(prev));
     setSelectedElement(null);
   }, []);
 
@@ -1439,7 +1454,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
+                      <li>�� 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
