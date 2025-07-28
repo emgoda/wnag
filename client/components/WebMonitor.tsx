@@ -431,7 +431,7 @@ export function WebMonitor() {
               <div className="flex justify-end pt-1 border-t border-gray-100">
                 <div className="flex gap-1.5">
                   <Button variant="outline" size="sm" className="text-xs px-2.5">
-                    app
+                    OTP
                   </Button>
                   <Button variant="outline" size="sm" className="text-xs px-2.5">
                     APP
