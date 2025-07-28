@@ -6,7 +6,8 @@ import {
   CheckSquare,
   Settings,
   ChevronDown,
-  Monitor
+  Monitor,
+  Code
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
