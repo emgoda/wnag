@@ -1,10 +1,10 @@
 import { AdminLayout } from "@/components/AdminLayout";
-import { DashboardContent } from "@/components/DashboardContent";
+import { HomepageAnalytics } from "@/components/HomepageAnalytics";
 
 export default function Index() {
   return (
     <AdminLayout>
-      <DashboardContent />
+      <HomepageAnalytics />
     </AdminLayout>
   );
 }
