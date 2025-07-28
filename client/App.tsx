@@ -24,7 +24,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/control-panel" element={
             <AdminLayout>
-              <PlaceholderPage title="控制面板" description="控制面板功能正在开发中" />
+              <ControlTerminal />
             </AdminLayout>
           } />
           <Route path="/data-access" element={
