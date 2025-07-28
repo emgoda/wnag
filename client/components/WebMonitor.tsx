@@ -137,6 +137,22 @@ const submissionData: UserSubmission[] = [
     fieldsCount: 15,
     ipAddress: "192.168.1.88"
     // 没有 binLookup 和 realtimeInput，表示用户还未输入数据
+  },
+  {
+    id: "13800",
+    status: "submitted",
+    statusText: "已提交",
+    submissionType: "personal_info",
+    websiteName: "新用户注册",
+    currentPage: "/register",
+    userName: "新用户",
+    userLocation: "深圳市南山区",
+    timestamp: "2024-01-20 10:15:10",
+    riskLevel: "low",
+    dataSize: "128Kb",
+    fieldsCount: 4,
+    ipAddress: "192.168.1.200"
+    // 完全没有用户数据，用户刚进入页面
   }
 ];
 
