@@ -135,18 +135,8 @@ const submissionData: UserSubmission[] = [
     riskLevel: "high",
     dataSize: "1.2Mb",
     fieldsCount: 15,
-    ipAddress: "192.168.1.88",
-    binLookup: {
-      cardType: "debit",
-      bank: "建设银行",
-      country: "CN"
-    },
-    realtimeInput: {
-      phone: "159****3210",
-      cardNumber: "6226 **** **** 7890",
-      expiryDate: "03/27",
-      cvv: "***"
-    }
+    ipAddress: "192.168.1.88"
+    // 没有 binLookup 和 realtimeInput，表示用户还未输入数据
   }
 ];
 
