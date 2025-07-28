@@ -96,8 +96,55 @@ function DraggableComponent({ component }) {
   );
 }
 
+// 右键菜单组件
+function ContextMenu({ isOpen, x, y, onClose, onDuplicate, onDelete, onCopyStyle, onSelectAllInstances, onSaveAsTemplate }) {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="fixed inset-0 z-40" onClick={onClose} />
+      <div
+        className="fixed z-50 bg-white rounded-lg shadow-lg border py-2 min-w-48"
+        style={{ left: x, top: y }}
+      >
+        <button
+          onClick={onSelectAllInstances}
+          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+        >
+          <span>🔍</span> Select All Instances
+        </button>
+        <button
+          onClick={onDuplicate}
+          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+        >
+          <span>📋</span> Duplicate
+        </button>
+        <button
+          onClick={onDelete}
+          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
+        >
+          <span>🗑️</span> Delete
+        </button>
+        <div className="border-t my-1" />
+        <button
+          onClick={onSaveAsTemplate}
+          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+        >
+          <span>💾</span> Save as template
+        </button>
+        <button
+          onClick={onCopyStyle}
+          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+        >
+          <span>🎨</span> Copy Style
+        </button>
+      </div>
+    </>
+  );
+}
+
 // 画布元素
-function CanvasElement({ element, onSelect, onDelete, isSelected }) {
+function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, onSelectAllInstances, onSaveAsTemplate, isSelected }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.ELEMENT,
     item: { id: element.id },
@@ -106,14 +153,53 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
     }),
   }));
 
+  const [contextMenu, setContextMenu] = useState({ isOpen: false, x: 0, y: 0 });
+
   const handleClick = (e) => {
     e.stopPropagation();
     onSelect(element);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const handleRightClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onSelect(element);
+    setContextMenu({
+      isOpen: true,
+      x: e.clientX,
+      y: e.clientY
+    });
   };
 
   const handleDelete = (e) => {
     e.stopPropagation();
     onDelete(element.id);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const handleDuplicate = () => {
+    onDuplicate(element);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const handleCopyStyle = () => {
+    onCopyStyle(element);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const handleSelectAllInstances = () => {
+    onSelectAllInstances(element.type);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const handleSaveAsTemplate = () => {
+    onSaveAsTemplate(element);
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
+  };
+
+  const closeContextMenu = () => {
+    setContextMenu({ isOpen: false, x: 0, y: 0 });
   };
 
   const renderElement = () => {
@@ -865,7 +951,7 @@ export function WebEditor() {
         setElements(prev => [...prev, ...parsedElements]);
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元素`);
+        alert(`成功导入外部HTML，��增 ${parsedElements.length} 个元素`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -1667,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
-                    <div className="font-medium">个人作品集</div>
+                    <div className="font-medium">个人作��集</div>
                     <div className="text-xs text-gray-500">展示技能和项目</div>
                   </button>
                   <button
@@ -2095,7 +2181,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 项目导入 */}
+                {/* 项���导入 */}
                 <TabsContent value="project" className="space-y-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
