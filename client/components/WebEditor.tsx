@@ -262,7 +262,8 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
                 onCopyStyle={onCopyStyle}
                 onSelectAllInstances={onSelectAllInstances}
                 onSaveAsTemplate={onSaveAsTemplate}
-                isSelected={false}
+                selectedElementId={selectedElementId}
+                isSelected={selectedElementId === child.id}
               />
             )) || <div className="text-gray-400 text-center py-4">拖拽组����这里</div>}
           </div>
@@ -785,7 +786,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('�����式已复制！选择其他元素后可以粘贴样式');
+    alert('���式已复制！选择其他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -949,7 +950,7 @@ export function WebEditor() {
       const tagName = element.tagName.toLowerCase();
       const computedStyle = {};
 
-      // 获取内联样式
+      // 获取内���样式
       if (element.style.cssText) {
         const styleDeclarations = element.style.cssText.split(';');
         styleDeclarations.forEach(decl => {
@@ -1025,7 +1026,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素���换为文本
+          // 其他元素���换��文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -1275,7 +1276,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路径已存在，请使用其他路径');
+      alert('该路由路径已存在，请使用其��路径');
       return;
     }
 
@@ -2031,7 +2032,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           }}
                           className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
                         >
-                          保存更改
+                          保��更改
                           <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
                             <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
                           </svg>
@@ -2262,7 +2263,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                   <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
-                    <li>• 首页使用 /</li>
+                    <li>• 首页使��� /</li>
                     <li>• 子页面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
                     <li>• 路径将用于生成网站导航</li>
@@ -2343,7 +2344,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码���被提取到对应编辑器</li>
+                      <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
