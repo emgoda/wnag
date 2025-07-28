@@ -38,7 +38,7 @@ const componentLibrary = [
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
 
-// 拖拽组件项
+// 拖拽组件���
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
@@ -640,7 +640,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的���站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -718,7 +718,7 @@ export function WebEditor() {
           alert('项目导入成功！');
         }
       } else {
-        alert('项目���件格式不正确');
+        alert('项目文件格式不正确');
       }
     } catch (error) {
       console.error('项目导入失败:', error);
@@ -776,11 +776,44 @@ export function WebEditor() {
     URL.revokeObjectURL(url);
   };
 
-  // 加载已发布的网站
+  // 加载已发布的网站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
+
+    // 尝试加载上次的项目
+    const lastProject = localStorage.getItem('webeditor_last_project');
+    if (lastProject && elements.length === 0) {
+      try {
+        const projectData = JSON.parse(lastProject);
+        if (projectData.elements && projectData.elements.length > 0) {
+          const loadLast = window.confirm('检测到上次未完成的项目，是否加载？');
+          if (loadLast) {
+            setElements(projectData.elements);
+            setCss(projectData.css || '');
+            setJs(projectData.js || '');
+            setSiteName(projectData.name || '');
+          }
+        }
+      } catch (error) {
+        console.log('无法加载上次项目');
+      }
+    }
   }, []);
+
+  // 自动保存当前项目
+  useEffect(() => {
+    if (elements.length > 0) {
+      const autoSaveData = {
+        name: siteName,
+        elements,
+        css,
+        js,
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem('webeditor_last_project', JSON.stringify(autoSaveData));
+    }
+  }, [elements, css, js, siteName]);
 
   const generateHTML = (elements, css, js) => {
     const elementsHTML = elements.map(el => {
