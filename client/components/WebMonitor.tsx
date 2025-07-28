@@ -187,7 +187,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠��� 风险预警
+              ⚠️ 风险预警
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
@@ -327,8 +327,8 @@ export function WebMonitor() {
 
               {/* 展开的详细信息 */}
               {expandedItems.has(submission.id) && (
-                <div className="mt-4 pt-4 border-t border-gray-200 bg-gray-50 -mx-6 -mb-6 px-6 py-4 rounded-b-lg">
-                  <h4 className="text-sm font-medium text-foreground mb-3">📋 详细信息</h4>
+                <div className="mt-3 pt-3 border-t border-gray-200 bg-gray-50 -mx-4 -mb-4 px-4 py-3 rounded-b-lg">
+                  <h4 className="text-sm font-medium text-foreground mb-2">详细信息</h4>
                   <div className="grid grid-cols-4 gap-4 text-xs">
                     <div>
                       <span className="text-muted-foreground">提交时间: </span>
