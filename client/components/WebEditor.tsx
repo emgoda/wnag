@@ -36,7 +36,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点��按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -215,7 +215,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* 浏览器窗口容器 */}
+      {/* 浏览器窗��容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -786,9 +786,9 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换��前内容
+        // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统���成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -870,7 +870,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导���失败，请检查文件格式');
+      alert('项目导入失败，请检查文件格式');
     }
   };
 
@@ -1457,94 +1457,156 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
-        {/* 主要编辑区域 */}
-        <div className="flex-1 flex">
-          {/* 左侧：组件库和网站管理 */}
-          <div className="w-64 bg-white border-r p-4 overflow-y-auto">
-            <h3 className="text-sm font-semibold mb-4">组件库</h3>
-            <div className="grid grid-cols-2 gap-2 mb-6">
-              {componentLibrary.map((component) => (
-                <DraggableComponent key={component.id} component={component} />
-              ))}
+        {/* IDE风格三栏布局 */}
+        <div className="flex-1 flex bg-gray-50">
+          {/* 左侧文件浏览器 */}
+          <div className="w-60 bg-gray-900 text-gray-100 flex flex-col">
+            {/* 左侧标题栏 */}
+            <div className="px-4 py-3 border-b border-gray-700 bg-gray-800">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-blue-400" />
+                <span className="text-sm font-medium">项目资源</span>
+              </div>
             </div>
 
-            {/* 已发布网站管理 */}
-            <div className="border-t pt-4">
-              <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                <Globe className="w-4 h-4" />
-                已发布网站
-              </h3>
-              {publishedSites.length === 0 ? (
-                <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
-              ) : (
-                <div className="space-y-2">
-                  {publishedSites.slice(-5).map((site) => (
-                    <div key={site.id} className="p-2 border rounded text-xs">
-                      <div className="font-medium truncate">{site.name}</div>
-                      <div className="text-gray-500 mb-2">
-                        {new Date(site.createdAt).toLocaleDateString()}
-                      </div>
-                      <div className="flex gap-1">
-                        <button
-                          onClick={() => window.open(site.url, '_blank')}
-                          className="flex-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-1"
-                        >
-                          <Link className="w-3 h-3" />
-                          访问
-                        </button>
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(site.url);
-                            alert('链接已复制');
-                          }}
-                          className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
-                        >
-                          <Copy className="w-3 h-3" />
-                        </button>
-                      </div>
+            {/* 文件树区域 */}
+            <div className="flex-1 overflow-y-auto">
+              {/* 页面结构 */}
+              <div className="p-2">
+                <div className="mb-3">
+                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
+                    <Square className="w-3 h-3" />
+                    页面结构
+                  </div>
+                  <div className="ml-4 space-y-1">
+                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
+                      <Type className="w-4 h-4 text-green-400" />
+                      <span>index.html</span>
                     </div>
-                  ))}
+                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
+                      <Code className="w-4 h-4 text-blue-400" />
+                      <span>styles.css</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
+                      <Code className="w-4 h-4 text-yellow-400" />
+                      <span>script.js</span>
+                    </div>
+                  </div>
                 </div>
-              )}
+
+                {/* 组件库 */}
+                <div className="mb-3">
+                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
+                    <Square className="w-3 h-3" />
+                    组件库
+                  </div>
+                  <div className="ml-4 space-y-1">
+                    {componentLibrary.map((component) => {
+                      const Icon = component.icon;
+                      return (
+                        <div key={component.id} className="group">
+                          <DraggableComponent component={component} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 已发布网站 */}
+                <div>
+                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
+                    <Globe className="w-3 h-3" />
+                    已发布
+                  </div>
+                  <div className="ml-4 space-y-1">
+                    {publishedSites.length === 0 ? (
+                      <div className="px-2 py-2 text-xs text-gray-500">暂无发布的网站</div>
+                    ) : (
+                      publishedSites.slice(-3).map((site) => (
+                        <div key={site.id} className="px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
+                          <div className="flex items-center gap-2">
+                            <Link className="w-3 h-3 text-green-400" />
+                            <span className="truncate">{site.name}</span>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* 中间：浏览器风格画布 */}
-          <div className="flex-1">
-            <BrowserCanvas
-              elements={elements}
-              onDrop={handleDrop}
-              onSelectElement={handleSelectElement}
-              selectedElement={selectedElement}
-              onDeleteElement={handleDeleteElement}
-              deviceMode={deviceMode}
-              siteName={siteName}
-              onDeviceChange={setDeviceMode}
-            />
+          {/* 中间主编辑区域 */}
+          <div className="flex-1 flex flex-col">
+            {/* 标签页栏 */}
+            <div className="bg-gray-800 border-b border-gray-700 flex items-center">
+              <div className="flex items-center">
+                <div className="px-4 py-2 bg-gray-700 text-gray-100 text-sm border-r border-gray-600 flex items-center gap-2">
+                  <Monitor className="w-4 h-4" />
+                  <span>预览</span>
+                  <button className="ml-2 text-gray-400 hover:text-gray-200">
+                    <span className="text-xs">×</span>
+                  </button>
+                </div>
+                <div className="px-4 py-2 text-gray-400 text-sm hover:bg-gray-700 cursor-pointer">
+                  <span>+ 新标签页</span>
+                </div>
+              </div>
+              <div className="flex-1"></div>
+              <div className="px-4 py-2 text-xs text-gray-400">
+                元素: {elements.length} | 设备: {deviceSizes[deviceMode].name}
+              </div>
+            </div>
+
+            {/* 浏览器风格画布 */}
+            <div className="flex-1">
+              <BrowserCanvas
+                elements={elements}
+                onDrop={handleDrop}
+                onSelectElement={handleSelectElement}
+                selectedElement={selectedElement}
+                onDeleteElement={handleDeleteElement}
+                deviceMode={deviceMode}
+                siteName={siteName}
+                onDeviceChange={setDeviceMode}
+              />
+            </div>
           </div>
 
-          {/* 右侧：属性编辑器和代码编辑器 */}
-          <div className="w-80 bg-white border-l">
-            <Tabs defaultValue="properties" className="h-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="properties">属性</TabsTrigger>
-                <TabsTrigger value="code">代码</TabsTrigger>
-              </TabsList>
-              <TabsContent value="properties" className="p-4">
-                <PropertyEditor
-                  selectedElement={selectedElement}
-                  onUpdateElement={handleUpdateElement}
-                />
-              </TabsContent>
-              <TabsContent value="code" className="p-4">
-                <CodeEditor
-                  css={css}
-                  js={js}
-                  onCssChange={setCss}
-                  onJsChange={setJs}
-                />
-              </TabsContent>
-            </Tabs>
+          {/* 右侧属性面板 */}
+          <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
+            {/* 右侧标题栏 */}
+            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
+              <div className="flex items-center gap-2">
+                <Settings className="w-4 h-4 text-gray-600" />
+                <span className="text-sm font-medium">属性面板</span>
+              </div>
+            </div>
+
+            {/* 属性编辑区域 */}
+            <div className="flex-1 overflow-y-auto">
+              <Tabs defaultValue="properties" className="h-full">
+                <TabsList className="grid w-full grid-cols-2 bg-gray-100 m-2 rounded">
+                  <TabsTrigger value="properties" className="text-xs">属性</TabsTrigger>
+                  <TabsTrigger value="code" className="text-xs">代码</TabsTrigger>
+                </TabsList>
+                <TabsContent value="properties" className="p-4 m-0">
+                  <PropertyEditor
+                    selectedElement={selectedElement}
+                    onUpdateElement={handleUpdateElement}
+                  />
+                </TabsContent>
+                <TabsContent value="code" className="p-4 m-0">
+                  <CodeEditor
+                    css={css}
+                    js={js}
+                    onCssChange={setCss}
+                    onJsChange={setJs}
+                  />
+                </TabsContent>
+              </Tabs>
+            </div>
           </div>
         </div>
 
@@ -1555,7 +1617,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <Upload className="w-5 h-5" />
-                  高级导入功能
+                  高级导��功能
                 </DialogTitle>
               </DialogHeader>
 
