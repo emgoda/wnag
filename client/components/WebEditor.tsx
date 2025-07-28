@@ -37,9 +37,9 @@ const ItemTypes = {
 
 // 组件库
 const componentLibrary = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请��入文本', style: {} } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请输入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
-  { id: 'input', type: 'input', label: '输���框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
+  { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -1461,7 +1461,7 @@ export function WebEditor() {
       setSiteName('');
       setSelectedElement(null);
       localStorage.removeItem('webeditor_last_project');
-      alert('已创建新项���');
+      alert('已创建新项目');
     }
   };
 
@@ -1555,7 +1555,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站���自动保存项目
+  // 加载已发布的网站����自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2411,7 +2411,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
-                    <div className="font-medium">个人作品集</div>
+                    <div className="font-medium">个人作��集</div>
                     <div className="text-xs text-gray-500">展示技能和项目</div>
                   </button>
                   <button
@@ -2437,7 +2437,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
               {/* 页面列表 */}
               <div>
-                <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">页面列表</h4>
+                <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">页面���表</h4>
                 <div className="space-y-1">
                   {pages.map((page) => (
                     <div
@@ -2601,7 +2601,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
           </div>
 
-          {/* ��侧：组件库、属性编辑器和代码编辑器 */}
+          {/* ��侧：组件库、属性编辑器和代��编辑器 */}
           <div className="w-80 bg-white border-l flex flex-col">
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
@@ -2625,7 +2625,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {savedTemplates.length > 0 && (
                   <div className="border-t pt-4 mb-4">
                     <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                      <span>📋</span> 保存的模板
+                      <span>📋</span> 保存的���板
                     </h3>
                     <div className="space-y-2">
                       {savedTemplates.map((template) => (
@@ -2676,7 +2676,7 @@ document.addEventListener('DOMContentLoaded', function() {
                               className="flex-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-1"
                             >
                               <Link className="w-3 h-3" />
-                              ��问
+                              访问
                             </button>
                             <button
                               onClick={() => {
@@ -2772,7 +2772,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
+                  <h4 className="text-sm font-medium text-blue-800 mb-1">��由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
@@ -3146,7 +3146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布��网站，重新编���和修改</li>
+                      <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
