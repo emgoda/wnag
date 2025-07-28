@@ -159,7 +159,7 @@ function ElementActionsMenu({ isOpen, onToggle, onDuplicate, onDelete, onCopySty
 }
 
 // 画布元素
-function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, onSelectAllInstances, onSaveAsTemplate, isSelected }) {
+function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, onSelectAllInstances, onSaveAsTemplate, isSelected, selectedElementId }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.ELEMENT,
     item: { id: element.id },
@@ -785,7 +785,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('���式已复制！选择其他元素后可以粘贴样式');
+    alert('�����式已复制！选择其他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -2343,7 +2343,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应编辑器</li>
+                      <li>• CSS和JS代码���被提取到对应编辑器</li>
                     </ul>
                   </div>
 
