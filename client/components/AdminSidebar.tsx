@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { 
-  Home, 
-  BarChart3, 
-  Database, 
-  CheckSquare, 
+import {
+  Home,
+  BarChart3,
+  Database,
+  CheckSquare,
   Settings,
-  ChevronDown 
+  ChevronDown,
+  Monitor
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
