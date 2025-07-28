@@ -266,7 +266,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
                 isSelected={selectedElementId === child.id}
                 selectedInstances={selectedInstances}
               />
-            )) || <div className="text-gray-400 text-center py-4">拖拽组����这里</div>}
+            )) || <div className="text-gray-400 text-center py-4">拖拽组件到这里</div>}
           </div>
         );
       default:
@@ -304,7 +304,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
             {element.type}
           </div>
 
-          {/* 右上角操��按钮 */}
+          {/* ���上角操��按钮 */}
           <button
             data-menu-button
             onClick={handleToggleActionsMenu}
@@ -473,7 +473,7 @@ function BrowserCanvas({
                   {deviceMode === 'mobile' && <Smartphone size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'tablet' && <Tablet size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'desktop' && <Monitor size={48} className="mx-auto mb-4 opacity-50" />}
-                  <p>拖拽左侧组件到这里���始设计</p>
+                  <p>拖���左侧组件到这里���始设计</p>
                   <p className="text-sm mt-2">{currentDevice.name}视图 ({currentDevice.width}×{currentDevice.height})</p>
                 </div>
               )}
@@ -500,7 +500,7 @@ function BrowserCanvas({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>实时预览</span>
+              <span>实时���览</span>
             </div>
             {selectedElement && (
               <span className="text-blue-600">���选择: {selectedElement.type}</span>
@@ -934,7 +934,7 @@ export function WebEditor() {
     }
 
     try {
-      // 由于跨域限制，我们���用代理服务或提示用户手动操作
+      // 由于跨域限制，我们使用代理服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div���p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不���确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1427,7 +1427,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名���目',
+      name: siteName || '未命名项目',
       elements,
       css,
       js,
@@ -1473,7 +1473,7 @@ export function WebEditor() {
       if (!confirmLeave) return;
     }
 
-    // 智能返回：优先返回浏���器历��，否则返回���页
+    // ��能返回：优先返回浏���器历史，否则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1520,7 +1520,7 @@ export function WebEditor() {
     }
 
     if (editingPage) {
-      // 编���现有页面
+      // 编辑现有页面
       setPages(prev => prev.map(p =>
         p.id === editingPage.id
           ? { ...p, name: pageForm.name, route: pageForm.route, description: pageForm.description }
@@ -1882,7 +1882,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片���画
+  // ��能卡片���画
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2848,7 +2848,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-green-700">
-                        ✨ 推荐：直接输入网站URL，��统会自动指导您获取完整源码
+                        ✨ 推荐：直接输入网站URL，系统会自动指导您获取完整源码
                       </p>
                       <Button
                         onClick={() => {
@@ -3077,7 +3077,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
-                      <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
+                      <li>• 支持导入通过"导出项目"功���生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置��������属性</li>
                       <li>• 导入会替换当前项目的所有内��</li>
                     </ul>
