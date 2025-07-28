@@ -934,7 +934,7 @@ export function WebEditor() {
     }
 
     try {
-      // 由于跨域限制，我们使用代���服务或提示用户手动操作
+      // 由于跨域限制，我们使用代理服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1263,7 +1263,7 @@ export function WebEditor() {
     }
 
     console.log('解析完成，生成元素数量:', elements.length);
-    console.log('检测到交互功能:', originalHtmlMeta.hasInteractivity);
+    console.log('检测到交互功���:', originalHtmlMeta.hasInteractivity);
 
     return elements;
   };
@@ -1296,7 +1296,7 @@ export function WebEditor() {
       } else {
         // 外部HTML，添加到现有内容
         const parsedElements = parseHTMLToElements(importHtml);
-        console.log('解析完成，获得元素:', parsedElements);
+        console.log('解析完成，获得��素:', parsedElements);
 
         if (parsedElements.length === 0) {
           alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
@@ -1332,7 +1332,7 @@ export function WebEditor() {
       const content = e.target.result;
 
       if (importMode === 'project') {
-        // 尝试解析为项目文件 (JSON)
+        // 尝试解析���项目文件 (JSON)
         try {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
@@ -1416,7 +1416,7 @@ export function WebEditor() {
           setShowImportDialog(false);
           alert(`成功��入网站：${site.name}`);
         } catch (error) {
-          console.error('网站导入失败:', error);
+          console.error('���站导入失败:', error);
           alert('网站导入失败，请重试');
         }
       }
@@ -1555,7 +1555,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站����自动保存项目
+  // 加载已发布的网站���自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2209,7 +2209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       {
                         id: 'form_title',
                         type: 'text',
-                        content: '🔍 第一步：输入手机号码查询',
+                        content: '🔍 第一步：输���手机号码查询',
                         style: {
                           fontSize: '1.25rem',
                           fontWeight: 'bold',
@@ -2338,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 设置元素
                 setElements(flatElements);
 
-                alert(`🏦 银行页面已生成！包含��\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
+                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
               }}
               variant="default"
               size="sm"
@@ -2606,7 +2606,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
                 <TabsTrigger value="components" className="text-xs">组件</TabsTrigger>
-                <TabsTrigger value="properties" className="text-xs">属��</TabsTrigger>
+                <TabsTrigger value="properties" className="text-xs">属性</TabsTrigger>
                 <TabsTrigger value="code" className="text-xs">代码</TabsTrigger>
               </TabsList>
 
@@ -3147,7 +3147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
+                      <li>• 会解析网站HTML并重建为���编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
