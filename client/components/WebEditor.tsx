@@ -926,7 +926,7 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 直接加载演示项目��据
+    // 直接加载演示项目数据
     if (elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
@@ -1362,6 +1362,28 @@ document.addEventListener('DOMContentLoaded', function() {
           <div className="flex items-center gap-4">
             <h2 className="text-lg font-semibold">网页编辑器</h2>
             <Badge variant="outline">拖拽式编辑器</Badge>
+
+            {/* 顶部设备切换 */}
+            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+              {Object.entries(deviceSizes).map(([key, device]) => {
+                const Icon = device.icon;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setDeviceMode(key)}
+                    className={`px-3 py-1 rounded-md transition-colors text-sm flex items-center gap-1 ${
+                      deviceMode === key
+                        ? 'bg-blue-500 text-white'
+                        : 'text-gray-600 hover:bg-white'
+                    }`}
+                    title={device.name}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="hidden sm:inline">{device.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <Button onClick={handleNewProject} variant="outline" size="sm">
