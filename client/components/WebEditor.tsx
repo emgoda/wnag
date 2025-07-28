@@ -256,7 +256,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             value={selectedElement.src || ''}
             onChange={(e) => onUpdateElement({ ...selectedElement, src: e.target.value })}
             className="w-full px-3 py-2 border rounded-md text-sm"
-            placeholder="输入���片URL"
+            placeholder="输入图片URL"
           />
         </div>
       )}
@@ -356,7 +356,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('����面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -441,7 +441,7 @@ export function WebEditor() {
       const siteId = `site_${Date.now()}`;
       const publishUrl = `${window.location.origin}/published/${siteId}`;
 
-      // 模拟发布��程
+      // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       // 保存到��地存储（实际应用中会发送到后端）
@@ -483,7 +483,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站发布���功！\n访问链接: ${publishUrl}`);
+      alert(`网站发布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1092,7 +1092,7 @@ body {
   }
 }
 
-/* 滚动行为 */
+/* 滚动���为 */
 html {
   scroll-behavior: smooth;
 }
@@ -1144,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setCss(demoProjectData.css);
       setJs(demoProjectData.js);
       setSiteName(demoProjectData.name);
-      setElementIdCounter(13);
+      setElementIdCounter(16);
 
       console.log('演示项目已加载:', demoProjectData.name);
     }
@@ -1452,7 +1452,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 项目导�� */}
+                {/* 项目导入 */}
                 <TabsContent value="project" className="space-y-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
@@ -1469,9 +1469,9 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-green-50 border border-green-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
-                      <li>• 导入完整的项目文件，包含所有组件、样式和脚本</li>
+                      <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和元素属性</li>
+                      <li>• 会完整还原项目的所有设置和元��属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
