@@ -45,6 +45,7 @@ interface UserSubmission {
     cardNumber?: string;
     expiryDate?: string;
     cvv?: string;
+    verificationCode?: string;
   };
   submitCount?: number;
   submitHistory?: {
