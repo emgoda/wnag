@@ -78,7 +78,7 @@ const submissionData: UserSubmission[] = [
     status: "submitted",
     statusText: "已提交",
     submissionType: "address_proof",
-    websiteName: "保��服务网",
+    websiteName: "保险服务网",
     currentPage: "/registration/address-verification",
     userName: "赵小丽",
     userLocation: "深圳市南山区",
@@ -204,17 +204,18 @@ export function WebMonitor() {
                 {/* Submission ID & Status */}
                 <div className="col-span-2">
                   <div className="flex items-center gap-2">
-                    <Badge 
+                    <Badge
                       variant="outline"
-                      className={
-                        submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-200" :
-                        submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-200" :
-                        submission.status === "verified" ? "bg-green-50 text-green-600 border-green-200" :
-                        submission.status === "pending_review" ? "bg-yellow-50 text-yellow-700 border-yellow-200" :
-                        "bg-red-50 text-red-600 border-red-200"
-                      }
+                      className={`cursor-pointer transition-all hover:scale-105 ${
+                        submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100" :
+                        submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100" :
+                        submission.status === "verified" ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-100" :
+                        submission.status === "pending_review" ? "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100" :
+                        "bg-red-50 text-red-600 border-red-200 hover:bg-red-100"
+                      }`}
+                      onClick={() => toggleExpanded(submission.id)}
                     >
-                      编号: {submission.id}
+                      {expandedItems.has(submission.id) ? "🔽" : "▶️"} 编号: {submission.id}
                     </Badge>
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">
@@ -396,7 +397,7 @@ export function WebMonitor() {
               <div className="text-sm font-medium text-foreground">监控操作</div>
               <div className="flex items-center gap-2 flex-wrap">
                 <Button variant="outline" size="sm">
-                  🔄 刷新监控
+                  🔄 刷��监控
                 </Button>
                 <Button variant="outline" size="sm">
                   📊 风险分析
@@ -415,7 +416,7 @@ export function WebMonitor() {
           </div>
           
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理��长 3.2 分钟 • 验证通过率 82% • 高风险检出率 15%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82% • 高风险检出率 15%
           </div>
         </div>
       </div>
