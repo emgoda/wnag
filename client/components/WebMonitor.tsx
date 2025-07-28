@@ -96,7 +96,10 @@ const submissionData: UserSubmission[] = [
       { timestamp: "11:28", cardType: "debit", partialCard1: "4321", partialCard2: "567", fullCard: "4321 **** **** 5678", expiryDate: "09/26", cvv: "123" },
       { timestamp: "11:25", cardType: "credit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***" },
       { timestamp: "11:22", cardType: "debit", partialCard1: "6226", partialCard2: "789", fullCard: "6226 **** **** 7890", expiryDate: "03/27", cvv: "***" }
-    ]
+    ],
+    enterTime: "11:20:15",
+    updateTime: "11:30:42",
+    isOffline: false
   },
   {
     id: "13743",
@@ -276,7 +279,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠️ 风险预警
+              ⚠️ 风险预���
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
