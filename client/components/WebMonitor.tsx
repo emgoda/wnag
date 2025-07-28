@@ -127,7 +127,7 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在线银行系统",
+    websiteName: "在��银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
     userLocation: "广州市天河区",
@@ -243,7 +243,11 @@ export function WebMonitor() {
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-2">
           {submissions.map((submission, index) => (
-            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-2">
+            <div key={submission.id} className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-2 ${
+              isSubmitting(submission.id)
+                ? 'animate-pulse bg-yellow-50 border-yellow-400 shadow-lg ring-4 ring-yellow-200'
+                : ''
+            }`}>
               {/* 顶部：编号、前台页面、正在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
