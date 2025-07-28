@@ -26,11 +26,16 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/control-panel" element={
-              <AdminLayout>
-                <ControlTerminal />
-              </AdminLayout>
-            } />
-            <Route path="/data-access" element={
+            <AdminLayout>
+              <ControlTerminal />
+            </AdminLayout>
+          } />
+          <Route path="/web-monitor" element={
+            <AdminLayout>
+              <WebMonitor />
+            </AdminLayout>
+          } />
+          <Route path="/data-access" element={
               <AdminLayout>
                 <PlaceholderPage title="数据访问" description="数据访问功能正在开发中" />
               </AdminLayout>
