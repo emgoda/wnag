@@ -848,7 +848,7 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换��前内容
+        // 检查是否替换����前内容
         const confirmReplace = elements.length === 0 ||
           window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
@@ -1019,7 +1019,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是否有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页��有未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1117,7 +1117,7 @@ export function WebEditor() {
         "name": "个人作品集网站",
         "elements": [
           {
-            "id": "element_1",
+            "id": "demo_1",
             "type": "container",
             "content": "",
             "style": {
@@ -2075,7 +2075,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
+                      <li>• 自��解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
