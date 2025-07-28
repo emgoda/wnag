@@ -862,7 +862,7 @@ export function WebEditor() {
 
     if (site) {
       const confirmImport = elements.length === 0 ||
-        window.confirm('导入网站将替换当前内容，是否继续？');
+        window.confirm('导入网站将替换当前内容，是否继��？');
 
       if (confirmImport) {
         // 解析HTML重新构建项目
@@ -1468,14 +1468,16 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          {/* 中间：画布 */}
-          <div className="flex-1 p-4">
-            <Canvas
+          {/* 中间：浏览器风格画布 */}
+          <div className="flex-1">
+            <BrowserCanvas
               elements={elements}
               onDrop={handleDrop}
               onSelectElement={handleSelectElement}
               selectedElement={selectedElement}
               onDeleteElement={handleDeleteElement}
+              deviceMode={deviceMode}
+              siteName={siteName}
             />
           </div>
 
