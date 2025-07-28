@@ -902,6 +902,10 @@ export function WebEditor() {
             <Badge variant="outline">拖拽式编辑器</Badge>
           </div>
           <div className="flex items-center gap-2">
+            <Button onClick={handleNewProject} variant="outline" size="sm">
+              <FileText className="w-4 h-4 mr-2" />
+              新建
+            </Button>
             <input
               type="text"
               value={siteName}
