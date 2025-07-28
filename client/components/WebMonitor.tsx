@@ -46,11 +46,17 @@ const submissionData: UserSubmission[] = [
     dataSize: "402Kb",
     fieldsCount: 12,
     ipAddress: "192.168.1.100",
-    sessionId: "sess_abc123"
+    sessionId: "sess_abc123",
+    realtimeInput: {
+      phone: "138****5678",
+      cardNumber: "4532 **** **** 1234",
+      expiryDate: "12/26",
+      cvv: "***"
+    }
   },
   {
     id: "13752",
-    status: "processing", 
+    status: "processing",
     statusText: "处理中",
     submissionType: "credit_card",
     websiteName: "电商购物网",
@@ -63,10 +69,16 @@ const submissionData: UserSubmission[] = [
     riskLevel: "medium",
     dataSize: "156Kb",
     fieldsCount: 8,
-    ipAddress: "192.168.1.105"
+    ipAddress: "192.168.1.105",
+    realtimeInput: {
+      phone: "189****9876",
+      cardNumber: "5555 **** **** 4444",
+      expiryDate: "08/25",
+      cvv: "***"
+    }
   },
   {
-    id: "13716", 
+    id: "13716",
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
@@ -78,7 +90,13 @@ const submissionData: UserSubmission[] = [
     riskLevel: "high",
     dataSize: "1.2Mb",
     fieldsCount: 15,
-    ipAddress: "192.168.1.88"
+    ipAddress: "192.168.1.88",
+    realtimeInput: {
+      phone: "159****3210",
+      cardNumber: "6226 **** **** 7890",
+      expiryDate: "03/27",
+      cvv: "***"
+    }
   },
   {
     id: "13689",
@@ -93,7 +111,10 @@ const submissionData: UserSubmission[] = [
     riskLevel: "low",
     dataSize: "890Kb",
     fieldsCount: 6,
-    ipAddress: "192.168.1.92"
+    ipAddress: "192.168.1.92",
+    realtimeInput: {
+      phone: "135****4567"
+    }
   },
   {
     id: "13651",
@@ -110,7 +131,13 @@ const submissionData: UserSubmission[] = [
     riskLevel: "low",
     dataSize: "234Kb",
     fieldsCount: 10,
-    ipAddress: "192.168.1.78"
+    ipAddress: "192.168.1.78",
+    realtimeInput: {
+      phone: "180****8888",
+      cardNumber: "4111 **** **** 1111",
+      expiryDate: "11/28",
+      cvv: "***"
+    }
   },
   {
     id: "13622",
@@ -125,7 +152,13 @@ const submissionData: UserSubmission[] = [
     riskLevel: "high",
     dataSize: "445Kb",
     fieldsCount: 9,
-    ipAddress: "192.168.1.201"
+    ipAddress: "192.168.1.201",
+    realtimeInput: {
+      phone: "176****2345",
+      cardNumber: "3782 **** **** 9012",
+      expiryDate: "07/24",
+      cvv: "***"
+    }
   }
 ];
 
