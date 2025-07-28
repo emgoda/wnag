@@ -167,7 +167,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
                 onDelete={onDelete}
                 isSelected={false}
               />
-            )) || <div className="text-gray-400 text-center py-4">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-4">拖拽组件��这里</div>}
           </div>
         );
       default:
@@ -392,6 +392,31 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             className="w-full px-3 py-2 border rounded-md text-sm"
             placeholder="输入内容"
           />
+        </div>
+      )}
+
+      {selectedElement.type === 'input' && (
+        <div className="space-y-4">
+          <div>
+            <label className="text-sm font-medium block mb-2">占位符文本</label>
+            <input
+              type="text"
+              value={selectedElement.placeholder || ''}
+              onChange={(e) => onUpdateElement({ ...selectedElement, placeholder: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md text-sm"
+              placeholder="请输入占位符文本"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium block mb-2">默认值</label>
+            <input
+              type="text"
+              value={selectedElement.value || ''}
+              onChange={(e) => onUpdateElement({ ...selectedElement, value: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md text-sm"
+              placeholder="输入默认值"
+            />
+          </div>
         </div>
       )}
 
@@ -1901,7 +1926,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <FileText className="w-5 h-5" />
-                  {editingPage ? '编辑页面' : '新建页面'}
+                  {editingPage ? '编辑��面' : '新建页面'}
                 </DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
