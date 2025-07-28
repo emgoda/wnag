@@ -151,7 +151,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "电商��物网",
     currentPage: "/checkout/payment",
     userName: "李小���",
-    userLocation: "上海市浦东区",
+    userLocation: "上海市���东区",
     timestamp: "2024-01-20 10:23:45",
     progress: 72,
     progressText: "72%",
@@ -335,10 +335,10 @@ export function WebMonitor() {
 
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
-                🔴 LIVE - {onlineCount} 在线处理
+                🟢 前台在线人数: {onlineUsersCount}
               </Badge>
-              <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
-                今日提交: {todaySubmissions}
+              <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200">
+                🔴 已离线人数: {offlineUsersCount}
               </Badge>
             </div>
           </div>
@@ -479,7 +479,7 @@ export function WebMonitor() {
                         📝 日志页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/users', '_blank')}>
-                        👥 用户管���
+                        👥 用户管理
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
