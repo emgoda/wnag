@@ -139,7 +139,7 @@ function ElementActionsMenu({ isOpen, onToggle, onDuplicate, onDelete, onCopySty
         onClick={onDelete}
         className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
       >
-        <span>🗑️</span> 删除
+        <span>����️</span> 删除
       </button>
       <div className="border-t my-1" />
       <button
@@ -792,8 +792,33 @@ export function WebEditor() {
 
   // 选择所有相同类型的实例
   const handleSelectAllInstances = useCallback((elementType) => {
-    const instanceCount = elements.filter(el => el.type === elementType).length;
-    alert(`找到 ${instanceCount} 个 ${elementType} 类型的元素`);
+    const getAllElementsByType = (elements, type) => {
+      let results = [];
+      for (const el of elements) {
+        if (el.type === type) {
+          results.push(el);
+        }
+        if (el.children && el.children.length > 0) {
+          results.push(...getAllElementsByType(el.children, type));
+        }
+      }
+      return results;
+    };
+
+    const instances = getAllElementsByType(elements, elementType);
+    const instanceCount = instances.length;
+
+    if (instanceCount > 0) {
+      // 临时高亮所有实例
+      setSelectedInstances(instances.map(el => el.id));
+      setTimeout(() => {
+        setSelectedInstances([]);
+      }, 3000); // 3秒后取消高亮
+
+      alert(`找到 ${instanceCount} 个 ${elementType} 类型的元素，已临时高亮显示`);
+    } else {
+      alert(`没有找到 ${elementType} 类型的元素`);
+    }
   }, [elements]);
 
   // 保存为模板
@@ -1833,7 +1858,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
               <Eye className="w-4 h-4 mr-2" />
-              预览
+              预��
             </Button>
             <Button onClick={handleSave} variant="outline" size="sm">
               <Save className="w-4 h-4 mr-2" />
@@ -1921,7 +1946,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">产品落地页</div>
-                    <div className="text-xs text-gray-500">营销推广页面</div>
+                    <div className="text-xs text-gray-500">营销推广���面</div>
                   </button>
                 </div>
               </div>
