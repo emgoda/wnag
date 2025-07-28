@@ -318,7 +318,7 @@ export function WebMonitor() {
               </div>
 
               {/* 底部：处理进度和操作按钮 */}
-              <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+              <div className="flex items-center justify-between pt-1 border-t border-gray-100">
                 <div className="flex items-center gap-3">
                   {submission.progress ? (
                     <div className="min-w-[160px]">
