@@ -514,7 +514,7 @@ export function WebEditor() {
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
     { id: 'about', name: '关于我们', route: '/about', isActive: false },
-    { id: 'contact', name: '��系方式', route: '/contact', isActive: false }
+    { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
   const [editingPage, setEditingPage] = useState(null);
@@ -693,7 +693,7 @@ export function WebEditor() {
       setJs(prev => (prev + '\n' + extractedJS).trim());
     }
 
-    // 解析body中的���素
+    // 解析body中的元素
     const bodyElements = doc.body ? doc.body.children : doc.children;
 
     const parseElement = (element, isNested = false) => {
@@ -811,7 +811,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是��系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -925,7 +925,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名项目',
+      name: siteName || '未命���项目',
       elements,
       css,
       js,
@@ -1470,6 +1470,15 @@ document.addEventListener('DOMContentLoaded', function() {
         {/* 顶部工具栏 */}
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <button
+              onClick={() => window.history.back()}
+              className="flex items-center gap-2 px-3 py-1 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+              title="返回上一页"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="text-sm">返回</span>
+            </button>
+            <div className="w-px h-6 bg-gray-300"></div>
             <h2 className="text-lg font-semibold">网页编辑器</h2>
             <Badge variant="outline">拖拽式编辑器</Badge>
 
@@ -1989,7 +1998,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 已发布网站导入 */}
+                {/* 已发���网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
                     <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
