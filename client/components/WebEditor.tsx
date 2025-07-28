@@ -231,7 +231,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-sm font-medium mb-2">元素类型</h3>
+        <h3 className="text-sm font-medium mb-2">元��类型</h3>
         <Badge variant="outline">{selectedElement.type}</Badge>
       </div>
 
@@ -655,7 +655,7 @@ export function WebEditor() {
         setElements(prev => [...prev, ...parsedElements]);
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元素`);
+        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元���`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -910,7 +910,7 @@ export function WebEditor() {
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              placeholder="��入网站名��"
+              placeholder="输入网站名称"
               className="px-3 py-1 border rounded text-sm w-40"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
@@ -1042,7 +1042,7 @@ export function WebEditor() {
           </div>
         </div>
 
-        {/* 高级导入对话框 */}
+        {/* 高级导入��话框 */}
         {showImportDialog && (
           <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
             <DialogContent className="max-w-5xl max-h-[85vh]">
