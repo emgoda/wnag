@@ -21,6 +21,26 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/control-panel" element={
+            <AdminLayout>
+              <PlaceholderPage title="控制面板" description="控制面板功能正在开发中" />
+            </AdminLayout>
+          } />
+          <Route path="/data-access" element={
+            <AdminLayout>
+              <PlaceholderPage title="数据访问" description="数据访问功能正在开发中" />
+            </AdminLayout>
+          } />
+          <Route path="/tasks" element={
+            <AdminLayout>
+              <PlaceholderPage title="所有任务" description="任务管理功能正在开发中" />
+            </AdminLayout>
+          } />
+          <Route path="/settings" element={
+            <AdminLayout>
+              <PlaceholderPage title="系统设置" description="系统设置功能正在开发中" />
+            </AdminLayout>
+          } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
