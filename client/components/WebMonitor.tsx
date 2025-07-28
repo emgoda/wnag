@@ -218,7 +218,7 @@ export function WebMonitor() {
             <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
-                🔴 LIVE - {onlineCount} 在线处理
+                🔴 LIVE - {onlineCount} ��线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
                 今日提交: {todaySubmissions}
@@ -296,9 +296,34 @@ export function WebMonitor() {
                   <Button variant="destructive" size="sm" className="text-xs px-2.5">
                     拒绝
                   </Button>
-                  <Button variant="secondary" size="sm" className="text-xs px-2.5">
-                    自定义
-                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="secondary" size="sm" className="text-xs px-2.5">
+                        自定义
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem onClick={() => window.open('/dashboard', '_blank')}>
+                        📊 数据分析页面
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => window.open('/reports', '_blank')}>
+                        📋 报告页面
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => window.open('/settings', '_blank')}>
+                        ⚙️ 设置页面
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => window.open('/admin', '_blank')}>
+                        👤 管理员页面
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => window.open('/logs', '_blank')}>
+                        📝 日志页面
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => window.open('/users', '_blank')}>
+                        👥 用户管理
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
 
