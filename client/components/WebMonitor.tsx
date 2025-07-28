@@ -536,59 +536,40 @@ export function WebMonitor() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-72">
-                      {/* 网站项目列表 */}
-                      {websiteProjects.length > 0 && (
-                        <>
-                          <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">制作的网站</div>
-                          {websiteProjects.map((project) => (
-                            <DropdownMenuItem
-                              key={project.id}
-                              onClick={() => window.open(`/web-creation?project=${project.id}`, '_blank')}
-                              className="flex items-center gap-2 py-2"
-                            >
-                              <div className={`w-2 h-2 rounded-full ${
-                                project.status === 'editing' ? 'bg-orange-500' :
-                                project.status === 'published' ? 'bg-green-500' : 'bg-gray-400'
-                              }`}></div>
-                              <div className="flex-1 min-w-0">
-                                <div className="font-medium text-sm truncate">{project.name}</div>
-                                <div className="text-xs text-muted-foreground truncate">
-                                  {project.pages?.length || 0} 页面 • {new Date(project.updatedAt).toLocaleDateString()}
-                                </div>
-                              </div>
-                              <span className={`text-xs px-1.5 py-0.5 rounded ${
-                                project.status === 'editing' ? 'bg-orange-100 text-orange-600' :
-                                project.status === 'published' ? 'bg-green-100 text-green-600' :
-                                'bg-gray-100 text-gray-600'
-                              }`}>
-                                {project.status === 'editing' ? '编辑中' :
-                                 project.status === 'published' ? '已发布' : '存档'}
-                              </span>
-                            </DropdownMenuItem>
-                          ))}
-                          <DropdownMenuSeparator />
-                        </>
-                      )}
+                      {/* 该前台对应的页面列表 */}
+                      {(() => {
+                        const frontendPages = getFrontendPages(submission.websiteName);
+                        return frontendPages.length > 0 && (
+                          <>
+                            <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+                              {submission.websiteName} - 页面列表
+                            </div>
+                            {frontendPages.map((page) => (
+                              <DropdownMenuItem
+                                key={page.id}
+                                onClick={() => window.open(`/web-creation?frontend=${encodeURIComponent(submission.websiteName)}&page=${page.id}`, '_blank')}
+                                className="flex items-center gap-2"
+                              >
+                                <div className={`w-2 h-2 rounded-full ${
+                                  page.isActive ? 'bg-blue-500' : 'bg-gray-400'
+                                }`}></div>
+                                {page.name}
+                                {page.isActive && (
+                                  <span className="text-xs text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded ml-auto">
+                                    当前
+                                  </span>
+                                )}
+                              </DropdownMenuItem>
+                            ))}
+                            <DropdownMenuSeparator />
+                          </>
+                        );
+                      })()}
 
-                      {/* 页面列表 */}
-                      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">快速页面</div>
-                      {webPages.map((page) => (
-                        <DropdownMenuItem
-                          key={page.id}
-                          onClick={() => window.open(`/web-creation?page=${page.id}`, '_blank')}
-                          className="flex items-center gap-2"
-                        >
-                          <div className={`w-2 h-2 rounded-full ${
-                            page.isActive ? 'bg-blue-500' : 'bg-gray-400'
-                          }`}></div>
-                          {page.name}
-                          {page.isActive && (
-                            <span className="text-xs text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded ml-auto">
-                              当前
-                            </span>
-                          )}
-                        </DropdownMenuItem>
-                      ))}
+                      {/* 项目管理 */}
+                      <DropdownMenuItem onClick={() => window.open(`/web-creation?frontend=${encodeURIComponent(submission.websiteName)}`, '_blank')}>
+                        🔧 编辑 {submission.websiteName}
+                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/web-creation', '_blank')}>
                         🔧 网页制作主页
