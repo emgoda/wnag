@@ -322,7 +322,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>实时��览</span>
+              <span>实时预览</span>
             </div>
             {selectedElement && (
               <span className="text-blue-600">已选择: {selectedElement.type}</span>
@@ -640,7 +640,7 @@ export function WebEditor() {
         websiteName: siteName,
         currentPage: "/",
         userName: "访客用户",
-        userLocation: "��知",
+        userLocation: "未知",
         timestamp: new Date().toLocaleString(),
         riskLevel: "low",
         dataSize: `${Math.round(html.length / 1024)}Kb`,
@@ -1037,7 +1037,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载新页面内容
+    // 这里可以添加切换���面时的逻辑，比如保存当前页面内容，加载新页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1347,7 +1347,7 @@ body {
   }
 }
 
-/* 滚动���为 */
+/* 滚动������ */
 html {
   scroll-behavior: smooth;
 }
@@ -1433,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'image':
           return `<img src="${el.src}" alt="${el.alt}" style="${styleStr}" />`;
         case 'container':
-          return `<div style="${styleStr}">容器��容</div>`;
+          return `<div style="${styleStr}">容器内容</div>`;
         default:
           return '';
       }
@@ -1487,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
-              onClick={() => window.history.back()}
+              onClick={handleGoBack}
               className="flex items-center gap-2 px-3 py-1 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
               title="返回上一页"
             >
@@ -1953,7 +1953,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
-                      <li>• 内联样式会被保留并应用到元素</li>
+                      <li>• 内联样式会被保留并应用���元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
