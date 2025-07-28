@@ -148,7 +148,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "新用户注册",
     currentPage: "/register",
     userName: "新用户",
-    userLocation: "深圳市南山区",
+    userLocation: "深圳市��山区",
     timestamp: "2024-01-20 10:15:10",
     riskLevel: "low",
     dataSize: "128Kb",
@@ -230,7 +230,7 @@ export function WebMonitor() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">��� 神经网络ML1.15</span>
-            <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
+            <h1 className="text-lg font-medium text-foreground">网页实时��控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
                 🔴 LIVE - {onlineCount} 在线处理
@@ -495,6 +495,7 @@ export function WebMonitor() {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
