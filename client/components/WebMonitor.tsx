@@ -245,11 +245,55 @@ export function WebMonitor() {
 
   // 动态获取网页制作中的网站项目列表
   const [websiteProjects, setWebsiteProjects] = useState([]);
-  const [webPages] = useState([
-    { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关于我们', route: '/about', isActive: false },
-    { id: 'contact', name: '联系方式', route: '/contact', isActive: false },
-  ]);
+
+  // 前台与网页项目的映射关系
+  const frontendProjectMapping = {
+    "前台页面 1111": {
+      projectId: "payment_frontend_1111",
+      pages: [
+        { id: 'payment', name: '支付页面', route: '/payment', isActive: true },
+        { id: 'confirm', name: '确认页面', route: '/confirm', isActive: false },
+        { id: 'success', name: '成功页面', route: '/success', isActive: false },
+      ]
+    },
+    "金融服务平台": {
+      projectId: "financial_platform",
+      pages: [
+        { id: 'profile', name: '个人资料', route: '/profile', isActive: true },
+        { id: 'verification', name: '身份验证', route: '/verification', isActive: false },
+        { id: 'documents', name: '文档上传', route: '/documents', isActive: false },
+      ]
+    },
+    "电商购物网": {
+      projectId: "ecommerce_site",
+      pages: [
+        { id: 'checkout', name: '结账页面', route: '/checkout', isActive: true },
+        { id: 'cart', name: '购物车', route: '/cart', isActive: false },
+        { id: 'products', name: '商品页', route: '/products', isActive: false },
+      ]
+    },
+    "在线银行系统": {
+      projectId: "banking_system",
+      pages: [
+        { id: 'kyc', name: '身份验证', route: '/kyc', isActive: true },
+        { id: 'account', name: '账户页面', route: '/account', isActive: false },
+        { id: 'transfer', name: '转账页面', route: '/transfer', isActive: false },
+      ]
+    },
+    "新用户注册": {
+      projectId: "user_registration",
+      pages: [
+        { id: 'register', name: '注册页面', route: '/register', isActive: true },
+        { id: 'welcome', name: '欢迎页面', route: '/welcome', isActive: false },
+        { id: 'tutorial', name: '新手引导', route: '/tutorial', isActive: false },
+      ]
+    }
+  };
+
+  // 获取指定前台的页面列表
+  const getFrontendPages = (websiteName) => {
+    return frontendProjectMapping[websiteName]?.pages || [];
+  };
 
   // 加载网站项目列表
   useEffect(() => {
@@ -786,7 +830,7 @@ export function WebMonitor() {
                   >
                     {submission.riskLevel === "high" ? "高风险" :
                      submission.riskLevel === "medium" ? "中风险" :
-                     "低���险"}
+                     "低风险"}
                   </Badge>
                 </div>
               </div>
