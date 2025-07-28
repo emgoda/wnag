@@ -253,7 +253,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
                 onDelete={onDelete}
                 isSelected={false}
               />
-            )) || <div className="text-gray-400 text-center py-4">拖拽组件��这里</div>}
+            )) || <div className="text-gray-400 text-center py-4">拖拽组����这里</div>}
           </div>
         );
       default:
@@ -506,7 +506,7 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-sm font-medium mb-2">元素类型</h3>
+        <h3 className="text-sm font-medium mb-2">元素类��</h3>
         <Badge variant="outline">{selectedElement.type}</Badge>
       </div>
 
@@ -562,7 +562,17 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
       )}
 
       <div>
-        <h3 className="text-sm font-medium mb-2">样式设置</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-sm font-medium">样式设置</h3>
+          {copiedStyle && (
+            <button
+              onClick={onPasteStyle}
+              className="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+            >
+              粘贴样式
+            </button>
+          )}
+        </div>
         <div className="space-y-2">
           <div className="grid grid-cols-2 gap-2">
             <div>
@@ -679,7 +689,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关��������', route: '/about', isActive: false },
+    { id: 'about', name: '关���我���', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -876,7 +886,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站���布成功！\n访问链接: ${publishUrl}`);
+      alert(`网站����布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1345,7 +1355,7 @@ export function WebEditor() {
               {
                 "id": "demo_4",
                 "type": "text",
-                "content": "��注于创���现代化��Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "��注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1658,7 +1668,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setElementIdCounter(1);
       setDemoDataLoaded(true);
 
-      console.log('演示项目已加载:', demoProjectData.name);
+      console.log('演���项目已加载:', demoProjectData.name);
     }
   }, [demoDataLoaded, elements.length]);
 
@@ -1962,7 +1972,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
-                            // ���里可以添���首页设置逻辑
+                            // ���里可以添��首页设置逻辑
                             alert('设为首页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
@@ -2302,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置和�����属性</li>
-                      <li>• 导入会替换当前项��的所有内容</li>
+                      <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
 
