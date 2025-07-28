@@ -218,7 +218,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
   };
 
   return (
-    <div className="flex-1 bg-gray-100 p-6">
+    <div className="flex-1 bg-gray-100 p-4">
       {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
@@ -662,7 +662,7 @@ export function WebEditor() {
       setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
-    // 解���JavaScript
+    // 解析JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
@@ -873,7 +873,7 @@ export function WebEditor() {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项目���入失败:', error);
+      console.error('项目导入失败:', error);
       alert('项目导入失败，请检查文件格式');
     }
   };
@@ -1222,7 +1222,7 @@ body {
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
 }
 
-/* ��能卡片悬停效果 */
+/* 技能卡片悬停效果 */
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -1667,7 +1667,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代���会被提取到对应编辑器</li>
+                      <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
@@ -1779,7 +1779,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编��的组件</li>
+                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
