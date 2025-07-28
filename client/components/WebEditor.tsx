@@ -39,7 +39,7 @@ const ItemTypes = {
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请��入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
-  { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
+  { id: 'input', type: 'input', label: '输���框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -377,7 +377,7 @@ function BrowserCanvas({
     <div className="flex-1 bg-gray-100 p-6">
       {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
-        {/* ����器顶部栏 */}
+        {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
           {/* 窗口控制按钮 */}
           <div className="flex items-center justify-between">
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1355,9 +1355,9 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // ��认是否覆盖当前项目
+        // 确认是否覆盖当前项目
         const confirmOverwrite = elements.length === 0 ||
-          window.confirm('导入项目将替换当前内容��是否继续？');
+          window.confirm('导入项目将替换当前内容，是否继续？');
 
         if (confirmOverwrite) {
           setElements(projectData.elements);
@@ -1388,14 +1388,14 @@ export function WebEditor() {
           setElementIdCounter(maxId + 1);
 
           setShowImportDialog(false);
-          alert('项��导入成功！');
+          alert('项目导入成功！');
         }
       } else {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项目导入失��:', error);
-      alert('项目导���失败，请检查文件���式');
+      console.error('项目导入失败:', error);
+      alert('项目导入失败，请检查文件格式');
     }
   };
 
@@ -1406,15 +1406,15 @@ export function WebEditor() {
 
     if (site) {
       const confirmImport = elements.length === 0 ||
-        window.confirm('导入网站将替换当前内容��是否继续？');
+        window.confirm('导入网站将替换当前内容，是否继续？');
 
       if (confirmImport) {
-        // 解析HTML重新构��项���
+        // 解析HTML重新构建项目
         try {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
           setShowImportDialog(false);
-          alert(`成功��入��站：${site.name}`);
+          alert(`成功导入网站：${site.name}`);
         } catch (error) {
           console.error('网站导入失败:', error);
           alert('网站导入失败，请重试');
@@ -1461,7 +1461,7 @@ export function WebEditor() {
       setSiteName('');
       setSelectedElement(null);
       localStorage.removeItem('webeditor_last_project');
-      alert('已创建新项目');
+      alert('已创建新项���');
     }
   };
 
@@ -1800,7 +1800,7 @@ body {
   color: #333;
 }
 
-/* ������效果 */
+/* 动���效果 */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -2138,7 +2138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   {
                     id: 'subtitle',
                     type: 'text',
-                    content: '请按照以���步骤完成账户异常检测和解除流程',
+                    content: '请按照以下步骤完成账户异常检测和解除流程',
                     style: {
                       textAlign: 'center',
                       color: '#666',
@@ -2344,7 +2344,7 @@ document.addEventListener('DOMContentLoaded', function() {
               size="sm"
               className="bg-blue-600 hover:bg-blue-700"
             >
-              🏦 银行页���
+              🏦 银行页面
             </Button>
 
             {/* 元素数量显示 */}
@@ -2676,7 +2676,7 @@ document.addEventListener('DOMContentLoaded', function() {
                               className="flex-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-1"
                             >
                               <Link className="w-3 h-3" />
-                              访问
+                              ��问
                             </button>
                             <button
                               onClick={() => {
@@ -3146,7 +3146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布��网站，重新编辑和修改</li>
+                      <li>• 导入之前发布��网站，重新编���和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
