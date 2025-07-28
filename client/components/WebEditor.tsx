@@ -709,6 +709,7 @@ export function WebEditor() {
   const [siteName, setSiteName] = useState('');
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [importHtml, setImportHtml] = useState('');
+  const [importUrl, setImportUrl] = useState('');
   const [importMode, setImportMode] = useState('html'); // 'html', 'project', 'published'
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
@@ -1260,7 +1261,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出��编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1343,7 +1344,7 @@ export function WebEditor() {
           alert('项��导入成功！');
         }
       } else {
-        alert('项目文件格式不正确');
+        alert('项目文件格式不正��');
       }
     } catch (error) {
       console.error('项目导入失��:', error);
@@ -1966,7 +1967,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <h2 className="text-lg font-semibold">预览模式</h2>
           <Button onClick={handlePreview} variant="outline">
             <Code className="w-4 h-4 mr-2" />
-            ��回编辑
+            ��回编��
           </Button>
         </div>
         <div className="flex-1 bg-gray-100 p-4">
@@ -2339,7 +2340,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="border-t pt-4">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
-                    已发布网站
+                    ��发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
                     <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
@@ -2453,7 +2454,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
+                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设���说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
@@ -2535,7 +2536,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
-                      <li>• 内联样式会被保留并应用到元素</li>
+                      <li>• 内联样式会被保留���应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
                   </div>
@@ -2647,7 +2648,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布��网站，重新编辑和修改</li>
+                      <li>• 导入之前发布�����站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
