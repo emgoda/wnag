@@ -129,134 +129,132 @@ export function ControlTerminal() {
       </div>
 
       <div className="p-6">
-        {/* Task List */}
+        {/* Review List */}
         <div className="space-y-3">
-          {taskData.map((task, index) => (
-            <div key={task.id} className="bg-white border border-border rounded-lg p-4 hover:shadow-sm transition-shadow">
-              <div className="grid grid-cols-12 gap-4 items-center">
-                {/* Task ID & Status */}
+          {reviewData.map((review, index) => (
+            <div key={review.id} className="bg-white border border-border rounded-lg p-4 hover:shadow-sm transition-shadow">
+              <div className="grid grid-cols-12 gap-4 items-start">
+                {/* Review ID & Status */}
                 <div className="col-span-2">
-                  <div className="flex items-center gap-2">
-                    <Badge 
+                  <div className="flex items-center gap-2 mb-1">
+                    <Badge
                       variant="outline"
                       className={
-                        task.status === "running" 
-                          ? "bg-green-50 text-green-600 border-green-200" 
-                          : "bg-yellow-50 text-yellow-700 border-yellow-200"
+                        review.status === "pending" ? "bg-orange-50 text-orange-600 border-orange-200" :
+                        review.status === "reviewing" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                        review.status === "approved" ? "bg-green-50 text-green-600 border-green-200" :
+                        review.status === "rejected" ? "bg-red-50 text-red-600 border-red-200" :
+                        "bg-yellow-50 text-yellow-700 border-yellow-200"
                       }
                     >
-                      编号: {task.id}
+                      {review.statusText}
                     </Badge>
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {task.statusText}
+                  <div className="text-xs text-muted-foreground font-mono">
+                    {review.id}
                   </div>
                 </div>
 
-                {/* File Info */}
-                <div className="col-span-2">
-                  <div className="text-sm text-foreground">
-                    {task.fileName}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {task.fileCount}
-                  </div>
-                </div>
-
-                {/* Model/Details */}
-                <div className="col-span-2">
-                  {task.model && (
-                    <div className="text-sm text-foreground">{task.model}</div>
-                  )}
-                  <div className="text-xs text-muted-foreground">
-                    {task.type}
-                  </div>
-                </div>
-
-                {/* Progress */}
+                {/* Review Info */}
                 <div className="col-span-3">
-                  {task.progress ? (
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">进度</span>
-                        <span className="text-foreground font-medium">{task.progressText}</span>
-                      </div>
-                      <Progress value={task.progress} className="h-2" />
+                  <div className="text-sm font-medium text-foreground mb-1">
+                    {review.title}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    分类: {review.category}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    提交人: {review.submitter}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="col-span-3">
+                  <div className="text-sm text-foreground mb-1">
+                    {review.description}
+                  </div>
+                  {review.attachments && (
+                    <div className="text-xs text-muted-foreground flex items-center gap-1">
+                      📎 附件: {review.attachments} 个
                     </div>
-                  ) : (
-                    <div className="text-xs text-muted-foreground">等待中...</div>
                   )}
                 </div>
 
-                {/* Memory & Operations */}
+                {/* Time & Reviewer */}
                 <div className="col-span-2">
-                  {task.memory && (
-                    <div className="text-xs">
-                      <div className="text-muted-foreground">内存: {task.memory}</div>
-                      {task.operations && (
-                        <div className="text-muted-foreground">操作: {task.operations}</div>
-                      )}
+                  <div className="text-xs text-muted-foreground mb-1">
+                    提交时间: {review.submittedTime}
+                  </div>
+                  {review.reviewerName && (
+                    <div className="text-xs text-muted-foreground">
+                      审核人: {review.reviewerName}
+                    </div>
+                  )}
+                  {review.lastUpdate && (
+                    <div className="text-xs text-muted-foreground">
+                      更新: {review.lastUpdate}
                     </div>
                   )}
                 </div>
 
-                {/* Actions */}
-                <div className="col-span-1">
+                {/* Priority & Actions */}
+                <div className="col-span-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge
+                      variant="outline"
+                      className={
+                        review.priority === "high" ? "bg-red-50 text-red-600 border-red-200" :
+                        review.priority === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
+                        "bg-gray-50 text-gray-600 border-gray-200"
+                      }
+                    >
+                      {review.priority === "high" ? "🔴 高优先级" :
+                       review.priority === "medium" ? "🟡 中优先级" :
+                       "⚪ 低优先级"}
+                    </Badge>
+                  </div>
+
                   <div className="flex flex-col gap-1">
-                    {task.status === "running" ? (
+                    {review.status === "pending" ? (
                       <>
-                        <Button variant="outline" size="sm" className="text-xs h-6">
-                          暂停
+                        <Button size="sm" className="text-xs h-7 bg-blue-600 hover:bg-blue-700">
+                          🔍 开始审核
                         </Button>
-                        <Button variant="outline" size="sm" className="text-xs h-6">
-                          停止
+                        <Button variant="outline" size="sm" className="text-xs h-7">
+                          📋 查看详情
+                        </Button>
+                      </>
+                    ) : review.status === "reviewing" ? (
+                      <>
+                        <Button size="sm" className="text-xs h-7 bg-green-600 hover:bg-green-700">
+                          ✅ 通过
+                        </Button>
+                        <Button variant="outline" size="sm" className="text-xs h-7 text-red-600 border-red-200 hover:bg-red-50">
+                          ❌ 拒绝
+                        </Button>
+                      </>
+                    ) : review.status === "waiting_info" ? (
+                      <>
+                        <Button variant="outline" size="sm" className="text-xs h-7 bg-yellow-50 text-yellow-700 border-yellow-200">
+                          📞 催促补充
+                        </Button>
+                        <Button variant="outline" size="sm" className="text-xs h-7">
+                          📋 查看详情
                         </Button>
                       </>
                     ) : (
                       <>
-                        <Button variant="outline" size="sm" className="text-xs h-6 bg-green-50 hover:bg-green-100 text-green-700">
-                          启动
+                        <Button variant="outline" size="sm" className="text-xs h-7">
+                          📋 查看详情
                         </Button>
-                        <Button variant="outline" size="sm" className="text-xs h-6">
-                          删除
+                        <Button variant="outline" size="sm" className="text-xs h-7">
+                          📝 审核记录
                         </Button>
                       </>
                     )}
                   </div>
                 </div>
               </div>
-
-              {/* Extended row for running tasks */}
-              {task.status === "running" && task.progress && (
-                <div className="mt-3 pt-3 border-t border-border/30">
-                  <div className="grid grid-cols-6 gap-4 text-xs">
-                    <div>
-                      <span className="text-muted-foreground">类型: </span>
-                      <span className="text-foreground">文本处理</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">开始时间: </span>
-                      <span className="text-foreground">09:45:23</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">预计完成: </span>
-                      <span className="text-foreground">10:23:45</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">CPU: </span>
-                      <span className="text-foreground">45%</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">状态: </span>
-                      <span className="text-green-600">正常运行</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">优先级: </span>
-                      <span className="text-foreground">中等</span>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
