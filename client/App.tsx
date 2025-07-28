@@ -13,6 +13,7 @@ import { PlaceholderPage } from "@/components/PlaceholderPage";
 import { ControlTerminal } from "@/components/ControlTerminal";
 import { WebMonitor } from "@/components/WebMonitor";
 import { WebEditor } from "@/components/WebEditor";
+import { PublishedSite } from "@/components/PublishedSite";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
