@@ -314,7 +314,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
             <span className="text-xs">⋯</span>
           </button>
 
-          {/* 操作菜单 */}
+          {/* 操作���单 */}
           <ElementActionsMenu
             isOpen={showActionsMenu}
             onToggle={handleToggleActionsMenu}
@@ -1206,6 +1206,26 @@ export function WebEditor() {
     });
 
     setElementIdCounter(idCounter);
+
+    // 保存原始HTML以便保留交互功能
+    const originalHtmlMeta = {
+      originalHtml: htmlString,
+      parsedAt: new Date().toISOString(),
+      hasInteractivity: htmlString.includes('addEventListener') ||
+                      htmlString.includes('onclick') ||
+                      htmlString.includes('function') ||
+                      /<(input|button|form|select|textarea)/.test(htmlString)
+    };
+
+    // 将元数据添加到第一个元素（如果存在）
+    if (elements.length > 0) {
+      elements[0].attributes = elements[0].attributes || {};
+      elements[0].attributes.originalHtmlMeta = originalHtmlMeta;
+    }
+
+    console.log('解析完成，生成元素数量:', elements.length);
+    console.log('检测到交互功能:', originalHtmlMeta.hasInteractivity);
+
     return elements;
   };
 
@@ -1438,7 +1458,7 @@ export function WebEditor() {
       return;
     }
 
-    // 验证路由�����
+    // 验证路�������
     if (!pageForm.route.startsWith('/')) {
       alert('路由路径必须以 / 开头');
       return;
