@@ -52,6 +52,11 @@ const submissionData: UserSubmission[] = [
     fieldsCount: 6,
     ipAddress: "192.168.1.120",
     sessionId: "sess_xyz789",
+    binLookup: {
+      cardType: "debit",
+      bank: "招商银行",
+      country: "CN"
+    },
     realtimeInput: {
       phone: "138****8888",
       cardNumber: "4321 **** **** 5678",
@@ -76,6 +81,11 @@ const submissionData: UserSubmission[] = [
     fieldsCount: 12,
     ipAddress: "192.168.1.100",
     sessionId: "sess_abc123",
+    binLookup: {
+      cardType: "credit",
+      bank: "中国银行",
+      country: "CN"
+    },
     realtimeInput: {
       phone: "138****5678",
       cardNumber: "4532 **** **** 1234",
@@ -99,6 +109,11 @@ const submissionData: UserSubmission[] = [
     dataSize: "156Kb",
     fieldsCount: 8,
     ipAddress: "192.168.1.105",
+    binLookup: {
+      cardType: "credit",
+      bank: "工商银行",
+      country: "CN"
+    },
     realtimeInput: {
       phone: "189****9876",
       cardNumber: "5555 **** **** 4444",
@@ -120,6 +135,11 @@ const submissionData: UserSubmission[] = [
     dataSize: "1.2Mb",
     fieldsCount: 15,
     ipAddress: "192.168.1.88",
+    binLookup: {
+      cardType: "debit",
+      bank: "建设银行",
+      country: "CN"
+    },
     realtimeInput: {
       phone: "159****3210",
       cardNumber: "6226 **** **** 7890",
@@ -304,7 +324,7 @@ export function WebMonitor() {
                   {submission.progress ? (
                     <div className="min-w-[180px]">
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-muted-foreground">处���进度</span>
+                        <span className="text-muted-foreground">处理进度</span>
                         <span className="font-medium text-blue-600">{submission.progressText}</span>
                       </div>
                       <Progress value={submission.progress} className="h-2" />
@@ -362,7 +382,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证��过率 82%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
           </div>
         </div>
       </div>
