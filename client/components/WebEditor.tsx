@@ -33,7 +33,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击���钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -256,7 +256,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             value={selectedElement.src || ''}
             onChange={(e) => onUpdateElement({ ...selectedElement, src: e.target.value })}
             className="w-full px-3 py-2 border rounded-md text-sm"
-            placeholder="输入图片URL"
+            placeholder="输入���片URL"
           />
         </div>
       )}
@@ -356,7 +356,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('����面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -441,7 +441,7 @@ export function WebEditor() {
       const siteId = `site_${Date.now()}`;
       const publishUrl = `${window.location.origin}/published/${siteId}`;
 
-      // 模拟发布过程
+      // 模拟发布��程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       // 保存到��地存储（实际应用中会发送到后端）
@@ -483,7 +483,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站发布成功！\n访问链接: ${publishUrl}`);
+      alert(`网站发布���功！\n访问链接: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -695,7 +695,7 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // 确认是否覆盖当���项目
+        // 确认是否覆盖当前项目
         const confirmOverwrite = elements.length === 0 ||
           window.confirm('导入项目将替换当前内容，是否继续？');
 
@@ -817,66 +817,68 @@ export function WebEditor() {
             "className": "hero-section",
             "attributes": {
               "htmlId": "hero"
-            }
-          },
-          {
-            "id": "element_2",
-            "type": "text",
-            "content": "张明",
-            "style": {
-              "fontSize": "4em",
-              "fontWeight": "bold",
-              "color": "#ffffff",
-              "marginBottom": "10px",
-              "textShadow": "2px 2px 4px rgba(0,0,0,0.5)"
             },
-            "className": "hero-title",
-            "attributes": {}
-          },
-          {
-            "id": "element_3",
-            "type": "text",
-            "content": "全栈开发工程师",
-            "style": {
-              "fontSize": "1.5em",
-              "color": "#64b5f6",
-              "marginBottom": "20px",
-              "fontWeight": "300"
-            },
-            "className": "hero-subtitle",
-            "attributes": {}
-          },
-          {
-            "id": "element_4",
-            "type": "text",
-            "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
-            "style": {
-              "fontSize": "1.1em",
-              "color": "#e0e0e0",
-              "maxWidth": "600px",
-              "margin": "0 auto 40px auto",
-              "lineHeight": "1.6"
-            },
-            "className": "hero-description",
-            "attributes": {}
-          },
-          {
-            "id": "element_5",
-            "type": "button",
-            "content": "查看我的作品",
-            "style": {
-              "backgroundColor": "#2196f3",
-              "color": "white",
-              "padding": "15px 30px",
-              "fontSize": "1.1em",
-              "border": "none",
-              "borderRadius": "50px",
-              "cursor": "pointer",
-              "transition": "all 0.3s ease",
-              "boxShadow": "0 4px 15px rgba(33, 150, 243, 0.3)"
-            },
-            "className": "cta-button",
-            "attributes": {}
+            "children": [
+              {
+                "id": "element_2",
+                "type": "text",
+                "content": "张明",
+                "style": {
+                  "fontSize": "4em",
+                  "fontWeight": "bold",
+                  "color": "#ffffff",
+                  "marginBottom": "10px",
+                  "textShadow": "2px 2px 4px rgba(0,0,0,0.5)"
+                },
+                "className": "hero-title",
+                "attributes": {}
+              },
+              {
+                "id": "element_3",
+                "type": "text",
+                "content": "全栈开发工程师",
+                "style": {
+                  "fontSize": "1.5em",
+                  "color": "#64b5f6",
+                  "marginBottom": "20px",
+                  "fontWeight": "300"
+                },
+                "className": "hero-subtitle",
+                "attributes": {}
+              },
+              {
+                "id": "element_4",
+                "type": "text",
+                "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "style": {
+                  "fontSize": "1.1em",
+                  "color": "#e0e0e0",
+                  "maxWidth": "600px",
+                  "margin": "0 auto 40px auto",
+                  "lineHeight": "1.6"
+                },
+                "className": "hero-description",
+                "attributes": {}
+              },
+              {
+                "id": "element_5",
+                "type": "button",
+                "content": "查看我的作品",
+                "style": {
+                  "backgroundColor": "#2196f3",
+                  "color": "white",
+                  "padding": "15px 30px",
+                  "fontSize": "1.1em",
+                  "border": "none",
+                  "borderRadius": "50px",
+                  "cursor": "pointer",
+                  "transition": "all 0.3s ease",
+                  "boxShadow": "0 4px 15px rgba(33, 150, 243, 0.3)"
+                },
+                "className": "cta-button",
+                "attributes": {}
+              }
+            ]
           },
           {
             "id": "element_6",
@@ -890,88 +892,136 @@ export function WebEditor() {
             "className": "about-section",
             "attributes": {
               "htmlId": "about"
-            }
-          },
-          {
-            "id": "element_7",
-            "type": "text",
-            "content": "关于我",
-            "style": {
-              "fontSize": "2.5em",
-              "fontWeight": "bold",
-              "color": "#333",
-              "marginBottom": "30px"
             },
-            "className": "section-title",
-            "attributes": {}
-          },
-          {
-            "id": "element_8",
-            "type": "text",
-            "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈构建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
-            "style": {
-              "fontSize": "1.1em",
-              "color": "#666",
-              "maxWidth": "800px",
-              "margin": "0 auto 40px auto",
-              "lineHeight": "1.8"
-            },
-            "className": "about-text",
-            "attributes": {}
-          },
-          {
-            "id": "element_9",
-            "type": "container",
-            "content": "",
-            "style": {
-              "display": "flex",
-              "justifyContent": "center",
-              "gap": "40px",
-              "flexWrap": "wrap",
-              "marginTop": "50px"
-            },
-            "className": "skills-container",
-            "attributes": {}
-          },
-          {
-            "id": "element_10",
-            "type": "container",
-            "content": "",
-            "style": {
-              "backgroundColor": "white",
-              "padding": "30px",
-              "borderRadius": "15px",
-              "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
-              "textAlign": "center",
-              "minWidth": "200px"
-            },
-            "className": "skill-card",
-            "attributes": {}
-          },
-          {
-            "id": "element_11",
-            "type": "text",
-            "content": "前端开发",
-            "style": {
-              "fontSize": "1.3em",
-              "fontWeight": "bold",
-              "color": "#2196f3",
-              "marginBottom": "15px"
-            },
-            "className": "skill-title",
-            "attributes": {}
-          },
-          {
-            "id": "element_12",
-            "type": "text",
-            "content": "React, Vue.js, TypeScript, HTML5, CSS3",
-            "style": {
-              "color": "#666",
-              "fontSize": "0.95em",
-              "lineHeight": "1.5"
-            },
-            "className": "skill-description",
-            "attributes": {}
+            "children": [
+              {
+                "id": "element_7",
+                "type": "text",
+                "content": "关于我",
+                "style": {
+                  "fontSize": "2.5em",
+                  "fontWeight": "bold",
+                  "color": "#333",
+                  "marginBottom": "30px"
+                },
+                "className": "section-title",
+                "attributes": {}
+              },
+              {
+                "id": "element_8",
+                "type": "text",
+                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈构建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "style": {
+                  "fontSize": "1.1em",
+                  "color": "#666",
+                  "maxWidth": "800px",
+                  "margin": "0 auto 40px auto",
+                  "lineHeight": "1.8"
+                },
+                "className": "about-text",
+                "attributes": {}
+              },
+              {
+                "id": "element_9",
+                "type": "container",
+                "content": "",
+                "style": {
+                  "display": "flex",
+                  "justifyContent": "center",
+                  "gap": "40px",
+                  "flexWrap": "wrap",
+                  "marginTop": "50px"
+                },
+                "className": "skills-container",
+                "attributes": {},
+                "children": [
+                  {
+                    "id": "element_10",
+                    "type": "container",
+                    "content": "",
+                    "style": {
+                      "backgroundColor": "white",
+                      "padding": "30px",
+                      "borderRadius": "15px",
+                      "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
+                      "textAlign": "center",
+                      "minWidth": "200px"
+                    },
+                    "className": "skill-card",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "id": "element_11",
+                        "type": "text",
+                        "content": "前端开发",
+                        "style": {
+                          "fontSize": "1.3em",
+                          "fontWeight": "bold",
+                          "color": "#2196f3",
+                          "marginBottom": "15px"
+                        },
+                        "className": "skill-title",
+                        "attributes": {}
+                      },
+                      {
+                        "id": "element_12",
+                        "type": "text",
+                        "content": "React, Vue.js, TypeScript, HTML5, CSS3",
+                        "style": {
+                          "color": "#666",
+                          "fontSize": "0.95em",
+                          "lineHeight": "1.5"
+                        },
+                        "className": "skill-description",
+                        "attributes": {}
+                      }
+                    ]
+                  },
+                  {
+                    "id": "element_13",
+                    "type": "container",
+                    "content": "",
+                    "style": {
+                      "backgroundColor": "white",
+                      "padding": "30px",
+                      "borderRadius": "15px",
+                      "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
+                      "textAlign": "center",
+                      "minWidth": "200px"
+                    },
+                    "className": "skill-card",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "id": "element_14",
+                        "type": "text",
+                        "content": "后端开发",
+                        "style": {
+                          "fontSize": "1.3em",
+                          "fontWeight": "bold",
+                          "color": "#4caf50",
+                          "marginBottom": "15px"
+                        },
+                        "className": "skill-title",
+                        "attributes": {}
+                      },
+                      {
+                        "id": "element_15",
+                        "type": "text",
+                        "content": "Node.js, Python, Express, MongoDB, PostgreSQL",
+                        "style": {
+                          "color": "#666",
+                          "fontSize": "0.95em",
+                          "lineHeight": "1.5"
+                        },
+                        "className": "skill-description",
+                        "attributes": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ],
         "css": `/* 全局样式 */
@@ -1402,7 +1452,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 项目导入 */}
+                {/* 项目导�� */}
                 <TabsContent value="project" className="space-y-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
