@@ -41,6 +41,31 @@ const componentLibrary = [
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
 
+// 设备尺寸配置
+const deviceSizes = {
+  mobile: {
+    name: '手机',
+    icon: Smartphone,
+    width: 375,
+    height: 667,
+    className: 'device-mobile'
+  },
+  tablet: {
+    name: '平板',
+    icon: Tablet,
+    width: 768,
+    height: 1024,
+    className: 'device-tablet'
+  },
+  desktop: {
+    name: '电脑',
+    icon: Monitor,
+    width: 1200,
+    height: 800,
+    className: 'device-desktop'
+  }
+};
+
 // 拖拽组件项
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -519,7 +544,7 @@ export function WebEditor() {
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
-      alert('发布失败，请重试');
+      alert('发布失败，请���试');
     } finally {
       setIsPublishing(false);
     }
@@ -611,7 +636,7 @@ export function WebEditor() {
           elementData.type = 'text';
           elementData.content = element.innerText || '';
 
-          // 设置默认标题样式
+          // ���置默认标题样式
           if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tagName)) {
             const headingSizes = { h1: '2em', h2: '1.5em', h3: '1.17em', h4: '1em', h5: '0.83em', h6: '0.67em' };
             if (!elementData.style.fontSize) {
@@ -679,7 +704,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，�� ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
