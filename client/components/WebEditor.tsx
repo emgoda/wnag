@@ -186,7 +186,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
 }
 
 // 浏览器风格画布组件
-function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange }) {
+function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange, pages }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
     drop: (item, monitor) => {
@@ -481,7 +481,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={css}
           onChange={(e) => onCssChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="/* 在这里编���CSS样式 */&#10;.text-element {&#10;  font-size: 16px;&#10;  font-family: sans-serif;&#10;}"
+          placeholder="/* 在这里编写CSS样式 */&#10;.text-element {&#10;  font-size: 16px;&#10;  font-family: sans-serif;&#10;}"
         />
       </TabsContent>
       <TabsContent value="js" className="mt-4 h-full">
@@ -489,7 +489,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加��完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -775,7 +775,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素���换为文本
+          // 其他元素����换为文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -885,7 +885,7 @@ export function WebEditor() {
           setElementIdCounter(maxId + 1);
 
           setShowImportDialog(false);
-          alert('项目导入���功！');
+          alert('项目导入成功！');
         }
       } else {
         alert('项目文件格式不正确');
@@ -896,7 +896,7 @@ export function WebEditor() {
     }
   };
 
-  // 从已发布网站导入
+  // 从已发布网站导��
   const handleImportFromPublished = (siteId) => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     const site = sites.find(s => s.id === siteId);
@@ -1020,7 +1020,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面���容，加载新页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载新页面内容
   };
 
   const handleDeletePage = (pageId) => {
