@@ -54,7 +54,7 @@ const deviceSizes = {
     className: 'device-mobile'
   },
   tablet: {
-    name: '��板',
+    name: '平板',
     icon: Tablet,
     width: 768,
     height: 1024,
@@ -934,7 +934,7 @@ export function WebEditor() {
     }
 
     try {
-      // 由于跨域限制，我们使用代理服务或提示用户手动操作
+      // 由于跨域限制，我们使用���理服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1473,7 +1473,7 @@ export function WebEditor() {
       if (!confirmLeave) return;
     }
 
-    // 智能返回：优先返回浏���器历史，否则返回���页
+    // 智能返回：优先返回浏���器历史，��则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1520,7 +1520,7 @@ export function WebEditor() {
     }
 
     if (editingPage) {
-      // 编辑现有页面
+      // 编辑现���页面
       setPages(prev => prev.map(p =>
         p.id === editingPage.id
           ? { ...p, name: pageForm.name, route: pageForm.route, description: pageForm.description }
@@ -2338,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 设置元素
                 setElements(flatElements);
 
-                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
+                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编��元素，所有元素都可以单独编辑！`);
               }}
               variant="default"
               size="sm"
@@ -2848,7 +2848,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-green-700">
-                        ✨ 推荐：直接输入网站URL，系统会自动指导您获取完整源码
+                        ✨ 推荐：直接输入网站URL，系统��自动指导您获取完整源码
                       </p>
                       <Button
                         onClick={() => {
