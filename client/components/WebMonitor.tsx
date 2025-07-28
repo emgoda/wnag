@@ -312,12 +312,12 @@ export function WebMonitor() {
 
                   <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">前台ahsdj:</span>
-                    <span className="text-sm font-medium border border-gray-300 rounded px-2 py-1 bg-gray-50">{submission.websiteName}</span>
+                    <span className="text-sm font-medium border border-gray-300 rounded px-2 py-1 bg-gray-50/30">{submission.websiteName}</span>
                   </div>
 
                   <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">正在某个页面:</span>
-                    <span className="text-sm font-medium text-blue-600 border border-gray-300 rounded px-2 py-1 bg-gray-50">{submission.currentPage}</span>
+                    <span className="text-sm font-medium text-blue-600 border border-gray-300 rounded px-2 py-1 bg-gray-50/30">{submission.currentPage}</span>
                   </div>
                 </div>
 
