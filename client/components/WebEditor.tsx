@@ -229,7 +229,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* 浏览器窗口容器 */}
+      {/* ��览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -850,7 +850,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有���容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -887,7 +887,7 @@ export function WebEditor() {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
         } catch (error) {
-          alert('项目文件格��错误，请选择有效的项目文件');
+          alert('项目文件格式错误，请选择有效的项目文件');
         }
       } else {
         // HTML导入
@@ -977,7 +977,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名项���',
+      name: siteName || '未命名项目',
       elements,
       css,
       js,
@@ -1147,7 +1147,7 @@ export function WebEditor() {
                 "attributes": {}
               },
               {
-                "id": "element_3",
+                "id": "demo_3",
                 "type": "text",
                 "content": "全栈开发工程师",
                 "style": {
@@ -1160,7 +1160,7 @@ export function WebEditor() {
                 "attributes": {}
               },
               {
-                "id": "element_4",
+                "id": "demo_4",
                 "type": "text",
                 "content": "专注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
@@ -1174,7 +1174,7 @@ export function WebEditor() {
                 "attributes": {}
               },
               {
-                "id": "element_5",
+                "id": "demo_5",
                 "type": "button",
                 "content": "查看我的作品",
                 "style": {
@@ -1194,7 +1194,7 @@ export function WebEditor() {
             ]
           },
           {
-            "id": "element_6",
+            "id": "demo_6",
             "type": "container",
             "content": "",
             "style": {
@@ -1208,7 +1208,7 @@ export function WebEditor() {
             },
             "children": [
               {
-                "id": "element_7",
+                "id": "demo_7",
                 "type": "text",
                 "content": "关于我",
                 "style": {
@@ -1221,9 +1221,9 @@ export function WebEditor() {
                 "attributes": {}
               },
               {
-                "id": "element_8",
+                "id": "demo_8",
                 "type": "text",
-                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高��量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -1235,7 +1235,7 @@ export function WebEditor() {
                 "attributes": {}
               },
               {
-                "id": "element_9",
+                "id": "demo_9",
                 "type": "container",
                 "content": "",
                 "style": {
@@ -1249,7 +1249,7 @@ export function WebEditor() {
                 "attributes": {},
                 "children": [
                   {
-                    "id": "element_10",
+                    "id": "demo_10",
                     "type": "container",
                     "content": "",
                     "style": {
@@ -1264,7 +1264,7 @@ export function WebEditor() {
                     "attributes": {},
                     "children": [
                       {
-                        "id": "element_11",
+                        "id": "demo_11",
                         "type": "text",
                         "content": "前端开发",
                         "style": {
@@ -1277,7 +1277,7 @@ export function WebEditor() {
                         "attributes": {}
                       },
                       {
-                        "id": "element_12",
+                        "id": "demo_12",
                         "type": "text",
                         "content": "React, Vue.js, TypeScript, HTML5, CSS3",
                         "style": {
@@ -1291,7 +1291,7 @@ export function WebEditor() {
                     ]
                   },
                   {
-                    "id": "element_13",
+                    "id": "demo_13",
                     "type": "container",
                     "content": "",
                     "style": {
@@ -1306,7 +1306,7 @@ export function WebEditor() {
                     "attributes": {},
                     "children": [
                       {
-                        "id": "element_14",
+                        "id": "demo_14",
                         "type": "text",
                         "content": "后端开发",
                         "style": {
@@ -1319,7 +1319,7 @@ export function WebEditor() {
                         "attributes": {}
                       },
                       {
-                        "id": "element_15",
+                        "id": "demo_15",
                         "type": "text",
                         "content": "Node.js, Python, Express, MongoDB, PostgreSQL",
                         "style": {
@@ -1885,7 +1885,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     已发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
-                    <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
+                    <p className="text-xs text-gray-500 text-center py-4">暂无发布的网��</p>
                   ) : (
                     <div className="space-y-2">
                       {publishedSites.slice(-3).map((site) => (
@@ -2145,7 +2145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
                         <p>暂无已发布的网站</p>
-                        <p className="text-xs mt-1">先发布一些网站后再使用此功能</p>
+                        <p className="text-xs mt-1">先发布一些网站后再使��此功能</p>
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 gap-3 max-h-64 overflow-y-auto">
@@ -2158,7 +2158,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                   发布时间: {new Date(site.createdAt).toLocaleString()}
                                 </p>
                                 <p className="text-xs text-gray-500">
-                                  状��: <span className="text-green-600">已发布</span>
+                                  状态: <span className="text-green-600">已发布</span>
                                 </p>
                               </div>
                               <div className="flex gap-2">
