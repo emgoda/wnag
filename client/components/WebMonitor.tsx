@@ -491,8 +491,43 @@ export function WebMonitor() {
                         自定义
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">页面列表</div>
+                    <DropdownMenuContent align="end" className="w-72">
+                      {/* 网站项目列表 */}
+                      {websiteProjects.length > 0 && (
+                        <>
+                          <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">制作的网站</div>
+                          {websiteProjects.map((project) => (
+                            <DropdownMenuItem
+                              key={project.id}
+                              onClick={() => window.open(`/web-creation?project=${project.id}`, '_blank')}
+                              className="flex items-center gap-2 py-2"
+                            >
+                              <div className={`w-2 h-2 rounded-full ${
+                                project.status === 'editing' ? 'bg-orange-500' :
+                                project.status === 'published' ? 'bg-green-500' : 'bg-gray-400'
+                              }`}></div>
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium text-sm truncate">{project.name}</div>
+                                <div className="text-xs text-muted-foreground truncate">
+                                  {project.pages?.length || 0} 页面 • {new Date(project.updatedAt).toLocaleDateString()}
+                                </div>
+                              </div>
+                              <span className={`text-xs px-1.5 py-0.5 rounded ${
+                                project.status === 'editing' ? 'bg-orange-100 text-orange-600' :
+                                project.status === 'published' ? 'bg-green-100 text-green-600' :
+                                'bg-gray-100 text-gray-600'
+                              }`}>
+                                {project.status === 'editing' ? '编辑中' :
+                                 project.status === 'published' ? '已发布' : '存档'}
+                              </span>
+                            </DropdownMenuItem>
+                          ))}
+                          <DropdownMenuSeparator />
+                        </>
+                      )}
+
+                      {/* 页面列表 */}
+                      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">快速页面</div>
                       {webPages.map((page) => (
                         <DropdownMenuItem
                           key={page.id}
@@ -650,7 +685,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'name'))}
-                      title="点击��制姓名"
+                      title="点击复制姓名"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'name')}
@@ -751,7 +786,7 @@ export function WebMonitor() {
                   >
                     {submission.riskLevel === "high" ? "高风险" :
                      submission.riskLevel === "medium" ? "中风险" :
-                     "低风险"}
+                     "低���险"}
                   </Badge>
                 </div>
               </div>
