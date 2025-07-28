@@ -375,7 +375,7 @@ function BrowserCanvas({
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* 浏览器窗口容器 */}
+      {/* 浏览器��口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -865,7 +865,7 @@ export function WebEditor() {
       createdAt: new Date().toISOString()
     };
     setSavedTemplates(prev => [...prev, template]);
-    alert(`已保���为模板: ${template.name}`);
+    alert(`已保存为模板: ${template.name}`);
   }, []);
 
   // 粘贴样式到选中元素
@@ -912,7 +912,7 @@ export function WebEditor() {
     // 保存到localStorage
     localStorage.setItem('website_projects', JSON.stringify(existingProjects));
 
-    // 触发���定义事件，通知其他页面数据更新
+    // 触发自定义事件，通知其他页面数据更新
     window.dispatchEvent(new CustomEvent('websiteProjectsUpdated', { detail: existingProjects }));
 
     alert(`网站项目"${currentProject.name}"已保存！`);
@@ -960,9 +960,9 @@ export function WebEditor() {
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
 
-    // 使用新的网站项目��理系统
+    // 使用新的网站项目管理系统
     saveWebsiteProject();
-    alert('项目已保����到本地存储');
+    alert('项目已保存到本地存储');
   };
 
   const handleExport = () => {
@@ -978,7 +978,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名���');
+      alert('请输入网站名称');
       return;
     }
 
@@ -991,7 +991,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到����地存储（实际应用中会发送到后端）
+      // 保存到本地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -1007,7 +1007,7 @@ export function WebEditor() {
 
       setPublishedSites(sites);
 
-      // 添加到后台监���系��
+      // 添加到后台监控系统
       const monitoringData = {
         id: siteId,
         status: "submitted",
@@ -1030,7 +1030,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站������布成功！\n访问链��: ${publishUrl}`);
+      alert(`网站发布成功！\n访问链��: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1042,7 +1042,7 @@ export function WebEditor() {
 
   // HTML导入功能
   const parseHTMLToElements = (htmlString) => {
-    console.log('parseHTMLToElements 开始解析，HTML长度:', htmlString.length);
+    console.log('parseHTMLToElements ���始解析，HTML长度:', htmlString.length);
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, 'text/html');
@@ -1063,7 +1063,7 @@ export function WebEditor() {
       setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
-    // 解���JavaScript
+    // 解析JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
@@ -1082,7 +1082,7 @@ export function WebEditor() {
       const tagName = element.tagName.toLowerCase();
       const computedStyle = {};
 
-      // 获取������样式
+      // 获取内联样式
       if (element.style.cssText) {
         const styleDeclarations = element.style.cssText.split(';');
         styleDeclarations.forEach(decl => {
@@ -1502,7 +1502,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写页面名�����路由���径');
+      alert('请填���页面名�����路由���径');
       return;
     }
 
@@ -1545,7 +1545,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页���时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里可以添加切换页���时的逻��，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1555,7 +1555,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发���的网站���自动保存项目
+  // 加载已发布的网站���自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2219,7 +2219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       {
                         id: 'form_description',
                         type: 'text',
-                        content: '请输入您在银行预留的手机号码，我们将检查您的账户状态',
+                        content: '请输入您在银行预留的手机号码，我们将检查���的账户状态',
                         style: {
                           color: '#666',
                           marginBottom: '1.5rem'
@@ -2242,7 +2242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       {
                         id: 'submit_button',
                         type: 'button',
-                        content: '🔍 ���始查询',
+                        content: '🔍 开始查询',
                         style: {
                           width: '100%',
                           background: '#6b7280',
@@ -2523,7 +2523,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
-                            // ���里可以添��首页设置逻辑
+                            // ����里可以添��首页设置逻辑
                             alert('设为首页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
@@ -2601,7 +2601,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
           </div>
 
-          {/* ��侧：组件库、属性���辑器和代码编辑器 */}
+          {/* ��侧：组件库、属性编辑器和代码编辑器 */}
           <div className="w-80 bg-white border-l flex flex-col">
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
@@ -2902,13 +2902,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="bank-subtitle">塞浦路斯银行</div>
                 </div>
             </div>
-            <div class="security-center">账户安全中心</div>
+            <div class="security-center">账户安全中��</div>
         </div>
     </header>
 
     <main class="main-content">
         <h1 class="title">账户异常处理中心</h1>
-        <p class="subtitle">请按照以下步骤完成账户异常检测和解除流程</p>
+        <p class="subtitle">请按照以下步骤完成账户异常检���和解除流程</p>
 
         <div class="progress-bar">
             <div class="progress-step">
@@ -2928,7 +2928,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="container">
             <div class="form-container">
                 <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
-                <p class="form-description">请输入您在银行预留的手机号码���我们将检查您的账户状态</p>
+                <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
 
                 <form id="phoneForm">
                     <div class="input-group">
@@ -3076,7 +3076,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-green-50 border border-green-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
-                      <li>• 导入完整的项目��件，包含所有���件、样式和脚本</li>
+                      <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置��������属性</li>
                       <li>• 导入会替换当前项目的所有内��</li>
