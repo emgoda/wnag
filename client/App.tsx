@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { AdminLayout } from "@/components/AdminLayout";
 import { PlaceholderPage } from "@/components/PlaceholderPage";
+import { ControlTerminal } from "@/components/ControlTerminal";
 
 const queryClient = new QueryClient();
 
