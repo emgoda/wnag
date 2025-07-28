@@ -75,22 +75,46 @@ export function DashboardContent() {
       {/* Main Content */}
       <div className="p-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-lg border border-border p-4">
-            <div className="text-2xl font-bold text-foreground">1,247</div>
-            <div className="text-sm text-muted-foreground">总任务数</div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="group bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-full -translate-y-6 translate-x-6"></div>
+            <div className="relative">
+              <div className="text-3xl font-bold text-foreground mb-1">1,247</div>
+              <div className="text-sm text-muted-foreground flex items-center gap-2">
+                📊 总任务数
+                <div className="text-xs bg-muted rounded-full px-2 py-0.5">+12%</div>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-border p-4">
-            <div className="text-2xl font-bold text-success">856</div>
-            <div className="text-sm text-muted-foreground">已完成</div>
+          <div className="group bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-success/20 to-success/5 rounded-full -translate-y-6 translate-x-6"></div>
+            <div className="relative">
+              <div className="text-3xl font-bold text-success mb-1">856</div>
+              <div className="text-sm text-muted-foreground flex items-center gap-2">
+                ✅ 已完成
+                <div className="text-xs bg-success/10 text-success rounded-full px-2 py-0.5">+8%</div>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-border p-4">
-            <div className="text-2xl font-bold text-orange-500">234</div>
-            <div className="text-sm text-muted-foreground">进行中</div>
+          <div className="group bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/20 to-orange-600/5 rounded-full -translate-y-6 translate-x-6"></div>
+            <div className="relative">
+              <div className="text-3xl font-bold text-orange-500 mb-1">234</div>
+              <div className="text-sm text-muted-foreground flex items-center gap-2">
+                ⚡ 进行中
+                <div className="text-xs bg-orange-50 text-orange-600 rounded-full px-2 py-0.5">活跃</div>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-border p-4">
-            <div className="text-2xl font-bold text-red-500">157</div>
-            <div className="text-sm text-muted-foreground">待处理</div>
+          <div className="group bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-red-500/20 to-red-600/5 rounded-full -translate-y-6 translate-x-6"></div>
+            <div className="relative">
+              <div className="text-3xl font-bold text-red-500 mb-1">157</div>
+              <div className="text-sm text-muted-foreground flex items-center gap-2">
+                ⏳ 待处理
+                <div className="text-xs bg-red-50 text-red-600 rounded-full px-2 py-0.5">紧急</div>
+              </div>
+            </div>
           </div>
         </div>
 
