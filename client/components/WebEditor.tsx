@@ -375,6 +375,7 @@ export function WebEditor() {
   const [siteName, setSiteName] = useState('');
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [importHtml, setImportHtml] = useState('');
+  const [importMode, setImportMode] = useState('html'); // 'html', 'project', 'published'
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -430,7 +431,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名称');
+      alert('请输入网��名称');
       return;
     }
 
@@ -480,7 +481,7 @@ export function WebEditor() {
       };
 
       // 这里可以发送到监控系统
-      console.log('网站已发布到监控系统:', monitoringData);
+      console.log('网站已��布到监控系统:', monitoringData);
 
       alert(`网站发布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
