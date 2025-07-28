@@ -178,7 +178,7 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const { submissions, isFieldTyping, getFieldValue } = useKeystrokeMonitor(submissionData);
+  const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
   const onlineCount = submissions.filter(s => s.status === "processing").length;
   const todaySubmissions = submissions.length;
