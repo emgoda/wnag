@@ -173,6 +173,10 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
   const handleClick = (e) => {
     e.stopPropagation();
     onSelect(element);
+    // 如果点击的不是菜单���钮，关闭菜单
+    if (!e.target.closest('[data-menu-button]')) {
+      setShowActionsMenu(false);
+    }
   };
 
   const handleToggleActionsMenu = (e) => {
@@ -1300,7 +1304,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容���加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -2308,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        选择HTML文���
+                        选��HTML文���
                       </label>
                       <input
                         type="file"
