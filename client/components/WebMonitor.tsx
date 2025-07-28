@@ -190,7 +190,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "identity_verification",
     websiteName: "在线银���系统",
     currentPage: "/kyc/identity-check",
-    userName: "王大强",
+    userName: "王���强",
     userLocation: "广州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
@@ -345,7 +345,7 @@ export function WebMonitor() {
       <div className="p-6">
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-2">
-          {submissions.map((submission, index) => (
+          {filteredSubmissions.map((submission, index) => (
             <div key={submission.id} className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-2 ${
               isSubmitting(submission.id)
                 ? 'flash-submit'
@@ -466,7 +466,7 @@ export function WebMonitor() {
                 return (hasUserData || hasActiveTyping) ? (
                   <div className="flex items-center gap-2 mb-0.5">
                     <div className="flex items-center gap-1">
-                      <div className="text-xs text-muted-foreground">💳</div>
+                      <div className="text-xs text-muted-foreground">���</div>
                       {submission.binLookup ? (
                         <Badge
                           variant="outline"
