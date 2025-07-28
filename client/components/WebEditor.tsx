@@ -322,7 +322,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>实时预览</span>
+              <span>实时��览</span>
             </div>
             {selectedElement && (
               <span className="text-blue-600">已选择: {selectedElement.type}</span>
@@ -640,7 +640,7 @@ export function WebEditor() {
         websiteName: siteName,
         currentPage: "/",
         userName: "访客用户",
-        userLocation: "未知",
+        userLocation: "��知",
         timestamp: new Date().toLocaleString(),
         riskLevel: "low",
         dataSize: `${Math.round(html.length / 1024)}Kb`,
@@ -925,7 +925,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命���项目',
+      name: siteName || '未命名项目',
       elements,
       css,
       js,
@@ -960,6 +960,22 @@ export function WebEditor() {
       setSelectedElement(null);
       localStorage.removeItem('webeditor_last_project');
       alert('已创建新项目');
+    }
+  };
+
+  // 返回上一页功能
+  const handleGoBack = () => {
+    // 检查是否有编辑内容未保存
+    if (elements.length > 0) {
+      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
+      if (!confirmLeave) return;
+    }
+
+    // 智能返回：优先返回浏览器历史，否则返回首页
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
     }
   };
 
@@ -1417,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'image':
           return `<img src="${el.src}" alt="${el.alt}" style="${styleStr}" />`;
         case 'container':
-          return `<div style="${styleStr}">容器内容</div>`;
+          return `<div style="${styleStr}">容器��容</div>`;
         default:
           return '';
       }
@@ -1998,7 +2014,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 已发���网站导入 */}
+                {/* 已发布网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
                     <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
