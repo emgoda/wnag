@@ -151,7 +151,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "电商��物网",
     currentPage: "/checkout/payment",
     userName: "李小���",
-    userLocation: "上海市���东区",
+    userLocation: "上海市浦东区",
     timestamp: "2024-01-20 10:23:45",
     progress: 72,
     progressText: "72%",
@@ -190,7 +190,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "identity_verification",
     websiteName: "在线�����系统",
     currentPage: "/kyc/identity-check",
-    userName: "王大强",
+    userName: "��大强",
     userLocation: "广州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
@@ -479,7 +479,7 @@ export function WebMonitor() {
                         📝 日志页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/users', '_blank')}>
-                        👥 用户管理
+                        👥 ��户管理
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -734,7 +734,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {filteredSubmissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {filteredSubmissions.length} 个站点提交 • 在线用户 {onlineUsersCount} 人 • 离线用户 {offlineUsersCount} 人 • 验证通过率 82%
             {hideEmptyData && !isRefreshing && submissions.length !== filteredSubmissions.length && (
               <span className="text-orange-600 ml-2">
                 (已隐藏 {submissions.length - filteredSubmissions.length} 个无数据项)
