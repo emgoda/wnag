@@ -135,7 +135,7 @@ const submissionData: UserSubmission[] = [
     },
     submitCount: 1,
     submitHistory: [
-      { timestamp: "10:23", cardType: "credit", partialCard1: "4532", partialCard2: "123", fullCard: "4532 **** **** 1234", expiryDate: "12/26", cvv: "***" }
+      { timestamp: "10:23", cardType: "credit", partialCard1: "4532", partialCard2: "123", fullCard: "4532 **** **** 1234", expiryDate: "12/26", cvv: "***", verificationCode: "4329" }
     ],
     enterTime: "10:15:30",
     updateTime: "10:25:18",
@@ -212,7 +212,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // ���全没有用户数据，用户刚进入页面
+    // 完全没有用户数据，用户刚进入页面
   }
 ];
 
@@ -616,7 +616,7 @@ export function WebMonitor() {
                 ) : (
                   <div className="flex items-center justify-center py-4 mb-0.5">
                     <div className="text-sm text-muted-foreground italic">
-                      ���待用户输入数据...
+                      等待用户输入数据...
                     </div>
                   </div>
                 );
@@ -647,7 +647,7 @@ export function WebMonitor() {
                   <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
                   <div className="grid grid-cols-4 gap-3 text-xs">
                     <div>
-                      <span className="text-muted-foreground">提交时��: </span>
+                      <span className="text-muted-foreground">提交时间: </span>
                       <span className="font-medium">{submission.timestamp}</span>
                     </div>
                     <div>
