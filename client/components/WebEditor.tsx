@@ -743,6 +743,59 @@ export function WebEditor() {
     setSelectedElement(null);
   }, []);
 
+  // 复制元素
+  const handleDuplicateElement = useCallback((element) => {
+    const newElement = {
+      ...element,
+      id: `element_${elementIdCounter}`,
+      style: { ...element.style }
+    };
+    setElements(prev => [...prev, newElement]);
+    setElementIdCounter(prev => prev + 1);
+    setSelectedElement(newElement);
+  }, [elementIdCounter]);
+
+  // 复制样式
+  const handleCopyStyleElement = useCallback((element) => {
+    setCopiedStyle(element.style);
+    alert('样式已复制！选择其他元素后可以粘贴样式');
+  }, []);
+
+  // 选择所有相同类型的实例
+  const handleSelectAllInstances = useCallback((elementType) => {
+    const instanceCount = elements.filter(el => el.type === elementType).length;
+    alert(`找到 ${instanceCount} 个 ${elementType} 类型的元素`);
+  }, [elements]);
+
+  // 保存为模板
+  const handleSaveAsTemplate = useCallback((element) => {
+    const template = {
+      id: `template_${Date.now()}`,
+      name: `${element.type}_模板`,
+      type: element.type,
+      content: element.content,
+      placeholder: element.placeholder,
+      src: element.src,
+      alt: element.alt,
+      style: { ...element.style },
+      createdAt: new Date().toISOString()
+    };
+    setSavedTemplates(prev => [...prev, template]);
+    alert(`已保存为模板: ${template.name}`);
+  }, []);
+
+  // 粘贴样式到选中元素
+  const handlePasteStyle = useCallback(() => {
+    if (copiedStyle && selectedElement) {
+      const updatedElement = {
+        ...selectedElement,
+        style: { ...copiedStyle }
+      };
+      handleUpdateElement(updatedElement);
+      alert('样式已粘贴！');
+    }
+  }, [copiedStyle, selectedElement]);
+
   const handlePreview = () => {
     setPreviewMode(!previewMode);
   };
@@ -1153,7 +1206,7 @@ export function WebEditor() {
       if (!confirmLeave) return;
     }
 
-    // 智能返回：优先返回浏览器历史，否则返回首页
+    // 智能返回：优先返回浏览器历史，否则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1353,7 +1406,7 @@ export function WebEditor() {
               {
                 "id": "demo_8",
                 "type": "text",
-                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充满激情的全栈开发工程师，���注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -1650,7 +1703,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="WebEditor">
-    <title>${siteName || '生成的网页'}</title>
+    <title>${siteName || '生成的��页'}</title>
     <style>
         ${css}
     </style>
