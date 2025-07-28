@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
-import { useRealtimeMonitor } from "@/hooks/use-realtime-monitor";
+import { useKeystrokeMonitor } from "@/hooks/use-keystroke-monitor";
 
 interface UserSubmission {
   id: string;
@@ -251,7 +251,7 @@ export function WebMonitor() {
                   </div>
 
                   <div className="flex items-center gap-1">
-                    <span className="text-sm text-muted-foreground">前台页��:</span>
+                    <span className="text-sm text-muted-foreground">前台页面:</span>
                     <span className="text-sm font-medium">{submission.websiteName}</span>
                   </div>
 
@@ -355,7 +355,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 底部：操作按钮 */}
+              {/* 底部���操作按钮 */}
               <div className="flex justify-end pt-1 border-t border-gray-100">
                 <div className="flex gap-1.5">
                   <Button variant="outline" size="sm" className="text-xs px-2.5">
