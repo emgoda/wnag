@@ -38,7 +38,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '���击按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -308,7 +308,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
                   {deviceMode === 'mobile' && <Smartphone size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'tablet' && <Tablet size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'desktop' && <Monitor size={48} className="mx-auto mb-4 opacity-50" />}
-                  <p>拖拽左侧组件到这里开始设计</p>
+                  <p>拖拽左侧组件到这里���始设计</p>
                   <p className="text-sm mt-2">{currentDevice.name}视图 ({currentDevice.width}×{currentDevice.height})</p>
                 </div>
               )}
@@ -1110,7 +1110,7 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 直接加载演示项目数据 (只加载一次)
+    // 直接加载��示项目数据 (只加载一次)
     if (!demoDataLoaded && elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
@@ -1210,7 +1210,7 @@ export function WebEditor() {
               {
                 "id": "element_7",
                 "type": "text",
-                "content": "��于我",
+                "content": "关于我",
                 "style": {
                   "fontSize": "2.5em",
                   "fontWeight": "bold",
@@ -1479,10 +1479,11 @@ document.addEventListener('DOMContentLoaded', function() {
         0 // 确保至少有一个值，避免Math.max返回-Infinity
       );
       setElementIdCounter(maxId + 1);
+      setDemoDataLoaded(true);
 
       console.log('演示项目已加载:', demoProjectData.name);
     }
-  }, []);
+  }, [demoDataLoaded, elements.length]);
 
   // 自动保存����项目
   useEffect(() => {
@@ -1819,7 +1820,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div className="border-t pt-4">
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                 <Code className="w-4 h-4" />
-                AI 生成
+                AI 生���
               </h3>
               <div className="space-y-2">
                 <button
@@ -2073,7 +2074,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
-                      <li>• 支���导入HTML、CSS和JavaScript代码</li>
+                      <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
