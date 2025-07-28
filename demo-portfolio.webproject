@@ -1,0 +1,392 @@
+{
+  "version": "1.0",
+  "name": "个人作品集网站",
+  "elements": [
+    {
+      "id": "element_1",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "#1a1a2e",
+        "padding": "60px 20px",
+        "textAlign": "center",
+        "minHeight": "100vh",
+        "background": "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)"
+      },
+      "className": "hero-section",
+      "attributes": {
+        "htmlId": "hero"
+      }
+    },
+    {
+      "id": "element_2",
+      "type": "text",
+      "content": "张明",
+      "style": {
+        "fontSize": "4em",
+        "fontWeight": "bold",
+        "color": "#ffffff",
+        "marginBottom": "10px",
+        "textShadow": "2px 2px 4px rgba(0,0,0,0.5)"
+      },
+      "className": "hero-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_3",
+      "type": "text",
+      "content": "全栈开发工程师",
+      "style": {
+        "fontSize": "1.5em",
+        "color": "#64b5f6",
+        "marginBottom": "20px",
+        "fontWeight": "300"
+      },
+      "className": "hero-subtitle",
+      "attributes": {}
+    },
+    {
+      "id": "element_4",
+      "type": "text",
+      "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+      "style": {
+        "fontSize": "1.1em",
+        "color": "#e0e0e0",
+        "maxWidth": "600px",
+        "margin": "0 auto 40px auto",
+        "lineHeight": "1.6"
+      },
+      "className": "hero-description",
+      "attributes": {}
+    },
+    {
+      "id": "element_5",
+      "type": "button",
+      "content": "查看我的作品",
+      "style": {
+        "backgroundColor": "#2196f3",
+        "color": "white",
+        "padding": "15px 30px",
+        "fontSize": "1.1em",
+        "border": "none",
+        "borderRadius": "50px",
+        "cursor": "pointer",
+        "transition": "all 0.3s ease",
+        "boxShadow": "0 4px 15px rgba(33, 150, 243, 0.3)"
+      },
+      "className": "cta-button",
+      "attributes": {}
+    },
+    {
+      "id": "element_6",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "#f8f9fa",
+        "padding": "80px 20px",
+        "textAlign": "center"
+      },
+      "className": "about-section",
+      "attributes": {
+        "htmlId": "about"
+      }
+    },
+    {
+      "id": "element_7",
+      "type": "text",
+      "content": "关于我",
+      "style": {
+        "fontSize": "2.5em",
+        "fontWeight": "bold",
+        "color": "#333",
+        "marginBottom": "30px"
+      },
+      "className": "section-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_8",
+      "type": "text",
+      "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈构建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+      "style": {
+        "fontSize": "1.1em",
+        "color": "#666",
+        "maxWidth": "800px",
+        "margin": "0 auto 40px auto",
+        "lineHeight": "1.8"
+      },
+      "className": "about-text",
+      "attributes": {}
+    },
+    {
+      "id": "element_9",
+      "type": "container",
+      "content": "",
+      "style": {
+        "display": "flex",
+        "justifyContent": "center",
+        "gap": "40px",
+        "flexWrap": "wrap",
+        "marginTop": "50px"
+      },
+      "className": "skills-container",
+      "attributes": {}
+    },
+    {
+      "id": "element_10",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "white",
+        "padding": "30px",
+        "borderRadius": "15px",
+        "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
+        "textAlign": "center",
+        "minWidth": "200px"
+      },
+      "className": "skill-card",
+      "attributes": {}
+    },
+    {
+      "id": "element_11",
+      "type": "text",
+      "content": "前端开发",
+      "style": {
+        "fontSize": "1.3em",
+        "fontWeight": "bold",
+        "color": "#2196f3",
+        "marginBottom": "15px"
+      },
+      "className": "skill-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_12",
+      "type": "text",
+      "content": "React, Vue.js, TypeScript, HTML5, CSS3",
+      "style": {
+        "color": "#666",
+        "fontSize": "0.95em",
+        "lineHeight": "1.5"
+      },
+      "className": "skill-description",
+      "attributes": {}
+    },
+    {
+      "id": "element_13",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "white",
+        "padding": "30px",
+        "borderRadius": "15px",
+        "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
+        "textAlign": "center",
+        "minWidth": "200px"
+      },
+      "className": "skill-card",
+      "attributes": {}
+    },
+    {
+      "id": "element_14",
+      "type": "text",
+      "content": "后端开发",
+      "style": {
+        "fontSize": "1.3em",
+        "fontWeight": "bold",
+        "color": "#4caf50",
+        "marginBottom": "15px"
+      },
+      "className": "skill-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_15",
+      "type": "text",
+      "content": "Node.js, Python, Express, MongoDB, PostgreSQL",
+      "style": {
+        "color": "#666",
+        "fontSize": "0.95em",
+        "lineHeight": "1.5"
+      },
+      "className": "skill-description",
+      "attributes": {}
+    },
+    {
+      "id": "element_16",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "#333",
+        "padding": "80px 20px",
+        "textAlign": "center"
+      },
+      "className": "projects-section",
+      "attributes": {
+        "htmlId": "projects"
+      }
+    },
+    {
+      "id": "element_17",
+      "type": "text",
+      "content": "我的项目",
+      "style": {
+        "fontSize": "2.5em",
+        "fontWeight": "bold",
+        "color": "white",
+        "marginBottom": "50px"
+      },
+      "className": "section-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_18",
+      "type": "container",
+      "content": "",
+      "style": {
+        "display": "grid",
+        "gridTemplateColumns": "repeat(auto-fit, minmax(300px, 1fr))",
+        "gap": "30px",
+        "maxWidth": "1200px",
+        "margin": "0 auto"
+      },
+      "className": "projects-grid",
+      "attributes": {}
+    },
+    {
+      "id": "element_19",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "white",
+        "borderRadius": "15px",
+        "overflow": "hidden",
+        "boxShadow": "0 10px 25px rgba(0,0,0,0.2)",
+        "transition": "transform 0.3s ease"
+      },
+      "className": "project-card",
+      "attributes": {}
+    },
+    {
+      "id": "element_20",
+      "type": "image",
+      "src": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
+      "alt": "电商平台项目",
+      "style": {
+        "width": "100%",
+        "height": "200px",
+        "objectFit": "cover"
+      },
+      "className": "project-image",
+      "attributes": {}
+    },
+    {
+      "id": "element_21",
+      "type": "container",
+      "content": "",
+      "style": {
+        "padding": "25px"
+      },
+      "className": "project-content",
+      "attributes": {}
+    },
+    {
+      "id": "element_22",
+      "type": "text",
+      "content": "现代电商平台",
+      "style": {
+        "fontSize": "1.4em",
+        "fontWeight": "bold",
+        "color": "#333",
+        "marginBottom": "15px"
+      },
+      "className": "project-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_23",
+      "type": "text",
+      "content": "使用React和Node.js构建的全功能电商平台，包含用户管理、商品展示、购物车和支付系统。",
+      "style": {
+        "color": "#666",
+        "lineHeight": "1.6",
+        "marginBottom": "20px"
+      },
+      "className": "project-description",
+      "attributes": {}
+    },
+    {
+      "id": "element_24",
+      "type": "button",
+      "content": "查看详情",
+      "style": {
+        "backgroundColor": "#2196f3",
+        "color": "white",
+        "padding": "10px 20px",
+        "border": "none",
+        "borderRadius": "25px",
+        "fontSize": "0.9em",
+        "cursor": "pointer"
+      },
+      "className": "project-button",
+      "attributes": {}
+    },
+    {
+      "id": "element_25",
+      "type": "container",
+      "content": "",
+      "style": {
+        "backgroundColor": "#2196f3",
+        "padding": "60px 20px",
+        "textAlign": "center",
+        "color": "white"
+      },
+      "className": "contact-section",
+      "attributes": {
+        "htmlId": "contact"
+      }
+    },
+    {
+      "id": "element_26",
+      "type": "text",
+      "content": "联系我",
+      "style": {
+        "fontSize": "2.5em",
+        "fontWeight": "bold",
+        "marginBottom": "30px"
+      },
+      "className": "section-title",
+      "attributes": {}
+    },
+    {
+      "id": "element_27",
+      "type": "text",
+      "content": "如果您对我的工作感兴趣，或者有项目合作意向，欢迎随时联系我！",
+      "style": {
+        "fontSize": "1.1em",
+        "marginBottom": "30px",
+        "opacity": "0.9"
+      },
+      "className": "contact-text",
+      "attributes": {}
+    },
+    {
+      "id": "element_28",
+      "type": "text",
+      "content": "📧 zhang.ming@email.com | 📱 138-0000-0000",
+      "style": {
+        "fontSize": "1.1em",
+        "fontWeight": "500"
+      },
+      "className": "contact-info",
+      "attributes": {}
+    }
+  ],
+  "css": "/* 全局样式 */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n  line-height: 1.6;\n  color: #333;\n}\n\n/* 动画效果 */\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.hero-title, .hero-subtitle, .hero-description {\n  animation: fadeInUp 1s ease-out;\n}\n\n.hero-subtitle {\n  animation-delay: 0.2s;\n}\n\n.hero-description {\n  animation-delay: 0.4s;\n}\n\n.cta-button {\n  animation: fadeInUp 1s ease-out 0.6s both;\n}\n\n.cta-button:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);\n}\n\n/* 技能卡片悬停效果 */\n.skill-card:hover {\n  transform: translateY(-5px);\n  box-shadow: 0 8px 25px rgba(0,0,0,0.15);\n}\n\n/* 项目卡片悬停效果 */\n.project-card:hover {\n  transform: translateY(-5px);\n}\n\n.project-button:hover {\n  background-color: #1976d2;\n  transform: scale(1.05);\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .hero-title {\n    font-size: 2.5em;\n  }\n  \n  .section-title {\n    font-size: 2em;\n  }\n  \n  .skills-container {\n    flex-direction: column;\n    align-items: center;\n  }\n  \n  .projects-grid {\n    grid-template-columns: 1fr;\n  }\n}\n\n/* 滚动行为 */\nhtml {\n  scroll-behavior: smooth;\n}\n\n/* 选择文本颜色 */\n::selection {\n  background-color: #2196f3;\n  color: white;\n}",
+  "js": "// 页面加载动画\ndocument.addEventListener('DOMContentLoaded', function() {\n  console.log('个人作品集网站加载完成');\n  \n  // 添加平滑滚动到CTA按钮\n  const ctaButton = document.querySelector('.cta-button');\n  if (ctaButton) {\n    ctaButton.addEventListener('click', function() {\n      document.getElementById('about').scrollIntoView({\n        behavior: 'smooth'\n      });\n    });\n  }\n  \n  // 项目卡片点击事件\n  const projectButtons = document.querySelectorAll('.project-button');\n  projectButtons.forEach(button => {\n    button.addEventListener('click', function() {\n      alert('这是一个演示项目，实际项目会跳转到详细页面');\n    });\n  });\n  \n  // 添加滚动时的视差效果\n  window.addEventListener('scroll', function() {\n    const scrolled = window.pageYOffset;\n    const parallax = document.querySelector('.hero-section');\n    if (parallax) {\n      const speed = scrolled * 0.5;\n      parallax.style.transform = `translateY(${speed}px)`;\n    }\n  });\n  \n  // 技能卡片动画\n  const skillCards = document.querySelectorAll('.skill-card');\n  const observerOptions = {\n    threshold: 0.1,\n    rootMargin: '0px 0px -50px 0px'\n  };\n  \n  const observer = new IntersectionObserver(function(entries) {\n    entries.forEach(entry => {\n      if (entry.isIntersecting) {\n        entry.target.style.animation = 'fadeInUp 0.6s ease-out';\n      }\n    });\n  }, observerOptions);\n  \n  skillCards.forEach(card => {\n    observer.observe(card);\n  });\n});\n\n// 联系方式点击复制功能\nfunction copyToClipboard(text) {\n  navigator.clipboard.writeText(text).then(function() {\n    alert('已复制到剪贴板: ' + text);\n  });\n}\n\n// 为联系信息添加点击事件\ndocument.addEventListener('click', function(e) {\n  if (e.target.classList.contains('contact-info')) {\n    copyToClipboard('zhang.ming@email.com');\n  }\n});",
+  "timestamp": "2024-12-20T10:30:00.000Z",
+  "metadata": {
+    "elementsCount": 28,
+    "createdWith": "WebEditor v1.0"
+  }
+}
