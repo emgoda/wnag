@@ -562,6 +562,13 @@ export function WebEditor() {
             <Badge variant="outline">拖拽式编辑器</Badge>
           </div>
           <div className="flex items-center gap-2">
+            <input
+              type="text"
+              value={siteName}
+              onChange={(e) => setSiteName(e.target.value)}
+              placeholder="输入网站名称"
+              className="px-3 py-1 border rounded text-sm w-40"
+            />
             <Button onClick={handlePreview} variant="outline" size="sm">
               <Eye className="w-4 h-4 mr-2" />
               预览
@@ -570,9 +577,27 @@ export function WebEditor() {
               <Save className="w-4 h-4 mr-2" />
               保存
             </Button>
-            <Button onClick={handleExport} variant="default" size="sm">
+            <Button onClick={handleExport} variant="outline" size="sm">
               <Download className="w-4 h-4 mr-2" />
               导出HTML
+            </Button>
+            <Button
+              onClick={handlePublish}
+              variant="default"
+              size="sm"
+              disabled={isPublishing || !siteName.trim()}
+            >
+              {isPublishing ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  发布中...
+                </>
+              ) : (
+                <>
+                  <Globe className="w-4 h-4 mr-2" />
+                  发布到后台
+                </>
+              )}
             </Button>
           </div>
         </div>
