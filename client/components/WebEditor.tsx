@@ -1263,7 +1263,7 @@ export function WebEditor() {
     }
 
     console.log('解析完成，生成元素数量:', elements.length);
-    console.log('检测到交互功���:', originalHtmlMeta.hasInteractivity);
+    console.log('检测到交互功能:', originalHtmlMeta.hasInteractivity);
 
     return elements;
   };
@@ -1282,21 +1282,21 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换��前内容
+        // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
           window.confirm('检测到这是本系统生成的网站，导入将替���当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
-          setElements(parsedElements); // 替���而不是添加
+          setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，共 ${parsedElements.length} 个元����`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
         const parsedElements = parseHTMLToElements(importHtml);
-        console.log('解析完成，获得��素:', parsedElements);
+        console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
           alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
@@ -1315,7 +1315,7 @@ export function WebEditor() {
         });
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导入外部HTML，��增 ${parsedElements.length} 个元素`);
+        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元素`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -1332,7 +1332,7 @@ export function WebEditor() {
       const content = e.target.result;
 
       if (importMode === 'project') {
-        // 尝试解析���项目文件 (JSON)
+        // 尝试解析为项目文件 (JSON)
         try {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
@@ -1416,7 +1416,7 @@ export function WebEditor() {
           setShowImportDialog(false);
           alert(`成功��入网站：${site.name}`);
         } catch (error) {
-          console.error('���站导入失败:', error);
+          console.error('网站导入失败:', error);
           alert('网站导入失败，请重试');
         }
       }
@@ -1555,7 +1555,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站���自动保存项目
+  // 加载已发���的网站���自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2209,7 +2209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       {
                         id: 'form_title',
                         type: 'text',
-                        content: '🔍 第一步：输���手机号码查询',
+                        content: '🔍 第一步：输入手机号码查询',
                         style: {
                           fontSize: '1.25rem',
                           fontWeight: 'bold',
@@ -2242,7 +2242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       {
                         id: 'submit_button',
                         type: 'button',
-                        content: '🔍 开始查询',
+                        content: '🔍 ���始查询',
                         style: {
                           width: '100%',
                           background: '#6b7280',
@@ -2601,7 +2601,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
           </div>
 
-          {/* ��侧：组件库、属性编辑器和代码编辑器 */}
+          {/* ��侧：组件库、属性���辑器和代码编辑器 */}
           <div className="w-80 bg-white border-l flex flex-col">
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
@@ -2613,7 +2613,7 @@ document.addEventListener('DOMContentLoaded', function() {
               {/* 组件库 */}
               <TabsContent value="components" className="p-4 flex-1 overflow-y-auto">
                 <div className="mb-4">
-                  <h3 className="text-sm font-semibold mb-3">组���库</h3>
+                  <h3 className="text-sm font-semibold mb-3">组件库</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {componentLibrary.map((component) => (
                       <DraggableComponent key={component.id} component={component} />
@@ -2928,7 +2928,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="container">
             <div class="form-container">
                 <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
-                <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
+                <p class="form-description">请输入您在银行预留的手机号码���我们将检查您的账户状态</p>
 
                 <form id="phoneForm">
                     <div class="input-group">
@@ -3005,7 +3005,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        选择HTML文���
+                        选择HTML文件
                       </label>
                       <input
                         type="file"
@@ -3030,12 +3030,12 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
+                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML导入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自��解���常见HTML��签并转换为可编辑组件</li>
+                      <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提��到对应编辑器</li>
+                      <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
@@ -3076,7 +3076,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-green-50 border border-green-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
-                      <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
+                      <li>• 导入完整的项目��件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置��������属性</li>
                       <li>• 导入会替换当前项目的所有内��</li>
@@ -3147,7 +3147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为���编辑的组件</li>
+                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
