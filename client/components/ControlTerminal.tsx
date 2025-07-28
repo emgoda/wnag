@@ -2,91 +2,95 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 
-interface TaskItem {
+interface ReviewItem {
   id: string;
-  status: "running" | "paused" | "completed";
+  status: "pending" | "reviewing" | "approved" | "rejected" | "waiting_info";
   statusText: string;
-  type: string;
-  fileName: string;
-  fileCount?: string;
-  progress?: number;
-  progressText?: string;
-  model?: string;
-  memory?: string;
-  operations?: string;
+  type: "content" | "user" | "document" | "media" | "business";
+  title: string;
+  submitter: string;
+  submittedTime: string;
+  reviewerName?: string;
+  priority: "high" | "medium" | "low";
+  category: string;
+  description: string;
+  attachments?: number;
+  lastUpdate?: string;
 }
 
-const taskData: TaskItem[] = [
+const reviewData: ReviewItem[] = [
   {
-    id: "13743",
-    status: "running",
-    statusText: "进行中",
-    type: "data processing",
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完成",
-    model: "Mysql Metadata",
-    progress: 85,
-    progressText: "85%",
-    memory: "402Mb",
-    operations: "098"
+    id: "REV-2024-001",
+    status: "reviewing",
+    statusText: "审核中",
+    type: "content",
+    title: "用户发布内容审核",
+    submitter: "张小明",
+    submittedTime: "2024-01-20 09:15:23",
+    reviewerName: "李审核员",
+    priority: "high",
+    category: "内容审核",
+    description: "用户发布疑似违规内容，需要人工审核确认",
+    attachments: 3,
+    lastUpdate: "2024-01-20 10:30:15"
   },
   {
-    id: "13752",
-    status: "running", 
-    statusText: "进行中",
-    type: "data processing",
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完成",
-    progress: 72,
-    progressText: "72%"
+    id: "REV-2024-002",
+    status: "pending",
+    statusText: "待审核",
+    type: "user",
+    title: "用户实名认证申请",
+    submitter: "王小红",
+    submittedTime: "2024-01-20 08:45:12",
+    priority: "medium",
+    category: "身份认证",
+    description: "用户提交身份证件，申请实名认证",
+    attachments: 2
   },
   {
-    id: "13716", 
-    status: "paused",
-    statusText: "已暂停",
-    type: "data processing",
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完成"
+    id: "REV-2024-003",
+    status: "waiting_info",
+    statusText: "待补充",
+    type: "business",
+    title: "企业资质审核",
+    submitter: "科技有限公司",
+    submittedTime: "2024-01-19 16:20:45",
+    reviewerName: "陈审核员",
+    priority: "high",
+    category: "企业认证",
+    description: "企业资质文件不完整，等待用户补充材料",
+    attachments: 5,
+    lastUpdate: "2024-01-20 09:00:00"
   },
   {
-    id: "12376",
-    status: "paused",
-    statusText: "已暂停", 
-    type: "data processing",
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完成"
+    id: "REV-2024-004",
+    status: "approved",
+    statusText: "已通过",
+    type: "document",
+    title: "用户资料变更申请",
+    submitter: "赵小刚",
+    submittedTime: "2024-01-19 14:30:22",
+    reviewerName: "刘审核员",
+    priority: "low",
+    category: "资料变更",
+    description: "用户申请修改个人基本信息",
+    attachments: 1,
+    lastUpdate: "2024-01-20 08:15:30"
   },
   {
-    id: "11156",
-    status: "running",
-    statusText: "进行中",
-    type: "data processing", 
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完���",
-    model: "90856520",
-    progress: 65,
-    progressText: "65%",
-    memory: "410Mb",
-    operations: "673"
-  },
-  {
-    id: "11431",
-    status: "paused",
-    statusText: "已暂停",
-    type: "data processing",
-    fileName: "(1) petfood_EN", 
-    fileCount: "(2) 操作完成",
-    model: "90471041",
-    memory: "4628",
-    operations: "578"
-  },
-  {
-    id: "11933",
-    status: "paused",
-    statusText: "已暂停",
-    type: "data processing",
-    fileName: "(1) petfood_EN",
-    fileCount: "(2) 操作完成"
+    id: "REV-2024-005",
+    status: "rejected",
+    statusText: "已拒绝",
+    type: "media",
+    title: "图片内容举报处理",
+    submitter: "系统检测",
+    submittedTime: "2024-01-19 12:15:08",
+    reviewerName: "孙审核员",
+    priority: "high",
+    category: "违规处理",
+    description: "AI检测到疑似违规图片，经人工审核确认违规",
+    attachments: 4,
+    lastUpdate: "2024-01-19 15:45:12"
   }
 ];
 
