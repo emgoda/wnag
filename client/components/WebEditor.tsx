@@ -139,7 +139,7 @@ function ElementActionsMenu({ isOpen, onToggle, onDuplicate, onDelete, onCopySty
         onClick={onDelete}
         className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
       >
-        <span>����️</span> 删除
+        <span>🗑️</span> 删除
       </button>
       <div className="border-t my-1" />
       <button
@@ -717,6 +717,7 @@ export function WebEditor() {
   const [demoDataLoaded, setDemoDataLoaded] = useState(false);
   const [copiedStyle, setCopiedStyle] = useState(null);
   const [savedTemplates, setSavedTemplates] = useState([]);
+  const [selectedInstances, setSelectedInstances] = useState([]);
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -1210,7 +1211,7 @@ export function WebEditor() {
     }
   };
 
-  // 导出完���项目
+  // 导出完����项目
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
@@ -1256,7 +1257,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面��未保存的内��，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1302,7 +1303,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路径已存在，请使用其��路径');
+      alert('该路��路径已存在，请使用其��路径');
       return;
     }
 
@@ -1858,7 +1859,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
               <Eye className="w-4 h-4 mr-2" />
-              预��
+              预览
             </Button>
             <Button onClick={handleSave} variant="outline" size="sm">
               <Save className="w-4 h-4 mr-2" />
@@ -1946,7 +1947,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">产品落地页</div>
-                    <div className="text-xs text-gray-500">营销推广���面</div>
+                    <div className="text-xs text-gray-500">营销推广页面</div>
                   </button>
                 </div>
               </div>
@@ -2370,7 +2371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提��到对应编辑器</li>
+                      <li>• CSS和JS代码会被提��到���应编辑器</li>
                     </ul>
                   </div>
 
@@ -2479,7 +2480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
 
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
-                    <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
+                    <h4 className="text-sm font-medium text-purple-800 mb-1">���发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
