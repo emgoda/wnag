@@ -38,7 +38,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '���击按钮', style: {} } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -625,7 +625,7 @@ export function WebEditor() {
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
-    alert('项目已保�����本地存储');
+    alert('项目已保���到本地存储');
   };
 
   const handleExport = () => {
@@ -836,7 +836,7 @@ export function WebEditor() {
 
   const handleImportHTML = () => {
     if (!importHtml.trim()) {
-      alert('请输入HTML���码');
+      alert('请输入HTML代码');
       return;
     }
 
@@ -1110,8 +1110,8 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 直接加载演示项目数据
-    if (elements.length === 0) {
+    // 直接加载演示项目数据 (只加载一次)
+    if (!demoDataLoaded && elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
         "name": "个人作品集网站",
@@ -1210,7 +1210,7 @@ export function WebEditor() {
               {
                 "id": "element_7",
                 "type": "text",
-                "content": "关于我",
+                "content": "��于我",
                 "style": {
                   "fontSize": "2.5em",
                   "fontWeight": "bold",
@@ -1785,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button
                           onClick={() => {
                             // 这里可以添加首页设置逻辑
-                            alert('设为��页功能');
+                            alert('设为首页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
                         >
@@ -2073,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
-                      <li>• 支持导入HTML、CSS和JavaScript代码</li>
+                      <li>• 支���导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
