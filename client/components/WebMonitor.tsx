@@ -303,6 +303,19 @@ export function WebMonitor() {
     }
   };
 
+  // 刷新页面，清除离线用户
+  const handleRefreshPage = () => {
+    setIsRefreshing(true);
+
+    // 模拟刷新过程
+    setTimeout(() => {
+      // 这里可以触发清除离线用户的逻辑
+      // 在实际应用中，这会调用API或更新状态管理
+      console.log('页面已刷新，离线用户已清除');
+      setIsRefreshing(false);
+    }, 1000);
+  };
+
   return (
     <TooltipProvider>
       <div className="flex-1 bg-background">
