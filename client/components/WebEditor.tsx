@@ -796,7 +796,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入��替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -851,7 +851,7 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // 确认是否覆盖当前项目
+        // 确认是否覆���当前项目
         const confirmOverwrite = elements.length === 0 ||
           window.confirm('导入项目将替换当前内容，是否继续？');
 
@@ -874,7 +874,7 @@ export function WebEditor() {
           alert('项目导入成功！');
         }
       } else {
-        alert('项目文件格式不��确');
+        alert('项目文件格式不正确');
       }
     } catch (error) {
       console.error('项目导入失败:', error);
@@ -1433,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return (
       <div className="h-screen flex flex-col">
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">预览��式</h2>
+          <h2 className="text-lg font-semibold">预览模式</h2>
           <Button onClick={handlePreview} variant="outline">
             <Code className="w-4 h-4 mr-2" />
             返回编辑
@@ -1591,27 +1591,64 @@ document.addEventListener('DOMContentLoaded', function() {
               <div>
                 <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">页面列表</h4>
                 <div className="space-y-1">
-                  <div className="px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg text-sm">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className="font-medium text-blue-700">首页</span>
+                  {pages.map((page) => (
+                    <div
+                      key={page.id}
+                      className={`px-3 py-2 border rounded-lg text-sm group transition-colors ${
+                        page.isActive
+                          ? 'bg-blue-50 border-blue-200'
+                          : 'border-gray-200 hover:bg-gray-50 cursor-pointer'
+                      }`}
+                      onClick={() => !page.isActive && handleSwitchPage(page.id)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 flex-1">
+                          <div className={`w-2 h-2 rounded-full ${
+                            page.isActive ? 'bg-blue-500' : 'bg-gray-400'
+                          }`}></div>
+                          <div className="flex-1 min-w-0">
+                            <div className={`font-medium truncate ${
+                              page.isActive ? 'text-blue-700' : 'text-gray-600'
+                            }`}>
+                              {page.name}
+                            </div>
+                            <div className="text-xs text-gray-500 truncate">
+                              {page.route}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {page.isActive && (
+                            <span className="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded">
+                              当前
+                            </span>
+                          )}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEditPage(page);
+                            }}
+                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-200 rounded transition-all"
+                            title="编辑页面"
+                          >
+                            <Settings className="w-3 h-3 text-gray-500" />
+                          </button>
+                          {pages.length > 1 && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeletePage(page.id);
+                              }}
+                              className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-all"
+                              title="删除页面"
+                            >
+                              <Trash2 className="w-3 h-3 text-red-500" />
+                            </button>
+                          )}
+                        </div>
                       </div>
-                      <span className="text-xs text-blue-600">当前</span>
                     </div>
-                  </div>
-                  <div className="px-3 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 cursor-pointer">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <span className="text-gray-600">关于我们</span>
-                    </div>
-                  </div>
-                  <div className="px-3 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 cursor-pointer">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <span className="text-gray-600">联系方式</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
