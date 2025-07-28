@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { useKeystrokeMonitor } from "@/hooks/use-keystroke-monitor";
+import { useToast } from "@/hooks/use-toast";
 
 interface UserSubmission {
   id: string;
@@ -130,7 +131,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "在线银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
-    userLocation: "广州市天河区",
+    userLocation: "��州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
     dataSize: "1.2Mb",
@@ -278,7 +279,7 @@ export function WebMonitor() {
                   >
                     {submission.riskLevel === "high" ? "高风险" :
                      submission.riskLevel === "medium" ? "中风险" :
-                     "低风险"}
+                     "低��险"}
                   </Badge>
                   <div className="text-sm text-muted-foreground">{submission.statusText}</div>
                 </div>
