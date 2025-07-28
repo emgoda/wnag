@@ -38,7 +38,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请��入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按��', style: {} } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -123,7 +123,7 @@ function ContextMenu({ isOpen, x, y, onClose, onDuplicate, onDelete, onCopyStyle
           onClick={onDelete}
           className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
         >
-          <span>🗑️</span> Delete
+          <span>��️</span> Delete
         </button>
         <div className="border-t my-1" />
         <button
@@ -888,7 +888,7 @@ export function WebEditor() {
       };
 
       // 这里可以发送到监控系统
-      console.log('网站已发布到监控系统:', monitoringData);
+      console.log('网站已发布��监控系统:', monitoringData);
 
       alert(`网站����布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
@@ -1302,7 +1302,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存项目
+  // 加载已发布的���站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1822,7 +1822,7 @@ document.addEventListener('DOMContentLoaded', function() {
               {isPublishing ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  发布中...
+                  ��布中...
                 </>
               ) : (
                 <>
@@ -2072,6 +2072,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     ))}
                   </div>
                 </div>
+
+                {/* 保存的模板 */}
+                {savedTemplates.length > 0 && (
+                  <div className="border-t pt-4 mb-4">
+                    <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                      <span>📋</span> 保存的模板
+                    </h3>
+                    <div className="space-y-2">
+                      {savedTemplates.map((template) => (
+                        <div
+                          key={template.id}
+                          className="p-2 border rounded hover:bg-gray-50 cursor-pointer"
+                          onClick={() => {
+                            const newElement = {
+                              id: `element_${elementIdCounter}`,
+                              type: template.type,
+                              content: template.content,
+                              placeholder: template.placeholder,
+                              src: template.src,
+                              alt: template.alt,
+                              style: { ...template.style }
+                            };
+                            setElements(prev => [...prev, newElement]);
+                            setElementIdCounter(prev => prev + 1);
+                          }}
+                        >
+                          <div className="text-sm font-medium">{template.name}</div>
+                          <div className="text-xs text-gray-500">{template.type}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* 已发布网站��理 */}
                 <div className="border-t pt-4">
