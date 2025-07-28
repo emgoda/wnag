@@ -37,8 +37,9 @@ const ItemTypes = {
 
 // 组件库
 const componentLibrary = [
-  { id: 'text', type: 'text', label: '���本', icon: Type, defaultProps: { content: '����输入文本', style: {} } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请输入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
+  { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -187,7 +188,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
   );
 }
 
-// 浏览器���格画布组件
+// 浏览器风格画布组件
 function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange, pages }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
@@ -1111,7 +1112,7 @@ export function WebEditor() {
               {
                 "id": "element_4",
                 "type": "text",
-                "content": "专注于创���现代化的Web应��程序，拥有丰富的前端和后端开发经验",
+                "content": "专注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1364,7 +1365,7 @@ html {
   background-color: #2196f3;
   color: white;
 }`,
-        "js": `// 页面加载动画
+        "js": `// 页面加载动���
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人作品集网站加载完成');
 
@@ -1449,7 +1450,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       switch (el.type) {
         case 'text':
-          return `<div style="${styleStr}">${el.content || '文��内容'}</div>`;
+          return `<div style="${styleStr}">${el.content || '文本内容'}</div>`;
         case 'button':
           return `<button style="${styleStr}">${el.content || '按钮'}</button>`;
         case 'image':
@@ -1625,7 +1626,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">企业官网</div>
-                    <div className="text-xs text-gray-500">商业网站模板</div>
+                    <div className="text-xs text-gray-500">商业网���模板</div>
                   </button>
                   <button
                     onClick={() => {
@@ -1785,7 +1786,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          {/* 中间：���览器风格画布 */}
+          {/* 中间：浏览器风格画布 */}
           <div className="flex-1">
             <BrowserCanvas
               elements={elements}
