@@ -132,7 +132,11 @@ const submissionData: UserSubmission[] = [
     submitCount: 1,
     submitHistory: [
       { timestamp: "10:23", cardType: "credit", partialCard1: "4532", partialCard2: "123", fullCard: "4532 **** **** 1234", expiryDate: "12/26", cvv: "***" }
-    ]
+    ],
+    enterTime: "10:15:30",
+    updateTime: "10:25:18",
+    isOffline: true,
+    offlineTime: "10:28:45"
   },
   {
     id: "13752",
@@ -279,7 +283,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠️ 风险预���
+              ⚠️ 风险预警
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
