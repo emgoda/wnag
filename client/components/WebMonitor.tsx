@@ -30,6 +30,30 @@ interface UserSubmission {
 
 const submissionData: UserSubmission[] = [
   {
+    id: "8021",
+    status: "processing",
+    statusText: "处理中",
+    submissionType: "credit_card",
+    websiteName: "前台页面 1111",
+    currentPage: "/payment",
+    userName: "赵用户",
+    userLocation: "上海市静安区",
+    timestamp: "2024-01-20 11:30:25",
+    progress: 45,
+    progressText: "45%",
+    riskLevel: "medium",
+    dataSize: "256Kb",
+    fieldsCount: 6,
+    ipAddress: "192.168.1.120",
+    sessionId: "sess_xyz789",
+    realtimeInput: {
+      phone: "138****8888",
+      cardNumber: "4321 **** **** 5678",
+      expiryDate: "09/26",
+      cvv: "123"
+    }
+  },
+  {
     id: "13743",
     status: "processing",
     statusText: "处理中",
