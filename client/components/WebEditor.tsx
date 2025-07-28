@@ -557,6 +557,7 @@ export function WebEditor() {
   const [showPageDialog, setShowPageDialog] = useState(false);
   const [editingPage, setEditingPage] = useState(null);
   const [pageForm, setPageForm] = useState({ name: '', route: '', description: '' });
+  const [demoDataLoaded, setDemoDataLoaded] = useState(false);
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -624,7 +625,7 @@ export function WebEditor() {
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
-    alert('项目已保���到本地存储');
+    alert('项目已保�����本地存储');
   };
 
   const handleExport = () => {
@@ -835,7 +836,7 @@ export function WebEditor() {
 
   const handleImportHTML = () => {
     if (!importHtml.trim()) {
-      alert('请输入HTML代码');
+      alert('请输入HTML���码');
       return;
     }
 
@@ -1784,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button
                           onClick={() => {
                             // 这里可以添加首页设置逻辑
-                            alert('设为首页功能');
+                            alert('设为��页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
                         >
