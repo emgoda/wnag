@@ -231,7 +231,7 @@ const getSubmissionTypeName = (type: string) => {
   switch (type) {
     case "personal_info": return "个人资料";
     case "credit_card": return "信用卡信息";
-    case "identity_verification": return "身份验证";
+    case "identity_verification": return "身���验证";
     case "address_proof": return "地址证明";
     default: return "其他文档";
   }
@@ -468,9 +468,28 @@ export function WebMonitor() {
                         自定义
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuContent align="end" className="w-56">
+                      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">页面列表</div>
+                      {webPages.map((page) => (
+                        <DropdownMenuItem
+                          key={page.id}
+                          onClick={() => window.open(`/web-creation?page=${page.id}`, '_blank')}
+                          className="flex items-center gap-2"
+                        >
+                          <div className={`w-2 h-2 rounded-full ${
+                            page.isActive ? 'bg-blue-500' : 'bg-gray-400'
+                          }`}></div>
+                          {page.name}
+                          {page.isActive && (
+                            <span className="text-xs text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded ml-auto">
+                              当前
+                            </span>
+                          )}
+                        </DropdownMenuItem>
+                      ))}
+                      <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/web-creation', '_blank')}>
-                        🔧 网页制作页面
+                        🔧 网页制作主页
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/dashboard', '_blank')}>
