@@ -182,7 +182,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "personal_info",
     websiteName: "新用户注册",
     currentPage: "/register",
-    userName: "新用���",
+    userName: "新用户",
     userLocation: "深圳市南山区",
     timestamp: "2024-01-20 10:15:10",
     riskLevel: "low",
@@ -265,7 +265,7 @@ export function WebMonitor() {
               📊 实时统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🔒 安全设定
+              �� 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
@@ -397,9 +397,8 @@ export function WebMonitor() {
 
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div className="text-sm font-mono border rounded px-2 py-1 min-w-[60px] bg-blue-50 border-blue-300 cursor-help text-center">
-                          <span className="text-blue-700 font-semibold">{submission.submitCount || 0}</span>
-                          <div className="text-xs text-blue-600">提交</div>
+                        <div className="text-sm font-mono border rounded px-2 py-1 min-w-[60px] bg-blue-50 border-blue-300 cursor-help flex items-center justify-center">
+                          <span className="text-blue-700 font-semibold">{submission.submitCount || 0}次</span>
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs">
