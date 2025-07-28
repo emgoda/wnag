@@ -542,7 +542,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               value={selectedElement.value || ''}
               onChange={(e) => onUpdateElement({ ...selectedElement, value: e.target.value })}
               className="w-full px-3 py-2 border rounded-md text-sm"
-              placeholder="输入默认值"
+              placeholder="输入默认��"
             />
           </div>
         </div>
@@ -686,6 +686,8 @@ export function WebEditor() {
   const [editingPage, setEditingPage] = useState(null);
   const [pageForm, setPageForm] = useState({ name: '', route: '', description: '' });
   const [demoDataLoaded, setDemoDataLoaded] = useState(false);
+  const [copiedStyle, setCopiedStyle] = useState(null);
+  const [savedTemplates, setSavedTemplates] = useState([]);
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -1087,7 +1089,7 @@ export function WebEditor() {
         window.confirm('导入网站将替换当前内容，是否继续？');
 
       if (confirmImport) {
-        // 解析HTML重新构建项目
+        // 解析HTML重新构建项���
         try {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
@@ -1180,7 +1182,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写页面名��和路由���径');
+      alert('请填写页面名�����路由���径');
       return;
     }
 
@@ -1223,7 +1225,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载新页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -2169,7 +2171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        选择HTML文件
+                        选择HTML文���
                       </label>
                       <input
                         type="file"
