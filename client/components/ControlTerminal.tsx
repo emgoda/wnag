@@ -261,23 +261,69 @@ export function ControlTerminal() {
 
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
-          <div className="flex items-center justify-between text-sm">
-            <div className="text-muted-foreground">
-              共 {taskData.length} 个任务 • 
-              {taskData.filter(t => t.status === "running").length} 个运行中 • 
-              {taskData.filter(t => t.status === "paused").length} 个已暂停
+          <div className="grid grid-cols-2 gap-6 mb-4">
+            {/* Left: Statistics */}
+            <div className="space-y-2">
+              <div className="text-sm font-medium text-foreground">审核统计</div>
+              <div className="grid grid-cols-5 gap-3 text-xs">
+                <div className="text-center">
+                  <div className="text-orange-600 font-medium">
+                    {reviewData.filter(r => r.status === "pending").length}
+                  </div>
+                  <div className="text-muted-foreground">待审核</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-blue-600 font-medium">
+                    {reviewData.filter(r => r.status === "reviewing").length}
+                  </div>
+                  <div className="text-muted-foreground">审核中</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-green-600 font-medium">
+                    {reviewData.filter(r => r.status === "approved").length}
+                  </div>
+                  <div className="text-muted-foreground">已通过</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-red-600 font-medium">
+                    {reviewData.filter(r => r.status === "rejected").length}
+                  </div>
+                  <div className="text-muted-foreground">已拒绝</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-yellow-600 font-medium">
+                    {reviewData.filter(r => r.status === "waiting_info").length}
+                  </div>
+                  <div className="text-muted-foreground">待补充</div>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm">
-                🔄 刷新列表
-              </Button>
-              <Button variant="outline" size="sm">
-                📊 性能监控
-              </Button>
-              <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                ➕ 新建任务
-              </Button>
+
+            {/* Right: Quick Actions */}
+            <div className="space-y-2">
+              <div className="text-sm font-medium text-foreground">快速操作</div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <Button variant="outline" size="sm">
+                  🔄 刷新列表
+                </Button>
+                <Button variant="outline" size="sm">
+                  📊 审核报告
+                </Button>
+                <Button variant="outline" size="sm">
+                  📥 批量导入
+                </Button>
+                <Button variant="outline" size="sm">
+                  🔍 高级筛选
+                </Button>
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                  📝 手动创建审核
+                </Button>
+              </div>
             </div>
+          </div>
+
+          <div className="text-xs text-muted-foreground">
+            共 {reviewData.length} 条审核记录 • 今日新增 3 条 • 平均审核时长 2.5 小时 • 审核通过率 78%
           </div>
         </div>
       </div>
