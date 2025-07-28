@@ -317,7 +317,7 @@ export function WebMonitor() {
       </div>
 
       <div className="p-6">
-        {/* Card Layout with Borders -按照用户要求的信息顺序 */}
+        {/* Card Layout with Borders -按照用户要求��信息顺序 */}
         <div className="space-y-2">
           {submissions.map((submission, index) => (
             <div key={submission.id} className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-2 ${
@@ -354,14 +354,6 @@ export function WebMonitor() {
                     <span className="text-sm text-muted-foreground">正在某个页面:</span>
                     <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.currentPage}</span>
                   </div>
-
-                  {submission.enterTime && (
-                    <div className="flex items-center gap-1">
-                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
-                        {getRelativeTime(submission.enterTime, "进入于")}
-                      </span>
-                    </div>
-                  )}
 
                   {submission.updateTime && (
                     <div className="flex items-center gap-1">
