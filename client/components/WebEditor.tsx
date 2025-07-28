@@ -338,7 +338,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
               <span>实时预览</span>
             </div>
             {selectedElement && (
-              <span className="text-blue-600">已选择: {selectedElement.type}</span>
+              <span className="text-blue-600">���选择: {selectedElement.type}</span>
             )}
           </div>
         </div>
@@ -856,7 +856,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替���而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，共 ${parsedElements.length} 个元���`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元����`);
         }
       } else {
         // 外部HTML，添加到现有内容
@@ -1391,7 +1391,7 @@ body {
   }
 }
 
-/* 滚动���为 */
+/* 滚动����为 */
 html {
   scroll-behavior: smooth;
 }
@@ -1444,19 +1444,25 @@ document.addEventListener('DOMContentLoaded', function() {
       setJs(demoProjectData.js);
       setSiteName(demoProjectData.name);
 
-      // Calculate proper elementIdCounter based on existing element IDs
-      const maxId = Math.max(
-        ...demoProjectData.elements.flatMap(el => {
-          const ids = [el.id];
-          if (el.children) {
-            const childIds = el.children.map(child => child.id);
-            ids.push(...childIds);
+      // Calculate proper elementIdCounter based on existing element IDs (recursive)
+      const getAllElementIds = (elements) => {
+        let ids = [];
+        for (const el of elements) {
+          ids.push(el.id);
+          if (el.children && el.children.length > 0) {
+            ids.push(...getAllElementIds(el.children));
           }
-          return ids;
-        }).map(id => {
+        }
+        return ids;
+      };
+
+      const allIds = getAllElementIds(demoProjectData.elements);
+      const maxId = Math.max(
+        ...allIds.map(id => {
           const match = id.match(/element_(\d+)$/);
           return match ? parseInt(match[1]) : 0;
-        })
+        }),
+        0 // 确保至少有一个值，避免Math.max返回-Infinity
       );
       setElementIdCounter(maxId + 1);
 
@@ -2099,7 +2105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和元��属性</li>
+                      <li>• 会完整还原项目的所有设置和�����属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
