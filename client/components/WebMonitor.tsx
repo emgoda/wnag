@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useKeystrokeMonitor } from "@/hooks/use-keystroke-monitor";
 import {
   DropdownMenu,
@@ -650,7 +650,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'name'))}
-                      title="点击复制姓名"
+                      title="点击��制姓名"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'name')}
@@ -774,7 +774,7 @@ export function WebMonitor() {
                       <span className="font-medium">{submission.ipAddress}</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">会��ID: </span>
+                      <span className="text-muted-foreground">会话ID: </span>
                       <span className="font-medium">{submission.sessionId || "N/A"}</span>
                     </div>
                   </div>
