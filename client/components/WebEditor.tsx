@@ -379,7 +379,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             value={selectedElement.src || ''}
             onChange={(e) => onUpdateElement({ ...selectedElement, src: e.target.value })}
             className="w-full px-3 py-2 border rounded-md text-sm"
-            placeholder="输入图片URL"
+            placeholder="输���图片URL"
           />
         </div>
       )}
@@ -596,7 +596,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到��地存储（实际应用中会发送到���端）
+      // 保存到��地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -1428,26 +1428,34 @@ document.addEventListener('DOMContentLoaded', function() {
               placeholder="输入网站名称"
               className="px-3 py-1 bg-gray-700 border border-gray-600 rounded text-sm w-40 text-gray-200 placeholder-gray-400 focus:outline-none focus:border-blue-400"
             />
-            <Button onClick={handlePreview} variant="outline" size="sm">
-              <Eye className="w-4 h-4 mr-2" />
+            <button
+              onClick={handlePreview}
+              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
+            >
+              <Eye className="w-4 h-4" />
               预览
-            </Button>
-            <Button onClick={handleSave} variant="outline" size="sm">
-              <Save className="w-4 h-4 mr-2" />
+            </button>
+            <button
+              onClick={handleSave}
+              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
+            >
+              <Save className="w-4 h-4" />
               保存
-            </Button>
-            <Button onClick={() => setShowImportDialog(true)} variant="outline" size="sm">
-              <Upload className="w-4 h-4 mr-2" />
-              高级导入
-            </Button>
-            <Button onClick={handleExport} variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              导出HTML
-            </Button>
-            <Button onClick={handleExportProject} variant="outline" size="sm">
-              <Save className="w-4 h-4 mr-2" />
-              导出项目
-            </Button>
+            </button>
+            <button
+              onClick={() => setShowImportDialog(true)}
+              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
+            >
+              <Upload className="w-4 h-4" />
+              导入
+            </button>
+            <button
+              onClick={handleExport}
+              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              导出
+            </button>
             <Button
               onClick={handlePublish}
               variant="default"
@@ -1562,7 +1570,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </button>
                 </div>
                 <div className="px-4 py-2 text-gray-400 text-sm hover:bg-gray-700 cursor-pointer">
-                  <span>+ 新标签页</span>
+                  <span>+ 新���签页</span>
                 </div>
               </div>
               <div className="flex-1"></div>
@@ -1596,7 +1604,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
 
-            {/* 属性编辑区域 */}
+            {/* 属性��辑区域 */}
             <div className="flex-1 overflow-y-auto">
               <Tabs defaultValue="properties" className="h-full">
                 <TabsList className="grid w-full grid-cols-2 bg-gray-100 m-2 rounded">
@@ -1675,7 +1683,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应编辑器</li>
+                      <li>• CSS和JS代码会被提取到对应���辑器</li>
                     </ul>
                   </div>
 
@@ -1787,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建���可编辑的组件</li>
+                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
