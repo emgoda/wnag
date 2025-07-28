@@ -36,7 +36,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点��按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -66,7 +66,7 @@ const deviceSizes = {
   }
 };
 
-// 拖拽组件项
+// 拖拽组件项 - 适应深色侧边栏
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
@@ -77,18 +77,22 @@ function DraggableComponent({ component }) {
   }));
 
   const Icon = component.icon;
+  const iconColors = {
+    'text': 'text-green-400',
+    'button': 'text-blue-400',
+    'image': 'text-purple-400',
+    'container': 'text-yellow-400'
+  };
 
   return (
     <div
       ref={drag}
-      className={`p-3 border rounded-lg cursor-move bg-white hover:bg-gray-50 transition-colors ${
+      className={`flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-move transition-colors ${
         isDragging ? 'opacity-50' : 'opacity-100'
       }`}
     >
-      <div className="flex flex-col items-center gap-2">
-        <Icon size={24} className="text-gray-600" />
-        <span className="text-sm font-medium">{component.label}</span>
-      </div>
+      <Icon className={`w-4 h-4 ${iconColors[component.type] || 'text-gray-400'}`} />
+      <span className="text-gray-200">{component.label}</span>
     </div>
   );
 }
@@ -215,7 +219,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* 浏览器窗��容器 */}
+      {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -658,7 +662,7 @@ export function WebEditor() {
       setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
-    // 解析JavaScript
+    // 解���JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
@@ -788,7 +792,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统���成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -869,7 +873,7 @@ export function WebEditor() {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项目导入失败:', error);
+      console.error('项目���入失败:', error);
       alert('项目导入失败，请检查文件格式');
     }
   };
@@ -1218,7 +1222,7 @@ body {
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
 }
 
-/* 技能卡片悬停效果 */
+/* ��能卡片悬停效果 */
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -1617,7 +1621,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <Upload className="w-5 h-5" />
-                  高级导��功能
+                  高级导入功能
                 </DialogTitle>
               </DialogHeader>
 
@@ -1663,7 +1667,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应编辑器</li>
+                      <li>• CSS和JS代���会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
@@ -1775,7 +1779,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
+                      <li>• 会解析网站HTML并重建为可编��的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
