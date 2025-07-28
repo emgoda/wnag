@@ -29,6 +29,13 @@ interface SubmissionFieldStates {
   };
 }
 
+interface SubmissionState {
+  [submissionId: string]: {
+    isSubmitting: boolean;
+    lastSubmitTime?: number;
+  };
+}
+
 const TYPING_TIMEOUT = 500; // 500ms后停止显示打字状态
 
 export function useKeystrokeMonitor(initialSubmissions: any[]) {
@@ -128,7 +135,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
     const charsToDelete = oldValue.length - commonPrefix.length;
     const charsToAdd = newValue.substring(commonPrefix.length);
 
-    // 删除字符
+    // ���除字符
     for (let i = 0; i < charsToDelete; i++) {
       setTimeout(() => {
         currentValue = currentValue.slice(0, -1);
