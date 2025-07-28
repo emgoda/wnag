@@ -190,7 +190,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "identity_verification",
     websiteName: "在线银���系统",
     currentPage: "/kyc/identity-check",
-    userName: "王���强",
+    userName: "王大强",
     userLocation: "广州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
@@ -466,7 +466,7 @@ export function WebMonitor() {
                 return (hasUserData || hasActiveTyping) ? (
                   <div className="flex items-center gap-2 mb-0.5">
                     <div className="flex items-center gap-1">
-                      <div className="text-xs text-muted-foreground">���</div>
+                      <div className="text-xs text-muted-foreground">💳</div>
                       {submission.binLookup ? (
                         <Badge
                           variant="outline"
@@ -694,7 +694,12 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {submissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {filteredSubmissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            {hideEmptyData && submissions.length !== filteredSubmissions.length && (
+              <span className="text-orange-600 ml-2">
+                (已隐藏 {submissions.length - filteredSubmissions.length} 个无数据项)
+              </span>
+            )}
           </div>
         </div>
       </div>
