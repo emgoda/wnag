@@ -276,7 +276,7 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="grid grid-cols-6 gap-2 mb-2">
+              <div className="grid grid-cols-6 gap-1 mb-1">
                 <div>
                   {submission.binLookup ? (
                     <div className="flex items-center gap-1">
