@@ -128,7 +128,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
           </div>
         );
       default:
-        return <div style={style}>未知组件</div>;
+        return <div style={style}>���知组件</div>;
     }
   };
 
@@ -372,6 +372,8 @@ export function WebEditor() {
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishedSites, setPublishedSites] = useState([]);
   const [siteName, setSiteName] = useState('');
+  const [showImportDialog, setShowImportDialog] = useState(false);
+  const [importHtml, setImportHtml] = useState('');
 
   const handleDrop = useCallback((component) => {
     const newElement = {
