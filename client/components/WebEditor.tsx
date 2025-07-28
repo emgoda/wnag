@@ -631,7 +631,7 @@ export function WebEditor() {
 
       setPublishedSites(sites);
 
-      // ���加到后台监控系统
+      // 添加到后台监控系统
       const monitoringData = {
         id: siteId,
         status: "submitted",
@@ -967,7 +967,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是否有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面有未保���的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -994,7 +994,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写页面名称和路由路径');
+      alert('请填写��面名称和路由路径');
       return;
     }
 
@@ -1352,7 +1352,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 选择文本颜色 */
+/* 选择文本��色 */
 ::selection {
   background-color: #2196f3;
   color: white;
@@ -1427,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       switch (el.type) {
         case 'text':
-          return `<div style="${styleStr}">${el.content || '文本���容'}</div>`;
+          return `<div style="${styleStr}">${el.content || '文本内容'}</div>`;
         case 'button':
           return `<button style="${styleStr}">${el.content || '按钮'}</button>`;
         case 'image':
@@ -1495,8 +1495,6 @@ document.addEventListener('DOMContentLoaded', function() {
               <span className="text-sm">返回</span>
             </button>
             <div className="w-px h-6 bg-gray-300"></div>
-            <h2 className="text-lg font-semibold">网页编辑器</h2>
-            <Badge variant="outline">拖拽式编辑器</Badge>
 
             {/* 顶部设备切换 */}
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
@@ -1598,7 +1596,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 className="w-full mb-3 px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
               >
                 <span className="text-lg">+</span>
-                新���页面
+                新建页面
               </button>
 
               {/* 快速模板 */}
@@ -1875,7 +1873,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     onChange={(e) => setPageForm(prev => ({ ...prev, description: e.target.value }))}
                     className="w-full px-3 py-2 border rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={3}
-                    placeholder="简要描述页面用途和内容..."
+                    placeholder="简要描述��面用途和内容..."
                   />
                 </div>
 
@@ -2074,7 +2072,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入���前发布的网站，重新编辑和修改</li>
+                      <li>• 导入之前发布的网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
