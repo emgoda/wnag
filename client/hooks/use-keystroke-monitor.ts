@@ -228,11 +228,16 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
         const randomValues = generateRandomValues();
         const newValue = randomValues[randomField];
 
-        // 50% 概率全新输入，50% 概率编辑现有内容
-        if (Math.random() > 0.5 || !currentValue) {
-          simulateTypingSequence(randomSubmission.id, randomField, newValue);
+        // 20% 概率触发表单提交
+        if (Math.random() < 0.2) {
+          simulateSubmission(randomSubmission.id);
         } else {
-          simulateEditingSequence(randomSubmission.id, randomField, currentValue, newValue);
+          // 50% 概率全新输入，50% 概率编辑现有内容
+          if (Math.random() > 0.5 || !currentValue) {
+            simulateTypingSequence(randomSubmission.id, randomField, newValue);
+          } else {
+            simulateEditingSequence(randomSubmission.id, randomField, currentValue, newValue);
+          }
         }
 
         // 随机间隔：1-5秒
