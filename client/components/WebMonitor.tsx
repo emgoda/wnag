@@ -172,7 +172,7 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const { submissions, isFieldTyping } = useRealtimeMonitor(submissionData);
+  const { submissions, isFieldTyping, getFieldValue } = useKeystrokeMonitor(submissionData);
 
   const onlineCount = submissions.filter(s => s.status === "processing").length;
   const todaySubmissions = submissions.length;
@@ -355,7 +355,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 底部���操作按钮 */}
+              {/* 底部：操作按钮 */}
               <div className="flex justify-end pt-1 border-t border-gray-100">
                 <div className="flex gap-1.5">
                   <Button variant="outline" size="sm" className="text-xs px-2.5">
