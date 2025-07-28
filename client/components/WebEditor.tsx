@@ -66,7 +66,7 @@ const deviceSizes = {
   }
 };
 
-// 拖拽组件项 - 适应深色侧边栏
+// 拖拽组件项
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
@@ -77,27 +77,23 @@ function DraggableComponent({ component }) {
   }));
 
   const Icon = component.icon;
-  const iconColors = {
-    'text': 'text-green-400',
-    'button': 'text-blue-400',
-    'image': 'text-purple-400',
-    'container': 'text-yellow-400'
-  };
 
   return (
     <div
       ref={drag}
-      className={`flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-move transition-colors ${
+      className={`p-3 border rounded-lg cursor-move bg-white hover:bg-gray-50 transition-colors ${
         isDragging ? 'opacity-50' : 'opacity-100'
       }`}
     >
-      <Icon className={`w-4 h-4 ${iconColors[component.type] || 'text-gray-400'}`} />
-      <span className="text-gray-200">{component.label}</span>
+      <div className="flex flex-col items-center gap-2">
+        <Icon size={24} className="text-gray-600" />
+        <span className="text-sm font-medium">{component.label}</span>
+      </div>
     </div>
   );
 }
 
-// ���布元素
+// 画布元素
 function CanvasElement({ element, onSelect, onDelete, isSelected }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.ELEMENT,
@@ -218,7 +214,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
   };
 
   return (
-    <div className="flex-1 bg-gray-100 p-4">
+    <div className="flex-1 bg-gray-100 p-6">
       {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
@@ -379,7 +375,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             value={selectedElement.src || ''}
             onChange={(e) => onUpdateElement({ ...selectedElement, src: e.target.value })}
             className="w-full px-3 py-2 border rounded-md text-sm"
-            placeholder="输���图片URL"
+            placeholder="输入图片URL"
           />
         </div>
       )}
@@ -790,7 +786,7 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换当前内容
+        // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
           window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
@@ -874,7 +870,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导入失败，请检查��件格式');
+      alert('项目导���失败，请检查文件格式');
     }
   };
 
@@ -1380,19 +1376,14 @@ document.addEventListener('DOMContentLoaded', function() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col bg-gray-50">
-        {/* IDE风格顶部工具栏 */}
-        <div className="bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between text-gray-100">
+        {/* 顶部工具栏 */}
+        <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Code className="w-5 h-5 text-blue-400" />
-              <h2 className="text-sm font-semibold">网页编辑器</h2>
-            </div>
-            <Badge variant="outline" className="bg-gray-700 border-gray-600 text-gray-300">
-              IDE模式
-            </Badge>
+            <h2 className="text-lg font-semibold">网页编辑器</h2>
+            <Badge variant="outline">拖拽式编辑器</Badge>
 
             {/* 顶部设备切换 */}
-            <div className="flex items-center gap-1 bg-gray-700 rounded-lg p-1">
+            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
               {Object.entries(deviceSizes).map(([key, device]) => {
                 const Icon = device.icon;
                 return (
@@ -1402,7 +1393,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className={`px-3 py-1 rounded-md transition-colors text-sm flex items-center gap-1 ${
                       deviceMode === key
                         ? 'bg-blue-500 text-white'
-                        : 'text-gray-300 hover:bg-gray-600'
+                        : 'text-gray-600 hover:bg-white'
                     }`}
                     title={device.name}
                   >
@@ -1414,48 +1405,37 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={handleNewProject}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
-            >
-              <FileText className="w-4 h-4" />
+            <Button onClick={handleNewProject} variant="outline" size="sm">
+              <FileText className="w-4 h-4 mr-2" />
               新建
-            </button>
+            </Button>
             <input
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
               placeholder="输入网站名称"
-              className="px-3 py-1 bg-gray-700 border border-gray-600 rounded text-sm w-40 text-gray-200 placeholder-gray-400 focus:outline-none focus:border-blue-400"
+              className="px-3 py-1 border rounded text-sm w-40"
             />
-            <button
-              onClick={handlePreview}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
-            >
-              <Eye className="w-4 h-4" />
+            <Button onClick={handlePreview} variant="outline" size="sm">
+              <Eye className="w-4 h-4 mr-2" />
               预览
-            </button>
-            <button
-              onClick={handleSave}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
-            >
-              <Save className="w-4 h-4" />
+            </Button>
+            <Button onClick={handleSave} variant="outline" size="sm">
+              <Save className="w-4 h-4 mr-2" />
               保存
-            </button>
-            <button
-              onClick={() => setShowImportDialog(true)}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
-            >
-              <Upload className="w-4 h-4" />
-              导入
-            </button>
-            <button
-              onClick={handleExport}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded text-sm flex items-center gap-1 transition-colors"
-            >
-              <Download className="w-4 h-4" />
-              导出
-            </button>
+            </Button>
+            <Button onClick={() => setShowImportDialog(true)} variant="outline" size="sm">
+              <Upload className="w-4 h-4 mr-2" />
+              高级导入
+            </Button>
+            <Button onClick={handleExport} variant="outline" size="sm">
+              <Download className="w-4 h-4 mr-2" />
+              导出HTML
+            </Button>
+            <Button onClick={handleExportProject} variant="outline" size="sm">
+              <Save className="w-4 h-4 mr-2" />
+              导出项目
+            </Button>
             <Button
               onClick={handlePublish}
               variant="default"
@@ -1477,156 +1457,94 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
-        {/* IDE风格三栏布局 */}
-        <div className="flex-1 flex bg-gray-50">
-          {/* 左侧文件浏览器 */}
-          <div className="w-60 bg-gray-900 text-gray-100 flex flex-col">
-            {/* 左侧标题栏 */}
-            <div className="px-4 py-3 border-b border-gray-700 bg-gray-800">
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-blue-400" />
-                <span className="text-sm font-medium">项目资源</span>
-              </div>
+        {/* 主要编辑区域 */}
+        <div className="flex-1 flex">
+          {/* 左侧：组件库和网站管理 */}
+          <div className="w-64 bg-white border-r p-4 overflow-y-auto">
+            <h3 className="text-sm font-semibold mb-4">组件库</h3>
+            <div className="grid grid-cols-2 gap-2 mb-6">
+              {componentLibrary.map((component) => (
+                <DraggableComponent key={component.id} component={component} />
+              ))}
             </div>
 
-            {/* 文件树区域 */}
-            <div className="flex-1 overflow-y-auto">
-              {/* 页面结构 */}
-              <div className="p-2">
-                <div className="mb-3">
-                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
-                    <Square className="w-3 h-3" />
-                    页面结构
-                  </div>
-                  <div className="ml-4 space-y-1">
-                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
-                      <Type className="w-4 h-4 text-green-400" />
-                      <span>index.html</span>
+            {/* 已发布网站管理 */}
+            <div className="border-t pt-4">
+              <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <Globe className="w-4 h-4" />
+                已发布网站
+              </h3>
+              {publishedSites.length === 0 ? (
+                <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
+              ) : (
+                <div className="space-y-2">
+                  {publishedSites.slice(-5).map((site) => (
+                    <div key={site.id} className="p-2 border rounded text-xs">
+                      <div className="font-medium truncate">{site.name}</div>
+                      <div className="text-gray-500 mb-2">
+                        {new Date(site.createdAt).toLocaleDateString()}
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => window.open(site.url, '_blank')}
+                          className="flex-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-1"
+                        >
+                          <Link className="w-3 h-3" />
+                          访问
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(site.url);
+                            alert('链接已复制');
+                          }}
+                          className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        >
+                          <Copy className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
-                      <Code className="w-4 h-4 text-blue-400" />
-                      <span>styles.css</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
-                      <Code className="w-4 h-4 text-yellow-400" />
-                      <span>script.js</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-
-                {/* 组件库 */}
-                <div className="mb-3">
-                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
-                    <Square className="w-3 h-3" />
-                    组件库
-                  </div>
-                  <div className="ml-4 space-y-1">
-                    {componentLibrary.map((component) => {
-                      const Icon = component.icon;
-                      return (
-                        <div key={component.id} className="group">
-                          <DraggableComponent component={component} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* 已发布网站 */}
-                <div>
-                  <div className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 uppercase tracking-wide">
-                    <Globe className="w-3 h-3" />
-                    已发布
-                  </div>
-                  <div className="ml-4 space-y-1">
-                    {publishedSites.length === 0 ? (
-                      <div className="px-2 py-2 text-xs text-gray-500">暂无发布的网站</div>
-                    ) : (
-                      publishedSites.slice(-3).map((site) => (
-                        <div key={site.id} className="px-2 py-1 text-sm hover:bg-gray-800 rounded cursor-pointer">
-                          <div className="flex items-center gap-2">
-                            <Link className="w-3 h-3 text-green-400" />
-                            <span className="truncate">{site.name}</span>
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
 
-          {/* 中间主编辑区域 */}
-          <div className="flex-1 flex flex-col">
-            {/* 标签页栏 */}
-            <div className="bg-gray-800 border-b border-gray-700 flex items-center">
-              <div className="flex items-center">
-                <div className="px-4 py-2 bg-gray-700 text-gray-100 text-sm border-r border-gray-600 flex items-center gap-2">
-                  <Monitor className="w-4 h-4" />
-                  <span>预览</span>
-                  <button className="ml-2 text-gray-400 hover:text-gray-200">
-                    <span className="text-xs">×</span>
-                  </button>
-                </div>
-                <div className="px-4 py-2 text-gray-400 text-sm hover:bg-gray-700 cursor-pointer">
-                  <span>+ 新���签页</span>
-                </div>
-              </div>
-              <div className="flex-1"></div>
-              <div className="px-4 py-2 text-xs text-gray-400">
-                元素: {elements.length} | 设备: {deviceSizes[deviceMode].name}
-              </div>
-            </div>
-
-            {/* 浏览器风格画布 */}
-            <div className="flex-1">
-              <BrowserCanvas
-                elements={elements}
-                onDrop={handleDrop}
-                onSelectElement={handleSelectElement}
-                selectedElement={selectedElement}
-                onDeleteElement={handleDeleteElement}
-                deviceMode={deviceMode}
-                siteName={siteName}
-                onDeviceChange={setDeviceMode}
-              />
-            </div>
+          {/* 中间：浏览器风格画布 */}
+          <div className="flex-1">
+            <BrowserCanvas
+              elements={elements}
+              onDrop={handleDrop}
+              onSelectElement={handleSelectElement}
+              selectedElement={selectedElement}
+              onDeleteElement={handleDeleteElement}
+              deviceMode={deviceMode}
+              siteName={siteName}
+              onDeviceChange={setDeviceMode}
+            />
           </div>
 
-          {/* 右侧属性面板 */}
-          <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
-            {/* 右侧标题栏 */}
-            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
-              <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-gray-600" />
-                <span className="text-sm font-medium">属性面板</span>
-              </div>
-            </div>
-
-            {/* 属性��辑区域 */}
-            <div className="flex-1 overflow-y-auto">
-              <Tabs defaultValue="properties" className="h-full">
-                <TabsList className="grid w-full grid-cols-2 bg-gray-100 m-2 rounded">
-                  <TabsTrigger value="properties" className="text-xs">属性</TabsTrigger>
-                  <TabsTrigger value="code" className="text-xs">代码</TabsTrigger>
-                </TabsList>
-                <TabsContent value="properties" className="p-4 m-0">
-                  <PropertyEditor
-                    selectedElement={selectedElement}
-                    onUpdateElement={handleUpdateElement}
-                  />
-                </TabsContent>
-                <TabsContent value="code" className="p-4 m-0">
-                  <CodeEditor
-                    css={css}
-                    js={js}
-                    onCssChange={setCss}
-                    onJsChange={setJs}
-                  />
-                </TabsContent>
-              </Tabs>
-            </div>
+          {/* 右侧：属性编辑器和代码编辑器 */}
+          <div className="w-80 bg-white border-l">
+            <Tabs defaultValue="properties" className="h-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="properties">属性</TabsTrigger>
+                <TabsTrigger value="code">代码</TabsTrigger>
+              </TabsList>
+              <TabsContent value="properties" className="p-4">
+                <PropertyEditor
+                  selectedElement={selectedElement}
+                  onUpdateElement={handleUpdateElement}
+                />
+              </TabsContent>
+              <TabsContent value="code" className="p-4">
+                <CodeEditor
+                  css={css}
+                  js={js}
+                  onCssChange={setCss}
+                  onJsChange={setJs}
+                />
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
 
@@ -1683,7 +1601,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应���辑器</li>
+                      <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
