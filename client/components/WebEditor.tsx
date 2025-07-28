@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
   Type,
   Image,
@@ -442,7 +443,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存���本地存储（实际应用中会发送到后端）
+      // 保存到本地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -704,7 +705,7 @@ export function WebEditor() {
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              placeholder="输入���站名称"
+              placeholder="输入网站名称"
               className="px-3 py-1 border rounded text-sm w-40"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
@@ -807,7 +808,7 @@ export function WebEditor() {
             />
           </div>
 
-          {/* 右侧：属性编辑器和代码编辑器 */}
+          {/* 右侧：属性编��器和代码编辑器 */}
           <div className="w-80 bg-white border-l">
             <Tabs defaultValue="properties" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
