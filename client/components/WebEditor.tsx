@@ -811,14 +811,14 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续���');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
           setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站���共 ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
@@ -848,7 +848,7 @@ export function WebEditor() {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
         } catch (error) {
-          alert('项目文件格式错误，请选择有效的项目文件');
+          alert('项目文件格式错误，请选择有效的项目��件');
         }
       } else {
         // HTML导入
@@ -1000,7 +1000,7 @@ export function WebEditor() {
 
     // 验证路由格式
     if (!pageForm.route.startsWith('/')) {
-      alert('路由路径���须以 / 开头');
+      alert('路由路径必须以 / 开头');
       return;
     }
 
@@ -1405,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, []);
 
-  // 自动保存��前项目
+  // 自动保存��前���目
   useEffect(() => {
     if (elements.length > 0) {
       const autoSaveData = {
@@ -1610,7 +1610,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
-                    <div className="font-medium">企业官网</div>
+                    <div className="font-medium">企业���网</div>
                     <div className="text-xs text-gray-500">商业网站模板</div>
                   </button>
                   <button
@@ -1689,7 +1689,7 @@ document.addEventListener('DOMContentLoaded', function() {
                               p.id === currentPage.id ? { ...p, route: newRoute } : p
                             ));
                           }}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="输入页面路由"
                         />
                         {!currentPage.route && (
@@ -2005,7 +2005,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
+                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML����说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
