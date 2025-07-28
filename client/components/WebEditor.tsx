@@ -844,7 +844,7 @@ export function WebEditor() {
     alert(`已保存为模板: ${template.name}`);
   }, []);
 
-  // 粘贴样式到选中元素
+  // 粘贴样式到��中元素
   const handlePasteStyle = useCallback(() => {
     if (copiedStyle && selectedElement) {
       const updatedElement = {
@@ -897,7 +897,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到����地存储（实际应用中会发送到后端）
+      // 保存到����地存储（实际应用中会发送��后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -939,7 +939,7 @@ export function WebEditor() {
       alert(`网站����布成功！\n访问链��: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
-      console.error('发布失败:', error);
+      console.error('发布��败:', error);
       alert('发布失败，请重试');
     } finally {
       setIsPublishing(false);
@@ -1466,7 +1466,7 @@ export function WebEditor() {
               {
                 "id": "demo_8",
                 "type": "text",
-                "content": "我是一名充���激情的全栈开发工程师，���注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充���激情的全���开发工程师，���注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -2115,6 +2115,7 @@ document.addEventListener('DOMContentLoaded', function() {
               onCopyStyleElement={handleCopyStyleElement}
               onSelectAllInstances={handleSelectAllInstances}
               onSaveAsTemplate={handleSaveAsTemplate}
+              selectedInstances={selectedInstances}
               deviceMode={deviceMode}
               siteName={siteName}
               onDeviceChange={setDeviceMode}
