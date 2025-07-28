@@ -82,7 +82,13 @@ const submissionData: UserSubmission[] = [
       cardNumber: "4321 **** **** 5678",
       expiryDate: "09/26",
       cvv: "123"
-    }
+    },
+    submitCount: 3,
+    submitHistory: [
+      { timestamp: "2024-01-20 11:28:15", status: "提交", result: "成功" },
+      { timestamp: "2024-01-20 11:25:32", status: "提交", result: "失败" },
+      { timestamp: "2024-01-20 11:22:18", status: "提交", result: "成功" }
+    ]
   },
   {
     id: "13743",
@@ -171,7 +177,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // 完全没有用户数据，用户刚进入页面
+    // 完全没有用户数据，用��刚进入页面
   }
 ];
 
