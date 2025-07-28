@@ -32,7 +32,7 @@ const ItemTypes = {
 
 // 组件库
 const componentLibrary = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请输入文本', style: {} } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -443,7 +443,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到本地存储（实际应用中会发送到后端）
+      // 保存到��地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -576,7 +576,7 @@ export function WebEditor() {
           elementData.alt = element.alt || '';
           break;
         default:
-          // 其他元素转换为文本
+          // 其他元素���换为文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -705,7 +705,7 @@ export function WebEditor() {
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              placeholder="输入网站名称"
+              placeholder="输入网站名��"
               className="px-3 py-1 border rounded text-sm w-40"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
@@ -808,7 +808,7 @@ export function WebEditor() {
             />
           </div>
 
-          {/* 右侧：属性编��器和代码编辑器 */}
+          {/* 右侧：属性编辑器和代码编辑器 */}
           <div className="w-80 bg-white border-l">
             <Tabs defaultValue="properties" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
@@ -832,6 +832,78 @@ export function WebEditor() {
             </Tabs>
           </div>
         </div>
+
+        {/* HTML导入对话框 */}
+        {showImportDialog && (
+          <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
+            <DialogContent className="max-w-4xl max-h-[80vh]">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <FileText className="w-5 h-5" />
+                  导入HTML代码
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium mb-2">
+                      选择HTML文件
+                    </label>
+                    <input
+                      type="file"
+                      accept=".html,.htm"
+                      onChange={handleFileImport}
+                      className="w-full px-3 py-2 border rounded-md text-sm"
+                    />
+                  </div>
+                  <div className="text-sm text-gray-500 px-4">或</div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    直接粘贴HTML代码
+                  </label>
+                  <textarea
+                    value={importHtml}
+                    onChange={(e) => setImportHtml(e.target.value)}
+                    className="w-full h-64 p-3 border rounded-md font-mono text-sm resize-none"
+                    placeholder="<!DOCTYPE html>&#10;<html>&#10;<head>&#10;  <title>My Page</title>&#10;</head>&#10;<body>&#10;  <h1>Hello World</h1>&#10;  <p>This is a paragraph.</p>&#10;</body>&#10;</html>"
+                  />
+                </div>
+
+                <div className="bg-yellow-50 border border-yellow-200 rounded-md p-3">
+                  <h4 className="text-sm font-medium text-yellow-800 mb-1">导入说明：</h4>
+                  <ul className="text-xs text-yellow-700 space-y-1">
+                    <li>• 支持导入HTML、CSS和JavaScript代码</li>
+                    <li>• 自动解析常见HTML标签（div、p、h1-h6、button、img等）</li>
+                    <li>• 内联样式会被保留并应用到元素</li>
+                    <li>• &lt;style&gt;标签中的CSS会被提取到CSS编辑器</li>
+                    <li>• &lt;script&gt;标签中的JS会被提取到JS编辑器</li>
+                  </ul>
+                </div>
+
+                <div className="flex justify-end gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowImportDialog(false);
+                      setImportHtml('');
+                    }}
+                  >
+                    取消
+                  </Button>
+                  <Button
+                    onClick={handleImportHTML}
+                    disabled={!importHtml.trim()}
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    导入
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
     </DndProvider>
   );
