@@ -226,7 +226,7 @@ export function WebMonitor() {
         {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-2">
           {submissionData.map((submission, index) => (
-            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-3">
+            <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-2">
               {/* 顶部：编号、前台页面、正在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
