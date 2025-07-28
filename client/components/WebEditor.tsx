@@ -36,7 +36,7 @@ const ItemTypes = {
 
 // 组件库
 const componentLibrary = [
-  { id: 'text', type: 'text', label: '���本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
+  { id: 'text', type: 'text', label: '���本', icon: Type, defaultProps: { content: '����输入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -131,7 +131,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
       case 'button':
         return (
           <button style={style} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            {element.content || '按钮'}
+            {element.content || '按��'}
           </button>
         );
       case 'image':
@@ -513,7 +513,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关���我们', route: '/about', isActive: false },
+    { id: 'about', name: '关���我���', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -893,7 +893,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导���失败，请检查文件��式');
+      alert('项目导���失败，请检查文件���式');
     }
   };
 
@@ -981,9 +981,15 @@ export function WebEditor() {
 
   // 页面管理函数
   const handleNewPage = () => {
-    setEditingPage(null);
-    setPageForm({ name: '', route: '', description: '' });
-    setShowPageDialog(true);
+    const pageCount = pages.length + 1;
+    const newPage = {
+      id: `page_${Date.now()}`,
+      name: `页面${pageCount}`,
+      route: `/page${pageCount}`,
+      description: '',
+      isActive: false
+    };
+    setPages(prev => [...prev, newPage]);
   };
 
   const handleEditPage = (page) => {
@@ -1798,7 +1804,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </div>
 
-                {/* 已发布网站管理 */}
+                {/* 已发布网站��理 */}
                 <div className="border-t pt-4">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
@@ -1995,7 +2001,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自动解���常见HTML标签并转换为可编辑组件</li>
+                      <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
