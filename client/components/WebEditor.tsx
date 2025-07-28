@@ -242,7 +242,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
             {/* 设备切换按钮 */}
             <div className="flex items-center gap-1 bg-white rounded-lg p-1 border">
-              {Object.entries(deviceSizes).map(([key, device]) => {
+              {Object.entries(deviceSizes).filter(([key]) => key !== 'tablet').map(([key, device]) => {
                 const Icon = device.icon;
                 return (
                   <button
@@ -963,7 +963,7 @@ export function WebEditor() {
     }
   };
 
-  // 返回上一页功能
+  // 返���上一页功能
   const handleGoBack = () => {
     // 检查是否有编辑内容未保存
     if (elements.length > 0) {
@@ -1292,7 +1292,7 @@ body {
   color: #333;
 }
 
-/* 动画效果 */
+/* 动���效果 */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1486,19 +1486,11 @@ document.addEventListener('DOMContentLoaded', function() {
         {/* 顶部工具栏 */}
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button
-              onClick={handleGoBack}
-              className="flex items-center gap-2 px-3 py-1 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-              title="返回上一页"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm">返回</span>
-            </button>
             <div className="w-px h-6 bg-gray-300"></div>
 
             {/* 顶部设备切换 */}
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-              {Object.entries(deviceSizes).map(([key, device]) => {
+              {Object.entries(deviceSizes).filter(([key]) => key !== 'tablet').map(([key, device]) => {
                 const Icon = device.icon;
                 return (
                   <button
@@ -1512,7 +1504,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     title={device.name}
                   >
                     <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{device.name}</span>
+                    <span className="hidden sm:inline"><p><br /></p></span>
                   </button>
                 );
               })}
