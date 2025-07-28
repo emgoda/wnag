@@ -229,7 +229,13 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
               </div>
               <div className="ml-4 flex items-center bg-white rounded-md px-3 py-1 text-sm border">
                 <Globe className="w-4 h-4 mr-2 text-gray-400" />
-                <span className="text-gray-600">preview.{siteName?.toLowerCase().replace(/\s+/g, '-') || 'website'}.com</span>
+                <span className="text-gray-600">
+                  preview.{siteName?.toLowerCase().replace(/\s+/g, '-') || 'website'}.com
+                  {(() => {
+                    const currentPage = pages.find(p => p.isActive);
+                    return currentPage?.route !== '/' ? currentPage?.route : '';
+                  })()}
+                </span>
               </div>
             </div>
 
@@ -319,7 +325,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
   );
 }
 
-// 属性编辑器
+// 属性编辑��
 function PropertyEditor({ selectedElement, onUpdateElement }) {
   if (!selectedElement) {
     return (
@@ -794,9 +800,9 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换�����内容
+        // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这���本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -1016,7 +1022,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存项目
+  // 加��已发布的网站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1848,7 +1854,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       setEditingPage(null);
                     }}
                   >
-                    取消
+                    ��消
                   </Button>
                   <Button onClick={handleSavePage}>
                     <Save className="w-4 h-4 mr-2" />
