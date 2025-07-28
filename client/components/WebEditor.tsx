@@ -423,6 +423,76 @@ export function WebEditor() {
     URL.revokeObjectURL(url);
   };
 
+  const handlePublish = async () => {
+    if (!siteName.trim()) {
+      alert('请输入网站名称');
+      return;
+    }
+
+    setIsPublishing(true);
+    try {
+      const html = generateHTML(elements, css, js);
+      const siteId = `site_${Date.now()}`;
+      const publishUrl = `${window.location.origin}/published/${siteId}`;
+
+      // 模拟发布过程
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // 保存到本地存储（实际应用中会发送到后端）
+      const newSite = {
+        id: siteId,
+        name: siteName,
+        url: publishUrl,
+        html: html,
+        createdAt: new Date().toISOString(),
+        status: 'active'
+      };
+
+      const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
+      sites.push(newSite);
+      localStorage.setItem('published_sites', JSON.stringify(sites));
+
+      setPublishedSites(sites);
+
+      // 添加到后台监控系统
+      const monitoringData = {
+        id: siteId,
+        status: "submitted",
+        statusText: "已发布",
+        submissionType: "personal_info",
+        websiteName: siteName,
+        currentPage: "/",
+        userName: "访客用户",
+        userLocation: "未知",
+        timestamp: new Date().toLocaleString(),
+        riskLevel: "low",
+        dataSize: `${Math.round(html.length / 1024)}Kb`,
+        fieldsCount: elements.length,
+        ipAddress: "127.0.0.1",
+        isOffline: false,
+        submitCount: 0,
+        submitHistory: []
+      };
+
+      // 这里可以发送到监控系统
+      console.log('网站已发布到监控系统:', monitoringData);
+
+      alert(`网站发布成功！\n访问链接: ${publishUrl}`);
+      setSiteName('');
+    } catch (error) {
+      console.error('发布失败:', error);
+      alert('发布失败，请重试');
+    } finally {
+      setIsPublishing(false);
+    }
+  };
+
+  // 加载已发布的网站
+  React.useEffect(() => {
+    const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
+    setPublishedSites(sites);
+  }, []);
+
   const generateHTML = (elements, css, js) => {
     const elementsHTML = elements.map(el => {
       const styleStr = Object.entries(el.style || {})
