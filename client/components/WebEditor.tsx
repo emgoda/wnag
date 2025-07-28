@@ -226,7 +226,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
       case 'button':
         return (
           <button style={style} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            {element.content || '按��'}
+            {element.content || '按钮'}
           </button>
         );
       case 'input':
@@ -934,7 +934,7 @@ export function WebEditor() {
     }
 
     try {
-      // 由于跨域限制，我们使用���理服务或提示用户手动操作
+      // 由于跨域限制，我们���用代理服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div���p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1427,7 +1427,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名项目',
+      name: siteName || '未命名���目',
       elements,
       css,
       js,
@@ -1473,7 +1473,7 @@ export function WebEditor() {
       if (!confirmLeave) return;
     }
 
-    // 智能返回：优先返回浏���器历史，��则返回���页
+    // 智能返回：优先返回浏���器历��，否则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1520,7 +1520,7 @@ export function WebEditor() {
     }
 
     if (editingPage) {
-      // 编辑现���页面
+      // 编���现有页面
       setPages(prev => prev.map(p =>
         p.id === editingPage.id
           ? { ...p, name: pageForm.name, route: pageForm.route, description: pageForm.description }
@@ -2338,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 设置元素
                 setElements(flatElements);
 
-                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编��元素，所有元素都可以单独编辑！`);
+                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
               }}
               variant="default"
               size="sm"
@@ -2848,7 +2848,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-green-700">
-                        ✨ 推荐：直接输入网站URL，系统��自动指导您获取完整源码
+                        ✨ 推荐：直接输入网站URL，��统会自动指导您获取完整源码
                       </p>
                       <Button
                         onClick={() => {
