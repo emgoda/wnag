@@ -615,7 +615,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到��地存储（实际应用中会发送到后端）
+      // 保存到����地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -811,7 +811,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续���');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -848,7 +848,7 @@ export function WebEditor() {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
         } catch (error) {
-          alert('项目文件格式错误，请选择有效的项目��件');
+          alert('项目文件格式错误，请选择有效的项目文件');
         }
       } else {
         // HTML导入
@@ -950,7 +950,7 @@ export function WebEditor() {
   // 新建项目
   const handleNewProject = () => {
     const confirmNew = elements.length === 0 ||
-      window.confirm('新建项目将清除当前所有内容，是否继续？');
+      window.confirm('新建项目将清除当前所���内容，是否继续？');
 
     if (confirmNew) {
       setElements([]);
@@ -998,7 +998,7 @@ export function WebEditor() {
       return;
     }
 
-    // 验证路由格式
+    // 验证路由��式
     if (!pageForm.route.startsWith('/')) {
       alert('路由路径必须以 / 开头');
       return;
@@ -1405,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, []);
 
-  // 自动保存��前���目
+  // 自动保存����项目
   useEffect(() => {
     if (elements.length > 0) {
       const autoSaveData = {
@@ -1610,7 +1610,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
-                    <div className="font-medium">企业���网</div>
+                    <div className="font-medium">企业官网</div>
                     <div className="text-xs text-gray-500">商业网站模板</div>
                   </button>
                   <button
@@ -1693,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           placeholder="输入页面路由"
                         />
                         {!currentPage.route && (
-                          <p className="text-xs text-red-500 mt-1">你尚未设置页面ID</p>
+                          <p className="text-xs text-red-500 mt-1">你尚未设置���面ID</p>
                         )}
                       </div>
 
@@ -1709,7 +1709,7 @@ document.addEventListener('DOMContentLoaded', function() {
                               p.id === currentPage.id ? { ...p, description: newDescription } : p
                             ));
                           }}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                           rows={1}
                           placeholder="输入页面备注信息"
                         />
@@ -2005,10 +2005,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML����说明：</h4>
+                    <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
+                      <li>• 自动解���常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
