@@ -16,6 +16,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Switch } from "@/components/ui/switch";
 
 interface UserSubmission {
   id: string;
@@ -403,7 +404,7 @@ export function WebMonitor() {
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/admin', '_blank')}>
-                        👤 ���理员页面
+                        👤 管理员页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/logs', '_blank')}>
                         📝 日志页面
