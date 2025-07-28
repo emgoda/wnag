@@ -431,7 +431,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名称');
+      alert('请��入网站名称');
       return;
     }
 
@@ -507,25 +507,25 @@ export function WebEditor() {
       extractedCSS += style.innerHTML + '\n';
     });
     if (extractedCSS) {
-      setCss(prev => prev + '\n' + extractedCSS);
+      setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
     // 解析JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
-      if (script.innerHTML) {
+      if (script.innerHTML && !script.src) {
         extractedJS += script.innerHTML + '\n';
       }
     });
     if (extractedJS) {
-      setJs(prev => prev + '\n' + extractedJS);
+      setJs(prev => (prev + '\n' + extractedJS).trim());
     }
 
     // 解析body中的元素
     const bodyElements = doc.body ? doc.body.children : doc.children;
 
-    const parseElement = (element) => {
+    const parseElement = (element, isNested = false) => {
       const tagName = element.tagName.toLowerCase();
       const computedStyle = {};
 
@@ -544,14 +544,24 @@ export function WebEditor() {
 
       let elementData = {
         id: `imported_${idCounter++}`,
-        style: computedStyle
+        style: computedStyle,
+        className: element.className || '',
+        attributes: {}
       };
+
+      // 保存重要属性
+      if (element.id) elementData.attributes.htmlId = element.id;
+      if (element.title) elementData.attributes.title = element.title;
 
       // 根据HTML标签类型转换为编辑器元素
       switch (tagName) {
         case 'div':
         case 'section':
         case 'article':
+        case 'main':
+        case 'header':
+        case 'footer':
+        case 'nav':
           elementData.type = 'container';
           elementData.content = element.innerText || '';
           break;
@@ -563,8 +573,24 @@ export function WebEditor() {
         case 'h5':
         case 'h6':
         case 'span':
+        case 'strong':
+        case 'em':
+        case 'small':
           elementData.type = 'text';
           elementData.content = element.innerText || '';
+
+          // 设置默认标题样式
+          if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tagName)) {
+            const headingSizes = { h1: '2em', h2: '1.5em', h3: '1.17em', h4: '1em', h5: '0.83em', h6: '0.67em' };
+            if (!elementData.style.fontSize) {
+              elementData.style.fontSize = headingSizes[tagName];
+              elementData.style.fontWeight = 'bold';
+            }
+          }
+
+          if (tagName === 'strong') elementData.style.fontWeight = 'bold';
+          if (tagName === 'em') elementData.style.fontStyle = 'italic';
+          if (tagName === 'small') elementData.style.fontSize = '0.8em';
           break;
         case 'button':
         case 'a':
@@ -573,8 +599,10 @@ export function WebEditor() {
           break;
         case 'img':
           elementData.type = 'image';
-          elementData.src = element.src || '';
+          elementData.src = element.src || element.getAttribute('data-src') || '';
           elementData.alt = element.alt || '';
+          if (element.width) elementData.style.width = element.width + 'px';
+          if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
           // 其他元素���换为文本
@@ -655,7 +683,7 @@ export function WebEditor() {
           setCss(projectData.css || '');
           setJs(projectData.js || '');
 
-          // 更新ID计数器
+          // 更新ID��数器
           const maxId = Math.max(
             ...projectData.elements.map(el => {
               const match = el.id.match(/\d+$/);
@@ -918,7 +946,7 @@ export function WebEditor() {
             <Tabs defaultValue="properties" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="properties">属性</TabsTrigger>
-                <TabsTrigger value="code">代码</TabsTrigger>
+                <TabsTrigger value="code">代��</TabsTrigger>
               </TabsList>
               <TabsContent value="properties" className="p-4">
                 <PropertyEditor
@@ -1033,7 +1061,7 @@ export function WebEditor() {
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有组件、样式和脚本</li>
-                      <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
+                      <li>• 支持导入���过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置和元素属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
