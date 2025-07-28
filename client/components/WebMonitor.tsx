@@ -128,7 +128,7 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "���线银行系统",
+    websiteName: "在线银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
     userLocation: "广州市天河区",
@@ -194,6 +194,32 @@ export function WebMonitor() {
       newExpanded.add(id);
     }
     setExpandedItems(newExpanded);
+  };
+
+  const copyToClipboard = async (text: string, fieldType: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      const fieldKey = `${Date.now()}-${fieldType}`;
+      setCopiedField(fieldKey);
+
+      toast({
+        title: "复制成功",
+        description: `已复制 ${fieldType}: ${text}`,
+        duration: 2000,
+      });
+
+      // 清除复制状态
+      setTimeout(() => {
+        setCopiedField(null);
+      }, 1000);
+    } catch (err) {
+      toast({
+        title: "复制失败",
+        description: "无法复制到剪贴板",
+        variant: "destructive",
+        duration: 2000,
+      });
+    }
   };
 
   return (
