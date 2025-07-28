@@ -39,7 +39,7 @@ const ItemTypes = {
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请��入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
-  { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
+  { id: 'input', type: 'input', label: '输���框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -569,7 +569,7 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
               value={selectedElement.placeholder || ''}
               onChange={(e) => onUpdateElement({ ...selectedElement, placeholder: e.target.value })}
               className="w-full px-3 py-2 border rounded-md text-sm"
-              placeholder="请输入占位符文���"
+              placeholder="请输入占位符文本"
             />
           </div>
           <div>
@@ -817,7 +817,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('����式已复制！选择��他元素后可以粘贴样式');
+    alert('���式已复制！选择��他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -912,7 +912,7 @@ export function WebEditor() {
     // 保存到localStorage
     localStorage.setItem('website_projects', JSON.stringify(existingProjects));
 
-    // 触发���定义事件，��知其他页面数据更新
+    // 触发���定义事件，通知其他页面数据更新
     window.dispatchEvent(new CustomEvent('websiteProjectsUpdated', { detail: existingProjects }));
 
     alert(`网站项目"${currentProject.name}"已保存！`);
@@ -946,7 +946,7 @@ export function WebEditor() {
         alert('请从新打开的页面复制HTML源码，然后粘贴到下方的文本框中');
       }
     } catch (error) {
-      console.error('URL导入失��:', error);
+      console.error('URL导入失败:', error);
       alert('URL导入失败，请检查网址是否正确');
     }
   };
@@ -1288,7 +1288,7 @@ export function WebEditor() {
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
-          setElements(parsedElements); // 替���而不是添加
+          setElements(parsedElements); // 替����而不是添加
           setShowImportDialog(false);
           setImportHtml('');
           alert(`成功导入系统网站，共 ${parsedElements.length} 个元����`);
@@ -1315,7 +1315,7 @@ export function WebEditor() {
         });
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导��外部HTML，��增 ${parsedElements.length} 个元素`);
+        alert(`成功导入外部HTML，��增 ${parsedElements.length} 个元素`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -1409,7 +1409,7 @@ export function WebEditor() {
         window.confirm('导入网站将替换当前内容��是否继续？');
 
       if (confirmImport) {
-        // 解析HTML重新构��项���
+        // ��析HTML重新构��项���
         try {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
@@ -1545,7 +1545,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里��以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1865,7 +1865,7 @@ html {
   background-color: #2196f3;
   color: white;
 }`,
-        "js": `// ���面加载动���
+        "js": `// ���面���载动���
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
@@ -1882,7 +1882,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片������
+  // 技能卡片���画
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2512,7 +2512,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
-                    <li>• 路径将用于生成网站导航</li>
+                    <li>• ���径将用于生成网站导航</li>
                   </ul>
                 </div>
 
@@ -2557,7 +2557,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 {/* HTML导入 */}
                 <TabsContent value="html" className="space-y-4 mt-4">
-                  {/* URL导�� */}
+                  {/* URL导入 */}
                   <div className="bg-green-50 border border-green-200 rounded-md p-3">
                     <label className="block text-sm font-medium mb-2 text-green-800">
                       🌐 从URL导入网站（保留完整交互功能）
@@ -2565,7 +2565,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div className="flex gap-2">
                       <input
                         type="url"
-                        placeholder="https://de131b00778b4a3485b3090f3984e88f-b4541903cd084ece97a590cff.fly.dev/"
+                        placeholder="https://your-website.com"
                         value={importUrl}
                         onChange={(e) => setImportUrl(e.target.value)}
                         className="flex-1 px-3 py-2 border rounded-md text-sm"
