@@ -848,9 +848,9 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换����前内容
+        // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有���容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -887,7 +887,7 @@ export function WebEditor() {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
         } catch (error) {
-          alert('项目文件格式错误，请选择有效的项目文件');
+          alert('项目文件格��错误，请选择有效的项目文件');
         }
       } else {
         // HTML导入
@@ -977,7 +977,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名项目',
+      name: siteName || '未命名项���',
       elements,
       css,
       js,
@@ -1019,7 +1019,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是否有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页��有未保存的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1133,7 +1133,7 @@ export function WebEditor() {
             },
             "children": [
               {
-                "id": "element_2",
+                "id": "demo_2",
                 "type": "text",
                 "content": "张明",
                 "style": {
@@ -2075,7 +2075,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>• 自��解���常见HTML��签并转换为可编辑组件</li>
+                      <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
@@ -2158,7 +2158,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                   发布时间: {new Date(site.createdAt).toLocaleString()}
                                 </p>
                                 <p className="text-xs text-gray-500">
-                                  状态: <span className="text-green-600">已发布</span>
+                                  状��: <span className="text-green-600">已发布</span>
                                 </p>
                               </div>
                               <div className="flex gap-2">
