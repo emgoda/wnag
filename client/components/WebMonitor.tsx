@@ -156,11 +156,11 @@ const submissionData: UserSubmission[] = [
     },
     submitCount: 5,
     submitHistory: [
-      { timestamp: "2024-01-20 10:20:33", status: "提交", result: "成功" },
-      { timestamp: "2024-01-20 10:18:15", status: "提交", result: "成功" },
-      { timestamp: "2024-01-20 10:15:42", status: "提交", result: "失败" },
-      { timestamp: "2024-01-20 10:12:28", status: "提交", result: "成功" },
-      { timestamp: "2024-01-20 10:10:05", status: "提交", result: "成功" }
+      { timestamp: "10:20", cardType: "debit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***" },
+      { timestamp: "10:18", cardType: "credit", partialCard1: "4111", partialCard2: "111", fullCard: "4111 1111 1111 1111", expiryDate: "11/25", cvv: "212" },
+      { timestamp: "10:15", cardType: "prepaid", partialCard1: "3782", partialCard2: "234", fullCard: "3782 **** **** 1234", expiryDate: "05/26", cvv: "***" },
+      { timestamp: "10:12", cardType: "debit", partialCard1: "6011", partialCard2: "567", fullCard: "6011 **** **** 5678", expiryDate: "07/27", cvv: "***" },
+      { timestamp: "10:10", cardType: "credit", partialCard1: "4532", partialCard2: "890", fullCard: "4532 **** **** 8901", expiryDate: "04/28", cvv: "***" }
     ]
   },
   {
@@ -272,7 +272,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠️ 风险预警
+              ���️ 风险预警
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
