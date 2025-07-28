@@ -256,7 +256,7 @@ export function WebMonitor() {
     }
   };
 
-  // ��算相对时间
+  // 计算相对时间
   const getRelativeTime = (timeString: string, prefix: string) => {
     const now = new Date();
     const [hours, minutes, seconds] = timeString.split(':').map(Number);
@@ -357,22 +357,25 @@ export function WebMonitor() {
 
                   {submission.enterTime && (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-muted-foreground">进入时间:</span>
-                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.enterTime}</span>
+                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
+                        {getRelativeTime(submission.enterTime, "进入于")}
+                      </span>
                     </div>
                   )}
 
                   {submission.updateTime && (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-muted-foreground">更新时间:</span>
-                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.updateTime}</span>
+                      <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
+                        {getRelativeTime(submission.updateTime, "更新于")}
+                      </span>
                     </div>
                   )}
 
                   {submission.isOffline && submission.offlineTime && (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-muted-foreground">离线时间:</span>
-                      <span className="text-sm font-medium border border-red-300/50 rounded px-2 py-1 bg-red-50/10 text-red-600">{submission.offlineTime}</span>
+                      <span className="text-sm font-medium border border-red-300/50 rounded px-2 py-1 bg-red-50/10 text-red-600">
+                        {getRelativeTime(submission.offlineTime, "离线于")}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -496,7 +499,7 @@ export function WebMonitor() {
                                 </tbody>
                               </table>
                             ) : (
-                              <div className="text-xs text-gray-500 text-center py-4">暂无填��记录</div>
+                              <div className="text-xs text-gray-500 text-center py-4">暂无填写记录</div>
                             )}
                           </div>
                         </div>
