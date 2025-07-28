@@ -182,7 +182,7 @@ const submissionData: UserSubmission[] = [
     submissionType: "personal_info",
     websiteName: "新用户注册",
     currentPage: "/register",
-    userName: "新用户",
+    userName: "新用���",
     userLocation: "深圳市南山区",
     timestamp: "2024-01-20 10:15:10",
     riskLevel: "low",
@@ -239,7 +239,8 @@ export function WebMonitor() {
   };
 
   return (
-    <div className="flex-1 bg-background">
+    <TooltipProvider>
+      <div className="flex-1 bg-background">
       {/* Header */}
       <div className="border-b border-border bg-white px-6 py-3">
         <div className="flex items-center justify-between">
@@ -394,6 +395,34 @@ export function WebMonitor() {
                       )}
                     </div>
 
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="text-sm font-mono border rounded px-2 py-1 min-w-[60px] bg-blue-50 border-blue-300 cursor-help text-center">
+                          <span className="text-blue-700 font-semibold">{submission.submitCount || 0}</span>
+                          <div className="text-xs text-blue-600">提交</div>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <div className="space-y-2">
+                          <div className="font-semibold text-xs">历史提交记录</div>
+                          {submission.submitHistory?.map((history, index) => (
+                            <div key={index} className="text-xs border-b border-gray-200 pb-1 last:border-b-0">
+                              <div className="flex justify-between items-center">
+                                <span className="text-gray-600">{history.timestamp}</span>
+                                <span className={`px-1 py-0.5 rounded text-xs ${
+                                  history.result === "成功" ? "bg-green-100 text-green-700" :
+                                  history.result === "失败" ? "bg-red-100 text-red-700" :
+                                  "bg-yellow-100 text-yellow-700"
+                                }`}>
+                                  {history.result}
+                                </span>
+                              </div>
+                            </div>
+                          )) || <div className="text-xs text-gray-500">暂无记录</div>}
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+
                     <div
                       className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-75 cursor-pointer hover:bg-blue-50 ${
                         isFieldTyping(submission.id, 'phone')
@@ -543,5 +572,6 @@ export function WebMonitor() {
         </div>
       </div>
     </div>
+    </TooltipProvider>
   );
 }
