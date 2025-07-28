@@ -304,7 +304,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
             {element.type}
           </div>
 
-          {/* 右上角��作按钮 */}
+          {/* 右上角操��按钮 */}
           <button
             data-menu-button
             onClick={handleToggleActionsMenu}
@@ -452,7 +452,7 @@ function BrowserCanvas({
                   onSaveAsTemplate={onSaveAsTemplate}
                   selectedElementId={selectedElement?.id}
                   isSelected={selectedElement?.id === element.id}
-                  isInstanceHighlighted={selectedInstances.includes(element.id)}
+                  selectedInstances={selectedInstances}
                 />
               ))}
               {elements.length === 0 && (
@@ -982,7 +982,7 @@ export function WebEditor() {
       const tagName = element.tagName.toLowerCase();
       const computedStyle = {};
 
-      // 获取内���样式
+      // 获取������样式
       if (element.style.cssText) {
         const styleDeclarations = element.style.cssText.split(';');
         styleDeclarations.forEach(decl => {
@@ -1058,7 +1058,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素���换��文本
+          // 其他元素����换��文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -1216,7 +1216,7 @@ export function WebEditor() {
     }
   };
 
-  // 导出������项目
+  // 导出完���项目
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
@@ -1262,7 +1262,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存���内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开��？');
       if (!confirmLeave) return;
     }
 
@@ -1308,7 +1308,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路径已存在，请使用其��路径');
+      alert('该路由路径已存��，请使用其��路径');
       return;
     }
 
@@ -1392,7 +1392,7 @@ export function WebEditor() {
               {
                 "id": "demo_3",
                 "type": "text",
-                "content": "全栈开发工程师",
+                "content": "���栈开发工程师",
                 "style": {
                   "fontSize": "1.5em",
                   "color": "#64b5f6",
@@ -1718,7 +1718,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setElementIdCounter(1);
       setDemoDataLoaded(true);
 
-      console.log('�������项目已加载:', demoProjectData.name);
+      console.log('演�����项目已加载:', demoProjectData.name);
     }
   }, [demoDataLoaded, elements.length]);
 
@@ -1934,7 +1934,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">个人作��集</div>
-                    <div className="text-xs text-gray-500">展示技��和项目</div>
+                    <div className="text-xs text-gray-500">展示技能和项目</div>
                   </button>
                   <button
                     onClick={() => {
@@ -2180,7 +2180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="border-t pt-4">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
-                    已发��网站
+                    已发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
                     <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
@@ -2294,7 +2294,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说���：</h4>
+                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页使��� /</li>
                     <li>• 子页面使用 /page-name 格式</li>
@@ -2376,7 +2376,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
-                      <li>• 内联样式会被保留并应用到���素</li>
+                      <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
                   </div>
