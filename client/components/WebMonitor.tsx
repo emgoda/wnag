@@ -269,8 +269,9 @@ export function WebMonitor() {
     });
   }
 
-  const onlineCount = filteredSubmissions.filter(s => s.status === "processing").length;
-  const todaySubmissions = filteredSubmissions.length;
+  // 计算在线和离线人数
+  const onlineUsersCount = submissions.filter(s => !s.isOffline).length;
+  const offlineUsersCount = submissions.filter(s => s.isOffline).length;
 
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
@@ -478,7 +479,7 @@ export function WebMonitor() {
                         📝 日志页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/users', '_blank')}>
-                        👥 用户管理
+                        👥 用户管���
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
