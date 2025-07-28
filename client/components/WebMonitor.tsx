@@ -187,7 +187,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ⚠️ 风险预警
+              ⚠��� 风险预警
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
@@ -293,10 +293,10 @@ export function WebMonitor() {
               </div>
 
               {/* 底部：处理进度和操作按钮 */}
-              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                <div className="flex items-center gap-6">
+              <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                <div className="flex items-center gap-4">
                   {submission.progress ? (
-                    <div className="min-w-[200px]">
+                    <div className="min-w-[180px]">
                       <div className="flex justify-between text-xs mb-1">
                         <span className="text-muted-foreground">处理进度</span>
                         <span className="font-medium text-blue-600">{submission.progressText}</span>
