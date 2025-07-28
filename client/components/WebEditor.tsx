@@ -96,50 +96,44 @@ function DraggableComponent({ component }) {
   );
 }
 
-// 右键菜单组件
-function ContextMenu({ isOpen, x, y, onClose, onDuplicate, onDelete, onCopyStyle, onSelectAllInstances, onSaveAsTemplate }) {
+// 元素操作菜单组件
+function ElementActionsMenu({ isOpen, onToggle, onDuplicate, onDelete, onCopyStyle, onSelectAllInstances, onSaveAsTemplate }) {
   if (!isOpen) return null;
 
   return (
-    <>
-      <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div
-        className="fixed z-50 bg-white rounded-lg shadow-lg border py-2 min-w-48"
-        style={{ left: x, top: y }}
+    <div className="absolute top-0 right-0 bg-white rounded-lg shadow-lg border py-2 min-w-48 z-50">
+      <button
+        onClick={onSelectAllInstances}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
       >
-        <button
-          onClick={onSelectAllInstances}
-          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
-        >
-          <span>🔍</span> 选择所有实例
-        </button>
-        <button
-          onClick={onDuplicate}
-          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
-        >
-          <span>📋</span> 复制
-        </button>
-        <button
-          onClick={onDelete}
-          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
-        >
-          <span>🗑️</span> 删除
-        </button>
-        <div className="border-t my-1" />
-        <button
-          onClick={onSaveAsTemplate}
-          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
-        >
-          <span>💾</span> 保存为模板
-        </button>
-        <button
-          onClick={onCopyStyle}
-          className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
-        >
-          <span>🎨</span> 复制样式
-        </button>
-      </div>
-    </>
+        <span>🔍</span> 选择所有实例
+      </button>
+      <button
+        onClick={onDuplicate}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+      >
+        <span>📋</span> 复制
+      </button>
+      <button
+        onClick={onDelete}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm text-red-600"
+      >
+        <span>🗑️</span> 删除
+      </button>
+      <div className="border-t my-1" />
+      <button
+        onClick={onSaveAsTemplate}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+      >
+        <span>💾</span> 保存为模板
+      </button>
+      <button
+        onClick={onCopyStyle}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 text-sm"
+      >
+        <span>🎨</span> 复制样式
+      </button>
+    </div>
   );
 }
 
@@ -693,7 +687,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关����我���', route: '/about', isActive: false },
+    { id: 'about', name: '关���我���', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -851,7 +845,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到����地存储（实际应用中会发送到后端）
+      // 保存到����地存��（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -1066,7 +1060,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
-      alert('HTML解析失败，请检��代码格式');
+      alert('HTML解析失败，请检查代码格式');
     }
   };
 
@@ -1311,7 +1305,7 @@ export function WebEditor() {
     if (!demoDataLoaded && elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
-        "name": "个人作品集网站",
+        "name": "个人作品��网站",
         "elements": [
           {
             "id": "demo_1",
@@ -1602,7 +1596,7 @@ body {
   }
 }
 
-/* 滚动������为 */
+/* 滚动����为 */
 html {
   scroll-behavior: smooth;
 }
@@ -1629,7 +1623,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片动画
+  // 技能卡片动��
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2136,7 +2130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     已发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
-                    <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
+                    <p className="text-xs text-gray-500 text-center py-4">��无发布的网站</p>
                   ) : (
                     <div className="space-y-2">
                       {publishedSites.slice(-3).map((site) => (
@@ -2250,7 +2244,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页使用 /</li>
-                    <li>• 子页面使用 /page-name 格式</li>
+                    <li>• 子��面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
                     <li>• 路径将用于生成网站导航</li>
                   </ul>
@@ -2373,7 +2367,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有��置和�����属性</li>
+                      <li>• 会完整还原项目的所有设置和�����属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
