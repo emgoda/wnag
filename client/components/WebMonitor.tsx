@@ -317,26 +317,8 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 底部：处理进度和操作按钮 */}
-              <div className="flex items-center justify-between pt-1 border-t border-gray-100">
-                <div className="flex items-center gap-3">
-                  {submission.progress ? (
-                    <div className="min-w-[160px]">
-                      <div className="flex justify-between text-xs mb-1">
-                        <span className="text-muted-foreground">处理进度</span>
-                        <span className="font-medium text-blue-600">{submission.progressText}</span>
-                      </div>
-                      <Progress value={submission.progress} className="h-1.5" />
-                    </div>
-                  ) : (
-                    <span className="text-sm text-muted-foreground">等待处理...</span>
-                  )}
-
-                  <div className="text-xs text-muted-foreground">
-                    数据: {submission.dataSize} • {submission.fieldsCount} 字段 • IP: {submission.ipAddress}
-                  </div>
-                </div>
-
+              {/* 底部：操作按钮 */}
+              <div className="flex justify-end pt-1 border-t border-gray-100">
                 <div className="flex gap-1.5">
                   <Button variant="outline" size="sm" className="text-xs px-2.5">
                     监控
@@ -350,7 +332,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 展开的详细信息 */}
+              {/* 展开���详细信息 */}
               {expandedItems.has(submission.id) && (
                 <div className="mt-2 pt-2 border-t border-gray-200 bg-gray-50 -mx-3 -mb-3 px-3 py-2 rounded-b-lg">
                   <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
