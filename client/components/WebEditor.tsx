@@ -97,7 +97,7 @@ function DraggableComponent({ component }) {
   );
 }
 
-// 画布元素
+// ���布元素
 function CanvasElement({ element, onSelect, onDelete, isSelected }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.ELEMENT,
@@ -874,7 +874,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导入失败，请检查文件格式');
+      alert('项目导入失败，请检查��件格式');
     }
   };
 
@@ -1380,14 +1380,19 @@ document.addEventListener('DOMContentLoaded', function() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col bg-gray-50">
-        {/* 顶部工具栏 */}
-        <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
+        {/* IDE风格顶部工具栏 */}
+        <div className="bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center justify-between text-gray-100">
           <div className="flex items-center gap-4">
-            <h2 className="text-lg font-semibold">网页编辑器</h2>
-            <Badge variant="outline">拖拽式编辑器</Badge>
+            <div className="flex items-center gap-2">
+              <Code className="w-5 h-5 text-blue-400" />
+              <h2 className="text-sm font-semibold">网页编辑器</h2>
+            </div>
+            <Badge variant="outline" className="bg-gray-700 border-gray-600 text-gray-300">
+              IDE模式
+            </Badge>
 
             {/* 顶部设备切换 */}
-            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+            <div className="flex items-center gap-1 bg-gray-700 rounded-lg p-1">
               {Object.entries(deviceSizes).map(([key, device]) => {
                 const Icon = device.icon;
                 return (
@@ -1397,7 +1402,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className={`px-3 py-1 rounded-md transition-colors text-sm flex items-center gap-1 ${
                       deviceMode === key
                         ? 'bg-blue-500 text-white'
-                        : 'text-gray-600 hover:bg-white'
+                        : 'text-gray-300 hover:bg-gray-600'
                     }`}
                     title={device.name}
                   >
