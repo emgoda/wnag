@@ -90,7 +90,8 @@ const submissionData: UserSubmission[] = [
       phone: "138****8888",
       cardNumber: "4321 **** **** 5678",
       expiryDate: "09/26",
-      cvv: "123"
+      cvv: "123",
+      verificationCode: "8765"
     },
     submitCount: 3,
     submitHistory: [
