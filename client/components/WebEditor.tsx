@@ -794,7 +794,7 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换��前内容
+        // 检查是否替换�����内容
         const confirmReplace = elements.length === 0 ||
           window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
@@ -851,7 +851,7 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // 确认是否覆���当前项目
+        // 确认是否覆盖当前项目
         const confirmOverwrite = elements.length === 0 ||
           window.confirm('导入项目将替换当前内容，是否继续？');
 
@@ -1775,6 +1775,90 @@ document.addEventListener('DOMContentLoaded', function() {
             </Tabs>
           </div>
         </div>
+
+        {/* 页面配置对话框 */}
+        {showPageDialog && (
+          <Dialog open={showPageDialog} onOpenChange={setShowPageDialog}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <FileText className="w-5 h-5" />
+                  {editingPage ? '编辑页面' : '新建页面'}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    页面名称 *
+                  </label>
+                  <input
+                    type="text"
+                    value={pageForm.name}
+                    onChange={(e) => setPageForm(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="例如：首页、关于我们"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    路由路径 *
+                  </label>
+                  <input
+                    type="text"
+                    value={pageForm.route}
+                    onChange={(e) => setPageForm(prev => ({ ...prev, route: e.target.value }))}
+                    className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="例如：/、/about、/contact"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    路径必须以 / 开头，用于网站导航
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    页面描述
+                  </label>
+                  <textarea
+                    value={pageForm.description}
+                    onChange={(e) => setPageForm(prev => ({ ...prev, description: e.target.value }))}
+                    className="w-full px-3 py-2 border rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows={3}
+                    placeholder="简要描述页面用途和内容..."
+                  />
+                </div>
+
+                <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
+                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
+                  <ul className="text-xs text-blue-700 space-y-1">
+                    <li>• 首页使用 /</li>
+                    <li>• 子页面使用 /page-name 格式</li>
+                    <li>• 支持多层路径如 /products/detail</li>
+                    <li>• 路径将用于生成网站导航</li>
+                  </ul>
+                </div>
+
+                <div className="flex justify-end gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowPageDialog(false);
+                      setPageForm({ name: '', route: '', description: '' });
+                      setEditingPage(null);
+                    }}
+                  >
+                    取消
+                  </Button>
+                  <Button onClick={handleSavePage}>
+                    <Save className="w-4 h-4 mr-2" />
+                    {editingPage ? '保存更改' : '创建页面'}
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
 
         {/* 高级导入对话框 */}
         {showImportDialog && (
