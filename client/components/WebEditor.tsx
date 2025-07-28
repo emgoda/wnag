@@ -95,7 +95,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
       case 'text':
         return (
           <div style={style} className="text-element">
-            {element.content || '文本内容'}
+            {element.content || '文��内容'}
           </div>
         );
       case 'button':
@@ -128,7 +128,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
           </div>
         );
       default:
-        return <div style={style}>���知组件</div>;
+        return <div style={style}>未知组件</div>;
     }
   };
 
@@ -488,6 +488,140 @@ export function WebEditor() {
       alert('发布失败，请重试');
     } finally {
       setIsPublishing(false);
+    }
+  };
+
+  // HTML导入功能
+  const parseHTMLToElements = (htmlString) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    const elements = [];
+    let idCounter = elementIdCounter;
+
+    // 解析CSS
+    const styleElements = doc.querySelectorAll('style');
+    let extractedCSS = '';
+    styleElements.forEach(style => {
+      extractedCSS += style.innerHTML + '\n';
+    });
+    if (extractedCSS) {
+      setCss(prev => prev + '\n' + extractedCSS);
+    }
+
+    // 解析JavaScript
+    const scriptElements = doc.querySelectorAll('script');
+    let extractedJS = '';
+    scriptElements.forEach(script => {
+      if (script.innerHTML) {
+        extractedJS += script.innerHTML + '\n';
+      }
+    });
+    if (extractedJS) {
+      setJs(prev => prev + '\n' + extractedJS);
+    }
+
+    // 解析body中的元素
+    const bodyElements = doc.body ? doc.body.children : doc.children;
+
+    const parseElement = (element) => {
+      const tagName = element.tagName.toLowerCase();
+      const computedStyle = {};
+
+      // 获取内联样式
+      if (element.style.cssText) {
+        const styleDeclarations = element.style.cssText.split(';');
+        styleDeclarations.forEach(decl => {
+          if (decl.trim()) {
+            const [property, value] = decl.split(':');
+            if (property && value) {
+              computedStyle[property.trim()] = value.trim();
+            }
+          }
+        });
+      }
+
+      let elementData = {
+        id: `imported_${idCounter++}`,
+        style: computedStyle
+      };
+
+      // 根据HTML标签类型转换为编辑器元素
+      switch (tagName) {
+        case 'div':
+        case 'section':
+        case 'article':
+          elementData.type = 'container';
+          elementData.content = element.innerText || '';
+          break;
+        case 'p':
+        case 'h1':
+        case 'h2':
+        case 'h3':
+        case 'h4':
+        case 'h5':
+        case 'h6':
+        case 'span':
+          elementData.type = 'text';
+          elementData.content = element.innerText || '';
+          break;
+        case 'button':
+        case 'a':
+          elementData.type = 'button';
+          elementData.content = element.innerText || '';
+          break;
+        case 'img':
+          elementData.type = 'image';
+          elementData.src = element.src || '';
+          elementData.alt = element.alt || '';
+          break;
+        default:
+          // 其他元素转换为文本
+          elementData.type = 'text';
+          elementData.content = element.innerText || tagName;
+      }
+
+      return elementData;
+    };
+
+    Array.from(bodyElements).forEach(element => {
+      if (element.tagName && !['SCRIPT', 'STYLE'].includes(element.tagName)) {
+        const parsed = parseElement(element);
+        elements.push(parsed);
+      }
+    });
+
+    setElementIdCounter(idCounter);
+    return elements;
+  };
+
+  const handleImportHTML = () => {
+    if (!importHtml.trim()) {
+      alert('请输入HTML代码');
+      return;
+    }
+
+    try {
+      const parsedElements = parseHTMLToElements(importHtml);
+      setElements(prev => [...prev, ...parsedElements]);
+      setShowImportDialog(false);
+      setImportHtml('');
+      alert(`成功导入 ${parsedElements.length} 个元素`);
+    } catch (error) {
+      console.error('HTML解析失败:', error);
+      alert('HTML解析失败，请检查代码格式');
+    }
+  };
+
+  const handleFileImport = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === 'text/html') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImportHtml(e.target.result);
+      };
+      reader.readAsText(file);
+    } else {
+      alert('请选择HTML文件');
     }
   };
 
