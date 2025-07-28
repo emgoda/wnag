@@ -505,7 +505,7 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
     return (
       <div className="text-center text-gray-400 py-8">
         <Settings size={48} className="mx-auto mb-4 opacity-50" />
-        <p>选择一个元素来编辑属性</p>
+        <p>选择一个元素来编辑属��</p>
       </div>
     );
   }
@@ -868,6 +868,48 @@ export function WebEditor() {
 
   const handlePreview = () => {
     setPreviewMode(!previewMode);
+  };
+
+  // 网站项目管理函数
+  const saveWebsiteProject = () => {
+    const projectData = {
+      ...currentProject,
+      pages: pages,
+      elements: elements,
+      css: cssCode,
+      js: jsCode,
+      updatedAt: new Date().toISOString()
+    };
+
+    // 获取现有的网站项目列表
+    const existingProjects = JSON.parse(localStorage.getItem('website_projects') || '[]');
+
+    // 查找是否已存在该项目
+    const projectIndex = existingProjects.findIndex(p => p.id === currentProject.id);
+
+    if (projectIndex >= 0) {
+      // 更新现有项目
+      existingProjects[projectIndex] = projectData;
+    } else {
+      // 添加新项目
+      existingProjects.push(projectData);
+    }
+
+    // 保存到localStorage
+    localStorage.setItem('website_projects', JSON.stringify(existingProjects));
+
+    // 触发自定义事件，通知其他页面数据更新
+    window.dispatchEvent(new CustomEvent('websiteProjectsUpdated', { detail: existingProjects }));
+
+    alert(`网站项目"${currentProject.name}"已保存！`);
+  };
+
+  const updateProjectInfo = (field, value) => {
+    setCurrentProject(prev => ({
+      ...prev,
+      [field]: value,
+      updatedAt: new Date().toISOString()
+    }));
   };
 
   const handleSave = () => {
@@ -1358,7 +1400,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存项目
+  // 加载已发布的网站���自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1672,7 +1714,7 @@ html {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
-  // 添加平滑滚动到CTA按钮
+  // 添��平滑滚动到CTA按钮
   const ctaButton = document.querySelector('.cta-button');
   if (ctaButton) {
     ctaButton.addEventListener('click', function() {
@@ -2270,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     value={pageForm.name}
                     onChange={(e) => setPageForm(prev => ({ ...prev, name: e.target.value }))}
                     className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="例如：首页、关于我们"
+                    placeholder="例如：首页、关���我们"
                   />
                 </div>
 
