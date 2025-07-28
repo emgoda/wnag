@@ -231,7 +231,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
     <div className="flex-1 bg-gray-100 p-6">
       {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
-        {/* 浏览器顶部栏 */}
+        {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
           {/* 窗口控制按钮 */}
           <div className="flex items-center justify-between">
@@ -913,13 +913,26 @@ export function WebEditor() {
           setCss(projectData.css || '');
           setJs(projectData.js || '');
 
-          // 更新ID计数器
+          // 更新ID计数器 (递归处理所有嵌套元素)
+          const getAllElementIds = (elements) => {
+            let ids = [];
+            for (const el of elements) {
+              ids.push(el.id);
+              if (el.children && el.children.length > 0) {
+                ids.push(...getAllElementIds(el.children));
+              }
+            }
+            return ids;
+          };
+
+          const allIds = getAllElementIds(projectData.elements);
           const maxId = Math.max(
-            ...projectData.elements.map(el => {
-              const match = el.id.match(/\d+$/);
+            ...allIds.map(id => {
+              const match = id.match(/\d+$/);
               return match ? parseInt(match[0]) : 0;
             }),
-            elementIdCounter
+            elementIdCounter,
+            0
           );
           setElementIdCounter(maxId + 1);
 
