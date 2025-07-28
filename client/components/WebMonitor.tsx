@@ -4,6 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { useKeystrokeMonitor } from "@/hooks/use-keystroke-monitor";
 import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 interface UserSubmission {
   id: string;
