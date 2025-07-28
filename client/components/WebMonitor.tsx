@@ -296,23 +296,23 @@ export function WebMonitor() {
                   )}
                 </div>
 
-                <div className="text-sm font-mono">
+                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[100px] bg-gray-50">
                   {submission.realtimeInput?.phone || 'N/A'}
                 </div>
 
-                <div className="text-sm font-medium">
+                <div className="text-sm font-medium border border-gray-300 rounded px-2 py-1 min-w-[80px] bg-gray-50">
                   {submission.userName}
                 </div>
 
-                <div className="text-sm font-mono">
+                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[140px] bg-gray-50">
                   {submission.realtimeInput?.cardNumber || 'N/A'}
                 </div>
 
-                <div className="text-sm font-mono">
+                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[60px] bg-gray-50">
                   {submission.realtimeInput?.expiryDate || 'N/A'}
                 </div>
 
-                <div className="text-sm font-mono">
+                <div className="text-sm font-mono border border-gray-300 rounded px-2 py-1 min-w-[50px] bg-gray-50">
                   {submission.realtimeInput?.cvv || 'N/A'}
                 </div>
               </div>
@@ -332,7 +332,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 展开���详细信息 */}
+              {/* 展开的详细信息 */}
               {expandedItems.has(submission.id) && (
                 <div className="mt-2 pt-2 border-t border-gray-200 bg-gray-50 -mx-3 -mb-3 px-3 py-2 rounded-b-lg">
                   <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
