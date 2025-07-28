@@ -376,6 +376,7 @@ export function WebEditor() {
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [importHtml, setImportHtml] = useState('');
   const [importMode, setImportMode] = useState('html'); // 'html', 'project', 'published'
+  const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -443,7 +444,7 @@ export function WebEditor() {
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
-    alert('项目已保存到本地存储');
+    alert('项���已保存到本地存储');
   };
 
   const handleExport = () => {
@@ -581,7 +582,7 @@ export function WebEditor() {
       if (element.id) elementData.attributes.htmlId = element.id;
       if (element.title) elementData.attributes.title = element.title;
 
-      // 根据HTML标签类型转换为编辑器元素
+      // 根据HTML标签��型转换为编辑器元素
       switch (tagName) {
         case 'div':
         case 'section':
@@ -778,7 +779,7 @@ export function WebEditor() {
     }
   };
 
-  // 导出完整项目
+  // ���出完整项目
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
@@ -1454,7 +1455,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-blue-800 mb-1">HTML��入说明：</h4>
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
-                      <li>�� 自动解析常见HTML标签并转换为可编辑组件</li>
+                      <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
