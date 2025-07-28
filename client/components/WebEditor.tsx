@@ -569,7 +569,7 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
               value={selectedElement.placeholder || ''}
               onChange={(e) => onUpdateElement({ ...selectedElement, placeholder: e.target.value })}
               className="w-full px-3 py-2 border rounded-md text-sm"
-              placeholder="请输入占位符文本"
+              placeholder="请输入占位符文���"
             />
           </div>
           <div>
@@ -817,7 +817,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('���式已复制！选择��他元素后可以粘贴样式');
+    alert('����式已复制！选择��他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -909,10 +909,10 @@ export function WebEditor() {
       existingProjects.push(projectData);
     }
 
-    // ���存到localStorage
+    // 保存到localStorage
     localStorage.setItem('website_projects', JSON.stringify(existingProjects));
 
-    // 触发���定义事件，通知其他页面数据更新
+    // 触发���定义事件，��知其他页面数据更新
     window.dispatchEvent(new CustomEvent('websiteProjectsUpdated', { detail: existingProjects }));
 
     alert(`网站项目"${currentProject.name}"已保存！`);
@@ -943,10 +943,10 @@ export function WebEditor() {
         window.open(importUrl, '_blank');
         // 清空URL输入框，准备接收用户粘贴的HTML
         setImportUrl('');
-        alert('请从���打开的页面复制HTML源码，然后粘贴到下方的文本框中');
+        alert('请从新打开的页面复制HTML源码，然后粘贴到下方的文本框中');
       }
     } catch (error) {
-      console.error('URL导入失败:', error);
+      console.error('URL导入失��:', error);
       alert('URL导入失败，请检查网址是否正确');
     }
   };
@@ -1030,7 +1030,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站������布成��！\n访问链��: ${publishUrl}`);
+      alert(`网站������布成功！\n访问链��: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1303,10 +1303,19 @@ export function WebEditor() {
           return;
         }
 
-        setElements(prev => [...prev, ...parsedElements]);
+        setElements(prev => {
+          const newElements = [...prev, ...parsedElements];
+          console.log('元素状态更新:', {
+            之前: prev.length,
+            导入: parsedElements.length,
+            之后: newElements.length,
+            新元素: newElements
+          });
+          return newElements;
+        });
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导入外部HTML，��增 ${parsedElements.length} 个元素`);
+        alert(`成功导��外部HTML，��增 ${parsedElements.length} 个元素`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -1443,7 +1452,7 @@ export function WebEditor() {
   // 新建项目
   const handleNewProject = () => {
     const confirmNew = elements.length === 0 ||
-      window.confirm('新建项目将清除当前所���内容，是否继��？');
+      window.confirm('新建项目将清除当前所���内容，是否继续？');
 
     if (confirmNew) {
       setElements([]);
@@ -1873,7 +1882,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片���画
+  // 技能卡片������
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2548,7 +2557,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 {/* HTML导入 */}
                 <TabsContent value="html" className="space-y-4 mt-4">
-                  {/* URL导入 */}
+                  {/* URL导�� */}
                   <div className="bg-green-50 border border-green-200 rounded-md p-3">
                     <label className="block text-sm font-medium mb-2 text-green-800">
                       🌐 从URL导入网站（保留完整交互功能）
