@@ -309,6 +309,14 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
             <span>设备: {currentDevice.name}</span>
             <span>尺寸: {currentDevice.width} × {currentDevice.height}</span>
             <span>缩放: {deviceMode === 'mobile' ? '75%' : deviceMode === 'tablet' ? '85%' : '100%'}</span>
+            {(() => {
+              const currentPage = pages.find(p => p.isActive);
+              return currentPage && (
+                <span className="text-blue-600">
+                  页面: {currentPage.name} ({currentPage.route})
+                </span>
+              );
+            })()}
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -325,7 +333,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
   );
 }
 
-// 属性编辑��
+// 属性编辑器
 function PropertyEditor({ selectedElement, onUpdateElement }) {
   if (!selectedElement) {
     return (
@@ -473,7 +481,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={css}
           onChange={(e) => onCssChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="/* 在这里编写CSS样式 */&#10;.text-element {&#10;  font-size: 16px;&#10;  font-family: sans-serif;&#10;}"
+          placeholder="/* 在这里编���CSS样式 */&#10;.text-element {&#10;  font-size: 16px;&#10;  font-family: sans-serif;&#10;}"
         />
       </TabsContent>
       <TabsContent value="js" className="mt-4 h-full">
@@ -802,7 +810,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这���本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -877,7 +885,7 @@ export function WebEditor() {
           setElementIdCounter(maxId + 1);
 
           setShowImportDialog(false);
-          alert('项目导入成功！');
+          alert('项目导入���功！');
         }
       } else {
         alert('项目文件格式不正确');
@@ -1012,7 +1020,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载新页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面���容，加载新页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1022,7 +1030,7 @@ export function WebEditor() {
     }
   };
 
-  // 加��已发布的网站和自动保存项目
+  // 加载已发布的网站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1854,7 +1862,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       setEditingPage(null);
                     }}
                   >
-                    ��消
+                    取消
                   </Button>
                   <Button onClick={handleSavePage}>
                     <Save className="w-4 h-4 mr-2" />
