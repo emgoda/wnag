@@ -392,9 +392,22 @@ export function WebEditor() {
   }, []);
 
   const handleUpdateElement = useCallback((updatedElement) => {
-    setElements(prev => 
-      prev.map(el => el.id === updatedElement.id ? updatedElement : el)
-    );
+    const updateElementRecursively = (elements) => {
+      return elements.map(el => {
+        if (el.id === updatedElement.id) {
+          return updatedElement;
+        }
+        if (el.children) {
+          return {
+            ...el,
+            children: updateElementRecursively(el.children)
+          };
+        }
+        return el;
+      });
+    };
+
+    setElements(prev => updateElementRecursively(prev));
     setSelectedElement(updatedElement);
   }, []);
 
