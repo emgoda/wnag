@@ -1003,10 +1003,16 @@ export function WebEditor() {
 
   // HTML导入功能
   const parseHTMLToElements = (htmlString) => {
+    console.log('parseHTMLToElements 开始解析，HTML长度:', htmlString.length);
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, 'text/html');
     const elements = [];
     let idCounter = elementIdCounter;
+
+    console.log('DOMParser 解析完成');
+    console.log('body元素:', doc.body);
+    console.log('body子元素数量:', doc.body ? doc.body.children.length : 0);
 
     // 解析CSS
     const styleElements = doc.querySelectorAll('style');
@@ -1113,7 +1119,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素����换��文本
+          // 其他元素������换��文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -1317,7 +1323,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开��？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开����？');
       if (!confirmLeave) return;
     }
 
@@ -1363,7 +1369,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路径已存��，请使用其��路径');
+      alert('该路由路径已�����，请使用其��路径');
       return;
     }
 
@@ -1883,7 +1889,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div className="flex items-center gap-4">
             <div className="w-px h-6 bg-gray-300"></div>
 
-            {/* 顶部���备切换 */}
+            {/* ��部���备切换 */}
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
               {Object.entries(deviceSizes).filter(([key]) => key !== 'tablet').map(([key, device]) => {
                 const Icon = device.icon;
@@ -2056,7 +2062,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   const currentPage = pages.find(p => p.isActive);
                   return currentPage && (
                     <div className="space-y-4">
-                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wide">页面设置</h4>
+                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wide">页面设���</h4>
 
                       <div>
                         <label className="block text-sm font-medium mb-2 text-red-600">
