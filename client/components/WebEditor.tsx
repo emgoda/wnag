@@ -994,7 +994,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写��面名称和路由路径');
+      alert('请填写页面名称和路由路径');
       return;
     }
 
@@ -1165,7 +1165,7 @@ export function WebEditor() {
               {
                 "id": "element_8",
                 "type": "text",
-                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈����高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -1352,7 +1352,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 选择文本��色 */
+/* 选择文本颜色 */
 ::selection {
   background-color: #2196f3;
   color: white;
@@ -1576,15 +1576,6 @@ document.addEventListener('DOMContentLoaded', function() {
           {/* 左侧：页面管理和新增 */}
           <div className="w-64 bg-white border-r p-4 overflow-y-auto">
             <div className="mb-6">
-              {/* 返回导航 */}
-              <button
-                onClick={handleGoBack}
-                className="w-full mb-4 px-3 py-2 border border-gray-200 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span className="text-sm">返回管理面板</span>
-              </button>
-
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                 <FileText className="w-4 h-4" />
                 页面管理
@@ -1873,7 +1864,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     onChange={(e) => setPageForm(prev => ({ ...prev, description: e.target.value }))}
                     className="w-full px-3 py-2 border rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={3}
-                    placeholder="简要描述��面用途和内容..."
+                    placeholder="简要描述页面用途和内容..."
                   />
                 </div>
 
