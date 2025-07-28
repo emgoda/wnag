@@ -280,6 +280,7 @@ export function WebMonitor() {
                 </div>
 
                 <div className="flex items-center gap-2">
+                  <div className="text-sm text-muted-foreground">{submission.statusText}</div>
                   <Badge
                     variant="outline"
                     className={`text-xs ${
@@ -292,7 +293,6 @@ export function WebMonitor() {
                      submission.riskLevel === "medium" ? "中风险" :
                      "低风险"}
                   </Badge>
-                  <div className="text-sm text-muted-foreground">{submission.statusText}</div>
                 </div>
               </div>
 
