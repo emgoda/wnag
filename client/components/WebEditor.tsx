@@ -310,7 +310,21 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
 }
 
 // 浏览器风格画布组件
-function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange, pages }) {
+function BrowserCanvas({
+  elements,
+  onDrop,
+  onSelectElement,
+  selectedElement,
+  onDeleteElement,
+  onDuplicateElement,
+  onCopyStyleElement,
+  onSelectAllInstances,
+  onSaveAsTemplate,
+  deviceMode,
+  siteName,
+  onDeviceChange,
+  pages
+}) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
     drop: (item, monitor) => {
@@ -960,7 +974,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入将替���当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -1127,7 +1141,7 @@ export function WebEditor() {
 
   // 返���上一页功能
   const handleGoBack = () => {
-    // 检查是否有编辑内容未保存
+    // 检查是��有编辑内容未保存
     if (elements.length > 0) {
       const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
