@@ -185,8 +185,8 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
   );
 }
 
-// 画布组件
-function Canvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement }) {
+// 浏览器风格画布组件
+function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
     drop: (item, monitor) => {
@@ -199,30 +199,102 @@ function Canvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteEl
     }),
   }));
 
+  const currentDevice = deviceSizes[deviceMode];
+  const canvasStyle = {
+    width: deviceMode === 'desktop' ? '100%' : `${currentDevice.width}px`,
+    height: deviceMode === 'desktop' ? 'auto' : `${currentDevice.height}px`,
+    maxWidth: '100%',
+    margin: deviceMode === 'desktop' ? '0' : '0 auto',
+    transform: deviceMode === 'mobile' ? 'scale(0.8)' : deviceMode === 'tablet' ? 'scale(0.9)' : 'scale(1)',
+    transformOrigin: 'top center'
+  };
+
   return (
-    <div
-      ref={drop}
-      className={`flex-1 bg-white border-2 border-dashed rounded-lg p-4 min-h-[600px] transition-colors ${
-        isOver ? 'border-blue-400 bg-blue-50' : 'border-gray-300'
-      }`}
-      onClick={() => onSelectElement(null)}
-    >
-      <div className="space-y-4">
-        {elements.map((element) => (
-          <CanvasElement
-            key={element.id}
-            element={element}
-            onSelect={onSelectElement}
-            onDelete={onDeleteElement}
-            isSelected={selectedElement?.id === element.id}
-          />
-        ))}
-        {elements.length === 0 && (
-          <div className="text-center text-gray-400 py-20">
-            <Square size={48} className="mx-auto mb-4 opacity-50" />
-            <p>拖拽左侧组件到这里开始设计</p>
+    <div className="flex-1 bg-gray-100 p-6">
+      {/* 浏览器窗口容器 */}
+      <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
+        {/* 浏览器顶部栏 */}
+        <div className="bg-gray-50 border-b border-gray-200 p-3">
+          {/* 窗口控制按钮 */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <div className="ml-4 flex items-center bg-white rounded-md px-3 py-1 text-sm border">
+                <Globe className="w-4 h-4 mr-2 text-gray-400" />
+                <span className="text-gray-600">preview.{siteName?.toLowerCase().replace(/\s+/g, '-') || 'website'}.com</span>
+              </div>
+            </div>
+
+            {/* 设备切换按钮 */}
+            <div className="flex items-center gap-1 bg-white rounded-lg p-1 border">
+              {Object.entries(deviceSizes).map(([key, device]) => {
+                const Icon = device.icon;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => {}} // 这里后面会连接到deviceMode状态
+                    className={`p-2 rounded-md transition-colors ${
+                      deviceMode === key
+                        ? 'bg-blue-500 text-white'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                    title={device.name}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        )}
+        </div>
+
+        {/* 浏览器内容区域 */}
+        <div className="bg-white" style={{ minHeight: '600px' }}>
+          <div
+            ref={drop}
+            className={`transition-all duration-300 ${
+              isOver ? 'bg-blue-50' : 'bg-white'
+            }`}
+            style={canvasStyle}
+            onClick={() => onSelectElement(null)}
+          >
+            <div className="space-y-4">
+              {elements.map((element) => (
+                <CanvasElement
+                  key={element.id}
+                  element={element}
+                  onSelect={onSelectElement}
+                  onDelete={onDeleteElement}
+                  isSelected={selectedElement?.id === element.id}
+                />
+              ))}
+              {elements.length === 0 && (
+                <div className="text-center text-gray-400 py-20">
+                  <Square size={48} className="mx-auto mb-4 opacity-50" />
+                  <p>拖拽左侧组件到这里开始设计</p>
+                  <p className="text-sm mt-2">当前设备: {currentDevice.name} ({currentDevice.width}x{currentDevice.height})</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* 底部状态栏 */}
+        <div className="bg-gray-50 border-t border-gray-200 px-4 py-2 text-xs text-gray-500 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span>元素数量: {elements.length}</span>
+            <span>设备: {currentDevice.name}</span>
+            <span>尺寸: {currentDevice.width} × {currentDevice.height}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>实时预览</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -544,7 +616,7 @@ export function WebEditor() {
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
-      alert('发布失败，请���试');
+      alert('发布失败，请重试');
     } finally {
       setIsPublishing(false);
     }
@@ -636,7 +708,7 @@ export function WebEditor() {
           elementData.type = 'text';
           elementData.content = element.innerText || '';
 
-          // ���置默认标题样式
+          // 设置默认标题样式
           if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tagName)) {
             const headingSizes = { h1: '2em', h2: '1.5em', h3: '1.17em', h4: '1em', h5: '0.83em', h6: '0.67em' };
             if (!elementData.style.fontSize) {
@@ -688,7 +760,7 @@ export function WebEditor() {
     }
 
     try {
-      // 检测是否是本系统生成的网站
+      // 检测是��是本系统生成的网站
       const isSystemGenerated = importHtml.includes('生成的网页') ||
                                importHtml.includes('网页编辑器') ||
                                importHtml.includes('<!-- Generated by WebEditor -->');
@@ -704,7 +776,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，�� ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
