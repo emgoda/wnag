@@ -236,7 +236,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
                 return (
                   <button
                     key={key}
-                    onClick={() => {}} // 这里后面会连接到deviceMode状态
+                    onClick={() => onDeviceChange(key)}
                     className={`p-2 rounded-md transition-colors ${
                       deviceMode === key
                         ? 'bg-blue-500 text-white'
@@ -286,7 +286,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
         {/* 底部状态栏 */}
         <div className="bg-gray-50 border-t border-gray-200 px-4 py-2 text-xs text-gray-500 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span>元素数量: {elements.length}</span>
+            <span>元���数量: {elements.length}</span>
             <span>设备: {currentDevice.name}</span>
             <span>尺寸: {currentDevice.width} × {currentDevice.height}</span>
           </div>
@@ -682,7 +682,7 @@ export function WebEditor() {
       if (element.id) elementData.attributes.htmlId = element.id;
       if (element.title) elementData.attributes.title = element.title;
 
-      // ��据HTML标签类型转��为编辑器元素
+      // 根据HTML标签类型转��为编辑器元素
       switch (tagName) {
         case 'div':
         case 'section':
@@ -769,7 +769,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是本系统生成的网站，导入���替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -806,7 +806,7 @@ export function WebEditor() {
           const projectData = JSON.parse(content);
           handleImportProject(projectData);
         } catch (error) {
-          alert('项目文件格式错误，请选择有效的项目文件');
+          alert('项目文��格式错误，请选择有效的项目文件');
         }
       } else {
         // HTML导入
@@ -847,7 +847,7 @@ export function WebEditor() {
           alert('项目导入成功！');
         }
       } else {
-        alert('项目文件格式不正确');
+        alert('项目文件格式不���确');
       }
     } catch (error) {
       console.error('项目导入失败:', error);
@@ -926,7 +926,7 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // ��接加载演示项目数据
+    // 直接加载演示项目数据
     if (elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
@@ -978,7 +978,7 @@ export function WebEditor() {
               {
                 "id": "element_4",
                 "type": "text",
-                "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "专注于创建现代化的Web应用程序，���有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1409,7 +1409,7 @@ document.addEventListener('DOMContentLoaded', function() {
               ) : (
                 <>
                   <Globe className="w-4 h-4 mr-2" />
-                  ��布到后���
+                  发布到后���
                 </>
               )}
             </Button>
