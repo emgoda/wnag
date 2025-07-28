@@ -476,7 +476,7 @@ function BrowserCanvas({
 }
 
 // 属性编辑器
-function PropertyEditor({ selectedElement, onUpdateElement }) {
+function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPasteStyle }) {
   if (!selectedElement) {
     return (
       <div className="text-center text-gray-400 py-8">
@@ -679,7 +679,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关���我���', route: '/about', isActive: false },
+    { id: 'about', name: '关��������', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -1345,7 +1345,7 @@ export function WebEditor() {
               {
                 "id": "demo_4",
                 "type": "text",
-                "content": "��注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "��注于创���现代化��Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1962,7 +1962,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
-                            // ���里可以添��首页设置逻辑
+                            // ���里可以添���首页设置逻辑
                             alert('设为首页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
@@ -2302,7 +2302,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置和�����属性</li>
-                      <li>• 导入会替换当前项目的所有内容</li>
+                      <li>• 导入会替换当前项��的所有内容</li>
                     </ul>
                   </div>
 
