@@ -815,7 +815,7 @@ export function WebEditor() {
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
-          setElements(parsedElements); // 替换而不是添加
+          setElements(parsedElements); // 替���而不是添加
           setShowImportDialog(false);
           setImportHtml('');
           alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
@@ -994,7 +994,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写页面名称和路由路径');
+      alert('请填写页面名��和路由路径');
       return;
     }
 
@@ -1352,7 +1352,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 选择文本颜色 */
+/* 选择��本颜色 */
 ::selection {
   background-color: #2196f3;
   color: white;
@@ -1636,15 +1636,10 @@ document.addEventListener('DOMContentLoaded', function() {
                           <div className={`w-2 h-2 rounded-full ${
                             page.isActive ? 'bg-blue-500' : 'bg-gray-400'
                           }`}></div>
-                          <div className="flex-1 min-w-0">
-                            <div className={`font-medium truncate ${
-                              page.isActive ? 'text-blue-700' : 'text-gray-600'
-                            }`}>
-                              {page.name}
-                            </div>
-                            <div className="text-xs text-gray-500 truncate">
-                              {page.route}
-                            </div>
+                          <div className={`flex-1 min-w-0 truncate overflow-hidden text-ellipsis whitespace-nowrap ${
+                            page.isActive ? 'text-blue-700' : 'text-gray-600'
+                          }`}>
+                            {page.name}
                           </div>
                         </div>
                         <div className="flex items-center gap-1">
