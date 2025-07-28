@@ -12,6 +12,7 @@ import { AdminLayout } from "@/components/AdminLayout";
 import { PlaceholderPage } from "@/components/PlaceholderPage";
 import { ControlTerminal } from "@/components/ControlTerminal";
 import { WebMonitor } from "@/components/WebMonitor";
+import { WebEditor } from "@/components/WebEditor";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
