@@ -262,26 +262,50 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
   };
 
   return (
-    <div
-      ref={drag}
-      onClick={handleClick}
-      className={`canvas-element ${isSelected ? 'ring-2 ring-blue-500' : ''} ${
-        isDragging ? 'opacity-50' : 'opacity-100'
-      }`}
-      style={{ position: 'relative' }}
-    >
-      {renderElement()}
-      {isSelected && (
-        <div className="absolute top-0 right-0 flex gap-1 bg-blue-500 rounded-bl px-2 py-1">
-          <button
-            onClick={handleDelete}
-            className="text-white hover:text-red-200 transition-colors"
-          >
-            <Trash2 size={12} />
-          </button>
-        </div>
-      )}
-    </div>
+    <>
+      <div
+        ref={drag}
+        onClick={handleClick}
+        onContextMenu={handleRightClick}
+        className={`canvas-element relative cursor-pointer transition-all ${
+          isSelected
+            ? 'ring-2 ring-blue-500 bg-blue-50/20'
+            : 'hover:ring-1 hover:ring-blue-300'
+        } ${isDragging ? 'opacity-50' : 'opacity-100'}`}
+        style={{ position: 'relative' }}
+      >
+        {renderElement()}
+        {isSelected && (
+          <>
+            {/* 选择指示器 */}
+            <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+
+            {/* 选择边框 */}
+            <div className="absolute inset-0 border-2 border-blue-500 pointer-events-none" style={{ borderStyle: 'dashed' }}></div>
+
+            {/* 元素类型标签 */}
+            <div className="absolute -top-6 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+              {element.type}
+            </div>
+          </>
+        )}
+      </div>
+
+      <ContextMenu
+        isOpen={contextMenu.isOpen}
+        x={contextMenu.x}
+        y={contextMenu.y}
+        onClose={closeContextMenu}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        onCopyStyle={handleCopyStyle}
+        onSelectAllInstances={handleSelectAllInstances}
+        onSaveAsTemplate={handleSaveAsTemplate}
+      />
+    </>
   );
 }
 
@@ -1248,7 +1272,7 @@ export function WebEditor() {
               {
                 "id": "demo_4",
                 "type": "text",
-                "content": "专注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "��注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1496,7 +1520,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 选择�����颜色 */
+/* ���择�����颜色 */
 ::selection {
   background-color: #2196f3;
   color: white;
@@ -1865,7 +1889,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
-                            // 这里可以添加首页设置逻辑
+                            // 这里可以添��首页设置逻辑
                             alert('设为首页功能');
                           }}
                           className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
