@@ -24,7 +24,8 @@ import {
   FileText,
   Monitor,
   Tablet,
-  Smartphone
+  Smartphone,
+  ArrowLeft
 } from 'lucide-react';
 
 // 定义拖拽项目类型
@@ -513,7 +514,7 @@ export function WebEditor() {
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
     { id: 'about', name: '关于我们', route: '/about', isActive: false },
-    { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
+    { id: 'contact', name: '��系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
   const [editingPage, setEditingPage] = useState(null);
@@ -692,7 +693,7 @@ export function WebEditor() {
       setJs(prev => (prev + '\n' + extractedJS).trim());
     }
 
-    // 解析body中的元素
+    // 解析body中的���素
     const bodyElements = doc.body ? doc.body.children : doc.children;
 
     const parseElement = (element, isNested = false) => {
@@ -810,7 +811,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到这是��系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -892,7 +893,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导�����败，请检查文件格式');
+      alert('项目导���失败，请检查文件格式');
     }
   };
 
@@ -1971,7 +1972,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和元��属���</li>
+                      <li>• 会完整还原项目的所有设置和元��属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
