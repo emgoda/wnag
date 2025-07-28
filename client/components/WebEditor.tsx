@@ -803,7 +803,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('���式已复制！选择其他元素后可以粘贴样式');
+    alert('���式已复制！选择��他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -851,7 +851,7 @@ export function WebEditor() {
       createdAt: new Date().toISOString()
     };
     setSavedTemplates(prev => [...prev, template]);
-    alert(`已保存为模板: ${template.name}`);
+    alert(`已保���为模板: ${template.name}`);
   }, []);
 
   // 粘贴样式到选中元素
@@ -898,7 +898,7 @@ export function WebEditor() {
     // 保存到localStorage
     localStorage.setItem('website_projects', JSON.stringify(existingProjects));
 
-    // 触发自定义事件，通知其他页面数据更新
+    // 触发���定义事件，通知其他页面数据更新
     window.dispatchEvent(new CustomEvent('websiteProjectsUpdated', { detail: existingProjects }));
 
     alert(`网站项目"${currentProject.name}"已保存！`);
@@ -1063,9 +1063,28 @@ export function WebEditor() {
         attributes: {}
       };
 
-      // 保存重要属性
+      // 保存重要属性和事件
       if (element.id) elementData.attributes.htmlId = element.id;
       if (element.title) elementData.attributes.title = element.title;
+      if (element.dataset) elementData.attributes.dataset = element.dataset;
+
+      // 保存事件��听器（通过属性检测）
+      const events = {};
+      ['onclick', 'onchange', 'onsubmit', 'onload', 'onmouseover', 'onmouseout', 'onfocus', 'onblur'].forEach(eventAttr => {
+        if (element.getAttribute(eventAttr)) {
+          events[eventAttr] = element.getAttribute(eventAttr);
+        }
+      });
+      if (Object.keys(events).length > 0) {
+        elementData.attributes.events = events;
+      }
+
+      // 保存表单属性
+      ['name', 'value', 'placeholder', 'required', 'disabled', 'readonly', 'checked', 'selected'].forEach(attr => {
+        if (element.hasAttribute(attr)) {
+          elementData.attributes[attr] = element.getAttribute(attr);
+        }
+      });
 
       // 根据HTML标签类型转��为编辑器元素
       switch (tagName) {
