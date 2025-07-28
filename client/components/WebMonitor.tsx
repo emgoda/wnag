@@ -387,8 +387,8 @@ export function WebMonitor() {
                         isFieldTyping(submission.id, 'expiryDate')
                           ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                           : 'border-gray-300 bg-gray-50'
-                      } ${copiedField?.includes('expiryDate') ? 'ring-2 ring-blue-400 bg-blue-100' : ''}`}
-                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'expiryDate'), '有效期')}
+                      }`}
+                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'expiryDate'))}
                       title="点击复制有效期"
                     >
                       <span className="relative">
