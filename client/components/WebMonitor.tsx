@@ -87,7 +87,7 @@ const submissionData: UserSubmission[] = [
     submitHistory: [
       { timestamp: "2024-01-20 11:28:15", status: "提交", result: "成功" },
       { timestamp: "2024-01-20 11:25:32", status: "提交", result: "失败" },
-      { timestamp: "2024-01-20 11:22:18", status: "提交", result: "��功" }
+      { timestamp: "2024-01-20 11:22:18", status: "提交", result: "成功" }
     ]
   },
   {
@@ -149,14 +149,22 @@ const submissionData: UserSubmission[] = [
       cardNumber: "5555 **** **** 4444",
       expiryDate: "08/25",
       cvv: "***"
-    }
+    },
+    submitCount: 5,
+    submitHistory: [
+      { timestamp: "2024-01-20 10:20:33", status: "提交", result: "成功" },
+      { timestamp: "2024-01-20 10:18:15", status: "提交", result: "成功" },
+      { timestamp: "2024-01-20 10:15:42", status: "提交", result: "失败" },
+      { timestamp: "2024-01-20 10:12:28", status: "提交", result: "成功" },
+      { timestamp: "2024-01-20 10:10:05", status: "提交", result: "成功" }
+    ]
   },
   {
     id: "13716",
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在线银行系统",
+    websiteName: "在线银���系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
     userLocation: "广州市天河区",
@@ -181,7 +189,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // 完全没有用户数据，用户刚进入页��
+    // 完全没有用户数据，用户刚进入页面
   }
 ];
 
