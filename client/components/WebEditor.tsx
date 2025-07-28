@@ -266,7 +266,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
                 isSelected={selectedElementId === child.id}
                 selectedInstances={selectedInstances}
               />
-            )) || <div className="text-gray-400 text-center py-4">���拽组����这里</div>}
+            )) || <div className="text-gray-400 text-center py-4">拖拽组����这里</div>}
           </div>
         );
       default:
@@ -379,7 +379,7 @@ function BrowserCanvas({
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏��器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
-          {/* 窗口控制按�� */}
+          {/* 窗口控制按钮 */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex gap-2">
@@ -518,7 +518,7 @@ function PropertyEditor({ selectedElement, onUpdateElement, copiedStyle, onPaste
     return (
       <div className="text-center text-gray-400 py-8">
         <Settings size={48} className="mx-auto mb-4 opacity-50" />
-        <p>选择一个元素来编辑属��</p>
+        <p>选择一个元素来编辑属性</p>
       </div>
     );
   }
@@ -934,7 +934,7 @@ export function WebEditor() {
     }
 
     try {
-      // 由于跨域限制，我们使用代理服务或提示用户手动操作
+      // 由于跨域限制，我们使用代���服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1555,7 +1555,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站���自动保存项目
+  // 加载已发布的网站����自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2338,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 设置元素
                 setElements(flatElements);
 
-                alert(`🏦 银行页面已生成！包含：\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
+                alert(`🏦 银行页面已生成！包含��\n\n✅ 银行页面标题和Logo\n✅ 3步进度条\n✅ 手机号输入表单\n✅ 查询按钮（可交互）\n✅ 客服联系信息\n✅ 安全提示区域\n\n共 ${flatElements.length} 个可编辑元素，所有元素都可以单独编辑！`);
               }}
               variant="default"
               size="sm"
@@ -2654,7 +2654,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 )}
 
-                {/* 已发布网站����� */}
+                {/* 已发布网站��理 */}
                 <div className="border-t pt-4">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
