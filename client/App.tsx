@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import { AdminLayout } from "@/components/AdminLayout";
 import { PlaceholderPage } from "@/components/PlaceholderPage";
 import { ControlTerminal } from "@/components/ControlTerminal";
+import { WebMonitor } from "@/components/WebMonitor";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
