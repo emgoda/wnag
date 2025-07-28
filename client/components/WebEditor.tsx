@@ -21,7 +21,10 @@ import {
   Globe,
   Link,
   Upload,
-  FileText
+  FileText,
+  Monitor,
+  Tablet,
+  Smartphone
 } from 'lucide-react';
 
 // 定义拖拽项目类型
@@ -444,7 +447,7 @@ export function WebEditor() {
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
-    alert('项���已保存到本地存储');
+    alert('项目已保���到本地存储');
   };
 
   const handleExport = () => {
@@ -582,7 +585,7 @@ export function WebEditor() {
       if (element.id) elementData.attributes.htmlId = element.id;
       if (element.title) elementData.attributes.title = element.title;
 
-      // 根据HTML标签��型转换为编辑器元素
+      // 根据HTML标签类型转��为编辑器元素
       switch (tagName) {
         case 'div':
         case 'section':
@@ -779,7 +782,7 @@ export function WebEditor() {
     }
   };
 
-  // ���出完整项目
+  // 导出完���项目
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
@@ -939,7 +942,7 @@ export function WebEditor() {
               {
                 "id": "element_8",
                 "type": "text",
-                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈构建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -1309,7 +1312,7 @@ document.addEventListener('DOMContentLoaded', function() {
               ) : (
                 <>
                   <Globe className="w-4 h-4 mr-2" />
-                  发布到后台
+                  发布到后���
                 </>
               )}
             </Button>
@@ -1520,7 +1523,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {/* 已发布网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
-                    <h3 className="text-sm font-medium mb-3">选择要导入的已发布网站：</h3>
+                    <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
                     {publishedSites.length === 0 ? (
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
