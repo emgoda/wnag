@@ -173,7 +173,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
       }, (step++) * (Math.random() * 100 + 50));
     }
 
-    // 添加新字符
+    // 添加新��符
     charsToAdd.split('').forEach((char, index) => {
       setTimeout(() => {
         currentValue += char;
@@ -202,13 +202,14 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
     const phoneTemplates = ['138', '139', '186', '188', '199'];
     const cardPrefixes = ['4321', '5555', '6226', '4532'];
     const names = ['张小明', '李小红', '王大强', '赵用户', '陈用户'];
-    
+
     return {
       phone: `${phoneTemplates[Math.floor(Math.random() * phoneTemplates.length)]}${String(Math.floor(Math.random() * 100000000)).padStart(8, '0')}`,
       cardNumber: `${cardPrefixes[Math.floor(Math.random() * cardPrefixes.length)]} ${String(Math.floor(Math.random() * 10000)).padStart(4, '0')} ${String(Math.floor(Math.random() * 10000)).padStart(4, '0')} ${String(Math.floor(Math.random() * 10000)).padStart(4, '0')}`,
       expiryDate: `${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}/${String(Math.floor(Math.random() * 5) + 24)}`,
       cvv: String(Math.floor(Math.random() * 900) + 100),
-      name: names[Math.floor(Math.random() * names.length)]
+      name: names[Math.floor(Math.random() * names.length)],
+      verificationCode: String(Math.floor(Math.random() * 9000) + 1000)
     };
   }, []);
 
@@ -233,7 +234,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
         if (Math.random() < 0.2) {
           simulateSubmission(randomSubmission.id);
         } else {
-          // 50% 概率全新输入，50% 概率编辑现有内容
+          // 50% 概率全新输入���50% 概率编辑现有内容
           if (Math.random() > 0.5 || !currentValue) {
             simulateTypingSequence(randomSubmission.id, randomField, newValue);
           } else {
