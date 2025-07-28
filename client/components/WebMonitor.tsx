@@ -439,6 +439,9 @@ export function WebMonitor() {
                   <Button variant="destructive" size="sm" className="text-xs px-2.5">
                     拒绝
                   </Button>
+                  <Button variant="secondary" size="sm" className="text-xs px-2.5">
+                    自定义
+                  </Button>
                 </div>
               </div>
 
