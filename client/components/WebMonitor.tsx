@@ -233,7 +233,7 @@ const getSubmissionTypeName = (type: string) => {
     case "credit_card": return "信用卡信息";
     case "identity_verification": return "身份验证";
     case "address_proof": return "地址证明";
-    default: return "其他文档";
+    default: return "其他文���";
   }
 };
 
@@ -571,15 +571,12 @@ export function WebMonitor() {
                         🔧 编辑 {submission.websiteName}
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => window.open('/web-creation', '_blank')}>
-                        🔧 网页制作主页
-                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => window.open('/dashboard', '_blank')}>
                         📊 数据分析页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/reports', '_blank')}>
-                        📋 报告页面
+                        📋 ��告页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/settings', '_blank')}>
                         ⚙️ 设置页面
