@@ -95,7 +95,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
       case 'text':
         return (
           <div style={style} className="text-element">
-            {element.content || '文��内容'}
+            {element.content || '文本内容'}
           </div>
         );
       case 'button':
@@ -442,7 +442,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到本地存储（实际应用中会发送到后端）
+      // 保存���本地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -704,7 +704,7 @@ export function WebEditor() {
               type="text"
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              placeholder="输入网站名称"
+              placeholder="输入���站名称"
               className="px-3 py-1 border rounded text-sm w-40"
             />
             <Button onClick={handlePreview} variant="outline" size="sm">
@@ -714,6 +714,10 @@ export function WebEditor() {
             <Button onClick={handleSave} variant="outline" size="sm">
               <Save className="w-4 h-4 mr-2" />
               保存
+            </Button>
+            <Button onClick={() => setShowImportDialog(true)} variant="outline" size="sm">
+              <Upload className="w-4 h-4 mr-2" />
+              导入HTML
             </Button>
             <Button onClick={handleExport} variant="outline" size="sm">
               <Download className="w-4 h-4 mr-2" />
