@@ -113,7 +113,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "金融服务平台",
     currentPage: "/profile/personal-info",
     userName: "张小明",
-    userLocation: "北京市朝阳区",
+    userLocation: "北京市���阳区",
     timestamp: "2024-01-20 10:25:16",
     progress: 85,
     progressText: "85%",
@@ -240,6 +240,7 @@ const getSubmissionTypeName = (type: string) => {
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [hideEmptyData, setHideEmptyData] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
   // 过滤数据逻辑
