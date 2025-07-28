@@ -136,6 +136,17 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
             {element.content || '按��'}
           </button>
         );
+      case 'input':
+        return (
+          <input
+            type="text"
+            placeholder={element.placeholder || '请输入内容'}
+            value={element.value || ''}
+            style={style}
+            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            readOnly
+          />
+        );
       case 'image':
         return (
           <img 
@@ -820,7 +831,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替���而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元���`);
         }
       } else {
         // 外部HTML，添加到现有内容
@@ -1002,7 +1013,7 @@ export function WebEditor() {
 
   const handleSavePage = () => {
     if (!pageForm.name.trim() || !pageForm.route.trim()) {
-      alert('请填写页面名��和路由路径');
+      alert('请填写页面名��和路由���径');
       return;
     }
 
@@ -1360,14 +1371,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 选择��本颜色 */
+/* 选择�����颜色 */
 ::selection {
   background-color: #2196f3;
   color: white;
 }`,
         "js": `// 页面加载动���
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('个人作品集网站加载完成');
+  console.log('个人��品集网站加载完成');
 
   // 添加平滑滚动到CTA按钮
   const ctaButton = document.querySelector('.cta-button');
