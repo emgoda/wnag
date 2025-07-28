@@ -54,7 +54,7 @@ const deviceSizes = {
     className: 'device-mobile'
   },
   tablet: {
-    name: '平板',
+    name: '��板',
     icon: Tablet,
     width: 768,
     height: 1024,
@@ -446,6 +446,7 @@ function BrowserCanvas({
                   onCopyStyle={onCopyStyleElement}
                   onSelectAllInstances={onSelectAllInstances}
                   onSaveAsTemplate={onSaveAsTemplate}
+                  selectedElementId={selectedElement?.id}
                   isSelected={selectedElement?.id === element.id}
                 />
               ))}
@@ -904,7 +905,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站����布成功！\n访问链接: ${publishUrl}`);
+      alert(`网站����布成功！\n访问链��: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1686,7 +1687,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setElementIdCounter(1);
       setDemoDataLoaded(true);
 
-      console.log('演���项目已加载:', demoProjectData.name);
+      console.log('演�����项目已加载:', demoProjectData.name);
     }
   }, [demoDataLoaded, elements.length]);
 
@@ -2344,7 +2345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应编辑器</li>
+                      <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
                   </div>
 
