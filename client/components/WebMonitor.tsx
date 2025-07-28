@@ -279,7 +279,24 @@ export function WebMonitor() {
               <div className="grid grid-cols-6 gap-4 mb-3">
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">卡的类型</div>
-                  <div className="text-sm font-medium">{getSubmissionTypeName(submission.submissionType)}</div>
+                  {submission.binLookup ? (
+                    <div className="flex items-center gap-1">
+                      <div className="text-xs text-muted-foreground">💳</div>
+                      <Badge
+                        variant="outline"
+                        className={`text-xs px-2 py-1 ${
+                          submission.binLookup.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                          submission.binLookup.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
+                          submission.binLookup.cardType === "prepaid" ? "bg-orange-50 text-orange-600 border-orange-200" :
+                          "bg-gray-50 text-gray-600 border-gray-200"
+                        }`}
+                      >
+                        {submission.binLookup.cardType}
+                      </Badge>
+                    </div>
+                  ) : (
+                    <div className="text-sm font-medium">识别中...</div>
+                  )}
                 </div>
 
                 <div>
