@@ -44,7 +44,7 @@ const componentLibrary = [
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
 
-// 设备尺寸配置
+// 设备���寸配置
 const deviceSizes = {
   mobile: {
     name: '手机',
@@ -147,53 +147,41 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
     }),
   }));
 
-  const [contextMenu, setContextMenu] = useState({ isOpen: false, x: 0, y: 0 });
+  const [showActionsMenu, setShowActionsMenu] = useState(false);
 
   const handleClick = (e) => {
     e.stopPropagation();
     onSelect(element);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
   };
 
-  const handleRightClick = (e) => {
-    e.preventDefault();
+  const handleToggleActionsMenu = (e) => {
     e.stopPropagation();
-    onSelect(element);
-    setContextMenu({
-      isOpen: true,
-      x: e.clientX,
-      y: e.clientY
-    });
+    setShowActionsMenu(!showActionsMenu);
   };
 
-  const handleDelete = (e) => {
-    e.stopPropagation();
+  const handleDelete = () => {
     onDelete(element.id);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
+    setShowActionsMenu(false);
   };
 
   const handleDuplicate = () => {
     onDuplicate(element);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
+    setShowActionsMenu(false);
   };
 
   const handleCopyStyle = () => {
     onCopyStyle(element);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
+    setShowActionsMenu(false);
   };
 
   const handleSelectAllInstances = () => {
     onSelectAllInstances(element.type);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
+    setShowActionsMenu(false);
   };
 
   const handleSaveAsTemplate = () => {
     onSaveAsTemplate(element);
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
-  };
-
-  const closeContextMenu = () => {
-    setContextMenu({ isOpen: false, x: 0, y: 0 });
+    setShowActionsMenu(false);
   };
 
   const renderElement = () => {
@@ -845,7 +833,7 @@ export function WebEditor() {
       // 模拟发布过程
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 保存到����地存��（实际应用中会发送到后端）
+      // 保存到����地存储（实际应用中会发送到后端）
       const newSite = {
         id: siteId,
         name: siteName,
@@ -1286,7 +1274,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内���，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1305,7 +1293,7 @@ export function WebEditor() {
     if (!demoDataLoaded && elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
-        "name": "个人作品��网站",
+        "name": "个人作品集网站",
         "elements": [
           {
             "id": "demo_1",
@@ -1623,7 +1611,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片动��
+  // 技能卡片动画
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -1877,7 +1865,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <button
                     onClick={() => {
                       // 加���个人作品集模板
-                      alert('正在加载个人作品集模板...');
+                      alert('��在加载个人作品集模板...');
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
@@ -2130,7 +2118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     已发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
-                    <p className="text-xs text-gray-500 text-center py-4">��无发布的网站</p>
+                    <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
                   ) : (
                     <div className="space-y-2">
                       {publishedSites.slice(-3).map((site) => (
@@ -2244,7 +2232,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页使用 /</li>
-                    <li>• 子��面使用 /page-name 格式</li>
+                    <li>• 子页面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
                     <li>• 路径将用于生成网站导航</li>
                   </ul>
