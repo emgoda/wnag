@@ -1137,6 +1137,58 @@ export function WebEditor() {
           if (element.width) elementData.style.width = element.width + 'px';
           if (element.height) elementData.style.height = element.height + 'px';
           break;
+        case 'input':
+        case 'textarea':
+        case 'select':
+          elementData.type = 'input';
+          elementData.inputType = element.type || 'text';
+          elementData.placeholder = element.placeholder || '';
+          elementData.value = element.value || '';
+
+          // 特殊输入类型处理
+          if (tagName === 'textarea') {
+            elementData.inputType = 'textarea';
+            elementData.content = element.value || element.textContent || '';
+          } else if (tagName === 'select') {
+            elementData.inputType = 'select';
+            elementData.options = Array.from(element.options).map(opt => ({
+              value: opt.value,
+              text: opt.text,
+              selected: opt.selected
+            }));
+          }
+          break;
+        case 'form':
+          elementData.type = 'container';
+          elementData.attributes.isForm = true;
+          elementData.attributes.method = element.method || 'GET';
+          elementData.attributes.action = element.action || '';
+          elementData.content = '表单容器';
+          break;
+        case 'canvas':
+          elementData.type = 'container';
+          elementData.attributes.isCanvas = true;
+          elementData.content = 'Canvas画布';
+          if (element.width) elementData.style.width = element.width + 'px';
+          if (element.height) elementData.style.height = element.height + 'px';
+          break;
+        case 'video':
+        case 'audio':
+          elementData.type = 'container';
+          elementData.attributes.isMedia = true;
+          elementData.attributes.mediaType = tagName;
+          elementData.attributes.src = element.src || '';
+          elementData.attributes.controls = element.hasAttribute('controls');
+          elementData.content = `${tagName === 'video' ? '视频' : '音频'}播放器`;
+          break;
+        case 'iframe':
+          elementData.type = 'container';
+          elementData.attributes.isIframe = true;
+          elementData.attributes.src = element.src || '';
+          elementData.content = '嵌入式内容';
+          if (element.width) elementData.style.width = element.width + 'px';
+          if (element.height) elementData.style.height = element.height + 'px';
+          break;
         default:
           // 其他元素������换��文本
           elementData.type = 'text';
@@ -1188,7 +1240,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1235,7 +1287,7 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // 确认是否覆盖当前项目
+        // ��认是否覆盖当前项目
         const confirmOverwrite = elements.length === 0 ||
           window.confirm('导入项目将替换当前内容��是否继续？');
 
@@ -1274,7 +1326,7 @@ export function WebEditor() {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项目导入失败:', error);
+      console.error('项目导入失��:', error);
       alert('项目导���失败，请检查文件���式');
     }
   };
@@ -1713,7 +1765,7 @@ body {
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
 }
 
-/* 技能卡片悬停效果 */
+/* 技能卡片悬��效果 */
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -2215,7 +2267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
                 <TabsTrigger value="components" className="text-xs">组件</TabsTrigger>
-                <TabsTrigger value="properties" className="text-xs">属性</TabsTrigger>
+                <TabsTrigger value="properties" className="text-xs">属��</TabsTrigger>
                 <TabsTrigger value="code" className="text-xs">代码</TabsTrigger>
               </TabsList>
 
@@ -2383,7 +2435,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
                   <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
-                    <li>• 首页使��� /</li>
+                    <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
                     <li>• 路径将用于生成网站导航</li>
