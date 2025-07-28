@@ -58,7 +58,7 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "personal_info",
-    websiteName: "金融服务平��",
+    websiteName: "金融服务平台",
     currentPage: "/profile/personal-info",
     userName: "张小明",
     userLocation: "北京市朝阳区",
@@ -292,7 +292,7 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* 底部：处理进度和操作按钮 */}
+              {/* 底��：处理进度和操作按钮 */}
               <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-6">
                   {submission.progress ? (
@@ -313,14 +313,14 @@ export function WebMonitor() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="text-sm px-4">
-                    📊 监控
+                  <Button variant="outline" size="sm" className="text-xs px-3">
+                    监控
                   </Button>
-                  <Button variant="outline" size="sm" className="text-sm px-4">
-                    ⏸️ 暂停
+                  <Button variant="outline" size="sm" className="text-xs px-3">
+                    暂停
                   </Button>
-                  <Button variant="destructive" size="sm" className="text-sm px-4">
-                    🚫 阻止
+                  <Button variant="destructive" size="sm" className="text-xs px-3">
+                    阻止
                   </Button>
                 </div>
               </div>
