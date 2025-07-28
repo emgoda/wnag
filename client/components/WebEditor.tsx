@@ -431,7 +431,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网��名称');
+      alert('请输入网站名称');
       return;
     }
 
@@ -468,7 +468,7 @@ export function WebEditor() {
         submissionType: "personal_info",
         websiteName: siteName,
         currentPage: "/",
-        userName: "访客用户",
+        userName: "访客��户",
         userLocation: "未知",
         timestamp: new Date().toLocaleString(),
         riskLevel: "low",
@@ -481,7 +481,7 @@ export function WebEditor() {
       };
 
       // 这里可以发送到监控系统
-      console.log('网站已��布到监控系统:', monitoringData);
+      console.log('网站已发布到监控系统:', monitoringData);
 
       alert(`网站发布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
@@ -616,15 +616,115 @@ export function WebEditor() {
 
   const handleFileImport = (event) => {
     const file = event.target.files[0];
-    if (file && file.type === 'text/html') {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImportHtml(e.target.result);
-      };
-      reader.readAsText(file);
-    } else {
-      alert('请选择HTML文件');
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target.result;
+
+      if (importMode === 'project') {
+        // 尝试解析为项目文件 (JSON)
+        try {
+          const projectData = JSON.parse(content);
+          handleImportProject(projectData);
+        } catch (error) {
+          alert('项目文件格式错误，请选择有效的项目文件');
+        }
+      } else {
+        // HTML导入
+        if (file.type === 'text/html' || file.name.endsWith('.html') || file.name.endsWith('.htm')) {
+          setImportHtml(content);
+        } else {
+          alert('请选择HTML文件');
+        }
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  // 导入完整项目
+  const handleImportProject = (projectData) => {
+    try {
+      if (projectData.elements && Array.isArray(projectData.elements)) {
+        // 确认是否覆盖当前项目
+        const confirmOverwrite = elements.length === 0 ||
+          window.confirm('导入项目将替换当前内容，是否继续？');
+
+        if (confirmOverwrite) {
+          setElements(projectData.elements);
+          setCss(projectData.css || '');
+          setJs(projectData.js || '');
+
+          // 更新ID计数器
+          const maxId = Math.max(
+            ...projectData.elements.map(el => {
+              const match = el.id.match(/\d+$/);
+              return match ? parseInt(match[0]) : 0;
+            }),
+            elementIdCounter
+          );
+          setElementIdCounter(maxId + 1);
+
+          setShowImportDialog(false);
+          alert('项目导入成功！');
+        }
+      } else {
+        alert('项目文件格式不正确');
+      }
+    } catch (error) {
+      console.error('项目导入失败:', error);
+      alert('项目导入失败，请检查文件格式');
     }
+  };
+
+  // 从已发布网站导入
+  const handleImportFromPublished = (siteId) => {
+    const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
+    const site = sites.find(s => s.id === siteId);
+
+    if (site) {
+      const confirmImport = elements.length === 0 ||
+        window.confirm('导入网站将替换当前内容，是否继续？');
+
+      if (confirmImport) {
+        // 解析HTML重新构建项目
+        try {
+          const parsedElements = parseHTMLToElements(site.html);
+          setElements(parsedElements);
+          setShowImportDialog(false);
+          alert(`成功导入网站：${site.name}`);
+        } catch (error) {
+          console.error('网站导入失败:', error);
+          alert('网站导入失败，请重试');
+        }
+      }
+    }
+  };
+
+  // 导出完整项目
+  const handleExportProject = () => {
+    const projectData = {
+      version: '1.0',
+      name: siteName || '未命名项目',
+      elements,
+      css,
+      js,
+      timestamp: new Date().toISOString(),
+      metadata: {
+        elementsCount: elements.length,
+        createdWith: 'WebEditor v1.0'
+      }
+    };
+
+    const blob = new Blob([JSON.stringify(projectData, null, 2)], {
+      type: 'application/json'
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${siteName || 'project'}.webproject`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   // 加载已发布的网站
@@ -813,7 +913,7 @@ export function WebEditor() {
           <div className="w-80 bg-white border-l">
             <Tabs defaultValue="properties" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="properties">属性</TabsTrigger>
+                <TabsTrigger value="properties">���性</TabsTrigger>
                 <TabsTrigger value="code">代码</TabsTrigger>
               </TabsList>
               <TabsContent value="properties" className="p-4">
