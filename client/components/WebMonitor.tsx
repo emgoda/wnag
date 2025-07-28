@@ -172,8 +172,10 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const onlineCount = submissionData.filter(s => s.status === "processing").length;
-  const todaySubmissions = submissionData.length;
+  const { submissions, isFieldTyping } = useRealtimeMonitor(submissionData);
+
+  const onlineCount = submissions.filter(s => s.status === "processing").length;
+  const todaySubmissions = submissions.length;
 
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
