@@ -25,7 +25,8 @@ import {
   Monitor,
   Tablet,
   Smartphone,
-  ArrowLeft
+  ArrowLeft,
+  Edit3
 } from 'lucide-react';
 
 // 定义拖拽项目类型
@@ -186,7 +187,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
   );
 }
 
-// 浏览器风格画布组件
+// 浏览器���格画布组件
 function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange, pages }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
@@ -1110,7 +1111,7 @@ export function WebEditor() {
               {
                 "id": "element_4",
                 "type": "text",
-                "content": "专注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "专注于创���现代化的Web应��程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1448,7 +1449,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       switch (el.type) {
         case 'text':
-          return `<div style="${styleStr}">${el.content || '文本内容'}</div>`;
+          return `<div style="${styleStr}">${el.content || '文��内容'}</div>`;
         case 'button':
           return `<button style="${styleStr}">${el.content || '按钮'}</button>`;
         case 'image':
@@ -1784,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          {/* 中间：浏览器风格画布 */}
+          {/* 中间：���览器风格画布 */}
           <div className="flex-1">
             <BrowserCanvas
               elements={elements}
