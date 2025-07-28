@@ -36,7 +36,7 @@ const ItemTypes = {
 
 // 组件库
 const componentLibrary = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
+  { id: 'text', type: 'text', label: '���本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
@@ -513,7 +513,7 @@ export function WebEditor() {
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true },
-    { id: 'about', name: '关于我们', route: '/about', isActive: false },
+    { id: 'about', name: '关���我们', route: '/about', isActive: false },
     { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
   ]);
   const [showPageDialog, setShowPageDialog] = useState(false);
@@ -893,7 +893,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导���失败，请检查文件格式');
+      alert('项目导���失败，请检查文件��式');
     }
   };
 
@@ -1104,7 +1104,7 @@ export function WebEditor() {
               {
                 "id": "element_4",
                 "type": "text",
-                "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+                "content": "专注于创���现代化的Web应用程序，拥有丰富的前端和后端开发经验",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#e0e0e0",
@@ -1165,7 +1165,7 @@ export function WebEditor() {
               {
                 "id": "element_8",
                 "type": "text",
-                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈����高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+                "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈��建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
                 "style": {
                   "fontSize": "1.1em",
                   "color": "#666",
@@ -1658,30 +1658,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div className="flex items-center gap-1">
                           {page.isActive && (
                             <span className="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded">
-                              当前
+                              ���前
                             </span>
-                          )}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleEditPage(page);
-                            }}
-                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-200 rounded transition-all"
-                            title="编辑页面"
-                          >
-                            <Settings className="w-3 h-3 text-gray-500" />
-                          </button>
-                          {pages.length > 1 && (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleDeletePage(page.id);
-                              }}
-                              className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-all"
-                              title="删除页面"
-                            >
-                              <Trash2 className="w-3 h-3 text-red-500" />
-                            </button>
                           )}
                         </div>
                       </div>
