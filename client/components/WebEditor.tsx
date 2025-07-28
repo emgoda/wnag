@@ -690,7 +690,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
+          placeholder="// 在这里编���JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -913,6 +913,31 @@ export function WebEditor() {
     }));
   };
 
+  // URL导入功能
+  const handleImportFromUrl = async () => {
+    if (!importUrl.trim()) {
+      alert('请输入有效的URL');
+      return;
+    }
+
+    try {
+      // 由于跨域限制，我们使用代理服务或提示用户手动操作
+      const confirmManual = window.confirm(
+        `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
+      );
+
+      if (confirmManual) {
+        window.open(importUrl, '_blank');
+        // 清空URL输入框，准备接收用户粘贴的HTML
+        setImportUrl('');
+        alert('请从新打开的页面复制HTML源码，然后粘贴到下方的文本框中');
+      }
+    } catch (error) {
+      console.error('URL导入失败:', error);
+      alert('URL导入失败，请检查网址是否正确');
+    }
+  };
+
   const handleSave = () => {
     const projectData = {
       elements,
@@ -992,7 +1017,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站����布成功！\n访问链��: ${publishUrl}`);
+      alert(`网站������布成功！\n访问链��: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1261,7 +1286,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出��编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素���div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1344,7 +1369,7 @@ export function WebEditor() {
           alert('项��导入成功！');
         }
       } else {
-        alert('项目文件格式不正��');
+        alert('项目文件格式不正确');
       }
     } catch (error) {
       console.error('项目导入失��:', error);
@@ -1967,7 +1992,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <h2 className="text-lg font-semibold">预览模式</h2>
           <Button onClick={handlePreview} variant="outline">
             <Code className="w-4 h-4 mr-2" />
-            ��回编��
+            ��回编辑
           </Button>
         </div>
         <div className="flex-1 bg-gray-100 p-4">
@@ -2340,7 +2365,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="border-t pt-4">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
-                    ��发布网站
+                    已发布网站
                   </h3>
                   {publishedSites.length === 0 ? (
                     <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
@@ -2454,7 +2479,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
-                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设���说明：</h4>
+                  <h4 className="text-sm font-medium text-blue-800 mb-1">路由设置说明：</h4>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
@@ -2536,7 +2561,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
-                      <li>• 内联样式会被保留���应用到元素</li>
+                      <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
                   </div>
@@ -2581,7 +2606,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置��������属性</li>
-                      <li>• 导入会替换当前项目的所有内容</li>
+                      <li>• 导入会替换当前项目的所有内��</li>
                     </ul>
                   </div>
 
@@ -2648,7 +2673,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布�����站，重新编辑和修改</li>
+                      <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
