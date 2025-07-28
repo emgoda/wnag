@@ -186,7 +186,7 @@ function CanvasElement({ element, onSelect, onDelete, isSelected }) {
 }
 
 // 浏览器风格画布组件
-function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName }) {
+function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onDeleteElement, deviceMode, siteName, onDeviceChange }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
     drop: (item, monitor) => {
@@ -682,7 +682,7 @@ export function WebEditor() {
       if (element.id) elementData.attributes.htmlId = element.id;
       if (element.title) elementData.attributes.title = element.title;
 
-      // 根据HTML标签类型转��为编辑器元素
+      // ��据HTML标签类型转��为编辑器元素
       switch (tagName) {
         case 'div':
         case 'section':
@@ -862,7 +862,7 @@ export function WebEditor() {
 
     if (site) {
       const confirmImport = elements.length === 0 ||
-        window.confirm('导入网站将替换当前内容，是否继��？');
+        window.confirm('导入网站将替换当前内容，是否继续？');
 
       if (confirmImport) {
         // 解析HTML重新构建项目
@@ -926,7 +926,7 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 直接加载演示项目数据
+    // ��接加载演示项目数据
     if (elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
@@ -1409,7 +1409,7 @@ document.addEventListener('DOMContentLoaded', function() {
               ) : (
                 <>
                   <Globe className="w-4 h-4 mr-2" />
-                  发布到后���
+                  ��布到后���
                 </>
               )}
             </Button>
