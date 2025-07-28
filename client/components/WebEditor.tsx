@@ -216,7 +216,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* ��览器窗口容器 */}
+      {/* 浏览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -423,7 +423,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
           
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="text-xs text-gray-600">背��色</label>
+              <label className="text-xs text-gray-600">背景色</label>
               <input
                 type="color"
                 value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -490,7 +490,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代��&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -558,7 +558,7 @@ export function WebEditor() {
     const deleteElementRecursively = (elements) => {
       return elements.reduce((acc, el) => {
         if (el.id === elementId) {
-          return acc; // 跳过要删除的���素
+          return acc; // 跳过要删除的元素
         }
         if (el.children) {
           return [...acc, {
@@ -818,7 +818,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，��� ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
@@ -1047,7 +1047,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存项目
+  // 加载已发布的��站和自动保存项目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -1710,7 +1710,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             ));
                           }}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          rows={3}
+                          rows={2}
                           placeholder="输入页面备注信息"
                         />
                       </div>
@@ -1980,7 +1980,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        ��择HTML文件
+                        选择HTML文件
                       </label>
                       <input
                         type="file"
@@ -2073,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {/* 已发布网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
-                    <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
+                    <h3 className="text-sm font-medium mb-3">选���要导入的已发布网��：</h3>
                     {publishedSites.length === 0 ? (
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
@@ -2122,7 +2122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
+                      <li>• 会解析网站HTML并重建为可��辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
