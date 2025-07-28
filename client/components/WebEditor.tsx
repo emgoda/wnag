@@ -921,7 +921,7 @@ export function WebEditor() {
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
 
-    // 使用新的网站项目管理系统
+    // 使用新的网站项目��理系统
     saveWebsiteProject();
     alert('项目已保���到本地存储');
   };
@@ -1166,6 +1166,13 @@ export function WebEditor() {
       } else {
         // 外部HTML，添加到现有内容
         const parsedElements = parseHTMLToElements(importHtml);
+        console.log('解析完成，获得元素:', parsedElements);
+
+        if (parsedElements.length === 0) {
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          return;
+        }
+
         setElements(prev => [...prev, ...parsedElements]);
         setShowImportDialog(false);
         setImportHtml('');
@@ -1723,7 +1730,7 @@ html {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
-  // 添��平滑滚动到CTA按钮
+  // 添�����滑滚动到CTA按钮
   const ctaButton = document.querySelector('.cta-button');
   if (ctaButton) {
     ctaButton.addEventListener('click', function() {
@@ -2164,7 +2171,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          {/* 中间���浏览器风格画布 */}
+          {/* 中间���浏览��风格画布 */}
           <div className="flex-1">
             <BrowserCanvas
               elements={elements}
@@ -2505,7 +2512,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     {publishedSites.length === 0 ? (
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                        <p>暂无已发布的网站</p>
+                        <p>暂无已发布的���站</p>
                         <p className="text-xs mt-1">先发布一些网站后再使用此功能</p>
                       </div>
                     ) : (
