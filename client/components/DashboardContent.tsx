@@ -33,30 +33,40 @@ const sampleData: DataRow[] = [
 
 export function DashboardContent() {
   return (
-    <div className="flex-1 bg-background">
+    <div className="flex-1 bg-gradient-to-br from-background to-muted/30">
       {/* Header */}
-      <div className="border-b border-border bg-white px-6 py-4">
+      <div className="border-b border-border bg-white/80 backdrop-blur-sm px-6 py-5 sticky top-0 z-40">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-lg font-medium">控制面板</h1>
+          <div className="flex items-center gap-6">
+            <div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                控制面板
+              </h1>
+              <p className="text-sm text-muted-foreground mt-1">欢迎回来，管理您的系统</p>
+            </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">状态:</span>
-              <Badge variant="secondary" className="bg-success/10 text-success border-success/20">
-                运行正常
+              <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+              <Badge variant="secondary" className="bg-success/10 text-success border-success/20 shadow-sm">
+                <span className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 bg-success rounded-full"></div>
+                  运行正常
+                </span>
               </Badge>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <div className="relative group">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-success transition-colors" />
               <Input
                 placeholder="搜索任务..."
-                className="pl-9 w-64"
+                className="pl-9 w-64 bg-white/70 border-border/50 focus:bg-white focus:border-success/50 transition-all duration-200"
               />
             </div>
-            <Button size="sm" className="bg-success hover:bg-success/90">
-              新建任务
+            <Button size="sm" className="bg-gradient-to-r from-success to-success/90 hover:from-success/90 hover:to-success shadow-lg shadow-success/25 transition-all duration-200 hover:scale-105">
+              <span className="flex items-center gap-2">
+                ✨ 新建任务
+              </span>
             </Button>
           </div>
         </div>
