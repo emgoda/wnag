@@ -216,7 +216,7 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
 
   return (
     <div className="flex-1 bg-gray-100 p-6">
-      {/* 浏览器窗口容器 */}
+      {/* ��览器窗口容器 */}
       <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden max-w-full">
         {/* 浏览器顶部栏 */}
         <div className="bg-gray-50 border-b border-gray-200 p-3">
@@ -423,7 +423,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
           
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="text-xs text-gray-600">背景色</label>
+              <label className="text-xs text-gray-600">背��色</label>
               <input
                 type="color"
                 value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -490,7 +490,7 @@ function CodeEditor({ css, js, onCssChange, onJsChange }) {
           value={js}
           onChange={(e) => onJsChange(e.target.value)}
           className="w-full h-[400px] p-3 border rounded-md font-mono text-sm resize-none"
-          placeholder="// 在这里编写JavaScript代码&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
+          placeholder="// 在这里编写JavaScript代��&#10;document.addEventListener('DOMContentLoaded', function() {&#10;  console.log('���面加载完成');&#10;});"
         />
       </TabsContent>
     </Tabs>
@@ -558,7 +558,7 @@ export function WebEditor() {
     const deleteElementRecursively = (elements) => {
       return elements.reduce((acc, el) => {
         if (el.id === elementId) {
-          return acc; // 跳过要删除的元素
+          return acc; // 跳过要删除的���素
         }
         if (el.children) {
           return [...acc, {
@@ -818,7 +818,7 @@ export function WebEditor() {
           setElements(parsedElements); // 替换而不是添加
           setShowImportDialog(false);
           setImportHtml('');
-          alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
+          alert(`成功导入系统网站，��� ${parsedElements.length} 个元素`);
         }
       } else {
         // 外部HTML，添加到现有内容
@@ -1667,6 +1667,86 @@ document.addEventListener('DOMContentLoaded', function() {
                   ))}
                 </div>
               </div>
+
+              {/* 页面编辑表单 */}
+              <div className="mt-6 pt-4 border-t border-gray-200">
+                {(() => {
+                  const currentPage = pages.find(p => p.isActive);
+                  return currentPage && (
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wide">页面设置</h4>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-red-600">
+                          * 页面ID
+                        </label>
+                        <input
+                          type="text"
+                          value={currentPage.route}
+                          onChange={(e) => {
+                            const newRoute = e.target.value;
+                            setPages(prev => prev.map(p =>
+                              p.id === currentPage.id ? { ...p, route: newRoute } : p
+                            ));
+                          }}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="输入页面路由"
+                        />
+                        {!currentPage.route && (
+                          <p className="text-xs text-red-500 mt-1">你尚未设置页面ID</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          页面备注
+                        </label>
+                        <textarea
+                          value={currentPage.description || ''}
+                          onChange={(e) => {
+                            const newDescription = e.target.value;
+                            setPages(prev => prev.map(p =>
+                              p.id === currentPage.id ? { ...p, description: newDescription } : p
+                            ));
+                          }}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          rows={3}
+                          placeholder="输入页面备注信息"
+                        />
+                      </div>
+
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => {
+                            // 这里可以添加首页设置逻辑
+                            alert('设为首页功能');
+                          }}
+                          className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50 transition-colors"
+                        >
+                          <div className="w-4 h-4 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
+                              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                          </div>
+                          设为首页
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            alert('页面设置已保存');
+                          }}
+                          className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+                        >
+                          保存更改
+                          <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
             </div>
 
             {/* AI生成功能 */}
@@ -1900,7 +1980,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        选择HTML文件
+                        ��择HTML文件
                       </label>
                       <input
                         type="file"
