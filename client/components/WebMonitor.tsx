@@ -228,7 +228,7 @@ export function WebMonitor() {
           {submissionData.map((submission, index) => (
             <div key={submission.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-3">
               {/* 顶部：编号、前台页面、正在payment页面 */}
-              <div className="flex items-center justify-between mb-2 pb-2 border-b border-gray-100">
+              <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
                     <span className="text-sm text-muted-foreground">编号:</span>
