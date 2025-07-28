@@ -18,7 +18,9 @@ import {
   Copy,
   Settings,
   Globe,
-  Link
+  Link,
+  Upload,
+  FileText
 } from 'lucide-react';
 
 // 定义拖拽项目类型
