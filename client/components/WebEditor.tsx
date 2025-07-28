@@ -173,7 +173,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
   const handleClick = (e) => {
     e.stopPropagation();
     onSelect(element);
-    // 如果点击的不是菜单���钮，关闭菜单
+    // 如果点击的不是菜单按钮，关闭菜单
     if (!e.target.closest('[data-menu-button]')) {
       setShowActionsMenu(false);
     }
@@ -302,6 +302,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
 
           {/* 右上角操作按钮 */}
           <button
+            data-menu-button
             onClick={handleToggleActionsMenu}
             className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors z-10"
             title="操作菜单"
@@ -784,7 +785,7 @@ export function WebEditor() {
   // 复制样式
   const handleCopyStyleElement = useCallback((element) => {
     setCopiedStyle(element.style);
-    alert('样式已复制！选择其他元素后可以粘贴样式');
+    alert('���式已复制！选择其他元素后可以粘贴样式');
   }, []);
 
   // 选择所有相同类型的实例
@@ -1045,7 +1046,7 @@ export function WebEditor() {
 
   const handleImportHTML = () => {
     if (!importHtml.trim()) {
-      alert('请输入HTML代码');
+      alert('请输入HTML���码');
       return;
     }
 
@@ -1304,7 +1305,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容���加载��页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -2312,7 +2313,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
-                        选��HTML文���
+                        选择HTML文���
                       </label>
                       <input
                         type="file"
@@ -2385,7 +2386,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
                       <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
-                      <li>• 会完整还原项目的所有设置和�����属性</li>
+                      <li>• 会完整还原项目的所有设置��������属性</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
