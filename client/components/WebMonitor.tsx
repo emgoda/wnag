@@ -110,7 +110,7 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "personal_info",
-    websiteName: "金融服务平台",
+    websiteName: "金���服务平台",
     currentPage: "/profile/personal-info",
     userName: "张小明",
     userLocation: "北京市���阳区",
@@ -353,6 +353,23 @@ export function WebMonitor() {
                 onCheckedChange={setHideEmptyData}
               />
             </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefreshPage}
+              disabled={isRefreshing}
+              className="text-xs px-3"
+            >
+              {isRefreshing ? (
+                <>
+                  <span className="inline-block w-3 h-3 border border-gray-400 border-t-blue-500 rounded-full animate-spin mr-1"></span>
+                  刷新中...
+                </>
+              ) : (
+                <>🔄 刷新页面</>
+              )}
+            </Button>
 
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               ⚠️ 风险预警
