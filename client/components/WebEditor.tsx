@@ -920,6 +920,9 @@ export function WebEditor() {
       timestamp: new Date().toISOString()
     };
     localStorage.setItem('webeditor_project', JSON.stringify(projectData));
+
+    // 使用新的网站项目管理系统
+    saveWebsiteProject();
     alert('项目已保���到本地存储');
   };
 
@@ -1254,7 +1257,7 @@ export function WebEditor() {
         window.confirm('导入网站将替换当前内容��是否继续？');
 
       if (confirmImport) {
-        // 解析HTML重新构建项���
+        // 解析HTML重新构��项���
         try {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
@@ -1395,7 +1398,7 @@ export function WebEditor() {
 
   const handleDeletePage = (pageId) => {
     const page = pages.find(p => p.id === pageId);
-    if (page && window.confirm(`确定要删除页面 "${page.name}" 吗？`)) {
+    if (page && window.confirm(`确定要删除���面 "${page.name}" 吗？`)) {
       setPages(prev => prev.filter(p => p.id !== pageId));
     }
   };
@@ -1710,7 +1713,7 @@ html {
   background-color: #2196f3;
   color: white;
 }`,
-        "js": `// 页面加载动���
+        "js": `// ���面加载动���
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
@@ -2453,7 +2456,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 项���导入 */}
+                {/* 项����导入 */}
                 <TabsContent value="project" className="space-y-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
