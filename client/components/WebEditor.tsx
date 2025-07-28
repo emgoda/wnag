@@ -159,7 +159,7 @@ function ElementActionsMenu({ isOpen, onToggle, onDuplicate, onDelete, onCopySty
 }
 
 // 画布元素
-function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, onSelectAllInstances, onSaveAsTemplate, isSelected, selectedElementId }) {
+function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, onSelectAllInstances, onSaveAsTemplate, isSelected, selectedElementId, isInstanceHighlighted }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.ELEMENT,
     item: { id: element.id },
@@ -879,7 +879,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名���');
+      alert('请输入网站名����');
       return;
     }
 
@@ -1211,7 +1211,7 @@ export function WebEditor() {
     }
   };
 
-  // 导出完����项目
+  // 导出完���项目
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
@@ -1257,7 +1257,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存的内��，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1303,7 +1303,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路��路径已存在，请使用其��路径');
+      alert('该路由路径已存在，请使用其��路径');
       return;
     }
 
@@ -1343,7 +1343,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载已发布的网站和自动保存项目
+  // 加载已发布的网站和自动保存��目
   useEffect(() => {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
@@ -2234,7 +2234,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
-        {/* 页面配置对话框 */}
+        {/* 页面���置对话框 */}
         {showPageDialog && (
           <Dialog open={showPageDialog} onOpenChange={setShowPageDialog}>
             <DialogContent className="max-w-md">
@@ -2371,7 +2371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解���常见HTML��签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提��到���应编辑器</li>
+                      <li>• CSS和JS代码会被提��到对应编辑器</li>
                     </ul>
                   </div>
 
@@ -2480,7 +2480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
 
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
-                    <h4 className="text-sm font-medium text-purple-800 mb-1">���发布网站导入说明：</h4>
+                    <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
