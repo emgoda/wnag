@@ -167,7 +167,7 @@ export function WebMonitor() {
             <h1 className="text-lg font-medium text-foreground">网页实时监控</h1>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
-                🔴 LIVE - {onlineCount} 在线处理
+                ���� LIVE - {onlineCount} 在线处理
               </Badge>
               <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
                 今日提交: {todaySubmissions}
@@ -317,33 +317,65 @@ export function WebMonitor() {
                 </div>
               </div>
 
-              {/* Extended info for processing submissions */}
-              {submission.status === "processing" && (
-                <div className="mt-3 pt-3 border-t border-border/30">
-                  <div className="grid grid-cols-6 gap-4 text-xs">
-                    <div>
-                      <span className="text-muted-foreground">提交时间: </span>
-                      <span className="text-foreground">{submission.timestamp}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">用户位置: </span>
-                      <span className="text-foreground">{submission.userLocation}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">IP地址: </span>
-                      <span className="text-foreground">{submission.ipAddress}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">会话ID: </span>
-                      <span className="text-foreground">{submission.sessionId}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">字段数: </span>
-                      <span className="text-foreground">{submission.fieldsCount}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">状态: </span>
-                      <span className="text-blue-600">实时监控中</span>
+              {/* Extended info - shown when expanded */}
+              {expandedItems.has(submission.id) && (
+                <div className="mt-3 pt-3 border-t border-border/30 animate-in slide-in-from-top-1 duration-200">
+                  <div className="bg-muted/20 rounded-lg p-4">
+                    <h4 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                      👤 详细用户信息
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">提交时间:</div>
+                        <div className="text-foreground font-medium">{submission.timestamp}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">用户位置:</div>
+                        <div className="text-foreground font-medium">{submission.userLocation}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">IP地址:</div>
+                        <div className="text-foreground font-medium">{submission.ipAddress}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">会话ID:</div>
+                        <div className="text-foreground font-medium">{submission.sessionId || "N/A"}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">字段数:</div>
+                        <div className="text-foreground font-medium">{submission.fieldsCount}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">数据大小:</div>
+                        <div className="text-foreground font-medium">{submission.dataSize}</div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">风险等级:</div>
+                        <div className={`font-medium ${
+                          submission.riskLevel === "high" ? "text-red-600" :
+                          submission.riskLevel === "medium" ? "text-yellow-600" :
+                          "text-green-600"
+                        }`}>
+                          {submission.riskLevel === "high" ? "高风险" :
+                           submission.riskLevel === "medium" ? "中风险" : "低风险"}
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-muted-foreground">状态:</div>
+                        <div className={`font-medium ${
+                          submission.status === "processing" ? "text-blue-600" :
+                          submission.status === "verified" ? "text-green-600" :
+                          submission.status === "pending_review" ? "text-yellow-600" :
+                          submission.status === "rejected" ? "text-red-600" :
+                          "text-orange-600"
+                        }`}>
+                          {submission.status === "processing" ? "实时监控中" :
+                           submission.status === "verified" ? "已验证通过" :
+                           submission.status === "pending_review" ? "等待审核" :
+                           submission.status === "rejected" ? "已被拒绝" :
+                           "等待处理"}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -397,7 +429,7 @@ export function WebMonitor() {
               <div className="text-sm font-medium text-foreground">监控操作</div>
               <div className="flex items-center gap-2 flex-wrap">
                 <Button variant="outline" size="sm">
-                  🔄 刷��监控
+                  🔄 刷新监控
                 </Button>
                 <Button variant="outline" size="sm">
                   📊 风险分析
