@@ -127,7 +127,7 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在��银行系统",
+    websiteName: "在线银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
     userLocation: "广州市天河区",
@@ -245,7 +245,7 @@ export function WebMonitor() {
           {submissions.map((submission, index) => (
             <div key={submission.id} className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-2 ${
               isSubmitting(submission.id)
-                ? 'animate-pulse bg-yellow-50 border-yellow-400 shadow-lg ring-4 ring-yellow-200'
+                ? 'flash-submit'
                 : ''
             }`}>
               {/* 顶部：编号、前台页面、正在payment页面 */}
