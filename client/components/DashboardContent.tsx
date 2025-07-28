@@ -108,12 +108,12 @@ export function DashboardContent() {
                       #{row.id}
                     </td>
                     <td className="px-6 py-4">
-                      <Badge 
-                        variant={row.status === "active" ? "default" : "secondary"}
+                      <Badge
+                        variant="outline"
                         className={
-                          row.status === "active" 
-                            ? "bg-success/10 text-success border-success/20" 
-                            : "bg-orange-50 text-orange-600 border-orange-200"
+                          row.status === "active"
+                            ? "bg-green-50 text-green-600 border-green-200 hover:bg-green-50"
+                            : "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-50"
                         }
                       >
                         {row.statusText}
