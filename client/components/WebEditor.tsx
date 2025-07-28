@@ -604,13 +604,53 @@ export function WebEditor() {
 
         {/* 主要编辑区域 */}
         <div className="flex-1 flex">
-          {/* 左侧：组件库 */}
-          <div className="w-64 bg-white border-r p-4">
+          {/* 左侧：组件库和网站管理 */}
+          <div className="w-64 bg-white border-r p-4 overflow-y-auto">
             <h3 className="text-sm font-semibold mb-4">组件库</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 mb-6">
               {componentLibrary.map((component) => (
                 <DraggableComponent key={component.id} component={component} />
               ))}
+            </div>
+
+            {/* 已发布网站管理 */}
+            <div className="border-t pt-4">
+              <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <Globe className="w-4 h-4" />
+                已发布网站
+              </h3>
+              {publishedSites.length === 0 ? (
+                <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
+              ) : (
+                <div className="space-y-2">
+                  {publishedSites.slice(-5).map((site) => (
+                    <div key={site.id} className="p-2 border rounded text-xs">
+                      <div className="font-medium truncate">{site.name}</div>
+                      <div className="text-gray-500 mb-2">
+                        {new Date(site.createdAt).toLocaleDateString()}
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => window.open(site.url, '_blank')}
+                          className="flex-1 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-1"
+                        >
+                          <Link className="w-3 h-3" />
+                          访问
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(site.url);
+                            alert('链接已复制');
+                          }}
+                          className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        >
+                          <Copy className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
