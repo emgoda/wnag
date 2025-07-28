@@ -257,12 +257,19 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
         </div>
 
         {/* 浏览器内容区域 */}
-        <div className="bg-white" style={{ minHeight: '600px' }}>
+        <div
+          className="bg-white flex justify-center items-start"
+          style={{
+            minHeight: '600px',
+            padding: deviceMode !== 'desktop' ? '20px' : '0',
+            background: deviceMode !== 'desktop' ? '#f3f4f6' : 'white'
+          }}
+        >
           <div
             ref={drop}
             className={`transition-all duration-300 ${
               isOver ? 'bg-blue-50' : 'bg-white'
-            }`}
+            } ${deviceMode === 'mobile' ? 'rounded-xl border-4 border-gray-800' : ''}`}
             style={canvasStyle}
             onClick={() => onSelectElement(null)}
           >
@@ -278,9 +285,11 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
               ))}
               {elements.length === 0 && (
                 <div className="text-center text-gray-400 py-20">
-                  <Square size={48} className="mx-auto mb-4 opacity-50" />
+                  {deviceMode === 'mobile' && <Smartphone size={48} className="mx-auto mb-4 opacity-50" />}
+                  {deviceMode === 'tablet' && <Tablet size={48} className="mx-auto mb-4 opacity-50" />}
+                  {deviceMode === 'desktop' && <Monitor size={48} className="mx-auto mb-4 opacity-50" />}
                   <p>拖拽左侧组件到这里开始设计</p>
-                  <p className="text-sm mt-2">当前设备: {currentDevice.name} ({currentDevice.width}x{currentDevice.height})</p>
+                  <p className="text-sm mt-2">{currentDevice.name}视图 ({currentDevice.width}×{currentDevice.height})</p>
                 </div>
               )}
             </div>
@@ -777,7 +786,7 @@ export function WebEditor() {
 
       // 智能导入模式选择
       if (isSystemGenerated) {
-        // 检查是否替换当前内容
+        // 检查是否替换��前内容
         const confirmReplace = elements.length === 0 ||
           window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
@@ -861,7 +870,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('项目导入失败:', error);
-      alert('项目导入失败，请检查文件格式');
+      alert('项目导���失败，请检查文件格式');
     }
   };
 
