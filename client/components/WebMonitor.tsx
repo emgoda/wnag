@@ -370,8 +370,8 @@ export function WebMonitor() {
                         isFieldTyping(submission.id, 'cardNumber')
                           ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
                           : 'border-gray-300 bg-gray-50'
-                      } ${copiedField?.includes('cardNumber') ? 'ring-2 ring-blue-400 bg-blue-100' : ''}`}
-                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'cardNumber'), '卡号')}
+                      }`}
+                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'cardNumber'))}
                       title="点击复制卡号"
                     >
                       <span className="relative">
@@ -471,7 +471,7 @@ export function WebMonitor() {
         {/* Bottom Summary */}
         <div className="mt-6 pt-4 border-t border-border">
           <div className="text-xs text-muted-foreground">
-            ���监控 {submissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
+            共监控 {submissions.length} 个站点提交 • 今日新增 {todaySubmissions} 条 • 平均处理时长 3.2 分钟 • 验证通过率 82%
           </div>
         </div>
       </div>
