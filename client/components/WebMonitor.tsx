@@ -128,10 +128,10 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在线银行系统",
+    websiteName: "���线银行系统",
     currentPage: "/kyc/identity-check",
     userName: "王大强",
-    userLocation: "��州市天河区",
+    userLocation: "广州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
     dataSize: "1.2Mb",
@@ -179,7 +179,9 @@ const getSubmissionTypeName = (type: string) => {
 
 export function WebMonitor() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { submissions, isFieldTyping, getFieldValue } = useKeystrokeMonitor(submissionData);
+  const { toast } = useToast();
 
   const onlineCount = submissions.filter(s => s.status === "processing").length;
   const todaySubmissions = submissions.length;
@@ -279,7 +281,7 @@ export function WebMonitor() {
                   >
                     {submission.riskLevel === "high" ? "高风险" :
                      submission.riskLevel === "medium" ? "中风险" :
-                     "低��险"}
+                     "低风险"}
                   </Badge>
                   <div className="text-sm text-muted-foreground">{submission.statusText}</div>
                 </div>
