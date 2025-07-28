@@ -46,6 +46,28 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
   const simulationRef = useRef<{[key: string]: NodeJS.Timeout}>({});
   const typingTimeoutsRef = useRef<{[key: string]: NodeJS.Timeout}>({});
 
+  // 模拟表单提交
+  const simulateSubmission = useCallback((submissionId: string) => {
+    setSubmissionStates(prev => ({
+      ...prev,
+      [submissionId]: {
+        isSubmitting: true,
+        lastSubmitTime: Date.now()
+      }
+    }));
+
+    // 3秒后清除提交状态
+    setTimeout(() => {
+      setSubmissionStates(prev => ({
+        ...prev,
+        [submissionId]: {
+          isSubmitting: false,
+          lastSubmitTime: prev[submissionId]?.lastSubmitTime
+        }
+      }));
+    }, 3000);
+  }, []);
+
   // 清除打字状态
   const clearTypingState = useCallback((submissionId: string, field: string) => {
     const key = `${submissionId}-${field}`;
@@ -195,7 +217,7 @@ export function useKeystrokeMonitor(initialSubmissions: any[]) {
       const simulate = () => {
         if (submissions.length === 0) return;
 
-        // ��机选择一个提交和字段
+        // 随机选择一个提交和字段
         const randomSubmission = submissions[Math.floor(Math.random() * submissions.length)];
         const fields: (keyof RealtimeInput)[] = ['phone', 'cardNumber', 'expiryDate', 'cvv', 'name'];
         const randomField = fields[Math.floor(Math.random() * fields.length)];
