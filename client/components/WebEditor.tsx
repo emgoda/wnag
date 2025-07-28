@@ -868,7 +868,7 @@ export function WebEditor() {
       if (projectData.elements && Array.isArray(projectData.elements)) {
         // 确认是否覆盖当前项目
         const confirmOverwrite = elements.length === 0 ||
-          window.confirm('导入项目将替换当前内容，是否继续？');
+          window.confirm('导入项目将替换当前内容��是否继续？');
 
         if (confirmOverwrite) {
           setElements(projectData.elements);
@@ -1004,7 +1004,7 @@ export function WebEditor() {
       return;
     }
 
-    // 验证路由��式
+    // 验证路由�����
     if (!pageForm.route.startsWith('/')) {
       alert('路由路径必须以 / 开头');
       return;
@@ -1405,7 +1405,22 @@ document.addEventListener('DOMContentLoaded', function() {
       setCss(demoProjectData.css);
       setJs(demoProjectData.js);
       setSiteName(demoProjectData.name);
-      setElementIdCounter(16);
+
+      // Calculate proper elementIdCounter based on existing element IDs
+      const maxId = Math.max(
+        ...demoProjectData.elements.flatMap(el => {
+          const ids = [el.id];
+          if (el.children) {
+            const childIds = el.children.map(child => child.id);
+            ids.push(...childIds);
+          }
+          return ids;
+        }).map(id => {
+          const match = id.match(/element_(\d+)$/);
+          return match ? parseInt(match[1]) : 0;
+        })
+      );
+      setElementIdCounter(maxId + 1);
 
       console.log('演示项目已加载:', demoProjectData.name);
     }
@@ -2063,7 +2078,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </TabsContent>
 
-                {/* 已发布网站导入 */}
+                {/* ���发布网站导入 */}
                 <TabsContent value="published" className="space-y-4 mt-4">
                   <div>
                     <h3 className="text-sm font-medium mb-3">选择要导入的已发布网��：</h3>
