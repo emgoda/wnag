@@ -824,7 +824,7 @@ export function WebEditor() {
 
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名称');
+      alert('请输入网站名���');
       return;
     }
 
@@ -876,7 +876,7 @@ export function WebEditor() {
       // 这里可以发送到监控系统
       console.log('网站已发布到监控系统:', monitoringData);
 
-      alert(`网站发布成功！\n访问链接: ${publishUrl}`);
+      alert(`网站���布成功！\n访问链接: ${publishUrl}`);
       setSiteName('');
     } catch (error) {
       console.error('发布失败:', error);
@@ -1202,7 +1202,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1845,7 +1845,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div className="space-y-2">
                   <button
                     onClick={() => {
-                      // 加载个人作品集模板
+                      // 加���个人作品集模板
                       alert('正在加载个人作品集模板...');
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
@@ -2028,6 +2028,10 @@ document.addEventListener('DOMContentLoaded', function() {
               onSelectElement={handleSelectElement}
               selectedElement={selectedElement}
               onDeleteElement={handleDeleteElement}
+              onDuplicateElement={handleDuplicateElement}
+              onCopyStyleElement={handleCopyStyleElement}
+              onSelectAllInstances={handleSelectAllInstances}
+              onSaveAsTemplate={handleSaveAsTemplate}
               deviceMode={deviceMode}
               siteName={siteName}
               onDeviceChange={setDeviceMode}
