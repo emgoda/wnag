@@ -46,6 +46,12 @@ interface UserSubmission {
     expiryDate?: string;
     cvv?: string;
   };
+  submitCount?: number;
+  submitHistory?: {
+    timestamp: string;
+    status: string;
+    result: string;
+  }[];
 }
 
 const submissionData: UserSubmission[] = [
