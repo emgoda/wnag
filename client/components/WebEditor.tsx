@@ -949,7 +949,7 @@ export function WebEditor() {
 
     // 使用新的网站项目��理系统
     saveWebsiteProject();
-    alert('项目已保���到本地存储');
+    alert('项目已保����到本地存储');
   };
 
   const handleExport = () => {
@@ -994,7 +994,7 @@ export function WebEditor() {
 
       setPublishedSites(sites);
 
-      // 添加到后台监控系��
+      // 添加到后台监���系��
       const monitoringData = {
         id: siteId,
         status: "submitted",
@@ -1860,7 +1860,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 技能卡片动画
+  // 技能卡片���画
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2529,6 +2529,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 {/* HTML导入 */}
                 <TabsContent value="html" className="space-y-4 mt-4">
+                  {/* URL导入 */}
+                  <div className="bg-green-50 border border-green-200 rounded-md p-3">
+                    <label className="block text-sm font-medium mb-2 text-green-800">
+                      🌐 从URL导入网站（保留完整交互功能）
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="url"
+                        placeholder="https://de131b00778b4a3485b3090f3984e88f-b4541903cd084ece97a590cff.fly.dev/"
+                        value={importUrl}
+                        onChange={(e) => setImportUrl(e.target.value)}
+                        className="flex-1 px-3 py-2 border rounded-md text-sm"
+                      />
+                      <Button
+                        onClick={handleImportFromUrl}
+                        disabled={!importUrl.trim()}
+                        variant="outline"
+                        size="sm"
+                        className="whitespace-nowrap"
+                      >
+                        <Globe className="w-4 h-4 mr-1" />
+                        导入
+                      </Button>
+                    </div>
+                    <p className="text-xs text-green-700 mt-1">
+                      ✨ 推荐：直接输入网站URL，系统会自动指导您获取完整源码
+                    </p>
+                  </div>
+
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-2 bg-white text-gray-500">或</span>
+                    </div>
+                  </div>
+
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
                       <label className="block text-sm font-medium mb-2">
