@@ -364,9 +364,9 @@ export function WebMonitor() {
 
               {/* 展开的详细信息 */}
               {expandedItems.has(submission.id) && (
-                <div className="mt-3 pt-3 border-t border-gray-200 bg-gray-50 -mx-4 -mb-4 px-4 py-3 rounded-b-lg">
-                  <h4 className="text-sm font-medium text-foreground mb-2">详细信息</h4>
-                  <div className="grid grid-cols-4 gap-4 text-xs">
+                <div className="mt-2 pt-2 border-t border-gray-200 bg-gray-50 -mx-3 -mb-3 px-3 py-2 rounded-b-lg">
+                  <h4 className="text-sm font-medium text-foreground mb-1">详细信息</h4>
+                  <div className="grid grid-cols-4 gap-3 text-xs">
                     <div>
                       <span className="text-muted-foreground">提交时间: </span>
                       <span className="font-medium">{submission.timestamp}</span>
