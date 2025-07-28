@@ -367,11 +367,15 @@ export function WebMonitor() {
                       </span>
                     </div>
 
-                    <div className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-75 ${
-                      isFieldTyping(submission.id, 'name')
-                        ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
-                        : 'border-gray-300 bg-gray-50'
-                    }`}>
+                    <div
+                      className={`text-sm font-medium border rounded px-2 py-1 min-w-[80px] transition-all duration-75 cursor-pointer hover:bg-blue-50 ${
+                        isFieldTyping(submission.id, 'name')
+                          ? 'border-green-400 bg-green-50 shadow-md ring-2 ring-green-200 scale-[1.02]'
+                          : 'border-gray-300 bg-gray-50'
+                      } ${copiedField?.includes('name') ? 'ring-2 ring-blue-400 bg-blue-100' : ''}`}
+                      onClick={() => copyToClipboard(getFieldValue(submission.id, 'name'), '姓名')}
+                      title="点击复制姓名"
+                    >
                       <span className="relative">
                         {getFieldValue(submission.id, 'name')}
                         {isFieldTyping(submission.id, 'name') && (
