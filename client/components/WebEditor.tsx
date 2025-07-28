@@ -290,13 +290,19 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
         {/* 底部状态栏 */}
         <div className="bg-gray-50 border-t border-gray-200 px-4 py-2 text-xs text-gray-500 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span>元素数量: {elements.length}</span>
+            <span>元素: {elements.length}</span>
             <span>设备: {currentDevice.name}</span>
             <span>尺寸: {currentDevice.width} × {currentDevice.height}</span>
+            <span>缩放: {deviceMode === 'mobile' ? '75%' : deviceMode === 'tablet' ? '85%' : '100%'}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span>实时预览</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>实时预览</span>
+            </div>
+            {selectedElement && (
+              <span className="text-blue-600">已选择: {selectedElement.type}</span>
+            )}
           </div>
         </div>
       </div>
@@ -854,7 +860,7 @@ export function WebEditor() {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项��导入失败:', error);
+      console.error('项目导入失败:', error);
       alert('项目导入失败，请检查文件格式');
     }
   };
@@ -874,7 +880,7 @@ export function WebEditor() {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
           setShowImportDialog(false);
-          alert(`成功导入网站：${site.name}`);
+          alert(`成功��入网站：${site.name}`);
         } catch (error) {
           console.error('网站导入失败:', error);
           alert('网站导入失败，请重试');
@@ -1460,7 +1466,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 已发布网站
               </h3>
               {publishedSites.length === 0 ? (
-                <p className="text-xs text-gray-500 text-center py-4">暂无发布���网站</p>
+                <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
               ) : (
                 <div className="space-y-2">
                   {publishedSites.slice(-5).map((site) => (
