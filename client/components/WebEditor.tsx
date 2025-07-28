@@ -39,7 +39,7 @@ const ItemTypes = {
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '请��入文本', style: {} } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
-  { id: 'input', type: 'input', label: '输���框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
+  { id: 'input', type: 'input', label: '输入框', icon: Edit3, defaultProps: { placeholder: '请输入内容', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -290,7 +290,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
       {renderElement()}
       {isSelected && (
         <>
-          {/* 选择指示器 */}
+          {/* 选择指示�� */}
           <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
           <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
           <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -1063,7 +1063,7 @@ export function WebEditor() {
       setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
-    // 解析JavaScript
+    // 解���JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
@@ -1246,7 +1246,7 @@ export function WebEditor() {
 
     setElementIdCounter(idCounter);
 
-    // 保存原始HTML以便保留交互功能
+    // 保存原始HTML以便���留交互功能
     const originalHtmlMeta = {
       originalHtml: htmlString,
       parsedAt: new Date().toISOString(),
@@ -1288,7 +1288,7 @@ export function WebEditor() {
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
-          setElements(parsedElements); // 替����而不是添加
+          setElements(parsedElements); // 替���而不是添加
           setShowImportDialog(false);
           setImportHtml('');
           alert(`成功导入系统网站，共 ${parsedElements.length} 个元����`);
@@ -1409,7 +1409,7 @@ export function WebEditor() {
         window.confirm('导入网站将替换当前内容��是否继续？');
 
       if (confirmImport) {
-        // ��析HTML重新构��项���
+        // 解析HTML重新构��项���
         try {
           const parsedElements = parseHTMLToElements(site.html);
           setElements(parsedElements);
@@ -1545,7 +1545,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里��以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载��页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1599,7 +1599,7 @@ export function WebEditor() {
               {
                 "id": "demo_3",
                 "type": "text",
-                "content": "���栈开发工程师",
+                "content": "���栈���发工程师",
                 "style": {
                   "fontSize": "1.5em",
                   "color": "#64b5f6",
@@ -1865,7 +1865,7 @@ html {
   background-color: #2196f3;
   color: white;
 }`,
-        "js": `// ���面���载动���
+        "js": `// ���面加载动���
 document.addEventListener('DOMContentLoaded', function() {
   console.log('个人��品集网站加载完成');
 
@@ -2336,7 +2336,7 @@ document.addEventListener('DOMContentLoaded', function() {
             />
           </div>
 
-          {/* 右侧：组件库、属性编辑器和代码编辑器 */}
+          {/* ��侧：组件库、属性编辑器和代码编辑器 */}
           <div className="w-80 bg-white border-l flex flex-col">
             <Tabs defaultValue="components" className="h-full">
               <TabsList className="grid w-full grid-cols-3 m-2">
@@ -2512,7 +2512,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li>• 首页������ /</li>
                     <li>• 子页面使用 /page-name 格式</li>
                     <li>• 支持多层路径如 /products/detail</li>
-                    <li>• ���径将用于生成网站导航</li>
+                    <li>• 路径将用于生成网站导航</li>
                   </ul>
                 </div>
 
@@ -2581,9 +2581,151 @@ document.addEventListener('DOMContentLoaded', function() {
                         导入
                       </Button>
                     </div>
-                    <p className="text-xs text-green-700 mt-1">
-                      ✨ 推荐：直接输入网站URL，系统会自动指导您获取完整源码
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs text-green-700">
+                        ✨ 推荐：直接输入网站URL，系统会自动指导您获取完整源码
+                      </p>
+                      <Button
+                        onClick={() => {
+                          const bankHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of Cyprus - 账户异常处理中心</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f5f5f5; }
+        .header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 40px; height: 40px; background: #1e40af; border-radius: 8px; }
+        .bank-name { font-size: 1.25rem; font-weight: bold; color: #1e40af; }
+        .bank-subtitle { font-size: 0.875rem; color: #666; }
+        .security-center { color: #666; font-size: 0.875rem; }
+        .main-content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .title { text-align: center; font-size: 2rem; font-weight: bold; color: #333; margin-bottom: 1rem; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 2rem; }
+        .progress-bar { display: flex; justify-content: center; margin-bottom: 3rem; }
+        .progress-step { display: flex; align-items: center; }
+        .step-number { width: 32px; height: 32px; border-radius: 50%; background: #1e40af; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .step-text { margin-left: 0.5rem; margin-right: 2rem; }
+        .form-container { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .form-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; }
+        .form-description { color: #666; margin-bottom: 1.5rem; }
+        .input-group { margin-bottom: 1.5rem; }
+        .input-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .input-field { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        .submit-btn { width: 100%; background: #6b7280; color: white; padding: 0.75rem; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+        .submit-btn:hover { background: #4b5563; }
+        .sidebar { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .help-section { margin-bottom: 2rem; }
+        .help-title { font-weight: bold; margin-bottom: 1rem; }
+        .contact-info { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .security-tips { }
+        .security-tip { display: flex; align-items: flex-start; gap: 0.5rem; }
+        .container { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div>
+                    <div class="bank-name">Bank of Cyprus</div>
+                    <div class="bank-subtitle">塞浦路斯银行</div>
+                </div>
+            </div>
+            <div class="security-center">账户安全中心</div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="title">账户异常处理中心</h1>
+        <p class="subtitle">请按照以下步骤完成账户异常检测和解除流程</p>
+
+        <div class="progress-bar">
+            <div class="progress-step">
+                <div class="step-number">1</div>
+                <span class="step-text">输入手机号</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number" style="background: #d1d5db; color: #666;">2</div>
+                <span class="step-text">检测异常</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number" style="background: #d1d5db; color: #666;">3</div>
+                <span class="step-text">填写资料</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
+                <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
+
+                <form id="phoneForm">
+                    <div class="input-group">
+                        <label class="input-label">手机号码</label>
+                        <input type="tel" class="input-field" placeholder="请输入手机号码（如：+357 99 123456）" required>
+                    </div>
+                    <button type="submit" class="submit-btn">🔍 开始查询</button>
+                </form>
+            </div>
+
+            <div class="sidebar">
+                <div class="help-section">
+                    <h3 class="help-title">需要帮助？</h3>
+                    <div class="contact-info">
+                        <span>📞</span>
+                        <div>
+                            <div>客服热线</div>
+                            <div>+357 22 12 2 100</div>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <span>📧</span>
+                        <div>
+                            <div>邮箱支持</div>
+                            <div>security@bankofcyprus.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-tips">
+                    <h3 class="help-title">安全提示</h3>
+                    <div class="security-tip">
+                        <span>•</span>
+                        <span>请确保在安全的网络环境下填写个人信息</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('phoneForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = this.querySelector('input[type="tel"]').value;
+            if (phone) {
+                alert('正在查询手机号：' + phone + '\\n请稍候...');
+                // 这里可以添加实际的查询逻辑
+            }
+        });
+    </script>
+</body>
+</html>`;
+                          setImportHtml(bankHtml);
+                          alert('已生成您网站的HTML模板，请点击下方的"导入HTML"按钮！');
+                        }}
+                        variant="ghost"
+                        size="sm"
+                        className="text-xs"
+                      >
+                        📋 生成银行页面
+                      </Button>
+                    </div>
                   </div>
 
                   <div className="relative">
@@ -2741,7 +2883,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
-                      <li>• 支持导入本系统生成的所有网站</li>
+                      <li>• 支持��入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
