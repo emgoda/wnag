@@ -631,7 +631,7 @@ export function WebEditor() {
 
       setPublishedSites(sites);
 
-      // 添加到后台监控系统
+      // ���加到后台监控系统
       const monitoringData = {
         id: siteId,
         status: "submitted",
@@ -967,7 +967,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是否有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面有未保存的内容，确定要离开吗？');
+      const confirmLeave = window.confirm('当前页面有未保���的内容，确定要离开吗？');
       if (!confirmLeave) return;
     }
 
@@ -1037,7 +1037,7 @@ export function WebEditor() {
 
   const handleSwitchPage = (pageId) => {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-    // 这里可以添加切换���面时的逻辑，比如保存当前页面内容，加载新页面内容
+    // 这里可以添加切换页面时的逻辑，比如保存当前页面内容，加载新页面内容
   };
 
   const handleDeletePage = (pageId) => {
@@ -1347,7 +1347,7 @@ body {
   }
 }
 
-/* 滚动������ */
+/* 滚动���为 */
 html {
   scroll-behavior: smooth;
 }
@@ -1427,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       switch (el.type) {
         case 'text':
-          return `<div style="${styleStr}">${el.content || '文本内容'}</div>`;
+          return `<div style="${styleStr}">${el.content || '文本���容'}</div>`;
         case 'button':
           return `<button style="${styleStr}">${el.content || '按钮'}</button>`;
         case 'image':
@@ -1578,6 +1578,15 @@ document.addEventListener('DOMContentLoaded', function() {
           {/* 左侧：页面管理和新增 */}
           <div className="w-64 bg-white border-r p-4 overflow-y-auto">
             <div className="mb-6">
+              {/* 返回导航 */}
+              <button
+                onClick={handleGoBack}
+                className="w-full mb-4 px-3 py-2 border border-gray-200 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span className="text-sm">返回管理面板</span>
+              </button>
+
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                 <FileText className="w-4 h-4" />
                 页面管理
@@ -1589,7 +1598,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 className="w-full mb-3 px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
               >
                 <span className="text-lg">+</span>
-                新建页面
+                新���页面
               </button>
 
               {/* 快速模板 */}
@@ -1953,7 +1962,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul className="text-xs text-blue-700 space-y-1">
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
-                      <li>• 内联样式会被保留并应用���元素</li>
+                      <li>• 内联样式会被保留并应用到元素</li>
                       <li>• CSS和JS代码会被提取到对应编辑器</li>
                     </ul>
                   </div>
@@ -2065,7 +2074,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布的网站，重新编辑和修改</li>
+                      <li>• 导入���前发布的网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
