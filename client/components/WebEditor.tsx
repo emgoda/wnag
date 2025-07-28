@@ -1131,7 +1131,7 @@ export function WebEditor() {
           setElementIdCounter(maxId + 1);
 
           setShowImportDialog(false);
-          alert('项目导入成功！');
+          alert('项��导入成功！');
         }
       } else {
         alert('项目文件格式不正确');
@@ -2115,6 +2115,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <PropertyEditor
                   selectedElement={selectedElement}
                   onUpdateElement={handleUpdateElement}
+                  copiedStyle={copiedStyle}
+                  onPasteStyle={handlePasteStyle}
                 />
               </TabsContent>
 
@@ -2379,7 +2381,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <div className="bg-purple-50 border border-purple-200 rounded-md p-3">
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
-                      <li>• 导入之前发布的网站，重新编辑和修改</li>
+                      <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
