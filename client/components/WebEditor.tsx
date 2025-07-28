@@ -33,7 +33,7 @@ const ItemTypes = {
 // 组件库
 const componentLibrary = [
   { id: 'text', type: 'text', label: '文本', icon: Type, defaultProps: { content: '���输入文本', style: {} } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击按钮', style: {} } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, defaultProps: { content: '点击���钮', style: {} } },
   { id: 'image', type: 'image', label: '图片', icon: Image, defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: {} } },
   { id: 'container', type: 'container', label: '容器', icon: Square, defaultProps: { style: { padding: '20px', border: '1px dashed #ccc' } } },
 ];
@@ -231,7 +231,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-sm font-medium mb-2">元��类型</h3>
+        <h3 className="text-sm font-medium mb-2">元素类型</h3>
         <Badge variant="outline">{selectedElement.type}</Badge>
       </div>
 
@@ -655,7 +655,7 @@ export function WebEditor() {
         setElements(prev => [...prev, ...parsedElements]);
         setShowImportDialog(false);
         setImportHtml('');
-        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元���`);
+        alert(`成功导入外部HTML，新增 ${parsedElements.length} 个元素`);
       }
     } catch (error) {
       console.error('HTML解析失败:', error);
@@ -695,7 +695,7 @@ export function WebEditor() {
   const handleImportProject = (projectData) => {
     try {
       if (projectData.elements && Array.isArray(projectData.elements)) {
-        // 确认是否覆盖当前项目
+        // 确认是否覆盖当���项目
         const confirmOverwrite = elements.length === 0 ||
           window.confirm('导入项目将替换当前内容，是否继续？');
 
@@ -797,23 +797,306 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 尝试加载上次的项目
-    const lastProject = localStorage.getItem('webeditor_last_project');
-    if (lastProject && elements.length === 0) {
-      try {
-        const projectData = JSON.parse(lastProject);
-        if (projectData.elements && projectData.elements.length > 0) {
-          const loadLast = window.confirm('检测到上次未完成的项目，是否加载？');
-          if (loadLast) {
-            setElements(projectData.elements);
-            setCss(projectData.css || '');
-            setJs(projectData.js || '');
-            setSiteName(projectData.name || '');
+    // 直接加载演示项目数据
+    if (elements.length === 0) {
+      const demoProjectData = {
+        "version": "1.0",
+        "name": "个人作品集网站",
+        "elements": [
+          {
+            "id": "element_1",
+            "type": "container",
+            "content": "",
+            "style": {
+              "backgroundColor": "#1a1a2e",
+              "padding": "60px 20px",
+              "textAlign": "center",
+              "minHeight": "100vh",
+              "background": "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)"
+            },
+            "className": "hero-section",
+            "attributes": {
+              "htmlId": "hero"
+            }
+          },
+          {
+            "id": "element_2",
+            "type": "text",
+            "content": "张明",
+            "style": {
+              "fontSize": "4em",
+              "fontWeight": "bold",
+              "color": "#ffffff",
+              "marginBottom": "10px",
+              "textShadow": "2px 2px 4px rgba(0,0,0,0.5)"
+            },
+            "className": "hero-title",
+            "attributes": {}
+          },
+          {
+            "id": "element_3",
+            "type": "text",
+            "content": "全栈开发工程师",
+            "style": {
+              "fontSize": "1.5em",
+              "color": "#64b5f6",
+              "marginBottom": "20px",
+              "fontWeight": "300"
+            },
+            "className": "hero-subtitle",
+            "attributes": {}
+          },
+          {
+            "id": "element_4",
+            "type": "text",
+            "content": "专注于创建现代化的Web应用程序，拥有丰富的前端和后端开发经验",
+            "style": {
+              "fontSize": "1.1em",
+              "color": "#e0e0e0",
+              "maxWidth": "600px",
+              "margin": "0 auto 40px auto",
+              "lineHeight": "1.6"
+            },
+            "className": "hero-description",
+            "attributes": {}
+          },
+          {
+            "id": "element_5",
+            "type": "button",
+            "content": "查看我的作品",
+            "style": {
+              "backgroundColor": "#2196f3",
+              "color": "white",
+              "padding": "15px 30px",
+              "fontSize": "1.1em",
+              "border": "none",
+              "borderRadius": "50px",
+              "cursor": "pointer",
+              "transition": "all 0.3s ease",
+              "boxShadow": "0 4px 15px rgba(33, 150, 243, 0.3)"
+            },
+            "className": "cta-button",
+            "attributes": {}
+          },
+          {
+            "id": "element_6",
+            "type": "container",
+            "content": "",
+            "style": {
+              "backgroundColor": "#f8f9fa",
+              "padding": "80px 20px",
+              "textAlign": "center"
+            },
+            "className": "about-section",
+            "attributes": {
+              "htmlId": "about"
+            }
+          },
+          {
+            "id": "element_7",
+            "type": "text",
+            "content": "关于我",
+            "style": {
+              "fontSize": "2.5em",
+              "fontWeight": "bold",
+              "color": "#333",
+              "marginBottom": "30px"
+            },
+            "className": "section-title",
+            "attributes": {}
+          },
+          {
+            "id": "element_8",
+            "type": "text",
+            "content": "我是一名充满激情的全栈开发工程师，专注于使用现代技术栈构建高质量的Web应用程序。拥有5年以上的开发经验，熟练掌握React、Node.js、Python等技术。",
+            "style": {
+              "fontSize": "1.1em",
+              "color": "#666",
+              "maxWidth": "800px",
+              "margin": "0 auto 40px auto",
+              "lineHeight": "1.8"
+            },
+            "className": "about-text",
+            "attributes": {}
+          },
+          {
+            "id": "element_9",
+            "type": "container",
+            "content": "",
+            "style": {
+              "display": "flex",
+              "justifyContent": "center",
+              "gap": "40px",
+              "flexWrap": "wrap",
+              "marginTop": "50px"
+            },
+            "className": "skills-container",
+            "attributes": {}
+          },
+          {
+            "id": "element_10",
+            "type": "container",
+            "content": "",
+            "style": {
+              "backgroundColor": "white",
+              "padding": "30px",
+              "borderRadius": "15px",
+              "boxShadow": "0 5px 15px rgba(0,0,0,0.1)",
+              "textAlign": "center",
+              "minWidth": "200px"
+            },
+            "className": "skill-card",
+            "attributes": {}
+          },
+          {
+            "id": "element_11",
+            "type": "text",
+            "content": "前端开发",
+            "style": {
+              "fontSize": "1.3em",
+              "fontWeight": "bold",
+              "color": "#2196f3",
+              "marginBottom": "15px"
+            },
+            "className": "skill-title",
+            "attributes": {}
+          },
+          {
+            "id": "element_12",
+            "type": "text",
+            "content": "React, Vue.js, TypeScript, HTML5, CSS3",
+            "style": {
+              "color": "#666",
+              "fontSize": "0.95em",
+              "lineHeight": "1.5"
+            },
+            "className": "skill-description",
+            "attributes": {}
           }
-        }
-      } catch (error) {
-        console.log('无法加载上次项目');
+        ],
+        "css": `/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title, .hero-subtitle, .hero-description {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+  animation-delay: 0.2s;
+}
+
+.hero-description {
+  animation-delay: 0.4s;
+}
+
+.cta-button {
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+/* 技能卡片悬停效果 */
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5em;
+  }
+
+  .section-title {
+    font-size: 2em;
+  }
+
+  .skills-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* 滚动行为 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 选择文本颜色 */
+::selection {
+  background-color: #2196f3;
+  color: white;
+}`,
+        "js": `// 页面加载动画
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('个人作品集网站加载完成');
+
+  // 添加平滑滚动到CTA按钮
+  const ctaButton = document.querySelector('.cta-button');
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({
+          behavior: 'smooth'
+        });
       }
+    });
+  }
+
+  // 技能卡片动画
+  const skillCards = document.querySelectorAll('.skill-card');
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+      }
+    });
+  }, observerOptions);
+
+  skillCards.forEach(card => {
+    observer.observe(card);
+  });
+});`
+      };
+
+      setElements(demoProjectData.elements);
+      setCss(demoProjectData.css);
+      setJs(demoProjectData.js);
+      setSiteName(demoProjectData.name);
+      setElementIdCounter(13);
+
+      console.log('演示项目已加载:', demoProjectData.name);
     }
   }, []);
 
@@ -1042,7 +1325,7 @@ export function WebEditor() {
           </div>
         </div>
 
-        {/* 高级导入��话框 */}
+        {/* 高级导入对话框 */}
         {showImportDialog && (
           <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
             <DialogContent className="max-w-5xl max-h-[85vh]">
