@@ -496,6 +496,14 @@ export function WebEditor() {
   const [importHtml, setImportHtml] = useState('');
   const [importMode, setImportMode] = useState('html'); // 'html', 'project', 'published'
   const [deviceMode, setDeviceMode] = useState('desktop'); // 'mobile', 'tablet', 'desktop'
+  const [pages, setPages] = useState([
+    { id: 'home', name: '首页', route: '/', isActive: true },
+    { id: 'about', name: '关于我们', route: '/about', isActive: false },
+    { id: 'contact', name: '联系方式', route: '/contact', isActive: false }
+  ]);
+  const [showPageDialog, setShowPageDialog] = useState(false);
+  const [editingPage, setEditingPage] = useState(null);
+  const [pageForm, setPageForm] = useState({ name: '', route: '', description: '' });
 
   const handleDrop = useCallback((component) => {
     const newElement = {
@@ -658,7 +666,7 @@ export function WebEditor() {
       setCss(prev => (prev + '\n' + extractedCSS).trim());
     }
 
-    // ��析JavaScript
+    // 解析JavaScript
     const scriptElements = doc.querySelectorAll('script');
     let extractedJS = '';
     scriptElements.forEach(script => {
@@ -753,7 +761,7 @@ export function WebEditor() {
           if (element.height) elementData.style.height = element.height + 'px';
           break;
         default:
-          // 其他元素���换为文本
+          // 其他元素������为文本
           elementData.type = 'text';
           elementData.content = element.innerText || tagName;
       }
@@ -792,7 +800,7 @@ export function WebEditor() {
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
-          setElements(parsedElements); // 替换而不是添加
+          setElements(parsedElements); // 替换而不是添��
           setShowImportDialog(false);
           setImportHtml('');
           alert(`成功导入系统网站，共 ${parsedElements.length} 个元素`);
@@ -892,7 +900,7 @@ export function WebEditor() {
           alert(`成功��入网站：${site.name}`);
         } catch (error) {
           console.error('网站导入失败:', error);
-          alert('网站导���失败，请重试');
+          alert('网站导入失败，请重试');
         }
       }
     }
@@ -1507,7 +1515,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   </button>
                   <button
                     onClick={() => {
-                      alert('正在加载���地页模板...');
+                      alert('正在加载落地页模板...');
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
@@ -1722,7 +1730,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 支持导入HTML、CSS和JavaScript代码</li>
                       <li>• 自动解析常见HTML标签并转换为可编辑组件</li>
                       <li>• 内联样式会被保留并应用到元素</li>
-                      <li>• CSS和JS代码会被提取到对应编辑器</li>
+                      <li>• CSS和JS代���会被提取到对应编辑器</li>
                     </ul>
                   </div>
 
@@ -1834,8 +1842,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-purple-800 mb-1">已发布网站导入说明：</h4>
                     <ul className="text-xs text-purple-700 space-y-1">
                       <li>• 导入之前发布的网站，重新编辑和修改</li>
-                      <li>• 会解析网站HTML并重建为可编辑的组件</li>
-                      <li>• 支持导���本系统生成的所有网站</li>
+                      <li>• 会解析网站HTML并重建为可编��的组件</li>
+                      <li>• 支持导入本系统生成的所有网站</li>
                       <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
