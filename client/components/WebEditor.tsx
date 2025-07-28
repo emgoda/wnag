@@ -205,8 +205,12 @@ function BrowserCanvas({ elements, onDrop, onSelectElement, selectedElement, onD
     height: deviceMode === 'desktop' ? 'auto' : `${currentDevice.height}px`,
     maxWidth: '100%',
     margin: deviceMode === 'desktop' ? '0' : '0 auto',
-    transform: deviceMode === 'mobile' ? 'scale(0.8)' : deviceMode === 'tablet' ? 'scale(0.9)' : 'scale(1)',
-    transformOrigin: 'top center'
+    transform: deviceMode === 'mobile' ? 'scale(0.75)' : deviceMode === 'tablet' ? 'scale(0.85)' : 'scale(1)',
+    transformOrigin: 'top center',
+    boxShadow: deviceMode !== 'desktop' ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
+    border: deviceMode !== 'desktop' ? '1px solid #e5e7eb' : 'none',
+    borderRadius: deviceMode !== 'desktop' ? '8px' : '0',
+    overflow: 'hidden'
   };
 
   return (
@@ -850,7 +854,7 @@ export function WebEditor() {
         alert('项目文件格式不正确');
       }
     } catch (error) {
-      console.error('项目导入失败:', error);
+      console.error('项��导入失败:', error);
       alert('项目导入失败，请检查文件格式');
     }
   };
@@ -1456,7 +1460,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 已发布网站
               </h3>
               {publishedSites.length === 0 ? (
-                <p className="text-xs text-gray-500 text-center py-4">暂无发布的网站</p>
+                <p className="text-xs text-gray-500 text-center py-4">暂无发布���网站</p>
               ) : (
                 <div className="space-y-2">
                   {publishedSites.slice(-5).map((site) => (
