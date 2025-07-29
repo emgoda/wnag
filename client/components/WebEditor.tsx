@@ -739,7 +739,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 
       {/* 底部统计 */}
       <div className="border-t bg-gray-50 px-3 py-2 text-xs text-gray-600">
-        共 {elements.length} 个元素
+        共 {countTotalElements(elements)} 个元素
       </div>
     </div>
   );
@@ -1272,7 +1272,7 @@ export function WebEditor() {
         throw new Error(result.message || '保存失败');
       }
     } catch (error) {
-      console.error('保��失败:', error);
+      console.error('保存失败:', error);
       alert(`保存失败: ${error.message}`);
       // 失败时仍然保存到本地
       const projectData = { siteName, pages, elements };
@@ -1411,7 +1411,7 @@ export function WebEditor() {
         throw new Error(publishResult.message || '发布失败');
       }
     } catch (error) {
-      console.error('发布���败:', error);
+      console.error('发布失败:', error);
       alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
     }
   };
