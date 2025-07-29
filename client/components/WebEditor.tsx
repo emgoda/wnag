@@ -177,7 +177,7 @@ function CanvasElement({
       if (monitor.didDrop()) return;
       
       if (item.component) {
-        // 添加新组件到当前元素
+        // 添加新组件���当前元素
         const newElement = {
           id: `element_${Date.now()}`,
           type: item.component.type,
@@ -648,9 +648,9 @@ function ComponentLibrary() {
             return (
               <button
                 key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => toggleCategory(category.id)}
                 className={`flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors ${
-                  activeCategory === category.id
+                  expandedCategories.has(category.id)
                     ? 'bg-blue-500 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
@@ -770,7 +770,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
-                  <Label className="text-xs">占位符</Label>
+                  <Label className="text-xs">��位符</Label>
                   <Input
                     value={selectedElement.placeholder || ''}
                     onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
@@ -1227,7 +1227,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`�� 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
