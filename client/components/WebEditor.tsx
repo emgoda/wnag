@@ -177,7 +177,7 @@ function CanvasElement({
       if (monitor.didDrop()) return;
       
       if (item.component) {
-        // 添加新组件���当前元素
+        // 添加新组件到当前元素
         const newElement = {
           id: `element_${Date.now()}`,
           type: item.component.type,
@@ -634,7 +634,7 @@ function ComponentLibrary() {
     : allComponents;
 
   return (
-    <div className="w-64 bg-white border-r p-4 overflow-y-auto">
+    <div className="w-64 bg-gray-900 text-white border-r border-gray-700 flex flex-col h-full">
       <div className="mb-6">
         <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
           <Layers className="w-4 h-4" />
@@ -770,7 +770,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
-                  <Label className="text-xs">��位符</Label>
+                  <Label className="text-xs">占位符</Label>
                   <Input
                     value={selectedElement.placeholder || ''}
                     onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
@@ -1227,7 +1227,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`�� 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
@@ -1462,7 +1462,7 @@ export function WebEditor() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
-                        <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
+                        <div>创建时���: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
                         <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
                           <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
