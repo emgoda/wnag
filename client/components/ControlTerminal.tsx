@@ -296,7 +296,7 @@ export function ControlTerminal() {
                     <span className="text-foreground">2-3人</span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">风��评估: </span>
+                    <span className="text-muted-foreground">风险评估: </span>
                     <span className="text-green-600">低风险</span>
                   </div>
                 </div>
@@ -309,10 +309,10 @@ export function ControlTerminal() {
         <div className="mt-6 pt-4 border-t border-border">
           <div className="flex items-center justify-between text-sm">
             <div className="text-muted-foreground">
-              共 {projectData.length} 个待开发项目 • 
-              {projectData.filter(p => p.priority === "high").length} 个高优先级 • 
-              {projectData.filter(p => !p.assignedTo).length} 个待分配 •
-              预计总工时：{projectData.reduce((sum, p) => sum + parseInt(p.estimatedHours), 0)}h
+              共 {projects.length} 个待开发项目 •
+              {projects.filter(p => p.priority === "high").length} 个高优先级 •
+              {projects.filter(p => !p.assignedTo).length} 个待分配 •
+              预计总工时：{projects.reduce((sum, p) => sum + parseInt(p.estimatedHours), 0)}h
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm">
