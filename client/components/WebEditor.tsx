@@ -66,7 +66,7 @@ const mediaComponents = [
 
 // 图标组件
 const iconComponents = [
-  { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-home', type: 'icon', label: '首���图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-user', type: 'icon', label: '用户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
@@ -670,7 +670,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <div>
           <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
             <Settings className="w-4 h-4" />
-            属性编辑器
+            属性编���器
           </h3>
           <Badge variant="outline" className="mb-4">{selectedElement.type}</Badge>
         </div>
@@ -1187,6 +1187,64 @@ export function WebEditor() {
       console.error('发布失败:', error);
       alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
     }
+  };
+
+  // 加载项目列表
+  const loadProjects = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/page/list?limit=20');
+      const result = await response.json();
+
+      if (result.success) {
+        setSavedProjects(result.data.pages);
+      } else {
+        console.error('加载项目列表失败:', result.message);
+      }
+    } catch (error) {
+      console.error('加载项目列表失败:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 加载指定项目
+  const loadProject = async (projectId) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`/api/page/${projectId}`);
+      const result = await response.json();
+
+      if (result.success) {
+        const project = result.data;
+        setSiteName(project.siteName);
+        setElements(project.elements || []);
+        setPages(project.pages || [{ id: 'home', name: '首页', route: '/', isActive: true }]);
+        setShowProjectManager(false);
+        alert(`项目 "${project.siteName}" 加载成功！`);
+      } else {
+        alert('加载项目失败: ' + result.message);
+      }
+    } catch (error) {
+      console.error('加载项目失败:', error);
+      alert('加载项目失败: ' + error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 新建项目
+  const newProject = () => {
+    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
+      return;
+    }
+
+    setSiteName('我的网站');
+    setElements([]);
+    setSelectedElement(null);
+    setSelectedPath([]);
+    setPages([{ id: 'home', name: '首页', route: '/', isActive: true }]);
+    setShowProjectManager(false);
   };
 
   return (
