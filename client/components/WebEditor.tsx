@@ -654,7 +654,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 删除页面
   const handleDeletePage = (pageId) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页面');
+      alert('至少��要保留一个页面');
       return;
     }
 
@@ -747,7 +747,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数���');
+        alert('JSON格式不正确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1311,7 +1311,7 @@ function PageManager({ pages, setPages, activePage }) {
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标���HTML标签，会自动转换为对应组件：</p>
+                        <p>支持标准HTML标签，会自动转换为对应组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -1344,6 +1344,122 @@ function PageManager({ pages, setPages, activePage }) {
   ]
 }`}
                       </pre>
+                    )}
+                    {importType === 'react' && (
+                      <pre className="text-xs text-gray-600 whitespace-pre-wrap">
+{`function HomePage() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="container">
+      <h1>Welcome to React</h1>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export default HomePage;`}
+                      </pre>
+                    )}
+                    {importType === 'vue' && (
+                      <pre className="text-xs text-gray-600 whitespace-pre-wrap">
+{`<template>
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Click me</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomePage',
+  data() {
+    return {
+      title: 'Welcome to Vue',
+      count: 0
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.container {
+  padding: 20px;
+}
+</style>`}
+                      </pre>
+                    )}
+                    {importType === 'angular' && (
+                      <pre className="text-xs text-gray-600 whitespace-pre-wrap">
+{`import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  template: \`
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <p>Count: {{ count }}</p>
+      <button (click)="increment()">Click me</button>
+    </div>
+  \`,
+  styles: [\`
+    .container { padding: 20px; }
+  \`]
+})
+export class HomeComponent {
+  title = 'Welcome to Angular';
+  count = 0;
+
+  increment() {
+    this.count++;
+  }
+}`}
+                      </pre>
+                    )}
+                    {importType === 'js' && (
+                      <div className="text-xs text-gray-600">
+                        <p className="mb-2">支持原生JavaScript和CSS代码，会自动解析为页面元素：</p>
+                        <pre className="whitespace-pre-wrap">
+{`// JavaScript代码示例
+const container = document.createElement('div');
+container.className = 'container';
+container.innerHTML = \`
+  <h1>Welcome</h1>
+  <p id="counter">Count: 0</p>
+  <button onclick="increment()">Click me</button>
+\`;
+
+let count = 0;
+function increment() {
+  count++;
+  document.getElementById('counter').textContent = \`Count: \${count}\`;
+}
+
+/* CSS样式 */
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+.container button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}`}
+                        </pre>
+                      </div>
                     )}
                   </div>
 
