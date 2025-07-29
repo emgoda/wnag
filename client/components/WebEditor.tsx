@@ -606,19 +606,32 @@ function Canvas({
   );
 }
 
-// 组件库面���
+// ���件库面���
 function ComponentLibrary() {
-  const [activeCategory, setActiveCategory] = useState('basic');
-  
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const toggleCategory = (categoryId: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(categoryId)) {
+      newExpanded.delete(categoryId);
+    } else {
+      newExpanded.add(categoryId);
+    }
+    setExpandedCategories(newExpanded);
+  };
+
   const categories = [
-    { id: 'basic', label: '基础', icon: Type },
-    { id: 'layout', label: '布局', icon: Layout },
-    { id: 'form', label: '表单', icon: FileText },
-    { id: 'media', label: '媒体', icon: Image },
-    { id: 'icon', label: '图标', icon: Star }
+    { id: 'basic', label: '基础组件', icon: Type },
+    { id: 'layout', label: '布局容器', icon: Layout },
+    { id: 'form', label: '表单控件', icon: FileText },
+    { id: 'media', label: '媒体元素', icon: Image },
+    { id: 'icon', label: '图标组件', icon: Star }
   ];
 
-  const filteredComponents = allComponents.filter(comp => comp.category === activeCategory);
+  const filteredComponents = searchTerm
+    ? allComponents.filter(comp => comp.label.toLowerCase().includes(searchTerm.toLowerCase()))
+    : allComponents;
 
   return (
     <div className="w-64 bg-white border-r p-4 overflow-y-auto">
