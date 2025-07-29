@@ -1050,15 +1050,60 @@ export function WebEditor() {
     }
   };
   
-  // 导出 HTML
-  const handleExport = () => {
-    const generateHTML = () => {
-      const elementsHTML = elements.map(el => {
-        // 递归生�� HTML 的简化版本
-        return `<div style="${Object.entries(el.style || {}).map(([k, v]) => `${k}: ${v}`).join('; ')}">${el.content || el.type}</div>`;
-      }).join('\n');
-      
-      return `<!DOCTYPE html>
+  // 导出 ZIP 包
+  const handleExport = async () => {
+    try {
+      // 首先保存项目获取ID
+      const projectData = {
+        siteName,
+        pages,
+        elements,
+        css: '',
+        js: ''
+      };
+
+      const saveResponse = await fetch('/api/page/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(projectData)
+      });
+
+      const saveResult = await saveResponse.json();
+
+      if (!saveResult.success) {
+        throw new Error('保存项目失败，无法导出');
+      }
+
+      // 使用项目ID导出ZIP包
+      const exportResponse = await fetch(`/api/page/export?id=${saveResult.data.id}`);
+
+      if (!exportResponse.ok) {
+        throw new Error('导出失败');
+      }
+
+      // 下载ZIP文件
+      const blob = await exportResponse.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${siteName}.zip`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert('导出成功！已下载ZIP包');
+    } catch (error) {
+      console.error('导出失败:', error);
+      alert(`导出失败: ${error.message}`);
+
+      // 失败时使用本地导出
+      const generateHTML = () => {
+        const elementsHTML = elements.map(el => {
+          return `<div style="${Object.entries(el.style || {}).map(([k, v]) => `${k}: ${v}`).join('; ')}">${el.content || el.type}</div>`;
+        }).join('\n');
+
+        return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -1069,16 +1114,17 @@ export function WebEditor() {
   ${elementsHTML}
 </body>
 </html>`;
-    };
-    
-    const html = generateHTML();
-    const blob = new Blob([html], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${siteName}.html`;
-    a.click();
-    URL.revokeObjectURL(url);
+      };
+
+      const html = generateHTML();
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${siteName}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
   };
   
   // 发布
@@ -1127,7 +1173,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave}>
               <Save className="w-4 h-4 mr-2" />
-              ���存
+              保存
             </Button>
             <Button variant="outline" size="sm" onClick={handleExport}>
               <Download className="w-4 h-4 mr-2" />
