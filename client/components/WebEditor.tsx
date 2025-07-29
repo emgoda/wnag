@@ -27,7 +27,7 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// 基础组件库
+// 基础组件���
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
@@ -651,7 +651,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     setExpandedNodes(new Set());
   };
 
-  // 递归渲染所有元素及其子元素
+  // 递归渲���所有元素及其子元素
   const renderElementNode = (element: any, level: number = 0, path: number[] = []) => {
     const hasChildren = element.children && element.children.length > 0;
     const isExpanded = expandedNodes.has(element.id);
@@ -726,7 +726,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     );
   };
 
-  // 统计总元素数量（包括嵌套）
+  // 统计��元素数量（包括嵌套）
   const countTotalElements = (elements: any[]): number => {
     let count = 0;
     elements.forEach(element => {
@@ -823,6 +823,26 @@ function ComponentLibrary() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showExpandMenu]);
+
+  // 键盘快捷键
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.shiftKey) {
+        if (event.key === 'E') {
+          event.preventDefault();
+          expandAll();
+        } else if (event.key === 'C') {
+          event.preventDefault();
+          collapseAll();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
@@ -1489,7 +1509,7 @@ export function WebEditor() {
     }
 
     try {
-      // 首先保存项目
+      // 首先保��项目
       const projectData = {
         siteName,
         pages,
@@ -1574,7 +1594,7 @@ export function WebEditor() {
         setShowProjectManager(false);
         alert(`项目 "${project.siteName}" 加载成功！`);
       } else {
-        alert('加载项目失败: ' + result.message);
+        alert('加���项目失败: ' + result.message);
       }
     } catch (error) {
       console.error('加载项目失败:', error);
