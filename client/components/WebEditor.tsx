@@ -971,7 +971,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">背景色</Label>
+                  <Label className="text-xs text-gray-600">���景色</Label>
                   <Input
                     type="color"
                     value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -1044,7 +1044,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   );
 }
 
-// 主编���器组件
+// 主编辑器组件
 export function WebEditor() {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -1176,7 +1176,7 @@ export function WebEditor() {
         throw new Error('导出失败');
       }
 
-      // 下���ZIP文件
+      // 下载ZIP文件
       const blob = await exportResponse.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -1424,6 +1424,7 @@ export function WebEditor() {
             onDeleteElement={handleDeleteElement}
             onDuplicateElement={handleDuplicateElement}
             deviceMode={deviceMode}
+            onDeviceChange={setDeviceMode}
           />
           
           {!showPreview && (
