@@ -67,7 +67,7 @@ const mediaComponents = [
 // 图标组��
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-user', type: 'icon', label: '���户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-user', type: 'icon', label: '���户���标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
@@ -313,7 +313,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽��件到这��</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽����件到这里</div>}
           </div>
         );
       
@@ -800,7 +800,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           isActive: false
         }));
         setPages(prev => [...prev, ...newPages]);
-        alert(`成功导入 ${newPages.length} 个页面`);
+        alert(`���功导入 ${newPages.length} 个页面`);
       } else if (data.name && data.route) {
         // 导入单个页面
         const newPage = {
@@ -1127,7 +1127,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       // 自动切换到新导入的页面
       setTimeout(() => {
-        handleSwitchPage(newPage.id);
+        onSwitchPage(newPage.id);
       }, 100);
     } catch (error) {
       alert('Angular组件导入失败：' + error.message);
@@ -1350,7 +1350,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         });
       }
 
-      // 处理 client/components/ 目录下的��件作为页面
+      // 处理 client/components/ ��录下的组件作为页面
       if (projectConfig.structure['client/components/']) {
         projectConfig.structure['client/components/'].forEach((componentConfig, index) => {
           if (componentConfig.createPage) {
@@ -1649,7 +1649,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       <Dialog open={showAddPage} onOpenChange={setShowAddPage}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>添加新页面</DialogTitle>
+            <DialogTitle>添加新���面</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -1831,7 +1831,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
-                        <SelectItem value="project">项目结���配置</SelectItem>
+                        <SelectItem value="project">项目结构配置</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2635,7 +2635,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <Tabs defaultValue="content" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="content" className="text-xs">内容</TabsTrigger>
-            <TabsTrigger value="style" className="text-xs">样式</TabsTrigger>
+            <TabsTrigger value="style" className="text-xs">样���</TabsTrigger>
             <TabsTrigger value="advanced" className="text-xs">高级</TabsTrigger>
           </TabsList>
           
@@ -3047,7 +3047,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保存到���地作为备份
+        // 同时保存到����地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -3244,7 +3244,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗��')) {
+    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
       return;
     }
 
