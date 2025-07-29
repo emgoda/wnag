@@ -27,7 +27,7 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// 基础组件库
+// ��础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
@@ -971,6 +971,312 @@ function PageManager({ pages, setPages, activePage }) {
     }
   };
 
+  // 导入React组件
+  const handleImportReactComponent = (content) => {
+    try {
+      // 解析React组件代码，提取组件信息
+      const componentName = extractComponentName(content, 'react');
+      const elements = parseReactComponent(content);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: componentName || 'React页面',
+        route: `/${componentName?.toLowerCase() || 'react-page'}`,
+        isActive: false,
+        title: componentName || 'React页面',
+        description: `从React组件导入的页面`,
+        keywords: 'react, component',
+        sourceCode: content,
+        sourceType: 'react',
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('React组件导入成功');
+      setShowImportPage(false);
+    } catch (error) {
+      alert('React组件导入失败：' + error.message);
+    }
+  };
+
+  // 导入Vue组件
+  const handleImportVueComponent = (content) => {
+    try {
+      const componentName = extractComponentName(content, 'vue');
+      const elements = parseVueComponent(content);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: componentName || 'Vue页面',
+        route: `/${componentName?.toLowerCase() || 'vue-page'}`,
+        isActive: false,
+        title: componentName || 'Vue页面',
+        description: `从Vue组件导入的页面`,
+        keywords: 'vue, component',
+        sourceCode: content,
+        sourceType: 'vue',
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('Vue组件导入成功');
+      setShowImportPage(false);
+    } catch (error) {
+      alert('Vue组件导入失败：' + error.message);
+    }
+  };
+
+  // 导入Angular组件
+  const handleImportAngularComponent = (content) => {
+    try {
+      const componentName = extractComponentName(content, 'angular');
+      const elements = parseAngularComponent(content);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: componentName || 'Angular页面',
+        route: `/${componentName?.toLowerCase() || 'angular-page'}`,
+        isActive: false,
+        title: componentName || 'Angular页面',
+        description: `从Angular组件导入的页面`,
+        keywords: 'angular, component',
+        sourceCode: content,
+        sourceType: 'angular',
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('Angular组件导入成功');
+      setShowImportPage(false);
+    } catch (error) {
+      alert('Angular组件导入失败：' + error.message);
+    }
+  };
+
+  // 导入原生JavaScript
+  const handleImportJavaScript = (content) => {
+    try {
+      const elements = parseJavaScriptCode(content);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: 'JavaScript页面',
+        route: '/js-page',
+        isActive: false,
+        title: 'JavaScript页面',
+        description: '从原生JavaScript代码导入的页面',
+        keywords: 'javascript, vanilla js',
+        sourceCode: content,
+        sourceType: 'javascript',
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('JavaScript代码导入成功');
+      setShowImportPage(false);
+    } catch (error) {
+      alert('JavaScript代码导入失败：' + error.message);
+    }
+  };
+
+  // 提取组件名称
+  const extractComponentName = (content, type) => {
+    try {
+      if (type === 'react') {
+        // 匹配 function ComponentName 或 const ComponentName
+        const match = content.match(/(?:function|const)\s+([A-Z][a-zA-Z0-9]*)/);
+        return match ? match[1] : null;
+      } else if (type === 'vue') {
+        // 匹配 name: 'ComponentName'
+        const match = content.match(/name:\s*['"`]([^'"`]+)['"`]/);
+        return match ? match[1] : null;
+      } else if (type === 'angular') {
+        // 匹配 export class ComponentName
+        const match = content.match(/export\s+class\s+([A-Z][a-zA-Z0-9]*)/);
+        return match ? match[1] : null;
+      }
+    } catch (error) {
+      console.error('提取组件名称失败:', error);
+    }
+    return null;
+  };
+
+  // 解析React组件
+  const parseReactComponent = (content) => {
+    // 简化解析：提取JSX中的基本元素
+    const elements = [];
+
+    // 查找JSX中的HTML标签
+    const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
+
+    // 解析常见标签
+    const tagMatches = jsxContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
+
+    tagMatches.forEach((tag, index) => {
+      const tagType = tag.match(/<(\w+)/)?.[1];
+      const content = tag.match(/>(.*?)</)?.[1]?.replace(/{[^}]*}/g, '').trim();
+
+      if (tagType && content) {
+        const element = createElementFromTag(tagType, content, `react_${index}`);
+        if (element) elements.push(element);
+      }
+    });
+
+    return elements.length > 0 ? elements : [
+      {
+        id: `element_${Date.now()}`,
+        type: 'text',
+        content: 'React组件已导入，请手动编辑内容',
+        style: { fontSize: '16px', color: '#333' }
+      }
+    ];
+  };
+
+  // 解析Vue组件
+  const parseVueComponent = (content) => {
+    const elements = [];
+
+    // 提取template部分
+    const templateMatch = content.match(/<template>([\s\S]*?)<\/template>/);
+    if (templateMatch) {
+      const templateContent = templateMatch[1];
+      const tagMatches = templateContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
+
+      tagMatches.forEach((tag, index) => {
+        const tagType = tag.match(/<(\w+)/)?.[1];
+        const content = tag.match(/>(.*?)</)?.[1]?.replace(/{{[^}]*}}/g, '').trim();
+
+        if (tagType && content) {
+          const element = createElementFromTag(tagType, content, `vue_${index}`);
+          if (element) elements.push(element);
+        }
+      });
+    }
+
+    return elements.length > 0 ? elements : [
+      {
+        id: `element_${Date.now()}`,
+        type: 'text',
+        content: 'Vue组件已导入，请手动编辑内容',
+        style: { fontSize: '16px', color: '#333' }
+      }
+    ];
+  };
+
+  // 解析Angular组件
+  const parseAngularComponent = (content) => {
+    const elements = [];
+
+    // 提取template部分
+    const templateMatch = content.match(/template:\s*`([\s\S]*?)`/) || content.match(/templateUrl:\s*['"`]([^'"`]+)['"`]/);
+    if (templateMatch) {
+      const templateContent = templateMatch[1];
+      const tagMatches = templateContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
+
+      tagMatches.forEach((tag, index) => {
+        const tagType = tag.match(/<(\w+)/)?.[1];
+        const content = tag.match(/>(.*?)</)?.[1]?.replace(/{{[^}]*}}/g, '').trim();
+
+        if (tagType && content) {
+          const element = createElementFromTag(tagType, content, `angular_${index}`);
+          if (element) elements.push(element);
+        }
+      });
+    }
+
+    return elements.length > 0 ? elements : [
+      {
+        id: `element_${Date.now()}`,
+        type: 'text',
+        content: 'Angular组件已导入，请手动编辑内容',
+        style: { fontSize: '16px', color: '#333' }
+      }
+    ];
+  };
+
+  // 解析JavaScript代码
+  const parseJavaScriptCode = (content) => {
+    const elements = [];
+
+    // 查找createElement调用
+    const createElementMatches = content.match(/createElement\(['"`](\w+)['"`][^)]*\)/g) || [];
+
+    createElementMatches.forEach((match, index) => {
+      const tagType = match.match(/createElement\(['"`](\w+)['"`]/)?.[1];
+      if (tagType) {
+        const element = createElementFromTag(tagType, '内容', `js_${index}`);
+        if (element) elements.push(element);
+      }
+    });
+
+    // 查找innerHTML设置
+    const innerHTMLMatches = content.match(/innerHTML\s*=\s*['"`](.*?)['"`]/g) || [];
+
+    innerHTMLMatches.forEach((match, index) => {
+      const htmlContent = match.match(/innerHTML\s*=\s*['"`](.*?)['"`]/)?.[1];
+      if (htmlContent) {
+        // 解析HTML内容
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(`<div>${htmlContent}</div>`, 'text/html');
+        const parsedElements = parseHTMLToElements(doc.body.firstChild);
+        elements.push(...parsedElements);
+      }
+    });
+
+    return elements.length > 0 ? elements : [
+      {
+        id: `element_${Date.now()}`,
+        type: 'text',
+        content: 'JavaScript代码已导入，请手动编辑内容',
+        style: { fontSize: '16px', color: '#333' }
+      }
+    ];
+  };
+
+  // 从标签创建元素
+  const createElementFromTag = (tagType, content, idPrefix) => {
+    const id = `element_${Date.now()}_${idPrefix}`;
+
+    switch (tagType.toLowerCase()) {
+      case 'h1':
+      case 'h2':
+      case 'h3':
+      case 'h4':
+      case 'h5':
+      case 'h6':
+        return {
+          id,
+          type: 'heading',
+          content: content,
+          level: tagType.toLowerCase(),
+          style: { fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a' }
+        };
+      case 'p':
+        return {
+          id,
+          type: 'text',
+          content: content,
+          style: { fontSize: '16px', color: '#333' }
+        };
+      case 'button':
+        return {
+          id,
+          type: 'button',
+          content: content,
+          style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' }
+        };
+      case 'div':
+        return {
+          id,
+          type: 'container',
+          children: [],
+          style: { padding: '20px', border: '2px dashed #d1d5db', borderRadius: '6px', minHeight: '100px' }
+        };
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <div className="p-2">
@@ -1176,7 +1482,7 @@ function PageManager({ pages, setPages, activePage }) {
                     ...selectedPageForSettings,
                     keywords: e.target.value
                   })}
-                  placeholder="关键���，用逗号分隔"
+                  placeholder="关键����，用逗号分隔"
                   className="mt-1"
                 />
               </div>
@@ -1248,7 +1554,7 @@ function PageManager({ pages, setPages, activePage }) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="json">JSON页面配置</SelectItem>
-                        <SelectItem value="html">HTML页面��码</SelectItem>
+                        <SelectItem value="html">HTML页面代码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
                         <SelectItem value="react">React组件代码</SelectItem>
                         <SelectItem value="vue">Vue组件代码</SelectItem>
@@ -1322,7 +1628,7 @@ function PageManager({ pages, setPages, activePage }) {
                         <p>支持标准HTML标签，会自动转换为对应组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
-                          <li>• p → 文本组��</li>
+                          <li>• p → 文本组件</li>
                           <li>• button → 按钮组件</li>
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
@@ -2009,7 +2315,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             
             {/* 文字 */}
             <div className="space-y-3">
-              <Label className="text-xs font-medium">文字</Label>
+              <Label className="text-xs font-medium">文��</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label className="text-xs text-gray-600">字体大小</Label>
@@ -2067,7 +2373,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* 背景和边框 */}
+            {/* ���景和边框 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -2237,7 +2543,7 @@ export function WebEditor() {
         throw new Error(result.message || '保存失败');
       }
     } catch (error) {
-      console.error('保存失��:', error);
+      console.error('保存失败:', error);
       alert(`保存失败: ${error.message}`);
       // 失败时仍然保存到本地
       const projectData = { siteName, pages, elements };
@@ -2394,7 +2700,7 @@ export function WebEditor() {
         console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表�����:', error);
+      console.error('加载项目列表������:', error);
     } finally {
       setIsLoading(false);
     }
@@ -2545,7 +2851,7 @@ export function WebEditor() {
             />
           )}
 
-          {/* 右��角元素树状图 */}
+          {/* 右下角元素树状图 */}
           {!showPreview && showElementTree && (
             <div className="absolute bottom-4 right-4 z-10">
               <ElementTreeView
