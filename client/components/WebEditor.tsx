@@ -27,14 +27,14 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// 基础组件库
+// 基础组��库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
-  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
+  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '���片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
   { id: 'divider', type: 'divider', label: '分割线', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
 ];
@@ -1343,7 +1343,120 @@ export function WebEditor() {
           )}
         </div>
       </div>
-      
+
+      {/* 项目管理对话框 */}
+      <Dialog open={showProjectManager} onOpenChange={setShowProjectManager}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <FileText className="w-5 h-5" />
+              项目管理
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {/* 操作按钮 */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Button onClick={newProject} variant="outline" size="sm">
+                  <Plus className="w-4 h-4 mr-2" />
+                  新建项目
+                </Button>
+                <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  刷新列表
+                </Button>
+              </div>
+              <div className="text-sm text-gray-500">
+                共 {savedProjects.length} 个项目
+              </div>
+            </div>
+
+            {/* 项目列表 */}
+            {isLoading ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500">加载中...</div>
+              </div>
+            ) : savedProjects.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500 mb-4">暂无保存的项目</div>
+                <Button onClick={newProject}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  创建第一个项目
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {savedProjects.map((project) => (
+                  <Card key={project.id} className="hover:shadow-md transition-shadow">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <CardTitle className="text-lg">{project.siteName}</CardTitle>
+                          <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
+                            <span>元素: {project.elementsCount}</span>
+                            <span>页面: {project.pagesCount}</span>
+                          </div>
+                        </div>
+                        <Badge
+                          variant={project.status === 'published' ? 'default' : 'secondary'}
+                          className={project.status === 'published' ? 'bg-green-500' : ''}
+                        >
+                          {project.status === 'published' ? '已发布' : '草稿'}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
+                        <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
+                        {project.publishedAt && (
+                          <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
+                        )}
+                        {project.deployUrl && (
+                          <div className="flex items-center gap-2">
+                            <span>访问地址:</span>
+                            <a
+                              href={project.deployUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-500 hover:underline flex items-center gap-1"
+                            >
+                              {project.deployUrl}
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 mt-4">
+                        <Button
+                          onClick={() => loadProject(project.id)}
+                          size="sm"
+                          disabled={isLoading}
+                        >
+                          <Edit3 className="w-4 h-4 mr-2" />
+                          编辑
+                        </Button>
+                        {project.deployUrl && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => window.open(project.deployUrl, '_blank')}
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            访问
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <style jsx>{`
         .canvas-element {
           transition: all 0.2s ease;
