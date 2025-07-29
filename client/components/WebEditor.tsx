@@ -313,7 +313,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽��件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽��件到这��</div>}
           </div>
         );
       
@@ -623,7 +623,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
   const [importType, setImportType] = useState('json');
   const [importContent, setImportContent] = useState('');
 
-  // 添��新页面
+  // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
       alert('�����输入页面名称和路由');
@@ -674,7 +674,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
 
 
 
-  // 打开页面���置
+  // 打开页面设置
   const handleOpenPageSettings = (page) => {
     setSelectedPageForSettings({ ...page });
     setShowPageSettings(true);
@@ -1095,7 +1095,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       // 自动切换到新导入的页面
       setTimeout(() => {
-        handleSwitchPage(newPage.id);
+        onSwitchPage(newPage.id);
       }, 100);
     } catch (error) {
       alert('Vue组件导入失败：' + error.message);
@@ -1350,7 +1350,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         });
       }
 
-      // 处理 client/components/ 目录下的组件作为页面
+      // 处理 client/components/ 目录下的��件作为页面
       if (projectConfig.structure['client/components/']) {
         projectConfig.structure['client/components/'].forEach((componentConfig, index) => {
           if (componentConfig.createPage) {
@@ -1458,7 +1458,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}_comp_desc`,
         type: 'text',
-        content: `这�� ${componentName} 组件的展示页面。`,
+        content: `这是 ${componentName} 组件的展示页面。`,
         style: { fontSize: '16px', color: '#666', marginBottom: '20px' }
       },
       {
@@ -1775,7 +1775,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </DialogHeader>
 
           <div className="space-y-6">
-            {/* ��入方式选择 */}
+            {/* 导入方式选择 */}
             <div>
               <Label className="text-sm font-medium">导入方式</Label>
               <Tabs defaultValue="file" className="mt-2">
@@ -1831,7 +1831,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
-                        <SelectItem value="project">项目结构配置</SelectItem>
+                        <SelectItem value="project">项目结���配置</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2241,7 +2241,7 @@ function increment() {
                 }}
               >
                 <Upload className="w-4 h-4 mr-2" />
-                使���文件导入
+                使用文件导入
               </Button>
               <Button onClick={() => setShowZipGuide(false)}>
                 我知道��
@@ -2998,7 +2998,7 @@ export function WebEditor() {
     // 更新页面状态
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
 
-    // 稍微延迟加载元素，��保页面状态更新完成
+    // 稍微延迟加载元素，确保页面状态更新完成
     setTimeout(() => {
       // 加载对应页面的元素到��布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
@@ -3244,7 +3244,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
+    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗��')) {
       return;
     }
 
