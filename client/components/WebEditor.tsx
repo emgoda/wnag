@@ -50,7 +50,7 @@ const layoutComponents = [
 
 // 表单组件
 const formComponents = [
-  { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
+  { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
@@ -379,7 +379,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽表单组件到这��</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">���拽表单组件到这��</div>}
           </form>
         );
       
@@ -748,7 +748,7 @@ function PageManager({ pages, setPages, activePage }) {
             // 项目结构配置文件
             const data = JSON.parse(content);
             handleImportProjectStructure(JSON.stringify(data));
-            processedFiles.push(`${file.name} (项目配置)`);
+            processedFiles.push(`${file.name} (项��配置)`);
           } else {
             // 普通JSON配置
             const data = JSON.parse(content);
@@ -1170,12 +1170,17 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       setPages(prev => [...prev, newPage]);
       alert('JavaScript代码导入成功');
       setShowImportPage(false);
+
+      // 自动切换到新导入的页面
+      setTimeout(() => {
+        handleSwitchPage(newPage.id);
+      }, 100);
     } catch (error) {
       alert('JavaScript代码导入失败：' + error.message);
     }
   };
 
-  // 提取组件名称
+  // 提��组件名称
   const extractComponentName = (content, type) => {
     try {
       if (type === 'react') {
@@ -1774,7 +1779,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         </DialogContent>
       </Dialog>
 
-      {/* 导入页面对话��� */}
+      {/* 导入页面对话框 */}
       <Dialog open={showImportPage} onOpenChange={setShowImportPage}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -1821,7 +1826,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
-                      <li>• <strong>ZIP文件</strong>��包含多个页面的压缩包</li>
+                      <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
                     </ul>
                   </div>
                 </TabsContent>
@@ -1886,7 +1891,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
-                      {importType === 'react' && 'React组件示���：'}
+                      {importType === 'react' && 'React组件示例：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
@@ -2158,7 +2163,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导入方案</h3>
                   <p className="text-blue-800 text-sm">
-                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
+                    由于浏��器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
