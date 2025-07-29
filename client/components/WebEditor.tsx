@@ -793,14 +793,14 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const handleImportFromJSON = (data) => {
     try {
       if (data.pages && Array.isArray(data.pages)) {
-        // 导入多个页面
+        // 导入多个页���
         const newPages = data.pages.map(page => ({
           ...page,
           id: `page_${Date.now()}_${Math.random()}`,
           isActive: false
         }));
         setPages(prev => [...prev, ...newPages]);
-        alert(`���功导入 ${newPages.length} 个页面`);
+        alert(`成功导入 ${newPages.length} 个页面`);
       } else if (data.name && data.route) {
         // 导入单个页面
         const newPage = {
@@ -1158,7 +1158,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       // 自动切换到新导入的页面
       setTimeout(() => {
-        handleSwitchPage(newPage.id);
+        onSwitchPage(newPage.id);
       }, 100);
     } catch (error) {
       alert('JavaScript代码导入失败：' + error.message);
@@ -1350,7 +1350,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         });
       }
 
-      // 处理 client/components/ ��录下的组件作为页面
+      // 处理 client/components/ 目录下的组件作为页面
       if (projectConfig.structure['client/components/']) {
         projectConfig.structure['client/components/'].forEach((componentConfig, index) => {
           if (componentConfig.createPage) {
@@ -1649,7 +1649,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       <Dialog open={showAddPage} onOpenChange={setShowAddPage}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>添加新���面</DialogTitle>
+            <DialogTitle>添加新页面</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
@@ -1887,7 +1887,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 {`{
   "name": "关于我们",
   "route": "/about",
-  "title": "关于我们 - 网站名称",
+  "title": "关于我们 - 网���名称",
   "description": "页面描述",
   "elements": [
     {
@@ -2635,7 +2635,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <Tabs defaultValue="content" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="content" className="text-xs">内容</TabsTrigger>
-            <TabsTrigger value="style" className="text-xs">样���</TabsTrigger>
+            <TabsTrigger value="style" className="text-xs">样式</TabsTrigger>
             <TabsTrigger value="advanced" className="text-xs">高级</TabsTrigger>
           </TabsList>
           
@@ -3047,7 +3047,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保存到����地作为备份
+        // 同时保存到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -3188,7 +3188,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
