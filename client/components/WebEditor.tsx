@@ -66,7 +66,7 @@ const mediaComponents = [
 
 // 图标组件
 const iconComponents = [
-  { id: 'icon-home', type: 'icon', label: '首���图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-user', type: 'icon', label: '用户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
@@ -670,7 +670,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <div>
           <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
             <Settings className="w-4 h-4" />
-            属性编���器
+            属性编辑器
           </h3>
           <Badge variant="outline" className="mb-4">{selectedElement.type}</Badge>
         </div>
@@ -1282,21 +1282,30 @@ export function WebEditor() {
           </div>
           
           <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={newProject}>
+              <Plus className="w-4 h-4 mr-2" />
+              新建
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => { setShowProjectManager(true); loadProjects(); }}>
+              <FileText className="w-4 h-4 mr-2" />
+              项目
+            </Button>
+            <div className="w-px h-6 bg-gray-300" />
             <Button variant="outline" size="sm" onClick={() => setShowPreview(!showPreview)}>
               <Eye className="w-4 h-4 mr-2" />
               {showPreview ? '编辑' : '预览'}
             </Button>
-            <Button variant="outline" size="sm" onClick={handleSave}>
+            <Button variant="outline" size="sm" onClick={handleSave} disabled={isLoading}>
               <Save className="w-4 h-4 mr-2" />
-              保存
+              {isLoading ? '保存中...' : '保存'}
             </Button>
-            <Button variant="outline" size="sm" onClick={handleExport}>
+            <Button variant="outline" size="sm" onClick={handleExport} disabled={isLoading}>
               <Download className="w-4 h-4 mr-2" />
-              导出HTML
+              导出ZIP
             </Button>
-            <Button size="sm" onClick={handlePublish}>
+            <Button size="sm" onClick={handlePublish} disabled={isLoading || !siteName.trim()}>
               <Globe className="w-4 h-4 mr-2" />
-              发布
+              {isLoading ? '发布中...' : '发布'}
             </Button>
             <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
               <span className="text-gray-600">元素:</span>
