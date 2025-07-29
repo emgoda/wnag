@@ -53,7 +53,7 @@ const formComponents = [
   { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
-  { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
+  { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单���框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
 
@@ -219,7 +219,7 @@ function CanvasElement({
 
     switch (element.type) {
       case 'text':
-        return <div {...commonProps}>{element.content || '文本���容'}</div>;
+        return <div {...commonProps}>{element.content || '文本内容'}</div>;
       
       case 'heading':
         const HeadingTag = element.level || 'h1';
@@ -911,7 +911,7 @@ function ComponentLibrary() {
 
               {/* 下拉菜单 */}
               {showExpandMenu && (
-                <div className="absolute right-0 top-6 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50 min-w-32">
+                <div className="absolute right-0 top-6 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50 min-w-48">
                   <div className="py-1">
                     <button
                       onClick={() => {
@@ -1674,7 +1674,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={() => setShowElementTree(!showElementTree)}>
               <Layers className="w-4 h-4 mr-2" />
-              {showElementTree ? '隐藏' : '��示'}结构
+              {showElementTree ? '隐藏' : '显示'}结构
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave} disabled={isLoading}>
               <Save className="w-4 h-4 mr-2" />
@@ -1808,7 +1808,7 @@ export function WebEditor() {
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
-                        <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
+                        <div>更新��间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
                           <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
