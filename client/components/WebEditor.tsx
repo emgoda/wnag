@@ -38,7 +38,7 @@ const basicComponents = [
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
-  { id: 'divider', type: 'divider', label: '分割线', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
+  { id: 'divider', type: 'divider', label: '分割���', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
 ];
 
 // 布局组件
@@ -312,7 +312,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这���</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">��拽组件到这���</div>}
           </div>
         );
       
@@ -478,7 +478,14 @@ function CanvasElement({
             <IconComponent size={24} />
           </div>
         );
-      
+
+      case 'account-check-flow':
+        return (
+          <div {...commonProps}>
+            <AccountCheckFlow />
+          </div>
+        );
+
       default:
         return <div {...commonProps}>未知组件类型: {element.type}</div>;
     }
@@ -823,7 +830,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, ...newPages]);
         alert(`成功导入 ${newPages.length} 个页面`);
       } else if (data.name && data.route) {
-        // 导入单个页面
+        // ���入单个页面
         const newPage = {
           ...data,
           id: `page_${Date.now()}`,
@@ -1177,7 +1184,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       alert('JavaScript代码导入成功');
       setShowImportPage(false);
 
-      // 自动切换到新导入的页面
+      // 自动切换到��导入的页面
       setTimeout(() => {
         onSwitchPage(newPage.id);
       }, 100);
@@ -1216,7 +1223,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 查找JSX中的HTML标签
     const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
 
-    // 解析常见标签
+    // 解��常见标签
     const tagMatches = jsxContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
 
     tagMatches.forEach((tag, index) => {
@@ -1295,7 +1302,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导入，请手动编辑内容',
+        content: 'Angular组件已导���，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
