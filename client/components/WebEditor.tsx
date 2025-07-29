@@ -30,7 +30,7 @@ const ItemTypes = {
 // 基础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
-  { id: 'heading', type: 'heading', label: '���题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
+  { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持音频标签。
+            您的��览器不支持音频标签。
           </audio>
         );
       
@@ -607,6 +607,307 @@ function Canvas({
         </div>
       </div>
     </div>
+  );
+}
+
+// 页面管理组件
+function PageManager({ pages, setPages, activePage }) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [showAddPage, setShowAddPage] = useState(false);
+  const [showPageSettings, setShowPageSettings] = useState(false);
+  const [selectedPageForSettings, setSelectedPageForSettings] = useState(null);
+  const [newPageName, setNewPageName] = useState('');
+  const [newPageRoute, setNewPageRoute] = useState('');
+
+  // 添加新页面
+  const handleAddPage = () => {
+    if (!newPageName.trim() || !newPageRoute.trim()) {
+      alert('请输入页面名称和路由');
+      return;
+    }
+
+    // 检查路由是否已存在
+    if (pages.some(p => p.route === newPageRoute)) {
+      alert('该路由已存在');
+      return;
+    }
+
+    const newPage = {
+      id: `page_${Date.now()}`,
+      name: newPageName.trim(),
+      route: newPageRoute.trim(),
+      isActive: false,
+      title: newPageName.trim(),
+      description: '',
+      keywords: ''
+    };
+
+    setPages(prev => [...prev, newPage]);
+    setNewPageName('');
+    setNewPageRoute('');
+    setShowAddPage(false);
+  };
+
+  // 删除页面
+  const handleDeletePage = (pageId) => {
+    if (pages.length <= 1) {
+      alert('至少需要保留一个页面');
+      return;
+    }
+
+    if (confirm('确定要删除此页面吗？')) {
+      setPages(prev => {
+        const filteredPages = prev.filter(p => p.id !== pageId);
+        // 如果删除的是当前活跃页面，激活第一个页面
+        const deletedPage = prev.find(p => p.id === pageId);
+        if (deletedPage?.isActive && filteredPages.length > 0) {
+          filteredPages[0].isActive = true;
+        }
+        return filteredPages;
+      });
+    }
+  };
+
+  // 切换页面
+  const handleSwitchPage = (pageId) => {
+    setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
+  };
+
+  // 打开页面设置
+  const handleOpenPageSettings = (page) => {
+    setSelectedPageForSettings({ ...page });
+    setShowPageSettings(true);
+  };
+
+  // 保存页面设置
+  const handleSavePageSettings = () => {
+    if (!selectedPageForSettings.name.trim()) {
+      alert('页面名称不能为空');
+      return;
+    }
+
+    setPages(prev => prev.map(p =>
+      p.id === selectedPageForSettings.id ? selectedPageForSettings : p
+    ));
+    setShowPageSettings(false);
+    setSelectedPageForSettings(null);
+  };
+
+  return (
+    <>
+      <div className="p-2">
+        {/* 页面管理标题栏 */}
+        <div className="flex items-center justify-between px-2 py-1.5">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-3 h-3 flex items-center justify-center hover:bg-gray-700 rounded"
+            >
+              <ChevronRight
+                className={`w-3 h-3 text-gray-400 transition-transform ${
+                  isExpanded ? 'rotate-90' : ''
+                }`}
+              />
+            </button>
+            <FileText className="w-4 h-4 text-gray-400" />
+            <span className="text-sm text-gray-300">页面</span>
+            <span className="text-xs text-gray-500">({pages.length})</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setShowAddPage(true)}
+              className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+              title="添加页面"
+            >
+              <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+            </button>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+              title={isExpanded ? "收起" : "展开"}
+            >
+              <MoreHorizontal className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+            </button>
+          </div>
+        </div>
+
+        {/* 页面列表 */}
+        {isExpanded && (
+          <div className="ml-3 space-y-1">
+            {pages.map(page => (
+              <div
+                key={page.id}
+                className={`flex items-center gap-2 px-2 py-1.5 rounded hover:bg-gray-800 group ${
+                  page.isActive ? 'bg-blue-600 hover:bg-blue-700' : ''
+                }`}
+              >
+                <div className={`w-2 h-2 rounded-full ${
+                  page.isActive ? 'bg-white' : 'bg-gray-600'
+                }`}></div>
+                <div
+                  className="flex-1 cursor-pointer"
+                  onClick={() => handleSwitchPage(page.id)}
+                >
+                  <div className={`text-sm ${
+                    page.isActive ? 'text-white font-medium' : 'text-gray-300'
+                  }`}>
+                    {page.name}
+                  </div>
+                  <div className={`text-xs ${
+                    page.isActive ? 'text-blue-200' : 'text-gray-500'
+                  }`}>
+                    {page.route}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenPageSettings(page);
+                    }}
+                    className="w-4 h-4 flex items-center justify-center hover:bg-gray-700 rounded"
+                    title="页面设置"
+                  >
+                    <Settings className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+                  </button>
+                  {pages.length > 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeletePage(page.id);
+                      }}
+                      className="w-4 h-4 flex items-center justify-center hover:bg-red-600 rounded"
+                      title="删除页面"
+                    >
+                      <Trash2 className="w-3 h-3 text-gray-400 hover:text-red-200" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 添加页面对话框 */}
+      <Dialog open={showAddPage} onOpenChange={setShowAddPage}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>添加新页面</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label className="text-sm">页面名称</Label>
+              <Input
+                value={newPageName}
+                onChange={(e) => setNewPageName(e.target.value)}
+                placeholder="关于我们"
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label className="text-sm">页面路由</Label>
+              <Input
+                value={newPageRoute}
+                onChange={(e) => setNewPageRoute(e.target.value)}
+                placeholder="/about"
+                className="mt-1"
+              />
+              <div className="text-xs text-gray-500 mt-1">
+                路由必须以 / 开头，如：/about
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowAddPage(false)}>
+                取消
+              </Button>
+              <Button onClick={handleAddPage}>
+                添加
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* 页面设置对话框 */}
+      <Dialog open={showPageSettings} onOpenChange={setShowPageSettings}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>页面设置</DialogTitle>
+          </DialogHeader>
+          {selectedPageForSettings && (
+            <div className="space-y-4">
+              <div>
+                <Label className="text-sm">页面名称</Label>
+                <Input
+                  value={selectedPageForSettings.name}
+                  onChange={(e) => setSelectedPageForSettings({
+                    ...selectedPageForSettings,
+                    name: e.target.value
+                  })}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label className="text-sm">页面路由</Label>
+                <Input
+                  value={selectedPageForSettings.route}
+                  onChange={(e) => setSelectedPageForSettings({
+                    ...selectedPageForSettings,
+                    route: e.target.value
+                  })}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label className="text-sm">页面标题 (SEO)</Label>
+                <Input
+                  value={selectedPageForSettings.title || ''}
+                  onChange={(e) => setSelectedPageForSettings({
+                    ...selectedPageForSettings,
+                    title: e.target.value
+                  })}
+                  placeholder="页面的HTML标题"
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label className="text-sm">页面描述 (SEO)</Label>
+                <Textarea
+                  value={selectedPageForSettings.description || ''}
+                  onChange={(e) => setSelectedPageForSettings({
+                    ...selectedPageForSettings,
+                    description: e.target.value
+                  })}
+                  placeholder="页面描述，用于搜索引擎优化"
+                  className="mt-1 h-20"
+                />
+              </div>
+              <div>
+                <Label className="text-sm">关键词 (SEO)</Label>
+                <Input
+                  value={selectedPageForSettings.keywords || ''}
+                  onChange={(e) => setSelectedPageForSettings({
+                    ...selectedPageForSettings,
+                    keywords: e.target.value
+                  })}
+                  placeholder="关键词，用逗号分隔"
+                  className="mt-1"
+                />
+              </div>
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setShowPageSettings(false)}>
+                  取消
+                </Button>
+                <Button onClick={handleSavePageSettings}>
+                  保存
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 
@@ -1621,7 +1922,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
+    if (elements.length > 0 && !confirm('当��有未保存的内容，确定要新建项目吗？')) {
       return;
     }
 
@@ -1780,7 +2081,7 @@ export function WebEditor() {
               </div>
             </div>
 
-            {/* 项目列表 */}
+            {/* 项���列表 */}
             {isLoading ? (
               <div className="text-center py-8">
                 <div className="text-gray-500">加载中...</div>
@@ -1819,7 +2120,7 @@ export function WebEditor() {
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
                         <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
-                          <div>发��时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
+                          <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
                         {project.deployUrl && (
                           <div className="flex items-center gap-2">
