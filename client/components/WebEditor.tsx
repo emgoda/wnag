@@ -612,7 +612,16 @@ function Canvas({
 
 // 元素树状图组件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
+    // 默认展开第一层元素
+    const firstLevelIds = new Set<string>();
+    elements.forEach(element => {
+      if (element.children && element.children.length > 0) {
+        firstLevelIds.add(element.id);
+      }
+    });
+    return firstLevelIds;
+  });
 
   const toggleNode = (elementId: string) => {
     const newExpanded = new Set(expandedNodes);
