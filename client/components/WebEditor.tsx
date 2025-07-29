@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持音频标签。
+            您的浏览器不支持���频标签。
           </audio>
         );
       
@@ -719,7 +719,7 @@ function PageManager({ pages, setPages, activePage }) {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
-    // 如果只有一个ZIP文件，显示ZIP指南
+    // 如果只有一个ZIP文件，���示ZIP指南
     if (files.length === 1 && files[0].name.endsWith('.zip')) {
       handleZipImport(files[0]);
       return;
@@ -2590,7 +2590,7 @@ function ComponentLibrary({ pages, setPages }) {
   );
 }
 
-// 属性编辑器
+// 属性编辑��
 function PropertyEditor({ selectedElement, onUpdateElement }) {
   if (!selectedElement) {
     return (
@@ -2925,7 +2925,17 @@ export function WebEditor() {
   const [savedProjects, setSavedProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showElementTree, setShowElementTree] = useState(true);
-  
+
+  // 同步当前元素到活跃页面
+  useEffect(() => {
+    const activePage = pages.find(p => p.isActive);
+    if (activePage) {
+      setPages(prev => prev.map(p =>
+        p.isActive ? { ...p, elements: elements } : p
+      ));
+    }
+  }, [elements]);
+
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
     const newElement = {
