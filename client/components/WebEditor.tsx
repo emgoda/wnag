@@ -349,7 +349,7 @@ function CanvasElement({
       case 'select':
         return (
           <select {...commonProps}>
-            {(element.options || ['选项1', '选项2']).map((option, index) => (
+            {(element.options || ['选��1', '选项2']).map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
           </select>
@@ -1127,9 +1127,63 @@ export function WebEditor() {
     }
   };
   
-  // 发布
-  const handlePublish = () => {
-    alert('发布功能开发中...');
+  // 一键发布
+  const handlePublish = async () => {
+    if (!siteName.trim()) {
+      alert('请输入网站名称');
+      return;
+    }
+
+    try {
+      // 首先保存项目
+      const projectData = {
+        siteName,
+        pages,
+        elements,
+        css: '',
+        js: ''
+      };
+
+      const saveResponse = await fetch('/api/page/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(projectData)
+      });
+
+      const saveResult = await saveResponse.json();
+
+      if (!saveResult.success) {
+        throw new Error('保存项目失败，无法发布');
+      }
+
+      // 发布项目
+      const publishResponse = await fetch('/api/page/publish', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: saveResult.data.id,
+          deployConfig: {
+            platform: 'auto', // 自动选择平台
+            domain: siteName.toLowerCase().replace(/\s+/g, '-')
+          }
+        })
+      });
+
+      const publishResult = await publishResponse.json();
+
+      if (publishResult.success) {
+        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+      } else {
+        throw new Error(publishResult.message || '发布失败');
+      }
+    } catch (error) {
+      console.error('发布失败:', error);
+      alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
+    }
   };
 
   return (
