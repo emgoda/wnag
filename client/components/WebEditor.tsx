@@ -291,7 +291,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这���</div>}
           </div>
         );
       
@@ -1797,7 +1797,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       />
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
-                      支持格式：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP���缩包
+                      支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP���缩包
                       <br />
                       💡 可以选择多个文件同时导入（按住Ctrl/Cmd键选择）
                     </div>
@@ -2982,7 +2982,39 @@ export function WebEditor() {
       setSelectedPath([]);
     }
   }, [selectedElement]);
-  
+
+  // 切换页面
+  const handleSwitchPage = useCallback((pageId) => {
+    // 首先保存当前页面的元素
+    saveCurrentPageElements();
+
+    // 找到要切换的页面
+    const targetPage = pages.find(p => p.id === pageId);
+    if (!targetPage) return;
+
+    console.log('切换到页面:', targetPage.name, '元素数量:', targetPage.elements?.length || 0);
+
+    // 更新页面状态
+    setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
+
+    // 稍微延迟加载元素，确保页面状态更新完成
+    setTimeout(() => {
+      // 加载对应页面的元素到画布
+      if (targetPage.elements && Array.isArray(targetPage.elements)) {
+        console.log('加载页面元素:', targetPage.elements);
+        setElements([...targetPage.elements]);
+      } else {
+        // 如果页面没有elements，显示空画布
+        console.log('页面没有元素，清空画布');
+        setElements([]);
+      }
+    }, 10);
+
+    // 清除当前选中的元素
+    setSelectedElement(null);
+    setSelectedPath([]);
+  }, [pages, saveCurrentPageElements]);
+
   // 复制元素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
@@ -3052,7 +3084,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存项目��败，无法导出');
+        throw new Error('保存项目��败，无法导���');
       }
 
       // 使用项目ID导出ZIP包
