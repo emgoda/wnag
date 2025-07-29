@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
   { id: "dashboard", label: "首页", icon: Home, path: "/" },
-  { id: "control", label: "控制台终端", icon: BarChart3, path: "/control-panel" },
   { id: "monitor", label: "网页监控", icon: Monitor, path: "/web-monitor" },
   { id: "web-creation", label: "网页制作", icon: Code, path: "/web-creation" },
   { id: "data", label: "数据访问", icon: Database, path: "/data-access" },
