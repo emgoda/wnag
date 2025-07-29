@@ -50,7 +50,7 @@ const layoutComponents = [
 
 // 表单组件
 const formComponents = [
-  { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
+  { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器���支持音频标签。
+            您的浏览器不支持音频标签。
           </audio>
         );
       
@@ -623,7 +623,7 @@ function PageManager({ pages, setPages, activePage }) {
   const [importType, setImportType] = useState('json');
   const [importContent, setImportContent] = useState('');
 
-  // 添加新页��
+  // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
       alert('�����输入页面名称和路由');
@@ -713,7 +713,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 保存页面设置
   const handleSavePageSettings = () => {
     if (!selectedPageForSettings.name.trim()) {
-      alert('页面名��不能为空');
+      alert('页面名称不能为空');
       return;
     }
 
@@ -791,7 +791,7 @@ function PageManager({ pages, setPages, activePage }) {
     }
 
     // 显示批量导入结果
-    let resultMessage = `批量文件导入完成��
+    let resultMessage = `批量文件导入完成！
 
 成功处理 ${processedFiles.length} 个文件：
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
@@ -1738,7 +1738,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 />
               </div>
               <div>
-                <Label className="text-sm">��面描述 (SEO)</Label>
+                <Label className="text-sm">页面描述 (SEO)</Label>
                 <Textarea
                   value={selectedPageForSettings.description || ''}
                   onChange={(e) => setSelectedPageForSettings({
@@ -1774,7 +1774,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         </DialogContent>
       </Dialog>
 
-      {/* 导入页面对话框 */}
+      {/* 导入页面对话��� */}
       <Dialog open={showImportPage} onOpenChange={setShowImportPage}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -1821,7 +1821,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
-                      <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
+                      <li>• <strong>ZIP文件</strong>��包含多个页面的压缩包</li>
                     </ul>
                   </div>
                 </TabsContent>
@@ -1885,8 +1885,8 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <h4 className="text-sm font-medium mb-2">
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
-                      {importType === 'spa' && 'SPA配���示例：'}
-                      {importType === 'react' && 'React组件示例：'}
+                      {importType === 'spa' && 'SPA配置示例：'}
+                      {importType === 'react' && 'React组件示���：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
@@ -2486,7 +2486,7 @@ function ComponentLibrary({ pages, setPages }) {
   }, []);
 
   const categories = [
-    { id: 'basic', label: '基��组件', icon: Type },
+    { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
@@ -2946,9 +2946,13 @@ export function WebEditor() {
     }
   }, [pages, elements]);
 
-  // 元素变化时自动保存到当前页面
+  // 元素变化时自动保存到当前页面（添加防抖）
   useEffect(() => {
-    saveCurrentPageElements();
+    const timeoutId = setTimeout(() => {
+      saveCurrentPageElements();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [elements]);
 
   // 添加元素到画布
@@ -3221,7 +3225,7 @@ export function WebEditor() {
       return;
     }
 
-    setSiteName('我的���站');
+    setSiteName('我的网站');
     setElements([]);
     setSelectedElement(null);
     setSelectedPath([]);
