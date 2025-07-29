@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持音频标签。
+            您的浏览器���支持音频标签。
           </audio>
         );
       
@@ -623,7 +623,7 @@ function PageManager({ pages, setPages, activePage }) {
   const [importType, setImportType] = useState('json');
   const [importContent, setImportContent] = useState('');
 
-  // 添加新页面
+  // 添加新页��
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
       alert('�����输入页面名称和路由');
@@ -674,20 +674,30 @@ function PageManager({ pages, setPages, activePage }) {
 
   // 切换页面
   const handleSwitchPage = (pageId) => {
+    // 首先保存当前页面的元素
+    saveCurrentPageElements();
+
     // 找到要切换的页面
     const targetPage = pages.find(p => p.id === pageId);
     if (!targetPage) return;
 
+    console.log('切换到页面:', targetPage.name, '元素数量:', targetPage.elements?.length || 0);
+
     // 更新页面状态
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
 
-    // 加载对应页面的元素到画布
-    if (targetPage.elements && Array.isArray(targetPage.elements)) {
-      setElements(targetPage.elements);
-    } else {
-      // 如果页面没有elements，显示空画布
-      setElements([]);
-    }
+    // 稍微延迟加载元素，确保页面状态更新完成
+    setTimeout(() => {
+      // 加载对应页面的元素到画布
+      if (targetPage.elements && Array.isArray(targetPage.elements)) {
+        console.log('加载页面元素:', targetPage.elements);
+        setElements([...targetPage.elements]);
+      } else {
+        // 如果页面没有elements，显示空画布
+        console.log('页面没有元素，清空画布');
+        setElements([]);
+      }
+    }, 10);
 
     // 清除当前选中的元素
     setSelectedElement(null);
@@ -703,7 +713,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 保存页面设置
   const handleSavePageSettings = () => {
     if (!selectedPageForSettings.name.trim()) {
-      alert('页面名称不能为空');
+      alert('页面名��不能为空');
       return;
     }
 
@@ -781,7 +791,7 @@ function PageManager({ pages, setPages, activePage }) {
     }
 
     // 显示批量导入结果
-    let resultMessage = `批量文件导入完成！
+    let resultMessage = `批量文件导入完成��
 
 成功处理 ${processedFiles.length} 个文件：
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
@@ -1728,7 +1738,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 />
               </div>
               <div>
-                <Label className="text-sm">页面描述 (SEO)</Label>
+                <Label className="text-sm">��面描述 (SEO)</Label>
                 <Textarea
                   value={selectedPageForSettings.description || ''}
                   onChange={(e) => setSelectedPageForSettings({
@@ -1875,7 +1885,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <h4 className="text-sm font-medium mb-2">
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
-                      {importType === 'spa' && 'SPA配置示例：'}
+                      {importType === 'spa' && 'SPA配���示例：'}
                       {importType === 'react' && 'React组件示例：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
@@ -2476,7 +2486,7 @@ function ComponentLibrary({ pages, setPages }) {
   }, []);
 
   const categories = [
-    { id: 'basic', label: '基础组件', icon: Type },
+    { id: 'basic', label: '基��组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
@@ -3211,7 +3221,7 @@ export function WebEditor() {
       return;
     }
 
-    setSiteName('我的网站');
+    setSiteName('我的���站');
     setElements([]);
     setSelectedElement(null);
     setSelectedPath([]);
