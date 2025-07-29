@@ -630,7 +630,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       return;
     }
 
-    // 检查路由是否已存在
+    // 检查路由是否已存���
     if (pages.some(p => p.route === newPageRoute)) {
       alert('该路由已存在');
       return;
@@ -802,7 +802,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, ...newPages]);
         alert(`成功导入 ${newPages.length} 个页面`);
       } else if (data.name && data.route) {
-        // 导入单个页面
+        // 导入单个���面
         const newPage = {
           ...data,
           id: `page_${Date.now()}`,
@@ -1070,7 +1070,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导入Vue组件
+  // 导��Vue组件
   const handleImportVueComponent = (content) => {
     try {
       const componentName = extractComponentName(content, 'vue');
@@ -1156,7 +1156,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       alert('JavaScript代码导入成功');
       setShowImportPage(false);
 
-      // 自动切换到新导入的页面
+      // 自动切换到新导入的��面
       setTimeout(() => {
         onSwitchPage(newPage.id);
       }, 100);
@@ -1195,7 +1195,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 查找JSX中的HTML标签
     const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
 
-    // 解析常见标签
+    // 解析常见标��
     const tagMatches = jsxContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
 
     tagMatches.forEach((tag, index) => {
@@ -1274,7 +1274,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导入，请手动编辑内容',
+        content: 'Angular组件已导入，请手���编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1380,7 +1380,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
             existingPage.component = route.component;
             existingPage.meta = route.meta;
           } else {
-            // 创建新页面
+            // 创建新��面
             const newPage = {
               id: `page_${Date.now()}_route_${index}`,
               name: route.component || route.path.replace('/', '') || 'Page',
@@ -1587,7 +1587,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </div>
         </div>
 
-        {/* 页面列表 */}
+        {/* 页��列表 */}
         {isExpanded && (
           <div className="ml-3 space-y-1">
             {pages.map(page => (
@@ -1689,7 +1689,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       <Dialog open={showPageSettings} onOpenChange={setShowPageSettings}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>页面设置</DialogTitle>
+            <DialogTitle>��面设置</DialogTitle>
           </DialogHeader>
           {selectedPageForSettings && (
             <div className="space-y-4">
@@ -2513,7 +2513,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
           pages={pages}
           setPages={setPages}
           activePage={pages.find(p => p.isActive)}
-          onSwitchPage={handleSwitchPage}
+          onSwitchPage={onSwitchPage}
         />
       </div>
 
@@ -2524,7 +2524,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
           <div className="flex items-center justify-between px-2 py-1 mb-2">
             <div className="flex items-center gap-2">
               <Layers className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-300">��层</span>
+              <span className="text-sm text-gray-300">图层</span>
             </div>
             <button
               onClick={() => {
@@ -2555,7 +2555,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
               return (
                 <div key={category.id}>
-                  {/* 分类标�� */}
+                  {/* 分类标题 */}
                   <div
                     className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-800 rounded cursor-pointer group"
                     onClick={() => toggleCategory(category.id)}
@@ -3002,7 +3002,7 @@ export function WebEditor() {
     setTimeout(() => {
       // 加载对应页面的元素到��布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
-        console.log('加载页面元素:', targetPage.elements);
+        console.log('加载页���元素:', targetPage.elements);
         setElements([...targetPage.elements]);
       } else {
         // 如果页面没有elements，显示空画布
@@ -3188,7 +3188,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发���时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
