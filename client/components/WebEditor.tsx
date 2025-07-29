@@ -154,7 +154,7 @@ function DraggableTreeComponent({ component, isSelected = false, onDoubleClick }
   );
 }
 
-// 画布元素
+// 画���元素
 function CanvasElement({ 
   element, 
   onSelect, 
@@ -555,7 +555,7 @@ function Canvas({
               </div>
             </div>
             
-            {/* 设备��换 */}
+            {/* 设备切换 */}
             <div className="flex items-center gap-1 bg-white rounded-lg p-1 border">
               {Object.entries(deviceSizes).map(([key, device]) => {
                 const Icon = device.icon;
@@ -587,7 +587,7 @@ function Canvas({
             {elements.length === 0 && (
               <div className="text-center py-20 text-gray-500">
                 <div className="text-lg mb-2">🎨 开始设计你的网页</div>
-                <div className="text-sm">从左侧拖拽组件到���里开始创建</div>
+                <div className="text-sm">从左侧拖拽组件到这里开始创建</div>
               </div>
             )}
             
@@ -880,7 +880,7 @@ function ComponentLibrary() {
               <Layers className="w-4 h-4 text-gray-400" />
               <span className="text-sm text-gray-300">图层</span>
             </div>
-            <div className="relative">
+            <div className="relative expand-menu-container">
               <button
                 onClick={() => setShowExpandMenu(!showExpandMenu)}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
@@ -1164,7 +1164,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">字体粗细</Label>
+                  <Label className="text-xs text-gray-600">���体粗细</Label>
                   <Select
                     value={selectedElement.style?.fontWeight || 'normal'}
                     onValueChange={(value) => handleStyleChange('fontWeight', value)}
@@ -1294,7 +1294,7 @@ export function WebEditor() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [deviceMode, setDeviceMode] = useState('desktop');
-  const [siteName, setSiteName] = useState('我的网站');
+  const [siteName, setSiteName] = useState('我���网站');
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
