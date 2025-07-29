@@ -759,7 +759,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不���确，请确保包含页面数据');
+        alert('JSON格式不正确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -947,6 +947,8 @@ function PageManager({ pages, setPages, activePage }) {
         handleImportAngularComponent(importContent);
       } else if (importType === 'js') {
         handleImportJavaScript(importContent);
+      } else if (importType === 'project') {
+        handleImportProjectStructure(importContent);
       }
     } catch (error) {
       alert('导入失败：' + error.message);
@@ -1023,7 +1025,7 @@ function PageManager({ pages, setPages, activePage }) {
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
         title: componentName || 'Vue页面',
-        description: `从Vue组件导入的��面`,
+        description: `从Vue组件导入的页面`,
         keywords: 'vue, component',
         sourceCode: content,
         sourceType: 'vue',
@@ -1313,7 +1315,7 @@ function PageManager({ pages, setPages, activePage }) {
             <button
               onClick={() => setShowAddPage(true)}
               className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-              title="添加页��"
+              title="添加页面"
             >
               <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
             </button>
@@ -2034,7 +2036,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
       <div className="flex-1 overflow-y-auto p-2">
         {elements.length === 0 ? (
           <div className="text-center text-gray-400 py-8 text-xs">
-            暂无元素
+            暂无元���
           </div>
         ) : (
           <div className="space-y-0.5">
@@ -2532,7 +2534,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   );
 }
 
-// 主编��器组件
+// 主编辑器组件
 export function WebEditor() {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -2617,7 +2619,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保���到���地作为备份
+        // 同时保存到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -2758,7 +2760,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站��称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
