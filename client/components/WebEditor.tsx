@@ -860,9 +860,27 @@ function ComponentLibrary() {
       <div className="flex-1 overflow-y-auto">
         <div className="p-2">
           {/* 图层标题 */}
-          <div className="flex items-center gap-2 px-2 py-1 mb-2">
-            <Layers className="w-4 h-4 text-gray-400" />
-            <span className="text-sm text-gray-300">图层</span>
+          <div className="flex items-center justify-between px-2 py-1 mb-2">
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 text-gray-400" />
+              <span className="text-sm text-gray-300">图层</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={expandAll}
+                className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+                title="展开全部"
+              >
+                <ChevronRight className="w-3 h-3 text-gray-400 hover:text-gray-200 rotate-90" />
+              </button>
+              <button
+                onClick={collapseAll}
+                className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+                title="收起全部"
+              >
+                <ChevronRight className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+              </button>
+            </div>
           </div>
 
           {/* 分类树结构 */}
@@ -917,7 +935,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
       <div className="w-80 bg-white border-l p-4 overflow-y-auto">
         <div className="text-center text-gray-400 py-8">
           <Settings size={48} className="mx-auto mb-4 opacity-50" />
-          <p className="text-sm">选择一个组件来编辑属性</p>
+          <p className="text-sm">选择一个组件来编��属性</p>
         </div>
       </div>
     );
@@ -1052,7 +1070,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </>
             )}
             
-            {/* ��接属性 */}
+            {/* 链接属性 */}
             {selectedElement.type === 'link' && (
               <div>
                 <Label className="text-xs">链接地址</Label>
@@ -1177,7 +1195,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* ��距 */}
+            {/* 间距 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">间距</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -1333,7 +1351,7 @@ export function WebEditor() {
   // 导出 ZIP 包
   const handleExport = async () => {
     try {
-      // 首先保存项目����ID
+      // 首先保存项目获��ID
       const projectData = {
         siteName,
         pages,
@@ -1701,7 +1719,7 @@ export function WebEditor() {
                           variant={project.status === 'published' ? 'default' : 'secondary'}
                           className={project.status === 'published' ? 'bg-green-500' : ''}
                         >
-                          {project.status === 'published' ? '���发布' : '草稿'}
+                          {project.status === 'published' ? '已发布' : '草稿'}
                         </Badge>
                       </div>
                     </CardHeader>
