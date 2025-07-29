@@ -867,7 +867,7 @@ function PageManager({ pages, setPages, activePage }) {
                     ...selectedPageForSettings,
                     title: e.target.value
                   })}
-                  placeholder="页面的HTML标题"
+                  placeholder="页面的HTML��题"
                   className="mt-1"
                 />
               </div>
@@ -1625,7 +1625,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   );
 }
 
-// 主编���器组件
+// 主编辑器组件
 export function WebEditor() {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -1998,7 +1998,7 @@ export function WebEditor() {
         
         {/* 主要编辑区域 */}
         <div className="flex-1 flex relative">
-          {!showPreview && <ComponentLibrary />}
+          {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
 
           <Canvas
             elements={elements}
@@ -2089,7 +2089,7 @@ export function WebEditor() {
                           <CardTitle className="text-lg">{project.siteName}</CardTitle>
                           <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
                             <span>元素: {project.elementsCount}</span>
-                            <span>��面: {project.pagesCount}</span>
+                            <span>页面: {project.pagesCount}</span>
                           </div>
                         </div>
                         <Badge
