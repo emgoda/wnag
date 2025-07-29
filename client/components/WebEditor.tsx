@@ -86,7 +86,7 @@ const allComponents = [
 // 设备尺寸配置
 const deviceSizes = {
   mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
-  tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
+  tablet: { name: '平��', icon: Tablet, width: 768, height: 1024 },
   desktop: { name: '桌面', icon: Monitor, width: 1200, height: 800 }
 };
 
@@ -586,7 +586,7 @@ function Canvas({
           <div className="space-y-4 min-h-full">
             {elements.length === 0 && (
               <div className="text-center py-20 text-gray-500">
-                <div className="text-lg mb-2">🎨 开始设计你的网页</div>
+                <div className="text-lg mb-2">🎨 开始设计你的网��</div>
                 <div className="text-sm">从左侧拖拽组件到这里开始创建</div>
               </div>
             )}
@@ -725,6 +725,10 @@ function PageManager({ pages, setPages, activePage }) {
         } else if (file.name.endsWith('.js') || file.name.endsWith('.ts')) {
           // 原生JavaScript文件
           handleImportJavaScript(content);
+        } else if (file.name.includes('project') && file.name.endsWith('.json')) {
+          // 项目结构配置文件
+          const data = JSON.parse(content);
+          handleImportProjectStructure(JSON.stringify(data));
         } else if (file.name.endsWith('.zip')) {
           alert('ZIP文件导入功能开发中，请先解压后导入单个文件');
         } else {
@@ -778,7 +782,7 @@ function PageManager({ pages, setPages, activePage }) {
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
-      // 解析HTML结构转换为组件元素
+      // 解���HTML结构转换为组件元素
       const elements = parseHTMLToElements(doc.body);
 
       const newPage = {
@@ -1110,7 +1114,7 @@ function PageManager({ pages, setPages, activePage }) {
         return match ? match[1] : null;
       }
     } catch (error) {
-      console.error('提取组件名称���败:', error);
+      console.error('提取组件名称失败:', error);
     }
     return null;
   };
@@ -1934,7 +1938,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原生JavaScript和CSS代码，会自动解析为页面元素：</p>
+                        <p className="mb-2">支持原生JavaScript和CSS代��，会自动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -2581,7 +2585,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">字体粗细</Label>
+                  <Label className="text-xs text-gray-600">字体粗��</Label>
                   <Select
                     value={selectedElement.style?.fontWeight || 'normal'}
                     onValueChange={(value) => handleStyleChange('fontWeight', value)}
