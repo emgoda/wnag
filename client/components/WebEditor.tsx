@@ -662,7 +662,7 @@ function PageManager({ pages, setPages, activePage }) {
     if (confirm('确定要删除此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删��的是当前活跃页面，激活第一个页面
+        // 如果删除的是当前活跃页面，激活第一个页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -1060,7 +1060,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 导入React组件
   const handleImportReactComponent = (content) => {
     try {
-      // 解析React组件代码，提取组件信息
+      // 解析React组件代码，提取组���信息
       const componentName = extractComponentName(content, 'react');
       const elements = parseReactComponent(content);
 
@@ -1490,7 +1490,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     ];
   };
 
-  // 处��ZIP文件导入
+  // 处理ZIP文件导入
   const handleZipImport = async (file) => {
     // 显示ZIP导入指南对话框
     setShowZipGuide(true);
@@ -1735,7 +1735,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     ...selectedPageForSettings,
                     description: e.target.value
                   })}
-                  placeholder="页面描述，��于搜索引擎优化"
+                  placeholder="���面描述，��于搜索引擎优化"
                   className="mt-1 h-20"
                 />
               </div>
@@ -2180,7 +2180,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件）
+                        选择多��文件同时上传（按住Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -2929,20 +2929,34 @@ export function WebEditor() {
   // 同步当前元素到活跃页面
   useEffect(() => {
     const activePage = pages.find(p => p.isActive);
-    if (activePage) {
-      setPages(prev => prev.map(p =>
-        p.isActive ? { ...p, elements: elements } : p
-      ));
+    if (activePage && elements.length >= 0) {
+      // 使用setTimeout避免在状态更新过程中再次更新状态
+      const timeoutId = setTimeout(() => {
+        setPages(prev => prev.map(p =>
+          p.isActive ? { ...p, elements: [...elements] } : p
+        ));
+      }, 0);
+      return () => clearTimeout(timeoutId);
     }
   }, [elements]);
 
-  // 初始化时加载当前活跃页面的元素
+  // 监听页面切换，加载对应页面的元素
   useEffect(() => {
     const activePage = pages.find(p => p.isActive);
     if (activePage && activePage.elements && Array.isArray(activePage.elements)) {
-      setElements(activePage.elements);
+      // 只有当���素不同时才更新，避免无限循环
+      const currentElementsString = JSON.stringify(elements);
+      const pageElementsString = JSON.stringify(activePage.elements);
+      if (currentElementsString !== pageElementsString) {
+        setElements([...activePage.elements]);
+      }
+    } else if (activePage && (!activePage.elements || activePage.elements.length === 0)) {
+      // 如果页面没有元素或元素为空，清空画布
+      if (elements.length > 0) {
+        setElements([]);
+      }
     }
-  }, [pages]);
+  }, [pages.map(p => ({ id: p.id, isActive: p.isActive, elements: p.elements })).find(p => p.isActive)]);
 
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
