@@ -540,7 +540,7 @@ function Canvas({
   return (
     <div className="flex-1 bg-gray-100 p-6">
       <div className="bg-white rounded-lg shadow-lg border overflow-hidden">
-        {/* 浏览器顶��� */}
+        {/* ��览器顶��� */}
         <div className="bg-gray-50 border-b p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -672,37 +672,7 @@ function PageManager({ pages, setPages, activePage }) {
     }
   };
 
-  // 切换页面
-  const handleSwitchPage = (pageId) => {
-    // 首先保存当前页面的元素
-    saveCurrentPageElements();
 
-    // 找到要切换的页面
-    const targetPage = pages.find(p => p.id === pageId);
-    if (!targetPage) return;
-
-    console.log('切换到页面:', targetPage.name, '元素数量:', targetPage.elements?.length || 0);
-
-    // 更新页面状态
-    setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
-
-    // 稍微延迟加载元素，确保页面状态更新完成
-    setTimeout(() => {
-      // 加载对应页面的元素到画布
-      if (targetPage.elements && Array.isArray(targetPage.elements)) {
-        console.log('加载页面元素:', targetPage.elements);
-        setElements([...targetPage.elements]);
-      } else {
-        // 如果页面没有elements，显示空画布
-        console.log('页面没有元素，清空画布');
-        setElements([]);
-      }
-    }, 10);
-
-    // 清除当前选中的元素
-    setSelectedElement(null);
-    setSelectedPath([]);
-  };
 
   // 打开页面设置
   const handleOpenPageSettings = (page) => {
@@ -759,7 +729,7 @@ function PageManager({ pages, setPages, activePage }) {
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
           // HTML文件导入
           handleImportFromHTML(content, file.name);
-          processedFiles.push(`${file.name} (HTML页面)`);
+          processedFiles.push(`${file.name} (HTML���面)`);
           importedCount++;
         } else if (file.name.endsWith('.jsx') || file.name.endsWith('.tsx')) {
           // React组件文件
@@ -841,7 +811,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数据');
+        alert('JSON格式不正��，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -882,7 +852,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解析HTML元素为组件
+  // 解析HTML元素��组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -1858,7 +1828,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="html">HTML页面代码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
                         <SelectItem value="react">React组件代码</SelectItem>
-                        <SelectItem value="vue">Vue组件代码</SelectItem>
+                        <SelectItem value="vue">Vue组件代��</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
                         <SelectItem value="project">项目结构配置</SelectItem>
@@ -2825,7 +2795,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="normal">正常</SelectItem>
+                      <SelectItem value="normal">正���</SelectItem>
                       <SelectItem value="bold">粗体</SelectItem>
                       <SelectItem value="lighter">��体</SelectItem>
                     </SelectContent>
@@ -3187,7 +3157,7 @@ export function WebEditor() {
       if (publishResult.success) {
         alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
-        throw new Error(publishResult.message || '发布失败');
+        throw new Error(publishResult.message || '发布失��');
       }
     } catch (error) {
       console.error('发布失败:', error);
@@ -3229,7 +3199,7 @@ export function WebEditor() {
         setShowProjectManager(false);
         alert(`项目 "${project.siteName}" 加载成功！`);
       } else {
-        alert('加载项目失败: ' + result.message);
+        alert('加载项目��败: ' + result.message);
       }
     } catch (error) {
       console.error('加载项目失败:', error);
