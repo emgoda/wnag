@@ -154,7 +154,7 @@ function DraggableTreeComponent({ component, isSelected = false, onDoubleClick }
   );
 }
 
-// 画���元素
+// 画布元素
 function CanvasElement({ 
   element, 
   onSelect, 
@@ -900,7 +900,7 @@ function ComponentLibrary() {
                       }}
                       className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
                     >
-                      <ChevronRight className="w-3 h-3 rotate-90" />
+                      <Plus className="w-3 h-3" />
                       展开全部
                     </button>
                     <button
@@ -910,8 +910,24 @@ function ComponentLibrary() {
                       }}
                       className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
                     >
-                      <ChevronRight className="w-3 h-3" />
+                      <Minus className="w-3 h-3" />
                       收起全部
+                    </button>
+                    <hr className="border-gray-600 my-1" />
+                    <button
+                      onClick={() => {
+                        // 切换当前状态（如果全部展开则收起，否则展开）
+                        if (expandedCategories.size === categories.length) {
+                          collapseAll();
+                        } else {
+                          expandAll();
+                        }
+                        setShowExpandMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+                    >
+                      <RotateCcw className="w-3 h-3" />
+                      切换状态
                     </button>
                     <hr className="border-gray-600 my-1" />
                     <div className="px-3 py-1.5 text-xs text-gray-500">
@@ -1164,7 +1180,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">���体粗细</Label>
+                  <Label className="text-xs text-gray-600">字体粗细</Label>
                   <Select
                     value={selectedElement.style?.fontWeight || 'normal'}
                     onValueChange={(value) => handleStyleChange('fontWeight', value)}
@@ -1294,7 +1310,7 @@ export function WebEditor() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [deviceMode, setDeviceMode] = useState('desktop');
-  const [siteName, setSiteName] = useState('我���网站');
+  const [siteName, setSiteName] = useState('我的网站');
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
