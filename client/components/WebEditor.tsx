@@ -800,6 +800,15 @@ function ComponentLibrary() {
     setExpandedCategories(newExpanded);
   };
 
+  const expandAll = () => {
+    const allCategoryIds = new Set(categories.map(cat => cat.id));
+    setExpandedCategories(allCategoryIds);
+  };
+
+  const collapseAll = () => {
+    setExpandedCategories(new Set());
+  };
+
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
@@ -1043,7 +1052,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </>
             )}
             
-            {/* 链接属性 */}
+            {/* ��接属性 */}
             {selectedElement.type === 'link' && (
               <div>
                 <Label className="text-xs">链接地址</Label>
@@ -1168,7 +1177,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* 间距 */}
+            {/* ��距 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">间距</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -1324,7 +1333,7 @@ export function WebEditor() {
   // 导出 ZIP 包
   const handleExport = async () => {
     try {
-      // 首先保存项目获��ID
+      // 首先保存项目����ID
       const projectData = {
         siteName,
         pages,
@@ -1692,7 +1701,7 @@ export function WebEditor() {
                           variant={project.status === 'published' ? 'default' : 'secondary'}
                           className={project.status === 'published' ? 'bg-green-500' : ''}
                         >
-                          {project.status === 'published' ? '已发布' : '草稿'}
+                          {project.status === 'published' ? '���发布' : '草稿'}
                         </Badge>
                       </div>
                     </CardHeader>
