@@ -72,7 +72,7 @@ const iconComponents = [
   { id: 'icon-user', type: 'icon', label: '���户���标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
+  { id: 'icon-star', type: 'icon', label: '星��图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
 ];
 
@@ -499,7 +499,25 @@ function CanvasElement({
       case 'account-check-flow':
         return (
           <div {...commonProps}>
-            <AccountCheckFlow />
+            <AccountCheckFlow
+              title={element.title}
+              phoneLabel={element.phoneLabel}
+              phonePlaceholder={element.phonePlaceholder}
+              startButton={element.startButton}
+              warningText={element.warningText}
+              warningItem1={element.warningItem1}
+              warningItem2={element.warningItem2}
+              warningItem3={element.warningItem3}
+              continueButton={element.continueButton}
+              nameLabel={element.nameLabel}
+              idLabel={element.idLabel}
+              emailLabel={element.emailLabel}
+              submitButton={element.submitButton}
+              successMessage={element.successMessage}
+              buttonColor={element.buttonColor}
+              warningColor={element.warningColor}
+              submitColor={element.submitColor}
+            />
           </div>
         );
 
@@ -631,7 +649,7 @@ function Canvas({
           <div className="space-y-4 min-h-full">
             {elements.length === 0 && (
               <div className="text-center py-20 text-gray-500">
-                <div className="text-lg mb-2">🎨 开始设计你的网页</div>
+                <div className="text-lg mb-2">🎨 ��始设计你的网页</div>
                 <div className="text-sm">从左侧拖拽组件到这里开始创建</div>
               </div>
             )}
@@ -838,7 +856,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const handleImportFromJSON = (data) => {
     try {
       if (data.pages && Array.isArray(data.pages)) {
-        // 导入多个页���
+        // 导入多个页����
         const newPages = data.pages.map(page => ({
           ...page,
           id: `page_${Date.now()}_${Math.random()}`,
@@ -1024,7 +1042,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 从文本内容导入
   const handleImportFromText = () => {
     if (!importContent.trim()) {
-      alert('请输入要导入的内容');
+      alert('请输入��导入的内容');
       return;
     }
 
@@ -1078,7 +1096,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       }
       setShowImportPage(false);
     } catch (error) {
-      alert('SPA导入失���：' + error.message);
+      alert('SPA导入失败：' + error.message);
     }
   };
 
@@ -1954,7 +1972,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表单组件</li>
-                          <li>• div → 容��组件</li>
+                          <li>• div → 容器组件</li>
                         </ul>
                       </div>
                     )}
@@ -2211,7 +2229,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">手动解压ZIP文件</h5>
                       <p className="text-sm text-gray-600">
-                        在您的计算机上解压ZIP文件，然后选择单个文件进行导入
+                        在您的计算机上解��ZIP文件，然后选择单个文件进行导入
                       </p>
                     </div>
                   </div>
@@ -2223,7 +2241,7 @@ function increment() {
                       2
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-medium text-gray-900 mb-1">��量导入多个文件</h5>
+                      <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
                         选择多个文件同时上传（按��Ctrl/Cmd键选择多个文件）
                       </p>
@@ -2457,7 +2475,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
       <div className="flex-1 overflow-y-auto p-2">
         {elements.length === 0 ? (
           <div className="text-center text-gray-400 py-8 text-xs">
-            暂无元素
+            暂无元��
           </div>
         ) : (
           <div className="space-y-0.5">
@@ -2881,7 +2899,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             
             {/* 背景和边框 */}
             <div className="space-y-3">
-              <Label className="text-xs font-medium">背���和边框</Label>
+              <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label className="text-xs text-gray-600">���景色</Label>
@@ -3097,7 +3115,7 @@ export function WebEditor() {
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
-        throw new Error(result.message || '保存失败');
+        throw new Error(result.message || '保存失���');
       }
     } catch (error) {
       console.error('保存失败:', error);
@@ -3193,7 +3211,7 @@ export function WebEditor() {
     }
 
     try {
-      // 首先保存项目
+      // 首先���存项目
       const projectData = {
         siteName,
         pages,
