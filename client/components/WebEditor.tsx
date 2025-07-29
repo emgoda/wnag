@@ -1145,7 +1145,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
         title: componentName || 'Vue页面',
-        description: `从Vue组件导入的页面`,
+        description: `从Vue组件导���的页面`,
         keywords: 'vue, component',
         sourceCode: content,
         sourceType: 'vue',
@@ -1860,7 +1860,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       />
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
-                      支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP���缩包
+                      支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
                       💡 可以选择多个文件同时导入（按住Ctrl/Cmd键选择）
                     </div>
@@ -2600,7 +2600,8 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     : allComponents;
 
   return (
-    <div className="w-64 bg-gray-900 text-white border-r border-gray-700 flex flex-col h-full">
+    <>
+      <div className="w-64 bg-gray-900 text-white border-r border-gray-700 flex flex-col h-full">
 
       {/* 搜索框 */}
       <div className="p-3 border-b border-gray-700">
@@ -2656,7 +2657,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   }
                 }}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title={expandedCategories.size === categories.length ? "收起全部" : "展开全部"}
+                title={expandedCategories.size === categories.length ? "收起��部" : "展开全部"}
               >
                 {expandedCategories.size === categories.length ? (
                   <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
@@ -2708,7 +2709,89 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+
+      {/* 添加自定义组件对话框 */}
+      <Dialog open={showAddCustomComponent} onOpenChange={setShowAddCustomComponent}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Shield className="w-5 h-5" />
+              添加自定义组件
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-sm font-bold">⚠️</span>
+                </div>
+                <div>
+                  <h3 className="font-medium text-yellow-900 mb-2">开发者功能</h3>
+                  <p className="text-yellow-800 text-sm">
+                    此功能用于添加自定义React组件。需要重新编译才能在画布中使用。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <Label className="text-sm font-medium">组件名称</Label>
+                <Input
+                  value={newComponentName}
+                  onChange={(e) => setNewComponentName(e.target.value)}
+                  placeholder="例如：我的按钮组件"
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label className="text-sm font-medium">React组件代码</Label>
+                <Textarea
+                  value={newComponentCode}
+                  onChange={(e) => setNewComponentCode(e.target.value)}
+                  placeholder={"例如：\nimport React from 'react';\n\nexport default function MyCustomComponent({ text = \"Hello\" }) {\n  return (\n    <div className=\"p-4 bg-blue-100 rounded\">\n      <h3>{text}</h3>\n      <p>这是我的自定义组件</p>\n    </div>\n  );\n}"}
+                  className="mt-2 h-60 font-mono text-xs"
+                />
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900 mb-3">开发指南：</h4>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li>• 使用标准的React函数组件格式</li>
+                  <li>• 组件应该导出为默认导出 (export default)</li>
+                  <li>• 可以使用props来接收参数</li>
+                  <li>• 建议使用Tailwind CSS进行样式设计</li>
+                  <li>• 避免使用外部依赖库</li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h4 className="font-medium text-blue-900 mb-2">后续步骤：</h4>
+                <ol className="text-sm text-blue-800 space-y-1">
+                  <li>1. 点击"创建组件"保存代码</li>
+                  <li>2. 将生成的组件文件添加到项目中</li>
+                  <li>3. 在WebEditor.tsx中注册新组件</li>
+                  <li>4. 重新编译项目即可使用</li>
+                </ol>
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setShowAddCustomComponent(false)}>
+                  取消
+                </Button>
+                <Button onClick={handleAddCustomComponent}>
+                  <Shield className="w-4 h-4 mr-2" />
+                  创建组件
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 
@@ -3257,7 +3340,7 @@ export function WebEditor() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [deviceMode, setDeviceMode] = useState('desktop');
-  const [siteName, setSiteName] = useState('我的网站');
+  const [siteName, setSiteName] = useState('我的���站');
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
