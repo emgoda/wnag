@@ -654,7 +654,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 删除页面
   const handleDeletePage = (pageId) => {
     if (pages.length <= 1) {
-      alert('至少��要保留一个页面');
+      alert('至少需要保留一个页面');
       return;
     }
 
@@ -927,6 +927,14 @@ function PageManager({ pages, setPages, activePage }) {
         handleImportFromHTML(importContent, 'imported.html');
       } else if (importType === 'spa') {
         handleImportSPA(importContent);
+      } else if (importType === 'react') {
+        handleImportReactComponent(importContent);
+      } else if (importType === 'vue') {
+        handleImportVueComponent(importContent);
+      } else if (importType === 'angular') {
+        handleImportAngularComponent(importContent);
+      } else if (importType === 'js') {
+        handleImportJavaScript(importContent);
       }
     } catch (error) {
       alert('导入失败：' + error.message);
@@ -1240,7 +1248,7 @@ function PageManager({ pages, setPages, activePage }) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="json">JSON页面配置</SelectItem>
-                        <SelectItem value="html">HTML页面代码</SelectItem>
+                        <SelectItem value="html">HTML页面��码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
                         <SelectItem value="react">React组件代码</SelectItem>
                         <SelectItem value="vue">Vue组件代码</SelectItem>
@@ -1314,7 +1322,7 @@ function PageManager({ pages, setPages, activePage }) {
                         <p>支持标准HTML标签，会自动转换为对应组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
-                          <li>• p → 文本组件</li>
+                          <li>• p → 文本组��</li>
                           <li>• button → 按钮组件</li>
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
@@ -2229,7 +2237,7 @@ export function WebEditor() {
         throw new Error(result.message || '保存失败');
       }
     } catch (error) {
-      console.error('保存失败:', error);
+      console.error('保存失��:', error);
       alert(`保存失败: ${error.message}`);
       // 失败时仍然保存到本地
       const projectData = { siteName, pages, elements };
@@ -2537,7 +2545,7 @@ export function WebEditor() {
             />
           )}
 
-          {/* 右下角元素树状图 */}
+          {/* 右��角元素树状图 */}
           {!showPreview && showElementTree && (
             <div className="absolute bottom-4 right-4 z-10">
               <ElementTreeView
