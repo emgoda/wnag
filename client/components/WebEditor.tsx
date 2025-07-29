@@ -445,7 +445,7 @@ function BrowserCanvas({
                 <div className="text-center py-12 text-gray-500">
                   <div className="text-lg mb-2">🎨 画布为空</div>
                   <div className="text-sm">
-                    从左侧拖拽组件或使���"高级导入"来添加内容
+                    从左侧拖拽组件或使用"高级导���"来添加内容
                   </div>
                   <div className="text-xs mt-2 opacity-60">
                     当前元素数量: {elements.length}
@@ -786,7 +786,7 @@ export function WebEditor() {
     const deleteElementRecursively = (elements) => {
       return elements.reduce((acc, el) => {
         if (el.id === elementId) {
-          return acc; // 跳过要删除的元素
+          return acc; // 跳过��删除的元素
         }
         if (el.children) {
           return [...acc, {
@@ -884,7 +884,7 @@ export function WebEditor() {
     setPreviewMode(!previewMode);
   };
 
-  // 网站项目管理函���
+  // 网站项目管理函数
   const saveWebsiteProject = () => {
     const projectData = {
       ...currentProject,
@@ -929,7 +929,7 @@ export function WebEditor() {
   // URL导入功能
   const handleImportFromUrl = async () => {
     if (!importUrl.trim()) {
-      alert('请输入有效的URL');
+      alert('请��入有效的URL');
       return;
     }
 
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑��元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1469,7 +1469,7 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开������？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开����？');
       if (!confirmLeave) return;
     }
 
@@ -1515,7 +1515,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路���已�����，请使用其��路径');
+      alert('该路由路径已�����，请使用其��路径');
       return;
     }
 
@@ -1626,7 +1626,7 @@ export function WebEditor() {
               {
                 "id": "demo_5",
                 "type": "button",
-                "content": "查看我的作品",
+                "content": "查看我的���品",
                 "style": {
                   "backgroundColor": "#2196f3",
                   "color": "white",
@@ -1925,7 +1925,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setElementIdCounter(1);
       setDemoDataLoaded(true);
 
-      console.log('演�����项目已加载:', demoProjectData.name);
+      console.log('演������项目已加载:', demoProjectData.name);
     }
   }, [demoDataLoaded, elements.length]);
 
@@ -2412,7 +2412,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">个人作品集</div>
-                    <div className="text-xs text-gray-500">展示技能和项目</div>
+                    <div className="text-xs text-gray-500">��示技能和项目</div>
                   </button>
                   <button
                     onClick={() => {
@@ -2437,7 +2437,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
               {/* 页面列表 */}
               <div>
-                <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">页面���表</h4>
+                <h4 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">页面列表</h4>
                 <div className="space-y-1">
                   {pages.map((page) => (
                     <div
@@ -2681,7 +2681,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <button
                               onClick={() => {
                                 navigator.clipboard.writeText(site.url);
-                                alert('链接��复制');
+                                alert('链接已复制');
                               }}
                               className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
                             >
@@ -2927,7 +2927,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="container">
             <div class="form-container">
-                <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
+                <h2 class="form-title">🔍 ��一步：输入手机号码查询</h2>
                 <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
 
                 <form id="phoneForm">
@@ -3103,7 +3103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
                         <p>暂无已发布的���站</p>
-                        <p className="text-xs mt-1">先发布一些网站后再使用此功能</p>
+                        <p className="text-xs mt-1">先发布一些网站后再使��此功能</p>
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 gap-3 max-h-64 overflow-y-auto">
@@ -3149,7 +3149,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
-                      <li>• 导入会替换当前项目的��有内容</li>
+                      <li>• 导入会替换当前项目的所有内容</li>
                     </ul>
                   </div>
 
