@@ -624,7 +624,8 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     setExpandedNodes(newExpanded);
   };
 
-  const renderElementNode = (element: any, level: number = 0) => {
+  // 递归渲染所有元素及其子元素
+  const renderElementNode = (element: any, level: number = 0, path: number[] = []) => {
     const hasChildren = element.children && element.children.length > 0;
     const isExpanded = expandedNodes.has(element.id);
     const isSelected = selectedElement?.id === element.id;
@@ -635,10 +636,10 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
           className={`flex items-center gap-1 px-2 py-1 text-xs hover:bg-gray-100 cursor-pointer ${
             isSelected ? 'bg-blue-100 text-blue-800' : ''
           }`}
-          style={{ paddingLeft: `${8 + level * 16}px` }}
-          onClick={() => onSelectElement(element, [])}
+          style={{ paddingLeft: `${8 + level * 12}px` }}
+          onClick={() => onSelectElement(element, path)}
         >
-          {hasChildren && (
+          {hasChildren ? (
             <button
               className="w-3 h-3 flex items-center justify-center hover:bg-gray-200 rounded"
               onClick={(e) => {
@@ -652,39 +653,62 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
                 }`}
               />
             </button>
+          ) : (
+            <div className="w-3 h-3 flex items-center justify-center">
+              <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+            </div>
           )}
-          {!hasChildren && <div className="w-3 h-3" />}
 
-          <span className={`font-mono ${isSelected ? 'font-semibold' : ''}`}>
+          <span className={`font-mono text-purple-600 ${isSelected ? 'font-semibold' : ''}`}>
             {element.type}
           </span>
 
           {element.className && (
-            <span className="text-gray-500">
+            <span className="text-green-600 text-xs">
               .{element.className}
             </span>
           )}
 
           {element.htmlId && (
-            <span className="text-blue-600">
+            <span className="text-blue-600 text-xs">
               #{element.htmlId}
             </span>
           )}
 
-          {element.content && element.content.length > 0 && (
-            <span className="text-gray-400 ml-1 truncate max-w-20">
-              "{element.content.substring(0, 20)}{element.content.length > 20 ? '...' : ''}"
+          {element.content && typeof element.content === 'string' && element.content.trim().length > 0 && (
+            <span className="text-gray-500 ml-1 truncate max-w-24 text-xs">
+              "{element.content.substring(0, 15)}{element.content.length > 15 ? '...' : ''}"
+            </span>
+          )}
+
+          {element.src && (
+            <span className="text-orange-600 text-xs ml-1">
+              src={element.src.substring(element.src.lastIndexOf('/') + 1, element.src.lastIndexOf('/') + 8)}...
             </span>
           )}
         </div>
 
         {hasChildren && isExpanded && (
           <div>
-            {element.children.map((child: any) => renderElementNode(child, level + 1))}
+            {element.children.map((child: any, index: number) =>
+              renderElementNode(child, level + 1, [...path, index])
+            )}
           </div>
         )}
       </div>
     );
+  };
+
+  // 统计总元素数量（包括嵌套）
+  const countTotalElements = (elements: any[]): number => {
+    let count = 0;
+    elements.forEach(element => {
+      count++;
+      if (element.children && element.children.length > 0) {
+        count += countTotalElements(element.children);
+      }
+    });
+    return count;
   };
 
   return (
@@ -766,7 +790,7 @@ function ComponentLibrary() {
         </div>
       </div>
 
-      {/* ���索框 */}
+      {/* 搜索框 */}
       <div className="p-3 border-b border-gray-700">
         <div className="relative">
           <Search className="w-3 h-3 absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -1248,7 +1272,7 @@ export function WebEditor() {
         throw new Error(result.message || '保存失败');
       }
     } catch (error) {
-      console.error('保存失败:', error);
+      console.error('保��失败:', error);
       alert(`保存失败: ${error.message}`);
       // 失败时仍然保存到本地
       const projectData = { siteName, pages, elements };
@@ -1387,7 +1411,7 @@ export function WebEditor() {
         throw new Error(publishResult.message || '发布失败');
       }
     } catch (error) {
-      console.error('发布失败:', error);
+      console.error('发布���败:', error);
       alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
     }
   };
