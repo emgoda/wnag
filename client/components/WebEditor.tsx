@@ -154,7 +154,7 @@ function DraggableTreeComponent({ component, isSelected = false, onDoubleClick }
   );
 }
 
-// 画布元素
+// 画布元���
 function CanvasElement({ 
   element, 
   onSelect, 
@@ -726,7 +726,7 @@ function PageManager({ pages, setPages, activePage }) {
           // 原生JavaScript文件
           handleImportJavaScript(content);
         } else if (file.name.endsWith('.zip')) {
-          alert('ZIP文件导入功能开发中，请先��压后导入单个文件');
+          alert('ZIP文件导入功能开发中，请先解压后导入单个文件');
         } else {
           alert('不支持的文件格式，请选择JSON、HTML、JSX、Vue、TS或JS文件');
         }
@@ -1537,13 +1537,13 @@ function PageManager({ pages, setPages, activePage }) {
                     <div className="mt-2">
                       <input
                         type="file"
-                        accept=".json,.html,.zip"
+                        accept=".json,.html,.jsx,.tsx,.vue,.js,.ts,.zip"
                         onChange={handleFileImport}
                         className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                       />
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
-                      支持格式：JSON配置文件、HTML页面、ZIP压缩包
+                      支持格式：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP压缩包
                     </div>
                   </div>
 
@@ -2231,7 +2231,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
-                  <Label className="text-xs">占���符</Label>
+                  <Label className="text-xs">占位符</Label>
                   <Input
                     value={selectedElement.placeholder || ''}
                     onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
@@ -2534,7 +2534,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添加CSS编辑功能
-        js: ''   // 可以后��添加JS编��功能
+        js: ''   // 可以后��添加JS编辑功能
       };
 
       const response = await fetch('/api/page/save', {
@@ -2896,7 +2896,7 @@ export function WebEditor() {
                 </Button>
                 <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  刷新列表
+                  刷新���表
                 </Button>
               </div>
               <div className="text-sm text-gray-500">
