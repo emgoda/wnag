@@ -304,7 +304,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
             {element.type}
           </div>
 
-          {/* ���上角操��按钮 */}
+          {/* 右上角操��按钮 */}
           <button
             data-menu-button
             onClick={handleToggleActionsMenu}
@@ -445,7 +445,7 @@ function BrowserCanvas({
                 <div className="text-center py-12 text-gray-500">
                   <div className="text-lg mb-2">🎨 画布为空</div>
                   <div className="text-sm">
-                    从左侧拖拽组件或使用"高级导入"来添加内容
+                    从左侧拖拽组件或使���"高级导入"来添加内容
                   </div>
                   <div className="text-xs mt-2 opacity-60">
                     当前元素数量: {elements.length}
@@ -473,7 +473,7 @@ function BrowserCanvas({
                   {deviceMode === 'mobile' && <Smartphone size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'tablet' && <Tablet size={48} className="mx-auto mb-4 opacity-50" />}
                   {deviceMode === 'desktop' && <Monitor size={48} className="mx-auto mb-4 opacity-50" />}
-                  <p>拖���左侧组件到这里���始设计</p>
+                  <p>拖拽左侧组件到这里���始设计</p>
                   <p className="text-sm mt-2">{currentDevice.name}视图 ({currentDevice.width}×{currentDevice.height})</p>
                 </div>
               )}
@@ -500,7 +500,7 @@ function BrowserCanvas({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>实时���览</span>
+              <span>实时预览</span>
             </div>
             {selectedElement && (
               <span className="text-blue-600">���选择: {selectedElement.type}</span>
@@ -884,7 +884,7 @@ export function WebEditor() {
     setPreviewMode(!previewMode);
   };
 
-  // 网站项目管理函数
+  // 网站项目管理函���
   const saveWebsiteProject = () => {
     const projectData = {
       ...currentProject,
@@ -1284,7 +1284,7 @@ export function WebEditor() {
       if (isSystemGenerated) {
         // 检查是否替换当前内容
         const confirmReplace = elements.length === 0 ||
-          window.confirm('检测到这是本系统生成的网站，导入将替换当前所有内容，是否继续？');
+          window.confirm('检测到���是本系统生成的网站，导入将替换当前所有内容，是否继续？');
 
         if (confirmReplace) {
           const parsedElements = parseHTMLToElements(importHtml);
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不���确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1469,11 +1469,11 @@ export function WebEditor() {
   const handleGoBack = () => {
     // 检查是��有编辑内容未保存
     if (elements.length > 0) {
-      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开����？');
+      const confirmLeave = window.confirm('当前页面��未保存的内容，确定要离开������？');
       if (!confirmLeave) return;
     }
 
-    // ��能返回：优先返回浏���器历史，否则返回���页
+    // 智能返回：优先返回浏���器历史，否则返回���页
     if (window.history.length > 1) {
       window.history.back();
     } else {
@@ -1515,7 +1515,7 @@ export function WebEditor() {
     // 检查路由是否重复
     const existingPage = pages.find(p => p.route === pageForm.route && (!editingPage || p.id !== editingPage.id));
     if (existingPage) {
-      alert('该路由路径已�����，请使用其��路径');
+      alert('该路由路���已�����，请使用其��路径');
       return;
     }
 
@@ -1882,7 +1882,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ��能卡片���画
+  // 技能卡片���画
   const skillCards = document.querySelectorAll('.skill-card');
   const observerOptions = {
     threshold: 0.1,
@@ -2411,7 +2411,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
-                    <div className="font-medium">个人作��集</div>
+                    <div className="font-medium">个人作品集</div>
                     <div className="text-xs text-gray-500">展示技能和项目</div>
                   </button>
                   <button
@@ -2681,7 +2681,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <button
                               onClick={() => {
                                 navigator.clipboard.writeText(site.url);
-                                alert('链接已复制');
+                                alert('链接��复制');
                               }}
                               className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
                             >
@@ -3077,7 +3077,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 className="text-sm font-medium text-green-800 mb-1">项目导入说明：</h4>
                     <ul className="text-xs text-green-700 space-y-1">
                       <li>• 导入完整的项目文件，包含所有���件、样式和脚本</li>
-                      <li>• 支持导入通过"导出项目"功���生成的 .webproject 文件</li>
+                      <li>• 支持导入通过"导出项目"功能生成的 .webproject 文件</li>
                       <li>• 会完整还原项目的所有设置��������属性</li>
                       <li>• 导入会替换当前项目的所有内��</li>
                     </ul>
@@ -3149,7 +3149,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <li>• 导入之前发布��网站，重新编辑和修改</li>
                       <li>• 会解析网站HTML并重建为可编辑的组件</li>
                       <li>• 支持��入本系统生成的所有网站</li>
-                      <li>• 导入会替换当前项目的所有内容</li>
+                      <li>• 导入会替换当前项目的��有内容</li>
                     </ul>
                   </div>
 
