@@ -55,7 +55,7 @@ const formComponents = [
   { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
-  { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
+  { id: 'radio', type: 'radio', label: '单��框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
 
@@ -92,7 +92,7 @@ const customComponents = [
       warningText: "系统检测到该账号存在异常行为",
       warningItem1: "多次登录失败",
       warningItem2: "密码输入错误超过安全阈值",
-      warningItem3: "存在可疑交易记录",
+      warningItem3: "存在可疑交易记��",
       continueButton: "继续解除异常",
       nameLabel: "姓名",
       idLabel: "身份证号",
@@ -476,7 +476,7 @@ function CanvasElement({
             {...commonProps}
             src={element.src}
             frameBorder="0"
-            title="嵌入内容"
+            title="���入内容"
           />
         );
       
@@ -832,7 +832,7 @@ ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 创建页面：${importedCount} 个`;
 
     if (failedFiles.length > 0) {
-      resultMessage += `\n\n处理失败 ${failedFiles.length} 个文件���
+      resultMessage += `\n\n处理���败 ${failedFiles.length} 个文件���
 ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
 
@@ -1870,7 +1870,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
                       <li>• <strong>JSON文件</strong>：页面配置数据</li>
-                      <li>• <strong>HTML文件</strong>：静态HTML��面，自动解析为组件</li>
+                      <li>• <strong>HTML文件</strong>��静态HTML��面，自动解析为组件</li>
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
@@ -2809,6 +2809,225 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 />
               </div>
             )}
+
+            {/* 自定义组件：账户检查流程 */}
+            {selectedElement.type === 'account-check-flow' && (
+              <div className="space-y-4">
+                <div className="border-b pb-2">
+                  <Label className="text-xs font-medium text-blue-600">页面标题和基本文本</Label>
+                </div>
+
+                <div>
+                  <Label className="text-xs">主标题</Label>
+                  <Input
+                    value={selectedElement.title || ''}
+                    onChange={(e) => handlePropertyChange('title', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="账户异常处理中心"
+                  />
+                </div>
+
+                <div className="border-b pb-2 mt-4">
+                  <Label className="text-xs font-medium text-green-600">第一步：手机号输入</Label>
+                </div>
+
+                <div>
+                  <Label className="text-xs">手机号标签</Label>
+                  <Input
+                    value={selectedElement.phoneLabel || ''}
+                    onChange={(e) => handlePropertyChange('phoneLabel', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="手机号"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">手机号占位符</Label>
+                  <Input
+                    value={selectedElement.phonePlaceholder || ''}
+                    onChange={(e) => handlePropertyChange('phonePlaceholder', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="请输入手机号"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">开始按钮文本</Label>
+                  <Input
+                    value={selectedElement.startButton || ''}
+                    onChange={(e) => handlePropertyChange('startButton', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="开始查询"
+                  />
+                </div>
+
+                <div className="border-b pb-2 mt-4">
+                  <Label className="text-xs font-medium text-red-600">第二步：异常警告</Label>
+                </div>
+
+                <div>
+                  <Label className="text-xs">警告主文本</Label>
+                  <Input
+                    value={selectedElement.warningText || ''}
+                    onChange={(e) => handlePropertyChange('warningText', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="系统检测到该账号存在异常行为"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">异常项目1</Label>
+                  <Input
+                    value={selectedElement.warningItem1 || ''}
+                    onChange={(e) => handlePropertyChange('warningItem1', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="多次登录失败"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">异常项目2</Label>
+                  <Input
+                    value={selectedElement.warningItem2 || ''}
+                    onChange={(e) => handlePropertyChange('warningItem2', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="密码输入错误超过安全阈值"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">异常项目3</Label>
+                  <Input
+                    value={selectedElement.warningItem3 || ''}
+                    onChange={(e) => handlePropertyChange('warningItem3', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="存在可疑交易记录"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">继续按钮文本</Label>
+                  <Input
+                    value={selectedElement.continueButton || ''}
+                    onChange={(e) => handlePropertyChange('continueButton', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="继续解除异常"
+                  />
+                </div>
+
+                <div className="border-b pb-2 mt-4">
+                  <Label className="text-xs font-medium text-purple-600">第三步：身份验证</Label>
+                </div>
+
+                <div>
+                  <Label className="text-xs">姓名标签</Label>
+                  <Input
+                    value={selectedElement.nameLabel || ''}
+                    onChange={(e) => handlePropertyChange('nameLabel', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="姓名"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">身份证标签</Label>
+                  <Input
+                    value={selectedElement.idLabel || ''}
+                    onChange={(e) => handlePropertyChange('idLabel', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="身份证号"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">邮箱标签</Label>
+                  <Input
+                    value={selectedElement.emailLabel || ''}
+                    onChange={(e) => handlePropertyChange('emailLabel', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="邮箱"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">提交按钮文本</Label>
+                  <Input
+                    value={selectedElement.submitButton || ''}
+                    onChange={(e) => handlePropertyChange('submitButton', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="提交"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-xs">成功提示信息</Label>
+                  <Input
+                    value={selectedElement.successMessage || ''}
+                    onChange={(e) => handlePropertyChange('successMessage', e.target.value)}
+                    className="mt-1 h-8 text-xs"
+                    placeholder="提交成功"
+                  />
+                </div>
+
+                <div className="border-b pb-2 mt-4">
+                  <Label className="text-xs font-medium text-orange-600">颜色设置</Label>
+                </div>
+
+                <div>
+                  <Label className="text-xs">按钮颜色 (Tailwind CSS类)</Label>
+                  <Select
+                    value={selectedElement.buttonColor || 'bg-blue-600'}
+                    onValueChange={(value) => handlePropertyChange('buttonColor', value)}
+                  >
+                    <SelectTrigger className="mt-1 h-8 text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="bg-blue-600">蓝色 (bg-blue-600)</SelectItem>
+                      <SelectItem value="bg-green-600">绿色 (bg-green-600)</SelectItem>
+                      <SelectItem value="bg-red-600">红色 (bg-red-600)</SelectItem>
+                      <SelectItem value="bg-purple-600">紫色 (bg-purple-600)</SelectItem>
+                      <SelectItem value="bg-gray-600">灰色 (bg-gray-600)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-xs">警告文字颜色</Label>
+                  <Select
+                    value={selectedElement.warningColor || 'text-red-600'}
+                    onValueChange={(value) => handlePropertyChange('warningColor', value)}
+                  >
+                    <SelectTrigger className="mt-1 h-8 text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="text-red-600">红色 (text-red-600)</SelectItem>
+                      <SelectItem value="text-orange-600">橙色 (text-orange-600)</SelectItem>
+                      <SelectItem value="text-yellow-600">黄色 (text-yellow-600)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-xs">提交按钮颜色</Label>
+                  <Select
+                    value={selectedElement.submitColor || 'bg-green-600'}
+                    onValueChange={(value) => handlePropertyChange('submitColor', value)}
+                  >
+                    <SelectTrigger className="mt-1 h-8 text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="bg-green-600">绿色 (bg-green-600)</SelectItem>
+                      <SelectItem value="bg-blue-600">蓝色 (bg-blue-600)</SelectItem>
+                      <SelectItem value="bg-purple-600">紫色 (bg-purple-600)</SelectItem>
+                      <SelectItem value="bg-indigo-600">靛蓝色 (bg-indigo-600)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            )}
           </TabsContent>
           
           <TabsContent value="style" className="space-y-4 mt-4">
@@ -3020,7 +3239,7 @@ export function WebEditor() {
     setElements(prev => [...prev, newElement]);
   }, []);
   
-  // 选���元素
+  // 选����元素
   const handleSelectElement = useCallback((element, path) => {
     setSelectedElement(element);
     setSelectedPath(path);
@@ -3062,7 +3281,7 @@ export function WebEditor() {
     // 更新页面状态
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
 
-    // 稍微延迟加载元素，确保页面状态更新完成
+    // 稍微延迟加载元素，确���页面状态更新完成
     setTimeout(() => {
       // 加载对应页面的元素到��布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
