@@ -2430,7 +2430,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 }
 
 // ���件库面���
-function ComponentLibrary({ pages, setPages }) {
+function ComponentLibrary({ pages, setPages, onSwitchPage }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -2524,7 +2524,7 @@ function ComponentLibrary({ pages, setPages }) {
           <div className="flex items-center justify-between px-2 py-1 mb-2">
             <div className="flex items-center gap-2">
               <Layers className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-300">图层</span>
+              <span className="text-sm text-gray-300">��层</span>
             </div>
             <button
               onClick={() => {
@@ -2555,7 +2555,7 @@ function ComponentLibrary({ pages, setPages }) {
 
               return (
                 <div key={category.id}>
-                  {/* 分类标题 */}
+                  {/* 分类标�� */}
                   <div
                     className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-800 rounded cursor-pointer group"
                     onClick={() => toggleCategory(category.id)}
