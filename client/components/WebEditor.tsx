@@ -740,7 +740,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 
   return (
     <div className="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden flex flex-col">
-      {/* ��题栏 */}
+      {/* 标题栏 */}
       <div className="flex items-center justify-between p-3 border-b bg-gray-50 cursor-move">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 text-gray-600" />
@@ -985,7 +985,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* ��入框属性 */}
+            {/* 输入框属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
@@ -1235,6 +1235,7 @@ export function WebEditor() {
   const [showProjectManager, setShowProjectManager] = useState(false);
   const [savedProjects, setSavedProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showElementTree, setShowElementTree] = useState(true);
   
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
