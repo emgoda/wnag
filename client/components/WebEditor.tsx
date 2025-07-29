@@ -68,7 +68,7 @@ const mediaComponents = [
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-user', type: 'icon', label: '���户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-mail', type: 'icon', label: '邮件��标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
@@ -632,7 +632,7 @@ function PageManager({ pages, setPages, activePage }) {
 
     // 检查路由是否已存在
     if (pages.some(p => p.route === newPageRoute)) {
-      alert('该路由已存在');
+      alert('该���由已存在');
       return;
     }
 
@@ -790,7 +790,7 @@ function PageManager({ pages, setPages, activePage }) {
       }
     }
 
-    // ��示批量导入结果
+    // 显示批量导入结果
     let resultMessage = `批量文件导入完成！
 
 成功处理 ${processedFiles.length} 个文件：
@@ -841,7 +841,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式���正确，请确保包含页面数据');
+        alert('JSON格式不正确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -882,7 +882,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解析HTML���素为组件
+  // 解析HTML元素为组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -1122,6 +1122,11 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       setPages(prev => [...prev, newPage]);
       alert('Vue组件导入成功');
       setShowImportPage(false);
+
+      // 自动切换到新导入的页面
+      setTimeout(() => {
+        handleSwitchPage(newPage.id);
+      }, 100);
     } catch (error) {
       alert('Vue组件导入失败：' + error.message);
     }
@@ -1851,7 +1856,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
-                        <SelectItem value="project">项目结构���置</SelectItem>
+                        <SelectItem value="project">项目结构配置</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2127,7 +2132,7 @@ function increment() {
                         <p className="mt-2 text-xs">
                           • 自动根据client/pages/目录创建页面<br/>
                           • 支持client/components/和client/components/ui/组件导入<br/>
-                          • 自动配置路由映射<br/>
+                          • 自动配置路由��射<br/>
                           • 保持标准的React项目结构
                         </p>
                       </div>
@@ -2166,7 +2171,7 @@ function increment() {
                   <span className="text-white text-sm font-bold">💡</span>
                 </div>
                 <div>
-                  <h3 className="font-medium text-blue-900 mb-2">ZIP文件导入��案</h3>
+                  <h3 className="font-medium text-blue-900 mb-2">ZIP文件导入方案</h3>
                   <p className="text-blue-800 text-sm">
                     由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
@@ -3094,7 +3099,7 @@ export function WebEditor() {
       alert('导出成功！已下载ZIP包');
     } catch (error) {
       console.error('���出失败:', error);
-      alert(`导出失���: ${error.message}`);
+      alert(`导出失败: ${error.message}`);
 
       // 失败时使用本地导出
       const generateHTML = () => {
@@ -3229,7 +3234,7 @@ export function WebEditor() {
     }
   };
 
-  // 新建��目
+  // 新建项目
   const newProject = () => {
     if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
       return;
