@@ -515,8 +515,10 @@ function Canvas({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
-      
+
+      console.log('Canvas drop triggered:', item);
       if (item.component) {
+        console.log('Adding component:', item.component);
         onAddElement(item.component);
       }
     },
@@ -679,7 +681,7 @@ function ComponentLibrary() {
             <span className="text-sm text-gray-300">图层</span>
           </div>
 
-          {/* 分类树结构 */}
+          {/* ��类树结构 */}
           <div className="space-y-1">
             {categories.map(category => {
               const Icon = category.icon;
@@ -1075,7 +1077,7 @@ export function WebEditor() {
     setSelectedPath(path);
   }, []);
   
-  // 更新元素
+  // 更���元素
   const handleUpdateElement = useCallback((index, updatedElement) => {
     setElements(prev => {
       const newElements = [...prev];
@@ -1169,7 +1171,7 @@ export function WebEditor() {
         throw new Error('保存项目失败，无法导出');
       }
 
-      // 使用项目ID导出ZIP包
+      // 使用项目ID��出ZIP包
       const exportResponse = await fetch(`/api/page/export?id=${saveResult.data.id}`);
 
       if (!exportResponse.ok) {
@@ -1441,7 +1443,7 @@ export function WebEditor() {
         </div>
       </div>
 
-      {/* 项目管理对话框 */}
+      {/* 项目管理对话�� */}
       <Dialog open={showProjectManager} onOpenChange={setShowProjectManager}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -1472,7 +1474,7 @@ export function WebEditor() {
             {/* 项目列表 */}
             {isLoading ? (
               <div className="text-center py-8">
-                <div className="text-gray-500">加载中...</div>
+                <div className="text-gray-500">���载中...</div>
               </div>
             ) : savedProjects.length === 0 ? (
               <div className="text-center py-8">
