@@ -74,7 +74,7 @@ const iconComponents = [
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
 ];
 
-// 所有组件
+// 所��组件
 const allComponents = [
   ...basicComponents,
   ...layoutComponents,
@@ -721,7 +721,7 @@ function PageManager({ pages, setPages, activePage }) {
           // Vue组件文件
           handleImportVueComponent(content);
         } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
-          // Angular组���文件
+          // Angular组件文件
           handleImportAngularComponent(content);
         } else if (file.name.endsWith('.js') || file.name.endsWith('.ts')) {
           // 原生JavaScript文件
@@ -734,7 +734,7 @@ function PageManager({ pages, setPages, activePage }) {
           // ZIP文件导入
           handleZipImport(file);
         } else {
-          alert('不支持的文件格式，请选择JSON、HTML、JSX、Vue、TS或JS文件');
+          alert('不支持的文件格式，请选择JSON���HTML、JSX、Vue、TS或JS文件');
         }
       } catch (error) {
         alert('文件格式错误：' + error.message);
@@ -1152,7 +1152,7 @@ function PageManager({ pages, setPages, activePage }) {
     ];
   };
 
-  // 解��Vue组件
+  // 解析Vue组件
   const parseVueComponent = (content) => {
     const elements = [];
 
@@ -1724,6 +1724,7 @@ function PageManager({ pages, setPages, activePage }) {
                     <div className="mt-2">
                       <input
                         type="file"
+                        multiple
                         accept=".json,.html,.jsx,.tsx,.vue,.js,.ts,.zip"
                         onChange={handleFileImport}
                         className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
@@ -1737,12 +1738,12 @@ function PageManager({ pages, setPages, activePage }) {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
-                      <li>• <strong>JSON文件</strong>：页面配置数据</li>
+                      <li>• <strong>JSON文件</strong>：页面配���数据</li>
                       <li>• <strong>HTML文件</strong>：静态HTML页面，自动解析为组件</li>
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
-                      <li>• <strong>ZIP文件</strong>：包含多个页面的压��包</li>
+                      <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
                     </ul>
                   </div>
                 </TabsContent>
@@ -2188,7 +2189,7 @@ function increment() {
 // 元素树状图组件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
-    // 默认展开第一层元素
+    // 默认展��第一层元素
     const firstLevelIds = new Set<string>();
     elements.forEach(element => {
       if (element.children && element.children.length > 0) {
@@ -2409,7 +2410,7 @@ function ComponentLibrary({ pages, setPages }) {
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
-    { id: 'form', label: '表单控��', icon: FileText },
+    { id: 'form', label: '表单控件', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
     { id: 'icon', label: '图标组件', icon: Star }
   ];
@@ -2605,7 +2606,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* 输入框属性 */}
+            {/* 输入���属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
@@ -2708,7 +2709,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">��体大小</Label>
+                  <Label className="text-xs text-gray-600">字体大小</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
@@ -3087,7 +3088,7 @@ export function WebEditor() {
       if (result.success) {
         setSavedProjects(result.data.pages);
       } else {
-        console.error('加载项��列表失败:', result.message);
+        console.error('���载项��列表失败:', result.message);
       }
     } catch (error) {
       console.error('加载项目列表�����:', error);
@@ -3189,7 +3190,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave} disabled={isLoading}>
               <Save className="w-4 h-4 mr-2" />
-              {isLoading ? '保存中...' : '保存'}
+              {isLoading ? '保存���...' : '保存'}
             </Button>
             <Button variant="outline" size="sm" onClick={handleExport} disabled={isLoading}>
               <Download className="w-4 h-4 mr-2" />
