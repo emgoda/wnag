@@ -629,7 +629,7 @@ function PageManager({ pages, setPages, activePage }) {
       return;
     }
 
-    // 检查路��是否已存在
+    // 检查路由是否已存在
     if (pages.some(p => p.route === newPageRoute)) {
       alert('该路由已存在');
       return;
@@ -717,7 +717,7 @@ function PageManager({ pages, setPages, activePage }) {
           // React组件文件
           handleImportReactComponent(content);
         } else if (file.name.endsWith('.vue')) {
-          // Vue组件文件
+          // Vue��件文件
           handleImportVueComponent(content);
         } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
           // Angular组件文件
@@ -798,7 +798,7 @@ function PageManager({ pages, setPages, activePage }) {
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('HTML页面导入成功');
+      alert('HTML页面���入成功');
       setShowImportPage(false);
     } catch (error) {
       alert('HTML解析失败：' + error.message);
@@ -982,7 +982,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, ...newPages]);
         alert(`成功导入 ${newPages.length} 个SPA页面`);
       } else {
-        alert('SPA配置格式不正确，请确保包含routes数组');
+        alert('SPA配置格���不正确，请确保包含routes数组');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1057,7 +1057,7 @@ function PageManager({ pages, setPages, activePage }) {
         route: `/${componentName?.toLowerCase() || 'angular-page'}`,
         isActive: false,
         title: componentName || 'Angular页面',
-        description: `从Angular组件导��的页面`,
+        description: `从Angular组件导入的页面`,
         keywords: 'angular, component',
         sourceCode: content,
         sourceType: 'angular',
@@ -1145,7 +1145,7 @@ function PageManager({ pages, setPages, activePage }) {
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'React��件已导入，请手动编辑内容',
+        content: 'React组件已导入��请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1425,80 +1425,8 @@ function PageManager({ pages, setPages, activePage }) {
 
   // 处理ZIP文件导入
   const handleZipImport = async (file) => {
-    try {
-      // 使用Web API读取ZIP文件
-      const arrayBuffer = await file.arrayBuffer();
-      const zipFiles = await extractZipFiles(arrayBuffer);
-
-      if (zipFiles.length === 0) {
-        alert('ZIP文件中没有找到可导入的文件');
-        return;
-      }
-
-      let importedPages = 0;
-      let processedFiles = [];
-
-      for (const zipFile of zipFiles) {
-        try {
-          const { fileName, content } = zipFile;
-
-          // 根据文件类型处理
-          if (fileName.endsWith('.json') && fileName.includes('project')) {
-            // 项目配置文件
-            const data = JSON.parse(content);
-            await handleImportProjectStructure(JSON.stringify(data));
-            processedFiles.push(`${fileName} (项目配置)`);
-          } else if (fileName.endsWith('.json')) {
-            // 普通JSON配置
-            const data = JSON.parse(content);
-            await handleImportFromJSON(data);
-            processedFiles.push(`${fileName} (JSON页面)`);
-            importedPages++;
-          } else if (fileName.endsWith('.html')) {
-            // HTML文件
-            await handleImportFromHTML(content, fileName);
-            processedFiles.push(`${fileName} (HTML页面)`);
-            importedPages++;
-          } else if (fileName.endsWith('.jsx') || fileName.endsWith('.tsx')) {
-            // React组件
-            await handleImportReactComponent(content);
-            processedFiles.push(`${fileName} (React组件)`);
-            importedPages++;
-          } else if (fileName.endsWith('.vue')) {
-            // Vue组件
-            await handleImportVueComponent(content);
-            processedFiles.push(`${fileName} (Vue组件)`);
-            importedPages++;
-          } else if (fileName.endsWith('.js') || fileName.endsWith('.ts')) {
-            // JavaScript文件
-            if (content.includes('@Component')) {
-              await handleImportAngularComponent(content);
-              processedFiles.push(`${fileName} (Angular组件)`);
-            } else {
-              await handleImportJavaScript(content);
-              processedFiles.push(`${fileName} (JavaScript)`);
-            }
-            importedPages++;
-          }
-        } catch (error) {
-          console.error(`处理文件 ${zipFile.fileName} 时出错:`, error);
-          processedFiles.push(`${zipFile.fileName} (处理失败: ${error.message})`);
-        }
-      }
-
-      // 显示导入结果
-      const resultMessage = `ZIP文件导入完成！
-
-处理的文件：
-${processedFiles.map(file => `• ${file}`).join('\n')}
-
-成功创建页面：${importedPages} 个`;
-
-      alert(resultMessage);
-
-    } catch (error) {
-      alert('ZIP文件导入失败：' + error.message);
-    }
+    // 显示ZIP导入指南对话框
+    setShowZipGuide(true);
   };
 
   // 提取ZIP文件内容（使用Web API实现简化版ZIP解析）
@@ -1531,7 +1459,7 @@ ${processedFiles.map(file => `• ${file}`).join('\n')}
       }
 
       // 由于Web API的限制，这里提供一个备用方案
-      // 提示用户使用其他导入方式
+      // 提示用户使用其他��入方式
       alert(`检测到ZIP文件，由于浏览器限制，建议您：
 
 1. 手动解压ZIP文件
@@ -2184,7 +2112,7 @@ function increment() {
   );
 }
 
-// 元素树状图组件
+// 元素树状图��件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
     // 默认展开第一层元素
@@ -2982,7 +2910,7 @@ export function WebEditor() {
       a.click();
       URL.revokeObjectURL(url);
 
-      alert('导出成功！已下载ZIP包');
+      alert('导出成功！已下��ZIP包');
     } catch (error) {
       console.error('导出失败:', error);
       alert(`导出失败: ${error.message}`);
@@ -3072,7 +3000,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('发布失败:', error);
-      alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
+      alert(`发布失败: ${error.message}\n\n��检查网络连接或联系管理员`);
     }
   };
 
@@ -3122,7 +3050,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
+    if (elements.length > 0 && !confirm('当前有未保存的���容，确定要新建项目吗？')) {
       return;
     }
 
@@ -3211,7 +3139,7 @@ export function WebEditor() {
           </div>
         </div>
         
-        {/* 主要编辑区域 */}
+        {/* 主要��辑区域 */}
         <div className="flex-1 flex relative">
           {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
 
@@ -3259,7 +3187,7 @@ export function WebEditor() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              项目��理
+              项目管理
             </DialogTitle>
           </DialogHeader>
 
