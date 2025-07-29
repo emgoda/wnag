@@ -118,7 +118,7 @@ function DraggableComponent({ component }) {
 }
 
 // 树形拖拽组件项
-function DraggableTreeComponent({ component, isSelected = false }) {
+function DraggableTreeComponent({ component, isSelected = false, onDoubleClick }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
     item: { component },
@@ -836,7 +836,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                         <SelectItem value="email">邮箱</SelectItem>
                         <SelectItem value="password">密码</SelectItem>
                         <SelectItem value="number">数字</SelectItem>
-                        <SelectItem value="tel">���话</SelectItem>
+                        <SelectItem value="tel">����话</SelectItem>
                         <SelectItem value="url">网址</SelectItem>
                       </SelectContent>
                     </Select>
@@ -1294,7 +1294,7 @@ export function WebEditor() {
         console.error('加载项目列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表失���:', error);
+      console.error('加载项目列表�����:', error);
     } finally {
       setIsLoading(false);
     }
