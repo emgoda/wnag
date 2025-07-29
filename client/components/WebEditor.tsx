@@ -27,14 +27,14 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// 基础组��库
+// 基础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
-  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '���片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
+  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
   { id: 'divider', type: 'divider', label: '分割线', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
 ];
@@ -1307,9 +1307,15 @@ export function WebEditor() {
               <Globe className="w-4 h-4 mr-2" />
               {isLoading ? '发布中...' : '发布'}
             </Button>
-            <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
-              <span className="text-gray-600">元素:</span>
-              <span className="font-mono font-medium">{elements.length}</span>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
+                <span className="text-gray-600">元素:</span>
+                <span className="font-mono font-medium">{elements.length}</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded text-sm">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-green-700">API已连接</span>
+              </div>
             </div>
           </div>
         </div>
