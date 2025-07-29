@@ -625,7 +625,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
-      alert('请输��页面名称和路由');
+      alert('请输入页面名称和路由');
       return;
     }
 
@@ -676,7 +676,7 @@ function PageManager({ pages, setPages, activePage }) {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
   };
 
-  // 打��页面设置
+  // 打开页面设置
   const handleOpenPageSettings = (page) => {
     setSelectedPageForSettings({ ...page });
     setShowPageSettings(true);
@@ -1589,6 +1589,7 @@ function PageManager({ pages, setPages, activePage }) {
                       {importType === 'vue' && 'Vue组件代码'}
                       {importType === 'angular' && 'Angular组件代码'}
                       {importType === 'js' && '原生JS/CSS代码'}
+                      {importType === 'project' && '项目结构配置'}
                     </Label>
                     <Textarea
                       value={importContent}
@@ -1951,7 +1952,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
           <button
             onClick={expandAll}
             className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs"
-            title="���开全部"
+            title="展开全部"
           >
             <Plus className="w-3 h-3 text-gray-600" />
           </button>
@@ -2394,7 +2395,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">�����色</Label>
+                  <Label className="text-xs text-gray-600">���景色</Label>
                   <Input
                     type="color"
                     value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -2499,7 +2500,7 @@ export function WebEditor() {
     setSelectedPath(path);
   }, []);
   
-  // 更新元素
+  // 更��元素
   const handleUpdateElement = useCallback((index, updatedElement) => {
     setElements(prev => {
       const newElements = [...prev];
@@ -2593,7 +2594,7 @@ export function WebEditor() {
         throw new Error('保存项目失败，无法导出');
       }
 
-      // 使用项目ID导出ZIP包
+      // 使��项目ID导出ZIP包
       const exportResponse = await fetch(`/api/page/export?id=${saveResult.data.id}`);
 
       if (!exportResponse.ok) {
@@ -2827,7 +2828,7 @@ export function WebEditor() {
             </Button>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
-                <span className="text-gray-600">���素:</span>
+                <span className="text-gray-600">元素:</span>
                 <span className="font-mono font-medium">{elements.length}</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded text-sm">
