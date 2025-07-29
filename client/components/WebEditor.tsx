@@ -29,7 +29,7 @@ const ItemTypes = {
 
 // 基础组件库
 const basicComponents = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内��', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -74,7 +74,7 @@ const iconComponents = [
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
 ];
 
-// 所��组件
+// 所有组件
 const allComponents = [
   ...basicComponents,
   ...layoutComponents,
@@ -698,49 +698,98 @@ function PageManager({ pages, setPages, activePage }) {
   };
 
   // 处理文件导入
-  const handleFileImport = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const handleFileImport = async (event) => {
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
+    // 如果只有一个ZIP文件，��示ZIP指南
+    if (files.length === 1 && files[0].name.endsWith('.zip')) {
+      handleZipImport(files[0]);
+      return;
+    }
+
+    let importedCount = 0;
+    let failedFiles = [];
+    let processedFiles = [];
+
+    for (const file of files) {
       try {
-        const content = e.target.result;
+        const content = await readFileAsText(file);
 
         if (file.type === 'application/json' || file.name.endsWith('.json')) {
-          // JSON格式导入
-          const data = JSON.parse(content);
-          handleImportFromJSON(data);
+          if (file.name.includes('project')) {
+            // 项目结构配置文件
+            const data = JSON.parse(content);
+            handleImportProjectStructure(JSON.stringify(data));
+            processedFiles.push(`${file.name} (项目配置)`);
+          } else {
+            // 普通JSON配置
+            const data = JSON.parse(content);
+            handleImportFromJSON(data);
+            processedFiles.push(`${file.name} (JSON页面)`);
+            importedCount++;
+          }
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
           // HTML文件导入
           handleImportFromHTML(content, file.name);
+          processedFiles.push(`${file.name} (HTML页面)`);
+          importedCount++;
         } else if (file.name.endsWith('.jsx') || file.name.endsWith('.tsx')) {
           // React组件文件
           handleImportReactComponent(content);
+          processedFiles.push(`${file.name} (React组件)`);
+          importedCount++;
         } else if (file.name.endsWith('.vue')) {
           // Vue组件文件
           handleImportVueComponent(content);
+          processedFiles.push(`${file.name} (Vue组件)`);
+          importedCount++;
         } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
           // Angular组件文件
           handleImportAngularComponent(content);
+          processedFiles.push(`${file.name} (Angular组件)`);
+          importedCount++;
         } else if (file.name.endsWith('.js') || file.name.endsWith('.ts')) {
           // 原生JavaScript文件
           handleImportJavaScript(content);
-        } else if (file.name.includes('project') && file.name.endsWith('.json')) {
-          // 项目结构配置文件
-          const data = JSON.parse(content);
-          handleImportProjectStructure(JSON.stringify(data));
-        } else if (file.name.endsWith('.zip')) {
-          // ZIP文件导入
-          handleZipImport(file);
+          processedFiles.push(`${file.name} (JavaScript)`);
+          importedCount++;
         } else {
-          alert('不支持的文件格式，请选择JSON���HTML、JSX、Vue、TS或JS文件');
+          failedFiles.push(`${file.name} (不支持的格式)`);
         }
       } catch (error) {
-        alert('文件格式错误：' + error.message);
+        console.error(`处理文件 ${file.name} 时出错:`, error);
+        failedFiles.push(`${file.name} (处理失败: ${error.message})`);
       }
-    };
-    reader.readAsText(file);
+    }
+
+    // 显示批量导入结果
+    let resultMessage = `批量文件导入完成！
+
+成功处理 ${processedFiles.length} 个文件：
+${processedFiles.map(file => `✅ ${file}`).join('\n')}
+
+创建页面：${importedCount} 个`;
+
+    if (failedFiles.length > 0) {
+      resultMessage += `\n\n处理失败 ${failedFiles.length} 个文件：
+${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
+    }
+
+    alert(resultMessage);
+
+    // 清空文件输入
+    event.target.value = '';
+  };
+
+  // 读取文件为文本
+  const readFileAsText = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = () => reject(new Error('文件读取失败'));
+      reader.readAsText(file);
+    });
   };
 
   // 从JSON导入页面
@@ -765,7 +814,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数据');
+        alert('JSON���式不正确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -806,7 +855,7 @@ function PageManager({ pages, setPages, activePage }) {
     }
   };
 
-  // 解析HTML元素为组件
+  // 解��HTML元素为组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -1116,7 +1165,7 @@ function PageManager({ pages, setPages, activePage }) {
         return match ? match[1] : null;
       }
     } catch (error) {
-      console.error('提取组件名称失败:', error);
+      console.error('提取组��名称失败:', error);
     }
     return null;
   };
@@ -1738,7 +1787,7 @@ function PageManager({ pages, setPages, activePage }) {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
-                      <li>• <strong>JSON文件</strong>：页面配���数据</li>
+                      <li>• <strong>JSON文件</strong>：页面配置数据</li>
                       <li>• <strong>HTML文件</strong>：静态HTML页面，自动解析为组件</li>
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
@@ -2189,7 +2238,7 @@ function increment() {
 // 元素树状图组件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
-    // 默认展��第一层元素
+    // 默认展开第一层元素
     const firstLevelIds = new Set<string>();
     elements.forEach(element => {
       if (element.children && element.children.length > 0) {
@@ -2606,7 +2655,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* 输入���属性 */}
+            {/* 输入框属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
@@ -3088,7 +3137,7 @@ export function WebEditor() {
       if (result.success) {
         setSavedProjects(result.data.pages);
       } else {
-        console.error('���载项��列表失败:', result.message);
+        console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
       console.error('加载项目列表�����:', error);
@@ -3190,7 +3239,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave} disabled={isLoading}>
               <Save className="w-4 h-4 mr-2" />
-              {isLoading ? '保存���...' : '保存'}
+              {isLoading ? '保存中...' : '保存'}
             </Button>
             <Button variant="outline" size="sm" onClick={handleExport} disabled={isLoading}>
               <Download className="w-4 h-4 mr-2" />
@@ -3275,7 +3324,7 @@ export function WebEditor() {
                 </Button>
                 <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  刷新��表
+                  刷新����
                 </Button>
               </div>
               <div className="text-sm text-gray-500">
