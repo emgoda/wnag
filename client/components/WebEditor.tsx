@@ -696,6 +696,273 @@ function PageManager({ pages, setPages, activePage }) {
     setSelectedPageForSettings(null);
   };
 
+  // 处理文件导入
+  const handleFileImport = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const content = e.target.result;
+
+        if (file.type === 'application/json' || file.name.endsWith('.json')) {
+          // JSON格式导入
+          const data = JSON.parse(content);
+          handleImportFromJSON(data);
+        } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
+          // HTML文件导入
+          handleImportFromHTML(content, file.name);
+        } else if (file.name.endsWith('.zip')) {
+          alert('ZIP文件导入功能开发中，请先解压后导入单个文件');
+        } else {
+          alert('不支持的文件格式，请选择JSON或HTML文件');
+        }
+      } catch (error) {
+        alert('文件格式错误：' + error.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  // 从JSON导入页面
+  const handleImportFromJSON = (data) => {
+    try {
+      if (data.pages && Array.isArray(data.pages)) {
+        // 导入多个页面
+        const newPages = data.pages.map(page => ({
+          ...page,
+          id: `page_${Date.now()}_${Math.random()}`,
+          isActive: false
+        }));
+        setPages(prev => [...prev, ...newPages]);
+        alert(`成功导入 ${newPages.length} 个页面`);
+      } else if (data.name && data.route) {
+        // 导入单个页面
+        const newPage = {
+          ...data,
+          id: `page_${Date.now()}`,
+          isActive: false
+        };
+        setPages(prev => [...prev, newPage]);
+        alert('页面导入成功');
+      } else {
+        alert('JSON格式不正确，请确保包含页面数据');
+      }
+      setShowImportPage(false);
+    } catch (error) {
+      alert('导入失败：' + error.message);
+    }
+  };
+
+  // 从HTML导入页面
+  const handleImportFromHTML = (htmlContent, fileName) => {
+    try {
+      // 提取页面信息
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, 'text/html');
+
+      const title = doc.querySelector('title')?.textContent || fileName.replace('.html', '');
+      const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
+
+      // 解析HTML结构转换为组件元素
+      const elements = parseHTMLToElements(doc.body);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: title,
+        route: `/${fileName.replace('.html', '').toLowerCase()}`,
+        isActive: false,
+        title: title,
+        description: description,
+        keywords: keywords,
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('HTML页面导入成功');
+      setShowImportPage(false);
+    } catch (error) {
+      alert('HTML解析失败：' + error.message);
+    }
+  };
+
+  // 解析HTML元素为组件
+  const parseHTMLToElements = (bodyElement) => {
+    const elements = [];
+
+    Array.from(bodyElement.children).forEach((child, index) => {
+      const element = parseHTMLElement(child, index);
+      if (element) elements.push(element);
+    });
+
+    return elements;
+  };
+
+  // 解析单个HTML元素
+  const parseHTMLElement = (htmlElement, index) => {
+    const tagName = htmlElement.tagName.toLowerCase();
+    const id = `element_${Date.now()}_${index}`;
+
+    // 获取样式
+    const computedStyle = window.getComputedStyle ? window.getComputedStyle(htmlElement) : {};
+    const style = {
+      color: htmlElement.style.color || computedStyle.color,
+      backgroundColor: htmlElement.style.backgroundColor || computedStyle.backgroundColor,
+      fontSize: htmlElement.style.fontSize || computedStyle.fontSize,
+      fontWeight: htmlElement.style.fontWeight || computedStyle.fontWeight,
+      textAlign: htmlElement.style.textAlign || computedStyle.textAlign,
+      padding: htmlElement.style.padding || computedStyle.padding,
+      margin: htmlElement.style.margin || computedStyle.margin,
+      width: htmlElement.style.width || computedStyle.width,
+      height: htmlElement.style.height || computedStyle.height,
+    };
+
+    // 根据标签类型创建对应组件
+    switch (tagName) {
+      case 'h1':
+      case 'h2':
+      case 'h3':
+      case 'h4':
+      case 'h5':
+      case 'h6':
+        return {
+          id,
+          type: 'heading',
+          content: htmlElement.textContent,
+          level: tagName,
+          style
+        };
+
+      case 'p':
+        return {
+          id,
+          type: 'text',
+          content: htmlElement.textContent,
+          style
+        };
+
+      case 'button':
+        return {
+          id,
+          type: 'button',
+          content: htmlElement.textContent,
+          style
+        };
+
+      case 'img':
+        return {
+          id,
+          type: 'image',
+          src: htmlElement.src,
+          alt: htmlElement.alt,
+          style
+        };
+
+      case 'a':
+        return {
+          id,
+          type: 'link',
+          content: htmlElement.textContent,
+          href: htmlElement.href,
+          style
+        };
+
+      case 'input':
+        return {
+          id,
+          type: 'input',
+          inputType: htmlElement.type || 'text',
+          placeholder: htmlElement.placeholder,
+          style
+        };
+
+      case 'textarea':
+        return {
+          id,
+          type: 'textarea',
+          placeholder: htmlElement.placeholder,
+          value: htmlElement.value,
+          style
+        };
+
+      case 'div':
+        const children = Array.from(htmlElement.children).map((child, i) =>
+          parseHTMLElement(child, i)
+        ).filter(Boolean);
+
+        return {
+          id,
+          type: 'container',
+          children,
+          style
+        };
+
+      default:
+        // 其他元素作为容器处理
+        return {
+          id,
+          type: 'container',
+          children: Array.from(htmlElement.children).map((child, i) =>
+            parseHTMLElement(child, i)
+          ).filter(Boolean),
+          style
+        };
+    }
+  };
+
+  // 从文本内容导入
+  const handleImportFromText = () => {
+    if (!importContent.trim()) {
+      alert('请输入要导入的内容');
+      return;
+    }
+
+    try {
+      if (importType === 'json') {
+        const data = JSON.parse(importContent);
+        handleImportFromJSON(data);
+      } else if (importType === 'html') {
+        handleImportFromHTML(importContent, 'imported.html');
+      } else if (importType === 'spa') {
+        handleImportSPA(importContent);
+      }
+    } catch (error) {
+      alert('导入失败：' + error.message);
+    }
+  };
+
+  // 导入SPA配置
+  const handleImportSPA = (content) => {
+    try {
+      const spaConfig = JSON.parse(content);
+
+      if (spaConfig.routes && Array.isArray(spaConfig.routes)) {
+        // SPA路由配置
+        const newPages = spaConfig.routes.map((route, index) => ({
+          id: `page_${Date.now()}_${index}`,
+          name: route.name || route.path.replace('/', '') || 'Page',
+          route: route.path,
+          isActive: false,
+          title: route.meta?.title || route.name,
+          description: route.meta?.description || '',
+          keywords: route.meta?.keywords || '',
+          component: route.component,
+          elements: route.elements || []
+        }));
+
+        setPages(prev => [...prev, ...newPages]);
+        alert(`成功导入 ${newPages.length} 个SPA页面`);
+      } else {
+        alert('SPA配置格式不正确，请确保包含routes数组');
+      }
+      setShowImportPage(false);
+    } catch (error) {
+      alert('SPA导入失败：' + error.message);
+    }
+  };
+
   return (
     <>
       <div className="p-2">
@@ -817,7 +1084,7 @@ function PageManager({ pages, setPages, activePage }) {
                 className="mt-1"
               />
               <div className="text-xs text-gray-500 mt-1">
-                路由必须以 / 开头，如：/about
+                路由必���以 / 开头，如：/about
               </div>
             </div>
             <div className="flex justify-end gap-2">
@@ -1187,7 +1454,7 @@ function ComponentLibrary({ pages, setPages }) {
             </div>
             <button
               onClick={() => {
-                // 一键切换：如果全部展开则收起，否��展开
+                // 一键切换：如果全部展开则收起，否则展开
                 if (expandedCategories.size === categories.length) {
                   collapseAll();
                 } else {
@@ -1641,7 +1908,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添加CSS编辑功能
-        js: ''   // 可以后��添加JS编辑功能
+        js: ''   // 可以后����加JS编辑功能
       };
 
       const response = await fetch('/api/page/save', {
@@ -1941,7 +2208,7 @@ export function WebEditor() {
           </div>
         </div>
         
-        {/* ���要编辑区域 */}
+        {/* 主要编辑区域 */}
         <div className="flex-1 flex relative">
           {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
 
