@@ -237,7 +237,7 @@ function CanvasElement({
           <input
             {...commonProps}
             type={element.inputType || 'text'}
-            placeholder={element.placeholder || '请��入内容'}
+            placeholder={element.placeholder || '请输入内容'}
             defaultValue={element.value || ''}
             readOnly
           />
@@ -357,7 +357,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组���到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
           </div>
         );
       
@@ -747,7 +747,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数据');
+        alert('JSON格式不正确，请确保包含页面数���');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1287,6 +1287,10 @@ function PageManager({ pages, setPages, activePage }) {
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
+                      {importType === 'react' && 'React组件示例：'}
+                      {importType === 'vue' && 'Vue组件示例：'}
+                      {importType === 'angular' && 'Angular组件示例：'}
+                      {importType === 'js' && '原生JS/CSS示例：'}
                     </h4>
                     {importType === 'json' && (
                       <pre className="text-xs text-gray-600 whitespace-pre-wrap">
@@ -1307,7 +1311,7 @@ function PageManager({ pages, setPages, activePage }) {
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动转换为对应组件：</p>
+                        <p>支持标���HTML标签，会自动转换为对应组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2436,7 +2440,7 @@ export function WebEditor() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              项���管理
+              项目管理
             </DialogTitle>
           </DialogHeader>
 
