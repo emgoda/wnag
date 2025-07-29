@@ -48,7 +48,7 @@ const layoutComponents = [
   { id: 'card', type: 'card', label: '卡片', icon: Square, category: 'layout', defaultProps: { style: { padding: '24px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' } } }
 ];
 
-// 表单组��
+// 表单组件
 const formComponents = [
   { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选项1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -1014,22 +1014,47 @@ export function WebEditor() {
   }, []);
   
   // 保存项目
-  const handleSave = () => {
-    const projectData = {
-      siteName,
-      pages,
-      elements,
-      timestamp: new Date().toISOString()
-    };
-    localStorage.setItem('web_builder_project', JSON.stringify(projectData));
-    alert('项目已保存！');
+  const handleSave = async () => {
+    try {
+      const projectData = {
+        siteName,
+        pages,
+        elements,
+        css: '', // 可以后续添加CSS编辑功能
+        js: ''   // 可以后续添加JS编辑功能
+      };
+
+      const response = await fetch('/api/page/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(projectData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // 同时保存到本地作为备份
+        localStorage.setItem('web_builder_project', JSON.stringify(projectData));
+        alert(`项目保存成功！项目ID: ${result.data.id}`);
+      } else {
+        throw new Error(result.message || '保存失败');
+      }
+    } catch (error) {
+      console.error('保存失败:', error);
+      alert(`保存失败: ${error.message}`);
+      // 失败时仍然保存到本地
+      const projectData = { siteName, pages, elements };
+      localStorage.setItem('web_builder_project', JSON.stringify(projectData));
+    }
   };
   
   // 导出 HTML
   const handleExport = () => {
     const generateHTML = () => {
       const elementsHTML = elements.map(el => {
-        // 递归生成 HTML 的简化版本
+        // 递归生�� HTML 的简化版本
         return `<div style="${Object.entries(el.style || {}).map(([k, v]) => `${k}: ${v}`).join('; ')}">${el.content || el.type}</div>`;
       }).join('\n');
       
@@ -1102,7 +1127,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave}>
               <Save className="w-4 h-4 mr-2" />
-              保存
+              ���存
             </Button>
             <Button variant="outline" size="sm" onClick={handleExport}>
               <Download className="w-4 h-4 mr-2" />
