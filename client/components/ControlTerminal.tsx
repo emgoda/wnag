@@ -36,7 +36,7 @@ const projectData: ProjectItem[] = [
   {
     id: "PRJ-002",
     status: "pending",
-    statusText: "待开��",
+    statusText: "待开发",
     projectName: "电商小程序",
     clientName: "零售连锁集团",
     priority: "medium",
@@ -132,6 +132,14 @@ const getPriorityText = (priority: string) => {
 };
 
 export function ControlTerminal() {
+  const [projects, setProjects] = useState<ProjectItem[]>(projectData);
+
+  const handleDeleteProject = (projectId: string) => {
+    if (confirm(`确定要删除项目 ${projectId} 吗？此操作不可撤销。`)) {
+      setProjects(prev => prev.filter(project => project.id !== projectId));
+    }
+  };
+
   return (
     <div className="flex-1 bg-background">
       {/* Header */}
@@ -147,7 +155,7 @@ export function ControlTerminal() {
               📊 项目统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              👥 分配开���者
+              👥 分配开发者
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📅 排期管理
