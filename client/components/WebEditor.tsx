@@ -349,7 +349,7 @@ function CanvasElement({
       case 'select':
         return (
           <select {...commonProps}>
-            {(element.options || ['选��1', '选项2']).map((option, index) => (
+            {(element.options || ['选项1', '选项2']).map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
           </select>
@@ -624,7 +624,7 @@ function ComponentLibrary() {
       
       {/* 搜索框 */}
       <div className="mt-6 pt-4 border-t">
-        <Label className="text-xs font-medium text-gray-600 mb-2 block">搜索组件</Label>
+        <Label className="text-xs font-medium text-gray-600 mb-2 block">��索组件</Label>
         <Input
           placeholder="搜索..."
           className="h-8 text-xs"
@@ -965,6 +965,9 @@ export function WebEditor() {
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
   const [showPreview, setShowPreview] = useState(false);
+  const [showProjectManager, setShowProjectManager] = useState(false);
+  const [savedProjects, setSavedProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
@@ -1130,7 +1133,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入网站名称');
+      alert('请输入���站名称');
       return;
     }
 
