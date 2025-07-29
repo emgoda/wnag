@@ -52,7 +52,7 @@ const layoutComponents = [
 const formComponents = [
   { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选项1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
-  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
+  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框��项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
@@ -67,7 +67,7 @@ const mediaComponents = [
 // 图标组件
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-user', type: 'icon', label: '用户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-user', type: 'icon', label: '用户图��', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
@@ -499,16 +499,17 @@ function CanvasElement({
 }
 
 // 画布组件
-function Canvas({ 
-  elements, 
-  selectedElement, 
+function Canvas({
+  elements,
+  selectedElement,
   selectedPath,
-  onAddElement, 
-  onSelectElement, 
-  onUpdateElement, 
-  onDeleteElement, 
+  onAddElement,
+  onSelectElement,
+  onUpdateElement,
+  onDeleteElement,
   onDuplicateElement,
-  deviceMode = 'desktop'
+  deviceMode = 'desktop',
+  onDeviceChange
 }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: [ItemTypes.COMPONENT, ItemTypes.ELEMENT],
@@ -829,7 +830,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="text">文本</SelectItem>
-                        <SelectItem value="email">邮箱</SelectItem>
+                        <SelectItem value="email">邮���</SelectItem>
                         <SelectItem value="password">密码</SelectItem>
                         <SelectItem value="number">数字</SelectItem>
                         <SelectItem value="tel">电话</SelectItem>
