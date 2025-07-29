@@ -759,7 +759,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数据');
+        alert('JSON格式不���确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1023,7 +1023,7 @@ function PageManager({ pages, setPages, activePage }) {
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
         title: componentName || 'Vue页面',
-        description: `从Vue组件导入的页面`,
+        description: `从Vue组件导入的��面`,
         keywords: 'vue, component',
         sourceCode: content,
         sourceType: 'vue',
@@ -1313,7 +1313,7 @@ function PageManager({ pages, setPages, activePage }) {
             <button
               onClick={() => setShowAddPage(true)}
               className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-              title="添加页面"
+              title="添加页��"
             >
               <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
             </button>
@@ -1795,6 +1795,67 @@ function increment() {
                         </pre>
                       </div>
                     )}
+                    {importType === 'project' && (
+                      <div className="text-xs text-gray-600">
+                        <p className="mb-2">支持导入完整的项目结构配置，自动创建多个页面：</p>
+                        <pre className="whitespace-pre-wrap">
+{`{
+  "projectName": "我的React项目",
+  "structure": {
+    "client/pages/": [
+      {
+        "name": "Home",
+        "file": "Home.tsx",
+        "route": "/",
+        "title": "首页"
+      },
+      {
+        "name": "About",
+        "file": "About.tsx",
+        "route": "/about",
+        "title": "关于我们"
+      }
+    ],
+    "client/components/": [
+      {
+        "name": "Header",
+        "file": "Header.tsx",
+        "type": "component"
+      },
+      {
+        "name": "Footer",
+        "file": "Footer.tsx",
+        "type": "component"
+      }
+    ],
+    "client/components/ui/": [
+      {
+        "name": "Button",
+        "file": "button.tsx",
+        "type": "ui-component"
+      }
+    ]
+  },
+  "routes": [
+    {
+      "path": "/",
+      "component": "Home"
+    },
+    {
+      "path": "/about",
+      "component": "About"
+    }
+  ]
+}`}
+                        </pre>
+                        <p className="mt-2 text-xs">
+                          • 自动根据client/pages/目录创建页面<br/>
+                          • 支持client/components/和client/components/ui/组件导入<br/>
+                          • 自动配置路由映射<br/>
+                          • 保持标准的React项目结构
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex justify-end gap-2">
@@ -1990,7 +2051,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   );
 }
 
-// ���件库面����
+// ���件库面���
 function ComponentLibrary({ pages, setPages }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
@@ -2393,7 +2454,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* 背景���边框 */}
+            {/* 背景和边框 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -2471,7 +2532,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   );
 }
 
-// 主编辑器组件
+// 主编��器组件
 export function WebEditor() {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -2556,7 +2617,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保存到���地作为备份
+        // 同时保���到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -2688,7 +2749,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自动选择��台
+            platform: 'auto', // 自动选择平台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
@@ -2697,7 +2758,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站名称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站��称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
