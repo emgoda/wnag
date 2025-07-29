@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useState } from "react";
 
 interface ProjectItem {
   id: string;
@@ -35,7 +36,7 @@ const projectData: ProjectItem[] = [
   {
     id: "PRJ-002",
     status: "pending",
-    statusText: "待开发",
+    statusText: "待开��",
     projectName: "电商小程序",
     clientName: "零售连锁集团",
     priority: "medium",
@@ -146,7 +147,7 @@ export function ControlTerminal() {
               📊 项目统计
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              👥 分配开发者
+              👥 分配开���者
             </Button>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               📅 排期管理
