@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持音频标签。
+            您的浏览器不支��音频标签。
           </audio>
         );
       
@@ -789,6 +789,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 function ComponentLibrary() {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
+  const [showExpandMenu, setShowExpandMenu] = useState(false);
 
   const toggleCategory = (categoryId: string) => {
     const newExpanded = new Set(expandedCategories);
@@ -935,7 +936,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
       <div className="w-80 bg-white border-l p-4 overflow-y-auto">
         <div className="text-center text-gray-400 py-8">
           <Settings size={48} className="mx-auto mb-4 opacity-50" />
-          <p className="text-sm">选择一个组件来编��属性</p>
+          <p className="text-sm">选择一个组件来编辑属性</p>
         </div>
       </div>
     );
@@ -1425,7 +1426,7 @@ export function WebEditor() {
     }
   };
   
-  // 一键发布
+  // 一��发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
       alert('请输入���站名称');
@@ -1514,7 +1515,7 @@ export function WebEditor() {
         const project = result.data;
         setSiteName(project.siteName);
         setElements(project.elements || []);
-        setPages(project.pages || [{ id: 'home', name: '首页', route: '/', isActive: true }]);
+        setPages(project.pages || [{ id: 'home', name: '首��', route: '/', isActive: true }]);
         setShowProjectManager(false);
         alert(`项目 "${project.siteName}" 加载成功！`);
       } else {
