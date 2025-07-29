@@ -746,9 +746,22 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
           <Layers className="w-4 h-4 text-gray-600" />
           <span className="text-sm font-medium text-gray-800">页面结构</span>
         </div>
-        <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs">
-          <MoreHorizontal className="w-3 h-3 text-gray-600" />
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={expandAll}
+            className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs"
+            title="展开全部"
+          >
+            <Plus className="w-3 h-3 text-gray-600" />
+          </button>
+          <button
+            onClick={collapseAll}
+            className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs"
+            title="收起全部"
+          >
+            <Minus className="w-3 h-3 text-gray-600" />
+          </button>
+        </div>
       </div>
 
       {/* 树状结构 */}
