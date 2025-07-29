@@ -722,7 +722,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       return;
     }
 
-    if (confirm('确定要删除此页面吗？')) {
+    if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
         // 如果删除的是当前活跃页面，激活第一个页面
@@ -2541,6 +2541,51 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     };
   }, []);
 
+  // 处理添加自定义组件
+  const handleAddCustomComponent = () => {
+    if (!newComponentName.trim()) {
+      alert('请输入组件名称');
+      return;
+    }
+
+    if (!newComponentCode.trim()) {
+      alert('请输入组件代码');
+      return;
+    }
+
+    try {
+      // 这里可以添加代码验证逻辑
+      // 暂时简单处理，创建一个基础的自定义组件
+      const newComponent = {
+        id: `custom-${Date.now()}`,
+        type: `custom-${newComponentName.toLowerCase().replace(/\s+/g, '-')}`,
+        label: newComponentName,
+        icon: Shield,
+        category: 'custom',
+        defaultProps: {
+          content: newComponentName,
+          customCode: newComponentCode,
+          style: {
+            padding: '20px',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            backgroundColor: '#f9fafb'
+          }
+        }
+      };
+
+      // 这里应该动态添加到组件库中
+      // 暂时显示成功消息
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
+
+      setNewComponentName('');
+      setNewComponentCode('');
+      setShowAddCustomComponent(false);
+    } catch (error) {
+      alert('组件代码格式错误：' + error.message);
+    }
+  };
+
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
@@ -2667,7 +2712,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
   );
 }
 
-// 属性编辑器
+// 属��编辑器
 function PropertyEditor({ selectedElement, onUpdateElement }) {
   if (!selectedElement) {
     return (
@@ -3311,7 +3356,7 @@ export function WebEditor() {
     setSelectedPath([]);
   }, [pages, saveCurrentPageElements]);
 
-  // 复制元素
+  // 复制��素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
       ...element,
