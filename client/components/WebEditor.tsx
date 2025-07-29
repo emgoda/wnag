@@ -83,7 +83,7 @@ const allComponents = [
   ...iconComponents
 ];
 
-// 设备尺寸配置
+// 设备尺��配置
 const deviceSizes = {
   mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
   tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
@@ -421,7 +421,7 @@ function CanvasElement({
       case 'video':
         return (
           <video {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持视频标签。
+            ���的浏览器不支持视频标签。
           </video>
         );
       
@@ -616,6 +616,7 @@ function PageManager({ pages, setPages, activePage }) {
   const [showAddPage, setShowAddPage] = useState(false);
   const [showPageSettings, setShowPageSettings] = useState(false);
   const [showImportPage, setShowImportPage] = useState(false);
+  const [showZipGuide, setShowZipGuide] = useState(false);
   const [selectedPageForSettings, setSelectedPageForSettings] = useState(null);
   const [newPageName, setNewPageName] = useState('');
   const [newPageRoute, setNewPageRoute] = useState('');
@@ -717,7 +718,7 @@ function PageManager({ pages, setPages, activePage }) {
           // React组件文件
           handleImportReactComponent(content);
         } else if (file.name.endsWith('.vue')) {
-          // Vue��件文件
+          // Vue组件文件
           handleImportVueComponent(content);
         } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
           // Angular组件文件
@@ -798,7 +799,7 @@ function PageManager({ pages, setPages, activePage }) {
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('HTML页面���入成功');
+      alert('HTML页面导入成功');
       setShowImportPage(false);
     } catch (error) {
       alert('HTML解析失败：' + error.message);
@@ -982,7 +983,7 @@ function PageManager({ pages, setPages, activePage }) {
         setPages(prev => [...prev, ...newPages]);
         alert(`成功导入 ${newPages.length} 个SPA页面`);
       } else {
-        alert('SPA配置格���不正确，请确保包含routes数组');
+        alert('SPA配置格式不正确，请确保包含routes数组');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1145,7 +1146,7 @@ function PageManager({ pages, setPages, activePage }) {
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'React组件已导入��请手动编辑内容',
+        content: 'React组件已导入，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1459,7 +1460,7 @@ function PageManager({ pages, setPages, activePage }) {
       }
 
       // 由于Web API的限制，这里提供一个备用方案
-      // 提示用户使用其他��入方式
+      // 提示用户使用其他导入方式
       alert(`检测到ZIP文件，由于浏览器限制，建议您：
 
 1. 手动解压ZIP文件
@@ -1854,7 +1855,7 @@ function PageManager({ pages, setPages, activePage }) {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="text-sm font-medium mb-2">
                       {importType === 'json' && 'JSON格式示例：'}
-                      {importType === 'html' && 'HTML格式说明：'}
+                      {importType === 'html' && 'HTML格��说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
                       {importType === 'react' && 'React组件示例：'}
                       {importType === 'vue' && 'Vue组件示例：'}
@@ -2112,7 +2113,7 @@ function increment() {
   );
 }
 
-// 元素树状图��件
+// 元素树状图组件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
     // 默认展开第一层元素
@@ -2910,7 +2911,7 @@ export function WebEditor() {
       a.click();
       URL.revokeObjectURL(url);
 
-      alert('导出成功！已下��ZIP包');
+      alert('导出成功！已下载ZIP包');
     } catch (error) {
       console.error('导出失败:', error);
       alert(`导出失败: ${error.message}`);
@@ -3000,7 +3001,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('发布失败:', error);
-      alert(`发布失败: ${error.message}\n\n��检查网络连接或联系管理员`);
+      alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
     }
   };
 
@@ -3050,7 +3051,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当前有未保存的���容，确定要新建项目吗？')) {
+    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
       return;
     }
 
@@ -3139,7 +3140,7 @@ export function WebEditor() {
           </div>
         </div>
         
-        {/* 主要��辑区域 */}
+        {/* 主要编辑区域 */}
         <div className="flex-1 flex relative">
           {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
 
