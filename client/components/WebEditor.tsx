@@ -674,7 +674,24 @@ function PageManager({ pages, setPages, activePage }) {
 
   // 切换页面
   const handleSwitchPage = (pageId) => {
+    // 找到要切换的页面
+    const targetPage = pages.find(p => p.id === pageId);
+    if (!targetPage) return;
+
+    // 更新页面状态
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
+
+    // 加载对应页面的元素到画布
+    if (targetPage.elements && Array.isArray(targetPage.elements)) {
+      setElements(targetPage.elements);
+    } else {
+      // 如果页面没有elements，显示空画布
+      setElements([]);
+    }
+
+    // 清除当前选中的元素
+    setSelectedElement(null);
+    setSelectedPath([]);
   };
 
   // 打开页面设置
@@ -1195,7 +1212,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'React组件已导入，请手动编辑内容',
+        content: 'React组件已导���，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -2227,7 +2244,7 @@ function increment() {
                 使用文件导入
               </Button>
               <Button onClick={() => setShowZipGuide(false)}>
-                我知道了
+                我知道��
               </Button>
             </div>
           </div>
@@ -2278,7 +2295,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     setExpandedNodes(new Set());
   };
 
-  // 递归渲染所有元素及其子元素
+  // 递归渲染所有元素及���子元素
   const renderElementNode = (element: any, level: number = 0, path: number[] = []) => {
     const hasChildren = element.children && element.children.length > 0;
     const isExpanded = expandedNodes.has(element.id);
@@ -2353,7 +2370,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     );
   };
 
-  // 统计总元素数量（包括嵌套）
+  // 统计总元素数量（��括嵌套）
   const countTotalElements = (elements: any[]): number => {
     let count = 0;
     elements.forEach(element => {
@@ -3037,7 +3054,7 @@ export function WebEditor() {
 
       alert('导出成功！已下载ZIP包');
     } catch (error) {
-      console.error('导出失败:', error);
+      console.error('���出失败:', error);
       alert(`导出失败: ${error.message}`);
 
       // 失败时使用本地导出
@@ -3406,7 +3423,7 @@ export function WebEditor() {
                             onClick={() => window.open(project.deployUrl, '_blank')}
                           >
                             <ExternalLink className="w-4 h-4 mr-2" />
-                            访问
+                            ���问
                           </Button>
                         )}
                       </div>
