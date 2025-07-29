@@ -1087,7 +1087,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 }
 
 // ���件库面���
-function ComponentLibrary() {
+function ComponentLibrary({ pages, setPages }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
   const [showExpandMenu, setShowExpandMenu] = useState(false);
@@ -1625,7 +1625,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
   );
 }
 
-// 主编辑器组件
+// 主编���器组件
 export function WebEditor() {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -2089,7 +2089,7 @@ export function WebEditor() {
                           <CardTitle className="text-lg">{project.siteName}</CardTitle>
                           <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
                             <span>元素: {project.elementsCount}</span>
-                            <span>页面: {project.pagesCount}</span>
+                            <span>��面: {project.pagesCount}</span>
                           </div>
                         </div>
                         <Badge
