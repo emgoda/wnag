@@ -633,6 +633,24 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     setExpandedNodes(newExpanded);
   };
 
+  const expandAll = () => {
+    const allIds = new Set<string>();
+    const collectIds = (elements: any[]) => {
+      elements.forEach(element => {
+        if (element.children && element.children.length > 0) {
+          allIds.add(element.id);
+          collectIds(element.children);
+        }
+      });
+    };
+    collectIds(elements);
+    setExpandedNodes(allIds);
+  };
+
+  const collapseAll = () => {
+    setExpandedNodes(new Set());
+  };
+
   // 递归渲染所有元素及其子元素
   const renderElementNode = (element: any, level: number = 0, path: number[] = []) => {
     const hasChildren = element.children && element.children.length > 0;
