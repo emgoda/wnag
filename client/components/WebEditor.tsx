@@ -85,7 +85,7 @@ const allComponents = [
 
 // 设备尺寸配置
 const deviceSizes = {
-  mobile: { name: '手��', icon: Smartphone, width: 375, height: 812 },
+  mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
   tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
   desktop: { name: '桌面', icon: Monitor, width: 1200, height: 800 }
 };
@@ -1624,6 +1624,7 @@ function PageManager({ pages, setPages, activePage }) {
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
+                      {importType === 'project' && '项目结构示例：'}
                     </h4>
                     {importType === 'json' && (
                       <pre className="text-xs text-gray-600 whitespace-pre-wrap">
@@ -1652,7 +1653,7 @@ function PageManager({ pages, setPages, activePage }) {
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表单组件</li>
-                          <li>• div → 容器组��</li>
+                          <li>• div → 容器组件</li>
                         </ul>
                       </div>
                     )}
@@ -1989,7 +1990,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   );
 }
 
-// ���件库面���
+// ���件库面����
 function ComponentLibrary({ pages, setPages }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
@@ -2392,7 +2393,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* 背景和边框 */}
+            {/* 背景���边框 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -2687,7 +2688,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自动选择平台
+            platform: 'auto', // 自动选择��台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
@@ -2719,7 +2720,7 @@ export function WebEditor() {
         console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表�������:', error);
+      console.error('加载项目列表�����:', error);
     } finally {
       setIsLoading(false);
     }
