@@ -76,13 +76,32 @@ const iconComponents = [
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
 ];
 
+// 自定义组件
+const customComponents = [
+  {
+    id: 'account-check-flow',
+    type: 'account-check-flow',
+    label: '账户检查流程',
+    icon: Shield,
+    category: 'custom',
+    defaultProps: {
+      style: {
+        width: '100%',
+        maxWidth: '600px',
+        margin: '0 auto'
+      }
+    }
+  }
+];
+
 // 所有组件
 const allComponents = [
   ...basicComponents,
   ...layoutComponents,
   ...formComponents,
   ...mediaComponents,
-  ...iconComponents
+  ...iconComponents,
+  ...customComponents
 ];
 
 // 设备尺寸配置
@@ -1005,7 +1024,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         handleImportProjectStructure(importContent);
       }
     } catch (error) {
-      alert('导入失败：' + error.message);
+      alert('导入失���：' + error.message);
     }
   };
 
@@ -2995,7 +3014,7 @@ export function WebEditor() {
     const targetPage = pages.find(p => p.id === pageId);
     if (!targetPage) return;
 
-    console.log('切换到页面:', targetPage.name, '元素数量:', targetPage.elements?.length || 0);
+    console.log('切换到���面:', targetPage.name, '元素数量:', targetPage.elements?.length || 0);
 
     // 更新页面状态
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
