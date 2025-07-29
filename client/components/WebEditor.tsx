@@ -832,7 +832,7 @@ ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 创建页面：${importedCount} 个`;
 
     if (failedFiles.length > 0) {
-      resultMessage += `\n\n处理���败 ${failedFiles.length} 个文件���
+      resultMessage += `\n\n处�����败 ${failedFiles.length} 个文件���
 ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
 
@@ -874,7 +874,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请确保包含页面数据');
+        alert('JSON格式不正确，请���保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -2496,6 +2496,9 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 function ComponentLibrary({ pages, setPages, onSwitchPage }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAddCustomComponent, setShowAddCustomComponent] = useState(false);
+  const [newComponentName, setNewComponentName] = useState('');
+  const [newComponentCode, setNewComponentCode] = useState('');
 
   const toggleCategory = (categoryId: string) => {
     const newExpanded = new Set(expandedCategories);
@@ -3045,7 +3048,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">高度</Label>
+                  <Label className="text-xs text-gray-600">高���</Label>
                   <Input
                     value={selectedElement.style?.height || ''}
                     onChange={(e) => handleStyleChange('height', e.target.value)}
@@ -3283,7 +3286,7 @@ export function WebEditor() {
 
     // 稍微延迟加载元素，确���页面状态更新完成
     setTimeout(() => {
-      // 加载对应页面的元素到��布
+      // 加载对应页面的元素到����布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
         console.log('加载页面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
