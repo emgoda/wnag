@@ -32,7 +32,7 @@ const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
-  { id: 'input', type: 'input', label: '输���框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
+  { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
@@ -555,7 +555,7 @@ function Canvas({
               </div>
             </div>
             
-            {/* 设备切换 */}
+            {/* 设备��换 */}
             <div className="flex items-center gap-1 bg-white rounded-lg p-1 border">
               {Object.entries(deviceSizes).map(([key, device]) => {
                 const Icon = device.icon;
@@ -587,7 +587,7 @@ function Canvas({
             {elements.length === 0 && (
               <div className="text-center py-20 text-gray-500">
                 <div className="text-lg mb-2">🎨 开始设计你的网页</div>
-                <div className="text-sm">从左侧拖拽组件到这里开始创建</div>
+                <div className="text-sm">从左侧拖拽组件到���里开始创建</div>
               </div>
             )}
             
@@ -809,6 +809,20 @@ function ComponentLibrary() {
   const collapseAll = () => {
     setExpandedCategories(new Set());
   };
+
+  // 点击外部关闭菜单
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showExpandMenu && !(event.target as Element).closest('.expand-menu-container')) {
+        setShowExpandMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showExpandMenu]);
 
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
@@ -1235,7 +1249,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">��边距</Label>
+                  <Label className="text-xs text-gray-600">外边距</Label>
                   <Input
                     value={selectedElement.style?.margin || ''}
                     onChange={(e) => handleStyleChange('margin', e.target.value)}
@@ -1578,7 +1592,7 @@ export function WebEditor() {
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
               className="w-40 h-8 text-sm"
-              placeholder="网站���称"
+              placeholder="网站名称"
             />
             <div className="w-px h-6 bg-gray-300" />
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
