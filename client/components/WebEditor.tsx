@@ -1110,7 +1110,7 @@ function PageManager({ pages, setPages, activePage }) {
         return match ? match[1] : null;
       }
     } catch (error) {
-      console.error('提取组件名称失败:', error);
+      console.error('提取组件名称���败:', error);
     }
     return null;
   };
@@ -1243,6 +1243,177 @@ function PageManager({ pages, setPages, activePage }) {
         type: 'text',
         content: 'JavaScript代码已导入，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
+      }
+    ];
+  };
+
+  // 导入项目结构
+  const handleImportProjectStructure = (content) => {
+    try {
+      const projectConfig = JSON.parse(content);
+
+      if (!projectConfig.structure) {
+        alert('项目结构配置格式不正确，请确保包含structure字段');
+        return;
+      }
+
+      const newPages = [];
+
+      // 处理 client/pages/ 目录下的页面
+      if (projectConfig.structure['client/pages/']) {
+        projectConfig.structure['client/pages/'].forEach((pageConfig, index) => {
+          const newPage = {
+            id: `page_${Date.now()}_${index}`,
+            name: pageConfig.name || pageConfig.file.replace('.tsx', '').replace('.jsx', ''),
+            route: pageConfig.route || `/${pageConfig.name?.toLowerCase() || 'page'}`,
+            isActive: false,
+            title: pageConfig.title || pageConfig.name,
+            description: pageConfig.description || `${pageConfig.name}页面`,
+            keywords: pageConfig.keywords || pageConfig.name?.toLowerCase(),
+            sourceFile: `client/pages/${pageConfig.file}`,
+            projectStructure: true,
+            elements: generateDefaultPageElements(pageConfig.name)
+          };
+          newPages.push(newPage);
+        });
+      }
+
+      // 处理 client/components/ 目录下的组件作为页面
+      if (projectConfig.structure['client/components/']) {
+        projectConfig.structure['client/components/'].forEach((componentConfig, index) => {
+          if (componentConfig.createPage) {
+            const newPage = {
+              id: `page_${Date.now()}_comp_${index}`,
+              name: `${componentConfig.name}组件页面`,
+              route: `/${componentConfig.name?.toLowerCase() || 'component'}`,
+              isActive: false,
+              title: `${componentConfig.name}组件`,
+              description: `${componentConfig.name}组件展示页面`,
+              keywords: 'component, ' + componentConfig.name?.toLowerCase(),
+              sourceFile: `client/components/${componentConfig.file}`,
+              projectStructure: true,
+              elements: generateComponentPageElements(componentConfig.name)
+            };
+            newPages.push(newPage);
+          }
+        });
+      }
+
+      // 如果配置了路由，优先使用路由配置
+      if (projectConfig.routes && Array.isArray(projectConfig.routes)) {
+        projectConfig.routes.forEach((route, index) => {
+          const existingPage = newPages.find(p => p.route === route.path);
+          if (existingPage) {
+            // 更新现有页面的路由信息
+            existingPage.component = route.component;
+            existingPage.meta = route.meta;
+          } else {
+            // 创建新页面
+            const newPage = {
+              id: `page_${Date.now()}_route_${index}`,
+              name: route.component || route.path.replace('/', '') || 'Page',
+              route: route.path,
+              isActive: false,
+              title: route.meta?.title || route.component,
+              description: route.meta?.description || '',
+              keywords: route.meta?.keywords || '',
+              component: route.component,
+              projectStructure: true,
+              elements: generateDefaultPageElements(route.component)
+            };
+            newPages.push(newPage);
+          }
+        });
+      }
+
+      if (newPages.length === 0) {
+        alert('未找到可导入的页面配置');
+        return;
+      }
+
+      setPages(prev => [...prev, ...newPages]);
+      alert(`成功导入项目结构，创建了 ${newPages.length} 个页面`);
+      setShowImportPage(false);
+
+    } catch (error) {
+      alert('项目结构导入失败：' + error.message);
+    }
+  };
+
+  // 生成默认页面元素
+  const generateDefaultPageElements = (pageName) => {
+    return [
+      {
+        id: `element_${Date.now()}_title`,
+        type: 'heading',
+        content: pageName || '页面标题',
+        level: 'h1',
+        style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '20px' }
+      },
+      {
+        id: `element_${Date.now()}_desc`,
+        type: 'text',
+        content: `欢迎来到${pageName || '页面'}，这里是页面内容。`,
+        style: { fontSize: '16px', color: '#333', lineHeight: '1.6' }
+      },
+      {
+        id: `element_${Date.now()}_container`,
+        type: 'container',
+        children: [],
+        style: {
+          padding: '40px',
+          marginTop: '20px',
+          border: '2px dashed #d1d5db',
+          borderRadius: '8px',
+          minHeight: '200px',
+          textAlign: 'center',
+          backgroundColor: '#f9fafb'
+        }
+      }
+    ];
+  };
+
+  // 生成组件页面元素
+  const generateComponentPageElements = (componentName) => {
+    return [
+      {
+        id: `element_${Date.now()}_comp_title`,
+        type: 'heading',
+        content: `${componentName} 组件`,
+        level: 'h1',
+        style: { fontSize: '28px', fontWeight: 'bold', color: '#1a1a1a' }
+      },
+      {
+        id: `element_${Date.now()}_comp_desc`,
+        type: 'text',
+        content: `这是 ${componentName} 组件的展示页面。`,
+        style: { fontSize: '16px', color: '#666', marginBottom: '20px' }
+      },
+      {
+        id: `element_${Date.now()}_comp_demo`,
+        type: 'container',
+        children: [
+          {
+            id: `element_${Date.now()}_demo_btn`,
+            type: 'button',
+            content: `${componentName} 示例`,
+            style: {
+              backgroundColor: '#3b82f6',
+              color: 'white',
+              padding: '12px 24px',
+              borderRadius: '6px',
+              border: 'none',
+              cursor: 'pointer'
+            }
+          }
+        ],
+        style: {
+          padding: '30px',
+          border: '1px solid #e5e7eb',
+          borderRadius: '8px',
+          backgroundColor: 'white',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        }
       }
     ];
   };
@@ -2036,7 +2207,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
       <div className="flex-1 overflow-y-auto p-2">
         {elements.length === 0 ? (
           <div className="text-center text-gray-400 py-8 text-xs">
-            暂无元���
+            暂无元素
           </div>
         ) : (
           <div className="space-y-0.5">
