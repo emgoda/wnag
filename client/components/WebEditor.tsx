@@ -721,7 +721,7 @@ function PageManager({ pages, setPages, activePage }) {
           // Vue组件文件
           handleImportVueComponent(content);
         } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
-          // Angular组件文件
+          // Angular组���文件
           handleImportAngularComponent(content);
         } else if (file.name.endsWith('.js') || file.name.endsWith('.ts')) {
           // 原生JavaScript文件
@@ -1152,7 +1152,7 @@ function PageManager({ pages, setPages, activePage }) {
     ];
   };
 
-  // 解析Vue组件
+  // 解��Vue组件
   const parseVueComponent = (content) => {
     const elements = [];
 
@@ -1742,7 +1742,7 @@ function PageManager({ pages, setPages, activePage }) {
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
-                      <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
+                      <li>• <strong>ZIP文件</strong>：包含多个页面的压��包</li>
                     </ul>
                   </div>
                 </TabsContent>
@@ -2059,6 +2059,128 @@ function increment() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* ZIP导入指南对话框 */}
+      <Dialog open={showZipGuide} onOpenChange={setShowZipGuide}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Upload className="w-5 h-5" />
+              ZIP文件导入指南
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-sm font-bold">💡</span>
+                </div>
+                <div>
+                  <h3 className="font-medium text-blue-900 mb-2">ZIP文件导入方案</h3>
+                  <p className="text-blue-800 text-sm">
+                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-medium text-gray-900">推荐方案：</h4>
+
+              <div className="grid gap-4">
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      1
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-medium text-gray-900 mb-1">手动解压ZIP文件</h5>
+                      <p className="text-sm text-gray-600">
+                        在您的计算机上解压ZIP文件，然后选择单个文件进行导入
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      2
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
+                      <p className="text-sm text-gray-600">
+                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件）
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                      3
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-medium text-gray-900 mb-1">使用文本导入</h5>
+                      <p className="text-sm text-gray-600">
+                        复制文件内容，使用"文本导入"功能粘贴代码
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-3">支持的文件类型：</h4>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>JSON配置文件</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span>HTML页面文件</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                  <span>React组件 (.jsx/.tsx)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+                  <span>Vue组件 (.vue)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                  <span>Angular组件 (.ts)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                  <span>JavaScript (.js/.ts)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowZipGuide(false);
+                  setShowImportPage(true);
+                }}
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                使用文件导入
+              </Button>
+              <Button onClick={() => setShowZipGuide(false)}>
+                我知道了
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
@@ -2287,7 +2409,7 @@ function ComponentLibrary({ pages, setPages }) {
   const categories = [
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
-    { id: 'form', label: '表单控件', icon: FileText },
+    { id: 'form', label: '表单控��', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
     { id: 'icon', label: '图标组件', icon: Star }
   ];
@@ -2586,7 +2708,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">字体大小</Label>
+                  <Label className="text-xs text-gray-600">��体大小</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
