@@ -27,7 +27,7 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// ��础组件库
+// 基础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
@@ -713,10 +713,22 @@ function PageManager({ pages, setPages, activePage }) {
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
           // HTML文件导入
           handleImportFromHTML(content, file.name);
+        } else if (file.name.endsWith('.jsx') || file.name.endsWith('.tsx')) {
+          // React组件文件
+          handleImportReactComponent(content);
+        } else if (file.name.endsWith('.vue')) {
+          // Vue组件文件
+          handleImportVueComponent(content);
+        } else if (file.name.endsWith('.ts') && content.includes('@Component')) {
+          // Angular组件文件
+          handleImportAngularComponent(content);
+        } else if (file.name.endsWith('.js') || file.name.endsWith('.ts')) {
+          // 原生JavaScript文件
+          handleImportJavaScript(content);
         } else if (file.name.endsWith('.zip')) {
-          alert('ZIP文件导入功能开发中，请先解压后导入单个文件');
+          alert('ZIP文件导入功能开发中，请先��压后导入单个文件');
         } else {
-          alert('不支持的文件格式，请选择JSON或HTML文件');
+          alert('不支持的文件格式，请选择JSON、HTML、JSX、Vue、TS或JS文件');
         }
       } catch (error) {
         alert('文件格式错误：' + error.message);
@@ -1482,7 +1494,7 @@ function PageManager({ pages, setPages, activePage }) {
                     ...selectedPageForSettings,
                     keywords: e.target.value
                   })}
-                  placeholder="关键����，用逗号分隔"
+                  placeholder="关键���，用逗号分隔"
                   className="mt-1"
                 />
               </div>
@@ -2219,7 +2231,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
-                  <Label className="text-xs">占位符</Label>
+                  <Label className="text-xs">占���符</Label>
                   <Input
                     value={selectedElement.placeholder || ''}
                     onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
@@ -2315,7 +2327,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             
             {/* 文字 */}
             <div className="space-y-3">
-              <Label className="text-xs font-medium">文��</Label>
+              <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label className="text-xs text-gray-600">字体大小</Label>
@@ -2373,7 +2385,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             </div>
             
-            {/* ���景和边框 */}
+            {/* 背景和边框 */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -2522,7 +2534,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添加CSS编辑功能
-        js: ''   // 可以后��添加JS编辑功能
+        js: ''   // 可以后��添加JS编��功能
       };
 
       const response = await fetch('/api/page/save', {
@@ -2700,7 +2712,7 @@ export function WebEditor() {
         console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表������:', error);
+      console.error('加载项目列表�����:', error);
     } finally {
       setIsLoading(false);
     }
