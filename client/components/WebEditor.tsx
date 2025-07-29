@@ -117,6 +117,41 @@ function DraggableComponent({ component }) {
   );
 }
 
+// 树形拖拽组件项
+function DraggableTreeComponent({ component, isSelected = false }) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.COMPONENT,
+    item: { component },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  const Icon = component.icon;
+
+  return (
+    <div
+      ref={drag}
+      className={`flex items-center gap-2 px-2 py-1.5 hover:bg-gray-800 rounded cursor-move transition-colors group ${
+        isDragging ? 'opacity-50' : 'opacity-100'
+      } ${isSelected ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
+    >
+      <div className={`w-4 h-4 rounded flex items-center justify-center ${
+        isSelected ? 'bg-blue-500' : 'bg-gray-700 group-hover:bg-gray-600'
+      }`}>
+        <Icon className={`w-3 h-3 ${
+          isSelected ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'
+        }`} />
+      </div>
+      <span className={`text-sm flex-1 ${
+        isSelected ? 'text-white' : 'text-gray-300 group-hover:text-white'
+      }`}>
+        {component.label}
+      </span>
+    </div>
+  );
+}
+
 // 画布元素
 function CanvasElement({ 
   element, 
@@ -571,7 +606,7 @@ function Canvas({
   );
 }
 
-// 组件库面板
+// 组件库面���
 function ComponentLibrary() {
   const [activeCategory, setActiveCategory] = useState('basic');
   
@@ -1023,7 +1058,7 @@ export function WebEditor() {
         siteName,
         pages,
         elements,
-        css: '', // 可以后续添加CSS编辑功能
+        css: '', // ��以后续添加CSS编辑功能
         js: ''   // 可以后续添加JS编辑功能
       };
 
@@ -1284,7 +1319,7 @@ export function WebEditor() {
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={newProject}>
               <Plus className="w-4 h-4 mr-2" />
-              新建
+              ��建
             </Button>
             <Button variant="outline" size="sm" onClick={() => { setShowProjectManager(true); loadProjects(); }}>
               <FileText className="w-4 h-4 mr-2" />
