@@ -655,7 +655,7 @@ function PageManager({ pages, setPages, activePage }) {
       return;
     }
 
-    if (confirm('确定要删除此页面吗？')) {
+    if (confirm('��定要删除此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
         // 如果删除的是当前活跃页面，激活第一个页面
@@ -1149,7 +1149,7 @@ function ComponentLibrary({ pages, setPages }) {
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
-    { id: 'media', label: '媒体元素', icon: Image },
+    { id: 'media', label: '��体元素', icon: Image },
     { id: 'icon', label: '图标组件', icon: Star }
   ];
 
@@ -1195,69 +1195,24 @@ function ComponentLibrary({ pages, setPages }) {
               <Layers className="w-4 h-4 text-gray-400" />
               <span className="text-sm text-gray-300">图层</span>
             </div>
-            <div className="relative expand-menu-container">
-              <button
-                onClick={() => setShowExpandMenu(!showExpandMenu)}
-                className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title="展开收起选项"
-              >
-                <MoreHorizontal className="w-3 h-3 text-gray-400 hover:text-gray-200" />
-              </button>
-
-              {/* 下拉菜单 */}
-              {showExpandMenu && (
-                <div className="absolute right-0 top-6 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50 min-w-48">
-                  <div className="py-1">
-                    <button
-                      onClick={() => {
-                        expandAll();
-                        setShowExpandMenu(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center justify-between"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Plus className="w-3 h-3" />
-                        展开全部
-                      </div>
-                      <span className="text-xs text-gray-500">Ctrl+Shift+E</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        collapseAll();
-                        setShowExpandMenu(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center justify-between"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Minus className="w-3 h-3" />
-                        收起全部
-                      </div>
-                      <span className="text-xs text-gray-500">Ctrl+Shift+C</span>
-                    </button>
-                    <hr className="border-gray-600 my-1" />
-                    <button
-                      onClick={() => {
-                        // 切换当前状态（如果全部展开则收起，否则展开）
-                        if (expandedCategories.size === categories.length) {
-                          collapseAll();
-                        } else {
-                          expandAll();
-                        }
-                        setShowExpandMenu(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
-                    >
-                      <RotateCcw className="w-3 h-3" />
-                      切换状态
-                    </button>
-                    <hr className="border-gray-600 my-1" />
-                    <div className="px-3 py-1.5 text-xs text-gray-500">
-                      {expandedCategories.size}/{categories.length} 已展开
-                    </div>
-                  </div>
-                </div>
+            <button
+              onClick={() => {
+                // 一键切换：如果全部展开则收起，否则展开
+                if (expandedCategories.size === categories.length) {
+                  collapseAll();
+                } else {
+                  expandAll();
+                }
+              }}
+              className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+              title={expandedCategories.size === categories.length ? "收起全部" : "展开全部"}
+            >
+              {expandedCategories.size === categories.length ? (
+                <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+              ) : (
+                <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
               )}
-            </div>
+            </button>
           </div>
 
           {/* 分类树结构 */}
@@ -1428,7 +1383,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {selectedElement.type === 'image' && (
               <>
                 <div>
-                  <Label className="text-xs">图片地址</Label>
+                  <Label className="text-xs">图片��址</Label>
                   <Input
                     value={selectedElement.src || ''}
                     onChange={(e) => handlePropertyChange('src', e.target.value)}
@@ -1492,7 +1447,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">字体大小</Label>
+                  <Label className="text-xs text-gray-600">��体大小</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
