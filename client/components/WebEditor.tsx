@@ -518,9 +518,7 @@ function Canvas({
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
 
-      console.log('Canvas drop triggered:', item);
       if (item.component) {
-        console.log('Adding component:', item.component);
         onAddElement(item.component);
       }
     },
@@ -838,7 +836,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                         <SelectItem value="email">邮箱</SelectItem>
                         <SelectItem value="password">密码</SelectItem>
                         <SelectItem value="number">数字</SelectItem>
-                        <SelectItem value="tel">电话</SelectItem>
+                        <SelectItem value="tel">���话</SelectItem>
                         <SelectItem value="url">网址</SelectItem>
                       </SelectContent>
                     </Select>
@@ -1150,7 +1148,7 @@ export function WebEditor() {
   // 导出 ZIP 包
   const handleExport = async () => {
     try {
-      // 首先保存项目获取ID
+      // 首先保存项目获��ID
       const projectData = {
         siteName,
         pages,
@@ -1296,7 +1294,7 @@ export function WebEditor() {
         console.error('加载项目列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表失败:', error);
+      console.error('加载项目列表失���:', error);
     } finally {
       setIsLoading(false);
     }
@@ -1333,7 +1331,7 @@ export function WebEditor() {
       return;
     }
 
-    setSiteName('我��网站');
+    setSiteName('我的网站');
     setElements([]);
     setSelectedElement(null);
     setSelectedPath([]);
