@@ -635,48 +635,88 @@ function ComponentLibrary() {
 
   return (
     <div className="w-64 bg-gray-900 text-white border-r border-gray-700 flex flex-col h-full">
-      <div className="mb-6">
-        <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-          <Layers className="w-4 h-4" />
-          组件库
-        </h3>
-        
-        {/* 分类选择 */}
-        <div className="flex flex-wrap gap-1 mb-4">
-          {categories.map(category => {
-            const Icon = category.icon;
-            return (
-              <button
-                key={category.id}
-                onClick={() => toggleCategory(category.id)}
-                className={`flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors ${
-                  expandedCategories.has(category.id)
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                <Icon className="w-3 h-3" />
-                {category.label}
-              </button>
-            );
-          })}
+      {/* 标题栏 */}
+      <div className="flex items-center justify-between p-3 border-b border-gray-700 bg-gray-800">
+        <div className="flex items-center gap-2">
+          <FileText className="w-4 h-4" />
+          <span className="text-sm font-medium">页面</span>
         </div>
-        
-        {/* 组件列表 */}
-        <div className="grid grid-cols-2 gap-2">
-          {filteredComponents.map(component => (
-            <DraggableComponent key={component.id} component={component} />
-          ))}
+        <div className="flex items-center gap-1">
+          <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs">
+            <Plus className="w-3 h-3" />
+          </button>
+          <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs">
+            <ChevronRight className="w-3 h-3" />
+          </button>
         </div>
       </div>
-      
+
       {/* 搜索框 */}
-      <div className="mt-6 pt-4 border-t">
-        <Label className="text-xs font-medium text-gray-600 mb-2 block">��索组件</Label>
-        <Input
-          placeholder="搜索..."
-          className="h-8 text-xs"
-        />
+      <div className="p-3 border-b border-gray-700">
+        <div className="relative">
+          <Search className="w-3 h-3 absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder=""
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full bg-gray-800 border border-gray-600 rounded text-xs px-6 py-1.5 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+          />
+          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+            <MoreHorizontal className="w-3 h-3" />
+          </button>
+        </div>
+      </div>
+
+      {/* 图层面板 */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-2">
+          {/* 图层标题 */}
+          <div className="flex items-center gap-2 px-2 py-1 mb-2">
+            <Layers className="w-4 h-4 text-gray-400" />
+            <span className="text-sm text-gray-300">图层</span>
+          </div>
+
+          {/* 分类树结构 */}
+          <div className="space-y-1">
+            {categories.map(category => {
+              const Icon = category.icon;
+              const isExpanded = expandedCategories.has(category.id);
+              const categoryComponents = filteredComponents.filter(comp => comp.category === category.id);
+
+              return (
+                <div key={category.id}>
+                  {/* 分类标题 */}
+                  <div
+                    className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-800 rounded cursor-pointer group"
+                    onClick={() => toggleCategory(category.id)}
+                  >
+                    <button className="w-3 h-3 flex items-center justify-center">
+                      <ChevronRight
+                        className={`w-3 h-3 text-gray-400 transition-transform ${
+                          isExpanded ? 'rotate-90' : ''
+                        }`}
+                      />
+                    </button>
+                    <div className="w-4 h-4 bg-gray-700 rounded flex items-center justify-center">
+                      <Icon className="w-3 h-3 text-gray-400" />
+                    </div>
+                    <span className="text-sm text-gray-300 flex-1">{category.label}</span>
+                  </div>
+
+                  {/* 展开的组件列表 */}
+                  {isExpanded && (
+                    <div className="ml-5 space-y-0.5">
+                      {categoryComponents.map(component => (
+                        <DraggableTreeComponent key={component.id} component={component} />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1462,7 +1502,7 @@ export function WebEditor() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
-                        <div>创建时���: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
+                        <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
                         <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
                           <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
