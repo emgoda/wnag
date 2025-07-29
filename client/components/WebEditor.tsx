@@ -740,8 +740,8 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 
   return (
     <div className="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden flex flex-col">
-      {/* 标题栏 */}
-      <div className="flex items-center justify-between p-3 border-b bg-gray-50">
+      {/* ��题栏 */}
+      <div className="flex items-center justify-between p-3 border-b bg-gray-50 cursor-move">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 text-gray-600" />
           <span className="text-sm font-medium text-gray-800">页面结构</span>
@@ -985,7 +985,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* 输入框属性 */}
+            {/* ��入框属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
