@@ -610,6 +610,117 @@ function Canvas({
   );
 }
 
+// 元素树状图组件
+function ElementTreeView({ elements, selectedElement, onSelectElement }) {
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+
+  const toggleNode = (elementId: string) => {
+    const newExpanded = new Set(expandedNodes);
+    if (newExpanded.has(elementId)) {
+      newExpanded.delete(elementId);
+    } else {
+      newExpanded.add(elementId);
+    }
+    setExpandedNodes(newExpanded);
+  };
+
+  const renderElementNode = (element: any, level: number = 0) => {
+    const hasChildren = element.children && element.children.length > 0;
+    const isExpanded = expandedNodes.has(element.id);
+    const isSelected = selectedElement?.id === element.id;
+
+    return (
+      <div key={element.id}>
+        <div
+          className={`flex items-center gap-1 px-2 py-1 text-xs hover:bg-gray-100 cursor-pointer ${
+            isSelected ? 'bg-blue-100 text-blue-800' : ''
+          }`}
+          style={{ paddingLeft: `${8 + level * 16}px` }}
+          onClick={() => onSelectElement(element, [])}
+        >
+          {hasChildren && (
+            <button
+              className="w-3 h-3 flex items-center justify-center hover:bg-gray-200 rounded"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNode(element.id);
+              }}
+            >
+              <ChevronRight
+                className={`w-2 h-2 transition-transform ${
+                  isExpanded ? 'rotate-90' : ''
+                }`}
+              />
+            </button>
+          )}
+          {!hasChildren && <div className="w-3 h-3" />}
+
+          <span className={`font-mono ${isSelected ? 'font-semibold' : ''}`}>
+            {element.type}
+          </span>
+
+          {element.className && (
+            <span className="text-gray-500">
+              .{element.className}
+            </span>
+          )}
+
+          {element.htmlId && (
+            <span className="text-blue-600">
+              #{element.htmlId}
+            </span>
+          )}
+
+          {element.content && element.content.length > 0 && (
+            <span className="text-gray-400 ml-1 truncate max-w-20">
+              "{element.content.substring(0, 20)}{element.content.length > 20 ? '...' : ''}"
+            </span>
+          )}
+        </div>
+
+        {hasChildren && isExpanded && (
+          <div>
+            {element.children.map((child: any) => renderElementNode(child, level + 1))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden flex flex-col">
+      {/* 标题栏 */}
+      <div className="flex items-center justify-between p-3 border-b bg-gray-50">
+        <div className="flex items-center gap-2">
+          <Layers className="w-4 h-4 text-gray-600" />
+          <span className="text-sm font-medium text-gray-800">页面结构</span>
+        </div>
+        <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs">
+          <MoreHorizontal className="w-3 h-3 text-gray-600" />
+        </button>
+      </div>
+
+      {/* 树状结构 */}
+      <div className="flex-1 overflow-y-auto p-2">
+        {elements.length === 0 ? (
+          <div className="text-center text-gray-400 py-8 text-xs">
+            暂无元素
+          </div>
+        ) : (
+          <div className="space-y-0.5">
+            {elements.map((element) => renderElementNode(element))}
+          </div>
+        )}
+      </div>
+
+      {/* 底部统计 */}
+      <div className="border-t bg-gray-50 px-3 py-2 text-xs text-gray-600">
+        共 {elements.length} 个元素
+      </div>
+    </div>
+  );
+}
+
 // ���件库面���
 function ComponentLibrary() {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
@@ -1130,7 +1241,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保存到本地作为备份
+        // 同时保存到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
