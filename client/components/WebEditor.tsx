@@ -154,7 +154,7 @@ function DraggableTreeComponent({ component, isSelected = false, onDoubleClick }
   );
 }
 
-// 画布元���
+// 画布元素
 function CanvasElement({ 
   element, 
   onSelect, 
@@ -1400,7 +1400,7 @@ function PageManager({ pages, setPages, activePage }) {
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-sm">页面名称</Label>
+              <Label className="text-sm">���面名称</Label>
               <Input
                 value={newPageName}
                 onChange={(e) => setNewPageName(e.target.value)}
@@ -1552,6 +1552,9 @@ function PageManager({ pages, setPages, activePage }) {
                     <ul className="text-xs text-gray-600 space-y-1">
                       <li>• <strong>JSON文件</strong>：页面配置数据</li>
                       <li>• <strong>HTML文件</strong>：静态HTML页面，自动解析为组件</li>
+                      <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
+                      <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
+                      <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
                       <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
                     </ul>
                   </div>
@@ -2262,7 +2265,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </>
             )}
             
-            {/* 图片属性 */}
+            {/* 图片���性 */}
             {selectedElement.type === 'image' && (
               <>
                 <div>
@@ -2680,7 +2683,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自动选择平台
+            platform: 'auto', // 自动���择平台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
@@ -2896,7 +2899,7 @@ export function WebEditor() {
                 </Button>
                 <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  刷新���表
+                  刷新列表
                 </Button>
               </div>
               <div className="text-sm text-gray-500">
