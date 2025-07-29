@@ -237,7 +237,7 @@ function CanvasElement({
           <input
             {...commonProps}
             type={element.inputType || 'text'}
-            placeholder={element.placeholder || '请输入内容'}
+            placeholder={element.placeholder || '请��入内容'}
             defaultValue={element.value || ''}
             readOnly
           />
@@ -258,7 +258,7 @@ function CanvasElement({
           <img
             {...commonProps}
             src={element.src || 'https://via.placeholder.com/300x200'}
-            alt={element.alt || '图��'}
+            alt={element.alt || '图片'}
           />
         );
       
@@ -357,7 +357,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组���到这里</div>}
           </div>
         );
       
@@ -781,7 +781,7 @@ function PageManager({ pages, setPages, activePage }) {
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('HTML页��导入成功');
+      alert('HTML页面导入成功');
       setShowImportPage(false);
     } catch (error) {
       alert('HTML解析失败：' + error.message);
@@ -1255,6 +1255,10 @@ function PageManager({ pages, setPages, activePage }) {
                       {importType === 'json' && 'JSON配置内容'}
                       {importType === 'html' && 'HTML页面代码'}
                       {importType === 'spa' && 'SPA路由配置'}
+                      {importType === 'react' && 'React组件代码'}
+                      {importType === 'vue' && 'Vue组件代码'}
+                      {importType === 'angular' && 'Angular组件代码'}
+                      {importType === 'js' && '原生JS/CSS代码'}
                     </Label>
                     <Textarea
                       value={importContent}
@@ -1264,7 +1268,15 @@ function PageManager({ pages, setPages, activePage }) {
                           ? '{"name": "页面名称", "route": "/path", "elements": [...]}'
                           : importType === 'html'
                           ? '<!DOCTYPE html><html>...</html>'
-                          : '{"routes": [{"path": "/", "name": "首页", "component": "Home"}]}'
+                          : importType === 'spa'
+                          ? '{"routes": [{"path": "/", "name": "首页", "component": "Home"}]}'
+                          : importType === 'react'
+                          ? 'function MyComponent() { return <div>Hello World</div>; }'
+                          : importType === 'vue'
+                          ? '<template><div>{{ message }}</div></template><script>export default { data() { return { message: "Hello" }; } }</script>'
+                          : importType === 'angular'
+                          ? '@Component({ selector: "app-my", template: "<div>Hello</div>" }) export class MyComponent {}'
+                          : 'const element = document.createElement("div"); element.innerHTML = "Hello World";'
                       }
                       className="mt-2 h-40 font-mono text-xs"
                     />
@@ -2108,7 +2120,7 @@ export function WebEditor() {
   // 导出 ZIP 包
   const handleExport = async () => {
     try {
-      // 首先保��项目获��ID
+      // 首先保存项目获��ID
       const projectData = {
         siteName,
         pages,
@@ -2424,7 +2436,7 @@ export function WebEditor() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              项目管理
+              项���管理
             </DialogTitle>
           </DialogHeader>
 
