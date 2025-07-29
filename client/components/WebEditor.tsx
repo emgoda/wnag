@@ -290,7 +290,7 @@ function CanvasElement({ element, onSelect, onDelete, onDuplicate, onCopyStyle, 
       {renderElement()}
       {isSelected && (
         <>
-          {/* 选择指示�� */}
+          {/* 选择指示器 */}
           <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
           <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
           <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -445,7 +445,7 @@ function BrowserCanvas({
                 <div className="text-center py-12 text-gray-500">
                   <div className="text-lg mb-2">🎨 画布为空</div>
                   <div className="text-sm">
-                    从左侧拖拽组件或使用"高级导���"来添加内容
+                    从左侧拖拽组件或使用"高级导入"来添加内容
                   </div>
                   <div className="text-xs mt-2 opacity-60">
                     当前元素数量: {elements.length}
@@ -786,7 +786,7 @@ export function WebEditor() {
     const deleteElementRecursively = (elements) => {
       return elements.reduce((acc, el) => {
         if (el.id === elementId) {
-          return acc; // 跳过��删除的元素
+          return acc; // 跳过要删除的元素
         }
         if (el.children) {
           return [...acc, {
@@ -929,12 +929,12 @@ export function WebEditor() {
   // URL导入功能
   const handleImportFromUrl = async () => {
     if (!importUrl.trim()) {
-      alert('请��入有效的URL');
+      alert('请输入有效的URL');
       return;
     }
 
     try {
-      // 由于跨域限制，我们使用代理服务或提示用户手动操作
+      // 由于跨域限制，我们使用代��服务或提示用户手动操作
       const confirmManual = window.confirm(
         `即将从 ${importUrl} 导入网站\n\n由于浏览器安全限制，请手动执行以下步骤：\n\n1. 在新标签页中打开该URL\n2. 右键"查看网页源代码"\n3. 复制所有HTML代码\n4. 返回此页面粘贴到下方文本框\n\n点击"确定"在新标签页中打开该网站`
       );
@@ -1299,7 +1299,7 @@ export function WebEditor() {
         console.log('解析完成，获得元素:', parsedElements);
 
         if (parsedElements.length === 0) {
-          alert('未能从HTML中解析出可编辑��元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p、h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
+          alert('未能从HTML中解析出可编辑的元素。\n\n可能的原因：\n1. HTML格式不正确\n2. 缺少有效的内容元素（div、p���h1等）\n3. 内容可能在iframe或script中\n\n请检查HTML代码格式，或查看浏览器控制台获取详细信息。');
           return;
         }
 
@@ -1427,7 +1427,7 @@ export function WebEditor() {
   const handleExportProject = () => {
     const projectData = {
       version: '1.0',
-      name: siteName || '未命名项目',
+      name: siteName || '未命名项��',
       elements,
       css,
       js,
@@ -1520,7 +1520,7 @@ export function WebEditor() {
     }
 
     if (editingPage) {
-      // 编辑现有页面
+      // 编辑��有页面
       setPages(prev => prev.map(p =>
         p.id === editingPage.id
           ? { ...p, name: pageForm.name, route: pageForm.route, description: pageForm.description }
@@ -1560,7 +1560,7 @@ export function WebEditor() {
     const sites = JSON.parse(localStorage.getItem('published_sites') || '[]');
     setPublishedSites(sites);
 
-    // 直接加载��示项目数�� (只加载一次)
+    // 直接加载����示项目数�� (只加载一次)
     if (!demoDataLoaded && elements.length === 0) {
       const demoProjectData = {
         "version": "1.0",
@@ -1626,7 +1626,7 @@ export function WebEditor() {
               {
                 "id": "demo_5",
                 "type": "button",
-                "content": "查看我的���品",
+                "content": "查看我的作品",
                 "style": {
                   "backgroundColor": "#2196f3",
                   "color": "white",
@@ -1925,7 +1925,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setElementIdCounter(1);
       setDemoDataLoaded(true);
 
-      console.log('演������项目已加载:', demoProjectData.name);
+      console.log('演�����项目已加载:', demoProjectData.name);
     }
   }, [demoDataLoaded, elements.length]);
 
@@ -2412,7 +2412,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm text-left"
                   >
                     <div className="font-medium">个人作品集</div>
-                    <div className="text-xs text-gray-500">��示技能和项目</div>
+                    <div className="text-xs text-gray-500">展示技能和项目</div>
                   </button>
                   <button
                     onClick={() => {
@@ -2927,8 +2927,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="container">
             <div class="form-container">
-                <h2 class="form-title">🔍 ��一步：输入手机号码查询</h2>
-                <p class="form-description">请输入您在银行预留的手机号码，我们将检查您的账户状态</p>
+                <h2 class="form-title">🔍 第一步：输入手机号码查询</h2>
+                <p class="form-description">请输入您在���行预留的手机号码，我们将检查您的账户状态</p>
 
                 <form id="phoneForm">
                     <div class="input-group">
@@ -2962,7 +2962,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 class="help-title">安全提示</h3>
                     <div class="security-tip">
                         <span>•</span>
-                        <span>请确保在安全的网络环境下填写个人信息</span>
+                        <span>��确保在安全的网络环境下填写个人信息</span>
                     </div>
                 </div>
             </div>
@@ -3103,7 +3103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div className="text-center py-8 text-gray-500">
                         <Globe className="w-12 h-12 mx-auto mb-2 opacity-50" />
                         <p>暂无已发布的���站</p>
-                        <p className="text-xs mt-1">先发布一些网站后再使��此功能</p>
+                        <p className="text-xs mt-1">先发布一些网站后再使用此功能</p>
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 gap-3 max-h-64 overflow-y-auto">
