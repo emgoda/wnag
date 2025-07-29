@@ -755,7 +755,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
           failedFiles.push(`${file.name} (不支持的格式)`);
         }
       } catch (error) {
-        console.error(`处理文件 ${file.name} 时出错:`, error);
+        console.error(`处理文�� ${file.name} 时出错:`, error);
         failedFiles.push(`${file.name} (处理失败: ${error.message})`);
       }
     }
@@ -1313,7 +1313,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'JavaScript代码已导入，请手动编辑内容',
+        content: 'JavaScript代码已导入，请手动��辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1876,7 +1876,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
-                      {importType === 'react' && 'React组件示例：'}
+                      {importType === 'react' && 'React组件示��：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
@@ -2513,6 +2513,7 @@ function ComponentLibrary({ pages, setPages }) {
           pages={pages}
           setPages={setPages}
           activePage={pages.find(p => p.isActive)}
+          onSwitchPage={handleSwitchPage}
         />
       </div>
 
@@ -2527,7 +2528,7 @@ function ComponentLibrary({ pages, setPages }) {
             </div>
             <button
               onClick={() => {
-                // 一键切换：如果全部展开则收起，否则展开
+                // 一键切换：如果全部展开则��起，否则展开
                 if (expandedCategories.size === categories.length) {
                   collapseAll();
                 } else {
@@ -2999,7 +3000,7 @@ export function WebEditor() {
 
     // 稍微延迟加载元素，确保页面状态更新完成
     setTimeout(() => {
-      // 加载对应页面的元素到画布
+      // 加载对应页面的元素到��布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
         console.log('加载页面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
