@@ -357,7 +357,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件���这里</div>}
           </div>
         );
       
@@ -1182,6 +1182,163 @@ function PageManager({ pages, setPages, activePage }) {
               </div>
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* 导入页面对话框 */}
+      <Dialog open={showImportPage} onOpenChange={setShowImportPage}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Upload className="w-5 h-5" />
+              导入页面
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            {/* 导入方式选择 */}
+            <div>
+              <Label className="text-sm font-medium">导入方式</Label>
+              <Tabs defaultValue="file" className="mt-2">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="file">文件导入</TabsTrigger>
+                  <TabsTrigger value="text">文本导入</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="file" className="space-y-4 mt-4">
+                  <div>
+                    <Label className="text-sm">选择文件</Label>
+                    <div className="mt-2">
+                      <input
+                        type="file"
+                        accept=".json,.html,.zip"
+                        onChange={handleFileImport}
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      />
+                    </div>
+                    <div className="text-xs text-gray-500 mt-2">
+                      支持格式：JSON配置文件、HTML页面、ZIP压缩包
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
+                    <ul className="text-xs text-gray-600 space-y-1">
+                      <li>• <strong>JSON文件</strong>：页面配置数据</li>
+                      <li>• <strong>HTML文件</strong>：静态HTML页面，自动解析为组件</li>
+                      <li>• <strong>ZIP文件</strong>：包含多个页面的压缩包</li>
+                    </ul>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="text" className="space-y-4 mt-4">
+                  <div>
+                    <Label className="text-sm">导入类型</Label>
+                    <Select value={importType} onValueChange={setImportType}>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="json">JSON页面配置</SelectItem>
+                        <SelectItem value="html">HTML页面代码</SelectItem>
+                        <SelectItem value="spa">SPA路由配置</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm">
+                      {importType === 'json' && 'JSON配置内容'}
+                      {importType === 'html' && 'HTML页面代码'}
+                      {importType === 'spa' && 'SPA路由配置'}
+                    </Label>
+                    <Textarea
+                      value={importContent}
+                      onChange={(e) => setImportContent(e.target.value)}
+                      placeholder={
+                        importType === 'json'
+                          ? '{"name": "页面名称", "route": "/path", "elements": [...]}'
+                          : importType === 'html'
+                          ? '<!DOCTYPE html><html>...</html>'
+                          : '{"routes": [{"path": "/", "name": "首页", "component": "Home"}]}'
+                      }
+                      className="mt-2 h-40 font-mono text-xs"
+                    />
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="text-sm font-medium mb-2">
+                      {importType === 'json' && 'JSON格式示例：'}
+                      {importType === 'html' && 'HTML格式说明：'}
+                      {importType === 'spa' && 'SPA配置示例：'}
+                    </h4>
+                    {importType === 'json' && (
+                      <pre className="text-xs text-gray-600 whitespace-pre-wrap">
+{`{
+  "name": "关于我们",
+  "route": "/about",
+  "title": "关于我们 - 网站名称",
+  "description": "页面描述",
+  "elements": [
+    {
+      "type": "heading",
+      "content": "关于我们",
+      "level": "h1"
+    }
+  ]
+}`}
+                      </pre>
+                    )}
+                    {importType === 'html' && (
+                      <div className="text-xs text-gray-600">
+                        <p>支持标准HTML标签，会自动转换为对应组件：</p>
+                        <ul className="mt-2 space-y-1">
+                          <li>• h1-h6 → 标题组件</li>
+                          <li>• p → 文本组件</li>
+                          <li>• button → 按钮组件</li>
+                          <li>• img → 图片组件</li>
+                          <li>• a → 链接组件</li>
+                          <li>• input, textarea → 表单组件</li>
+                          <li>• div → 容器组件</li>
+                        </ul>
+                      </div>
+                    )}
+                    {importType === 'spa' && (
+                      <pre className="text-xs text-gray-600 whitespace-pre-wrap">
+{`{
+  "routes": [
+    {
+      "path": "/",
+      "name": "首页",
+      "component": "Home",
+      "meta": {
+        "title": "首页",
+        "description": "网站首页"
+      }
+    },
+    {
+      "path": "/about",
+      "name": "关于",
+      "component": "About"
+    }
+  ]
+}`}
+                      </pre>
+                    )}
+                  </div>
+
+                  <div className="flex justify-end gap-2">
+                    <Button variant="outline" onClick={() => setShowImportPage(false)}>
+                      取消
+                    </Button>
+                    <Button onClick={handleImportFromText}>
+                      导入
+                    </Button>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </>
@@ -2322,7 +2479,7 @@ export function WebEditor() {
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
-                        <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
+                        <div>更新时��: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
                           <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
