@@ -27,7 +27,7 @@ const ItemTypes = {
   ELEMENT: 'element'
 };
 
-// 基础组件���
+// 基础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
@@ -219,7 +219,7 @@ function CanvasElement({
 
     switch (element.type) {
       case 'text':
-        return <div {...commonProps}>{element.content || '文本内容'}</div>;
+        return <div {...commonProps}>{element.content || '文本���容'}</div>;
       
       case 'heading':
         const HeadingTag = element.level || 'h1';
@@ -651,7 +651,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     setExpandedNodes(new Set());
   };
 
-  // 递归渲���所有元素及其子元素
+  // 递归渲染所有元素及其子元素
   const renderElementNode = (element: any, level: number = 0, path: number[] = []) => {
     const hasChildren = element.children && element.children.length > 0;
     const isExpanded = expandedNodes.has(element.id);
@@ -726,7 +726,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
     );
   };
 
-  // 统计��元素数量（包括嵌套）
+  // 统计总元素数量（包括嵌套）
   const countTotalElements = (elements: any[]): number => {
     let count = 0;
     elements.forEach(element => {
@@ -918,20 +918,26 @@ function ComponentLibrary() {
                         expandAll();
                         setShowExpandMenu(false);
                       }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center justify-between"
                     >
-                      <Plus className="w-3 h-3" />
-                      展开全部
+                      <div className="flex items-center gap-2">
+                        <Plus className="w-3 h-3" />
+                        展开全部
+                      </div>
+                      <span className="text-xs text-gray-500">Ctrl+Shift+E</span>
                     </button>
                     <button
                       onClick={() => {
                         collapseAll();
                         setShowExpandMenu(false);
                       }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+                      className="w-full text-left px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-700 flex items-center justify-between"
                     >
-                      <Minus className="w-3 h-3" />
-                      收起全部
+                      <div className="flex items-center gap-2">
+                        <Minus className="w-3 h-3" />
+                        收起全部
+                      </div>
+                      <span className="text-xs text-gray-500">Ctrl+Shift+C</span>
                     </button>
                     <hr className="border-gray-600 my-1" />
                     <button
@@ -1509,7 +1515,7 @@ export function WebEditor() {
     }
 
     try {
-      // 首先保��项目
+      // 首先保存项目
       const projectData = {
         siteName,
         pages,
@@ -1594,7 +1600,7 @@ export function WebEditor() {
         setShowProjectManager(false);
         alert(`项目 "${project.siteName}" 加载成功！`);
       } else {
-        alert('加���项目失败: ' + result.message);
+        alert('加载项目失败: ' + result.message);
       }
     } catch (error) {
       console.error('加载项目失败:', error);
@@ -1668,7 +1674,7 @@ export function WebEditor() {
             </Button>
             <Button variant="outline" size="sm" onClick={() => setShowElementTree(!showElementTree)}>
               <Layers className="w-4 h-4 mr-2" />
-              {showElementTree ? '隐藏' : '显示'}结构
+              {showElementTree ? '隐藏' : '��示'}结构
             </Button>
             <Button variant="outline" size="sm" onClick={handleSave} disabled={isLoading}>
               <Save className="w-4 h-4 mr-2" />
