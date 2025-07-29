@@ -127,7 +127,7 @@ function DraggableTreeComponent({ component, isSelected = false }) {
     }),
   }));
 
-  console.log('DraggableTreeComponent rendered:', component.label, 'isDragging:', isDragging);
+
 
   const Icon = component.icon;
 
@@ -1333,7 +1333,7 @@ export function WebEditor() {
       return;
     }
 
-    setSiteName('我的网站');
+    setSiteName('我��网站');
     setElements([]);
     setSelectedElement(null);
     setSelectedPath([]);
