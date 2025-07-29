@@ -68,7 +68,7 @@ const mediaComponents = [
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-user', type: 'icon', label: '���户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-mail', type: 'icon', label: '邮件��标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
   { id: 'icon-heart', type: 'icon', label: '心形图标', icon: Heart, category: 'icon', defaultProps: { iconType: 'heart', style: { fontSize: '24px', color: '#ef4444' } } }
@@ -632,7 +632,7 @@ function PageManager({ pages, setPages, activePage }) {
 
     // 检查路由是否已存在
     if (pages.some(p => p.route === newPageRoute)) {
-      alert('该���由已存在');
+      alert('该路由已存在');
       return;
     }
 
@@ -793,7 +793,7 @@ function PageManager({ pages, setPages, activePage }) {
     // 显示批量导入结果
     let resultMessage = `批量文件导入完成！
 
-成功处理 ${processedFiles.length} 个文件：
+���功处理 ${processedFiles.length} 个文件：
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 
 创建页面：${importedCount} 个`;
@@ -1154,6 +1154,11 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       setPages(prev => [...prev, newPage]);
       alert('Angular组件导入成功');
       setShowImportPage(false);
+
+      // 自动切换到新导入的页面
+      setTimeout(() => {
+        handleSwitchPage(newPage.id);
+      }, 100);
     } catch (error) {
       alert('Angular组件导入失败：' + error.message);
     }
@@ -1760,7 +1765,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     ...selectedPageForSettings,
                     description: e.target.value
                   })}
-                  placeholder="页面描述，��于搜索引擎优化"
+                  placeholder="页面描述，��于搜索引擎优���"
                   className="mt-1 h-20"
                 />
               </div>
@@ -1905,7 +1910,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
-                      {importType === 'project' && '项目结构示例：'}
+                      {importType === 'project' && '项目结构���例：'}
                     </h4>
                     {importType === 'json' && (
                       <pre className="text-xs text-gray-600 whitespace-pre-wrap">
@@ -2132,7 +2137,7 @@ function increment() {
                         <p className="mt-2 text-xs">
                           • 自动根据client/pages/目录创建页面<br/>
                           • 支持client/components/和client/components/ui/组件导入<br/>
-                          • 自动配置路由��射<br/>
+                          • 自动配置路由映射<br/>
                           • 保持标准的React项目结构
                         </p>
                       </div>
@@ -2205,7 +2210,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件）
+                        选择多个文件同时上传（按��Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -3024,7 +3029,7 @@ export function WebEditor() {
         siteName,
         pages,
         elements,
-        css: '', // ��以后续添加CSS编辑功能
+        css: '', // ��以后续添���CSS编辑功能
         js: ''   // 可以后��添加JS编辑功能
       };
 
