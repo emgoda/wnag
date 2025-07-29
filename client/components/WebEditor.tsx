@@ -29,7 +29,7 @@ const ItemTypes = {
 
 // 基础组件库
 const basicComponents = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内��', style: { fontSize: '16px', color: '#333' } } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -52,7 +52,7 @@ const layoutComponents = [
 const formComponents = [
   { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
-  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复��框选项', checked: false, style: { margin: '8px 0' } } },
+  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
@@ -67,7 +67,7 @@ const mediaComponents = [
 // 图标组��
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-user', type: 'icon', label: '��户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-user', type: 'icon', label: '���户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
@@ -313,7 +313,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽��件到这里</div>}
           </div>
         );
       
@@ -626,7 +626,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
-      alert('���输入页面名称和路由');
+      alert('�����输入页面名称和路由');
       return;
     }
 
@@ -702,7 +702,7 @@ function PageManager({ pages, setPages, activePage }) {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
-    // 如果只有一个ZIP文件，��示ZIP指南
+    // 如果只有一个ZIP文件，显示ZIP指南
     if (files.length === 1 && files[0].name.endsWith('.zip')) {
       handleZipImport(files[0]);
       return;
@@ -814,7 +814,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON���式不正确，请确保包含页面数据');
+        alert('JSON格式不正确，请确保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -855,7 +855,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解��HTML元素为组件
+  // 解析HTML元素为组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -1165,7 +1165,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         return match ? match[1] : null;
       }
     } catch (error) {
-      console.error('提取组��名称失败:', error);
+      console.error('提取组件名称失败:', error);
     }
     return null;
   };
@@ -1781,6 +1781,8 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
                       支持格式：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP压缩包
+                      <br />
+                      💡 可以选择多个文件同时导入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -1788,7 +1790,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
                       <li>• <strong>JSON文件</strong>：页面配置数据</li>
-                      <li>• <strong>HTML文件</strong>：静态HTML页面，自动解析为组件</li>
+                      <li>• <strong>HTML文件</strong>：静态HTML��面，自动解析为组件</li>
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
@@ -1882,7 +1884,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动转换为对应组件：</p>
+                        <p>支持标准HTML标签，会自动��换为对应组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2578,7 +2580,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
       <div className="w-80 bg-white border-l p-4 overflow-y-auto">
         <div className="text-center text-gray-400 py-8">
           <Settings size={48} className="mx-auto mb-4 opacity-50" />
-          <p className="text-sm">选择一个组件来编辑属性</p>
+          <p className="text-sm">选择一个组��来编辑属性</p>
         </div>
       </div>
     );
@@ -3324,7 +3326,7 @@ export function WebEditor() {
                 </Button>
                 <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  刷新����
+                  刷新��表
                 </Button>
               </div>
               <div className="text-sm text-gray-500">
