@@ -1060,7 +1060,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 导入React组件
   const handleImportReactComponent = (content) => {
     try {
-      // 解析React组件代码，提取组���信息
+      // 解析React组件代码，提取组件信息
       const componentName = extractComponentName(content, 'react');
       const elements = parseReactComponent(content);
 
@@ -1735,7 +1735,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     ...selectedPageForSettings,
                     description: e.target.value
                   })}
-                  placeholder="���面描述，��于搜索引擎优化"
+                  placeholder="页面描述，��于搜索引擎优化"
                   className="mt-1 h-20"
                 />
               </div>
@@ -1797,7 +1797,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       />
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
-                      支持格式：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP压缩包
+                      支持格式：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP���缩包
                       <br />
                       💡 可以选择多个文件同时导入（按住Ctrl/Cmd键选择）
                     </div>
@@ -2180,7 +2180,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多��文件同时上传（按住Ctrl/Cmd键选择多个文件）
+                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -2926,37 +2926,20 @@ export function WebEditor() {
   const [isLoading, setIsLoading] = useState(false);
   const [showElementTree, setShowElementTree] = useState(true);
 
-  // 同步当前元素到活跃页面
-  useEffect(() => {
+  // 保存当前页面元素的函数
+  const saveCurrentPageElements = useCallback(() => {
     const activePage = pages.find(p => p.isActive);
-    if (activePage && elements.length >= 0) {
-      // 使用setTimeout避免在状态更新过程中再次更新状态
-      const timeoutId = setTimeout(() => {
-        setPages(prev => prev.map(p =>
-          p.isActive ? { ...p, elements: [...elements] } : p
-        ));
-      }, 0);
-      return () => clearTimeout(timeoutId);
+    if (activePage) {
+      setPages(prev => prev.map(p =>
+        p.isActive ? { ...p, elements: [...elements] } : p
+      ));
     }
-  }, [elements]);
+  }, [pages, elements]);
 
-  // 监听页面切换，加载对应页面的元素
+  // 元素变化时自动保存到当前页面
   useEffect(() => {
-    const activePage = pages.find(p => p.isActive);
-    if (activePage && activePage.elements && Array.isArray(activePage.elements)) {
-      // 只有当���素不同时才更新，避免无限循环
-      const currentElementsString = JSON.stringify(elements);
-      const pageElementsString = JSON.stringify(activePage.elements);
-      if (currentElementsString !== pageElementsString) {
-        setElements([...activePage.elements]);
-      }
-    } else if (activePage && (!activePage.elements || activePage.elements.length === 0)) {
-      // 如果页面没有元素或元素为空，清空画布
-      if (elements.length > 0) {
-        setElements([]);
-      }
-    }
-  }, [pages.map(p => ({ id: p.id, isActive: p.isActive, elements: p.elements })).find(p => p.isActive)]);
+    saveCurrentPageElements();
+  }, [elements]);
 
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
@@ -3065,7 +3048,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存项目失败，无法导出');
+        throw new Error('保存项目��败，无法导出');
       }
 
       // 使用项目ID导出ZIP包
@@ -3273,7 +3256,7 @@ export function WebEditor() {
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={newProject}>
               <Plus className="w-4 h-4 mr-2" />
-              ��建
+              ����建
             </Button>
             <Button variant="outline" size="sm" onClick={() => { setShowProjectManager(true); loadProjects(); }}>
               <FileText className="w-4 h-4 mr-2" />
