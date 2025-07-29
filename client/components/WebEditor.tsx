@@ -237,7 +237,7 @@ function CanvasElement({
           <input
             {...commonProps}
             type={element.inputType || 'text'}
-            placeholder={element.placeholder || '���输入内容'}
+            placeholder={element.placeholder || '请输入内容'}
             defaultValue={element.value || ''}
             readOnly
           />
@@ -629,7 +629,7 @@ function PageManager({ pages, setPages, activePage }) {
       return;
     }
 
-    // 检查路由是否已存在
+    // 检查路��是否已存在
     if (pages.some(p => p.route === newPageRoute)) {
       alert('该路由已存在');
       return;
@@ -1057,7 +1057,7 @@ function PageManager({ pages, setPages, activePage }) {
         route: `/${componentName?.toLowerCase() || 'angular-page'}`,
         isActive: false,
         title: componentName || 'Angular页面',
-        description: `从Angular组件导入的页面`,
+        description: `从Angular组件导��的页面`,
         keywords: 'angular, component',
         sourceCode: content,
         sourceType: 'angular',
@@ -1072,7 +1072,7 @@ function PageManager({ pages, setPages, activePage }) {
     }
   };
 
-  // 导入原��JavaScript
+  // 导入原生JavaScript
   const handleImportJavaScript = (content) => {
     try {
       const elements = parseJavaScriptCode(content);
@@ -1145,7 +1145,7 @@ function PageManager({ pages, setPages, activePage }) {
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'React组件已导入，请手动编辑内容',
+        content: 'React��件已导入，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1421,6 +1421,136 @@ function PageManager({ pages, setPages, activePage }) {
         }
       }
     ];
+  };
+
+  // 处理ZIP文件导入
+  const handleZipImport = async (file) => {
+    try {
+      // 使用Web API读取ZIP文件
+      const arrayBuffer = await file.arrayBuffer();
+      const zipFiles = await extractZipFiles(arrayBuffer);
+
+      if (zipFiles.length === 0) {
+        alert('ZIP文件中没有找到可导入的文件');
+        return;
+      }
+
+      let importedPages = 0;
+      let processedFiles = [];
+
+      for (const zipFile of zipFiles) {
+        try {
+          const { fileName, content } = zipFile;
+
+          // 根据文件类型处理
+          if (fileName.endsWith('.json') && fileName.includes('project')) {
+            // 项目配置文件
+            const data = JSON.parse(content);
+            await handleImportProjectStructure(JSON.stringify(data));
+            processedFiles.push(`${fileName} (项目配置)`);
+          } else if (fileName.endsWith('.json')) {
+            // 普通JSON配置
+            const data = JSON.parse(content);
+            await handleImportFromJSON(data);
+            processedFiles.push(`${fileName} (JSON页面)`);
+            importedPages++;
+          } else if (fileName.endsWith('.html')) {
+            // HTML文件
+            await handleImportFromHTML(content, fileName);
+            processedFiles.push(`${fileName} (HTML页面)`);
+            importedPages++;
+          } else if (fileName.endsWith('.jsx') || fileName.endsWith('.tsx')) {
+            // React组件
+            await handleImportReactComponent(content);
+            processedFiles.push(`${fileName} (React组件)`);
+            importedPages++;
+          } else if (fileName.endsWith('.vue')) {
+            // Vue组件
+            await handleImportVueComponent(content);
+            processedFiles.push(`${fileName} (Vue组件)`);
+            importedPages++;
+          } else if (fileName.endsWith('.js') || fileName.endsWith('.ts')) {
+            // JavaScript文件
+            if (content.includes('@Component')) {
+              await handleImportAngularComponent(content);
+              processedFiles.push(`${fileName} (Angular组件)`);
+            } else {
+              await handleImportJavaScript(content);
+              processedFiles.push(`${fileName} (JavaScript)`);
+            }
+            importedPages++;
+          }
+        } catch (error) {
+          console.error(`处理文件 ${zipFile.fileName} 时出错:`, error);
+          processedFiles.push(`${zipFile.fileName} (处理失败: ${error.message})`);
+        }
+      }
+
+      // 显示导入结果
+      const resultMessage = `ZIP文件导入完成！
+
+处理的文件：
+${processedFiles.map(file => `• ${file}`).join('\n')}
+
+成功创建页面：${importedPages} 个`;
+
+      alert(resultMessage);
+
+    } catch (error) {
+      alert('ZIP文件导入失败：' + error.message);
+    }
+  };
+
+  // 提取ZIP文件内容（使用Web API实现简化版ZIP解析）
+  const extractZipFiles = async (arrayBuffer) => {
+    try {
+      // 这里使用简化的ZIP解析实现
+      // 在实际项目中建议使用 jszip 库
+      return await parseZipWithWebAPI(arrayBuffer);
+    } catch (error) {
+      throw new Error('ZIP文件解析失败：' + error.message);
+    }
+  };
+
+  // 使用Web API解析ZIP文件（简化实现）
+  const parseZipWithWebAPI = async (arrayBuffer) => {
+    const files = [];
+
+    try {
+      // 检查是否支持ReadableStream和CompressionStream
+      if (typeof CompressionStream === 'undefined') {
+        throw new Error('浏览器不支持ZIP解析，请使用现代浏览器或手动解压文件');
+      }
+
+      // 简化的ZIP文件检测和处理
+      const uint8Array = new Uint8Array(arrayBuffer);
+
+      // 检查ZIP文件签名 (PK)
+      if (uint8Array[0] !== 0x50 || uint8Array[1] !== 0x4B) {
+        throw new Error('不是有效的ZIP文件');
+      }
+
+      // 由于Web API的限制，这里提供一个备用方案
+      // 提示用户使用其他导入方式
+      alert(`检测到ZIP文件，由于浏览器限制，建议您：
+
+1. 手动解压ZIP文件
+2. 选择解压后的单个文件进行导入
+3. 或者使用"文本导入"功能，复制粘贴文件内容
+
+支持的文件类型：
+• JSON配置文件
+• HTML页面文件
+• JSX/TSX React组件
+• Vue单文件组件
+• JavaScript/TypeScript文件`);
+
+      return [];
+
+    } catch (error) {
+      // 如果无法解析，提供友好的错误信息
+      throw new Error(`ZIP解析失败。建议手动解压后导入单个文件。错误详情：${error.message}`);
+    }
   };
 
   // 从标签创建元素
@@ -2574,7 +2704,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             
             {/* 文字 */}
             <div className="space-y-3">
-              <Label className="text-xs font-medium">��字</Label>
+              <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label className="text-xs text-gray-600">字体大小</Label>
@@ -3129,7 +3259,7 @@ export function WebEditor() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              项目管理
+              项目��理
             </DialogTitle>
           </DialogHeader>
 
