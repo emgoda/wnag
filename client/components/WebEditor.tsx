@@ -42,7 +42,7 @@ const basicComponents = [
 // 布局组件
 const layoutComponents = [
   { id: 'container', type: 'container', label: '容器', icon: Square, category: 'layout', defaultProps: { style: { padding: '20px', border: '2px dashed #d1d5db', borderRadius: '6px', minHeight: '100px' } } },
-  { id: 'row', type: 'row', label: '行��局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
+  { id: 'row', type: 'row', label: '行布局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'column', type: 'column', label: '列布局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'grid', type: 'grid', label: '网格', icon: Grid, category: 'layout', defaultProps: { columns: 2, style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'card', type: 'card', label: '卡片', icon: Square, category: 'layout', defaultProps: { style: { padding: '24px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' } } }
@@ -179,7 +179,7 @@ function CanvasElement({
       if (monitor.didDrop()) return;
       
       if (item.component) {
-        // 添加新组件到当前元��
+        // 添加新组件到当前元素
         const newElement = {
           id: `element_${Date.now()}`,
           type: item.component.type,
@@ -313,7 +313,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件���这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
           </div>
         );
       
@@ -1292,7 +1292,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添加CSS编辑功能
-        js: ''   // 可以后续添加JS编辑功能
+        js: ''   // 可以后��添加JS编辑功能
       };
 
       const response = await fetch('/api/page/save', {
@@ -1622,7 +1622,7 @@ export function WebEditor() {
           )}
 
           {/* 右下角元素树状图 */}
-          {!showPreview && (
+          {!showPreview && showElementTree && (
             <div className="absolute bottom-4 right-4 z-10">
               <ElementTreeView
                 elements={elements}
