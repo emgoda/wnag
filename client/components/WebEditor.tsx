@@ -30,7 +30,7 @@ const ItemTypes = {
 // 基础组件库
 const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
-  { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
+  { id: 'heading', type: 'heading', label: '���题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
@@ -53,7 +53,7 @@ const formComponents = [
   { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
-  { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单���框选项', style: { margin: '8px 0' } } },
+  { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
 
@@ -889,6 +889,15 @@ function ComponentLibrary() {
             <MoreHorizontal className="w-3 h-3" />
           </button>
         </div>
+      </div>
+
+      {/* 页面管理 */}
+      <div className="border-b border-gray-700">
+        <PageManager
+          pages={pages}
+          setPages={setPages}
+          activePage={pages.find(p => p.isActive)}
+        />
       </div>
 
       {/* 图层面板 */}
@@ -1808,9 +1817,9 @@ export function WebEditor() {
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
-                        <div>更新��间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
+                        <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
-                          <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
+                          <div>发��时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
                         {project.deployUrl && (
                           <div className="flex items-center gap-2">
