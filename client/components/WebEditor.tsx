@@ -1114,7 +1114,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         route: `/${componentName?.toLowerCase() || 'angular-page'}`,
         isActive: false,
         title: componentName || 'Angular页面',
-        description: `从Angular组件导���的页面`,
+        description: `从Angular组件导入的页面`,
         keywords: 'angular, component',
         sourceCode: content,
         sourceType: 'angular',
@@ -1325,7 +1325,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const projectConfig = JSON.parse(content);
 
       if (!projectConfig.structure) {
-        alert('项���结构配置格式不正确，请确保包含structure字段');
+        alert('项目结构配置格式不正确，请确保包含structure字段');
         return;
       }
 
@@ -1602,7 +1602,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 }`}></div>
                 <div
                   className="flex-1 cursor-pointer"
-                  onClick={() => handleSwitchPage(page.id)}
+                  onClick={() => onSwitchPage(page.id)}
                 >
                   <div className={`text-sm ${
                     page.isActive ? 'text-white font-medium' : 'text-gray-300'
@@ -1781,7 +1781,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
               <Tabs defaultValue="file" className="mt-2">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="file">文件导入</TabsTrigger>
-                  <TabsTrigger value="text">文本导���</TabsTrigger>
+                  <TabsTrigger value="text">文本导入</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="file" className="space-y-4 mt-4">
@@ -2017,7 +2017,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原生JavaScript和CSS代码，会自动解析为页面元素：</p>
+                        <p className="mb-2">支持原��JavaScript和CSS代码，会自动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -2146,7 +2146,7 @@ function increment() {
                   <span className="text-white text-sm font-bold">💡</span>
                 </div>
                 <div>
-                  <h3 className="font-medium text-blue-900 mb-2">ZIP文件导入方案</h3>
+                  <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
                     由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
@@ -2777,7 +2777,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">字体大小</Label>
+                  <Label className="text-xs text-gray-600">字体大��</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
