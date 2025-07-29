@@ -625,7 +625,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
-      alert('请输入页面名称和路由');
+      alert('请输��页面名称和路由');
       return;
     }
 
@@ -676,7 +676,7 @@ function PageManager({ pages, setPages, activePage }) {
     setPages(prev => prev.map(p => ({ ...p, isActive: p.id === pageId })));
   };
 
-  // 打开页面设置
+  // 打��页面设置
   const handleOpenPageSettings = (page) => {
     setSelectedPageForSettings({ ...page });
     setShowPageSettings(true);
@@ -1400,7 +1400,7 @@ function PageManager({ pages, setPages, activePage }) {
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-sm">���面名称</Label>
+              <Label className="text-sm">页面名称</Label>
               <Input
                 value={newPageName}
                 onChange={(e) => setNewPageName(e.target.value)}
@@ -1575,6 +1575,7 @@ function PageManager({ pages, setPages, activePage }) {
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
+                        <SelectItem value="project">项目结构配置</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1950,7 +1951,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
           <button
             onClick={expandAll}
             className="w-5 h-5 flex items-center justify-center hover:bg-gray-200 rounded text-xs"
-            title="展开全部"
+            title="���开全部"
           >
             <Plus className="w-3 h-3 text-gray-600" />
           </button>
@@ -2265,7 +2266,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </>
             )}
             
-            {/* 图片���性 */}
+            {/* 图片属性 */}
             {selectedElement.type === 'image' && (
               <>
                 <div>
@@ -2393,7 +2394,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">���景色</Label>
+                  <Label className="text-xs text-gray-600">�����色</Label>
                   <Input
                     type="color"
                     value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -2683,7 +2684,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自动���择平台
+            platform: 'auto', // 自动选择平台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
@@ -2826,7 +2827,7 @@ export function WebEditor() {
             </Button>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
-                <span className="text-gray-600">元素:</span>
+                <span className="text-gray-600">���素:</span>
                 <span className="font-mono font-medium">{elements.length}</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded text-sm">
