@@ -85,7 +85,7 @@ const allComponents = [
 
 // 设备尺寸配置
 const deviceSizes = {
-  mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
+  mobile: { name: '手��', icon: Smartphone, width: 375, height: 812 },
   tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
   desktop: { name: '桌面', icon: Monitor, width: 1200, height: 800 }
 };
@@ -1607,6 +1607,8 @@ function PageManager({ pages, setPages, activePage }) {
                           ? '<template><div>{{ message }}</div></template><script>export default { data() { return { message: "Hello" }; } }</script>'
                           : importType === 'angular'
                           ? '@Component({ selector: "app-my", template: "<div>Hello</div>" }) export class MyComponent {}'
+                          : importType === 'project'
+                          ? '{"structure": {"client/pages/": [{"name": "Home", "file": "Home.tsx"}], "client/components/": [{"name": "Header", "file": "Header.tsx"}]}}'
                           : 'const element = document.createElement("div"); element.innerHTML = "Hello World";'
                       }
                       className="mt-2 h-40 font-mono text-xs"
@@ -1650,7 +1652,7 @@ function PageManager({ pages, setPages, activePage }) {
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表单组件</li>
-                          <li>• div → 容器组件</li>
+                          <li>• div → 容器组��</li>
                         </ul>
                       </div>
                     )}
@@ -2500,7 +2502,7 @@ export function WebEditor() {
     setSelectedPath(path);
   }, []);
   
-  // 更��元素
+  // 更新元素
   const handleUpdateElement = useCallback((index, updatedElement) => {
     setElements(prev => {
       const newElements = [...prev];
@@ -2594,7 +2596,7 @@ export function WebEditor() {
         throw new Error('保存项目失败，无法导出');
       }
 
-      // 使��项目ID导出ZIP包
+      // 使用项目ID导出ZIP包
       const exportResponse = await fetch(`/api/page/export?id=${saveResult.data.id}`);
 
       if (!exportResponse.ok) {
@@ -2717,7 +2719,7 @@ export function WebEditor() {
         console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
-      console.error('加载项目列表�����:', error);
+      console.error('加载项目列表�������:', error);
     } finally {
       setIsLoading(false);
     }
