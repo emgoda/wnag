@@ -992,6 +992,13 @@ function PageManager({ pages, setPages, activePage }) {
               <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
             </button>
             <button
+              onClick={() => setShowImportPage(true)}
+              className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+              title="导入页面"
+            >
+              <Upload className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+            </button>
+            <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
               title={isExpanded ? "收起" : "展开"}
@@ -1084,7 +1091,7 @@ function PageManager({ pages, setPages, activePage }) {
                 className="mt-1"
               />
               <div className="text-xs text-gray-500 mt-1">
-                路由必���以 / 开头，如：/about
+                路由必须以 / 开头，如：/about
               </div>
             </div>
             <div className="flex justify-end gap-2">
@@ -1659,7 +1666,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </>
             )}
             
-            {/* 链接属性 */}
+            {/* 链接���性 */}
             {selectedElement.type === 'link' && (
               <div>
                 <Label className="text-xs">链接地址</Label>
@@ -1908,7 +1915,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添加CSS编辑功能
-        js: ''   // 可以后����加JS编辑功能
+        js: ''   // 可以后��添加JS编辑功能
       };
 
       const response = await fetch('/api/page/save', {
