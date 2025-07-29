@@ -52,7 +52,7 @@ const layoutComponents = [
 const formComponents = [
   { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
-  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
+  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复��框选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
@@ -67,7 +67,7 @@ const mediaComponents = [
 // 图标组��
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
-  { id: 'icon-user', type: 'icon', label: '用户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
+  { id: 'icon-user', type: 'icon', label: '��户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-mail', type: 'icon', label: '邮件图标', icon: Mail, category: 'icon', defaultProps: { iconType: 'mail', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-phone', type: 'icon', label: '电话图标', icon: Phone, category: 'icon', defaultProps: { iconType: 'phone', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-star', type: 'icon', label: '星星图标', icon: Star, category: 'icon', defaultProps: { iconType: 'star', style: { fontSize: '24px', color: '#fbbf24' } } },
@@ -83,7 +83,7 @@ const allComponents = [
   ...iconComponents
 ];
 
-// 设备尺��配置
+// 设备尺寸配置
 const deviceSizes = {
   mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
   tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
@@ -421,7 +421,7 @@ function CanvasElement({
       case 'video':
         return (
           <video {...commonProps} controls={element.controls} src={element.src}>
-            ���的浏览器不支持视频标签。
+            您的浏览器不支持视频标签。
           </video>
         );
       
@@ -626,7 +626,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 添加新页面
   const handleAddPage = () => {
     if (!newPageName.trim() || !newPageRoute.trim()) {
-      alert('请输入页面名称和路由');
+      alert('���输入页面名称和路由');
       return;
     }
 
@@ -1430,57 +1430,7 @@ function PageManager({ pages, setPages, activePage }) {
     setShowZipGuide(true);
   };
 
-  // 提取ZIP文件内容（使用Web API实现简化版ZIP解析）
-  const extractZipFiles = async (arrayBuffer) => {
-    try {
-      // 这里使用简化的ZIP解析实现
-      // 在实际项目中建议使用 jszip 库
-      return await parseZipWithWebAPI(arrayBuffer);
-    } catch (error) {
-      throw new Error('ZIP文件解析失败：' + error.message);
-    }
-  };
 
-  // 使用Web API解析ZIP文件（简化实现）
-  const parseZipWithWebAPI = async (arrayBuffer) => {
-    const files = [];
-
-    try {
-      // 检查是否支持ReadableStream和CompressionStream
-      if (typeof CompressionStream === 'undefined') {
-        throw new Error('浏览器不支持ZIP解析，请使用现代浏览器或手动解压文件');
-      }
-
-      // 简化的ZIP文件检测和处理
-      const uint8Array = new Uint8Array(arrayBuffer);
-
-      // 检查ZIP文件签名 (PK)
-      if (uint8Array[0] !== 0x50 || uint8Array[1] !== 0x4B) {
-        throw new Error('不是有效的ZIP文件');
-      }
-
-      // 由于Web API的限制，这里提供一个备用方案
-      // 提示用户使用其他导入方式
-      alert(`检测到ZIP文件，由于浏览器限制，建议您：
-
-1. 手动解压ZIP文件
-2. 选择解压后的单个文件进行导入
-3. 或者使用"文本导入"功能，复制粘贴文件内容
-
-支持的文件类型：
-• JSON配置文件
-• HTML页面文件
-• JSX/TSX React组件
-• Vue单文件组件
-• JavaScript/TypeScript文件`);
-
-      return [];
-
-    } catch (error) {
-      // 如果无法解析，提供友好的错误信息
-      throw new Error(`ZIP解析失败。建议手动解压后导入单个文件。错误详情：${error.message}`);
-    }
-  };
 
   // 从标签创建元素
   const createElementFromTag = (tagType, content, idPrefix) => {
@@ -1719,7 +1669,7 @@ function PageManager({ pages, setPages, activePage }) {
                     ...selectedPageForSettings,
                     description: e.target.value
                   })}
-                  placeholder="页面描述，用于搜索引擎优化"
+                  placeholder="页面描述，��于搜索引擎优化"
                   className="mt-1 h-20"
                 />
               </div>
@@ -1855,7 +1805,7 @@ function PageManager({ pages, setPages, activePage }) {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="text-sm font-medium mb-2">
                       {importType === 'json' && 'JSON格式示例：'}
-                      {importType === 'html' && 'HTML格��说明：'}
+                      {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
                       {importType === 'react' && 'React组件示例：'}
                       {importType === 'vue' && 'Vue组件示例：'}
@@ -3202,7 +3152,7 @@ export function WebEditor() {
                 </Button>
                 <Button onClick={loadProjects} variant="outline" size="sm" disabled={isLoading}>
                   <RotateCcw className="w-4 h-4 mr-2" />
-                  刷新列表
+                  刷新��表
                 </Button>
               </div>
               <div className="text-sm text-gray-500">
@@ -3253,7 +3203,7 @@ export function WebEditor() {
                         )}
                         {project.deployUrl && (
                           <div className="flex items-center gap-2">
-                            <span>访问地址:</span>
+                            <span>���问地址:</span>
                             <a
                               href={project.deployUrl}
                               target="_blank"
