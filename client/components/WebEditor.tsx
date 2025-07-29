@@ -655,7 +655,7 @@ function PageManager({ pages, setPages, activePage }) {
       return;
     }
 
-    if (confirm('��定要删除此页面吗？')) {
+    if (confirm('确定要删除此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
         // 如果删除的是当前活跃页面，激活第一个页面
@@ -682,7 +682,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 保存页面设置
   const handleSavePageSettings = () => {
     if (!selectedPageForSettings.name.trim()) {
-      alert('页面名称不能为空');
+      alert('页��名称不能为空');
       return;
     }
 
@@ -789,7 +789,7 @@ function PageManager({ pages, setPages, activePage }) {
         )}
       </div>
 
-      {/* 添加页面对话框 */}
+      {/* 添加页面对��框 */}
       <Dialog open={showAddPage} onOpenChange={setShowAddPage}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -1090,7 +1090,6 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
 function ComponentLibrary({ pages, setPages }) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['basic']));
   const [searchTerm, setSearchTerm] = useState('');
-  const [showExpandMenu, setShowExpandMenu] = useState(false);
 
   const toggleCategory = (categoryId: string) => {
     const newExpanded = new Set(expandedCategories);
@@ -1149,7 +1148,7 @@ function ComponentLibrary({ pages, setPages }) {
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
-    { id: 'media', label: '��体元素', icon: Image },
+    { id: 'media', label: '媒体元素', icon: Image },
     { id: 'icon', label: '图标组件', icon: Star }
   ];
 
@@ -1383,7 +1382,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {selectedElement.type === 'image' && (
               <>
                 <div>
-                  <Label className="text-xs">图片��址</Label>
+                  <Label className="text-xs">图片地址</Label>
                   <Input
                     value={selectedElement.src || ''}
                     onChange={(e) => handlePropertyChange('src', e.target.value)}
@@ -1447,7 +1446,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">��体大小</Label>
+                  <Label className="text-xs text-gray-600">字体大小</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
