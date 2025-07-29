@@ -18,8 +18,10 @@ import {
   ChevronRight, Home, Mail, Phone, User, Calendar, Star, Heart, ShoppingCart,
   Menu, Search, Bell, MessageCircle, Video, Music, MapPin, Clock, Zap,
   Layers, Move, MoreHorizontal, Palette, AlignLeft, AlignCenter, AlignRight,
-  Bold, Italic, Underline, Link2, ExternalLink, Maximize, Minimize, Minus
+  Bold, Italic, Underline, Link2, ExternalLink, Maximize, Minimize, Minus,
+  Shield
 } from 'lucide-react';
+import AccountCheckFlow from './AccountCheckFlow';
 
 // 定义拖拽项目类型
 const ItemTypes = {
@@ -29,7 +31,7 @@ const ItemTypes = {
 
 // 基础组件库
 const basicComponents = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内容', style: { fontSize: '16px', color: '#333' } } },
+  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -763,13 +765,13 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     // 显示批量导入结果
     let resultMessage = `批量文件导入完成！
 
-���功处理 ${processedFiles.length} 个文件：
+����功处理 ${processedFiles.length} 个文件：
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 
 创建页面：${importedCount} 个`;
 
     if (failedFiles.length > 0) {
-      resultMessage += `\n\n处理失败 ${failedFiles.length} 个文件：
+      resultMessage += `\n\n处理失败 ${failedFiles.length} 个文件���
 ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
 
@@ -1786,7 +1788,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
                 <TabsContent value="file" className="space-y-4 mt-4">
                   <div>
-                    <Label className="text-sm">选择文件</Label>
+                    <Label className="text-sm">���择文件</Label>
                     <div className="mt-2">
                       <input
                         type="file"
@@ -1901,7 +1903,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对应组件：</p>
+                        <p>支持标准HTML标签，会自动��换为对���组件：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
