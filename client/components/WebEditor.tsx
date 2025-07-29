@@ -615,9 +615,12 @@ function PageManager({ pages, setPages, activePage }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [showAddPage, setShowAddPage] = useState(false);
   const [showPageSettings, setShowPageSettings] = useState(false);
+  const [showImportPage, setShowImportPage] = useState(false);
   const [selectedPageForSettings, setSelectedPageForSettings] = useState(null);
   const [newPageName, setNewPageName] = useState('');
   const [newPageRoute, setNewPageRoute] = useState('');
+  const [importType, setImportType] = useState('json');
+  const [importContent, setImportContent] = useState('');
 
   // 添加新页面
   const handleAddPage = () => {
@@ -1184,7 +1187,7 @@ function ComponentLibrary({ pages, setPages }) {
             </div>
             <button
               onClick={() => {
-                // 一键切换：如果全部展开则收起，否则展开
+                // 一键切换：如果全部展开则收起，否��展开
                 if (expandedCategories.size === categories.length) {
                   collapseAll();
                 } else {
@@ -1938,7 +1941,7 @@ export function WebEditor() {
           </div>
         </div>
         
-        {/* 主要编辑区域 */}
+        {/* ���要编辑区域 */}
         <div className="flex-1 flex relative">
           {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
 
