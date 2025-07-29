@@ -51,7 +51,7 @@ const layoutComponents = [
 // 表单组件
 const formComponents = [
   { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
-  { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选项1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
+  { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
@@ -64,7 +64,7 @@ const mediaComponents = [
   { id: 'iframe', type: 'iframe', label: '嵌入页面', icon: ExternalLink, category: 'media', defaultProps: { src: '', style: { width: '100%', height: '300px', border: '1px solid #e5e7eb', borderRadius: '6px' } } }
 ];
 
-// 图标组件
+// 图标组��
 const iconComponents = [
   { id: 'icon-home', type: 'icon', label: '首页图标', icon: Home, category: 'icon', defaultProps: { iconType: 'home', style: { fontSize: '24px', color: '#6b7280' } } },
   { id: 'icon-user', type: 'icon', label: '用户图标', icon: User, category: 'icon', defaultProps: { iconType: 'user', style: { fontSize: '24px', color: '#6b7280' } } },
@@ -126,6 +126,8 @@ function DraggableTreeComponent({ component, isSelected = false }) {
       isDragging: monitor.isDragging(),
     }),
   }));
+
+  console.log('DraggableTreeComponent rendered:', component.label, 'isDragging:', isDragging);
 
   const Icon = component.icon;
 
@@ -377,7 +379,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽表单组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽表单组件到这��</div>}
           </form>
         );
       
@@ -681,7 +683,7 @@ function ComponentLibrary() {
             <span className="text-sm text-gray-300">图层</span>
           </div>
 
-          {/* ��类树结构 */}
+          {/* 分类树结构 */}
           <div className="space-y-1">
             {categories.map(category => {
               const Icon = category.icon;
@@ -1077,7 +1079,7 @@ export function WebEditor() {
     setSelectedPath(path);
   }, []);
   
-  // 更���元素
+  // 更新元素
   const handleUpdateElement = useCallback((index, updatedElement) => {
     setElements(prev => {
       const newElements = [...prev];
@@ -1171,7 +1173,7 @@ export function WebEditor() {
         throw new Error('保存项目失败，无法导出');
       }
 
-      // 使用项目ID��出ZIP包
+      // 使用项目ID导出ZIP包
       const exportResponse = await fetch(`/api/page/export?id=${saveResult.data.id}`);
 
       if (!exportResponse.ok) {
@@ -1443,7 +1445,7 @@ export function WebEditor() {
         </div>
       </div>
 
-      {/* 项目管理对话�� */}
+      {/* 项目管理对话框 */}
       <Dialog open={showProjectManager} onOpenChange={setShowProjectManager}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -1474,7 +1476,7 @@ export function WebEditor() {
             {/* 项目列表 */}
             {isLoading ? (
               <div className="text-center py-8">
-                <div className="text-gray-500">���载中...</div>
+                <div className="text-gray-500">加载中...</div>
               </div>
             ) : savedProjects.length === 0 ? (
               <div className="text-center py-8">
