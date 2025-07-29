@@ -357,7 +357,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件��这里</div>}
           </div>
         );
       
@@ -630,7 +630,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       return;
     }
 
-    // 检查路由是否已存���
+    // 检查路由是否已存在
     if (pages.some(p => p.route === newPageRoute)) {
       alert('该路由已存在');
       return;
@@ -802,7 +802,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, ...newPages]);
         alert(`成功导入 ${newPages.length} 个页面`);
       } else if (data.name && data.route) {
-        // 导入单个���面
+        // 导入单个页面
         const newPage = {
           ...data,
           id: `page_${Date.now()}`,
@@ -1070,7 +1070,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导��Vue组件
+  // 导入Vue组件
   const handleImportVueComponent = (content) => {
     try {
       const componentName = extractComponentName(content, 'vue');
@@ -1156,7 +1156,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       alert('JavaScript代码导入成功');
       setShowImportPage(false);
 
-      // 自动切换到新导入的��面
+      // 自动切换到新导入的页面
       setTimeout(() => {
         onSwitchPage(newPage.id);
       }, 100);
@@ -1195,7 +1195,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 查找JSX中的HTML标签
     const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
 
-    // 解析常见标��
+    // 解析常见标签
     const tagMatches = jsxContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
 
     tagMatches.forEach((tag, index) => {
@@ -1274,7 +1274,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导入，请手���编辑内容',
+        content: 'Angular组件已导入，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1380,7 +1380,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
             existingPage.component = route.component;
             existingPage.meta = route.meta;
           } else {
-            // 创建新��面
+            // 创建新页面
             const newPage = {
               id: `page_${Date.now()}_route_${index}`,
               name: route.component || route.path.replace('/', '') || 'Page',
@@ -1587,7 +1587,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </div>
         </div>
 
-        {/* 页��列表 */}
+        {/* 页面列表 */}
         {isExpanded && (
           <div className="ml-3 space-y-1">
             {pages.map(page => (
@@ -1653,7 +1653,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-sm">页面名称</Label>
+              <Label className="text-sm">页面��称</Label>
               <Input
                 value={newPageName}
                 onChange={(e) => setNewPageName(e.target.value)}
@@ -1689,7 +1689,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       <Dialog open={showPageSettings} onOpenChange={setShowPageSettings}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>��面设置</DialogTitle>
+            <DialogTitle>页面设置</DialogTitle>
           </DialogHeader>
           {selectedPageForSettings && (
             <div className="space-y-4">
@@ -1723,7 +1723,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     ...selectedPageForSettings,
                     title: e.target.value
                   })}
-                  placeholder="页面的HTML��题"
+                  placeholder="���面的HTML��题"
                   className="mt-1"
                 />
               </div>
@@ -2143,7 +2143,7 @@ function increment() {
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-sm font-bold">💡</span>
+                  <span className="text-white text-sm font-bold">��</span>
                 </div>
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
@@ -2528,7 +2528,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
             </div>
             <button
               onClick={() => {
-                // 一键切换：如果全部展开则��起，否则展开
+                // 一键切换��如果全部展开则��起，否则展开
                 if (expandedCategories.size === categories.length) {
                   collapseAll();
                 } else {
@@ -2956,7 +2956,7 @@ export function WebEditor() {
     setElements(prev => [...prev, newElement]);
   }, []);
   
-  // 选择元素
+  // 选���元素
   const handleSelectElement = useCallback((element, path) => {
     setSelectedElement(element);
     setSelectedPath(path);
@@ -3002,7 +3002,7 @@ export function WebEditor() {
     setTimeout(() => {
       // 加载对应页面的元素到��布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
-        console.log('加载页���元素:', targetPage.elements);
+        console.log('加载页面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
       } else {
         // 如果页面没有elements，显示空画布
@@ -3142,7 +3142,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入���站名称');
+      alert('请输入����站名称');
       return;
     }
 
@@ -3188,7 +3188,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发���时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
@@ -3335,7 +3335,7 @@ export function WebEditor() {
         
         {/* 主要编辑区域 */}
         <div className="flex-1 flex relative">
-          {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} />}
+          {!showPreview && <ComponentLibrary pages={pages} setPages={setPages} onSwitchPage={handleSwitchPage} />}
 
           <Canvas
             elements={elements}
@@ -3442,7 +3442,7 @@ export function WebEditor() {
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
                         <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
-                          <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
+                          <div>发��时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
                         {project.deployUrl && (
                           <div className="flex items-center gap-2">
