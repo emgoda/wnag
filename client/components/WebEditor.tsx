@@ -50,7 +50,7 @@ const layoutComponents = [
 
 // 表单组件
 const formComponents = [
-  { id: 'form', type: 'form', label: '表单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
+  { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复选框选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单选框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的��览器不支持音频标签。
+            您的浏览器不支持音频标签。
           </audio>
         );
       
@@ -1159,21 +1159,6 @@ function ComponentLibrary() {
 
   return (
     <div className="w-64 bg-gray-900 text-white border-r border-gray-700 flex flex-col h-full">
-      {/* 标题栏 */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-700 bg-gray-800">
-        <div className="flex items-center gap-2">
-          <FileText className="w-4 h-4" />
-          <span className="text-sm font-medium">页面</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs">
-            <Plus className="w-3 h-3" />
-          </button>
-          <button className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs">
-            <ChevronRight className="w-3 h-3" />
-          </button>
-        </div>
-      </div>
 
       {/* 搜索框 */}
       <div className="p-3 border-b border-gray-700">
@@ -1922,7 +1907,7 @@ export function WebEditor() {
 
   // 新建项目
   const newProject = () => {
-    if (elements.length > 0 && !confirm('当��有未保存的内容，确定要新建项目吗？')) {
+    if (elements.length > 0 && !confirm('当前有未保存的内容，确定要新建项目吗？')) {
       return;
     }
 
@@ -2081,7 +2066,7 @@ export function WebEditor() {
               </div>
             </div>
 
-            {/* 项���列表 */}
+            {/* 项目列表 */}
             {isLoading ? (
               <div className="text-center py-8">
                 <div className="text-gray-500">加载中...</div>
