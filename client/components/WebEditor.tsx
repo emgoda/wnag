@@ -682,7 +682,7 @@ function PageManager({ pages, setPages, activePage }) {
   // 保存页面设置
   const handleSavePageSettings = () => {
     if (!selectedPageForSettings.name.trim()) {
-      alert('页��名称不能为空');
+      alert('页面名称不能为空');
       return;
     }
 
@@ -789,7 +789,7 @@ function PageManager({ pages, setPages, activePage }) {
         )}
       </div>
 
-      {/* 添加页面对��框 */}
+      {/* 添加页面对话框 */}
       <Dialog open={showAddPage} onOpenChange={setShowAddPage}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -891,7 +891,7 @@ function PageManager({ pages, setPages, activePage }) {
                     ...selectedPageForSettings,
                     keywords: e.target.value
                   })}
-                  placeholder="关键词，用逗号分隔"
+                  placeholder="关键���，用逗号分隔"
                   className="mt-1"
                 />
               </div>
@@ -1110,19 +1110,7 @@ function ComponentLibrary({ pages, setPages }) {
     setExpandedCategories(new Set());
   };
 
-  // 点击外部关闭菜单
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (showExpandMenu && !(event.target as Element).closest('.expand-menu-container')) {
-        setShowExpandMenu(false);
-      }
-    };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showExpandMenu]);
 
   // 键盘快捷键
   useEffect(() => {
@@ -1825,7 +1813,7 @@ export function WebEditor() {
       if (result.success) {
         setSavedProjects(result.data.pages);
       } else {
-        console.error('加载项目列表失败:', result.message);
+        console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
       console.error('加载项目列表�����:', error);
