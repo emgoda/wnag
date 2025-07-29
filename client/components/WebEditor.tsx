@@ -34,7 +34,7 @@ const basicComponents = [
   { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
-  { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
+  { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '��输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
@@ -44,7 +44,7 @@ const basicComponents = [
 // 布局组件
 const layoutComponents = [
   { id: 'container', type: 'container', label: '容器', icon: Square, category: 'layout', defaultProps: { style: { padding: '20px', border: '2px dashed #d1d5db', borderRadius: '6px', minHeight: '100px' } } },
-  { id: 'row', type: 'row', label: '行布局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
+  { id: 'row', type: 'row', label: '行���局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'column', type: 'column', label: '列布局', icon: Layout, category: 'layout', defaultProps: { style: { display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'grid', type: 'grid', label: '网格', icon: Grid, category: 'layout', defaultProps: { columns: 2, style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', padding: '16px', border: '1px dashed #cbd5e1', borderRadius: '6px' } } },
   { id: 'card', type: 'card', label: '卡片', icon: Square, category: 'layout', defaultProps: { style: { padding: '24px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' } } }
@@ -1153,7 +1153,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       alert('Angular组件导入成功');
       setShowImportPage(false);
 
-      // 自动切换到新导入的页面
+      // ��动切换到新导入的页面
       setTimeout(() => {
         onSwitchPage(newPage.id);
       }, 100);
@@ -1387,7 +1387,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
               name: `${componentConfig.name}组件页面`,
               route: `/${componentConfig.name?.toLowerCase() || 'component'}`,
               isActive: false,
-              title: `${componentConfig.name}组件`,
+              title: `${componentConfig.name}���件`,
               description: `${componentConfig.name}组件展示页面`,
               keywords: 'component, ' + componentConfig.name?.toLowerCase(),
               sourceFile: `client/components/${componentConfig.file}`,
@@ -2508,7 +2508,8 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
-    { id: 'icon', label: '图标组件', icon: Star }
+    { id: 'icon', label: '图标组件', icon: Star },
+    { id: 'custom', label: '自定义组件', icon: Shield }
   ];
 
   const filteredComponents = searchTerm
@@ -3134,7 +3135,7 @@ export function WebEditor() {
 
       alert('导出成功！已下载ZIP包');
     } catch (error) {
-      console.error('���出失败:', error);
+      console.error('�����出失败:', error);
       alert(`导出失败: ${error.message}`);
 
       // 失败时使用本地导出
