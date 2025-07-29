@@ -373,7 +373,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组���到这里</div>}
           </div>
         );
       
@@ -1901,7 +1901,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
                   <div>
                     <Label className="text-sm">
-                      {importType === 'json' && 'JSON配置内容'}
+                      {importType === 'json' && 'JSON配置内��'}
                       {importType === 'html' && 'HTML页面代码'}
                       {importType === 'spa' && 'SPA路由配置'}
                       {importType === 'react' && 'React组件代码'}
@@ -1971,7 +1971,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           <li>• button → 按钮组件</li>
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
-                          <li>• input, textarea → 表单组件</li>
+                          <li>• input, textarea → 表��组件</li>
                           <li>• div → 容器组件</li>
                         </ul>
                       </div>
@@ -2080,7 +2080,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原��JavaScript和CSS代码，会自动解析为页面元素：</p>
+                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -2593,24 +2593,33 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               <Layers className="w-4 h-4 text-gray-400" />
               <span className="text-sm text-gray-300">图层</span>
             </div>
-            <button
-              onClick={() => {
-                // 一键切换��如果全部展开则��起，否则展开
-                if (expandedCategories.size === categories.length) {
-                  collapseAll();
-                } else {
-                  expandAll();
-                }
-              }}
-              className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-              title={expandedCategories.size === categories.length ? "收起全部" : "展开全部"}
-            >
-              {expandedCategories.size === categories.length ? (
-                <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
-              ) : (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setShowAddCustomComponent(true)}
+                className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+                title="添加自定义组件"
+              >
                 <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
-              )}
-            </button>
+              </button>
+              <button
+                onClick={() => {
+                  // 一键切换��如果全部展开则��起，否则展开
+                  if (expandedCategories.size === categories.length) {
+                    collapseAll();
+                  } else {
+                    expandAll();
+                  }
+                }}
+                className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
+                title={expandedCategories.size === categories.length ? "收起全部" : "展开全部"}
+              >
+                {expandedCategories.size === categories.length ? (
+                  <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+                ) : (
+                  <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* 分类树结构 */}
@@ -3124,7 +3133,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">背景和边框</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">���景色</Label>
+                  <Label className="text-xs text-gray-600">����景色</Label>
                   <Input
                     type="color"
                     value={selectedElement.style?.backgroundColor || '#ffffff'}
@@ -3272,7 +3281,7 @@ export function WebEditor() {
 
   // 切换页面
   const handleSwitchPage = useCallback((pageId) => {
-    // 首先保存当前页面的元素
+    // 首先保��当前页面的元素
     saveCurrentPageElements();
 
     // 找到要切换的页面
@@ -3719,7 +3728,7 @@ export function WebEditor() {
                           variant={project.status === 'published' ? 'default' : 'secondary'}
                           className={project.status === 'published' ? 'bg-green-500' : ''}
                         >
-                          {project.status === 'published' ? '已发布' : '草稿'}
+                          {project.status === 'published' ? '已发布' : '���稿'}
                         </Badge>
                       </div>
                     </CardHeader>
