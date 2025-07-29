@@ -428,7 +428,7 @@ function CanvasElement({
       case 'audio':
         return (
           <audio {...commonProps} controls={element.controls} src={element.src}>
-            您的浏览器不支持���频标签。
+            您的浏览器不支持音频标签。
           </audio>
         );
       
@@ -662,7 +662,7 @@ function PageManager({ pages, setPages, activePage }) {
     if (confirm('确定要删除此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激活第一个页面
+        // 如果删��的是当前活跃页面，激活第一个页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -719,7 +719,7 @@ function PageManager({ pages, setPages, activePage }) {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
-    // 如果只有一个ZIP文件，���示ZIP指南
+    // 如果只有一个ZIP文件，显示ZIP指南
     if (files.length === 1 && files[0].name.endsWith('.zip')) {
       handleZipImport(files[0]);
       return;
@@ -1490,7 +1490,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     ];
   };
 
-  // 处理ZIP文件导入
+  // 处��ZIP文件导入
   const handleZipImport = async (file) => {
     // 显示ZIP导入指南对话框
     setShowZipGuide(true);
@@ -2590,7 +2590,7 @@ function ComponentLibrary({ pages, setPages }) {
   );
 }
 
-// 属性编辑��
+// 属性编辑器
 function PropertyEditor({ selectedElement, onUpdateElement }) {
   if (!selectedElement) {
     return (
@@ -2935,6 +2935,14 @@ export function WebEditor() {
       ));
     }
   }, [elements]);
+
+  // 初始化时加载当前活跃页面的元素
+  useEffect(() => {
+    const activePage = pages.find(p => p.isActive);
+    if (activePage && activePage.elements && Array.isArray(activePage.elements)) {
+      setElements(activePage.elements);
+    }
+  }, [pages]);
 
   // 添加元素到画布
   const handleAddElement = useCallback((component) => {
