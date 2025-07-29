@@ -766,7 +766,7 @@ function ComponentLibrary() {
         </div>
       </div>
 
-      {/* 搜索框 */}
+      {/* ���索框 */}
       <div className="p-3 border-b border-gray-700">
         <div className="relative">
           <Search className="w-3 h-3 absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -1524,9 +1524,9 @@ export function WebEditor() {
         </div>
         
         {/* 主要编辑区域 */}
-        <div className="flex-1 flex">
+        <div className="flex-1 flex relative">
           {!showPreview && <ComponentLibrary />}
-          
+
           <Canvas
             elements={elements}
             selectedElement={selectedElement}
@@ -1539,7 +1539,7 @@ export function WebEditor() {
             deviceMode={deviceMode}
             onDeviceChange={setDeviceMode}
           />
-          
+
           {!showPreview && (
             <PropertyEditor
               selectedElement={selectedElement}
@@ -1550,6 +1550,17 @@ export function WebEditor() {
                 }
               }}
             />
+          )}
+
+          {/* 右下角元素树状图 */}
+          {!showPreview && (
+            <div className="absolute bottom-4 right-4 z-10">
+              <ElementTreeView
+                elements={elements}
+                selectedElement={selectedElement}
+                onSelectElement={handleSelectElement}
+              />
+            </div>
           )}
         </div>
       </div>
