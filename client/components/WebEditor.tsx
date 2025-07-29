@@ -258,7 +258,7 @@ function CanvasElement({
           <img
             {...commonProps}
             src={element.src || 'https://via.placeholder.com/300x200'}
-            alt={element.alt || '图片'}
+            alt={element.alt || '图��'}
           />
         );
       
@@ -357,7 +357,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件���这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组件到这里</div>}
           </div>
         );
       
@@ -540,7 +540,7 @@ function Canvas({
   return (
     <div className="flex-1 bg-gray-100 p-6">
       <div className="bg-white rounded-lg shadow-lg border overflow-hidden">
-        {/* 浏览器顶栏 */}
+        {/* 浏览器顶��� */}
         <div className="bg-gray-50 border-b p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -781,7 +781,7 @@ function PageManager({ pages, setPages, activePage }) {
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('HTML页面导入成功');
+      alert('HTML页��导入成功');
       setShowImportPage(false);
     } catch (error) {
       alert('HTML解析失败：' + error.message);
@@ -805,7 +805,7 @@ function PageManager({ pages, setPages, activePage }) {
     const tagName = htmlElement.tagName.toLowerCase();
     const id = `element_${Date.now()}_${index}`;
 
-    // 获取样式
+    // 获取样���
     const computedStyle = window.getComputedStyle ? window.getComputedStyle(htmlElement) : {};
     const style = {
       color: htmlElement.style.color || computedStyle.color,
@@ -1242,6 +1242,10 @@ function PageManager({ pages, setPages, activePage }) {
                         <SelectItem value="json">JSON页面配置</SelectItem>
                         <SelectItem value="html">HTML页面代码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
+                        <SelectItem value="react">React组件代码</SelectItem>
+                        <SelectItem value="vue">Vue组件代码</SelectItem>
+                        <SelectItem value="angular">Angular组件代码</SelectItem>
+                        <SelectItem value="js">原生JS/CSS代码</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1888,7 +1892,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     <SelectContent>
                       <SelectItem value="normal">正常</SelectItem>
                       <SelectItem value="bold">粗体</SelectItem>
-                      <SelectItem value="lighter">细体</SelectItem>
+                      <SelectItem value="lighter">��体</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -2104,7 +2108,7 @@ export function WebEditor() {
   // 导出 ZIP 包
   const handleExport = async () => {
     try {
-      // 首先保存项目获��ID
+      // 首先保��项目获��ID
       const projectData = {
         siteName,
         pages,
@@ -2479,7 +2483,7 @@ export function WebEditor() {
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm text-gray-600">
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
-                        <div>更新时��: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
+                        <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
                           <div>发布时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
