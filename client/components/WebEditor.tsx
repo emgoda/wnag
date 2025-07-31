@@ -52,7 +52,7 @@ const layoutComponents = [
 
 // 表单组件
 const formComponents = [
-  { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
+  { id: 'form', type: 'form', label: '�����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选��', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单��框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
@@ -781,7 +781,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
             // 项目结构配置文件
             const data = JSON.parse(content);
             handleImportProjectStructure(JSON.stringify(data));
-            processedFiles.push(`${file.name} (项目配置)`);
+            processedFiles.push(`${file.name} (项目配���)`);
           } else {
             // 普通JSON配置
             const data = JSON.parse(content);
@@ -790,14 +790,9 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
             importedCount++;
           }
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
-          // HTML文件导入 - 检测是否为SingleFile格式
-          if (isSingleFileFormat(content)) {
-            handleImportSingleFile(content);
-            processedFiles.push(`${file.name} (SingleFile页面)`);
-          } else {
-            handleImportFromHTML(content, file.name);
-            processedFiles.push(`${file.name} (HTML页面)`);
-          }
+          // HTML文件导入 - 统一处理为静态HTML页面
+          handleImportFromHTML(content, file.name);
+          processedFiles.push(`${file.name} (HTML页面)`);
           importedCount++;
         } else if (file.name.endsWith('.jsx') || file.name.endsWith('.tsx')) {
           // React组件文件
@@ -847,7 +842,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     event.target.value = '';
   };
 
-  // 读取文��为文本
+  // 读取文件为文本
   const readFileAsText = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -1767,7 +1762,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return null;
   };
 
-  // 从CSS样式中提取与元素相关的样式
+  // 从CSS样式中提取与元素相��的样式
   const extractRelevantStyles = (element, styles) => {
     const extractedStyles = {};
 
@@ -2028,7 +2023,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     ];
   };
 
-  // ��成组件页面元素
+  // 生成组件页面元素
   const generateComponentPageElements = (componentName) => {
     return [
       {
@@ -2380,9 +2375,9 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       />
                     </div>
                     <div className="text-xs text-gray-500 mt-2">
-                      支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
+                      支持格���：JSON、HTML、JSX/TSX、Vue���JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键���择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -2493,7 +2488,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
-                          <li>• button → 按钮组件</li>
+                          <li>• button → 按��组件</li>
                           <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表��组件</li>
@@ -2719,7 +2714,7 @@ function increment() {
                             <li>2. 在任意网页上点击扩展图标</li>
                             <li>3. 选择"保存页面"</li>
                             <li>4. 下载生成的.html文件</li>
-                            <li>5. 将该文件内容粘贴到此���导入</li>
+                            <li>5. 将该文件内容粘贴到此�����导入</li>
                           </ol>
                         </div>
                         <div className="bg-green-50 p-3 rounded">
@@ -3326,7 +3321,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   <li>• 组件应该导出为默认导出 (export default)</li>
                   <li>• 可以使用props来接收参数</li>
                   <li>• 建议使用Tailwind CSS进行样式设计</li>
-                  <li>• 避免使用外部依赖库</li>
+                  <li>• 避���使用外部依赖库</li>
                 </ul>
               </div>
 
@@ -3364,7 +3359,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
       <div className="w-80 bg-white border-l p-4 overflow-y-auto">
         <div className="text-center text-gray-400 py-8">
           <Settings size={48} className="mx-auto mb-4 opacity-50" />
-          <p className="text-sm">选择一个�����来编辑属性</p>
+          <p className="text-sm">选择一个组��来编辑属性</p>
         </div>
       </div>
     );
@@ -3467,7 +3462,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                         <SelectItem value="email">邮箱</SelectItem>
                         <SelectItem value="password">密码</SelectItem>
                         <SelectItem value="number">数字</SelectItem>
-                        <SelectItem value="tel">����话</SelectItem>
+                        <SelectItem value="tel">������</SelectItem>
                         <SelectItem value="url">网址</SelectItem>
                       </SelectContent>
                     </Select>
@@ -3534,7 +3529,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">手机��标签</Label>
+                  <Label className="text-xs">手机号标签</Label>
                   <Input
                     value={selectedElement.phoneLabel || ''}
                     onChange={(e) => handlePropertyChange('phoneLabel', e.target.value)}
@@ -3593,7 +3588,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     value={selectedElement.warningItem2 || ''}
                     onChange={(e) => handlePropertyChange('warningItem2', e.target.value)}
                     className="mt-1 h-8 text-xs"
-                    placeholder="密码输入错误超过安全阈值"
+                    placeholder="密码���入错误超过安全阈值"
                   />
                 </div>
 
