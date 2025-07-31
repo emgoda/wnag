@@ -20,6 +20,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [elementEditMode, setElementEditMode] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -186,7 +187,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
           <TabsList className="grid w-full grid-cols-2 mx-4 mt-4">
             <TabsTrigger value="edit" className="flex items-center gap-2">
               <Code className="w-4 h-4" />
-              源码编辑
+              ��码编辑
             </TabsTrigger>
             <TabsTrigger value="preview" className="flex items-center gap-2">
               <Eye className="w-4 h-4" />
