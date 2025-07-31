@@ -128,7 +128,7 @@ const deviceSizes = {
   desktop: { name: '桌面', icon: Monitor, width: 1200, height: 800 }
 };
 
-// 拖拽组件项
+// ���拽组件项
 function DraggableComponent({ component }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COMPONENT,
@@ -823,7 +823,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
           failedFiles.push(`${file.name} (不支持的格式)`);
         }
       } catch (error) {
-        console.error(`处理文�� ${file.name} 时出错:`, error);
+        console.error(`处理文���� ${file.name} 时出错:`, error);
         failedFiles.push(`${file.name} (处理失败: ${error.message})`);
       }
     }
@@ -1215,7 +1215,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         route: '/js-page',
         isActive: false,
         title: 'JavaScript页面',
-        description: '从原生JavaScript代码导入的页面',
+        description: '从原生JavaScript代码导入的���面',
         keywords: 'javascript, vanilla js',
         sourceCode: content,
         sourceType: 'javascript',
@@ -1577,6 +1577,15 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     const tagName = htmlElement.tagName.toLowerCase();
     const id = `element_${Date.now()}_${index}`;
 
+    console.log(`--- 解析元素 ${index}: ${tagName} ---`);
+    if (tagName === 'img') {
+      console.log('🖼️ 发现图片元素!', {
+        src: htmlElement.src,
+        getAttribute_src: htmlElement.getAttribute('src'),
+        alt: htmlElement.alt
+      });
+    }
+
     // 获取元素的内联样式和计算样式
     const inlineStyle = htmlElement.style;
     const computedStyles = extractRelevantStyles(htmlElement, styles);
@@ -1782,7 +1791,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const parseInlineStyle = (cssText) => {
     const styles = {};
 
-    // 特殊处理包含data URL的背景图片
+    // 特殊处理包含data URL的��景图片
     let processedCss = cssText;
     const backgroundImageMatches = cssText.match(/background-image:\s*url\(data:image\/[^)]+\)/gi);
 
@@ -3213,7 +3222,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
       </div>
       </div>
 
-      {/* 添加自定义组件对话框 */}
+      {/* 添加自定��组件对话框 */}
       <Dialog open={showAddCustomComponent} onOpenChange={setShowAddCustomComponent}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -3950,7 +3959,7 @@ export function WebEditor() {
     setElements(prev => [...prev, newElement]);
   }, []);
   
-  // 保存项目
+  // 保存项���
   const handleSave = async () => {
     try {
       const projectData = {
@@ -4092,7 +4101,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存���目失败，无法发布');
+        throw new Error('保存�����失败，无法发布');
       }
 
       // 发布项目
@@ -4334,7 +4343,7 @@ export function WebEditor() {
         </div>
       </div>
 
-      {/* 项目管理对话框 */}
+      {/* 项��管理对话框 */}
       <Dialog open={showProjectManager} onOpenChange={setShowProjectManager}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
