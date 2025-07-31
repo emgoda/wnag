@@ -373,7 +373,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组�����到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组���到这里</div>}
           </div>
         );
       
@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激���第一����页面
+        // 如果删除的是当前活跃页面，激���第一���页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -1472,7 +1472,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
-      // 提���并处理内嵌的CSS样式
+      // 提�����并处理内嵌的CSS样式
       const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
 
       // 提取body内容，但排除script标签
@@ -1903,7 +1903,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       });
     }
 
-    // 处理其他���式声明
+    // 处理其他样式声明
     const declarations = processedCss.split(';');
 
     for (const decl of declarations) {
@@ -2313,7 +2313,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 className="mt-1"
               />
               <div className="text-xs text-gray-500 mt-1">
-                路由必须以 / 开头，如：/about
+                路由必须��� / 开头，如：/about
               </div>
             </div>
             <div className="flex justify-end gap-2">
@@ -2523,7 +2523,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
-                      {importType === 'react' && 'React组件示��：'}
+                      {importType === 'react' && 'React���件示��：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
@@ -2665,7 +2665,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解��为页面元素：</p>
+                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -2778,7 +2778,7 @@ function increment() {
                             <li>1. 安装SingleFile浏览器扩展</li>
                             <li>2. 在任意网页上点击扩展图标</li>
                             <li>3. 选择"保存页��"</li>
-                            <li>4. 下载生成的.html文件</li>
+                            <li>4. 下载生成的.html文���</li>
                             <li>5. 将该文件内容粘贴到此�����导入</li>
                           </ol>
                         </div>
@@ -2861,7 +2861,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件��
+                        选择多个文件同时上传（按��Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -3712,7 +3712,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">���交按钮文本</Label>
+                  <Label className="text-xs">����交按钮文本</Label>
                   <Input
                     value={selectedElement.submitButton || ''}
                     onChange={(e) => handlePropertyChange('submitButton', e.target.value)}
@@ -4034,7 +4034,7 @@ export function WebEditor() {
     // 首先保��当前页面的元素
     saveCurrentPageElements();
 
-    // ���到要切换的页面
+    // ���到���切换的页面
     const targetPage = pages.find(p => p.id === pageId);
     if (!targetPage) return;
 
@@ -4096,7 +4096,7 @@ export function WebEditor() {
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
-        throw new Error(result.message || '保存失���');
+        throw new Error(result.message || '保存失败');
       }
     } catch (error) {
       console.error('保存失败:', error);
@@ -4253,7 +4253,7 @@ export function WebEditor() {
       if (result.success) {
         setSavedProjects(result.data.pages);
       } else {
-        console.error('加载项��列表失败:', result.message);
+        console.error('加载项��列���失败:', result.message);
       }
     } catch (error) {
       console.error('加载项目列表�����:', error);
@@ -4304,7 +4304,7 @@ export function WebEditor() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col bg-gray-50">
-        {/* ��部工具栏 */}
+        {/* 顶部工具栏 */}
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Input
@@ -4389,7 +4389,7 @@ export function WebEditor() {
                   });
                 });
 
-                alert(`调试信息已输出到控制台\n���片元素: ${imageElements.length}个`);
+                alert(`调试信息已输出到控制台\n图片元素: ${imageElements.length}个`);
               }}
             >
               🐛调试
