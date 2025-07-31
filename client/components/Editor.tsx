@@ -151,6 +151,18 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
           )}
 
           {/* 工具按钮 */}
+          {activeTab === 'preview' && (
+            <Button
+              variant={elementEditMode ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setElementEditMode(!elementEditMode)}
+              className="flex items-center gap-2"
+            >
+              <MousePointer className="w-4 h-4" />
+              {elementEditMode ? '退出编辑' : '元素编辑'}
+            </Button>
+          )}
+
           <Button
             variant="outline"
             size="sm"
@@ -187,7 +199,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
           <TabsList className="grid w-full grid-cols-2 mx-4 mt-4">
             <TabsTrigger value="edit" className="flex items-center gap-2">
               <Code className="w-4 h-4" />
-              ��码编辑
+              源码编辑
             </TabsTrigger>
             <TabsTrigger value="preview" className="flex items-center gap-2">
               <Eye className="w-4 h-4" />
