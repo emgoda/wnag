@@ -242,20 +242,39 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     element.dispatchEvent(clickEvent);
   };
 
+  // 添加悬停效果
+  const handleNodeHover = (element: HTMLElement, isEnter: boolean) => {
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (iframe && iframe.contentDocument) {
+      if (isEnter) {
+        element.classList.add('dom-tree-hover');
+      } else {
+        element.classList.remove('dom-tree-hover');
+      }
+    }
+  };
+
   // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
+    // 获取元素的文本内容预览（前20个字符）
+    const textPreview = node.element.textContent?.trim().slice(0, 20);
+    const hasText = textPreview && textPreview.length > 0;
+
     return (
       <div key={`${node.tagName}-${node.id || node.className || Math.random()}`} className="text-sm">
-        <div 
-          className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded ${
+        <div
+          className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded transition-colors ${
             isSelected ? 'bg-blue-100 border-l-2 border-blue-500' : ''
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => handleNodeSelect(node.element)}
+          onMouseEnter={() => handleNodeHover(node.element, true)}
+          onMouseLeave={() => handleNodeHover(node.element, false)}
+          title={`${node.tagName}${node.id ? `#${node.id}` : ''}${node.className ? `.${node.className}` : ''}`}
         >
           {hasChildren && (
             <button
@@ -263,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 e.stopPropagation();
                 toggleNodeExpansion(node);
               }}
-              className="w-4 h-4 flex items-center justify-center hover:bg-gray-200 rounded"
+              className="w-4 h-4 flex items-center justify-center hover:bg-gray-200 rounded transition-colors"
             >
               {node.isExpanded ? (
                 <ChevronDown className="w-3 h-3" />
@@ -273,18 +292,30 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </button>
           )}
           {!hasChildren && <div className="w-4" />}
-          
-          <span className="text-blue-600 font-mono">&lt;{node.tagName}&gt;</span>
-          
+
+          <span className="text-blue-600 font-mono text-xs">&lt;{node.tagName}&gt;</span>
+
           {node.id && (
-            <span className="text-green-600 text-xs">#{node.id}</span>
+            <span className="text-green-600 text-xs font-medium">#{node.id}</span>
           )}
-          
+
           {node.className && (
             <span className="text-purple-600 text-xs">.{node.className.split(' ')[0]}</span>
           )}
+
+          {hasText && (
+            <span className="text-gray-500 text-xs italic ml-1 truncate max-w-20">
+              "{textPreview}..."
+            </span>
+          )}
+
+          {hasChildren && (
+            <span className="text-gray-400 text-xs ml-auto">
+              {node.children.length}
+            </span>
+          )}
         </div>
-        
+
         {hasChildren && node.isExpanded && (
           <div>
             {node.children.map(child => renderDOMNode(child, depth + 1))}
@@ -373,12 +404,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 />
               </div>
 
-              {/* 特定元素的���容属性 */}
+              {/* 特定元素的内容属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
                   <div>
-                    <Label className="text-sm font-medium">��片源</Label>
+                    <Label className="text-sm font-medium">图片源</Label>
                     <Input
                       value={elementData.attributes.src || ''}
                       onChange={(e) => handleAttributeChange('src', e.target.value)}
