@@ -89,15 +89,48 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 页面加载时和选中元素变化时更新DOM树
   useEffect(() => {
-    getDOMTreeFromIframe();
-    
+    // 延迟获取DOM树，确保内容已加载
+    const timer = setTimeout(() => {
+      getDOMTreeFromIframe();
+    }, 100);
+
     // 监听iframe加载完成
-    const iframe = document.querySelector('iframe');
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe) {
-      iframe.addEventListener('load', getDOMTreeFromIframe);
-      return () => iframe.removeEventListener('load', getDOMTreeFromIframe);
+      const handleLoad = () => {
+        // iframe加载完成后，再次延迟获取DOM树
+        setTimeout(() => {
+          getDOMTreeFromIframe();
+        }, 200);
+      };
+
+      iframe.addEventListener('load', handleLoad);
+
+      // 如果iframe已经加载完成，立即获取DOM树
+      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+        handleLoad();
+      }
+
+      return () => {
+        clearTimeout(timer);
+        iframe.removeEventListener('load', handleLoad);
+      };
     }
+
+    return () => clearTimeout(timer);
   }, [selectedElement]);
+
+  // 监听页面内容变化，实时更新DOM树
+  useEffect(() => {
+    const updateDOMTree = () => {
+      getDOMTreeFromIframe();
+    };
+
+    // 监听页面内容变化
+    const interval = setInterval(updateDOMTree, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // 更新元素数据
   useEffect(() => {
