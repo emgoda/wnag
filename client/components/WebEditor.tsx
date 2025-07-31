@@ -762,7 +762,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
-    // 如果只有一个ZIP文件，显示ZIP指南
+    // 如果只有一个ZIP��件，显示ZIP指南
     if (files.length === 1 && files[0].name.endsWith('.zip')) {
       handleZipImport(files[0]);
       return;
@@ -828,7 +828,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       }
     }
 
-    // 显示批量导入结果
+    // 显示���量导入结果
     let resultMessage = `批量文件导入完成！
 
 ����功处理 ${processedFiles.length} 个文件：
@@ -1172,7 +1172,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导���Angular组件
+  // 导入Angular组件
   const handleImportAngularComponent = (content) => {
     try {
       const componentName = extractComponentName(content, 'angular');
@@ -1262,7 +1262,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 简化解析：提取JSX中的基本元素
     const elements = [];
 
-    // 查找JSX中的HTML标签
+    // 查找JSX中��HTML标签
     const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
 
     // 解��常见标签
@@ -1678,6 +1678,28 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return styles;
   };
 
+  // 检测是否为SingleFile格式
+  const isSingleFileFormat = (content) => {
+    try {
+      // SingleFile的特征：
+      // 1. 包含data:image/格式的base64图片
+      // 2. 包含大量内嵌CSS样式
+      // 3. 可能包含SingleFile特有的注释或属性
+
+      const hasBase64Images = /data:image\/[^;]+;base64,/.test(content);
+      const hasInlineStyles = /<style[^>]*>[\s\S]*?<\/style>/.test(content) && content.includes('style').length > 10;
+      const hasSingleFileMarkers = /single-file|data-single-file|archive\.org/.test(content);
+      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有大量内嵌资源
+
+      // 如果满足多个条件，很可能是SingleFile格式
+      const indicators = [hasBase64Images, hasInlineStyles, hasSingleFileMarkers, hasLargeInlineCSS];
+      return indicators.filter(Boolean).length >= 2;
+
+    } catch (error) {
+      return false;
+    }
+  };
+
   // 导入项目结构
   const handleImportProjectStructure = (content) => {
     try {
@@ -1784,7 +1806,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}_desc`,
         type: 'text',
-        content: `欢迎来到${pageName || '页面'}，这里是页面内容。`,
+        content: `欢迎来���${pageName || '页面'}，这里是页面内容。`,
         style: { fontSize: '16px', color: '#333', lineHeight: '1.6' }
       },
       {
@@ -2190,7 +2212,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
-                        <SelectItem value="project">项目结构���置</SelectItem>
+                        <SelectItem value="project">项目结构配置</SelectItem>
                         <SelectItem value="singlefile">SingleFile格式</SelectItem>
                       </SelectContent>
                     </Select>
@@ -3097,7 +3119,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   <li>• 使用标准的React函数组件格式</li>
                   <li>• 组件应该导出为默认导出 (export default)</li>
                   <li>• 可以使用props来接收参数</li>
-                  <li>• 建议使用Tailwind CSS进行��式设计</li>
+                  <li>• 建议使用Tailwind CSS进行样式设计</li>
                   <li>• 避免使用外部依赖库</li>
                 </ul>
               </div>
@@ -3326,7 +3348,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">开始按钮文本</Label>
+                  <Label className="text-xs">��始按钮文本</Label>
                   <Input
                     value={selectedElement.startButton || ''}
                     onChange={(e) => handlePropertyChange('startButton', e.target.value)}
@@ -3478,7 +3500,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     <SelectContent>
                       <SelectItem value="text-red-600">红色 (text-red-600)</SelectItem>
                       <SelectItem value="text-orange-600">橙色 (text-orange-600)</SelectItem>
-                      <SelectItem value="text-yellow-600">���色 (text-yellow-600)</SelectItem>
+                      <SelectItem value="text-yellow-600">黄色 (text-yellow-600)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -3746,7 +3768,7 @@ export function WebEditor() {
     // 首先保��当前页面的元素
     saveCurrentPageElements();
 
-    // 找到要切换的页面
+    // ���到要切换的页面
     const targetPage = pages.find(p => p.id === pageId);
     if (!targetPage) return;
 
