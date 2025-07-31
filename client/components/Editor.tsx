@@ -69,10 +69,15 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     try {
       // 首先尝试使用现代的 Clipboard API
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(content);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-        return;
+        try {
+          await navigator.clipboard.writeText(content);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+          return;
+        } catch (clipboardError) {
+          console.log('Clipboard API被权限策略阻止，使用回退方法');
+          // 继续执行下面的回退代码
+        }
       }
 
       // 回退到传统的复制方法
@@ -98,7 +103,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       }
     } catch (error) {
       console.error('复制失败:', error);
-      // 显示用户友好的错误提示
+      // 显示用户友好的错��提示
       alert('复制失败���请手动选择文本复制');
     }
   };
