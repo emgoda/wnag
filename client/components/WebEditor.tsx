@@ -831,7 +831,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     // �������量导入结果
     let resultMessage = `批量文件导入完成！
 
-����功处理 ${processedFiles.length} 个文件：
+����功处理 ${processedFiles.length} 个文件��
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 
 创建页面：${importedCount} 个`;
@@ -851,7 +851,17 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const readFileAsText = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target.result);
+      reader.onload = (e) => {
+        const content = e.target.result;
+        console.log('文件读取完成:', {
+          fileName: file.name,
+          fileSize: file.size,
+          contentLength: content.length,
+          isHTML: content.includes('<html'),
+          hasBase64Images: content.includes('data:image/')
+        });
+        resolve(content);
+      };
       reader.onerror = () => reject(new Error('文件读取���败'));
       reader.readAsText(file);
     });
@@ -1485,7 +1495,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       }, 100);
 
     } catch (error) {
-      console.error('SingleFile导入错误:', error);
+      console.error('SingleFile导入��误:', error);
       alert('SingleFile导入失败：' + error.message);
     }
   };
@@ -1558,7 +1568,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
   // 提取主要内容区域
   const extractMainContent = (bodyElement) => {
-    // 尝试找到主要内容区域
+    // 尝��找到主要内容区域
     const mainSelectors = ['main', '[role="main"]', '.main', '#main', '.content', '#content', '.container'];
 
     for (const selector of mainSelectors) {
@@ -1597,7 +1607,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
     };
 
-    // 根据标签类型创���对应组件
+    // 根据标签类型创���对应组���
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1643,7 +1653,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           srcLength: imageSrc?.length
         });
 
-        // 如果没有找到有效的src，检查其他可能的属性
+        // 如果没有���到有效的src，检查其他可能的属性
         if (!imageSrc) {
           const possibleSrcAttrs = ['data-original-src', 'data-lazy-src', 'data-srcset'];
           for (const attr of possibleSrcAttrs) {
@@ -2438,7 +2448,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
+                        <p>支持标准HTML标签，会自动��换为对����组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -3052,7 +3062,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     };
   }, []);
 
-  // 处理添加自定义组件
+  // 处��添加自定义组件
   const handleAddCustomComponent = () => {
     if (!newComponentName.trim()) {
       alert('请输入��件名称');
