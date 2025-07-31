@@ -82,15 +82,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             ))}
           </div>
 
-          <Button
-            variant={elementEditMode ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setElementEditMode(!elementEditMode)}
-            className="flex items-center gap-2"
-          >
-            <MousePointer className="w-4 h-4" />
-            {elementEditMode ? '退出编辑' : '元素编辑'}
-          </Button>
+
 
           <Button
             variant="outline"
