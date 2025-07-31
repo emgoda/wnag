@@ -61,6 +61,7 @@ export default function WebEditor() {
   const [editingPage, setEditingPage] = useState<Page | null>(null);
   const [newPageData, setNewPageData] = useState({ name: '', route: '' });
   const [activeTab, setActiveTab] = useState('pages');
+  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
 
   // 历史记录用于撤销/重做
   const [history, setHistory] = useState<string[]>([]);
@@ -245,7 +246,7 @@ export default function WebEditor() {
       });
 
       if (response.ok) {
-        alert('保存成功��');
+        alert('保���成功��');
       } else {
         throw new Error('保存失败');
       }
