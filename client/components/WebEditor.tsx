@@ -342,6 +342,12 @@ export default function WebEditor() {
             </TabsList>
 
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
+              <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-xs text-blue-800">
+                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                </p>
+              </div>
+
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-medium">页面列表</h3>
                 <Dialog open={showAddPageDialog} onOpenChange={setShowAddPageDialog}>
@@ -699,7 +705,7 @@ export default function WebEditor() {
         </DialogContent>
       </Dialog>
 
-      {/* 隐藏的文件输入 */}
+      {/* 隐藏的文���输入 */}
       <input
         type="file"
         ref={fileInputRef}
