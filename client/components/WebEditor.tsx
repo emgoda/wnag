@@ -56,7 +56,7 @@ const formComponents = [
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选��', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单��框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
-  { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
+  { id: 'file', type: 'file', label: '文件上��', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
 
 // 媒体组件
@@ -97,7 +97,7 @@ const customComponents = [
       nameLabel: "姓名",
       idLabel: "身份证号",
       emailLabel: "邮箱",
-      submitButton: "提交",
+      submitButton: "提��",
       successMessage: "提交成功",
       buttonColor: "bg-blue-600",
       warningColor: "text-red-600",
@@ -831,7 +831,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     // �������量导入结果
     let resultMessage = `批量文件导入完成！
 
-����功处理 ${processedFiles.length} 个文件��
+����功处理 ${processedFiles.length} 个文件：
 ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 
 创建页面：${importedCount} 个`;
@@ -863,7 +863,8 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         resolve(content);
       };
       reader.onerror = () => reject(new Error('文件读取���败'));
-      reader.readAsText(file);
+      // 使用UTF-8编码读取，确保中文和特殊字符正确
+      reader.readAsText(file, 'UTF-8');
     });
   };
 
@@ -1495,7 +1496,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       }, 100);
 
     } catch (error) {
-      console.error('SingleFile导入��误:', error);
+      console.error('SingleFile导入错误:', error);
       alert('SingleFile导入失败：' + error.message);
     }
   };
@@ -1504,7 +1505,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
-    console.log('=== 开始解析SingleFile为元素 ===');
+    console.log('=== ��始解析SingleFile为元素 ===');
     console.log('bodyElement:', bodyElement);
     console.log('bodyElement子元素数量:', bodyElement.children.length);
 
@@ -1568,7 +1569,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
   // 提取主要内容区域
   const extractMainContent = (bodyElement) => {
-    // 尝��找到主要内容区域
+    // 尝试找到主要内容区域
     const mainSelectors = ['main', '[role="main"]', '.main', '#main', '.content', '#content', '.container'];
 
     for (const selector of mainSelectors) {
@@ -1607,7 +1608,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
     };
 
-    // 根据标签类型创���对应组���
+    // 根据标签类型创���对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1653,7 +1654,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           srcLength: imageSrc?.length
         });
 
-        // 如果没有���到有效的src，检查其他可能的属性
+        // 如果没有找到有效的src，检查其他可能的属性
         if (!imageSrc) {
           const possibleSrcAttrs = ['data-original-src', 'data-lazy-src', 'data-srcset'];
           for (const attr of possibleSrcAttrs) {
@@ -2349,7 +2350,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <h4 className="text-sm font-medium mb-2">支持的文件格式：</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
                       <li>• <strong>JSON文件</strong>：页面配置数据</li>
-                      <li>• <strong>HTML文件</strong>��静态HTML��面，自动解析为组件</li>
+                      <li>• <strong>HTML文件</strong>����态HTML��面，自动解析为组件</li>
                       <li>• <strong>JSX/TSX文件</strong>：React组件源代码</li>
                       <li>• <strong>Vue文件</strong>：Vue单文件组件</li>
                       <li>• <strong>JS/TS文件</strong>：JavaScript/TypeScript源代码</li>
@@ -2410,7 +2411,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           : importType === 'project'
                           ? '{"structure": {"client/pages/": [{"name": "Home", "file": "Home.tsx"}], "client/components/": [{"name": "Header", "file": "Header.tsx"}]}}'
                           : importType === 'singlefile'
-                          ? '<!DOCTYPE html><html>...<head>包含内嵌CSS样式</head><body>完整页面内容</body></html>'
+                          ? '<!DOCTYPE html><html>...<head>包��内嵌CSS样式</head><body>完整页面内容</body></html>'
                           : 'const element = document.createElement("div"); element.innerHTML = "Hello World";'
                       }
                       className="mt-2 h-40 font-mono text-xs"
@@ -2448,7 +2449,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对����组���：</p>
+                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -3062,7 +3063,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     };
   }, []);
 
-  // 处��添加自定义组件
+  // 处理添加自定义组件
   const handleAddCustomComponent = () => {
     if (!newComponentName.trim()) {
       alert('请输入��件名称');
@@ -3439,7 +3440,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {selectedElement.type === 'image' && (
               <>
                 <div>
-                  <Label className="text-xs">图片地址</Label>
+                  <Label className="text-xs">图���地址</Label>
                   <Input
                     value={selectedElement.src || ''}
                     onChange={(e) => handlePropertyChange('src', e.target.value)}
