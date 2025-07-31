@@ -60,7 +60,9 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       <div className="bg-white border-b px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h2 className="font-medium text-gray-900">{pageName}</h2>
-          <Badge variant="outline">页面编辑</Badge>
+          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+            页面编辑器
+          </Badge>
         </div>
         
         <div className="flex items-center gap-2">
@@ -89,7 +91,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             className="flex items-center gap-2"
           >
             <MousePointer className="w-4 h-4" />
-            {elementEditMode ? '退出编辑' : '��素编辑'}
+            {elementEditMode ? '退出编辑' : '元素编辑'}
           </Button>
 
           <Button
