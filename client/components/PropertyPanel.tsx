@@ -200,12 +200,46 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 选择DOM节点
   const handleNodeSelect = (element: HTMLElement) => {
     setSelectedNodeElement(element);
-    // 触发父组件的元素选择回调
-    if (onElementUpdate) {
-      // 这里我们需要模拟一个元素选择事件
-      // 由于我们无法直接调用父组件的选择函数，我们设置一个标识
-      element.click();
+
+    // 清除之前的高亮
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (iframe && iframe.contentDocument) {
+      const doc = iframe.contentDocument;
+      // 移除之前的高亮样式
+      const previousHighlighted = doc.querySelectorAll('.dom-tree-selected');
+      previousHighlighted.forEach(el => {
+        el.classList.remove('dom-tree-selected');
+      });
+
+      // 添加高亮样式到当前选中的元素
+      element.classList.add('dom-tree-selected');
+
+      // 添加高亮样式（如果还没有的话）
+      if (!doc.querySelector('#dom-tree-styles')) {
+        const style = doc.createElement('style');
+        style.id = 'dom-tree-styles';
+        style.textContent = `
+          .dom-tree-selected {
+            outline: 2px solid #3b82f6 !important;
+            outline-offset: 2px !important;
+            background-color: rgba(59, 130, 246, 0.1) !important;
+          }
+          .dom-tree-hover {
+            outline: 1px dashed #94a3b8 !important;
+            outline-offset: 1px !important;
+          }
+        `;
+        doc.head.appendChild(style);
+      }
     }
+
+    // 模拟点击事件来触发父组件的选择
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true
+    });
+    element.dispatchEvent(clickEvent);
   };
 
   // 渲染DOM树节点
@@ -339,12 +373,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 />
               </div>
 
-              {/* 特定元素的内容属性 */}
+              {/* 特定元素的���容属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
                   <div>
-                    <Label className="text-sm font-medium">图片源</Label>
+                    <Label className="text-sm font-medium">��片源</Label>
                     <Input
                       value={elementData.attributes.src || ''}
                       onChange={(e) => handleAttributeChange('src', e.target.value)}
