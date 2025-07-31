@@ -33,7 +33,7 @@ const ItemTypes = {
 const basicComponents = [
   { id: 'text', type: 'text', label: '文��', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点���按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
@@ -718,7 +718,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
   // 删除页面
   const handleDeletePage = (pageId) => {
     if (pages.length <= 1) {
-      alert('至少需要保留��个页面');
+      alert('至少需要保留一个页面');
       return;
     }
 
@@ -837,7 +837,7 @@ ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 创建页面：${importedCount} 个`;
 
     if (failedFiles.length > 0) {
-      resultMessage += `\n\n处�����败 ${failedFiles.length} 个文件����
+      resultMessage += `\n\n处�����败 ${failedFiles.length} 个文件���
 ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
 
@@ -1235,7 +1235,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // ���取组件名称
+  // 提取组件名称
   const extractComponentName = (content, type) => {
     try {
       if (type === 'react') {
@@ -2685,7 +2685,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
-                    由于浏览器安全限制，��们提供了更好的ZIP文件处理方案：
+                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
@@ -3032,7 +3032,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     }
 
     try {
-      // 这里可以添加代��验证逻辑
+      // 这里可以添加代��验��逻辑
       // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
@@ -3121,7 +3121,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               <button
                 onClick={() => setShowAddCustomComponent(true)}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title="添加自���义组件"
+                title="添加自定义组件"
               >
                 <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
               </button>
@@ -3135,7 +3135,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   }
                 }}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title={expandedCategories.size === categories.length ? "收起��部" : "展开全部"}
+                title={expandedCategories.size === categories.length ? "��起��部" : "展开全部"}
               >
                 {expandedCategories.size === categories.length ? (
                   <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
@@ -3370,7 +3370,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
                 {selectedElement.type === 'input' && (
                   <div>
-                    <Label className="text-xs">输入类��</Label>
+                    <Label className="text-xs">输入类型</Label>
                     <Select
                       value={selectedElement.inputType || 'text'}
                       onValueChange={(value) => handlePropertyChange('inputType', value)}
@@ -3917,7 +3917,7 @@ export function WebEditor() {
     setSelectedPath([]);
   }, [pages, saveCurrentPageElements]);
 
-  // 复����素
+  // 复制��素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
       ...element,
@@ -3986,7 +3986,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存项目��败，无法导���');
+        throw new Error('保存项目��败，无法导����');
       }
 
       // 使用项目ID导出ZIP包
@@ -4099,7 +4099,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载项目���表
+  // 加载项目列表
   const loadProjects = async () => {
     try {
       setIsLoading(true);
@@ -4223,9 +4223,14 @@ export function WebEditor() {
             </Button>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
-                <span className="text-gray-600">元素:</span>
-                <span className="font-mono font-medium">{elements.length}</span>
-              </div>
+          <span className="text-gray-600">元素:</span>
+          <span className="font-mono font-medium">{elements.length}</span>
+          {elements.filter(el => el.type === 'image').length > 0 && (
+            <span className="text-blue-600 text-xs">
+              (图片:{elements.filter(el => el.type === 'image').length})
+            </span>
+          )}
+        </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded text-sm">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-green-700">API已连接</span>
@@ -4314,7 +4319,7 @@ export function WebEditor() {
                 <div className="text-gray-500 mb-4">���无保存的项目</div>
                 <Button onClick={newProject}>
                   <Plus className="w-4 h-4 mr-2" />
-                  创建第一个项目
+                  创建第一��项目
                 </Button>
               </div>
             ) : (
