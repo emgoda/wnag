@@ -236,6 +236,24 @@ export default function WebEditor() {
     event.target.value = '';
   };
 
+  // 处理元素更新
+  const handleElementUpdate = useCallback((element: HTMLElement, property: string, value: string) => {
+    // 更新对应页面的内容
+    if (selectedPage) {
+      // 获取更新后的完整HTML
+      const iframe = document.querySelector('iframe');
+      if (iframe && iframe.contentDocument) {
+        const updatedHTML = iframe.contentDocument.documentElement.outerHTML;
+
+        setPages(prev => prev.map(p =>
+          p.id === selectedPageId
+            ? { ...p, content: updatedHTML, updated: new Date() }
+            : p
+        ));
+      }
+    }
+  }, [selectedPageId, selectedPage]);
+
   // 保存到后端
   const handleSave = async () => {
     try {
@@ -356,7 +374,7 @@ export default function WebEditor() {
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
                             <SelectItem value="landing">落地页</SelectItem>
-                            <SelectItem value="about">关于页面</SelectItem>
+                            <SelectItem value="about">关���页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
                             <SelectItem value="blog">博客页面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
@@ -589,7 +607,7 @@ export default function WebEditor() {
             />
           ) : (
             <div className="flex-1 flex items-center justify-center">
-              <p className="text-gray-500">请选择一个页面进行编辑</p>
+              <p className="text-gray-500">请选择一个页���进行编辑</p>
             </div>
           )}
         </div>
