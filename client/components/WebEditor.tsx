@@ -52,7 +52,7 @@ const layoutComponents = [
 
 // 表单组件
 const formComponents = [
-  { id: 'form', type: 'form', label: '��单', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
+  { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单��框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
@@ -121,7 +121,7 @@ const allComponents = [
   ...customComponents
 ];
 
-// 设备尺寸配置
+// 设备尺寸��置
 const deviceSizes = {
   mobile: { name: '手机', icon: Smartphone, width: 375, height: 812 },
   tablet: { name: '平板', icon: Tablet, width: 768, height: 1024 },
@@ -1337,7 +1337,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导���，请手动编辑内容',
+        content: 'Angular组件已导���，请手动编���内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1521,7 +1521,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}_comp_desc`,
         type: 'text',
-        content: `这是 ${componentName} 组件的展示页面。`,
+        content: `这是 ${componentName} 组件���展示页面。`,
         style: { fontSize: '16px', color: '#666', marginBottom: '20px' }
       },
       {
@@ -1752,7 +1752,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       <Dialog open={showPageSettings} onOpenChange={setShowPageSettings}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>页面设置</DialogTitle>
+            <DialogTitle>页面设��</DialogTitle>
           </DialogHeader>
           {selectedPageForSettings && (
             <div className="space-y-4">
@@ -1964,7 +1964,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对���组件：</p>
+                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2555,7 +2555,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
     try {
       // 这里可以添加代码验证逻辑
-      // 暂时简单处理，创建一个基础的自定义组件
+      // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
         type: `custom-${newComponentName.toLowerCase().replace(/\s+/g, '-')}`,
@@ -2591,7 +2591,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
     { id: 'media', label: '媒体元素', icon: Image },
-    { id: 'icon', label: '图标组件', icon: Star },
+    { id: 'icon', label: '图标���件', icon: Star },
     { id: 'custom', label: '自定义组件', icon: Shield }
   ];
 
@@ -2771,7 +2771,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               <div className="bg-blue-50 rounded-lg p-4">
                 <h4 className="font-medium text-blue-900 mb-2">后续步骤：</h4>
                 <ol className="text-sm text-blue-800 space-y-1">
-                  <li>1. 点击"创建组件"保存代码</li>
+                  <li>1. 点��"创建组件"保存代码</li>
                   <li>2. 将生成的组件文件添加到项目中</li>
                   <li>3. 在WebEditor.tsx中注册新组件</li>
                   <li>4. 重新编译项目即可使用</li>
@@ -2879,7 +2879,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* 输入框属性 */}
+            {/* ��入框属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
@@ -3423,7 +3423,7 @@ export function WebEditor() {
 
     // 稍微延迟加载元素，确���页面状态更新完成
     setTimeout(() => {
-      // 加载对应页面的元素到����布
+      // 加载对应页��的元素到����布
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
         console.log('加载页面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
@@ -3911,19 +3911,19 @@ export function WebEditor() {
         </DialogContent>
       </Dialog>
 
-      <style jsx>{`
+      <style>{`
         .canvas-element {
           transition: all 0.2s ease;
         }
-        
+
         .canvas-element:hover {
           outline: 1px dashed #3b82f6;
         }
-        
+
         .canvas-element.selected {
           outline: 2px solid #3b82f6 !important;
         }
-        
+
         .drop-target {
           background-color: #eff6ff;
           outline: 2px dashed #3b82f6;
