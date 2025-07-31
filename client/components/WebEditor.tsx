@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前���跃页面，激���第一���页面
+        // 如果删除的是当前活跃页面，激���第一���页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -885,7 +885,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请���保包含页面数��');
+        alert('JSON格式不正确，请���保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1222,7 +1222,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         name: componentName || 'Vue页面',
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
-        title: componentName || 'Vue页面',
+        title: componentName || 'Vue页��',
         description: `从Vue组件导���的页面`,
         keywords: 'vue, component',
         sourceCode: content,
@@ -1503,7 +1503,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           imageCount++;
           if (src.startsWith('data:image/')) {
             base64ImageCount++;
-            // 为data URL图片添加标识，��于后续处理
+            // 为data URL图片添加标识，便于后续处理
             img.setAttribute('data-base64-image', 'true');
             console.log(`找到base64图片 ${base64ImageCount}，大小:`, src.length);
           }
@@ -1581,11 +1581,11 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     } catch (error) {
       console.error('SingleFile导入错误:', error);
-      alert('SingleFile导入失败：' + error.message);
+      alert('SingleFile导入���败：' + error.message);
     }
   };
 
-  // 解析SingleFile内容为组件元��
+  // 解析SingleFile内容为组件元素
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
@@ -1763,7 +1763,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         } else if (!imageSrc || (!imageSrc.startsWith('http') && !imageSrc.startsWith('/') && !imageSrc.startsWith('data:'))) {
           // 对于无效src，使用占位符
           imageSrc = 'https://via.placeholder.com/300x200?text=图片导入失败';
-          console.log('图片src无效，使用占位符');
+          console.log('图片src无效，使用���位符');
         }
 
         return {
@@ -1849,7 +1849,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       'border-radius': 'borderRadius'
     };
 
-    // ���试从类名和ID提取样式
+    // 尝试从类名和ID提取样式
     const className = element.className;
     const elementId = element.id;
 
@@ -2777,7 +2777,7 @@ function increment() {
                           <ol className="text-blue-800 space-y-1">
                             <li>1. 安装SingleFile浏览器扩展</li>
                             <li>2. 在任意网页上点击扩展图标</li>
-                            <li>3. 选择"保存页面"</li>
+                            <li>3. 选择"保存页��"</li>
                             <li>4. 下载生成的.html文件</li>
                             <li>5. 将该文件内容粘贴到此�����导入</li>
                           </ol>
@@ -2836,7 +2836,7 @@ function increment() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-medium text-gray-900">推荐方案：</h4>
+              <h4 className="font-medium text-gray-900">推���方案：</h4>
 
               <div className="grid gap-4">
                 <div className="border rounded-lg p-4 hover:bg-gray-50">
@@ -3271,7 +3271,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               </button>
               <button
                 onClick={() => {
-                  // 一键切换��如果全部展开则��起，否则展开
+                  // 一键切换��如果���部展开则��起，否则展开
                   if (expandedCategories.size === categories.length) {
                     collapseAll();
                   } else {
@@ -3374,7 +3374,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <Textarea
                   value={newComponentCode}
                   onChange={(e) => setNewComponentCode(e.target.value)}
-                  placeholder={"例如：\nimport React from 'react';\n\nexport default function MyCustomComponent({ text = \"Hello\" }) {\n  return (\n    <div className=\"p-4 bg-blue-100 rounded\">\n      <h3>{text}</h3>\n      <p>这是我的自定���组件</p>\n    </div>\n  );\n}"}
+                  placeholder={"例如：\nimport React from 'react';\n\nexport default function MyCustomComponent({ text = \"Hello\" }) {\n  return (\n    <div className=\"p-4 bg-blue-100 rounded\">\n      <h3>{text}</h3>\n      <p>这是我的自定义组件</p>\n    </div>\n  );\n}"}
                   className="mt-2 h-60 font-mono text-xs"
                 />
               </div>
@@ -3648,7 +3648,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">异常项目2</Label>
+                  <Label className="text-xs">异常项���2</Label>
                   <Input
                     value={selectedElement.warningItem2 || ''}
                     onChange={(e) => handlePropertyChange('warningItem2', e.target.value)}
@@ -3962,7 +3962,7 @@ export function WebEditor() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [deviceMode, setDeviceMode] = useState('desktop');
-  const [siteName, setSiteName] = useState('我的�����站');
+  const [siteName, setSiteName] = useState('我的网站');
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
@@ -3982,7 +3982,7 @@ export function WebEditor() {
     }
   }, [pages, elements]);
 
-  // 元素变化时自动保存到当前页面（添加防��）
+  // 元素变化时自动保存到当前页面（添加防�����
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       saveCurrentPageElements();
@@ -4187,7 +4187,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入������站名称');
+      alert('请输入����站名称');
       return;
     }
 
@@ -4281,7 +4281,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('加载项目失败:', error);
-      alert('加载���目失��: ' + error.message);
+      alert('加载项目失��: ' + error.message);
     } finally {
       setIsLoading(false);
     }
