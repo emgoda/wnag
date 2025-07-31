@@ -35,5 +35,10 @@ export function createServer() {
   app.get("/api/page/list", handlePageList);
   app.get("/api/page/:id", handlePageGet);
 
+  // New page collection management API routes
+  app.post("/api/pages", handlePagesSave);
+  app.get("/api/pages", handlePagesGet);
+  app.get("/api/pages/:id", handlePagesGet);
+
   return app;
 }
