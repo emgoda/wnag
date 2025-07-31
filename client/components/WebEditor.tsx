@@ -217,7 +217,7 @@ function CanvasElement({
       if (monitor.didDrop()) return;
       
       if (item.component) {
-        // ��加新组件到当前元素
+        // 添加新组件到当前元素
         const newElement = {
           id: `element_${Date.now()}`,
           type: item.component.type,
@@ -329,7 +329,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">��拽组件到这���</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">��拽组件到������</div>}
           </div>
         );
       
@@ -790,7 +790,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
             importedCount++;
           }
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
-          // HTML文件导入 - 检��是否为SingleFile格式
+          // HTML文件导入 - 检测是否为SingleFile格式
           if (isSingleFileFormat(content)) {
             handleImportSingleFile(content);
             processedFiles.push(`${file.name} (SingleFile页面)`);
@@ -951,7 +951,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       height: htmlElement.style.height || computedStyle.height,
     };
 
-    // 根据标签类型创建对应组件
+    // 根据���签类型创建对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1047,7 +1047,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 从文本内容导入
   const handleImportFromText = () => {
     if (!importContent.trim()) {
-      alert('请输入���导入的内容');
+      alert('请输入��导入的内容');
       return;
     }
 
@@ -1416,14 +1416,30 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 处理图片资源 - 确保data URL被正确保留
       const images = bodyClone.querySelectorAll('img');
       let imageCount = 0;
-      images.forEach(img => {
-        const src = img.src || img.getAttribute('src');
-        if (src && src.startsWith('data:image/')) {
+      let base64ImageCount = 0;
+
+      console.log('SingleFile中找到的图片元素数量:', images.length);
+
+      images.forEach((img, index) => {
+        const src = img.src || img.getAttribute('src') || img.getAttribute('data-src');
+        console.log(`图片 ${index + 1}:`, {
+          src: src ? src.substring(0, 100) + '...' : '无',
+          isDataUrl: src?.startsWith('data:image/'),
+          srcLength: src?.length
+        });
+
+        if (src) {
           imageCount++;
-          // 为data URL图片添加标识，便于后续处理
-          img.setAttribute('data-base64-image', 'true');
+          if (src.startsWith('data:image/')) {
+            base64ImageCount++;
+            // 为data URL图片添加标识，便于后续处理
+            img.setAttribute('data-base64-image', 'true');
+            console.log(`找到base64图片 ${base64ImageCount}，大小:`, src.length);
+          }
         }
       });
+
+      console.log(`图片处理完成: 总数${imageCount}, Base64图片${base64ImageCount}`);
 
       // 解析HTML结构转换为组件元素
       const elements = parseSingleFileToElements(bodyClone, styles);
@@ -1443,7 +1459,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       };
 
       setPages(prev => [...prev, newPage]);
-      alert(`SingleFile页面导入成功！${imageCount > 0 ? `\n包含 ${imageCount} 张图片` : ''}`);
+      alert(`SingleFile页面��入成功！${imageCount > 0 ? `\n包含 ${imageCount} 张图片` : ''}`);
       setShowImportPage(false);
 
       // 自动切换到新导入的页面
@@ -1486,7 +1502,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       if (element) elements.push(element);
     });
 
-    // 如果没有解析到任何内容，添加��认内容
+    // 如果没有解析到任何内容，添加默认内容
     if (elements.length <= 1) {
       elements.push({
         id: `element_${Date.now()}_default`,
@@ -2265,7 +2281,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
+                      💡 可以选择多个���件同时���入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -2652,7 +2668,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
-                    ���于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
+                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
@@ -3021,7 +3037,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组��，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -3175,7 +3191,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <div>
                   <h3 className="font-medium text-yellow-900 mb-2">开发者功能</h3>
                   <p className="text-yellow-800 text-sm">
-                    此功能用于添加自定义React组件。��要重新编译才能在画布中使用。
+                    此功能用于添加自定义React组件。需要重新编译才能在画布中使用。
                   </p>
                 </div>
               </div>
@@ -3559,7 +3575,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">��钮颜色 (Tailwind CSS类)</Label>
+                  <Label className="text-xs">按钮颜色 (Tailwind CSS类)</Label>
                   <Select
                     value={selectedElement.buttonColor || 'bg-blue-600'}
                     onValueChange={(value) => handlePropertyChange('buttonColor', value)}
