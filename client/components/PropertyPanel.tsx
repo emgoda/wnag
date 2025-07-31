@@ -445,21 +445,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </p>
             </div>
           </div>
-          
-          {/* DOM树区域 */}
-          <div className="border-t bg-gray-50">
-            <div className="p-3 border-b bg-white">
-              <h4 className="font-medium text-sm flex items-center gap-2">
-                <Code className="w-4 h-4" />
-                DOM 树
-              </h4>
-            </div>
-            <ScrollArea className="h-64">
-              <div className="p-2">
-                {domTree.map(node => renderDOMNode(node))}
-              </div>
-            </ScrollArea>
-          </div>
         </div>
       </div>
     );
