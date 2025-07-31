@@ -35,7 +35,7 @@ const basicComponents = [
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
-  { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
+  { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行��本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
   { id: 'divider', type: 'divider', label: '分割���', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
@@ -91,7 +91,7 @@ const customComponents = [
       startButton: "开始查询",
       warningText: "系统检测到该账号存在异常行为",
       warningItem1: "多次登录失败",
-      warningItem2: "密码输入错误超过安全阈值",
+      warningItem2: "密��输入错误超过安全阈值",
       warningItem3: "存在可疑交易记��",
       continueButton: "继续解除异常",
       nameLabel: "姓名",
@@ -1103,7 +1103,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 导入React组件
   const handleImportReactComponent = (content) => {
     try {
-      // 解析React组件代码，提取组件信息
+      // 解析React组件代码，提取组件���息
       const componentName = extractComponentName(content, 'react');
       const elements = parseReactComponent(content);
 
@@ -1816,7 +1816,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
               </div>
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setShowPageSettings(false)}>
-                  取消
+                  ��消
                 </Button>
                 <Button onClick={handleSavePageSettings}>
                   保存
@@ -1895,6 +1895,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
                         <SelectItem value="project">项目结构配置</SelectItem>
+                        <SelectItem value="singlefile">SingleFile格式</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1964,7 +1965,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
+                        <p>��持标准HTML标签，会自动��换为对���组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2229,7 +2230,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">手动解压ZIP文件</h5>
                       <p className="text-sm text-gray-600">
-                        在您的计算机上解��ZIP文件，然后选择单个文件进行导入
+                        在您的计算机上解��ZIP文件，然后选择单个��件进行导入
                       </p>
                     </div>
                   </div>
@@ -2320,7 +2321,7 @@ function increment() {
 // 元素树状图组件
 function ElementTreeView({ elements, selectedElement, onSelectElement }) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
-    // 默认展开第一层元素
+    // 默认展开第一��元素
     const firstLevelIds = new Set<string>();
     elements.forEach(element => {
       if (element.children && element.children.length > 0) {
@@ -3621,7 +3622,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载项目列表
+  // ���载项目列表
   const loadProjects = async () => {
     try {
       setIsLoading(true);
