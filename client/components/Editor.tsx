@@ -126,20 +126,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           </div>
         </div>
         
-        {/* 元素编辑工具 */}
-        {elementEditMode && (
-          <>
-            <ElementEditor
-              iframeRef={iframeRef}
-              onContentChange={onChange}
-              onElementSelect={onElementSelect}
-            />
-            <ElementInserter
-              iframeRef={iframeRef}
-              onContentChange={onChange}
-            />
-          </>
-        )}
+        {/* 元素插入工具 */}
+        <ElementInserter
+          iframeRef={iframeRef}
+          onContentChange={onChange}
+        />
       </div>
     </div>
   );
