@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
-  Monitor, Tablet, Smartphone, RefreshCw,
+  Monitor, Smartphone, RefreshCw,
   Maximize, Minimize
 } from 'lucide-react';
 import ElementInserter from './ElementInserter';
@@ -22,7 +22,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   // 设备尺寸
   const deviceSizes = {
     desktop: { width: '100%', height: '100%', label: '桌面' },
-    tablet: { width: '768px', height: '1024px', label: '平板' },
     mobile: { width: '375px', height: '667px', label: '手机' }
   };
 
@@ -75,7 +74,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
                 className="px-2"
               >
                 {key === 'desktop' && <Monitor className="w-4 h-4" />}
-                {key === 'tablet' && <Tablet className="w-4 h-4" />}
                 {key === 'mobile' && <Smartphone className="w-4 h-4" />}
                 <span className="ml-1 hidden sm:inline">{device.label}</span>
               </Button>
