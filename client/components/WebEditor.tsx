@@ -50,7 +50,7 @@ const layoutComponents = [
   { id: 'card', type: 'card', label: '卡片', icon: Square, category: 'layout', defaultProps: { style: { padding: '24px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' } } }
 ];
 
-// 表单组件
+// 表单���件
 const formComponents = [
   { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -1404,7 +1404,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 提取并处理内嵌的CSS样式
       const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
 
-      // 提取body内容，但排除script标签
+      // 提取body内容，但排除script标���
       const bodyClone = doc.body.cloneNode(true);
 
       // 移除所有script标签
@@ -1520,7 +1520,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     const tagName = htmlElement.tagName.toLowerCase();
     const id = `element_${Date.now()}_${index}`;
 
-    // 获取元素的内联样式和计算样式
+    // 获取元素的内联样式���计算样式
     const inlineStyle = htmlElement.style;
     const computedStyles = extractRelevantStyles(htmlElement, styles);
 
@@ -1567,7 +1567,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         // 处理SingleFile中的base64编码图片
         let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || 'https://via.placeholder.com/300x200';
 
-        // 检查是否是data URL（base64编码的图片）
+        // 检查是否是data URL��base64编码的图片）
         if (imageSrc.startsWith('data:image/')) {
           // 保持原始的data URL
           imageSrc = imageSrc;
@@ -1651,6 +1651,10 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     const styleMap = {
       color: 'color',
       'background-color': 'backgroundColor',
+      'background-image': 'backgroundImage',
+      'background-size': 'backgroundSize',
+      'background-position': 'backgroundPosition',
+      'background-repeat': 'backgroundRepeat',
       'font-size': 'fontSize',
       'font-weight': 'fontWeight',
       'text-align': 'textAlign',
@@ -1721,7 +1725,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const hasBase64Images = /data:image\/[^;]+;base64,/.test(content);
       const hasInlineStyles = /<style[^>]*>[\s\S]*?<\/style>/.test(content) && content.includes('style').length > 10;
       const hasSingleFileMarkers = /single-file|data-single-file|archive\.org/.test(content);
-      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有大量内嵌资源
+      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有��量内嵌资源
 
       // 如果满足多个条件，很可能是SingleFile格式
       const indicators = [hasBase64Images, hasInlineStyles, hasSingleFileMarkers, hasLargeInlineCSS];
@@ -1789,7 +1793,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         projectConfig.routes.forEach((route, index) => {
           const existingPage = newPages.find(p => p.route === route.path);
           if (existingPage) {
-            // 更新现有页面的路由信息
+            // 更新现有页面的路由信���
             existingPage.component = route.component;
             existingPage.meta = route.meta;
           } else {
@@ -2537,7 +2541,7 @@ function increment() {
                           <h5 className="font-medium mb-2">SingleFile特点：</h5>
                           <ul className="space-y-1">
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
-                            <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
+                            <li>• 所���JavaScript代码内嵌在&lt;script&gt;标签中</li>
                             <li>• 图片等资源转为base64格式内嵌</li>
                             <li>• 完整的、自包含的HTML文件</li>
                           </ul>
@@ -3342,7 +3346,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
 
-            {/* 自定义组件：账户检查流程 */}
+            {/* 自定义组件：账户检查��程 */}
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
@@ -3438,7 +3442,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">继续按钮文本</Label>
+                  <Label className="text-xs">继续按钮��本</Label>
                   <Input
                     value={selectedElement.continueButton || ''}
                     onChange={(e) => handlePropertyChange('continueButton', e.target.value)}
