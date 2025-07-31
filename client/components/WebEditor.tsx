@@ -325,7 +325,7 @@ export default function WebEditor() {
       <div className="flex-1 flex">
         {/* 左侧面板 */}
         <div className="w-80 bg-white border-r flex flex-col">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col justify-start items-center" style={{ width: '315.2px', margin: '0 auto' }}>
             <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="pages" className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
@@ -464,7 +464,7 @@ export default function WebEditor() {
                 </div>
 
                 <div className="space-y-3">
-                  {/* 基础元素 */}
+                  {/* 基础��素 */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm">基础元素</CardTitle>
