@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -76,7 +77,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已���在，请使用���同的路由');
+      alert('路由已存在，请使用���同的路由');
       return;
     }
 
@@ -243,7 +244,7 @@ export default function WebEditor() {
       });
 
       if (response.ok) {
-        alert('保存成功！');
+        alert('保存成功��');
       } else {
         throw new Error('保存失败');
       }
