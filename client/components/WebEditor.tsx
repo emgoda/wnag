@@ -1183,7 +1183,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导入Angular组件
+  // ���入Angular组件
   const handleImportAngularComponent = (content) => {
     try {
       const componentName = extractComponentName(content, 'angular');
@@ -1421,7 +1421,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 移除所有script标签
       bodyClone.querySelectorAll('script').forEach(script => script.remove());
 
-      // 移除SingleFile特有的注释和元数据
+      // 移除SingleFile特有的注释��元数据
       bodyClone.querySelectorAll('[data-single-file]').forEach(el => el.remove());
 
       // 处理图片资源 - 确保data URL被正确保留
@@ -1534,7 +1534,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 递归查找所有img元素
     const allImages = mainContent.querySelectorAll('img');
-    console.log('在主要内容中找到的所有img元素数量:', allImages.length);
+    console.log('在主要内容中找到的���有img元素数量:', allImages.length);
     allImages.forEach((img, i) => {
       console.log(`img ${i + 1}:`, {
         tagName: img.tagName,
@@ -1608,7 +1608,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
     };
 
-    // 根据标签类型创���对应组件
+    // 根据标签类��创���对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1850,13 +1850,28 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 3. 可能包含SingleFile特有的注释或属性
 
       const hasBase64Images = /data:image\/[^;]+;base64,/.test(content);
-      const hasInlineStyles = /<style[^>]*>[\s\S]*?<\/style>/.test(content) && content.includes('style').length > 10;
-      const hasSingleFileMarkers = /single-file|data-single-file|archive\.org/.test(content);
-      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有大量内嵌资源
+      const hasInlineStyles = /<style[^>]*>[\s\S]*?<\/style>/.test(content);
+      const hasSingleFileMarkers = /single-file|data-single-file|SingleFile|save-page-wesave/.test(content);
+      const hasLargeInlineCSS = content.includes('<style>') && content.length > 50000; // 大于50KB
+      const hasDataUris = content.includes('data:') && content.includes('base64,');
 
-      // 如果满足多个条件，很可能是SingleFile格式
-      const indicators = [hasBase64Images, hasInlineStyles, hasSingleFileMarkers, hasLargeInlineCSS];
-      return indicators.filter(Boolean).length >= 2;
+      const indicators = {
+        hasBase64Images,
+        hasInlineStyles,
+        hasSingleFileMarkers,
+        hasLargeInlineCSS,
+        hasDataUris
+      };
+
+      console.log('SingleFile检测结果:', indicators);
+
+      // 如果满足多个条件，很可能是SingleFile格式，或者有base64图片就认为是SingleFile
+      const positiveCount = Object.values(indicators).filter(Boolean).length;
+      const isSingleFile = positiveCount >= 2 || hasBase64Images;
+
+      console.log(`SingleFile检测: ${isSingleFile ? '是' : '否'} (满足${positiveCount}个条件)`);
+
+      return isSingleFile;
 
     } catch (error) {
       return false;
@@ -2450,7 +2465,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对����组���：</p>
+                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2605,7 +2620,7 @@ function increment() {
                         <p className="mb-2">支持导入完整的项目结��配���，自动创建多个页面：</p>
                         <pre className="whitespace-pre-wrap">
 {`{
-  "projectName": "我的React��目",
+  "projectName": "我的React项目",
   "structure": {
     "client/pages/": [
       {
@@ -2669,7 +2684,7 @@ function increment() {
                           <ul className="space-y-1">
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
                             <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
-                            <li>• 图片等资源转为base64格式内嵌</li>
+                            <li>��� 图片等资源转为base64格式内嵌</li>
                             <li>• 完整的、自包含的HTML文件</li>
                           </ul>
                         </div>
@@ -3064,7 +3079,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     };
   }, []);
 
-  // 处理添��自定义组件
+  // 处理添加自定义组件
   const handleAddCustomComponent = () => {
     if (!newComponentName.trim()) {
       alert('请输入��件名称');
@@ -3297,7 +3312,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   <li>1. 点��"创建组件"保存代码</li>
                   <li>2. 将生成的组件文件添加到项目中</li>
                   <li>3. 在WebEditor.tsx中注册新组件</li>
-                  <li>4. 重新编译项目即可使用</li>
+                  <li>4. 重新编译项目即��使用</li>
                 </ol>
               </div>
 
@@ -3948,7 +3963,7 @@ export function WebEditor() {
     setTimeout(() => {
       // 加载对应页��的元素到�������
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
-        console.log('加载页面元素:', targetPage.elements);
+        console.log('加载��面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
       } else {
         // 如果页面没有elements，显示空画布
@@ -4134,7 +4149,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布���功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布���功！\n\n网站���称: ${publishResult.data.siteName}\n访��地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
@@ -4212,7 +4227,7 @@ export function WebEditor() {
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
               className="w-40 h-8 text-sm"
-              placeholder="网站名称"
+              placeholder="网站名���"
             />
             <div className="w-px h-6 bg-gray-300" />
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
