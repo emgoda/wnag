@@ -847,7 +847,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => resolve(e.target.result);
-      reader.onerror = () => reject(new Error('文件读取失败'));
+      reader.onerror = () => reject(new Error('文件读取���败'));
       reader.readAsText(file);
     });
   };
@@ -1105,7 +1105,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 导入React组件
   const handleImportReactComponent = (content) => {
     try {
-      // 解析React组件代码，��取组件信息
+      // 解析React组件代码，提取组件信息
       const componentName = extractComponentName(content, 'react');
       const elements = parseReactComponent(content);
 
@@ -1382,6 +1382,295 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         style: { fontSize: '16px', color: '#333' }
       }
     ];
+  };
+
+  // 导入SingleFile格式
+  const handleImportSingleFile = (content) => {
+    try {
+      // 解析SingleFile HTML内容
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(content, 'text/html');
+
+      // 提取页面基本信息
+      const title = doc.querySelector('title')?.textContent || 'SingleFile导入页面';
+      const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
+
+      // 提取并处理内嵌的CSS样式
+      const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
+
+      // 提取body内容，但排除script标签
+      const bodyClone = doc.body.cloneNode(true);
+
+      // 移除所有script标签
+      bodyClone.querySelectorAll('script').forEach(script => script.remove());
+
+      // 移除SingleFile特有的注释和元数据
+      bodyClone.querySelectorAll('[data-single-file]').forEach(el => el.remove());
+
+      // 解析HTML结构转换为组件元素
+      const elements = parseSingleFileToElements(bodyClone, styles);
+
+      const newPage = {
+        id: `page_${Date.now()}`,
+        name: title,
+        route: `/${title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`,
+        isActive: false,
+        title: title,
+        description: description,
+        keywords: keywords,
+        sourceType: 'singlefile',
+        originalStyles: styles,
+        elements: elements
+      };
+
+      setPages(prev => [...prev, newPage]);
+      alert('SingleFile页面导入成功');
+      setShowImportPage(false);
+
+      // 自动切换到新导入的页面
+      setTimeout(() => {
+        onSwitchPage(newPage.id);
+      }, 100);
+
+    } catch (error) {
+      alert('SingleFile导入失败：' + error.message);
+    }
+  };
+
+  // 解析SingleFile内容为组件元素
+  const parseSingleFileToElements = (bodyElement, styles) => {
+    const elements = [];
+
+    // 首先添加样式信息作为说明
+    if (styles.trim()) {
+      elements.push({
+        id: `element_${Date.now()}_styles`,
+        type: 'text',
+        content: '⚠️ 原始页面包含复杂CSS样式，可能需要手动调整以适应编辑器',
+        style: {
+          fontSize: '14px',
+          color: '#d97706',
+          backgroundColor: '#fef3c7',
+          padding: '12px',
+          borderRadius: '6px',
+          border: '1px solid #f59e0b',
+          marginBottom: '16px'
+        }
+      });
+    }
+
+    // 处理主要内容
+    const mainContent = extractMainContent(bodyElement);
+    Array.from(mainContent.children).forEach((child, index) => {
+      const element = parseSingleFileElement(child, index, styles);
+      if (element) elements.push(element);
+    });
+
+    // 如果没有解析到任何内容，添加默认内容
+    if (elements.length <= 1) {
+      elements.push({
+        id: `element_${Date.now()}_default`,
+        type: 'text',
+        content: '页面内容已导入，但可能需要手动调整。原始页面结构较复杂，建议在属性编辑器中进一步编辑。',
+        style: { fontSize: '16px', color: '#6b7280', textAlign: 'center', padding: '20px' }
+      });
+    }
+
+    return elements;
+  };
+
+  // 提取主要内容区域
+  const extractMainContent = (bodyElement) => {
+    // 尝试找到主要内容区域
+    const mainSelectors = ['main', '[role="main"]', '.main', '#main', '.content', '#content', '.container'];
+
+    for (const selector of mainSelectors) {
+      const mainElement = bodyElement.querySelector(selector);
+      if (mainElement && mainElement.children.length > 0) {
+        return mainElement;
+      }
+    }
+
+    // 如果没找到，返回body本身
+    return bodyElement;
+  };
+
+  // 解析SingleFile中的单个元素
+  const parseSingleFileElement = (htmlElement, index, styles) => {
+    const tagName = htmlElement.tagName.toLowerCase();
+    const id = `element_${Date.now()}_${index}`;
+
+    // 获取元素的内联样式和计算样式
+    const inlineStyle = htmlElement.style;
+    const computedStyles = extractRelevantStyles(htmlElement, styles);
+
+    // 合并样式
+    const style = {
+      ...computedStyles,
+      // 内联样式优先级更高
+      ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
+    };
+
+    // 根据标签类型创建对应组件
+    switch (tagName) {
+      case 'h1':
+      case 'h2':
+      case 'h3':
+      case 'h4':
+      case 'h5':
+      case 'h6':
+        return {
+          id,
+          type: 'heading',
+          content: htmlElement.textContent || '标题',
+          level: tagName,
+          style: { ...style, fontWeight: 'bold' }
+        };
+
+      case 'p':
+        return {
+          id,
+          type: 'text',
+          content: htmlElement.textContent || '段落文本',
+          style: { ...style, lineHeight: '1.6' }
+        };
+
+      case 'button':
+        return {
+          id,
+          type: 'button',
+          content: htmlElement.textContent || '按钮',
+          style: { ...style, cursor: 'pointer' }
+        };
+
+      case 'img':
+        return {
+          id,
+          type: 'image',
+          src: htmlElement.src || 'https://via.placeholder.com/300x200',
+          alt: htmlElement.alt || '图片',
+          style: { ...style, maxWidth: '100%', height: 'auto' }
+        };
+
+      case 'a':
+        return {
+          id,
+          type: 'link',
+          content: htmlElement.textContent || '链接',
+          href: htmlElement.href || '#',
+          style: { ...style, textDecoration: 'underline' }
+        };
+
+      case 'div':
+      case 'section':
+      case 'article':
+      case 'header':
+      case 'footer':
+      case 'aside':
+        const children = Array.from(htmlElement.children).map((child, i) =>
+          parseSingleFileElement(child, i, styles)
+        ).filter(Boolean);
+
+        if (children.length > 0) {
+          return {
+            id,
+            type: 'container',
+            children,
+            style: { ...style, padding: '16px', minHeight: '50px' }
+          };
+        } else if (htmlElement.textContent.trim()) {
+          // 如果div只包含文本，创建文本组件
+          return {
+            id,
+            type: 'text',
+            content: htmlElement.textContent.trim(),
+            style: style
+          };
+        }
+        break;
+
+      default:
+        // 对于其他元素，如果包含文本内容，创建文本组件
+        if (htmlElement.textContent && htmlElement.textContent.trim()) {
+          return {
+            id,
+            type: 'text',
+            content: htmlElement.textContent.trim(),
+            style: style
+          };
+        }
+        break;
+    }
+
+    return null;
+  };
+
+  // 从CSS样式中提取与元素相关的样式
+  const extractRelevantStyles = (element, styles) => {
+    const extractedStyles = {};
+
+    // 基本样式映射
+    const styleMap = {
+      color: 'color',
+      'background-color': 'backgroundColor',
+      'font-size': 'fontSize',
+      'font-weight': 'fontWeight',
+      'text-align': 'textAlign',
+      padding: 'padding',
+      margin: 'margin',
+      width: 'width',
+      height: 'height',
+      'border-radius': 'borderRadius'
+    };
+
+    // 尝试从类名和ID提取样式
+    const className = element.className;
+    const elementId = element.id;
+
+    if (className || elementId) {
+      // 简化的CSS解析，匹配基本样式
+      const cssRules = styles.match(/[^{}]+\{[^}]*\}/g) || [];
+
+      for (const rule of cssRules) {
+        const [selector, declarations] = rule.split('{');
+        const cleanSelector = selector.trim();
+
+        // 检查选择器是否匹配当前元素
+        if (
+          (className && cleanSelector.includes(`.${className.split(' ')[0]}`)) ||
+          (elementId && cleanSelector.includes(`#${elementId}`)) ||
+          cleanSelector.includes(element.tagName.toLowerCase())
+        ) {
+          // 解析CSS声明
+          const declPairs = declarations.replace('}', '').split(';');
+          for (const decl of declPairs) {
+            const [prop, value] = decl.split(':');
+            if (prop && value && styleMap[prop.trim()]) {
+              extractedStyles[styleMap[prop.trim()]] = value.trim();
+            }
+          }
+        }
+      }
+    }
+
+    return extractedStyles;
+  };
+
+  // 解析内联样式
+  const parseInlineStyle = (cssText) => {
+    const styles = {};
+    const declarations = cssText.split(';');
+
+    for (const decl of declarations) {
+      const [prop, value] = decl.split(':');
+      if (prop && value) {
+        const camelProp = prop.trim().replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+        styles[camelProp] = value.trim();
+      }
+    }
+
+    return styles;
   };
 
   // 导入项目结构
@@ -1864,7 +2153,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时导入（按住Ctrl/Cmd键选择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -2191,7 +2480,7 @@ function increment() {
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
                             <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
                             <li>• 图片等资源转为base64格式内嵌</li>
-                            <li>• 完整的、自包含���HTML文件</li>
+                            <li>• 完整的、自包含的HTML文件</li>
                           </ul>
                         </div>
                         <div className="bg-blue-50 p-3 rounded mb-3">
@@ -2616,7 +2905,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行��动态添加组件，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -2770,7 +3059,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <div>
                   <h3 className="font-medium text-yellow-900 mb-2">开发者功能</h3>
                   <p className="text-yellow-800 text-sm">
-                    此功能用于添加自定���React组件。需要重新编译才能在画布中使用。
+                    此功能用于添加自定义React组件。需要重新编译才能在画布中使用。
                   </p>
                 </div>
               </div>
@@ -3140,7 +3429,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">成功提示信息</Label>
+                  <Label className="text-xs">成功���示信息</Label>
                   <Input
                     value={selectedElement.successMessage || ''}
                     onChange={(e) => handlePropertyChange('successMessage', e.target.value)}
@@ -3154,7 +3443,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">��钮颜色 (Tailwind CSS类)</Label>
+                  <Label className="text-xs">按钮颜色 (Tailwind CSS类)</Label>
                   <Select
                     value={selectedElement.buttonColor || 'bg-blue-600'}
                     onValueChange={(value) => handlePropertyChange('buttonColor', value)}
@@ -3250,7 +3539,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">字体粗细</Label>
+                  <Label className="text-xs text-gray-600">字���粗细</Label>
                   <Select
                     value={selectedElement.style?.fontWeight || 'normal'}
                     onValueChange={(value) => handleStyleChange('fontWeight', value)}
@@ -3261,7 +3550,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     <SelectContent>
                       <SelectItem value="normal">正常</SelectItem>
                       <SelectItem value="bold">粗体</SelectItem>
-                      <SelectItem value="lighter">����体</SelectItem>
+                      <SelectItem value="lighter">��体</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -3400,7 +3689,7 @@ export function WebEditor() {
     }
   }, [pages, elements]);
 
-  // 元素变化时自动保存到当前页面（添加防抖）
+  // 元素变化时自动保存到当前页面（添加防��）
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       saveCurrentPageElements();
@@ -3479,7 +3768,7 @@ export function WebEditor() {
     setSelectedPath([]);
   }, [pages, saveCurrentPageElements]);
 
-  // 复�����素
+  // 复制��素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
       ...element,
@@ -3630,7 +3919,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存项目失败，无法发布');
+        throw new Error('保存���目失败，无法发布');
       }
 
       // 发布项目
