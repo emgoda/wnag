@@ -31,7 +31,7 @@ const ItemTypes = {
 
 // 基础组件库
 const basicComponents = [
-  { id: 'text', type: 'text', label: '文��', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
+  { id: 'text', type: 'text', label: '文���', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -1103,7 +1103,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         };
 
       default:
-        // 其他元素作为容器处理
+        // 其他元素作为���器处理
         return {
           id,
           type: 'container',
@@ -1223,7 +1223,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
         title: componentName || 'Vue页��',
-        description: `从Vue组件导���的页面`,
+        description: `从Vue组件导���的��面`,
         keywords: 'vue, component',
         sourceCode: content,
         sourceType: 'vue',
@@ -1472,7 +1472,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
-      // 提�����并处理内嵌的CSS样式
+      // 提���并处理内嵌的CSS样式
       const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
 
       // 提取body内容，但排除script标签
@@ -1503,7 +1503,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           imageCount++;
           if (src.startsWith('data:image/')) {
             base64ImageCount++;
-            // 为data URL图片添加标识，便于后续处理
+            // 为data URL图片添加标识，��于后续处理
             img.setAttribute('data-base64-image', 'true');
             console.log(`找到base64图片 ${base64ImageCount}，大小:`, src.length);
           }
@@ -1585,7 +1585,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解析SingleFile内容为组件元素
+  // 解析SingleFile内容为组��元素
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
@@ -2313,7 +2313,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 className="mt-1"
               />
               <div className="text-xs text-gray-500 mt-1">
-                路由必须��� / 开头，如：/about
+                路由必须以 / 开头，如：/about
               </div>
             </div>
             <div className="flex justify-end gap-2">
@@ -2523,7 +2523,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'json' && 'JSON格式示例：'}
                       {importType === 'html' && 'HTML格式说明：'}
                       {importType === 'spa' && 'SPA配置示例：'}
-                      {importType === 'react' && 'React���件示��：'}
+                      {importType === 'react' && 'React组件示��：'}
                       {importType === 'vue' && 'Vue组件示例：'}
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
@@ -2778,7 +2778,7 @@ function increment() {
                             <li>1. 安装SingleFile浏览器扩展</li>
                             <li>2. 在任意网页上点击扩展图标</li>
                             <li>3. 选择"保存页��"</li>
-                            <li>4. 下载生成的.html文���</li>
+                            <li>4. 下载生成的.html文件</li>
                             <li>5. 将该文件内容粘贴到此�����导入</li>
                           </ol>
                         </div>
@@ -2861,7 +2861,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按��Ctrl/Cmd键选择多个文件）
+                        选择多���文件同时上传（按住Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -3678,7 +3678,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div className="border-b pb-2 mt-4">
-                  <Label className="text-xs font-medium text-purple-600">第三步：身份验证</Label>
+                  <Label className="text-xs font-medium text-purple-600">第���步：身份验证</Label>
                 </div>
 
                 <div>
@@ -3712,7 +3712,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">����交按钮文本</Label>
+                  <Label className="text-xs">���交按钮文本</Label>
                   <Input
                     value={selectedElement.submitButton || ''}
                     onChange={(e) => handlePropertyChange('submitButton', e.target.value)}
@@ -4031,10 +4031,10 @@ export function WebEditor() {
 
   // 切换页面
   const handleSwitchPage = useCallback((pageId) => {
-    // 首先保��当前页面的元素
+    // 首先保��当前页面的元��
     saveCurrentPageElements();
 
-    // ���到���切换的页面
+    // ���到要切换的页面
     const targetPage = pages.find(p => p.id === pageId);
     if (!targetPage) return;
 
@@ -4212,7 +4212,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存�����失败，无法发布');
+        throw new Error('保存项目失败，无法发布');
       }
 
       // 发布项目
@@ -4253,7 +4253,7 @@ export function WebEditor() {
       if (result.success) {
         setSavedProjects(result.data.pages);
       } else {
-        console.error('加载项��列���失败:', result.message);
+        console.error('加载项��列表失败:', result.message);
       }
     } catch (error) {
       console.error('加载项目列表�����:', error);
