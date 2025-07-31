@@ -609,24 +609,29 @@ export default function WebEditor() {
         <div className="flex-1 flex flex-col">
           {/* 源码编辑器（可切换显示） */}
           {showCodeEditor && selectedPage && (
-            <div className="h-64 border-b bg-white">
-              <div className="h-full flex flex-col">
-                <div className="flex items-center justify-between px-3 py-2 border-b bg-gray-50">
-                  <span className="text-sm text-gray-600 font-medium">HTML源码编辑</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setShowCodeEditor(false)}
-                    className="text-xs"
-                  >
-                    ×
-                  </Button>
+            <div className="h-80 border-b bg-white flex flex-col">
+              <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
+                <div className="flex items-center gap-2">
+                  <Code className="w-4 h-4" />
+                  <span className="text-sm text-gray-700 font-medium">HTML源码编辑</span>
+                  <Badge variant="outline" className="text-xs">实时同步</Badge>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowCodeEditor(false)}
+                  className="text-xs h-6 w-6 p-0"
+                >
+                  ×
+                </Button>
+              </div>
+              <div className="flex-1 relative">
                 <Textarea
                   value={selectedPage.content}
                   onChange={(e) => handleContentChange(e.target.value)}
-                  className="flex-1 resize-none border-none rounded-none font-mono text-sm"
+                  className="absolute inset-0 resize-none border-none rounded-none font-mono text-sm leading-relaxed"
                   placeholder="在此编辑HTML源码..."
+                  style={{ minHeight: '100%' }}
                 />
               </div>
             </div>
@@ -666,7 +671,7 @@ export default function WebEditor() {
           {editingPage && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="edit-name">��面名称</Label>
+                <Label htmlFor="edit-name">页面名称</Label>
                 <Input
                   id="edit-name"
                   value={editingPage.name}
