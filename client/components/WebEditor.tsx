@@ -76,7 +76,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用���同的路由');
+      alert('路由已���在，请使用���同的路由');
       return;
     }
 
@@ -343,6 +343,22 @@ export default function WebEditor() {
                           onChange={(e) => setNewPageData(prev => ({ ...prev, route: e.target.value }))}
                           placeholder="例如：/about"
                         />
+                      </div>
+                      <div>
+                        <Label htmlFor="template">页面模板</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="选择页面模板" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="blank">空白页面</SelectItem>
+                            <SelectItem value="landing">落地页</SelectItem>
+                            <SelectItem value="about">关于页面</SelectItem>
+                            <SelectItem value="contact">联系页面</SelectItem>
+                            <SelectItem value="blog">博客页面</SelectItem>
+                            <SelectItem value="portfolio">作品集</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                       <div className="flex justify-end gap-2">
                         <Button variant="outline" onClick={() => setShowAddPageDialog(false)}>
