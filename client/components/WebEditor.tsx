@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import {
   Plus, Edit3, Trash2, Save, Upload, Undo, Redo, Eye, Code,
-  FileText, Globe, Download, Settings, Monitor
+  FileText, Globe, Download, Settings, Monitor, Copy
 } from 'lucide-react';
 import Editor from './Editor';
 
@@ -324,7 +324,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>新增页面</DialogTitle>
+                      <DialogTitle>��增页面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
