@@ -828,7 +828,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       }
     }
 
-    // 显示���量导入结果
+    // 显�����量导入结果
     let resultMessage = `批量文件导入完成！
 
 ����功处理 ${processedFiles.length} 个文件：
@@ -1383,7 +1383,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'JavaScript代码已导入，请手动��辑内容',
+        content: 'JavaScript代���已导入，请手动��辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1641,7 +1641,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         const [selector, declarations] = rule.split('{');
         const cleanSelector = selector.trim();
 
-        // 检查选择器是否匹配当前元素
+        // 检查选择器���否匹配当前元素
         if (
           (className && cleanSelector.includes(`.${className.split(' ')[0]}`)) ||
           (elementId && cleanSelector.includes(`#${elementId}`)) ||
@@ -1683,7 +1683,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     try {
       // SingleFile的特征：
       // 1. 包含data:image/格式的base64图片
-      // 2. 包含大量内嵌CSS样式
+      // 2. 包含大量内嵌CSS���式
       // 3. 可能包含SingleFile特有的注释或属性
 
       const hasBase64Images = /data:image\/[^;]+;base64,/.test(content);
@@ -2014,7 +2014,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         handleDeletePage(page.id);
                       }}
                       className="w-4 h-4 flex items-center justify-center hover:bg-red-600 rounded"
-                      title="删除页面"
+                      title="删除页��"
                     >
                       <Trash2 className="w-3 h-3 text-gray-400 hover:text-red-200" />
                     </button>
@@ -2517,7 +2517,7 @@ function increment() {
                             <li>2. 在任意网页上点击扩展图标</li>
                             <li>3. 选择"保存页面"</li>
                             <li>4. 下载生成的.html文件</li>
-                            <li>5. 将该文件内容粘贴到此处导入</li>
+                            <li>5. 将该文件内容粘贴到此���导入</li>
                           </ol>
                         </div>
                         <div className="bg-green-50 p-3 rounded">
@@ -2631,6 +2631,10 @@ function increment() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                   <span>HTML页面文件</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  <span>SingleFile格式 (.html)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
@@ -2910,7 +2914,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     }
 
     try {
-      // 这里可以添加代码验证逻辑
+      // 这里可以添加代��验证逻辑
       // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
@@ -3812,7 +3816,7 @@ export function WebEditor() {
         pages,
         elements,
         css: '', // ��以后续添���CSS编辑功能
-        js: ''   // 可以后��添加JS编辑功能
+        js: ''   // 可以后��添加JS编辑功���
       };
 
       const response = await fetch('/api/page/save', {
@@ -4072,7 +4076,7 @@ export function WebEditor() {
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={newProject}>
               <Plus className="w-4 h-4 mr-2" />
-              ����建
+              ������建
             </Button>
             <Button variant="outline" size="sm" onClick={() => { setShowProjectManager(true); loadProjects(); }}>
               <FileText className="w-4 h-4 mr-2" />
