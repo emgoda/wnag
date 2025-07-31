@@ -757,7 +757,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     setSelectedPageForSettings(null);
   };
 
-  // 处��文件导入
+  // 处理文件导入
   const handleFileImport = async (event) => {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
@@ -874,7 +874,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请����保包含页面数据');
+        alert('JSON格式不正确，请���保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1306,7 +1306,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Vue组件已���入，请手动编辑内容',
+        content: 'Vue组件已导入，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1930,6 +1930,8 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           ? '@Component({ selector: "app-my", template: "<div>Hello</div>" }) export class MyComponent {}'
                           : importType === 'project'
                           ? '{"structure": {"client/pages/": [{"name": "Home", "file": "Home.tsx"}], "client/components/": [{"name": "Header", "file": "Header.tsx"}]}}'
+                          : importType === 'singlefile'
+                          ? '<!DOCTYPE html><html>...<head>包含内嵌CSS样式</head><body>完整页面内容</body></html>'
                           : 'const element = document.createElement("div"); element.innerHTML = "Hello World";'
                       }
                       className="mt-2 h-40 font-mono text-xs"
@@ -1984,7 +1986,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   "routes": [
     {
       "path": "/",
-      "name": "首页",
+      "name": "��页",
       "component": "Home",
       "meta": {
         "title": "首页",
@@ -2213,7 +2215,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
-                    由于浏���器安全限制，我们提供了更好的ZIP文件处理方案：
+                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
@@ -2651,7 +2653,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               </button>
               <button
                 onClick={() => {
-                  // 一键切换��如果全部展开则��起，否���展开
+                  // 一键切换��如果全部展开则��起，否则展开
                   if (expandedCategories.size === categories.length) {
                     collapseAll();
                   } else {
@@ -2764,7 +2766,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <ul className="text-sm text-gray-600 space-y-2">
                   <li>• 使用标准的React函数组件格式</li>
                   <li>• 组件应该导出为默认导出 (export default)</li>
-                  <li>• 可以使用props来���收参数</li>
+                  <li>• 可以使用props来接收参数</li>
                   <li>• 建议使用Tailwind CSS进行样式设计</li>
                   <li>• 避免使用外部依赖库</li>
                 </ul>
@@ -3342,7 +3344,7 @@ export function WebEditor() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [deviceMode, setDeviceMode] = useState('desktop');
-  const [siteName, setSiteName] = useState('我的���站');
+  const [siteName, setSiteName] = useState('我的�����站');
   const [pages, setPages] = useState([
     { id: 'home', name: '首页', route: '/', isActive: true }
   ]);
@@ -3425,7 +3427,7 @@ export function WebEditor() {
 
     // 稍微延迟加载元素，确���页面状态更新完成
     setTimeout(() => {
-      // 加载对应页��的元素到����布
+      // 加载对应页��的元素到�������
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
         console.log('加载页面元素:', targetPage.elements);
         setElements([...targetPage.elements]);
@@ -3613,7 +3615,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布成功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布���功！\n\n网站���称: ${publishResult.data.siteName}\n访问地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
@@ -3867,7 +3869,7 @@ export function WebEditor() {
                         <div>创建时间: {new Date(project.createdAt).toLocaleString('zh-CN')}</div>
                         <div>更新时间: {new Date(project.updatedAt).toLocaleString('zh-CN')}</div>
                         {project.publishedAt && (
-                          <div>发��时间: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
+                          <div>发��时���: {new Date(project.publishedAt).toLocaleString('zh-CN')}</div>
                         )}
                         {project.deployUrl && (
                           <div className="flex items-center gap-2">
