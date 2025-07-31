@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激���第一个页面
+        // 如果删除的是当前活跃页面，激���第一���页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -737,7 +737,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
 
 
 
-  // 打开页面设置
+  // 打开���面设置
   const handleOpenPageSettings = (page) => {
     setSelectedPageForSettings({ ...page });
     setShowPageSettings(true);
@@ -885,7 +885,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式���正确，请���保包含页面数据');
+        alert('JSON格式不正确，请���保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -904,8 +904,24 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
+      // 统计原始HTML中的图片
+      const allImages = doc.querySelectorAll('img');
+      console.log(`HTML中找到 ${allImages.length} 个img元素`);
+
+      allImages.forEach((img, i) => {
+        console.log(`原始img ${i + 1}:`, {
+          src: img.src,
+          getAttribute_src: img.getAttribute('src'),
+          alt: img.alt
+        });
+      });
+
       // 解析HTML结构转换为组件元素
       const elements = parseHTMLToElements(doc.body);
+
+      // 统计解析后的图片元素
+      const imageElements = elements.filter(el => el.type === 'image');
+      console.log(`解析后创建了 ${imageElements.length} 个图片组件`);
 
       const newPage = {
         id: `page_${Date.now()}`,
@@ -919,14 +935,44 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('HTML页面导入成功');
+
+      let message = 'HTML页面导入成功！';
+      if (imageElements.length > 0) {
+        message += `\n包含 ${imageElements.length} 张图片`;
+      }
+      alert(message);
       setShowImportPage(false);
+
+      // 自动切换到新导入的页面
+      setTimeout(() => {
+        // 保存当前页面的元素
+        if (elements.length > 0) {
+          const currentActivePage = pages.find(p => p.isActive);
+          if (currentActivePage) {
+            setPages(prev => prev.map(p =>
+              p.id === currentActivePage.id
+                ? { ...p, elements: elements }
+                : p
+            ));
+          }
+        }
+
+        // 切换到新页面
+        setPages(prev => prev.map(p => ({...p, isActive: p.id === newPage.id})));
+
+        // 加载新页面的元素
+        setElements(newPage.elements);
+
+        // 清除选中状态
+        setSelectedElement(null);
+        setSelectedPath([]);
+      }, 100);
     } catch (error) {
-      alert('HTML解析失败：' + error.message);
+      alert('HTML解析失���：' + error.message);
     }
   };
 
-  // 解��HTML元素为组件
+  // 解析HTML元素为组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -957,7 +1003,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       height: htmlElement.style.height || computedStyle.height,
     };
 
-    // 根据标签类型创建对应组件
+    // ���据标签类型创建对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1426,7 +1472,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
-      // 提取并处理内嵌的CSS样式
+      // 提���并处理内嵌的CSS样式
       const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
 
       // 提取body内容，但排除script标签
@@ -1495,7 +1541,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           message += `\n✅ Base64图��已成功导入`;
         }
         if (imageCount > base64ImageCount) {
-          message += `\n⚠️ ${imageCount - base64ImageCount} 张外部��接图片可能需要检查`;
+          message += `\n⚠️ ${imageCount - base64ImageCount} 张外部链接图片可能需要检查`;
         }
       } else {
         message += `\n页面中未检测到图片元素`;
@@ -1642,7 +1688,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 合并样式
     const style = {
       ...computedStyles,
-      // 内联样式优先级更高
+      // ���联样式优先级更高
       ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
     };
 
@@ -1916,7 +1962,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导入项目结构
+  // 导入项��结构
   const handleImportProjectStructure = (content) => {
     try {
       const projectConfig = JSON.parse(content);
@@ -2337,7 +2383,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 />
               </div>
               <div>
-                <Label className="text-sm">��键词 (SEO)</Label>
+                <Label className="text-sm">关键词 (SEO)</Label>
                 <Input
                   value={selectedPageForSettings.keywords || ''}
                   onChange={(e) => setSelectedPageForSettings({
@@ -2508,7 +2554,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
                           <li>• button → 按��组件</li>
-                          <li>• img → ��片组件</li>
+                          <li>• img → 图片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表��组件</li>
                           <li>• div → 容器组件</li>
@@ -2716,7 +2762,7 @@ function increment() {
                     )}
                     {importType === 'singlefile' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">SingleFile是将完整网页保存为单��HTML文件的格式，包含所有资源：</p>
+                        <p className="mb-2">SingleFile是将完整网页保存为单个HTML文件的格式，包含所有资源：</p>
                         <div className="bg-gray-100 p-3 rounded mb-3">
                           <h5 className="font-medium mb-2">SingleFile特点：</h5>
                           <ul className="space-y-1">
@@ -3130,7 +3176,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     }
 
     try {
-      // 这里可以��加代��验证逻辑
+      // 这里可以添加代��验证逻辑
       // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
@@ -3166,7 +3212,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
-    { id: 'media', label: '媒��元素', icon: Image },
+    { id: 'media', label: '媒体元素', icon: Image },
     { id: 'icon', label: '图标���件', icon: Star },
     { id: 'custom', label: '自定义组件', icon: Shield }
   ];
@@ -3318,7 +3364,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <Input
                   value={newComponentName}
                   onChange={(e) => setNewComponentName(e.target.value)}
-                  placeholder="例如：我的按钮���件"
+                  placeholder="例如：我的按钮组件"
                   className="mt-2"
                 />
               </div>
@@ -3578,7 +3624,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div className="border-b pb-2 mt-4">
-                  <Label className="text-xs font-medium text-red-600">第二步��异常警告</Label>
+                  <Label className="text-xs font-medium text-red-600">第二步：异常警告</Label>
                 </div>
 
                 <div>
@@ -4197,7 +4243,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载项目列表
+  // 加载项���列表
   const loadProjects = async () => {
     try {
       setIsLoading(true);
@@ -4216,7 +4262,7 @@ export function WebEditor() {
     }
   };
 
-  // ����载指定项目
+  // ��载指定项目
   const loadProject = async (projectId) => {
     try {
       setIsLoading(true);
