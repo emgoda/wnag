@@ -47,7 +47,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
 
-    // 只处理Element节点，跳过文本节点和注释节点
+    // 只处理Element节点，跳过���本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
         // 跳过script和style标签，但保留其他所有元素
@@ -69,21 +69,51 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-    if (iframe && iframe.contentDocument) {
-      const doc = iframe.contentDocument;
+    // 查找编辑器中的iframe
+    const editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+
+    if (!editorIframe) {
+      console.log('未找到iframe元素');
+      return;
+    }
+
+    try {
+      const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
+
+      if (!doc) {
+        console.log('无法访问iframe文档');
+        return;
+      }
+
       const body = doc.body;
+      const html = doc.documentElement;
+
+      console.log('iframe状态:', {
+        readyState: doc.readyState,
+        bodyChildren: body?.children.length || 0,
+        htmlChildren: html?.children.length || 0,
+        bodyHTML: body?.innerHTML?.substring(0, 100) || 'empty'
+      });
 
       if (body && body.children.length > 0) {
         // 如果body有子元素，构建完整的DOM树
         const tree = buildDOMTree(body);
         setDomTree([tree]);
+        console.log('DOM树构建成功，节点数:', tree.children.length);
+      } else if (html && html.children.length > 0) {
+        // 尝试从html根元素开始构建
+        const tree = buildDOMTree(html);
+        setDomTree([tree]);
+        console.log('从HTML根元素构建DOM树');
       } else {
+        console.log('iframe内容为空，等待加载...');
         // 如果body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
-        }, 500);
+        }, 1000);
       }
+    } catch (error) {
+      console.error('读取iframe内容时出错:', error);
     }
   };
 
@@ -98,7 +128,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe) {
       const handleLoad = () => {
-        // iframe加载完成后，再次延迟获取DOM树
+        // iframe���载完成后，再次延迟获取DOM树
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 200);
@@ -266,7 +296,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟点击事件来触发父组件的选择
+    // 模拟点击事件���触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
