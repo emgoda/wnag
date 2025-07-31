@@ -31,7 +31,7 @@ const ItemTypes = {
 
 // 基础组件库
 const basicComponents = [
-  { id: 'text', type: 'text', label: '文本', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
+  { id: 'text', type: 'text', label: '文��', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -329,7 +329,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">��拽组件到������</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">��拽组件到这���</div>}
           </div>
         );
       
@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激活第一个页面
+        // 如果删除的是当前活跃页面，激���第一个页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -951,7 +951,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       height: htmlElement.style.height || computedStyle.height,
     };
 
-    // 根据���签类型创建对应组件
+    // 根据标签类型创建对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1459,7 +1459,24 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       };
 
       setPages(prev => [...prev, newPage]);
-      alert(`SingleFile页面��入成功！${imageCount > 0 ? `\n包含 ${imageCount} 张图片` : ''}`);
+
+      // 详细的导入结果提示
+      let message = 'SingleFile页面导入成功！';
+      if (imageCount > 0) {
+        message += `\n图片导入情况：`;
+        message += `\n- 总图片数量: ${imageCount}`;
+        message += `\n- Base64内嵌图片: ${base64ImageCount}`;
+        if (base64ImageCount > 0) {
+          message += `\n✅ Base64图��已成功导入`;
+        }
+        if (imageCount > base64ImageCount) {
+          message += `\n⚠️ ${imageCount - base64ImageCount} 张外部链接图片可能需要检查`;
+        }
+      } else {
+        message += `\n页面中未检测到图片元素`;
+      }
+
+      alert(message);
       setShowImportPage(false);
 
       // 自动切换到新导入的页面
@@ -1580,7 +1597,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         };
 
       case 'img':
-        // 处理SingleFile中的base64编码图片
+        // 处理SingleFile中的base64编码图���
         let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || htmlElement.getAttribute('data-src');
 
         // 调试信息
@@ -2281,7 +2298,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个���件同时���入（按住Ctrl/Cmd键选择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -2540,7 +2557,7 @@ function increment() {
                     )}
                     {importType === 'project' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持导入完整的项目结构配���，自动创建多个页面：</p>
+                        <p className="mb-2">支持导入完整的项目结��配���，自动创建多个页面：</p>
                         <pre className="whitespace-pre-wrap">
 {`{
   "projectName": "我的React项目",
@@ -3005,7 +3022,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
   // 处理添加自定义组件
   const handleAddCustomComponent = () => {
     if (!newComponentName.trim()) {
-      alert('请输入组件名称');
+      alert('请输入��件名称');
       return;
     }
 
@@ -3551,7 +3568,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">提交按钮文本</Label>
+                  <Label className="text-xs">���交按钮文本</Label>
                   <Input
                     value={selectedElement.submitButton || ''}
                     onChange={(e) => handlePropertyChange('submitButton', e.target.value)}
@@ -3632,7 +3649,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
           </TabsContent>
           
           <TabsContent value="style" className="space-y-4 mt-4">
-            {/* 布局 */}
+            {/* 布�� */}
             <div className="space-y-3">
               <Label className="text-xs font-medium">布局</Label>
               <div className="grid grid-cols-2 gap-2">
@@ -3690,7 +3707,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">文字颜色</Label>
+                  <Label className="text-xs text-gray-600">文��颜色</Label>
                   <Input
                     type="color"
                     value={selectedElement.style?.color || '#000000'}
@@ -4294,7 +4311,7 @@ export function WebEditor() {
               </div>
             ) : savedProjects.length === 0 ? (
               <div className="text-center py-8">
-                <div className="text-gray-500 mb-4">暂无保存的项目</div>
+                <div className="text-gray-500 mb-4">���无保存的项目</div>
                 <Button onClick={newProject}>
                   <Plus className="w-4 h-4 mr-2" />
                   创建第一个项目
