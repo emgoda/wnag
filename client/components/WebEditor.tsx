@@ -847,7 +847,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     event.target.value = '';
   };
 
-  // 读取文件为文本
+  // 读取文��为文本
   const readFileAsText = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -1492,7 +1492,31 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       // 自动切换到新导入的页面
       setTimeout(() => {
-        handleSwitchPage(newPage.id);
+        // 保存当前页面的元素
+        if (elements.length > 0) {
+          const currentActivePage = pages.find(p => p.isActive);
+          if (currentActivePage) {
+            setPages(prev => prev.map(p =>
+              p.id === currentActivePage.id
+                ? { ...p, elements: elements }
+                : p
+            ));
+          }
+        }
+
+        // 切换到新页面
+        setPages(prev => prev.map(p => ({...p, isActive: p.id === newPage.id})));
+
+        // 加载新页面的元素
+        if (newPage.elements) {
+          setElements(newPage.elements);
+        } else {
+          setElements([]);
+        }
+
+        // 清除选中状态
+        setSelectedElement(null);
+        setSelectedPath([]);
       }, 100);
 
     } catch (error) {
@@ -2004,7 +2028,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     ];
   };
 
-  // 生成组件页面元素
+  // ��成组件页面元素
   const generateComponentPageElements = (componentName) => {
     return [
       {
@@ -2358,7 +2382,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键���择）
                     </div>
                   </div>
 
@@ -3340,7 +3364,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
       <div className="w-80 bg-white border-l p-4 overflow-y-auto">
         <div className="text-center text-gray-400 py-8">
           <Settings size={48} className="mx-auto mb-4 opacity-50" />
-          <p className="text-sm">选择一个组��来编辑属性</p>
+          <p className="text-sm">选择一个�����来编辑属性</p>
         </div>
       </div>
     );
@@ -3510,7 +3534,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">手机号标签</Label>
+                  <Label className="text-xs">手机��标签</Label>
                   <Input
                     value={selectedElement.phoneLabel || ''}
                     onChange={(e) => handlePropertyChange('phoneLabel', e.target.value)}
