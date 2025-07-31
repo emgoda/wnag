@@ -37,7 +37,7 @@ const basicComponents = [
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
-  { id: 'link', type: 'link', label: '���接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
+  { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
   { id: 'divider', type: 'divider', label: '分割���', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
 ];
 
@@ -373,7 +373,7 @@ function CanvasElement({
                 isSelected={false}
                 path={[...path, index]}
               />
-            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组���到这里</div>}
+            )) || <div className="text-gray-400 text-center py-8 text-sm">拖拽组�����到这里</div>}
           </div>
         );
       
@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激����第一���页面
+        // 如果删除的是当前活跃页面，激���第一����页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -1144,7 +1144,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         handleImportSingleFile(importContent);
       }
     } catch (error) {
-      alert('导入失����：' + error.message);
+      alert('导入失���：' + error.message);
     }
   };
 
@@ -1903,7 +1903,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       });
     }
 
-    // ���理其他样式声明
+    // 处理其他���式声明
     const declarations = processedCss.split(';');
 
     for (const decl of declarations) {
@@ -2003,7 +2003,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
               route: `/${componentConfig.name?.toLowerCase() || 'component'}`,
               isActive: false,
               title: `${componentConfig.name}组件`,
-              description: `${componentConfig.name}组件展示��面`,
+              description: `${componentConfig.name}组件展示页面`,
               keywords: 'component, ' + componentConfig.name?.toLowerCase(),
               sourceFile: `client/components/${componentConfig.file}`,
               projectStructure: true,
@@ -2665,7 +2665,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原��JavaScript和CSS代码，会����动解析为页面元素：</p>
+                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解��为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -2861,7 +2861,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按住Ctrl/Cmd键选择��个文件）
+                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件��
                       </p>
                     </div>
                   </div>
@@ -3097,7 +3097,7 @@ function ElementTreeView({ elements, selectedElement, onSelectElement }) {
       <div className="flex-1 overflow-y-auto p-2">
         {elements.length === 0 ? (
           <div className="text-center text-gray-400 py-8 text-xs">
-            暂无元��
+            暂无元素
           </div>
         ) : (
           <div className="space-y-0.5">
@@ -3461,7 +3461,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <Tabs defaultValue="content" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="content" className="text-xs">内容</TabsTrigger>
-            <TabsTrigger value="style" className="text-xs">样��</TabsTrigger>
+            <TabsTrigger value="style" className="text-xs">样式</TabsTrigger>
             <TabsTrigger value="advanced" className="text-xs">高级</TabsTrigger>
           </TabsList>
           
@@ -3712,7 +3712,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">���交按钮文���</Label>
+                  <Label className="text-xs">���交按钮文本</Label>
                   <Input
                     value={selectedElement.submitButton || ''}
                     onChange={(e) => handlePropertyChange('submitButton', e.target.value)}
@@ -3823,7 +3823,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               <Label className="text-xs font-medium">文字</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <Label className="text-xs text-gray-600">字体�����</Label>
+                  <Label className="text-xs text-gray-600">字体大��</Label>
                   <Input
                     value={selectedElement.style?.fontSize || ''}
                     onChange={(e) => handleStyleChange('fontSize', e.target.value)}
@@ -4215,7 +4215,7 @@ export function WebEditor() {
         throw new Error('保存�����失败，无法发布');
       }
 
-      // ���布项目
+      // 发布项目
       const publishResponse = await fetch('/api/page/publish', {
         method: 'POST',
         headers: {
@@ -4304,7 +4304,7 @@ export function WebEditor() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="h-screen flex flex-col bg-gray-50">
-        {/* 顶部工具栏 */}
+        {/* ��部工具栏 */}
         <div className="bg-white border-b px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Input
@@ -4389,7 +4389,7 @@ export function WebEditor() {
                   });
                 });
 
-                alert(`调试信息已输出���控制台\n图片元素: ${imageElements.length}个`);
+                alert(`调试信息已输出到控制台\n���片元素: ${imageElements.length}个`);
               }}
             >
               🐛调试
