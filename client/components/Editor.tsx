@@ -103,7 +103,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
 
   // 格式化HTML代码
   const formatHTML = (html: string) => {
-    // 简单的HTML格式化
+    // 简单���HTML格式化
     return html
       .replace(/></g, '>\n<')
       .replace(/\n\s*\n/g, '\n')
@@ -231,8 +231,8 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
             </div>
           </TabsContent>
 
-          <TabsContent value="preview" className="flex-1 mx-4 mb-4">
-            <div 
+          <TabsContent value="preview" className="flex-1 mx-4 mb-4 relative">
+            <div
               className="h-full border rounded-lg bg-gray-100 flex items-center justify-center overflow-auto"
               style={{ minHeight: 'calc(100vh - 200px)' }}
             >
@@ -253,6 +253,14 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
                 />
               </div>
             </div>
+
+            {/* 元素编辑器 - 只在预览模式且开启元素编辑时显示 */}
+            {elementEditMode && (
+              <ElementEditor
+                iframeRef={iframeRef}
+                onContentChange={onChange}
+              />
+            )}
           </TabsContent>
         </Tabs>
       </div>
