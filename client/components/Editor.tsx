@@ -8,6 +8,7 @@ import {
   Maximize, Minimize, Copy, CheckCircle, MousePointer
 } from 'lucide-react';
 import ElementEditor from './ElementEditor';
+import ElementInserter from './ElementInserter';
 
 interface EditorProps {
   content: string;
@@ -103,7 +104,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
 
   // 格式化HTML代码
   const formatHTML = (html: string) => {
-    // 简单���HTML格式化
+    // 简单的HTML格式化
     return html
       .replace(/></g, '>\n<')
       .replace(/\n\s*\n/g, '\n')
