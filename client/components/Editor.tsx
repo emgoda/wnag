@@ -17,7 +17,6 @@ interface EditorProps {
 export default function Editor({ content, onChange, pageName, onElementSelect }: EditorProps) {
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [elementEditMode, setElementEditMode] = useState(true); // 默认开启编辑模式
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // 设备尺寸
