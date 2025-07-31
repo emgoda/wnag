@@ -776,14 +776,42 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         {/* DOM树区域 */}
         <div className="border-t bg-gray-50">
           <div className="p-3 border-b bg-white">
-            <h4 className="font-medium text-sm flex items-center gap-2">
-              <Code className="w-4 h-4" />
-              DOM 树
-            </h4>
+            <div className="flex items-center justify-between">
+              <h4 className="font-medium text-sm flex items-center gap-2">
+                <Code className="w-4 h-4" />
+                DOM 树
+              </h4>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  console.log('手动刷新DOM树');
+                  getDOMTreeFromIframe();
+                }}
+                className="h-6 px-2 text-xs"
+              >
+                刷新
+              </Button>
+            </div>
+            {domTree.length === 0 && (
+              <p className="text-xs text-gray-500 mt-2">
+                正在加载DOM结构... 点击"刷新"重试
+              </p>
+            )}
           </div>
           <ScrollArea className="h-64">
             <div className="p-2">
-              {domTree.map(node => renderDOMNode(node))}
+              {domTree.length > 0 ? (
+                domTree.map(node => renderDOMNode(node))
+              ) : (
+                <div className="text-center text-gray-500 py-8">
+                  <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-xs">DOM树为空</p>
+                  <p className="text-xs text-gray-400">
+                    请点击"刷新"按钮重新加载
+                  </p>
+                </div>
+              )}
             </div>
           </ScrollArea>
         </div>
