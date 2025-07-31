@@ -790,9 +790,14 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
             importedCount++;
           }
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
-          // HTML文件导入
-          handleImportFromHTML(content, file.name);
-          processedFiles.push(`${file.name} (HTML页面)`);
+          // HTML文件导入 - 检测是否为SingleFile格式
+          if (isSingleFileFormat(content)) {
+            handleImportSingleFile(content);
+            processedFiles.push(`${file.name} (SingleFile页面)`);
+          } else {
+            handleImportFromHTML(content, file.name);
+            processedFiles.push(`${file.name} (HTML页面)`);
+          }
           importedCount++;
         } else if (file.name.endsWith('.jsx') || file.name.endsWith('.tsx')) {
           // React组件文件
@@ -1167,7 +1172,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 导入Angular组件
+  // 导���Angular组件
   const handleImportAngularComponent = (content) => {
     try {
       const componentName = extractComponentName(content, 'angular');
@@ -2185,7 +2190,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
-                        <SelectItem value="project">项目结构配置</SelectItem>
+                        <SelectItem value="project">项目结构���置</SelectItem>
                         <SelectItem value="singlefile">SingleFile格式</SelectItem>
                       </SelectContent>
                     </Select>
@@ -3092,7 +3097,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   <li>• 使用标准的React函数组件格式</li>
                   <li>• 组件应该导出为默认导出 (export default)</li>
                   <li>• 可以使用props来接收参数</li>
-                  <li>• 建议使用Tailwind CSS进行样式设计</li>
+                  <li>• 建议使用Tailwind CSS进行��式设计</li>
                   <li>• 避免使用外部依赖库</li>
                 </ul>
               </div>
@@ -3473,7 +3478,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     <SelectContent>
                       <SelectItem value="text-red-600">红色 (text-red-600)</SelectItem>
                       <SelectItem value="text-orange-600">橙色 (text-orange-600)</SelectItem>
-                      <SelectItem value="text-yellow-600">黄色 (text-yellow-600)</SelectItem>
+                      <SelectItem value="text-yellow-600">���色 (text-yellow-600)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
