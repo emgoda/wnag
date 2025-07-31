@@ -217,7 +217,7 @@ function CanvasElement({
       if (monitor.didDrop()) return;
       
       if (item.component) {
-        // 添加新组件到当前元素
+        // ��加新组件到当前元素
         const newElement = {
           id: `element_${Date.now()}`,
           type: item.component.type,
@@ -790,7 +790,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
             importedCount++;
           }
         } else if (file.type === 'text/html' || file.name.endsWith('.html')) {
-          // HTML文件导入 - 检测是否为SingleFile格式
+          // HTML文件导入 - 检��是否为SingleFile格式
           if (isSingleFileFormat(content)) {
             handleImportSingleFile(content);
             processedFiles.push(`${file.name} (SingleFile页面)`);
@@ -1047,7 +1047,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 从文本内容导入
   const handleImportFromText = () => {
     if (!importContent.trim()) {
-      alert('请输入��导入的内容');
+      alert('请输入���导入的内容');
       return;
     }
 
@@ -1486,7 +1486,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       if (element) elements.push(element);
     });
 
-    // 如果没有解析到任何内容，添加默认内容
+    // 如果没有解析到任何内容，添加��认内容
     if (elements.length <= 1) {
       elements.push({
         id: `element_${Date.now()}_default`,
@@ -1565,21 +1565,44 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       case 'img':
         // 处理SingleFile中的base64编码图片
-        let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || 'https://via.placeholder.com/300x200';
+        let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || htmlElement.getAttribute('data-src');
+
+        // 调试信息
+        console.log('处理图片元素:', {
+          tagName: htmlElement.tagName,
+          src: htmlElement.src,
+          srcAttribute: htmlElement.getAttribute('src'),
+          dataSrc: htmlElement.getAttribute('data-src'),
+          hasDataUrl: imageSrc?.startsWith('data:image/'),
+          srcLength: imageSrc?.length
+        });
+
+        // 如果没有找到有效的src，检查其他可能的属性
+        if (!imageSrc) {
+          const possibleSrcAttrs = ['data-original-src', 'data-lazy-src', 'data-srcset'];
+          for (const attr of possibleSrcAttrs) {
+            const attrValue = htmlElement.getAttribute(attr);
+            if (attrValue && (attrValue.startsWith('data:image/') || attrValue.startsWith('http'))) {
+              imageSrc = attrValue;
+              break;
+            }
+          }
+        }
 
         // 检查是否是data URL（base64编码的图片）
-        if (imageSrc.startsWith('data:image/')) {
+        if (imageSrc && imageSrc.startsWith('data:image/')) {
           // 保持原始的data URL
-          imageSrc = imageSrc;
-        } else if (imageSrc.startsWith('blob:')) {
+          console.log('找到base64图片，长度:', imageSrc.length);
+        } else if (imageSrc && imageSrc.startsWith('blob:')) {
           // 对于blob URL，尝试获取原始src属性
           const originalSrc = htmlElement.getAttribute('data-original-src') ||
                             htmlElement.getAttribute('data-src') ||
                             imageSrc;
           imageSrc = originalSrc;
-        } else if (!imageSrc.startsWith('http') && !imageSrc.startsWith('/')) {
-          // 对于相对路径，使用占位符
-          imageSrc = 'https://via.placeholder.com/300x200?text=图片无法显示';
+        } else if (!imageSrc || (!imageSrc.startsWith('http') && !imageSrc.startsWith('/') && !imageSrc.startsWith('data:'))) {
+          // 对于无效src，使用占位符
+          imageSrc = 'https://via.placeholder.com/300x200?text=图片导入失败';
+          console.log('图片src无效，使用占位符');
         }
 
         return {
@@ -2629,7 +2652,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
-                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
+                    ���于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
@@ -2998,7 +3021,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组��，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -3152,7 +3175,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <div>
                   <h3 className="font-medium text-yellow-900 mb-2">开发者功能</h3>
                   <p className="text-yellow-800 text-sm">
-                    此功能用于添加自定义React组件。需要重新编译才能在画布中使用。
+                    此功能用于添加自定义React组件。��要重新编译才能在画布中使用。
                   </p>
                 </div>
               </div>
@@ -3536,7 +3559,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">按钮颜色 (Tailwind CSS类)</Label>
+                  <Label className="text-xs">��钮颜色 (Tailwind CSS类)</Label>
                   <Select
                     value={selectedElement.buttonColor || 'bg-blue-600'}
                     onValueChange={(value) => handlePropertyChange('buttonColor', value)}
