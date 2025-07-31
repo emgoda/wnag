@@ -383,7 +383,7 @@ export default function WebEditor() {
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
                             <SelectItem value="landing">落地页</SelectItem>
-                            <SelectItem value="about">���于页面</SelectItem>
+                            <SelectItem value="about">关于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
                             <SelectItem value="blog">博客页面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
@@ -605,21 +605,49 @@ export default function WebEditor() {
           </Tabs>
         </div>
 
-        {/* 中间编辑器 */}
+        {/* 中间编辑器区域 */}
         <div className="flex-1 flex flex-col">
-          {selectedPage ? (
-            <Editor
-              key={selectedPageId}
-              content={selectedPage.content}
-              onChange={handleContentChange}
-              pageName={selectedPage.name}
-              onElementSelect={setSelectedElement}
-            />
-          ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-gray-500">请选择一个页面进行编辑</p>
+          {/* 源码编辑器（可切换显示） */}
+          {showCodeEditor && selectedPage && (
+            <div className="h-64 border-b bg-white">
+              <div className="h-full flex flex-col">
+                <div className="flex items-center justify-between px-3 py-2 border-b bg-gray-50">
+                  <span className="text-sm text-gray-600 font-medium">HTML源码编辑</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowCodeEditor(false)}
+                    className="text-xs"
+                  >
+                    ×
+                  </Button>
+                </div>
+                <Textarea
+                  value={selectedPage.content}
+                  onChange={(e) => handleContentChange(e.target.value)}
+                  className="flex-1 resize-none border-none rounded-none font-mono text-sm"
+                  placeholder="在此编辑HTML源码..."
+                />
+              </div>
             </div>
           )}
+
+          {/* 页面编辑器 */}
+          <div className="flex-1">
+            {selectedPage ? (
+              <Editor
+                key={selectedPageId}
+                content={selectedPage.content}
+                onChange={handleContentChange}
+                pageName={selectedPage.name}
+                onElementSelect={setSelectedElement}
+              />
+            ) : (
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-gray-500">请选择一个页面进行编辑</p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* 右侧属性编辑面板 */}
@@ -638,7 +666,7 @@ export default function WebEditor() {
           {editingPage && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="edit-name">页面名称</Label>
+                <Label htmlFor="edit-name">��面名称</Label>
                 <Input
                   id="edit-name"
                   value={editingPage.name}
