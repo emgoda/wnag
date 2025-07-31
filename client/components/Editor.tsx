@@ -14,6 +14,7 @@ interface EditorProps {
   content: string;
   onChange: (content: string) => void;
   pageName: string;
+  onElementSelect?: (element: HTMLElement | null) => void;
 }
 
 export default function Editor({ content, onChange, pageName }: EditorProps) {
