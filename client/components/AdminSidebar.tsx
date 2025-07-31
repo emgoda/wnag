@@ -17,7 +17,7 @@ const menuItems = [
   { id: "web-creation", label: "网页制作", icon: Code, path: "/web-creation" },
   { id: "data", label: "数据访问", icon: Database, path: "/data-access" },
   { id: "tasks", label: "所有任务", icon: CheckSquare, path: "/tasks", hasSubmenu: true },
-  { id: "settings", label: "��统设置", icon: Settings, path: "/settings" },
+  { id: "settings", label: "系统设置", icon: Settings, path: "/settings" },
 ];
 
 export function AdminSidebar() {
@@ -33,7 +33,7 @@ export function AdminSidebar() {
           </div>
           <div>
             <h1 className="font-semibold text-sidebar-foreground">Admin Panel</h1>
-            <p className="text-xs text-muted-foreground">管理控制��</p>
+            <p className="text-xs text-muted-foreground">管理控制台</p>
           </div>
         </div>
       </div>
