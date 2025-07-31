@@ -6,8 +6,7 @@ import {
   CheckSquare,
   Settings,
   ChevronDown,
-  Monitor,
-  Code
+  Monitor
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +31,7 @@ export function AdminSidebar() {
           </div>
           <div>
             <h1 className="font-semibold text-sidebar-foreground">Admin Panel</h1>
-            <p className="text-xs text-muted-foreground">管理控制台</p>
+            <p className="text-xs text-muted-foreground">管理控制��</p>
           </div>
         </div>
       </div>
