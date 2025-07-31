@@ -374,7 +374,7 @@ export default function WebEditor() {
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
                             <SelectItem value="landing">落地页</SelectItem>
-                            <SelectItem value="about">关���页面</SelectItem>
+                            <SelectItem value="about">关于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
                             <SelectItem value="blog">博客页面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
@@ -596,7 +596,7 @@ export default function WebEditor() {
           </Tabs>
         </div>
 
-        {/* 右侧编辑器 */}
+        {/* 中间编辑器 */}
         <div className="flex-1 flex flex-col">
           {selectedPage ? (
             <Editor
@@ -604,13 +604,20 @@ export default function WebEditor() {
               content={selectedPage.content}
               onChange={handleContentChange}
               pageName={selectedPage.name}
+              onElementSelect={setSelectedElement}
             />
           ) : (
             <div className="flex-1 flex items-center justify-center">
-              <p className="text-gray-500">请选择一个页���进行编辑</p>
+              <p className="text-gray-500">请选择一个页面进行编辑</p>
             </div>
           )}
         </div>
+
+        {/* 右侧属性编辑面板 */}
+        <PropertyPanel
+          selectedElement={selectedElement}
+          onElementUpdate={handleElementUpdate}
+        />
       </div>
 
       {/* 编辑页面对话框 */}
