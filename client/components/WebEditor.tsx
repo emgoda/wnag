@@ -50,7 +50,7 @@ const layoutComponents = [
   { id: 'card', type: 'card', label: '卡片', icon: Square, category: 'layout', defaultProps: { style: { padding: '24px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' } } }
 ];
 
-// 表单���件
+// 表单组件
 const formComponents = [
   { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
@@ -1404,7 +1404,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 提取并处理内嵌的CSS样式
       const styles = Array.from(doc.querySelectorAll('style')).map(style => style.textContent).join('\n');
 
-      // 提取body内容，但排除script标���
+      // 提取body内容，但排除script标签
       const bodyClone = doc.body.cloneNode(true);
 
       // 移除所有script标签
@@ -1491,7 +1491,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       elements.push({
         id: `element_${Date.now()}_default`,
         type: 'text',
-        content: '页面内容已导入，但可能需要手动调整。原始页面结构较复杂，建议在属性编辑器中进一步编辑。',
+        content: '页面内容已导入，但可能需要手动调整。原始页���结构较复杂，建议在属性编辑器中进一步编辑。',
         style: { fontSize: '16px', color: '#6b7280', textAlign: 'center', padding: '20px' }
       });
     }
@@ -1520,7 +1520,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     const tagName = htmlElement.tagName.toLowerCase();
     const id = `element_${Date.now()}_${index}`;
 
-    // 获取元素的内联样式���计算样式
+    // 获取元素的内联样式和计算样式
     const inlineStyle = htmlElement.style;
     const computedStyles = extractRelevantStyles(htmlElement, styles);
 
@@ -1531,7 +1531,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       ...(inlineStyle.cssText ? parseInlineStyle(inlineStyle.cssText) : {})
     };
 
-    // 根据标签类型创建对应组件
+    // 根据标签类型创���对应组件
     switch (tagName) {
       case 'h1':
       case 'h2':
@@ -1567,7 +1567,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         // 处理SingleFile中的base64编码图片
         let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || 'https://via.placeholder.com/300x200';
 
-        // 检查是否是data URL��base64编码的图片）
+        // 检查是否是data URL（base64编码的图片）
         if (imageSrc.startsWith('data:image/')) {
           // 保持原始的data URL
           imageSrc = imageSrc;
@@ -1701,13 +1701,39 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 解析内联样式
   const parseInlineStyle = (cssText) => {
     const styles = {};
-    const declarations = cssText.split(';');
+
+    // 特殊处理包含data URL的背景图片
+    let processedCss = cssText;
+    const backgroundImageMatches = cssText.match(/background-image:\s*url\(data:image\/[^)]+\)/gi);
+
+    if (backgroundImageMatches) {
+      backgroundImageMatches.forEach(match => {
+        // 提取完整的data URL
+        const urlMatch = match.match(/url\((data:image\/[^)]+)\)/i);
+        if (urlMatch) {
+          const camelProp = 'backgroundImage';
+          styles[camelProp] = `url(${urlMatch[1]})`;
+          // 从CSS文本中移除这个声明，避免在后续处理中被错误分割
+          processedCss = processedCss.replace(match, '');
+        }
+      });
+    }
+
+    // 处理其他样式声明
+    const declarations = processedCss.split(';');
 
     for (const decl of declarations) {
-      const [prop, value] = decl.split(':');
-      if (prop && value) {
-        const camelProp = prop.trim().replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
-        styles[camelProp] = value.trim();
+      if (!decl.trim()) continue;
+
+      const colonIndex = decl.indexOf(':');
+      if (colonIndex === -1) continue;
+
+      const prop = decl.substring(0, colonIndex).trim();
+      const value = decl.substring(colonIndex + 1).trim();
+
+      if (prop && value && !prop.includes('background-image')) {
+        const camelProp = prop.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+        styles[camelProp] = value;
       }
     }
 
@@ -1725,7 +1751,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const hasBase64Images = /data:image\/[^;]+;base64,/.test(content);
       const hasInlineStyles = /<style[^>]*>[\s\S]*?<\/style>/.test(content) && content.includes('style').length > 10;
       const hasSingleFileMarkers = /single-file|data-single-file|archive\.org/.test(content);
-      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有��量内嵌资源
+      const hasLargeInlineCSS = content.includes('<style>') && content.length > 100000; // 大于100KB通常表示有大量内嵌资源
 
       // 如果满足多个条件，很可能是SingleFile格式
       const indicators = [hasBase64Images, hasInlineStyles, hasSingleFileMarkers, hasLargeInlineCSS];
@@ -1793,7 +1819,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         projectConfig.routes.forEach((route, index) => {
           const existingPage = newPages.find(p => p.route === route.path);
           if (existingPage) {
-            // 更新现有页面的路由信���
+            // 更新现有页面的路由信息
             existingPage.component = route.component;
             existingPage.meta = route.meta;
           } else {
@@ -2004,7 +2030,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </div>
         </div>
 
-        {/* 页面列表 */}
+        {/* 页面���表 */}
         {isExpanded && (
           <div className="ml-3 space-y-1">
             {pages.map(page => (
@@ -2541,7 +2567,7 @@ function increment() {
                           <h5 className="font-medium mb-2">SingleFile特点：</h5>
                           <ul className="space-y-1">
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
-                            <li>• 所���JavaScript代码内嵌在&lt;script&gt;标签中</li>
+                            <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
                             <li>• 图片等资源转为base64格式内嵌</li>
                             <li>• 完整的、自包含的HTML文件</li>
                           </ul>
@@ -2972,7 +2998,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -3346,7 +3372,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
 
-            {/* 自定义组件：账户检查��程 */}
+            {/* 自定义组件：账户检查流程 */}
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
@@ -3383,7 +3409,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     value={selectedElement.phonePlaceholder || ''}
                     onChange={(e) => handlePropertyChange('phonePlaceholder', e.target.value)}
                     className="mt-1 h-8 text-xs"
-                    placeholder="请输入手机号"
+                    placeholder="请输入手机��"
                   />
                 </div>
 
@@ -3442,7 +3468,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">继续按钮��本</Label>
+                  <Label className="text-xs">继续按钮文本</Label>
                   <Input
                     value={selectedElement.continueButton || ''}
                     onChange={(e) => handlePropertyChange('continueButton', e.target.value)}
@@ -4055,7 +4081,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('加载项目失败:', error);
-      alert('加载项目失败: ' + error.message);
+      alert('加载项目失��: ' + error.message);
     } finally {
       setIsLoading(false);
     }
