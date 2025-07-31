@@ -229,7 +229,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失败，请检查文件格式');
+      alert('导入失��，请检查文件格式');
     }
 
     // 清空文件输入
@@ -280,27 +280,35 @@ export default function WebEditor() {
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">网页制作工具</h1>
         <div className="flex items-center gap-3">
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleUndo}
             disabled={historyIndex < 0}
           >
             <Undo className="w-4 h-4 mr-2" />
             撤销
           </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleRedo}
             disabled={historyIndex >= history.length - 1}
           >
             <Redo className="w-4 h-4 mr-2" />
             重做
           </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowCodeEditor(!showCodeEditor)}
+          >
+            <Code className="w-4 h-4 mr-2" />
+            {showCodeEditor ? '关闭源码' : '源码编辑'}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleImportSingleFile}
           >
             <Upload className="w-4 h-4 mr-2" />
