@@ -54,7 +54,7 @@ const layoutComponents = [
 const formComponents = [
   { id: 'form', type: 'form', label: '����', icon: FileText, category: 'form', defaultProps: { method: 'POST', action: '', style: { padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: '#f9fafb' } } },
   { id: 'select', type: 'select', label: '下拉选择', icon: List, category: 'form', defaultProps: { options: ['选���1', '选项2', '选项3'], style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
-  { id: 'checkbox', type: 'checkbox', label: '复选框', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
+  { id: 'checkbox', type: 'checkbox', label: '复选��', icon: Square, category: 'form', defaultProps: { label: '复����选项', checked: false, style: { margin: '8px 0' } } },
   { id: 'radio', type: 'radio', label: '单��框', icon: Square, category: 'form', defaultProps: { name: 'radio-group', label: '单选框选项', style: { margin: '8px 0' } } },
   { id: 'file', type: 'file', label: '文件上传', icon: Upload, category: 'form', defaultProps: { accept: '*', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px' } } }
 ];
@@ -89,7 +89,7 @@ const customComponents = [
       phoneLabel: "手机号",
       phonePlaceholder: "请输入手机号",
       startButton: "开始查询",
-      warningText: "系统检测到该账号存在异常行为",
+      warningText: "系统检测到该���号存在异常行为",
       warningItem1: "多次登录失败",
       warningItem2: "密码输入错误超过安全阈值",
       warningItem3: "存在可疑交易记��",
@@ -1394,7 +1394,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
       const newPages = [];
 
-      // 处理 client/pages/ 目录下的页面
+      // 处理 client/pages/ 目录���的页面
       if (projectConfig.structure['client/pages/']) {
         projectConfig.structure['client/pages/'].forEach((pageConfig, index) => {
           const newPage = {
@@ -1948,6 +1948,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       {importType === 'angular' && 'Angular组件示例：'}
                       {importType === 'js' && '原生JS/CSS示例：'}
                       {importType === 'project' && '项目结构���例：'}
+                      {importType === 'singlefile' && 'SingleFile格式说明：'}
                     </h4>
                     {importType === 'json' && (
                       <pre className="text-xs text-gray-600 whitespace-pre-wrap">
@@ -2120,7 +2121,7 @@ function increment() {
                     )}
                     {importType === 'project' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持导入完整的项目结构配置，自动创建多个页面：</p>
+                        <p className="mb-2">支持导入完整的项目结构配���，自动创建多个页面：</p>
                         <pre className="whitespace-pre-wrap">
 {`{
   "projectName": "我的React项目",
@@ -2958,7 +2959,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
-                  <Label className="text-xs font-medium text-blue-600">页面标题和基本文本</Label>
+                  <Label className="text-xs font-medium text-blue-600">页面标题和基本文���</Label>
                 </div>
 
                 <div>
@@ -3354,7 +3355,7 @@ export function WebEditor() {
   const [isLoading, setIsLoading] = useState(false);
   const [showElementTree, setShowElementTree] = useState(true);
 
-  // 保存当前页面元素的函数
+  // 保存当前页面元素���函数
   const saveCurrentPageElements = useCallback(() => {
     const activePage = pages.find(p => p.isActive);
     if (activePage) {
@@ -3531,7 +3532,7 @@ export function WebEditor() {
       a.click();
       URL.revokeObjectURL(url);
 
-      alert('导出成功！已下载ZIP包');
+      alert('导出成功！已下���ZIP包');
     } catch (error) {
       console.error('���出失败:', error);
       alert(`导出失败: ${error.message}`);
@@ -3621,7 +3622,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('发布失败:', error);
-      alert(`发布失败: ${error.message}\n\n请检查网络连接或联系管理员`);
+      alert(`发布失���: ${error.message}\n\n请检查网络连接或联系管理员`);
     }
   };
 
@@ -3789,7 +3790,7 @@ export function WebEditor() {
             />
           )}
 
-          {/* 右下角元素树状图 */}
+          {/* ��下角元素树状图 */}
           {!showPreview && showElementTree && (
             <div className="absolute bottom-4 right-4 z-10">
               <ElementTreeView
