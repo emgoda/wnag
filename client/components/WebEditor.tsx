@@ -62,6 +62,7 @@ export default function WebEditor() {
   const [newPageData, setNewPageData] = useState({ name: '', route: '' });
   const [activeTab, setActiveTab] = useState('pages');
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
+  const [showCodeEditor, setShowCodeEditor] = useState(false);
 
   // 历史记录用于撤销/重做
   const [history, setHistory] = useState<string[]>([]);
@@ -229,7 +230,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失��，请检查文件格式');
+      alert('导入失败，请检查文件格式');
     }
 
     // 清空文件输入
@@ -382,7 +383,7 @@ export default function WebEditor() {
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
                             <SelectItem value="landing">落地页</SelectItem>
-                            <SelectItem value="about">关于页面</SelectItem>
+                            <SelectItem value="about">���于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
                             <SelectItem value="blog">博客页面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
