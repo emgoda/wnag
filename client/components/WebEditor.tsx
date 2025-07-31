@@ -885,7 +885,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请���保包含页面数据');
+        alert('JSON格式���正确，请���保包含页面数据');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -926,7 +926,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解析HTML元素为组件
+  // 解��HTML元素为组件
   const parseHTMLToElements = (bodyElement) => {
     const elements = [];
 
@@ -990,12 +990,31 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         };
 
       case 'img':
+        // 处理各种图片源
+        let imageSrc = htmlElement.src || htmlElement.getAttribute('src');
+
+        // 如果没有src或者是无效的src，尝试其他属性
+        if (!imageSrc || imageSrc === window.location.href) {
+          imageSrc = htmlElement.getAttribute('data-src') ||
+                    htmlElement.getAttribute('data-original-src') ||
+                    'https://via.placeholder.com/300x200?text=图片';
+        }
+
+        console.log('解析图片元素:', {
+          tagName: htmlElement.tagName,
+          src: htmlElement.src,
+          getAttribute_src: htmlElement.getAttribute('src'),
+          finalSrc: imageSrc,
+          isBase64: imageSrc?.startsWith('data:image/'),
+          alt: htmlElement.alt
+        });
+
         return {
           id,
           type: 'image',
-          src: htmlElement.src,
-          alt: htmlElement.alt,
-          style
+          src: imageSrc,
+          alt: htmlElement.alt || htmlElement.getAttribute('alt') || '图片',
+          style: { ...style, maxWidth: '100%', height: 'auto' }
         };
 
       case 'a':
@@ -1476,7 +1495,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           message += `\n✅ Base64图��已成功导入`;
         }
         if (imageCount > base64ImageCount) {
-          message += `\n⚠️ ${imageCount - base64ImageCount} 张外部链接图片可能需要检查`;
+          message += `\n⚠️ ${imageCount - base64ImageCount} 张外部��接图片可能需要检查`;
         }
       } else {
         message += `\n页面中未检测到图片元素`;
@@ -2318,7 +2337,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                 />
               </div>
               <div>
-                <Label className="text-sm">关键词 (SEO)</Label>
+                <Label className="text-sm">��键词 (SEO)</Label>
                 <Input
                   value={selectedPageForSettings.keywords || ''}
                   onChange={(e) => setSelectedPageForSettings({
@@ -2489,7 +2508,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
                           <li>• button → 按��组件</li>
-                          <li>• img → 图片组件</li>
+                          <li>• img → ��片组件</li>
                           <li>• a → 链接组件</li>
                           <li>• input, textarea → 表��组件</li>
                           <li>• div → 容器组件</li>
@@ -2697,7 +2716,7 @@ function increment() {
                     )}
                     {importType === 'singlefile' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">SingleFile是将完整网页保存为单个HTML文件的格式，包含所有资源：</p>
+                        <p className="mb-2">SingleFile是将完整网页保存为单��HTML文件的格式，包含所有资源：</p>
                         <div className="bg-gray-100 p-3 rounded mb-3">
                           <h5 className="font-medium mb-2">SingleFile特点：</h5>
                           <ul className="space-y-1">
@@ -3111,7 +3130,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     }
 
     try {
-      // 这里可以添加代��验证逻辑
+      // 这里可以��加代��验证逻辑
       // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
@@ -3147,7 +3166,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     { id: 'basic', label: '基础组件', icon: Type },
     { id: 'layout', label: '布局容器', icon: Layout },
     { id: 'form', label: '表单控件', icon: FileText },
-    { id: 'media', label: '媒体元素', icon: Image },
+    { id: 'media', label: '媒��元素', icon: Image },
     { id: 'icon', label: '图标���件', icon: Star },
     { id: 'custom', label: '自定义组件', icon: Shield }
   ];
@@ -3299,7 +3318,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <Input
                   value={newComponentName}
                   onChange={(e) => setNewComponentName(e.target.value)}
-                  placeholder="例如：我的按钮组件"
+                  placeholder="例如：我的按钮���件"
                   className="mt-2"
                 />
               </div>
@@ -3559,7 +3578,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div className="border-b pb-2 mt-4">
-                  <Label className="text-xs font-medium text-red-600">第二步：异常警告</Label>
+                  <Label className="text-xs font-medium text-red-600">第二步��异常警告</Label>
                 </div>
 
                 <div>
@@ -4197,7 +4216,7 @@ export function WebEditor() {
     }
   };
 
-  // ��载指定项目
+  // ����载指定项目
   const loadProject = async (projectId) => {
     try {
       setIsLoading(true);
