@@ -29,7 +29,7 @@ interface ElementEditorProps {
   onElementSelect?: (element: HTMLElement | null) => void;
 }
 
-export default function ElementEditor({ iframeRef, onContentChange }: ElementEditorProps) {
+export default function ElementEditor({ iframeRef, onContentChange, onElementSelect }: ElementEditorProps) {
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [editMode, setEditMode] = useState(false);
