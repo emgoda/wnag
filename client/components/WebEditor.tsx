@@ -33,7 +33,7 @@ const ItemTypes = {
 const basicComponents = [
   { id: 'text', type: 'text', label: '文��', icon: Type, category: 'basic', defaultProps: { content: '文本内���', style: { fontSize: '16px', color: '#333' } } },
   { id: 'heading', type: 'heading', label: '标题', icon: Type, category: 'basic', defaultProps: { content: '页面标题', level: 'h1', style: { fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a' } } },
-  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点���按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
+  { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
   { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
@@ -603,7 +603,7 @@ function Canvas({
   return (
     <div className="flex-1 bg-gray-100 p-6">
       <div className="bg-white rounded-lg shadow-lg border overflow-hidden">
-        {/* 浏览器顶��� */}
+        {/* 浏览器顶���� */}
         <div className="bg-gray-50 border-b p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -1383,7 +1383,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'JavaScript代���已导入，请手动��辑内容',
+        content: 'JavaScript代���已导入，请手�����辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1494,7 +1494,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
-    // 首先添加样式信息作为说明
+    // 首先��加样式信息作为说明
     if (styles.trim()) {
       elements.push({
         id: `element_${Date.now()}_styles`,
@@ -1575,7 +1575,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         return {
           id,
           type: 'heading',
-          content: htmlElement.textContent || '标题',
+          content: htmlElement.textContent || '���题',
           level: tagName,
           style: { ...style, fontWeight: 'bold' }
         };
@@ -3032,7 +3032,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     }
 
     try {
-      // 这里可以添加代��验��逻辑
+      // 这里可以添加代��验证逻辑
       // 暂时简��处理，创建一个基础的自定义组件
       const newComponent = {
         id: `custom-${Date.now()}`,
@@ -3135,7 +3135,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                   }
                 }}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title={expandedCategories.size === categories.length ? "��起��部" : "展开全部"}
+                title={expandedCategories.size === categories.length ? "收起��部" : "展开全部"}
               >
                 {expandedCategories.size === categories.length ? (
                   <Minus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
@@ -3986,7 +3986,7 @@ export function WebEditor() {
       const saveResult = await saveResponse.json();
 
       if (!saveResult.success) {
-        throw new Error('保存项目��败，无法导����');
+        throw new Error('保存项目��败，无法导���');
       }
 
       // 使用项目ID导出ZIP包
@@ -4043,7 +4043,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入����站名称');
+      alert('请输入�����站名称');
       return;
     }
 
@@ -4221,6 +4221,35 @@ export function WebEditor() {
               <Globe className="w-4 h-4 mr-2" />
               {isLoading ? '发布中...' : '发布'}
             </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                console.log('=== 当前页面调试信息 ===');
+                console.log('页面总数:', pages.length);
+                console.log('当前活跃页面:', pages.find(p => p.isActive));
+                console.log('当前元素数量:', elements.length);
+
+                const imageElements = elements.filter(el => el.type === 'image');
+                console.log('图片元素数量:', imageElements.length);
+
+                imageElements.forEach((img, index) => {
+                  console.log(`图片 ${index + 1}:`, {
+                    id: img.id,
+                    type: img.type,
+                    src: img.src ? img.src.substring(0, 100) + '...' : '无src',
+                    alt: img.alt,
+                    isBase64: img.src?.startsWith('data:image/'),
+                    srcLength: img.src?.length,
+                    style: img.style
+                  });
+                });
+
+                alert(`调试信息已输出到控制台\n图片元素: ${imageElements.length}个`);
+              }}
+            >
+              🐛调试
+            </Button>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 rounded text-sm">
           <span className="text-gray-600">元素:</span>
@@ -4319,7 +4348,7 @@ export function WebEditor() {
                 <div className="text-gray-500 mb-4">���无保存的项目</div>
                 <Button onClick={newProject}>
                   <Plus className="w-4 h-4 mr-2" />
-                  创建第一��项目
+                  创建第一个项目
                 </Button>
               </div>
             ) : (
