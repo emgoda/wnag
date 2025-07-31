@@ -34,7 +34,7 @@ export default function ElementEditor({ iframeRef, onContentChange, onElementSel
   const [isVisible, setIsVisible] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  // 初始化元素选择功能
+  // 初��化元素选择功能
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
@@ -126,6 +126,11 @@ export default function ElementEditor({ iframeRef, onContentChange, onElementSel
 
     setSelectedElement(selectedData);
     setIsVisible(true);
+
+    // 通知父组件元素选择变化
+    if (onElementSelect) {
+      onElementSelect(element);
+    }
   };
 
   // 清除选择
