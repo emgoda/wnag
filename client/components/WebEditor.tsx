@@ -13,6 +13,7 @@ import {
   FileText, Globe, Download, Settings, Monitor, Copy
 } from 'lucide-react';
 import Editor from './Editor';
+import PropertyPanel from './PropertyPanel';
 
 interface Page {
   id: string;
@@ -324,7 +325,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>��增页面</DialogTitle>
+                      <DialogTitle>新增页面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
