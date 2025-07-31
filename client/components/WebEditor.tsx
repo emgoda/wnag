@@ -183,7 +183,7 @@ export default function WebEditor() {
     }
   };
 
-  // 重��
+  // 重做
   const handleRedo = () => {
     if (historyIndex < history.length - 1) {
       setHistoryIndex(prev => prev + 1);
@@ -401,6 +401,139 @@ export default function WebEditor() {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="elements" className="flex-1 px-4 pb-4">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-medium">HTML元素库</h3>
+                  <Badge variant="outline">拖拽或复制</Badge>
+                </div>
+
+                <div className="space-y-3">
+                  {/* 基础元素 */}
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">基础元素</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;h1&gt;</div>
+                          <div className="text-gray-600">标题</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;p&gt;</div>
+                          <div className="text-gray-600">段落</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;a&gt;</div>
+                          <div className="text-gray-600">链接</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;img&gt;</div>
+                          <div className="text-gray-600">图片</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;button&gt;</div>
+                          <div className="text-gray-600">按钮</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;input&gt;</div>
+                          <div className="text-gray-600">输入框</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* 布局元素 */}
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">布局元素</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;div&gt;</div>
+                          <div className="text-gray-600">容器</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;nav&gt;</div>
+                          <div className="text-gray-600">导航</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;section&gt;</div>
+                          <div className="text-gray-600">区域</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;header&gt;</div>
+                          <div className="text-gray-600">页头</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;footer&gt;</div>
+                          <div className="text-gray-600">页脚</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;aside&gt;</div>
+                          <div className="text-gray-600">侧栏</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* 表单元素 */}
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">表单元素</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;form&gt;</div>
+                          <div className="text-gray-600">表单</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;label&gt;</div>
+                          <div className="text-gray-600">标签</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;textarea&gt;</div>
+                          <div className="text-gray-600">文本域</div>
+                        </div>
+                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                          <div className="font-mono text-blue-600">&lt;select&gt;</div>
+                          <div className="text-gray-600">下拉框</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* 代码模板 */}
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">代码模板</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        响应式网格布局
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        导航栏模板
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        卡片组件
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        联系表单
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </TabsContent>
 
