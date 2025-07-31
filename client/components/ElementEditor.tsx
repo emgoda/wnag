@@ -26,6 +26,7 @@ interface SelectedElement {
 interface ElementEditorProps {
   iframeRef: React.RefObject<HTMLIFrameElement>;
   onContentChange: (content: string) => void;
+  onElementSelect?: (element: HTMLElement | null) => void;
 }
 
 export default function ElementEditor({ iframeRef, onContentChange }: ElementEditorProps) {
@@ -89,7 +90,7 @@ export default function ElementEditor({ iframeRef, onContentChange }: ElementEdi
         }
       };
 
-      // ��定事件
+      // 绑定事件
       iframeDoc.addEventListener('mouseover', handleMouseOver);
       iframeDoc.addEventListener('mouseout', handleMouseOut);
       iframeDoc.addEventListener('click', handleClick);
