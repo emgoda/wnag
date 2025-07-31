@@ -919,7 +919,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 解析HTML结构转换为组件元素
       const elements = parseHTMLToElements(doc.body);
 
-      // 统计解析后的图片元素
+      // 统计���析后的图片元素
       const imageElements = elements.filter(el => el.type === 'image');
       console.log(`解析后创建了 ${imageElements.length} 个图片组件`);
 
@@ -960,7 +960,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         // 切换到新页面
         setPages(prev => prev.map(p => ({...p, isActive: p.id === newPage.id})));
 
-        // 加载新页面的元素
+        // 加载新页面���元素
         setElements(newPage.elements);
 
         // 清除选中状态
@@ -1222,7 +1222,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         name: componentName || 'Vue页面',
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
-        title: componentName || 'Vue页���',
+        title: componentName || 'Vue页��',
         description: `从Vue组件导���的页面`,
         keywords: 'vue, component',
         sourceCode: content,
@@ -1468,7 +1468,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const doc = parser.parseFromString(content, 'text/html');
 
       // 提取页面基本信息
-      const title = doc.querySelector('title')?.textContent || 'SingleFile导入页面';
+      const title = doc.querySelector('title')?.textContent || 'SingleFile导入页���';
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
@@ -1581,7 +1581,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     } catch (error) {
       console.error('SingleFile导入错误:', error);
-      alert('SingleFile导������败：' + error.message);
+      alert('SingleFile导入���败：' + error.message);
     }
   };
 
@@ -1618,7 +1618,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 递归查找所有img元素
     const allImages = mainContent.querySelectorAll('img');
-    console.log('在主要内容中找到的���有img元素数量:', allImages.length);
+    console.log('��主要内容中找到的���有img元素数量:', allImages.length);
     allImages.forEach((img, i) => {
       console.log(`img ${i + 1}:`, {
         tagName: img.tagName,
@@ -1924,7 +1924,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return styles;
   };
 
-  // 检测是否��SingleFile格式
+  // 检测是否为SingleFile格式
   const isSingleFileFormat = (content) => {
     try {
       console.log('开始检测SingleFile格式，内容长度:', content.length);
@@ -2768,7 +2768,7 @@ function increment() {
                           <ul className="space-y-1">
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
                             <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
-                            <li>��� 图片等资���转为base64格式内嵌</li>
+                            <li>��� 图片等资源转为base64格式内嵌</li>
                             <li>• 完整的、自包含的HTML文件</li>
                           </ul>
                         </div>
@@ -2847,7 +2847,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">手动解压ZIP文件</h5>
                       <p className="text-sm text-gray-600">
-                        在您的计算机上解��ZIP文件，然后选择单个文件进行导入
+                        ���您的计算机上解压ZIP文件，然后选择单个文件进行导入
                       </p>
                     </div>
                   </div>
@@ -3481,7 +3481,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {/* 标题级别 */}
             {selectedElement.type === 'heading' && (
               <div>
-                <Label className="text-xs">标题级���</Label>
+                <Label className="text-xs">标题级别</Label>
                 <Select
                   value={selectedElement.level || 'h1'}
                   onValueChange={(value) => handlePropertyChange('level', value)}
@@ -4092,7 +4092,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保存到���地作为备份
+        // 同时保���到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -4275,7 +4275,7 @@ export function WebEditor() {
         setElements(project.elements || []);
         setPages(project.pages || [{ id: 'home', name: '首页', route: '/', isActive: true }]);
         setShowProjectManager(false);
-        alert(`项目 "${project.siteName}" 加载成功！`);
+        alert(`项目 "${project.siteName}" 加载���功！`);
       } else {
         alert('加载项目失败: ' + result.message);
       }
