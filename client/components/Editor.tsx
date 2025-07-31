@@ -17,7 +17,7 @@ interface EditorProps {
   onElementSelect?: (element: HTMLElement | null) => void;
 }
 
-export default function Editor({ content, onChange, pageName }: EditorProps) {
+export default function Editor({ content, onChange, pageName, onElementSelect }: EditorProps) {
   const [activeTab, setActiveTab] = useState('edit');
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
