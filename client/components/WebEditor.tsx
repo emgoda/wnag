@@ -36,7 +36,7 @@ const basicComponents = [
   { id: 'button', type: 'button', label: '按钮', icon: MousePointer, category: 'basic', defaultProps: { content: '点击按钮', style: { backgroundColor: '#3b82f6', color: 'white', padding: '12px 24px', borderRadius: '6px', border: 'none' } } },
   { id: 'input', type: 'input', label: '输入框', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入内容', inputType: 'text', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '200px' } } },
   { id: 'textarea', type: 'textarea', label: '文本域', icon: Edit3, category: 'basic', defaultProps: { placeholder: '请输入多行文本', style: { padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', width: '300px', height: '80px', resize: 'vertical' } } },
-  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图片', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
+  { id: 'image', type: 'image', label: '图片', icon: Image, category: 'basic', defaultProps: { src: 'https://via.placeholder.com/300x200', alt: '图��', style: { maxWidth: '100%', height: 'auto', borderRadius: '6px' } } },
   { id: 'link', type: 'link', label: '链接', icon: Link2, category: 'basic', defaultProps: { content: '链接文本', href: '#', style: { color: '#3b82f6', textDecoration: 'underline' } } },
   { id: 'divider', type: 'divider', label: '分割���', icon: Minus, category: 'basic', defaultProps: { style: { height: '1px', backgroundColor: '#e5e7eb', margin: '20px 0', border: 'none' } } }
 ];
@@ -883,7 +883,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           isActive: false
         };
         setPages(prev => [...prev, newPage]);
-        alert('页面导入成功');
+        alert('页面导入成���');
       } else {
         alert('JSON格式不正确，请���保包含页面数据');
       }
@@ -919,7 +919,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 解析HTML结构转换为组件元素
       const elements = parseHTMLToElements(doc.body);
 
-      // 统计���析后的图片元素
+      // 统计解析后的图片元素
       const imageElements = elements.filter(el => el.type === 'image');
       console.log(`解析后创建了 ${imageElements.length} 个图片组件`);
 
@@ -960,10 +960,10 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         // 切换到新页面
         setPages(prev => prev.map(p => ({...p, isActive: p.id === newPage.id})));
 
-        // 加载新页面���元素
+        // 加载新页面的元素
         setElements(newPage.elements);
 
-        // 清除选中状态
+        // 清除选中��态
         setSelectedElement(null);
         setSelectedPath([]);
       }, 100);
@@ -1353,7 +1353,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'React组件已导���，请手动编辑内容',
+        content: 'React组件已导����，请手动编辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1468,7 +1468,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       const doc = parser.parseFromString(content, 'text/html');
 
       // 提取页面基本信息
-      const title = doc.querySelector('title')?.textContent || 'SingleFile导入页���';
+      const title = doc.querySelector('title')?.textContent || 'SingleFile导入页面';
       const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
       const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
 
@@ -1618,7 +1618,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 递归查找所有img元素
     const allImages = mainContent.querySelectorAll('img');
-    console.log('��主要内容中找到的���有img元素数量:', allImages.length);
+    console.log('在主要内容中找到的���有img元素数量:', allImages.length);
     allImages.forEach((img, i) => {
       console.log(`img ${i + 1}:`, {
         tagName: img.tagName,
@@ -1738,7 +1738,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           srcLength: imageSrc?.length
         });
 
-        // 如果没有找到有效的src，检查其他可能的属性
+        // 如果没有找到有效��src，检查其他可能的属性
         if (!imageSrc) {
           const possibleSrcAttrs = ['data-original-src', 'data-lazy-src', 'data-srcset'];
           for (const attr of possibleSrcAttrs) {
@@ -1924,7 +1924,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return styles;
   };
 
-  // 检测是否为SingleFile格式
+  // 检测���否为SingleFile格式
   const isSingleFileFormat = (content) => {
     try {
       console.log('开始检测SingleFile格式，内容长度:', content.length);
@@ -2847,7 +2847,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">手动解压ZIP文件</h5>
                       <p className="text-sm text-gray-600">
-                        ���您的计算机上解压ZIP文件，然后选择单个文件进行导入
+                        在您的计算机上解压ZIP文件，然后选择单个文件进行导入
                       </p>
                     </div>
                   </div>
@@ -2861,7 +2861,7 @@ function increment() {
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900 mb-1">批量导入多个文件</h5>
                       <p className="text-sm text-gray-600">
-                        选择多个文件同时上传（按��Ctrl/Cmd键选择多个文件）
+                        选择多个文件同时上传（按住Ctrl/Cmd键选择多个文件）
                       </p>
                     </div>
                   </div>
@@ -4047,7 +4047,7 @@ export function WebEditor() {
     setTimeout(() => {
       // 加载对应页��的元素到�������
       if (targetPage.elements && Array.isArray(targetPage.elements)) {
-        console.log('加载��面元素:', targetPage.elements);
+        console.log('加载��面元���:', targetPage.elements);
         setElements([...targetPage.elements]);
       } else {
         // 如果页面没有elements，显示空画布
@@ -4092,7 +4092,7 @@ export function WebEditor() {
       const result = await response.json();
 
       if (result.success) {
-        // 同时保���到���地作为备份
+        // 同时保存到���地作为备份
         localStorage.setItem('web_builder_project', JSON.stringify(projectData));
         alert(`项目保存成功！项目ID: ${result.data.id}`);
       } else {
@@ -4233,7 +4233,7 @@ export function WebEditor() {
       const publishResult = await publishResponse.json();
 
       if (publishResult.success) {
-        alert(`🚀 发布���功！\n\n网站���称: ${publishResult.data.siteName}\n访��地址: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
+        alert(`🚀 发布���功！\n\n网站���称: ${publishResult.data.siteName}\n访��地���: ${publishResult.data.deployUrl}\n发布时间: ${new Date(publishResult.data.publishedAt).toLocaleString('zh-CN')}`);
       } else {
         throw new Error(publishResult.message || '发布失败');
       }
@@ -4275,9 +4275,9 @@ export function WebEditor() {
         setElements(project.elements || []);
         setPages(project.pages || [{ id: 'home', name: '首页', route: '/', isActive: true }]);
         setShowProjectManager(false);
-        alert(`项目 "${project.siteName}" 加载���功！`);
+        alert(`项目 "${project.siteName}" 加载成功！`);
       } else {
-        alert('加载项目失败: ' + result.message);
+        alert('加载���目失败: ' + result.message);
       }
     } catch (error) {
       console.error('加载项目失败:', error);
