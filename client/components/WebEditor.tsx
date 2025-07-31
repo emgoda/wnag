@@ -76,7 +76,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用不同的路由');
+      alert('路由已存在，请使用���同的路由');
       return;
     }
 
@@ -183,7 +183,7 @@ export default function WebEditor() {
     }
   };
 
-  // 重做
+  // 重��
   const handleRedo = () => {
     if (historyIndex < history.length - 1) {
       setHistoryIndex(prev => prev + 1);
@@ -296,10 +296,14 @@ export default function WebEditor() {
         {/* 左侧面板 */}
         <div className="w-80 bg-white border-r flex flex-col">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
-            <TabsList className="grid w-full grid-cols-2 m-4">
+            <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="pages" className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
-                页面管理
+                页面
+              </TabsTrigger>
+              <TabsTrigger value="elements" className="flex items-center gap-2">
+                <Code className="w-4 h-4" />
+                元素库
               </TabsTrigger>
               <TabsTrigger value="settings" className="flex items-center gap-2">
                 <Settings className="w-4 h-4" />
