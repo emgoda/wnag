@@ -257,10 +257,16 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
 
             {/* 元素编辑器 - 只在预览模式且开启元素编辑时显示 */}
             {elementEditMode && (
-              <ElementEditor
-                iframeRef={iframeRef}
-                onContentChange={onChange}
-              />
+              <>
+                <ElementEditor
+                  iframeRef={iframeRef}
+                  onContentChange={onChange}
+                />
+                <ElementInserter
+                  iframeRef={iframeRef}
+                  onContentChange={onChange}
+                />
+              </>
             )}
           </TabsContent>
         </Tabs>
