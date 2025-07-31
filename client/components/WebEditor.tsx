@@ -1843,6 +1843,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 检测是否为SingleFile格式
   const isSingleFileFormat = (content) => {
     try {
+      console.log('开始检测SingleFile格式，内容长度:', content.length);
       // SingleFile的特征：
       // 1. 包含data:image/格式的base64图片
       // 2. 包含大量内嵌CSS���式
@@ -2449,7 +2450,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     )}
                     {importType === 'html' && (
                       <div className="text-xs text-gray-600">
-                        <p>支持标准HTML标签，会自动��换为对���组���：</p>
+                        <p>支持标准HTML标签，会自动��换为对����组���：</p>
                         <ul className="mt-2 space-y-1">
                           <li>• h1-h6 → 标题组件</li>
                           <li>• p → 文本组件</li>
@@ -2604,7 +2605,7 @@ function increment() {
                         <p className="mb-2">支持导入完整的项目结��配���，自动创建多个页面：</p>
                         <pre className="whitespace-pre-wrap">
 {`{
-  "projectName": "我的React项目",
+  "projectName": "我的React��目",
   "structure": {
     "client/pages/": [
       {
@@ -3063,7 +3064,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
     };
   }, []);
 
-  // 处理添加自定义组件
+  // 处理添��自定义组件
   const handleAddCustomComponent = () => {
     if (!newComponentName.trim()) {
       alert('请输入��件名称');
