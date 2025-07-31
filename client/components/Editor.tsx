@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   Code, Eye, Monitor, Tablet, Smartphone, RefreshCw,
-  Maximize, Minimize, Copy, CheckCircle
+  Maximize, Minimize, Copy, CheckCircle, MousePointer
 } from 'lucide-react';
+import ElementEditor from './ElementEditor';
 
 interface EditorProps {
   content: string;
@@ -95,7 +96,7 @@ export default function Editor({ content, onChange, pageName }: EditorProps) {
     } catch (error) {
       console.error('复制失败:', error);
       // 显示用户友好的错误提示
-      alert('复制失败，请手动选择文本复制');
+      alert('复制失败���请手动选择文本复制');
     }
   };
 
