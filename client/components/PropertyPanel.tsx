@@ -47,7 +47,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
 
-    // 只处理Element节点，跳过���本节点和注释节点
+    // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
         // 跳过script和style标签，但保留其他所有元素
@@ -119,45 +119,83 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 页面加载时和选中元素变化时更新DOM树
   useEffect(() => {
+    console.log('PropertyPanel useEffect 触发');
+
     // 延迟获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
+      console.log('开始获取DOM树...');
       getDOMTreeFromIframe();
-    }, 100);
+    }, 500);
 
-    // 监听iframe加载完成
-    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-    if (iframe) {
-      const handleLoad = () => {
-        // iframe���载完成后，再次延迟获取DOM树
-        setTimeout(() => {
+    // 查找iframe并监听
+    const findAndListenToIframe = () => {
+      const iframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+
+      if (iframe) {
+        console.log('找到iframe，设置监听器');
+
+        const handleLoad = () => {
+          console.log('iframe加载完成事件触发');
+          setTimeout(() => {
+            getDOMTreeFromIframe();
+          }, 300);
+        };
+
+        const handleContentChange = () => {
+          console.log('iframe内容变化');
           getDOMTreeFromIframe();
-        }, 200);
-      };
+        };
 
-      iframe.addEventListener('load', handleLoad);
+        iframe.addEventListener('load', handleLoad);
 
-      // 如果iframe已经加载完成，立即获取DOM树
-      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-        handleLoad();
+        // 监听iframe内容文档的变化
+        try {
+          if (iframe.contentDocument) {
+            iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
+          }
+        } catch (e) {
+          console.log('无法监听iframe内容文档:', e);
+        }
+
+        // 如果iframe已经加载完成，立即获取DOM树
+        if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+          console.log('iframe已完成加载，立即获取DOM树');
+          handleLoad();
+        }
+
+        return () => {
+          iframe.removeEventListener('load', handleLoad);
+          try {
+            if (iframe.contentDocument) {
+              iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
+            }
+          } catch (e) {
+            // 忽略清理错误
+          }
+        };
+      } else {
+        console.log('未找到iframe，1秒后重试...');
+        setTimeout(findAndListenToIframe, 1000);
       }
+    };
 
-      return () => {
-        clearTimeout(timer);
-        iframe.removeEventListener('load', handleLoad);
-      };
-    }
+    const cleanup = findAndListenToIframe();
 
-    return () => clearTimeout(timer);
-  }, [selectedElement]);
+    return () => {
+      clearTimeout(timer);
+      if (cleanup) cleanup();
+    };
+  }, []);
 
   // 监听页面内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
+      console.log('定期更新DOM树');
       getDOMTreeFromIframe();
     };
 
-    // 监听页面内容变化
-    const interval = setInterval(updateDOMTree, 2000);
+    // 更频繁地检查DOM树变化
+    const interval = setInterval(updateDOMTree, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -296,7 +334,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟点击事件���触发父组件的选择
+    // 模拟点击事件来触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -625,7 +663,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Box className="w-4 h-4" />
-                    布局样式
+                    ���局样式
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -690,7 +728,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">圆角</Label>
+                    <Label className="text-xs">圆��</Label>
                     <Input
                       value={elementData.styles['border-radius'] || ''}
                       onChange={(e) => handleStyleChange('border-radius', e.target.value)}
