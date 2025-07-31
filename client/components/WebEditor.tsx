@@ -275,7 +275,7 @@ function CanvasElement({
           <input
             {...commonProps}
             type={element.inputType || 'text'}
-            placeholder={element.placeholder || '请输入内容'}
+            placeholder={element.placeholder || '���输入内容'}
             defaultValue={element.value || ''}
             readOnly
           />
@@ -1550,11 +1550,29 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         };
 
       case 'img':
+        // 处理SingleFile中的base64编码图片
+        let imageSrc = htmlElement.src || htmlElement.getAttribute('src') || 'https://via.placeholder.com/300x200';
+
+        // 检查是否是data URL（base64编码的图片）
+        if (imageSrc.startsWith('data:image/')) {
+          // 保持原始的data URL
+          imageSrc = imageSrc;
+        } else if (imageSrc.startsWith('blob:')) {
+          // 对于blob URL，尝试获取原始src属性
+          const originalSrc = htmlElement.getAttribute('data-original-src') ||
+                            htmlElement.getAttribute('data-src') ||
+                            imageSrc;
+          imageSrc = originalSrc;
+        } else if (!imageSrc.startsWith('http') && !imageSrc.startsWith('/')) {
+          // 对于相对路径，使用占位符
+          imageSrc = 'https://via.placeholder.com/300x200?text=图片无法显示';
+        }
+
         return {
           id,
           type: 'image',
-          src: htmlElement.src || 'https://via.placeholder.com/300x200',
-          alt: htmlElement.alt || '图片',
+          src: imageSrc,
+          alt: htmlElement.alt || htmlElement.getAttribute('alt') || '图片',
           style: { ...style, maxWidth: '100%', height: 'auto' }
         };
 
@@ -1615,7 +1633,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const extractRelevantStyles = (element, styles) => {
     const extractedStyles = {};
 
-    // 基本样式映射
+    // 基本样��映射
     const styleMap = {
       color: 'color',
       'background-color': 'backgroundColor',
@@ -2180,7 +2198,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键���择）
                     </div>
                   </div>
 
@@ -2403,7 +2421,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解析为页面元素：</p>
+                        <p className="mb-2">支���原��JavaScript和CSS代码，会���动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -3962,7 +3980,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自动选择平台
+            platform: 'auto', // 自���选择平台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
