@@ -7,6 +7,10 @@ import archiver from "archiver";
 let pages: any[] = [];
 let pageIdCounter = 1;
 
+// 存储页面集合的数据结构
+let pageSites: any[] = [];
+let siteIdCounter = 1;
+
 // 保存页面 JSON 配置
 export async function handlePageSave(req: Request, res: Response) {
   try {
@@ -130,7 +134,7 @@ export async function handlePageExport(req: Request, res: Response) {
 
 1. 将所有文件上传到你的网站服务器
 2. 确保 index.html 作为首页
-3. 如需修改，可重新导入 project.json 到网页制作工具
+3. 如需修改，可重新导入 project.json 到网��制作工具
 
 生成时间: ${new Date().toLocaleString('zh-CN')}
 `;
