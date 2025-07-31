@@ -103,7 +103,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   };
 
-  // 格式化HTML代码
+  // 格��化HTML代码
   const formatHTML = (html: string) => {
     // 简单的HTML格式化
     return html
@@ -262,6 +262,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
                 <ElementEditor
                   iframeRef={iframeRef}
                   onContentChange={onChange}
+                  onElementSelect={onElementSelect}
                 />
                 <ElementInserter
                   iframeRef={iframeRef}
