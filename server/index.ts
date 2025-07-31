@@ -7,7 +7,9 @@ import {
   handlePageExport,
   handlePagePublish,
   handlePageList,
-  handlePageGet
+  handlePageGet,
+  handlePagesSave,
+  handlePagesGet
 } from "./routes/page";
 
 export function createServer() {
