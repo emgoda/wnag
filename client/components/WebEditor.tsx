@@ -1902,7 +1902,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
                   <div>
                     <Label className="text-sm">
-                      {importType === 'json' && 'JSON配置内��'}
+                      {importType === 'json' && 'JSON配��内��'}
                       {importType === 'html' && 'HTML页面代码'}
                       {importType === 'spa' && 'SPA路由配置'}
                       {importType === 'react' && 'React组件代码'}
@@ -2178,6 +2178,39 @@ function increment() {
                           • 自动配置路由映射<br/>
                           • 保持标准的React项目结构
                         </p>
+                      </div>
+                    )}
+                    {importType === 'singlefile' && (
+                      <div className="text-xs text-gray-600">
+                        <p className="mb-2">SingleFile是将完整网页保存为单个HTML文件的格式，包含所有资源：</p>
+                        <div className="bg-gray-100 p-3 rounded mb-3">
+                          <h5 className="font-medium mb-2">SingleFile特点：</h5>
+                          <ul className="space-y-1">
+                            <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
+                            <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
+                            <li>• 图片等资源转为base64格式内嵌</li>
+                            <li>• 完整的、自包含的HTML文件</li>
+                          </ul>
+                        </div>
+                        <div className="bg-blue-50 p-3 rounded mb-3">
+                          <h5 className="font-medium text-blue-900 mb-2">如何获取SingleFile：</h5>
+                          <ol className="text-blue-800 space-y-1">
+                            <li>1. 安装SingleFile浏览器扩展</li>
+                            <li>2. 在任意网页上点击扩展图标</li>
+                            <li>3. 选择"保存页面"</li>
+                            <li>4. 下载生成的.html文件</li>
+                            <li>5. 将该文件内容粘贴到此处导入</li>
+                          </ol>
+                        </div>
+                        <div className="bg-green-50 p-3 rounded">
+                          <h5 className="font-medium text-green-900 mb-2">导入效果：</h5>
+                          <ul className="text-green-800 space-y-1">
+                            <li>• 自动解析页面结构和样式</li>
+                            <li>• 提取文本内容为可编辑组件</li>
+                            <li>• 保留图片和媒体资源</li>
+                            <li>• 转换为可视化编辑格式</li>
+                          </ul>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -2884,7 +2917,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
             
-            {/* ��入框属性 */}
+            {/* ����框属性 */}
             {(['input', 'textarea'].includes(selectedElement.type)) && (
               <>
                 <div>
@@ -3243,7 +3276,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-gray-600">文字对齐</Label>
+                  <Label className="text-xs text-gray-600">文字��齐</Label>
                   <Select
                     value={selectedElement.style?.textAlign || 'left'}
                     onValueChange={(value) => handleStyleChange('textAlign', value)}
@@ -3645,7 +3678,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载指定项目
+  // ��载指定项目
   const loadProject = async (projectId) => {
     try {
       setIsLoading(true);
@@ -3814,7 +3847,7 @@ export function WebEditor() {
           </DialogHeader>
 
           <div className="space-y-4">
-            {/* 操作按钮 */}
+            {/* 操作���钮 */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Button onClick={newProject} variant="outline" size="sm">
