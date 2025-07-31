@@ -275,7 +275,7 @@ function CanvasElement({
           <input
             {...commonProps}
             type={element.inputType || 'text'}
-            placeholder={element.placeholder || '���输入内容'}
+            placeholder={element.placeholder || '请输入内容'}
             defaultValue={element.value || ''}
             readOnly
           />
@@ -868,7 +868,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           isActive: false
         }));
         setPages(prev => [...prev, ...newPages]);
-        alert(`成功导入 ${newPages.length} 个页面`);
+        alert(`成功导入 ${newPages.length} 个页���`);
       } else if (data.name && data.route) {
         // ���入单个页面
         const newPage = {
@@ -1131,7 +1131,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       alert('React组件导入成功');
       setShowImportPage(false);
 
-      // 自动切换到新导入的页面
+      // 自动切换到新导入的页��
       setTimeout(() => {
         onSwitchPage(newPage.id);
       }, 100);
@@ -1265,7 +1265,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     // 查找JSX中��HTML标签
     const jsxContent = content.match(/return\s*\(([\s\S]*?)\);/)?.[1] || content.match(/<[\s\S]*>/)?.[0] || '';
 
-    // 解��常见标签
+    // 解��常见标��
     const tagMatches = jsxContent.match(/<(\w+)[^>]*>(.*?)<\/\1>/g) || [];
 
     tagMatches.forEach((tag, index) => {
@@ -1344,7 +1344,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导���，请手动编���内容',
+        content: 'Angular组件已导���，���手动编���内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1413,6 +1413,18 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       // 移除SingleFile特有的注释和元数据
       bodyClone.querySelectorAll('[data-single-file]').forEach(el => el.remove());
 
+      // 处理图片资源 - 确保data URL被正确保留
+      const images = bodyClone.querySelectorAll('img');
+      let imageCount = 0;
+      images.forEach(img => {
+        const src = img.src || img.getAttribute('src');
+        if (src && src.startsWith('data:image/')) {
+          imageCount++;
+          // 为data URL图片添加标识，便于后续处理
+          img.setAttribute('data-base64-image', 'true');
+        }
+      });
+
       // 解析HTML结构转换为组件元素
       const elements = parseSingleFileToElements(bodyClone, styles);
 
@@ -1426,19 +1438,21 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         keywords: keywords,
         sourceType: 'singlefile',
         originalStyles: styles,
-        elements: elements
+        elements: elements,
+        imageCount: imageCount // 记录导入的图片数量
       };
 
       setPages(prev => [...prev, newPage]);
-      alert('SingleFile页面导入成功');
+      alert(`SingleFile页面导入成功！${imageCount > 0 ? `\n包含 ${imageCount} 张图片` : ''}`);
       setShowImportPage(false);
 
       // 自动切换到新导入的页面
       setTimeout(() => {
-        onSwitchPage(newPage.id);
+        handleSwitchPage(newPage.id);
       }, 100);
 
     } catch (error) {
+      console.error('SingleFile导入错误:', error);
       alert('SingleFile导入失败：' + error.message);
     }
   };
@@ -1633,7 +1647,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const extractRelevantStyles = (element, styles) => {
     const extractedStyles = {};
 
-    // 基本样��映射
+    // 基本样式映射
     const styleMap = {
       color: 'color',
       'background-color': 'backgroundColor',
@@ -1749,7 +1763,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         });
       }
 
-      // 处理 client/components/ 目录下的组件作为页面
+      // 处理 client/components/ ���录下的组件作为页面
       if (projectConfig.structure['client/components/']) {
         projectConfig.structure['client/components/'].forEach((componentConfig, index) => {
           if (componentConfig.createPage) {
@@ -2122,7 +2136,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     ...selectedPageForSettings,
                     title: e.target.value
                   })}
-                  placeholder="���面的HTML��题"
+                  placeholder="���面的HTML����题"
                   className="mt-1"
                 />
               </div>
@@ -2198,7 +2212,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                     <div className="text-xs text-gray-500 mt-2">
                       支持格���：JSON、HTML、JSX/TSX、Vue、JS/TS、ZIP�����包
                       <br />
-                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键���择）
+                      💡 可以选择多个文件同时���入（按住Ctrl/Cmd键选择）
                     </div>
                   </div>
 
@@ -2421,7 +2435,7 @@ export class HomeComponent {
                     )}
                     {importType === 'js' && (
                       <div className="text-xs text-gray-600">
-                        <p className="mb-2">支���原��JavaScript和CSS代码，会���动解析为页面元素：</p>
+                        <p className="mb-2">支持原��JavaScript和CSS代码，会���动解析为页面元素：</p>
                         <pre className="whitespace-pre-wrap">
 {`// JavaScript代码示例
 const container = document.createElement('div');
@@ -3332,7 +3346,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
-                  <Label className="text-xs font-medium text-blue-600">页面标题和基本文���</Label>
+                  <Label className="text-xs font-medium text-blue-600">页面标题和基本文�����</Label>
                 </div>
 
                 <div>
@@ -3980,7 +3994,7 @@ export function WebEditor() {
         body: JSON.stringify({
           id: saveResult.data.id,
           deployConfig: {
-            platform: 'auto', // 自���选择平台
+            platform: 'auto', // 自动选择平台
             domain: siteName.toLowerCase().replace(/\s+/g, '-')
           }
         })
