@@ -603,7 +603,7 @@ function Canvas({
   return (
     <div className="flex-1 bg-gray-100 p-6">
       <div className="bg-white rounded-lg shadow-lg border overflow-hidden">
-        {/* 浏览器顶���� */}
+        {/* 浏览器顶��� */}
         <div className="bg-gray-50 border-b p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -828,7 +828,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
       }
     }
 
-    // 显�����量导入结果
+    // �������量导入结果
     let resultMessage = `批量文件导入完成！
 
 ����功处理 ${processedFiles.length} 个文件：
@@ -1344,7 +1344,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'Angular组件已导���，���手动编���内容',
+        content: 'Angular组件已导���，���手���编���内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1383,7 +1383,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       {
         id: `element_${Date.now()}`,
         type: 'text',
-        content: 'JavaScript代���已导入，请手�����辑内容',
+        content: 'JavaScript代���已导入，请手动��辑内容',
         style: { fontSize: '16px', color: '#333' }
       }
     ];
@@ -1494,7 +1494,11 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
-    // 首先��加样式信息作为说明
+    console.log('=== 开始解析SingleFile为元素 ===');
+    console.log('bodyElement:', bodyElement);
+    console.log('bodyElement子元素数量:', bodyElement.children.length);
+
+    // 首先添加样式信息作为说明
     if (styles.trim()) {
       elements.push({
         id: `element_${Date.now()}_styles`,
@@ -1514,9 +1518,29 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 处理主要内容
     const mainContent = extractMainContent(bodyElement);
+    console.log('主要内容区域:', mainContent);
+    console.log('主要内容子元素数量:', mainContent.children.length);
+
+    // 递归查找所有img元素
+    const allImages = mainContent.querySelectorAll('img');
+    console.log('在主要内容中找到的所有img元素数量:', allImages.length);
+    allImages.forEach((img, i) => {
+      console.log(`img ${i + 1}:`, {
+        tagName: img.tagName,
+        src: img.src ? img.src.substring(0, 100) + '...' : '无',
+        getAttribute_src: img.getAttribute('src') ? img.getAttribute('src').substring(0, 100) + '...' : '无'
+      });
+    });
+
     Array.from(mainContent.children).forEach((child, index) => {
+      console.log(`处理子元素 ${index + 1}:`, child.tagName, child.className);
       const element = parseSingleFileElement(child, index, styles);
-      if (element) elements.push(element);
+      if (element) {
+        console.log(`成功创建元素:`, element.type, element.id);
+        elements.push(element);
+      } else {
+        console.log(`元素解析失败或返回null`);
+      }
     });
 
     // 如果没有解析到任何内容，添加默认内容
@@ -1575,7 +1599,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         return {
           id,
           type: 'heading',
-          content: htmlElement.textContent || '���题',
+          content: htmlElement.textContent || '标题',
           level: tagName,
           style: { ...style, fontWeight: 'bold' }
         };
@@ -2086,7 +2110,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           </div>
         </div>
 
-        {/* 页面���表 */}
+        {/* 页面����表 */}
         {isExpanded && (
           <div className="ml-3 space-y-1">
             {pages.map(page => (
@@ -2121,7 +2145,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                       handleOpenPageSettings(page);
                     }}
                     className="w-4 h-4 flex items-center justify-center hover:bg-gray-700 rounded"
-                    title="页面设置"
+                    title="页面设���"
                   >
                     <Settings className="w-3 h-3 text-gray-400 hover:text-gray-200" />
                   </button>
@@ -2609,7 +2633,7 @@ function increment() {
 }`}
                         </pre>
                         <p className="mt-2 text-xs">
-                          • 自动根据client/pages/目录创建页面<br/>
+                          • 自动��据client/pages/目录创建页面<br/>
                           • 支持client/components/和client/components/ui/组件导入<br/>
                           • 自动配置路由映射<br/>
                           • 保持标准的React项目结构
@@ -3054,7 +3078,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前���本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注��：当前���本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -3309,7 +3333,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
         <div>
           <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
             <Settings className="w-4 h-4" />
-            属性编辑器
+            属性编���器
           </h3>
           <Badge variant="outline" className="mb-4">{selectedElement.type}</Badge>
         </div>
@@ -4043,7 +4067,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入�����站名称');
+      alert('请输入����站名称');
       return;
     }
 
