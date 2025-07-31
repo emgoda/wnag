@@ -102,13 +102,17 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
       {/* 页面编辑主体 */}
       <div className="flex-1 relative">
-        <div 
-          className="h-full bg-gray-100 flex items-center justify-center overflow-auto"
+        <div
+          className={`h-full bg-gray-100 overflow-auto ${previewMode === 'desktop' ? '' : 'flex items-center justify-center'}`}
           style={{ minHeight: 'calc(100vh - 200px)' }}
         >
           <div
-            className="bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300"
-            style={{
+            className={`transition-all duration-300 ${
+              previewMode === 'desktop'
+                ? 'w-full h-full'
+                : 'bg-white shadow-lg rounded-lg overflow-hidden'
+            }`}
+            style={previewMode === 'desktop' ? {} : {
               width: deviceSizes[previewMode as keyof typeof deviceSizes].width,
               height: deviceSizes[previewMode as keyof typeof deviceSizes].height,
               maxWidth: '100%',
