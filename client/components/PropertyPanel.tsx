@@ -46,11 +46,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 构建DOM树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
-    
+
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        children.push(buildDOMTree(child, depth + 1));
+        // 跳过script和style标签，但保留其他所有元素
+        if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
+          children.push(buildDOMTree(child, depth + 1));
+        }
       }
     });
 
@@ -60,18 +63,26 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       id: element.id || undefined,
       className: element.className || undefined,
       children,
-      isExpanded: depth < 2 // 默认展开前两层
+      isExpanded: depth < 3 // 默认展开前三层，以便看到更多内容
     };
   };
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    const iframe = document.querySelector('iframe');
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
-      const body = iframe.contentDocument.body;
-      if (body) {
+      const doc = iframe.contentDocument;
+      const body = doc.body;
+
+      if (body && body.children.length > 0) {
+        // 如果body有子元素，构建完整的DOM树
         const tree = buildDOMTree(body);
         setDomTree([tree]);
+      } else {
+        // 如果body为空，等待内容加载
+        setTimeout(() => {
+          getDOMTreeFromIframe();
+        }, 500);
       }
     }
   };
@@ -264,7 +275,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素进行编辑
+                点击预览中的元素进���编辑
               </p>
             </div>
           </div>
