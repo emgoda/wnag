@@ -134,7 +134,7 @@ export async function handlePageExport(req: Request, res: Response) {
 
 1. 将所有文件上传到你的网站服务器
 2. 确保 index.html 作为首页
-3. 如需修改，可重新导入 project.json 到网��制作工具
+3. 如需修改，可重新导入 project.json 到网页制作工具
 
 生成时间: ${new Date().toLocaleString('zh-CN')}
 `;
@@ -395,4 +395,87 @@ function generateHTMLFromElements(elements: any[], css: string = '', js: string 
     ${js ? '<script src="script.js"></script>' : ''}
 </body>
 </html>`;
+}
+
+// 新增：保存页面集合
+export async function handlePagesSave(req: Request, res: Response) {
+  try {
+    const { pages: pageData } = req.body;
+
+    if (!pageData || !Array.isArray(pageData)) {
+      return res.status(400).json({
+        error: "缺少页面数据",
+        message: "pages 字段是必需的数组"
+      });
+    }
+
+    const siteData = {
+      id: `site_${siteIdCounter++}`,
+      pages: pageData,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    pageSites.push(siteData);
+
+    res.json({
+      success: true,
+      message: "页面集合保存成功",
+      data: {
+        id: siteData.id,
+        savedAt: siteData.updatedAt,
+        pagesCount: pageData.length
+      }
+    });
+
+  } catch (error) {
+    console.error('保存页面集合失败:', error);
+    res.status(500).json({
+      error: "保存失败",
+      message: error instanceof Error ? error.message : "未知错误"
+    });
+  }
+}
+
+// 新增：获取页面集合
+export async function handlePagesGet(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+
+    if (id) {
+      // 获取特定页面集合
+      const site = pageSites.find(s => s.id === id);
+      if (!site) {
+        return res.status(404).json({
+          error: "页面集合不存在",
+          message: "找不到指定的页面集合"
+        });
+      }
+
+      res.json({
+        success: true,
+        data: site
+      });
+    } else {
+      // 获取所有页面集合列表
+      const sitesData = pageSites.map(site => ({
+        id: site.id,
+        pagesCount: site.pages ? site.pages.length : 0,
+        createdAt: site.createdAt,
+        updatedAt: site.updatedAt
+      }));
+
+      res.json({
+        success: true,
+        data: sitesData
+      });
+    }
+
+  } catch (error) {
+    console.error('获取页面集合失败:', error);
+    res.status(500).json({
+      error: "获取失败",
+      message: error instanceof Error ? error.message : "未知错误"
+    });
+  }
 }
