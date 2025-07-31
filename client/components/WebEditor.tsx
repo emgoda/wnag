@@ -1310,7 +1310,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const extractComponentName = (content, type) => {
     try {
       if (type === 'react') {
-        // 匹配 function ComponentName 或 const ComponentName
+        // ���配 function ComponentName 或 const ComponentName
         const match = content.match(/(?:function|const)\s+([A-Z][a-zA-Z0-9]*)/);
         return match ? match[1] : null;
       } else if (type === 'vue') {
@@ -1618,7 +1618,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 递归查找所有img元素
     const allImages = mainContent.querySelectorAll('img');
-    console.log('在主要内容中找到的���有img元素数量:', allImages.length);
+    console.log('���主要内容中找到的���有img元素数量:', allImages.length);
     allImages.forEach((img, i) => {
       console.log(`img ${i + 1}:`, {
         tagName: img.tagName,
@@ -2470,7 +2470,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="json">JSON页面配置</SelectItem>
                         <SelectItem value="html">HTML页面代码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
-                        <SelectItem value="react">React组件代码</SelectItem>
+                        <SelectItem value="react">React���件代码</SelectItem>
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
@@ -3572,7 +3572,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
 
-            {/* 自定义组件：账户检查流程 */}
+            {/* 自定义组��：账户检查流程 */}
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
@@ -4311,7 +4311,7 @@ export function WebEditor() {
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
               className="w-40 h-8 text-sm"
-              placeholder="网站名���"
+              placeholder="网站名称"
             />
             <div className="w-px h-6 bg-gray-300" />
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
