@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   Monitor, Tablet, Smartphone, RefreshCw,
-  Maximize, Minimize, MousePointer
+  Maximize, Minimize
 } from 'lucide-react';
-import ElementEditor from './ElementEditor';
 import ElementInserter from './ElementInserter';
 
 interface EditorProps {
