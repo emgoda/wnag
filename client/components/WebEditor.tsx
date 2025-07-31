@@ -725,7 +725,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
     if (confirm('确定要删��此页面吗？')) {
       setPages(prev => {
         const filteredPages = prev.filter(p => p.id !== pageId);
-        // 如果删除的是当前活跃页面，激���第一���页面
+        // 如果删除的是当前���跃页面，激���第一���页面
         const deletedPage = prev.find(p => p.id === pageId);
         if (deletedPage?.isActive && filteredPages.length > 0) {
           filteredPages[0].isActive = true;
@@ -885,7 +885,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         setPages(prev => [...prev, newPage]);
         alert('页面导入成功');
       } else {
-        alert('JSON格式不正确，请���保包含页面数据');
+        alert('JSON格式不正确，请���保包含页面数��');
       }
       setShowImportPage(false);
     } catch (error) {
@@ -1310,7 +1310,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   const extractComponentName = (content, type) => {
     try {
       if (type === 'react') {
-        // ���配 function ComponentName 或 const ComponentName
+        // 匹配 function ComponentName 或 const ComponentName
         const match = content.match(/(?:function|const)\s+([A-Z][a-zA-Z0-9]*)/);
         return match ? match[1] : null;
       } else if (type === 'vue') {
@@ -1503,7 +1503,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
           imageCount++;
           if (src.startsWith('data:image/')) {
             base64ImageCount++;
-            // 为data URL图片添加标识，便于后续处理
+            // 为data URL图片添加标识，��于后续处理
             img.setAttribute('data-base64-image', 'true');
             console.log(`找到base64图片 ${base64ImageCount}，大小:`, src.length);
           }
@@ -1585,7 +1585,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 解析SingleFile内容为组件元素
+  // 解析SingleFile内容为组件元��
   const parseSingleFileToElements = (bodyElement, styles) => {
     const elements = [];
 
@@ -1618,7 +1618,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     // 递归查找所有img元素
     const allImages = mainContent.querySelectorAll('img');
-    console.log('���主要内容中找到的���有img元素数量:', allImages.length);
+    console.log('在主要内容中找到的���有img元素数量:', allImages.length);
     allImages.forEach((img, i) => {
       console.log(`img ${i + 1}:`, {
         tagName: img.tagName,
@@ -1849,7 +1849,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
       'border-radius': 'borderRadius'
     };
 
-    // 尝试从类名和ID提取样式
+    // ���试从类名和ID提取样式
     const className = element.className;
     const elementId = element.id;
 
@@ -2470,7 +2470,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
                         <SelectItem value="json">JSON页面配置</SelectItem>
                         <SelectItem value="html">HTML页面代码</SelectItem>
                         <SelectItem value="spa">SPA路由配置</SelectItem>
-                        <SelectItem value="react">React���件代码</SelectItem>
+                        <SelectItem value="react">React组件代码</SelectItem>
                         <SelectItem value="vue">Vue组件代码</SelectItem>
                         <SelectItem value="angular">Angular组件代码</SelectItem>
                         <SelectItem value="js">原生JS/CSS代码</SelectItem>
@@ -3374,7 +3374,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <Textarea
                   value={newComponentCode}
                   onChange={(e) => setNewComponentCode(e.target.value)}
-                  placeholder={"例如：\nimport React from 'react';\n\nexport default function MyCustomComponent({ text = \"Hello\" }) {\n  return (\n    <div className=\"p-4 bg-blue-100 rounded\">\n      <h3>{text}</h3>\n      <p>这是我的自定义组件</p>\n    </div>\n  );\n}"}
+                  placeholder={"例如：\nimport React from 'react';\n\nexport default function MyCustomComponent({ text = \"Hello\" }) {\n  return (\n    <div className=\"p-4 bg-blue-100 rounded\">\n      <h3>{text}</h3>\n      <p>这是我的自定���组件</p>\n    </div>\n  );\n}"}
                   className="mt-2 h-60 font-mono text-xs"
                 />
               </div>
@@ -3572,7 +3572,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
               </div>
             )}
 
-            {/* 自定义组��：账户检查流程 */}
+            {/* 自定义组件：账户检查流程 */}
             {selectedElement.type === 'account-check-flow' && (
               <div className="space-y-4">
                 <div className="border-b pb-2">
@@ -4187,7 +4187,7 @@ export function WebEditor() {
   // 一键发布
   const handlePublish = async () => {
     if (!siteName.trim()) {
-      alert('请输入����站名称');
+      alert('请输入������站名称');
       return;
     }
 
@@ -4281,7 +4281,7 @@ export function WebEditor() {
       }
     } catch (error) {
       console.error('加载项目失败:', error);
-      alert('加载项目失��: ' + error.message);
+      alert('加载���目失��: ' + error.message);
     } finally {
       setIsLoading(false);
     }
@@ -4338,7 +4338,7 @@ export function WebEditor() {
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={newProject}>
               <Plus className="w-4 h-4 mr-2" />
-              ������建
+              新建
             </Button>
             <Button variant="outline" size="sm" onClick={() => { setShowProjectManager(true); loadProjects(); }}>
               <FileText className="w-4 h-4 mr-2" />
