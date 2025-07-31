@@ -718,7 +718,7 @@ function PageManager({ pages, setPages, activePage, onSwitchPage }) {
   // 删除页面
   const handleDeletePage = (pageId) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页面');
+      alert('至少需要保留��个页面');
       return;
     }
 
@@ -837,7 +837,7 @@ ${processedFiles.map(file => `✅ ${file}`).join('\n')}
 创建页面：${importedCount} 个`;
 
     if (failedFiles.length > 0) {
-      resultMessage += `\n\n处�����败 ${failedFiles.length} 个文件���
+      resultMessage += `\n\n处�����败 ${failedFiles.length} 个文件����
 ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
 
@@ -1235,7 +1235,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     }
   };
 
-  // 提取组件名称
+  // ���取组件名称
   const extractComponentName = (content, type) => {
     try {
       if (type === 'react') {
@@ -1735,7 +1735,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
         // 检查选择器���否匹配当前元素
         if (
-          (className && cleanSelector.includes(`.${className.split(' ')[0]}`)) ||
+          (className && typeof className === 'string' && cleanSelector.includes(`.${className.trim().split(' ')[0]}`)) ||
           (elementId && cleanSelector.includes(`#${elementId}`)) ||
           cleanSelector.includes(element.tagName.toLowerCase())
         ) {
@@ -2685,7 +2685,7 @@ function increment() {
                 <div>
                   <h3 className="font-medium text-blue-900 mb-2">ZIP文件导���方案</h3>
                   <p className="text-blue-800 text-sm">
-                    由于浏览器安全限制，我们提供了更好的ZIP文件处理方案：
+                    由于浏览器安全限制，��们提供了更好的ZIP文件处理方案：
                   </p>
                 </div>
               </div>
@@ -3121,7 +3121,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
               <button
                 onClick={() => setShowAddCustomComponent(true)}
                 className="w-5 h-5 flex items-center justify-center hover:bg-gray-700 rounded text-xs"
-                title="添加自定义组件"
+                title="添加自���义组件"
               >
                 <Plus className="w-3 h-3 text-gray-400 hover:text-gray-200" />
               </button>
@@ -3370,7 +3370,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
                 {selectedElement.type === 'input' && (
                   <div>
-                    <Label className="text-xs">输入类型</Label>
+                    <Label className="text-xs">输入类��</Label>
                     <Select
                       value={selectedElement.inputType || 'text'}
                       onValueChange={(value) => handlePropertyChange('inputType', value)}
@@ -3917,7 +3917,7 @@ export function WebEditor() {
     setSelectedPath([]);
   }, [pages, saveCurrentPageElements]);
 
-  // 复制��素
+  // 复����素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
       ...element,
@@ -4099,7 +4099,7 @@ export function WebEditor() {
     }
   };
 
-  // 加载项目列表
+  // 加载项目���表
   const loadProjects = async () => {
     try {
       setIsLoading(true);
