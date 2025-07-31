@@ -1222,7 +1222,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         name: componentName || 'Vue页面',
         route: `/${componentName?.toLowerCase() || 'vue-page'}`,
         isActive: false,
-        title: componentName || 'Vue页��',
+        title: componentName || 'Vue页���',
         description: `从Vue组件导���的页面`,
         keywords: 'vue, component',
         sourceCode: content,
@@ -1581,7 +1581,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
 
     } catch (error) {
       console.error('SingleFile导入错误:', error);
-      alert('SingleFile导入���败：' + error.message);
+      alert('SingleFile导������败：' + error.message);
     }
   };
 
@@ -1924,7 +1924,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
     return styles;
   };
 
-  // 检测是否为SingleFile格式
+  // 检测是否��SingleFile格式
   const isSingleFileFormat = (content) => {
     try {
       console.log('开始检测SingleFile格式，内容长度:', content.length);
@@ -2768,7 +2768,7 @@ function increment() {
                           <ul className="space-y-1">
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
                             <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
-                            <li>��� 图片等资源转为base64格式内嵌</li>
+                            <li>��� 图片等资���转为base64格式内嵌</li>
                             <li>• 完整的、自包含的HTML文件</li>
                           </ul>
                         </div>
@@ -2836,7 +2836,7 @@ function increment() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-medium text-gray-900">推���方案：</h4>
+              <h4 className="font-medium text-gray-900">推荐方案：</h4>
 
               <div className="grid gap-4">
                 <div className="border rounded-lg p-4 hover:bg-gray-50">
@@ -3481,7 +3481,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
             {/* 标题级别 */}
             {selectedElement.type === 'heading' && (
               <div>
-                <Label className="text-xs">标题级别</Label>
+                <Label className="text-xs">标题级���</Label>
                 <Select
                   value={selectedElement.level || 'h1'}
                   onValueChange={(value) => handlePropertyChange('level', value)}
