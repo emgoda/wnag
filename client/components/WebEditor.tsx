@@ -1064,6 +1064,8 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
         handleImportJavaScript(importContent);
       } else if (importType === 'project') {
         handleImportProjectStructure(importContent);
+      } else if (importType === 'singlefile') {
+        handleImportSingleFile(importContent);
       }
     } catch (error) {
       alert('导入失���：' + error.message);
@@ -1103,7 +1105,7 @@ ${failedFiles.map(file => `❌ ${file}`).join('\n')}`;
   // 导入React组件
   const handleImportReactComponent = (content) => {
     try {
-      // 解析React组件代码，提取组件信息
+      // 解析React组件代码，��取组件信息
       const componentName = extractComponentName(content, 'react');
       const elements = parseReactComponent(content);
 
@@ -2189,7 +2191,7 @@ function increment() {
                             <li>• 所有CSS样式内嵌在&lt;style&gt;标签中</li>
                             <li>• 所有JavaScript代码内嵌在&lt;script&gt;标签中</li>
                             <li>• 图片等资源转为base64格式内嵌</li>
-                            <li>• 完整的、自包含的HTML文件</li>
+                            <li>• 完整的、自包含���HTML文件</li>
                           </ul>
                         </div>
                         <div className="bg-blue-50 p-3 rounded mb-3">
@@ -2614,7 +2616,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
 
       // 这里应该动态添加到组件库中
       // 暂时显示成功消息
-      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行时动态添加组件，此功能需要重新编译。`);
+      alert(`自定义组件 "${newComponentName}" 创建成功！\n\n注意：当前版本暂时不支持运行��动态添加组件，此功能需要重新编译。`);
 
       setNewComponentName('');
       setNewComponentCode('');
@@ -2768,7 +2770,7 @@ function ComponentLibrary({ pages, setPages, onSwitchPage }) {
                 <div>
                   <h3 className="font-medium text-yellow-900 mb-2">开发者功能</h3>
                   <p className="text-yellow-800 text-sm">
-                    此功能用于添加自定义React组件。需要重新编译才能在画布中使用。
+                    此功能用于添加自定���React组件。需要重新编译才能在画布中使用。
                   </p>
                 </div>
               </div>
@@ -3152,7 +3154,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                 </div>
 
                 <div>
-                  <Label className="text-xs">按钮颜色 (Tailwind CSS类)</Label>
+                  <Label className="text-xs">��钮颜色 (Tailwind CSS类)</Label>
                   <Select
                     value={selectedElement.buttonColor || 'bg-blue-600'}
                     onValueChange={(value) => handlePropertyChange('buttonColor', value)}
@@ -3259,7 +3261,7 @@ function PropertyEditor({ selectedElement, onUpdateElement }) {
                     <SelectContent>
                       <SelectItem value="normal">正常</SelectItem>
                       <SelectItem value="bold">粗体</SelectItem>
-                      <SelectItem value="lighter">��体</SelectItem>
+                      <SelectItem value="lighter">����体</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -3477,7 +3479,7 @@ export function WebEditor() {
     setSelectedPath([]);
   }, [pages, saveCurrentPageElements]);
 
-  // 复制��素
+  // 复�����素
   const handleDuplicateElement = useCallback((element) => {
     const newElement = {
       ...element,
