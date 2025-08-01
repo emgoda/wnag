@@ -96,20 +96,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑器中的iframe，尝试多种选择器
-    let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
-
-    if (!editorIframe) {
-      // 如果特定选择器没找到，尝试通用选择器
-      editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
-      console.log('使用title选择器找到iframe:', !!editorIframe);
-    }
-
-    if (!editorIframe) {
-      // 最后尝试找任何iframe
-      editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
-      console.log('使用通用选择器找到iframe:', !!editorIframe);
-    }
+    // 直接查找第一个可用的iframe
+    let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
@@ -420,7 +408,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     };
 
-    // 立即执行更新
+    // ���即执行更新
     updateElementInDOM();
 
     // ���时再执行一次确保更新成功
@@ -1617,7 +1605,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* 选择模板 */}
+              {/* ��择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模板</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
