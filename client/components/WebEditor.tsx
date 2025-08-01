@@ -45,7 +45,7 @@ export default function WebEditor() {
 </head>
 <body>
     <div class="container">
-        <h1>欢���来到我的网站</h1>
+        <h1>欢���来到我的��站</h1>
         <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
@@ -125,7 +125,7 @@ export default function WebEditor() {
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('��少需要保留一个页面');
+      alert('至少需要保留一个页面');
       return;
     }
 
@@ -559,7 +559,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;img&gt;</div>
-                            <div className="text-gray-600 mb-3">图片</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">图片</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -625,7 +625,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;button&gt;</div>
-                            <div className="text-gray-600 mb-3">按钮</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">按钮</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -682,7 +682,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;input&gt;</div>
-                            <div className="text-gray-600 mb-3">输入框</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">输入框</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -749,7 +749,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;div&gt;</div>
-                            <div className="text-gray-600 mb-3">容器</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">容器</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -816,7 +816,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;span&gt;</div>
-                            <div className="text-gray-600 mb-3">行内元素</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">行内元素</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -1071,7 +1071,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                ������ 替换
+                                ���� 替换
                               </Button>
                               <Button
                                 variant="outline"
