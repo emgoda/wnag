@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接��的单节点构建方法 - 只构建元���节点树
+  // 兼容旧接��的单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -371,7 +371,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文�������，确保获������到正确��文本
+      // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -481,7 +481,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const lastInput = allInputs[allInputs.length - 1];
           if (lastInput) {
             lastInput.setAttribute('placeholder', value || '');
-            console.log('已更新最后一个input placeholder为:', value);
+            console.log('已更新���后一个input placeholder为:', value);
           } else {
             console.log('未找到input元素');
           }
@@ -672,7 +672,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 处理�����板生成
+  // 处理���板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
       alert('请先选择一个模板');
@@ -930,7 +930,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先��</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
@@ -1222,11 +1222,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </span>
 
           {node.id && (
-            <span className="text-green-600 text-xs font-medium">#{node.id}</span>
+            <span className={`text-xs font-medium ${isHidden ? 'text-orange-600' : 'text-green-600'}`}>
+              #{node.id}
+            </span>
           )}
 
           {node.className && typeof node.className === 'string' && (
-            <span className="text-purple-600 text-xs">.{node.className.split(' ')[0]}</span>
+            <span className={`text-xs ${isHidden ? 'text-orange-600' : 'text-purple-600'}`}>
+              .{node.className.split(' ')[0]}
+            </span>
           )}
 
           {/* 显示元素组信息 */}
@@ -1310,7 +1314,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树（无�����中状态）');
+                    console.log('手动刷新DOM树（无���中状态）');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
@@ -1333,7 +1337,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入��面或点击"刷新"
+                      请导入�����或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1886,7 +1890,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 className="w-full bg-blue-500 hover:bg-blue-600"
                 disabled={!selectedTemplate}
               >
-                开始生成
+                开���生成
               </Button>
 
               {/* 模板��置选项 */}
