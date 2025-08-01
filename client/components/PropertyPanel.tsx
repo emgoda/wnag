@@ -9,13 +9,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Switch } from '@/components/ui/switch';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import {
   Settings, Type, Palette, Box, Image, Link2,
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
   Bold, Italic, Underline, Eye, EyeOff, ChevronRight, ChevronDown,
   Code, FileText, MoreVertical, Copy, Trash2, Move, Edit3,
-  ArrowUp, ArrowDown
+  ArrowUp, ArrowDown, Sparkles
 } from 'lucide-react';
 
 interface PropertyPanelProps {
@@ -97,7 +98,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
-      console.log('当前页面所有iframe的title属性:',
+      console.log('当前页面��有iframe的title属性:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
@@ -225,7 +226,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页面内容变化，实时更新DOM树
+  // 监听页面内容变化，实���更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -398,7 +399,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
       selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
 
-      // 更新页面内容
+      // 更新页面���容
       updateParentContent();
 
       // 重新获取DOM树
