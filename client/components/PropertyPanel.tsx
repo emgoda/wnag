@@ -77,7 +77,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑��中的iframe，尝试多种选择器
+    // 查找编辑器中的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -170,7 +170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成事件触发');
+          console.log('iframe加载���成事件触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -194,7 +194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-          console.log('iframe已完成加载���立即获取DOM树');
+          console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
         }
 
@@ -473,7 +473,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
-      // 选择父元素
+      // ��择父元素
       parent.classList.add('element-selected');
 
       // 通知父组件
@@ -583,7 +583,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 渲染DOM树���点
+  // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -821,6 +821,39 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <div className="mt-1 text-gray-800">{elementData.textContent}</div>
                   </div>
                 )}
+                <div className="mt-2 flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      console.log('文本调试信息:', {
+                        selectedElement,
+                        textContent: selectedElement?.textContent,
+                        innerText: selectedElement?.innerText,
+                        innerHTML: selectedElement?.innerHTML,
+                        elementData: elementData?.textContent
+                      });
+                    }}
+                    className="text-xs h-7"
+                  >
+                    🔍 调试文本
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      if (selectedElement) {
+                        // 强制刷新元素数据
+                        const textContent = selectedElement.textContent?.trim() ||
+                                           selectedElement.innerText?.trim() || '';
+                        setElementData(prev => prev ? { ...prev, textContent } : null);
+                      }
+                    }}
+                    className="text-xs h-7"
+                  >
+                    🔄 刷新
+                  </Button>
+                </div>
               </div>
 
               {/* 特定元素的内容属性 */}
