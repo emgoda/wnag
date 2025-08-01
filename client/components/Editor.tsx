@@ -29,6 +29,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 更新预览内容
   useEffect(() => {
+    // 当内容更新时，强制重置为桌面模式
+    if (previewMode !== 'desktop') {
+      setPreviewMode('desktop');
+    }
+
     if (iframeRef.current) {
       const iframe = iframeRef.current;
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
