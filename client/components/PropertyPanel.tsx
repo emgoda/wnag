@@ -299,7 +299,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 组件挂载时立即��试加载DOM树
+  // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
     console.log('PropertyPanel组件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -368,7 +368,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元���文本内容:', {
+      console.log('获取元素文本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -583,7 +583,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式���否正确');
+        alert('HTML编��失败���请检查格式是否正确');
       }
     }
   };
@@ -638,7 +638,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 处理模板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
-      alert('请先选择一个模板');
+      alert('请先选��一个模板');
       return;
     }
 
@@ -904,7 +904,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 切换DOM节点展开状���
+  // 切换DOM节点展开状态
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
       return nodes.map(n => {
@@ -1121,7 +1121,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <ScrollArea className="h-64">
               <div className="p-2">
                 {domTree.length > 0 ? (
-                  domTree.map(node => renderDOMNode(node))
+                  domTree.map((node, index) => renderDOMNode(node, 0, index))
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
@@ -1620,7 +1620,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       >
                         <option value="text">默认</option>
                         <option value="numeric">数字</option>
-                        <option value="tel">电话</option>
+                        <option value="tel">电���</option>
                         <option value="email">邮箱</option>
                         <option value="url">网址</option>
                       </select>
