@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body���������点
+        // 强制展开body�������点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // 监��自定义DOM�����刷新事件
+    // 监��自定义DOM���刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -670,7 +670,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       }
       selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
 
-      // 更新页面���容
+      // 更新页面内容
       updateParentContent();
 
       // 重新获取DOM树
@@ -678,13 +678,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元��复制���功');
+      console.log('元素复制成功');
     } catch (error) {
-      console.error('复制元��失���:', error);
+      console.error('复制元素失败:', error);
     }
   };
 
-  // 向上移动元���
+  // 向上移动元素
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // ���辑元素HTML
+  // 编辑元素HTML
   const handleEditElementHTML = () => {
     if (!selectedElement) return;
 
@@ -725,24 +725,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           selectedElement.parentNode?.replaceChild(newElement, selectedElement);
           updateParentContent();
           setTimeout(() => getDOMTreeFromIframe(), 100);
-          console.log('HTML���辑成功');
+          console.log('HTML编辑成功');
         } else {
           alert('无效的HTML格式，请检查后重��');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正��');
+        alert('HTML编辑失败，请检查格式是否正确');
       }
     }
   };
 
-  // 选择父��������
+  // 选择父元素
   const handleSelectParent = () => {
     if (!selectedElement) return;
 
     const parent = selectedElement.parentElement;
     if (parent && parent !== document.body && parent !== document.documentElement) {
-      // 清除当前选���状态
+      // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
       // 选择父元素
@@ -750,7 +750,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一���特殊的更���来选���父元素
+        // 这里我们通过触发一个特殊的更新来��择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -761,7 +761,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 删除���素
+  // 删除元素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -771,7 +771,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setTimeout(() => getDOMTreeFromIframe(), 100);
   };
 
-  // ����新父组件内容
+  // 更新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -779,11 +779,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // ���发父组���的内容更���
+    // 触发父组件的内容更新
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 处理���板生成
+  // 处理模板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
       alert('请先选择一个模��');
@@ -844,7 +844,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-            发现���限可能，创造美好未���
+            发现无限可能，创造美好未来
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -870,13 +870,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，���越���������验
+            专业的服务，卓越的用户体验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">����</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一�����署，快��上线，让您的产品迅速到达用户</p>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -921,7 +921,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
             <textarea placeholder="请输入��的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
-          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽����回复。');">
+          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽������回复。');">
             发送���言
           </button>
         </form>
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，元素可自���交互');
+    console.log('所有选中状态已清除，元素可自由交互');
   };
 
   // 选择DOM节点 - 纯���览模式，不锁定交互
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树�����元素��������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1324,7 +1324,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             return true;
           }
 
-          // ���查尺寸是否为0（����除某些正常的0尺寸元素）
+          // ���查尺��是否为0（����除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1706,7 +1706,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // 失焦��才更新DOM，避免频繁重建DOM树
+                    // 失焦��才更新DOM��避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟢 Input失焦，更新DOM:', newValue);
                     if (selectedElement) {
@@ -2349,7 +2349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按���点击时半透明</Label>
+                  <Label className="text-sm text-gray-700">按钮点击时半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ����加载 {domTree.length} 个������点
+                  ��加载 {domTree.length} 个������点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
