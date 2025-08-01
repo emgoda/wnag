@@ -48,12 +48,22 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   // 设置元素选择功能
   const setupElementSelection = () => {
     const iframe = iframeRef.current;
-    if (!iframe) return;
+    if (!iframe) {
+      console.log('iframe引用不存在');
+      return;
+    }
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (!doc) return;
+    if (!doc) {
+      console.log('无法访问iframe文档');
+      return;
+    }
 
-    console.log('设置元素选择功能');
+    console.log('设置元素选择功能', {
+      docReady: doc.readyState,
+      bodyChildren: doc.body?.children.length,
+      elementSelectMode
+    });
 
     // 添加选择样式
     let existingStyle = doc.querySelector('#element-selection-styles');
@@ -73,10 +83,14 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         }
       `;
       doc.head.appendChild(style);
+      console.log('已添加选择样式');
     }
 
-    // 清除之前的事件监听器
+    // 获取所有可选择的元素
     const elements = doc.querySelectorAll('*');
+    console.log('找到可选择元素数量:', elements.length);
+
+    // 清除之前的事件监听器
     elements.forEach(el => {
       el.removeEventListener('mouseover', handleMouseOver);
       el.removeEventListener('mouseout', handleMouseOut);
@@ -84,11 +98,17 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     });
 
     // 添加新的事件监听器
+    let addedListeners = 0;
     elements.forEach(el => {
-      el.addEventListener('mouseover', handleMouseOver);
-      el.addEventListener('mouseout', handleMouseOut);
-      el.addEventListener('click', handleElementClick);
+      if (el !== doc.documentElement && el !== doc.body) {
+        el.addEventListener('mouseover', handleMouseOver);
+        el.addEventListener('mouseout', handleMouseOut);
+        el.addEventListener('click', handleElementClick);
+        addedListeners++;
+      }
     });
+
+    console.log('已为', addedListeners, '个元素添加事件监听器');
   };
 
   // 鼠标悬停效果
