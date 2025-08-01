@@ -468,7 +468,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加载DOM结构... 点击"刷新"重试
+                  正在加���DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -573,8 +573,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <div>
                     <Label className="text-sm font-medium">打开方式</Label>
                     <Select
-                      value={elementData.attributes.target || ''}
-                      onValueChange={(value) => handleAttributeChange('target', value)}
+                      value={elementData.attributes.target || '_self'}
+                      onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
                     >
                       <SelectTrigger className="mt-1">
                         <SelectValue placeholder="选择打开方式" />
