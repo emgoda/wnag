@@ -190,7 +190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
       className: element.className ? String(element.className).trim() || undefined : undefined,
-      children: buildTree(element), // 只包含子元素节点
+      children: buildTree(element), // 只包含子元��节点
       isExpanded: true
     };
   };
@@ -504,11 +504,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
       autoExpandToElement(selectedElement);
 
-      // 如果是从画布选择的新元素，且当前是预览模式，则清除DOM树的预览状态
-      if (true && selectedElement !== previewElement) {
-        console.log('画布选择了新元素，清除DOM树预览状态');
-        setPreviewElement(null);
-        clearIframePreviewStyles();
+      // 当画布选择元素时，自动更新selectedNodeId
+      const nodeId = selectedElement.getAttribute('data-node-id');
+      if (nodeId && nodeId !== selectedNodeId && onNodeSelect) {
+        console.log('画布选择了新元素，同步到selectedNodeId:', nodeId);
+        onNodeSelect(nodeId);
       }
     }
   }, [selectedElement, domTree, selectionMode, previewElement]);
@@ -601,7 +601,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     selectedElement.style.setProperty(property, value);
     onElementUpdate(selectedElement, property, value);
     
-    // 更���本���状态
+    // 更新本���状态
     setElementData(prev => prev ? {
       ...prev,
       styles: { ...prev.styles, [property]: value }
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正��');
+        alert('HTML编��失败���请检查格���是否正��');
       }
     }
   };
@@ -1044,7 +1044,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开��指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // 查找��素在DOM树中的路径
+    // 查找元素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1324,7 +1324,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（前20个字符）
+    // 获取元素的文���内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1495,7 +1495,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      console.log('手动刷新DOM树（无��中状态）');
+                      console.log('手动刷新DOM树（无选中状态）');
                       getDOMTreeFromIframe();
                     }}
                     className="h-6 px-2 text-xs"
@@ -1578,7 +1578,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   disabled={!selectedElement?.previousElementSibling}
                 >
                   <ArrowUp className="w-4 h-4 mr-2" />
-                  向上移动
+                  向上��动
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementDown()}
@@ -1732,7 +1732,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="_self">当前窗口</SelectItem>
+                        <SelectItem value="_self">当前���口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
                         <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
@@ -1993,7 +1993,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* 可为空和键盘类型 */}
+                  {/* 可为空���键盘类型 */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label className="text-xs text-gray-600 mb-2 block">可为空</Label>
