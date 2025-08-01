@@ -159,7 +159,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经��载完成，立即获取DOM树
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -387,16 +387,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 更新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-    if (!iframe) return;
+    if (!iframe || !onElementUpdate || !selectedElement) return;
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    const html = doc.documentElement.outerHTML;
-    if (onElementUpdate) {
-      // 触发内容更新
-      onElementUpdate(selectedElement!, 'innerHTML', html);
-    }
+    // 触发父组件的内容更新
+    onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
   // 切换DOM节点展开状态
@@ -426,7 +423,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.classList.remove('dom-tree-selected');
       });
 
-      // 添加高亮样���到当前选中的元素
+      // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
       // 添加高亮样式（如果还没有的话）
@@ -469,7 +466,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // ��染DOM树节点
+  // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -765,7 +762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字体粗��</Label>
+                      <Label className="text-xs">字体粗细</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
@@ -982,7 +979,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  console.log('手动刷新DOM树');
+                  console.log('手���刷新DOM树');
                   getDOMTreeFromIframe();
                 }}
                 className="h-6 px-2 text-xs"
