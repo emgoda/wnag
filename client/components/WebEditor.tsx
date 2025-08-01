@@ -276,7 +276,7 @@ export default function WebEditor() {
       }
     } catch (error) {
       console.error('保存失败:', error);
-      alert('保��失败，请重试');
+      alert('保存失败，请重试');
     }
   };
 
@@ -373,7 +373,7 @@ export default function WebEditor() {
                           id="name"
                           value={newPageData.name}
                           onChange={(e) => setNewPageData(prev => ({ ...prev, name: e.target.value }))}
-                          placeholder="例如：关���我们"
+                          placeholder="例如：关于我们"
                         />
                       </div>
                       <div>
@@ -527,7 +527,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '���题文本'
+                                      content: '标题文本'
                                     }, 'replace');
                                   }
                                 }}
@@ -755,7 +755,9 @@ export default function WebEditor() {
                                       tag: 'div',
                                       content: inputHTML,
                                       attributes: {
-                                        'data-title': '标题'
+                                        'data-title': '标题',
+                                        'data-element-group': '表单元素',
+                                        'data-element-type': '输入框组'
                                       }
                                     }, 'append');
                                   }
