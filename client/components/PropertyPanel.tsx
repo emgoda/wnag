@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接��的单节点构建方法 - 只构建元素节点树
+  // 兼容旧接��的单节点构建方法 - 只构建元���节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -371,7 +371,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，确保获������到正确��文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -530,7 +530,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 同时更����elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选���的元素，尝试更新实际DOM
+    // 如果有选中的元素，尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -672,7 +672,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 处理���板生成
+  // 处理�����板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
       alert('请先选择一个模板');
@@ -764,7 +764,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部���</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1216,7 +1216,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           )}
           {!hasChildren && <div className="w-4" />}
 
-          <span className="text-blue-600 font-mono text-xs">&lt;{node.tagName}&gt;</span>
+          <span className={`font-mono text-xs ${isHidden ? 'text-orange-600' : 'text-blue-600'}`}>
+            &lt;{node.tagName}&gt;
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
+          </span>
 
           {node.id && (
             <span className="text-green-600 text-xs font-medium">#{node.id}</span>
@@ -1307,7 +1310,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树（无���中状态）');
+                    console.log('手动刷新DOM树（无�����中状态）');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
