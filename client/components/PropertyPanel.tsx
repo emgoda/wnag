@@ -105,7 +105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       /^lucide/, // Lucide图标
       /toast/, // Toast通知组件
       /overlay/, // 遮罩层
-      /backdrop/, // 背景层
+      /backdrop/, // 背��层
       /portal/, // 传送门组件
       /popover/, // 弹出层
       /tooltip/, // 工具提示
@@ -140,7 +140,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节���(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -931,7 +931,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限���储空���</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -962,7 +962,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也���及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1369,7 +1369,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
+          // ���查尺寸是否为0（��排除某些正常的0尺寸元素��
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1404,7 +1404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（前20个字符）
+    // 获取元素���文本内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1412,17 +1412,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${(node.className && typeof node.className === 'string') ? node.className.replace(/\s+/g, '-') : 'no-class'}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer rounded transition-all duration-200 ${
-            isSelected
+            isLocked
               ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
-              : isHidden
-                ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
-                : isNonOperable
-                  ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
-                  : 'hover:bg-gray-100'
+              : isPreview
+                ? 'bg-green-50 border-l-3 border-green-400 shadow-sm'
+                : isSelected
+                  ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
+                  : isHidden
+                    ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
+                    : isNonOperable
+                      ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
+                      : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
-            // ���击：预览模式（轻量高亮，不锁定）
+            // 单击：预览模式（轻量高亮，不锁定）
             handleNodeSelect(node.element, 'preview');
           }}
           onDoubleClick={(e) => {
@@ -1487,7 +1491,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </span>
           )}
 
-          {/* 显示元素类型信息 */}
+          {/* 显示��素类型信息 */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -2334,7 +2338,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有���素（包括不可操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
               </div>
@@ -2371,7 +2375,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </ScrollArea>
         </div>
 
-        {/* 右键菜单 */}
+        {/* ��键菜单 */}
         {contextMenu.show && (
           <div
             className="fixed bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
