@@ -13,6 +13,8 @@ interface EditorProps {
   onChange: (content: string) => void;
   pageName: string;
   onElementSelect?: (element: HTMLElement | null) => void;
+  selectedNodeId?: string | null;
+  onNodeSelect?: (nodeId: string | null) => void;
 }
 
 const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
@@ -243,7 +245,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     // 添加基本样式
     newElement.style.margin = '10px';
 
-    // 根据操作类型添加元素
+    // 根据操作类���添加元素
     switch (action) {
       case 'insert':
         if (selectedElement && selectedElement.parentNode) {
@@ -425,7 +427,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
           </div>
         </div>
         
-        {/* 元素插入工具 */}
+        {/* 元素插入工��� */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
