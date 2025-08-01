@@ -644,7 +644,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">高性能</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
@@ -1108,7 +1108,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  本地状态: "{localTextContent}" (长度: {localTextContent.length})
+                  本地��态: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
                   元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
@@ -1413,23 +1413,114 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
               <div>
                 <Label className="text-sm font-medium">自定义属性</Label>
-                <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
-                  {Object.entries(elementData.attributes)
-                    .filter(([key]) => !['id', 'class', 'src', 'alt', 'href', 'target'].includes(key))
-                    .map(([key, value]) => (
-                      <div key={key} className="flex gap-2">
-                        <Input
-                          value={key}
-                          className="h-8 text-xs"
-                          disabled
-                        />
-                        <Input
-                          value={value}
-                          onChange={(e) => handleAttributeChange(key, e.target.value)}
-                          className="h-8 text-xs"
-                        />
+                <div className="mt-2 space-y-4">
+                  {/* 标题和数据ID */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <Label className="text-xs text-gray-600 mb-1 block">标题</Label>
+                      <Input
+                        value={elementData.attributes['data-title'] || ''}
+                        onChange={(e) => handleAttributeChange('data-title', e.target.value)}
+                        placeholder=""
+                        className="h-8 text-xs bg-white border-gray-300"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-600 mb-1 block">数据ID</Label>
+                      <Input
+                        value={elementData.attributes['data-id'] || ''}
+                        onChange={(e) => handleAttributeChange('data-id', e.target.value)}
+                        placeholder=""
+                        className="h-8 text-xs bg-white border-gray-300"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 提示 */}
+                  <div>
+                    <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
+                    <Input
+                      value={elementData.attributes['placeholder'] || ''}
+                      onChange={(e) => handleAttributeChange('placeholder', e.target.value)}
+                      placeholder=""
+                      className="h-8 text-xs bg-white border-gray-300"
+                    />
+                  </div>
+
+                  {/* 输入格式 */}
+                  <div>
+                    <div className="flex items-center gap-1 mb-1">
+                      <Label className="text-xs text-gray-600">输入格式</Label>
+                      <div className="w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs">?</div>
+                    </div>
+                    <Input
+                      value={elementData.attributes['pattern'] || ''}
+                      onChange={(e) => handleAttributeChange('pattern', e.target.value)}
+                      placeholder=""
+                      className="h-8 text-xs bg-white border-gray-300"
+                    />
+                  </div>
+
+                  {/* 可为空和键盘类型 */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-xs text-gray-600 mb-2 block">可为空</Label>
+                      <div className="flex items-center">
+                        <div className="relative inline-block w-10 h-5">
+                          <input
+                            type="checkbox"
+                            checked={elementData.attributes['required'] !== 'true'}
+                            onChange={(e) => handleAttributeChange('required', e.target.checked ? 'false' : 'true')}
+                            className="sr-only"
+                            id="nullable-toggle"
+                          />
+                          <label
+                            htmlFor="nullable-toggle"
+                            className="block w-10 h-5 bg-gray-300 rounded-full cursor-pointer transition-colors duration-200"
+                            style={{
+                              backgroundColor: elementData.attributes['required'] !== 'true' ? '#3b82f6' : '#d1d5db'
+                            }}
+                          >
+                            <div
+                              className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200"
+                              style={{
+                                transform: elementData.attributes['required'] !== 'true' ? 'translateX(20px)' : 'translateX(0)'
+                              }}
+                            />
+                          </label>
+                        </div>
                       </div>
-                    ))}
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-600 mb-1 block">键盘类型</Label>
+                      <select
+                        value={elementData.attributes['inputmode'] || 'text'}
+                        onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
+                        className="w-full h-8 text-xs bg-white border border-gray-300 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="text">默认</option>
+                        <option value="numeric">数字</option>
+                        <option value="tel">电话</option>
+                        <option value="email">邮箱</option>
+                        <option value="url">网址</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* 三系法 */}
+                  <div>
+                    <Label className="text-xs text-gray-600 mb-1 block">三系法</Label>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={elementData.attributes['data-three-system'] === 'true'}
+                        onChange={(e) => handleAttributeChange('data-three-system', e.target.checked ? 'true' : 'false')}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        id="three-system"
+                      />
+                      <label htmlFor="three-system" className="text-xs text-gray-600">启用三系法</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </TabsContent>
