@@ -409,7 +409,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const computedStyles = window.getComputedStyle(selectedElement);
       const styles: { [key: string]: string } = {};
       
-      // 获取常用样式���性
+      // 获取常用样式�����性
       const styleProperties = [
         'color', 'background-color', 'font-size', 'font-weight', 'font-family',
         'text-align', 'padding', 'margin', 'width', 'height', 'border',
@@ -603,7 +603,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
       } catch (error) {
-        console.error('DOM更新失败:', error);
+        console.error('DOM更��失败:', error);
       }
     }
   };
@@ -861,7 +861,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓名</label>
-            <input type="text" placeholder="请输��您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���箱</label>
@@ -984,7 +984,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
@@ -1039,7 +1039,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const elementPath = findElementPath(domTree, targetElement);
 
     if (elementPath) {
-      console.log('找��元素路径，自动展开:', elementPath.map(n => n.tagName));
+      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
 
       // 展开路径上的所有节点
       const expandPath = (nodes: DOMNode[]): DOMNode[] => {
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // 检查尺寸是否为0（��排除某些正常的0尺寸元素）
+          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1393,7 +1393,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
-          title={`${node.tagName}${node.id ? `#${node.id}` : ''}\n右键删除元素\n双击清除选中`}
+          title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
+            isNonOperable ? '\n🔒 不可操作元素（系统/框架元素）' :
+            isHidden ? '\n👁️‍🗨️ 隐藏元素' :
+            '\n可操作元素'
+          }\n右键删除元素\n双击清除选中`}
         >
           {hasChildren && (
             <button
@@ -1522,7 +1526,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -2197,7 +2201,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷��DOM树');
+                    console.log('手动刷新DOM树');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
