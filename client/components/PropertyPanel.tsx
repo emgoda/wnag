@@ -54,6 +54,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
+  const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -234,7 +235,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
-          console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+          console.log('DOM树���建成功 - 标签:', tree.tagName, '��节点数:', tree.children.length);
         }
 
         // 强制展开body��点
