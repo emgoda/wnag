@@ -134,7 +134,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('从HTML根元素构建DOM树');
       } else {
         console.log('iframe内容为空，等待加载...');
-        // 如���body为空，等待内容加载
+        // 如果body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -212,7 +212,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         };
       } else {
-        console.log('未找到iframe，1秒后重试...');
+        console.log('��找到iframe，1秒后重试...');
         setTimeout(findAndListenToIframe, 1000);
       }
     };
@@ -292,7 +292,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元素文本内容:', {
+      console.log('获取元素���本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -381,7 +381,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
       } catch (error) {
-        console.error('DOM更新失败:', error);
+        console.error('DOM���新失败:', error);
       }
     }
   };
@@ -392,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果���制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -822,10 +822,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   placeholder="输入元素的文本内容..."
                   className="mt-1 min-h-[80px]"
                 />
-                {elementData.textContent && (
+                {localTextContent && (
                   <div className="mt-2 p-2 bg-gray-50 rounded text-xs">
                     <span className="text-gray-600">预览:</span>
-                    <div className="mt-1 text-gray-800">{elementData.textContent}</div>
+                    <div className="mt-1 text-gray-800">{localTextContent}</div>
                   </div>
                 )}
                 <div className="mt-2 flex gap-2">
@@ -1224,7 +1224,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM树为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，然后点击"刷新"
+                    请确保已导入页面，然后点击"刷���"
                   </p>
                   <Button
                     variant="outline"
