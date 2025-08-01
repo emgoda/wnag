@@ -578,7 +578,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // ������更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
-        console.log('开始更新DOM，属性:', attribute, '值:', value);
+        console.log('开始更新DOM，���性:', attribute, '值:', value);
 
         // 获取iframe文档
         const iframe = document.querySelector('iframe') as HTMLIFrameElement;
@@ -786,7 +786,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setTimeout(() => getDOMTreeFromIframe(), 100);
   };
 
-  // ��新父组件内容
+  // ����新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -885,7 +885,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越���������验
+            专业的服务，���越���������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -896,12 +896,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的��������������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的��������������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供�����的用户体验</p>
             </div>
           </div>
         </div>
@@ -1157,7 +1157,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
         if (iframeElement && iframeElement.parentNode) {
           iframeElement.parentNode.removeChild(iframeElement);
-          console.log('已删除元素:', elementToDelete.tagName);
+          console.log('已删��元素:', elementToDelete.tagName);
 
           // 如果删除的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
@@ -1247,7 +1247,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.style.removeProperty('position');
         el.style.removeProperty('z-index');
 
-        // �����恢复交互能力
+        // �������恢复交互能力
         el.style.pointerEvents = 'auto';
         el.style.cursor = 'default';
       });
@@ -1406,7 +1406,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
             isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
-            '\n可���作元素'
+            '\n可����作元素'
           }${
             false ? '\n���� 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
@@ -1937,6 +1937,39 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </Button>
                     </div>
                   </div>
+
+                  <div>
+                    <Label className="text-xs">字体样式</Label>
+                    <div className="flex flex-wrap gap-3 mt-1">
+                      <label className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          checked={elementData.styles['font-weight'] === 'bold'}
+                          onChange={(e) => handleStyleChange('font-weight', e.target.checked ? 'bold' : 'normal')}
+                          className="rounded"
+                        />
+                        <span className="text-xs">粗体</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          checked={elementData.styles['font-style'] === 'italic'}
+                          onChange={(e) => handleStyleChange('font-style', e.target.checked ? 'italic' : 'normal')}
+                          className="rounded"
+                        />
+                        <span className="text-xs">斜体</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          checked={elementData.styles['text-decoration'] === 'underline'}
+                          onChange={(e) => handleStyleChange('text-decoration', e.target.checked ? 'underline' : 'none')}
+                          className="rounded"
+                        />
+                        <span className="text-xs">下划线</span>
+                      </label>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -2220,7 +2253,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按钮点击���半透明</Label>
+                  <Label className="text-sm text-gray-700">��钮点击���半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
@@ -2319,7 +2352,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('跳转到选中元素');
+                      console.log('跳转到选中元���');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
@@ -2354,7 +2387,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  已加载 {domTree.length} 个根���点
+                  ��加载 {domTree.length} 个根���点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
