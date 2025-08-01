@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body�������点
+        // 强制展开body���������点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ��������再次获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // 监��自定义DOM���刷新事��
+    // 监��自定义DOM�����刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
-      // 尝试不同���方式���取文本内容
+      // 尝试不同的方式���取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -641,7 +641,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 同时更新elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选中的元素���尝试更新实际DOM
+    // 如果有选中的元素，尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -678,7 +678,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元素复制���功');
+      console.log('元��复制���功');
     } catch (error) {
       console.error('复制元��失���:', error);
     }
@@ -978,7 +978,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有���业功��</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目��元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通����元素��容查找对应的DOM树�����
+        // 尝试通��元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，元素可自由交互');
+    console.log('所有选中状态已清除，元素可自���交互');
   };
 
   // 选择DOM节点 - 纯���览模式，不锁定交互
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树�����元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1607,7 +1607,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-medium flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            元��编辑器
+            元素编辑器
           </h3>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{elementData.tagName}</Badge>
@@ -1725,7 +1725,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🟡 Textarea onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地状态，不立即���新DOM
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -2349,7 +2349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按钮点击时半透明</Label>
+                  <Label className="text-sm text-gray-700">按���点击时半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个������点
+                  ����加载 {domTree.length} 个������点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
