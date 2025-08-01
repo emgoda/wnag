@@ -82,7 +82,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)��忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         // 过滤掉script和style元素，只保留有意义的DOM元素
@@ -118,7 +118,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所有可能的iframe
+    // 列出所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -316,7 +316,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel组件挂���，立即获取DOM树');
+    console.log('PropertyPanel��件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -470,7 +470,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           if (lastLabel) {
             lastLabel.textContent = value || '标题';
             lastLabel.setAttribute('data-title', value || '标���');
-            console.log('已��新最后一个label为:', value);
+            console.log('已��新最后一��label为:', value);
           } else {
             console.log('未找到label元素');
           }
@@ -481,7 +481,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const lastInput = allInputs[allInputs.length - 1];
           if (lastInput) {
             lastInput.setAttribute('placeholder', value || '');
-            console.log('已更新���后一个input placeholder为:', value);
+            console.log('已更新最后一个input placeholder为:', value);
           } else {
             console.log('未找到input元素');
           }
@@ -930,7 +930,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先��</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
@@ -1128,45 +1128,57 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 获取计算样式
-      const computedStyle = window.getComputedStyle(element);
-
-      // 检查各种隐藏条件
-      if (
-        computedStyle.display === 'none' ||
-        computedStyle.visibility === 'hidden' ||
-        computedStyle.opacity === '0' ||
-        parseFloat(computedStyle.opacity) === 0
-      ) {
-        return true;
-      }
-
-      // 检查尺寸是否为0
-      const rect = element.getBoundingClientRect();
-      if (rect.width === 0 && rect.height === 0) {
-        return true;
-      }
-
-      // 检查是否在iframe中
+      // 首先检查iframe中的元素（因为DOM树中的元素可能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
-        const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${element.getAttribute('data-node-id')}"]`);
-        if (iframeElement) {
-          const iframeComputedStyle = iframe.contentWindow?.getComputedStyle(iframeElement);
-          if (iframeComputedStyle) {
-            return (
-              iframeComputedStyle.display === 'none' ||
-              iframeComputedStyle.visibility === 'hidden' ||
-              iframeComputedStyle.opacity === '0' ||
-              parseFloat(iframeComputedStyle.opacity) === 0
-            );
+        // 尝试在iframe中找到对应的元素
+        let targetElement = element;
+
+        // 如果元素有data-node-id，优先用这个查找
+        const nodeId = element.getAttribute('data-node-id');
+        if (nodeId) {
+          const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
+          if (iframeElement) {
+            targetElement = iframeElement as HTMLElement;
+          }
+        }
+
+        // 使用iframe的window来获取计算样式
+        const iframeWindow = iframe.contentWindow;
+        if (iframeWindow && targetElement.ownerDocument === iframe.contentDocument) {
+          const computedStyle = iframeWindow.getComputedStyle(targetElement);
+
+          // 检查各种隐��条件
+          if (
+            computedStyle.display === 'none' ||
+            computedStyle.visibility === 'hidden' ||
+            computedStyle.opacity === '0' ||
+            parseFloat(computedStyle.opacity) === 0
+          ) {
+            return true;
+          }
+
+          // 检查尺寸是否为0（但排除某些正常的0尺寸元素）
+          const rect = targetElement.getBoundingClientRect();
+          if (rect.width === 0 && rect.height === 0 &&
+              !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
+            return true;
           }
         }
       }
 
-      return false;
+      // 备用检查：使用当前document的样式
+      const computedStyle = window.getComputedStyle(element);
+      return (
+        computedStyle.display === 'none' ||
+        computedStyle.visibility === 'hidden' ||
+        computedStyle.opacity === '0' ||
+        parseFloat(computedStyle.opacity) === 0
+      );
+
     } catch (error) {
       // 如果检测出错，默认不是隐藏的
+      console.warn('隐藏检测出错:', error);
       return false;
     }
   };
@@ -1337,7 +1349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入�����或点击"刷新"
+                      请导入��面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1890,7 +1902,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 className="w-full bg-blue-500 hover:bg-blue-600"
                 disabled={!selectedTemplate}
               >
-                开���生成
+                开始生成
               </Button>
 
               {/* 模板��置选项 */}
@@ -2029,7 +2041,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，然后点��"刷新"
+                    请确保已导入页面，���后点��"刷新"
                   </p>
                   <Button
                     variant="outline"
