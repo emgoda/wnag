@@ -125,7 +125,7 @@ export default function WebEditor() {
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页���');
+      alert('至少需要保留一个页面');
       return;
     }
 
@@ -260,7 +260,7 @@ export default function WebEditor() {
     }
   }, [selectedPageId, selectedPage]);
 
-  // ���存到��端
+  // 保存到��端
   const handleSave = async () => {
     try {
       const response = await fetch('/api/pages', {
@@ -270,7 +270,7 @@ export default function WebEditor() {
       });
 
       if (response.ok) {
-        alert('保���成功���');
+        alert('保存成功！');
       } else {
         throw new Error('保存失败');
       }
@@ -364,7 +364,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>新增��面</DialogTitle>
+                      <DialogTitle>新增页面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
@@ -682,7 +682,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;input&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">输入框</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">输���框</div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请��入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
@@ -1118,7 +1118,7 @@ export default function WebEditor() {
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
-                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">��卡人姓名</label>
+                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">持卡人姓名</label>
                                     <input type="text" placeholder="John Doe" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"
                                   </div>
 
@@ -1132,7 +1132,7 @@ export default function WebEditor() {
                                       <span style="color: #1f2937; font-size: 14px;">¥9.90</span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #e5e7eb;">
-                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">总计</span>
+                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">总���</span>
                                       <span style="color: #1f2937; font-size: 16px; font-weight: 600;">¥108.90</span>
                                     </div>
                                   </div>
