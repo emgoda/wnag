@@ -242,13 +242,8 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   // 刷新预览
   const handleRefreshPreview = () => {
     if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      const doc = iframe.contentDocument || iframe.contentWindow?.document;
-      if (doc) {
-        doc.open();
-        doc.write(content);
-        doc.close();
-      }
+      // 使用 srcDoc 重新设置内容，避免跨域问题
+      iframeRef.current.srcDoc = content;
     }
   };
 
