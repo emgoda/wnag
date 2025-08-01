@@ -426,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简化策略：直接更新最后��个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -638,7 +638,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 处理模板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
-      alert('请先选择一个模板');
+      alert('请先选���一个模板');
       return;
     }
 
@@ -975,7 +975,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   };
 
   // 渲染DOM树节点
-  const renderDOMNode = (node: DOMNode, depth = 0) => {
+  const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
@@ -1653,7 +1653,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生成��
+                模板生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -1808,7 +1808,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强��������DOM树');
+                      console.log('强����������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
