@@ -81,7 +81,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 检查元素是否可操作
+  // 检查元素是否可操��
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
@@ -125,7 +125,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
 
-    // 如果是以上任何一种情况，则不���操作
+    // 如果是以上任何一种情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -181,7 +181,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所���可能的iframe
+    // 列出所���可��的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -232,7 +232,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
-          console.log('DOM树构建成功，节��数:', tree.length);
+          console.log('DOM树构建成功，节点数:', tree.length);
         } else {
           console.log('使用body容器构建DOM树');
           const tree = buildDOMTree(body);
@@ -480,13 +480,20 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动��转到DOM树中对应的节��
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
-      console.log('选中元素���化，自动跳转到DOM树节点:', selectedElement);
+      console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
       autoExpandToElement(selectedElement);
+
+      // 如果是从画布选择的新元素，且当前是预览模式，则清除DOM树的预览状态
+      if (selectionMode === 'preview' && selectedElement !== previewElement) {
+        console.log('画布选择了新元素，清除DOM树预览状态');
+        setPreviewElement(null);
+        clearIframePreviewStyles();
+      }
     }
-  }, [selectedElement, domTree]);
+  }, [selectedElement, domTree, selectionMode, previewElement]);
 
   // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
@@ -526,7 +533,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一个相关元素��用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -593,7 +600,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 同时更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选中的���素，尝试更新实际DOM
+    // 如果有选中的元素，尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -605,7 +612,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
       } catch (error) {
-        console.error('DOM更��失败:', error);
+        console.error('DOM更��失���:', error);
       }
     }
   };
@@ -902,7 +909,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基���功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
@@ -1159,7 +1166,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           el.removeAttribute('title');
         }
 
-        // 清除所有可能阻止交互的样式
+        // 清除所���可能阻止交互的样式
         el.style.removeProperty('pointer-events');
         el.style.removeProperty('user-select');
         el.style.removeProperty('position');
@@ -1222,7 +1229,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         targetElement = doc.querySelector(`[data-node-id="${nodeId}"]`);
       }
 
-      // 如果没有找��对应元素，尝试其他方式查找
+      // 如果没有找到对应元素，尝试其他方式查找
       if (!targetElement) {
         // 通过标签名、id、class等特征查找
         const tagName = element.tagName.toLowerCase();
@@ -1436,7 +1443,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             e.preventDefault();
             e.stopPropagation();
             // 双击：锁定模式（完全选中，锁定交互）
-            console.log('双击锁定选择');
+            console.log('双击锁���选择');
             handleNodeSelect(node.element, 'locked');
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
@@ -1670,7 +1677,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   disabled={!selectedElement?.previousElementSibling}
                 >
                   <ArrowUp className="w-4 h-4 mr-2" />
-                  向上移动
+                  ���上移动
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementDown()}
@@ -2024,7 +2031,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
 
               <div>
-                <Label className="text-sm font-medium">CSS类名</Label>
+                <Label className="text-sm font-medium">CSS��名</Label>
                 <Input
                   value={elementData.className}
                   onChange={(e) => handleAttributeChange('class', e.target.value)}
@@ -2321,12 +2328,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选中的���素');
+                      console.log('没有选中的元素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元����"
+                  title="跳转到当前选中的元��"
                 >
                   🎯
                 </Button>
