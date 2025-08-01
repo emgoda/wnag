@@ -96,7 +96,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑器���的iframe，尝试多种选择器
+    // 查找编辑器中的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -622,29 +622,29 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
     return `
-      <section style="padding: 60px 20px;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+      <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
+        <div style="max-width: 100%; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
             我们的特色
           </h2>
-          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
+          <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             专业的服务，卓越的体验
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🚀</div>
-              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">快速部署</h3>
-              <p style="color: #6b7280; line-height: 1.6;">一键部署，快速上线，让您的产品迅速触达用户</p>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🚀</div>
+              <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">快速部署</h3>
+              <p style="color: #6b7280; line-height: 1.5; font-size: 13px;">一键部署，快速上线，让您的产品迅速触达用户</p>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🛡️</div>
-              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">安全可靠</h3>
-              <p style="color: #6b7280; line-height: 1.6;">企业级安全保障，全方位保护您的数据安全</p>
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🛡️</div>
+              <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">安全可靠</h3>
+              <p style="color: #6b7280; line-height: 1.5; font-size: 13px;">企业级安全保障，全方位保护您的数据安全</p>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">⚡</div>
-              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">高性能</h3>
-              <p style="color: #6b7280; line-height: 1.6;">优化的架构设计，提供极致的用户体验</p>
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 20px;">⚡</div>
+              <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">高性能</h3>
+              <p style="color: #6b7280; line-height: 1.5; font-size: 13px;">优化的架构设计，提供极致的用户体验</p>
             </div>
           </div>
         </div>
@@ -768,7 +768,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我���的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 15px;">
                 <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">李</div>
@@ -1146,7 +1146,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文本输入..."
+                  placeholder="多行��本输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
