@@ -249,7 +249,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const body = doc.body;
       const html = doc.documentElement;
 
-      console.log('iframe详细������:', {
+      console.log('iframe详细����:', {
         readyState: doc.readyState,
         bodyChildren: body?.children.length || 0,
         htmlChildren: html?.children.length || 0,
@@ -315,7 +315,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 页面加载时和选��元素变化时更����DOM树
   useEffect(() => {
-    console.log('PropertyPanel useEffect 触���');
+    console.log('PropertyPanel useEffect 触发');
 
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文��������，确保获����������正确的文本
+      // 获取文���������，确保获��������正确的文本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ����中元素变化时，同步本地文本��态
+  // ����中元素变化时，同步本地文本���态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -880,12 +880,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全���靠</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的���������������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">�����能</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供�����的用户体验</p>
             </div>
           </div>
@@ -915,7 +915,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���������箱</label>
-            <input type="email" placeholder="请输入�����的��箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="email" placeholder="请输入�����的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
@@ -979,7 +979,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 无限存储空���</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
@@ -1185,7 +1185,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setContextMenu(prev => ({ ...prev, show: false }));
   };
 
-  // 清除iframe中的预览样式
+  // 清除iframe中的预览样���
   const clearIframePreviewStyles = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点 - 纯���览模式，不锁定交互
+  // 选择DOM节点 - 纯���览模式，���锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1421,7 +1421,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元��已隐藏">👁️‍🗨️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可���作元素">🔒</span>}
           </span>
 
@@ -1555,7 +1555,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     已加载 {domTree.length} 个根节点
                   </p>
                   <p className="text-blue-500">
-                    第一个节点: {domTree[0]?.tagName} (子节点: {domTree[0]?.children?.length || 0})
+                    第一个节点: {domTree[0]?.tagName} (���节点: {domTree[0]?.children?.length || 0})
                   </p>
                   {!showAllElements && (
                     <p className="text-gray-500">
@@ -1742,7 +1742,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
               </div>
 
-              {/* 特定��素的内��属�� */}
+              {/* 特定��素的内��属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
@@ -1830,7 +1830,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </CardContent>
               </Card>
 
-              {/* 文���样式 */}
+              {/* 文字样式 */}
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1841,7 +1841,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">字体��小</Label>
+                      <Label className="text-xs">字体大小</Label>
                       <Input
                         value={elementData.styles['font-size'] || ''}
                         onChange={(e) => handleStyleChange('font-size', e.target.value)}
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可���作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
@@ -2516,7 +2516,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强�����������DOM���');
+                      console.log('强�����������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
