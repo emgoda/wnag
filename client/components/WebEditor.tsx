@@ -45,7 +45,7 @@ export default function WebEditor() {
 </head>
 <body>
     <div class="container">
-        <h1>欢迎��到我的网站</h1>
+        <h1>欢迎来到我的网站</h1>
         <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
@@ -85,7 +85,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用���同的路由');
+      alert('路由已存在，请使用不同的路由');
       return;
     }
 
@@ -168,7 +168,7 @@ export default function WebEditor() {
     // 添加到历��记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
-      return newHistory.slice(-50); // ���制历史记录数���
+      return newHistory.slice(-50); // ���制历史记录�����
     });
     setHistoryIndex(prev => prev + 1);
 
@@ -364,7 +364,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>新���页面</DialogTitle>
+                      <DialogTitle>新增页面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
@@ -389,7 +389,7 @@ export default function WebEditor() {
                         <Label htmlFor="template">页面模板</Label>
                         <Select>
                           <SelectTrigger>
-                            <SelectValue placeholder="选择页面模板" />
+                            <SelectValue placeholder="选择页面���板" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
@@ -480,7 +480,7 @@ export default function WebEditor() {
               `}</style>
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-medium">HTML元素库</h3>
+                  <h3 className="font-medium">HTML���素库</h3>
                   <Badge variant="outline">点击按钮操作</Badge>
                 </div>
 
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">���输入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
