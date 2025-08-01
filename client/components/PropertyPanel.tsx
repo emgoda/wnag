@@ -71,13 +71,25 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    // 查找编辑器中的iframe
-    const editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+    // 查找编辑器中的iframe，尝试多种选择器
+    let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+
+    if (!editorIframe) {
+      // 如果特定选择器没找到，尝试通用���择器
+      editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
+    }
+
+    if (!editorIframe) {
+      // 最后尝试找任何iframe
+      editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
+    }
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
       return;
     }
+
+    console.log('找到iframe:', editorIframe);
 
     try {
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
@@ -277,7 +289,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } : null);
   };
 
-  // 更新文本内容
+  // 更新文��内容
   const handleTextContentChange = (value: string) => {
     if (!selectedElement || !onElementUpdate) return;
 
@@ -360,7 +372,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格式是否正确');
+        alert('HTML编辑失败，请检查格��是否正确');
       }
     }
   };
@@ -414,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 切换DOM节点展开状态
+  // 切��DOM节点展开状态
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
       return nodes.map(n => {
@@ -597,7 +609,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正���加���DOM结构... 点击"刷新"重试
+                  ������加���DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -661,7 +673,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  编辑HTML
+                  ���辑HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -814,7 +826,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">文字颜色</Label>
+                    <Label className="text-xs">文���颜色</Label>
                     <div className="flex gap-2 mt-1">
                       <Input
                         type="color"
