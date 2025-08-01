@@ -479,12 +479,12 @@ export default function WebEditor() {
                       <CardTitle className="text-sm">基础元素</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <div className="grid grid-cols-1 gap-3">
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold">&lt;h1&gt;</div>
-                            <div className="text-gray-600 mb-3">标题</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;h1&gt;</div>
+                            <div className="text-gray-600 mb-2 text-center">标题</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
