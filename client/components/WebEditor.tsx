@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接在中间���布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -377,7 +377,7 @@ export default function WebEditor() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="route">页面路由</Label>
+                        <Label htmlFor="route">页��路由</Label>
                         <Input
                           id="route"
                           value={newPageData.route}
@@ -465,7 +465,7 @@ export default function WebEditor() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-medium">HTML元素库</h3>
-                  <Badge variant="outline">点击按钮操作</Badge>
+                  <Badge variant="outline">点击���钮操作</Badge>
                 </div>
 
                 <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
@@ -622,10 +622,10 @@ export default function WebEditor() {
                           <div className="font-mono text-blue-600">&lt;img&gt;</div>
                           <div className="text-gray-600">图片</div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
+                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
                           <div className="font-mono text-blue-600">&lt;button&gt;</div>
                           <div className="text-gray-600 mb-2">按钮</div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                             <Button
                               variant="outline"
                               size="sm"
@@ -890,7 +890,7 @@ export default function WebEditor() {
                     </CardContent>
                   </Card>
 
-                  {/* 自定义组��� */}
+                  {/* 自定义组件 */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm">自定义组件</CardTitle>
@@ -1005,7 +1005,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请��择一个页面进行编辑</p>
+                <p className="text-gray-500">请选择一个页面进行编辑</p>
               </div>
             )}
           </div>
