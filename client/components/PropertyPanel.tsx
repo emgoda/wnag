@@ -1435,6 +1435,78 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </Tabs>
         </div>
 
+        {/* 模板生成器区域 */}
+        {showTemplateGenerator && (
+          <div className="border-t bg-gradient-to-r from-blue-50 to-indigo-50">
+            <div className="p-4 border-b bg-white">
+              <h4 className="font-medium text-sm flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-blue-500" />
+                模板生成器
+              </h4>
+            </div>
+            <div className="p-4 space-y-4">
+              {/* 选择模板 */}
+              <div>
+                <Label className="text-sm font-medium mb-2 block">选择模板</Label>
+                <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="-- 请选择 --" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="hero-section">Hero 区域</SelectItem>
+                    <SelectItem value="feature-cards">功能卡片</SelectItem>
+                    <SelectItem value="contact-form">联系表单</SelectItem>
+                    <SelectItem value="pricing-table">价格表</SelectItem>
+                    <SelectItem value="testimonial">客户评价</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* 开始生成按钮 */}
+              <Button
+                onClick={handleTemplateGeneration}
+                className="w-full bg-blue-500 hover:bg-blue-600"
+                disabled={!selectedTemplate}
+              >
+                开始生成
+              </Button>
+
+              {/* 模板设置选项 */}
+              <div className="space-y-3 pt-2 border-t">
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm text-gray-700">输入框阴影</Label>
+                  <Switch
+                    checked={templateSettings.inputShadow}
+                    onCheckedChange={(checked) =>
+                      setTemplateSettings(prev => ({ ...prev, inputShadow: checked }))
+                    }
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm text-gray-700">输入框跟随主题色</Label>
+                  <Switch
+                    checked={templateSettings.inputThemeColor}
+                    onCheckedChange={(checked) =>
+                      setTemplateSettings(prev => ({ ...prev, inputThemeColor: checked }))
+                    }
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm text-gray-700">按钮点击时半透明</Label>
+                  <Switch
+                    checked={templateSettings.buttonTransparent}
+                    onCheckedChange={(checked) =>
+                      setTemplateSettings(prev => ({ ...prev, buttonTransparent: checked }))
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* DOM树区域 */}
         <div className="border-t bg-gray-50">
           <div className="p-3 border-b bg-white">
