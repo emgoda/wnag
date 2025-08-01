@@ -403,7 +403,7 @@ export default function WebEditor() {
                       </div>
                       <div className="flex justify-end gap-2">
                         <Button variant="outline" onClick={() => setShowAddPageDialog(false)}>
-                          取消
+                          ��消
                         </Button>
                         <Button onClick={handleAddPage}>
                           创建
@@ -888,8 +888,8 @@ export default function WebEditor() {
                       <CardTitle className="text-sm">表单元素</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <div className="grid grid-cols-1 gap-3">
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;form&gt;</div>
