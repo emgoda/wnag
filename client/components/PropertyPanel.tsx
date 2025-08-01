@@ -332,14 +332,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         iframe.addEventListener('load', handleLoad);
 
-        // 监听iframe内���文档的变化
-        try {
-          if (iframe.contentDocument) {
-            iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
-          }
-        } catch (e) {
-          console.log('���法监听iframe内容文档:', e);
-        }
+        // 暂时禁用iframe内容变化监听，避免编辑时DOM树频繁刷新
+        // try {
+        //   if (iframe.contentDocument) {
+        //     iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
+        //   }
+        // } catch (e) {
+        //   console.log('无法监听iframe内容文档:', e);
+        // }
 
         // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
@@ -858,7 +858,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数�����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -958,7 +958,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制���成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业�����
@@ -1239,7 +1239,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor组件通过selectedNodeId受控处理
-    // 这确保了元素只是被高亮预览，但不会被锁定无法交互
+    // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
   // 添�����停效果
@@ -1406,7 +1406,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </span>
           )}
 
-          {/* 显示元素类型信息 */}
+          {/* 显��元素类型信息 */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
