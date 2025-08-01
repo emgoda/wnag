@@ -270,7 +270,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
-        // ���试从html根元素开始构建
+        // 尝试从html根元素开始构建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -452,7 +452,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内���
+      // 尝试不同的方式获取文本内����
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -508,7 +508,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         onNodeSelect(nodeId);
       }
     }
-  }, [selectedElement, domTree, selectionMode, previewElement]);
+  }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
   // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
@@ -990,7 +990,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">李先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品��理</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经理</div>
                 </div>
               </div>
             </div>
@@ -1168,7 +1168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
 
-      // 移除所有可���的选中样式
+      // ���除所有可���的选中样式
       const highlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview, .element-selected, .selected, [data-dom-tree-selected], [data-dom-tree-preview]');
       highlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview', 'element-selected', 'selected');
