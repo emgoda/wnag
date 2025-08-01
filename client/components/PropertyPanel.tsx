@@ -316,7 +316,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       }
 
       if (iframe) {
-        console.log('找到iframe，设置监听器');
+        console.log('��到iframe，设置监听器');
 
         const handleLoad = () => {
           console.log('iframe加载完成�������触发');
@@ -359,7 +359,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           // }
         };
       } else {
-        console.log('未找到iframe，1秒后重试...');
+        console.log('未���到iframe，1秒后重试...');
         setTimeout(findAndListenToIframe, 1000);
       }
     };
@@ -403,7 +403,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
-        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
+        console.log(`���试获取DOM树 (延迟${delay}ms)`);
         getDOMTreeFromIframe();
       }, delay);
     });
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一���相���元素（用户最新操作的）
+        // 简�����略：直接更新最后一���相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -587,7 +587,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // ��新本������态
+    // ��新本�����态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -919,7 +919,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价，满足不同需求
+            灵活���定价，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }, 200);
     } else {
-      console.log('���在DOM树中找到目标元素');
+      console.log('未在DOM树中找到目标元素');
     }
   };
 
@@ -1250,7 +1250,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
-  // 添������停效果
+  // 添�����停效果
   const handleNodeHover = (element: HTMLElement, isEnter: boolean) => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1364,9 +1364,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             '\n可���作元素'
           }${
             false ? '\n���� 已锁定选择' :
-            isSelectedByNodeId ? '\n✅ 当前选���' :
+            isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
-          }\n点击选择元素\n右键：删��元素`}
+          }\n点击选择元素\n右键：删��元��`}
         >
           {hasChildren && (
             <button
@@ -1503,12 +1503,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      console.log('手动刷新DOM树（无选中状态）');
+                      console.log('强制刷新DOM树');
+                      console.log('当前domTree长度:', domTree.length);
                       getDOMTreeFromIframe();
+
+                      // 额外尝试：直接从iframe获取所有元素
+                      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+                      if (iframe && iframe.contentDocument) {
+                        const allElements = iframe.contentDocument.querySelectorAll('*');
+                        console.log('iframe中总元素数:', allElements.length);
+                        console.log('iframe body:', iframe.contentDocument.body);
+                      }
                     }}
                     className="h-6 px-2 text-xs"
                   >
-                    刷新
+                    强制刷新
                   </Button>
 
                 </div>
@@ -1983,7 +1992,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* ����� */}
+                  {/* 提�� */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
                     <Input
