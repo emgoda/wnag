@@ -795,7 +795,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           联系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          ��任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -869,7 +869,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">�� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
@@ -1094,10 +1094,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             outline: 2px solid #3b82f6 !important;
             outline-offset: 2px !important;
             background-color: rgba(59, 130, 246, 0.1) !important;
+            pointer-events: auto !important;
+            cursor: move !important;
           }
           .dom-tree-hover {
             outline: 1px dashed #94a3b8 !important;
             outline-offset: 1px !important;
+            pointer-events: auto !important;
           }
         `;
         doc.head.appendChild(style);
