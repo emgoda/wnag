@@ -468,7 +468,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加���DOM结构... 点击"刷新"重试
+                  正���加���DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -613,7 +613,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <div>
                       <Label className="text-xs">字体粗细</Label>
                       <Select
-                        value={elementData.styles['font-weight'] || ''}
+                        value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
                       >
                         <SelectTrigger className="mt-1 h-8">
