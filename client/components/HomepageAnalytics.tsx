@@ -11,7 +11,7 @@ const analyticsData: AnalyticsData[] = [
   { label: "一个月输出量", value: "13756", category: "output" },
   { label: "一个月设备量", value: "13756", category: "device" },
   { label: "一个月输入量", value: "13756", category: "output" },
-  { label: "设备输���", value: "401", category: "device" },
+  { label: "设备输入", value: "401", category: "device" },
   { label: "设备上线", value: "401", category: "device" },
   { label: "本月输入量", value: "401", category: "monthly" },
   { label: "存储设置", value: "401", category: "device" },
