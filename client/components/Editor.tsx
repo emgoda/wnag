@@ -45,13 +45,9 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   }, [content]);
 
-  // 在组件挂载时确保默认为桌面模式
+  // 在组件挂载时确保默认为手机模式
   useEffect(() => {
     console.log('Editor组件挂载，当前预览模式:', previewMode);
-    if (previewMode !== 'desktop') {
-      console.log('重置为桌面模式');
-      setPreviewMode('desktop');
-    }
   }, []);
 
   // 设置元素选择功能
@@ -161,7 +157,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       target.classList.add('element-selected');
       setSelectedElement(target);
 
-      // 通知父组件 - 立即调用
+      // 通知父组件 - 立即调��
       console.log('通知父组件元素选择:', {
         tagName: target.tagName,
         hasCallback: !!onElementSelect,
