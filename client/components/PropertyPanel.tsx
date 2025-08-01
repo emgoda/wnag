@@ -367,78 +367,35 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 特殊处理：当修改data-title时，同时更新对应的label文本
-    if (attribute === 'data-title') {
-      // 获取iframe的document
-      const iframe = document.querySelector('iframe');
-      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
+    // 特殊处理：当修改input相关属性时，重新生成完整的输入框HTML
+    if ((attribute === 'data-title' || attribute === 'placeholder') &&
+        (selectedElement.tagName === 'INPUT' || selectedElement.querySelector('input'))) {
 
-      if (iframeDoc && selectedElement) {
-        // 使用延时确保DOM已更新
-        setTimeout(() => {
-          let labelElement = null;
-          let targetElement = selectedElement;
+      setTimeout(() => {
+        // 获取当前所有属性值
+        const currentTitle = selectedElement.getAttribute('data-title') || attribute === 'data-title' ? value : '标题';
+        const currentPlaceholder = selectedElement.getAttribute('placeholder') || attribute === 'placeholder' ? value : '';
 
-          // 如果选中的是input，向上找容器
-          if (selectedElement.tagName === 'INPUT') {
-            targetElement = selectedElement.parentElement || selectedElement;
-          }
+        // 生成新的输入框HTML
+        const newInputHTML = `
+          <div style="display: inline-block; margin: 10px;">
+            <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 4px; font-weight: 500;" data-title="${currentTitle}">${currentTitle}</label>
+            <input type="text" placeholder="${currentPlaceholder}" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
+          </div>
+        `;
 
-          // 在目标元素中查找label
-          labelElement = targetElement.querySelector('label');
-          if (!labelElement && targetElement.parentElement) {
-            labelElement = targetElement.parentElement.querySelector('label');
-          }
+        // 如果选中的是容���div
+        if (selectedElement.tagName === 'DIV' && selectedElement.querySelector('input')) {
+          selectedElement.innerHTML = newInputHTML.replace(/<div[^>]*>|<\/div>/g, '').trim();
+        }
+        // 如果选中的是input，更新父容器
+        else if (selectedElement.tagName === 'INPUT' && selectedElement.parentElement) {
+          const container = selectedElement.parentElement;
+          container.innerHTML = newInputHTML.replace(/<div[^>]*>|<\/div>/g, '').trim();
+        }
 
-          // 如果还是找不到，试试在iframe文档中按data-title查找
-          if (!labelElement) {
-            const elements = iframeDoc.querySelectorAll('label[data-title]');
-            labelElement = Array.from(elements).find(el =>
-              el.closest('[data-title]') === targetElement ||
-              el.parentElement === targetElement
-            ) || elements[elements.length - 1]; // 取最后一个作为fallback
-          }
-
-          if (labelElement) {
-            labelElement.textContent = value || '标题';
-            labelElement.setAttribute('data-title', value || '标题');
-            console.log('已更新标题为:', value, '找到的label:', labelElement.textContent);
-          } else {
-            console.log('未找到label元素，选中的元素是:', selectedElement.tagName, 'data-title值:', value);
-          }
-        }, 100);
-      }
-    }
-
-    // 特殊处理：当修改placeholder时，同时更新对应的input元素
-    if (attribute === 'placeholder') {
-      // 获取iframe的document
-      const iframe = document.querySelector('iframe');
-      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
-
-      if (iframeDoc && selectedElement) {
-        setTimeout(() => {
-          let inputElement = null;
-
-          // 如果选中的就是input元素
-          if (selectedElement.tagName === 'INPUT') {
-            inputElement = selectedElement;
-          } else {
-            // 在选中元素中查找input
-            inputElement = selectedElement.querySelector('input');
-            if (!inputElement && selectedElement.parentElement) {
-              inputElement = selectedElement.parentElement.querySelector('input');
-            }
-          }
-
-          if (inputElement) {
-            inputElement.setAttribute('placeholder', value || '');
-            console.log('已更新placeholder为:', value, '找到的input:', inputElement);
-          } else {
-            console.log('未找到input元素，选中的元素是:', selectedElement.tagName, 'placeholder值:', value);
-          }
-        }, 100);
-      }
+        console.log('已重新生成输入框，标题:', currentTitle, 'placeholder:', currentPlaceholder);
+      }, 50);
     }
 
     onElementUpdate(selectedElement, attribute, value);
@@ -1182,7 +1139,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  本地����: "{localTextContent}" (长度: {localTextContent.length})
+                  本地����: "{localTextContent}" (���度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
                   元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
