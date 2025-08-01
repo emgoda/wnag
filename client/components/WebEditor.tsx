@@ -165,7 +165,7 @@ export default function WebEditor() {
   const handleContentChange = useCallback((content: string) => {
     if (!selectedPage) return;
 
-    // 添加到历史记录
+    // 添加���历史记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
       return newHistory.slice(-50); // 限制历史记录数量
@@ -293,7 +293,7 @@ export default function WebEditor() {
             disabled={historyIndex < 0}
           >
             <Undo className="w-4 h-4 mr-2" />
-            撤销
+            撤���
           </Button>
           <Button
             variant="outline"
@@ -479,11 +479,15 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'h1',
                               content: '标题文本'
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 h1 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -493,11 +497,15 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'p',
                               content: '段落文本'
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 p 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -507,12 +515,16 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'a',
                               content: '链接文本',
                               attributes: { href: '#' }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 a 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -522,14 +534,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'img',
                               attributes: {
                                 src: 'https://via.placeholder.com/150x100',
                                 alt: '图片描述'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 img 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -539,11 +555,15 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'button',
                               content: '按钮文本'
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 button 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -553,14 +573,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'input',
                               attributes: {
                                 type: 'text',
                                 placeholder: '请输入...'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 input 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -764,7 +788,7 @@ export default function WebEditor() {
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
-                        CTA按钮
+                        CTA按���
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
