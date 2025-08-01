@@ -170,8 +170,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             tagName: element.tagName.toLowerCase(),
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
-            children: buildTree(element), // 递归构���子元素树
-            isExpanded: true // 默认展开所有节点
+            children: buildTree(element), // 递归构建子元素树
+            isExpanded: true // 默认��开所有节点
           });
         } else {
           // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否��构��body树
+        // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -319,7 +319,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成��������触发');
+          console.log('iframe加载完成�������触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -408,7 +408,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     });
   }, []);
 
-  // 检���是否为预设元素
+  // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
@@ -558,7 +558,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           if (lastLabel) {
             lastLabel.textContent = value || '标题';
             lastLabel.setAttribute('data-title', value || '标���');
-            console.log('已��新最后一��label为:', value);
+            console.log('已��新最后一��label���:', value);
           } else {
             console.log('未找到label元素');
           }
@@ -601,7 +601,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     selectedElement.style.setProperty(property, value);
     onElementUpdate(selectedElement, property, value);
     
-    // 更新本地状态
+    // 更新本���状态
     setElementData(prev => prev ? {
       ...prev,
       styles: { ...prev.styles, [property]: value }
@@ -690,7 +690,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑���素HTML:\n\n��意：请确��HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n��意：请确��HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -1084,7 +1084,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动到目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素内容查找对应的DOM树节点
+        // 尝试通过元素��容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1480,7 +1480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             '\n可操作元素'
           }${
             false ? '\n🔒 已锁定选择' :
-            isPreview ? '\n👁️ 预览模式' :
+            isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
           }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
         >
@@ -1578,7 +1578,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="p-4 border-b">
           <h3 className="font-medium flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            ��素编辑器
+            元素编辑器
           </h3>
         </div>
         <div className="flex-1 flex flex-col">
@@ -2366,7 +2366,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中���元��"
+                  title="跳转到当前选中的元��"
                 >
                   🎯
                 </Button>
@@ -2393,7 +2393,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  已加载 {domTree.length} 个根节点
+                  已加载 {domTree.length} 个根���点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
@@ -2406,7 +2406,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 ���定模式：元素已锁定选择'}
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
                 </p>
               </div>
             )}
