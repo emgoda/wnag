@@ -243,7 +243,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     // 添加基本样式
     newElement.style.margin = '10px';
 
-    // 根据操作类型��加元素
+    // 根据操作类型添加元素
     switch (action) {
       case 'insert':
         if (selectedElement && selectedElement.parentNode) {
@@ -293,7 +293,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
         <div className="flex items-center gap-4">
           <h2 className="font-medium text-gray-900">{pageName}</h2>
           <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-            页面编辑器
+            {deviceSizes[previewMode as keyof typeof deviceSizes]?.label || '页面编辑器'}
           </Badge>
           {selectedElement && (
             <Badge variant="secondary" className="bg-blue-50 text-blue-700">
