@@ -110,7 +110,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
-    // 不可操�����系统元素
+    // 不可操������系统元素
     const nonOperableSystemTags = [
       'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
     ];
@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再��获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -476,10 +476,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文��������，确保获��������正确的文本
+      // 获取文��������，确保获����������确的文本
       let textContent = '';
 
-      // 尝试不同的方式����取文本内容
+      // 尝试不同的方式���取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -633,7 +633,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变���:', value);
+    console.log('文本输入变化:', value);
 
     // 立即更新本地状态，确保输入响应
     setLocalTextContent(value);
@@ -906,7 +906,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您���答
+          有任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1220,7 +1220,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.removeAttribute('data-dom-tree-selected');
         el.removeAttribute('data-dom-tree-preview');
 
-        // 恢复����title
+        // 恢复������title
         const title = el.getAttribute('title');
         if (title && title.includes('🔒 已选中')) {
           el.removeAttribute('title');
@@ -1353,7 +1353,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
-    // 临时简化：减少隐藏检测，确保���素可见
+    // 临时简化：减少隐藏检测，确保元素可见
     const isHidden = false; // isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
 
@@ -2255,7 +2255,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">键盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -2323,7 +2323,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 className="w-full bg-blue-500 hover:bg-blue-600"
                 disabled={!selectedTemplate}
               >
-                开始生成
+                开��生成
               </Button>
 
               {/* 模板��置选项 */}
