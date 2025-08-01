@@ -78,7 +78,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
+  // 构建DOM树 - 只显示元素节点（Element���，过滤文本节点、注释节点等
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -925,7 +925,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1071,7 +1071,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 清除所有选中状态
   const clearSelection = () => {
     setSelectedNodeElement(null);
-    setSelectedElement(null);
+    setElementData(null);
 
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1103,7 +1103,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.style.removeProperty('user-select');
       });
 
-      // 找到iframe中对应的元素
+      // 找到iframe中对应���元素
       let targetElement = null;
       const nodeId = element.getAttribute('data-node-id');
       if (nodeId) {
@@ -1138,7 +1138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.warn('未找到iframe中对应的元素');
       }
 
-      // 添加高亮样式（如果还没有的话）
+      // 添���高亮样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
