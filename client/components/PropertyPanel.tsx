@@ -301,14 +301,17 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         final: textContent
       });
 
-      setElementData({
+      const newElementData = {
         tagName: selectedElement.tagName.toLowerCase(),
         id: selectedElement.id || '',
         className: selectedElement.className || '',
         textContent: textContent,
         attributes,
         styles
-      });
+      };
+
+      setElementData(newElementData);
+      setLocalTextContent(textContent); // 同步本地文本状态
     } else {
       setElementData(null);
     }
@@ -549,7 +552,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
-      // 添加���亮样式（如果还没有的话）
+      // 添加高亮样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
@@ -673,7 +676,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览中选择一个元素</p>
+              <p className="text-sm">在预览���选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -971,7 +974,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <SelectContent>
                           <SelectItem value="normal">正常</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
-                          <SelectItem value="lighter">���体</SelectItem>
+                          <SelectItem value="lighter">细体</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
