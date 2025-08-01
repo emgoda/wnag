@@ -232,7 +232,7 @@ export default function WebEditor() {
 
       setPages(prev => [...prev, newPage]);
       setSelectedPageId(newPage.id);
-      alert('SingleFile导入���功！');
+      alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
       alert('导入失败，请检查文件格式');
@@ -276,7 +276,7 @@ export default function WebEditor() {
       }
     } catch (error) {
       console.error('保存失败:', error);
-      alert('保存失败，��重试');
+      alert('保存失败，请重试');
     }
   };
 
@@ -310,7 +310,7 @@ export default function WebEditor() {
             onClick={() => setShowCodeEditor(!showCodeEditor)}
           >
             <Code className="w-4 h-4 mr-2" />
-            {showCodeEditor ? '关闭源码' : '源码编辑'}
+            {showCodeEditor ? '关闭���码' : '源码编辑'}
           </Button>
           <Button
             variant="outline"
@@ -465,11 +465,11 @@ export default function WebEditor() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-medium">HTML元素库</h3>
-                  <Badge variant="outline">拖拽到右侧</Badge>
+                  <Badge variant="outline">点击按钮操作</Badge>
                 </div>
 
                 <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
-                  💡 拖拽元素到中间的页面编辑区域来添加到页面
+                  💡 点击元素下方的按钮来插入、替换或追加元素
                 </div>
 
                 <div className="space-y-3">
@@ -771,7 +771,7 @@ export default function WebEditor() {
                     <CardContent className="space-y-2">
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
-                        响应式网格布局
+                        响应式��格布局
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
