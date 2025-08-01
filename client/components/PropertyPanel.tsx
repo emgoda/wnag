@@ -55,6 +55,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
+  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择模式：预览或锁定
+  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -151,7 +153,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
-            isExpanded: true // 默认展开所有节点
+            isExpanded: true // 默���展开所有节点
           });
         } else {
           // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
@@ -227,7 +229,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       if (containerElement) {
         // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
-          console.log('找到canvas-root容器，构建子树');
+          console.log('���到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
@@ -510,7 +512,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元素
+    // 立�����新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -765,7 +767,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         templateHTML = generateTestimonial();
         break;
       default:
-        templateHTML = '<div>未知模板</div>';
+        templateHTML = '<div>��知模板</div>';
     }
 
     // 添��到页面
@@ -820,7 +822,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业��服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1182,7 +1184,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，元素可自由交互');
+    console.log('所有选中状态已清除，元素可���由交互');
   };
 
   // 选择DOM节点
@@ -1560,7 +1562,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示所有元素（包括不可操作的）
+                      ��️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
                 </div>
@@ -1721,7 +1723,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
               </div>
 
-              {/* 特定��素的内��属性 */}
+              {/* 特定����的内��属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
