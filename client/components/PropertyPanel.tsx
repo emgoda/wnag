@@ -354,7 +354,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清理错误
+            // 忽略清理��误
           }
         };
       } else {
@@ -411,7 +411,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含预��相关的内容���类名
+      // 检查元素是否包含����相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -769,7 +769,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const addElementToPage = (window as any).addElementToPage;
     if (!addElementToPage) {
-      alert('页面编辑器不可用');
+      alert('页面编辑器��可用');
       return;
     }
 
@@ -1228,7 +1228,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点 - 纯预览模式，不锁定交互
+  // 选择DOM节�� - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取元素的nodeId并调用回调
     const nodeId = element.getAttribute('data-node-id');
@@ -1355,7 +1355,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作元素'
           }${
-            false ? '\n🔒 已锁定选择' :
+            false ? '\n🔒 已锁定��择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
           }\n点击选择元素\n右键：删��元素`}
@@ -1524,7 +1524,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
-                  <p className="text-blue-500">
+                  <p className="text-green-500">
                     {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
