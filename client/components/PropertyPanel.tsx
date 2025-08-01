@@ -317,6 +317,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
+  // 当选中元素变化时，同步本地文本状态
+  useEffect(() => {
+    if (elementData) {
+      setLocalTextContent(elementData.textContent);
+    } else {
+      setLocalTextContent('');
+    }
+  }, [elementData]);
+
   // 更新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
@@ -660,7 +669,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元���或下方DOM树进行编辑
+                点击预览中的元素或下方DOM树进行编辑
               </p>
             </div>
           </div>
