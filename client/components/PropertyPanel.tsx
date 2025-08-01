@@ -81,7 +81,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 检查元素是否可操��
+  // 检查元素是否可操作
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
@@ -93,7 +93,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 不可操作的UI框架元素（通过特定属性识别）
     const hasFrameworkAttributes =
       element.hasAttribute('data-loc') || // React/框架调试属性
-      element.hasAttribute('aria-hidden') || // ARIA隐藏元素
+      element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
@@ -123,7 +123,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 系统生成的内容元素
     const isSystemGenerated =
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
-      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
+      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
 
     // 如果是以上任何一种情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
@@ -156,7 +156,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -181,7 +181,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所���可��的iframe
+    // 列出所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -195,7 +195,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       return;
     }
 
-    console.log('找到iframe:', editorIframe, '标题:', editorIframe.title);
+    console.log('���到iframe:', editorIframe, '标题:', editorIframe.title);
 
     try {
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
@@ -262,7 +262,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如���body为空，等待内容加��
+        // 如���body为空，等待内容加���
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -471,7 +471,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // ��选中元素变化时，同步本地文本状态
+  // ����中元素变化时，同步本地文本状态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -533,7 +533,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元素��用户最新操作的）
+        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -612,7 +612,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
       } catch (error) {
-        console.error('DOM更��失���:', error);
+        console.error('DOM更��失败:', error);
       }
     }
   };
@@ -873,7 +873,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">�����箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">������箱</label>
             <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -905,7 +905,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
-              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">基础版</h3>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">���础版</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
@@ -1138,6 +1138,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     setContextMenu(prev => ({ ...prev, show: false }));
   };
 
+  // 清除iframe中的预览样式
+  const clearIframePreviewStyles = () => {
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (iframe && iframe.contentDocument) {
+      const doc = iframe.contentDocument;
+      const previewElements = doc.querySelectorAll('.dom-tree-preview, [data-dom-tree-preview]');
+      previewElements.forEach(el => {
+        el.classList.remove('dom-tree-preview');
+        el.removeAttribute('data-dom-tree-preview');
+      });
+    }
+  };
+
   // 清除所有选中状态
   const clearSelection = () => {
     console.log('开始清除选中状态...');
@@ -1166,7 +1179,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           el.removeAttribute('title');
         }
 
-        // 清除所���可能阻止交互的样式
+        // 清除所有��能阻止交互的样式
         el.style.removeProperty('pointer-events');
         el.style.removeProperty('user-select');
         el.style.removeProperty('position');
@@ -1262,7 +1275,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
         // 在控制台显示详细信息
-        console.log(`${mode === 'preview' ? '👁️ 预览' : '🔒 锁定选中'}iframe中的元素:`, {
+        console.log(`${mode === 'preview' ? '👁️ 预览' : '🔒 锁定选中'}iframe中的元��:`, {
           tagName: targetElement.tagName,
           id: targetElement.id || '无',
           className: targetElement.className || '无',
@@ -1443,7 +1456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             e.preventDefault();
             e.stopPropagation();
             // 双击：锁定模式（完全选中，锁定交互）
-            console.log('双击锁���选择');
+            console.log('双击锁定选择');
             handleNodeSelect(node.element, 'locked');
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
@@ -1457,7 +1470,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isLocked ? '\n🔒 已锁定选择' :
             isPreview ? '\n👁️ 预览模式' :
             ''
-          }\n单击：预览 | 双击：锁定选择\n右键：删除元素`}
+          }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
         >
           {hasChildren && (
             <button
@@ -1624,7 +1637,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     </p>
                   )}
                   <p className="text-blue-500">
-                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
@@ -1677,7 +1690,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   disabled={!selectedElement?.previousElementSibling}
                 >
                   <ArrowUp className="w-4 h-4 mr-2" />
-                  ���上移动
+                  向上移动
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementDown()}
@@ -2031,7 +2044,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
 
               <div>
-                <Label className="text-sm font-medium">CSS��名</Label>
+                <Label className="text-sm font-medium">CSS类名</Label>
                 <Input
                   value={elementData.className}
                   onChange={(e) => handleAttributeChange('class', e.target.value)}
@@ -2364,7 +2377,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
-                    ✅ 已过滤不可操作元素
+                    ✅ 已过滤不���操作元素
                   </p>
                 )}
                 {showAllElements && (
