@@ -45,7 +45,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   }, [content]);
 
-  // 在组件挂载时确保默认为手机模式
+  // 在组件挂载时确保默认���手机模式
   useEffect(() => {
     console.log('Editor组件挂载，当前预览模式:', previewMode);
   }, []);
@@ -88,7 +88,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         }
       `;
       doc.head.appendChild(style);
-      console.log('已添加选择样式');
+      console.log('已添加���择样式');
     }
 
     // 获取所有可选择的元素
@@ -167,7 +167,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       if (onElementSelect) {
         try {
           onElementSelect(target);
-          console.log('✅ ��功调用onElementSelect回调');
+          console.log('✅ 成功调用onElementSelect回调');
         } catch (error) {
           console.error('❌ onElementSelect回调出错:', error);
         }
@@ -379,16 +379,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         </div>
       </div>
 
-      {/* 页面编辑��体 */}
+      {/* 页面编辑主体 */}
       <div className="flex-1 relative">
         <div
           className={`h-full bg-gray-100 overflow-auto ${previewMode === 'desktop' ? '' : 'flex items-center justify-center'}`}
           style={{ minHeight: 'calc(100vh - 200px)' }}
-          onDragOver={(e) => {
-            e.preventDefault();
-            console.log('外层容器 dragOver');
-          }}
-          onDrop={handleDropOnEditor}
         >
           <div
             className={`transition-all duration-300 ${
@@ -403,47 +398,12 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
               maxHeight: '100%'
             }}
           >
-            <div className="relative w-full h-full">
-              <iframe
-                ref={iframeRef}
-                className="w-full h-full border-none"
-                title={`编辑 - ${pageName}`}
-                sandbox="allow-scripts allow-same-origin"
-              />
-              {/* 拖拽覆盖层 */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ zIndex: 10 }}
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.currentTarget.style.pointerEvents = 'auto';
-                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                  e.currentTarget.style.border = '2px dashed #3b82f6';
-                  console.log('拖拽悬停在覆盖层上');
-                }}
-                onDragLeave={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.currentTarget.style.backgroundColor = '';
-                  e.currentTarget.style.border = '';
-                  e.currentTarget.style.pointerEvents = 'none';
-                  console.log('拖拽离开覆盖层');
-                }}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.currentTarget.style.backgroundColor = '';
-                  e.currentTarget.style.border = '';
-                  e.currentTarget.style.pointerEvents = 'none';
-                  handleDropOnEditor(e);
-                }}
-              >
-                <div className="flex items-center justify-center h-full text-blue-600 font-medium opacity-0 hover:opacity-100 transition-opacity">
-                  拖拽元素到这里
-                </div>
-              </div>
-            </div>
+            <iframe
+              ref={iframeRef}
+              className="w-full h-full border-none"
+              title={`编辑 - ${pageName}`}
+              sandbox="allow-scripts allow-same-origin"
+            />
           </div>
         </div>
         
