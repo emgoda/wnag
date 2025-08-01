@@ -108,7 +108,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       /portal/, // 传送门组件
       /popover/, // 弹出层
       /tooltip/, // 工具提示
-      /dropdown/, // 下拉菜单内部
+      /dropdown/, // ���拉菜单内部
       /radix-/, // Radix UI组件
       /^sr-only$/, // 屏幕阅读器专用
     ];
@@ -148,7 +148,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return nodeId;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -329,7 +329,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         iframe.addEventListener('load', handleLoad);
 
-        // ���听iframe内���文档的变化
+        // ���听iframe内���文档��变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -449,10 +449,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获�������到正确的文本
+      // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内容
+      // 尝试不同的方式获取文本内���
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -735,7 +735,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 删除��素
+  // 删除元素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -880,7 +880,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          ���任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -984,7 +984,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非���棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1168,7 +1168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
 
-      // 移除所有可能的选中样式
+      // 移除所有可���的选中样式
       const highlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview, .element-selected, .selected, [data-dom-tree-selected], [data-dom-tree-preview]');
       highlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview', 'element-selected', 'selected');
@@ -1201,7 +1201,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中状态');
+      console.log('已清���', highlighted.length, '个元素的选中状态');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1460,11 +1460,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
             isNonOperable ? '\n🔒 不可操作元素（系统/框架元素）' :
-            isHidden ? '\n👁️‍🗨️ 隐藏元素' :
+            isHidden ? '\n👁️‍🗨️ 隐藏���素' :
             '\n可操作���素'
           }${
             false ? '\n🔒 已锁定选择' :
-            isPreview ? '\n👁️ 预览模式' :
+            false ? '\n👁️ 预览模式' :
             ''
           }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
         >
@@ -1569,7 +1569,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览中选择一个元素</p>
+              <p className="text-sm">在预览���选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -1629,7 +1629,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示所有元素（包括不可操作的）
+                      ⚠️ 显示���有元素（包括不可操作的）
                     </p>
                   )}
                   <p className="text-blue-500">
@@ -2385,7 +2385,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，�����点��"��新"
+                    请确保已导入页面，���后点��"��新"
                   </p>
                   <Button
                     variant="outline"
