@@ -42,6 +42,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     styles: { [key: string]: string };
   } | null>(null);
 
+  const [forceUpdate, setForceUpdate] = useState(0);
+
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
 
@@ -415,7 +417,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向下移动���素
+  // 向下移动元素
   const handleMoveElementDown = () => {
     if (!selectedElement) return;
 
@@ -1158,7 +1160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     });
                   }}
                   className="h-6 px-2 text-xs"
-                  title="查看调试信息"
+                  title="查看调���信息"
                 >
                   🔍
                 </Button>
