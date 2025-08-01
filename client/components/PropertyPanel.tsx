@@ -367,36 +367,48 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 特殊处理：当修改input相关属性时，重新生成完整的输入框HTML
-    if ((attribute === 'data-title' || attribute === 'placeholder') &&
-        (selectedElement.tagName === 'INPUT' || selectedElement.querySelector('input'))) {
+    // 立即更新DOM中的对应元素
+    const updateElementInDOM = () => {
+      // 获取iframe文档
+      const iframe = document.querySelector('iframe');
+      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
 
-      setTimeout(() => {
-        // 获取当前所有属性值
-        const currentTitle = selectedElement.getAttribute('data-title') || attribute === 'data-title' ? value : '标题';
-        const currentPlaceholder = selectedElement.getAttribute('placeholder') || attribute === 'placeholder' ? value : '';
+      if (!iframeDoc) return;
 
-        // 生成新的输入框HTML
-        const newInputHTML = `
-          <div style="display: inline-block; margin: 10px;">
-            <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 4px; font-weight: 500;" data-title="${currentTitle}">${currentTitle}</label>
-            <input type="text" placeholder="${currentPlaceholder}" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
-          </div>
-        `;
+      // 特殊处理标题更新
+      if (attribute === 'data-title') {
+        // 查找所有可能的label元素
+        const labels = iframeDoc.querySelectorAll('label[data-title], label');
+        labels.forEach(label => {
+          // 检查这个label是否与当前选中元素相关
+          const container = label.closest('div');
+          if (container && (container === selectedElement || container.contains(selectedElement) || selectedElement.contains(container))) {
+            label.textContent = value || '标题';
+            label.setAttribute('data-title', value || '标题');
+          }
+        });
+      }
 
-        // 如果选中的是容���div
-        if (selectedElement.tagName === 'DIV' && selectedElement.querySelector('input')) {
-          selectedElement.innerHTML = newInputHTML.replace(/<div[^>]*>|<\/div>/g, '').trim();
-        }
-        // 如果选中的是input，更新父容器
-        else if (selectedElement.tagName === 'INPUT' && selectedElement.parentElement) {
-          const container = selectedElement.parentElement;
-          container.innerHTML = newInputHTML.replace(/<div[^>]*>|<\/div>/g, '').trim();
-        }
+      // 特殊处理placeholder更新
+      if (attribute === 'placeholder') {
+        // 查找所有input元素
+        const inputs = iframeDoc.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+          // 检查这个input是否与当前选中元素相关
+          const container = input.closest('div');
+          if (input === selectedElement ||
+              (container && (container === selectedElement || container.contains(selectedElement) || selectedElement.contains(container)))) {
+            input.setAttribute('placeholder', value || '');
+          }
+        });
+      }
+    };
 
-        console.log('已重新生成输入框，标题:', currentTitle, 'placeholder:', currentPlaceholder);
-      }, 50);
-    }
+    // 立即执行更新
+    updateElementInDOM();
+
+    // ���时再执行一次确保更新成功
+    setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
 
@@ -1139,7 +1151,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  本地����: "{localTextContent}" (���度: {localTextContent.length})
+                  本地����: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
                   元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
