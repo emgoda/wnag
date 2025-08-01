@@ -148,7 +148,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复（排除当前页面）
     if (pages.some(p => p.id !== editingPage.id && p.route === editingPage.route)) {
-      alert('路由已存在，请使用不同的路由');
+      alert('���由已存在，请使用不同的路由');
       return;
     }
 
@@ -652,7 +652,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮��本'
+                                      content: '按�����本'
                                     }, 'replace');
                                   }
                                 }}
@@ -818,7 +818,7 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const presetHTML = `
-                                <div style="max-width: 320px; margin: 10px; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                                <div style="max-width: 350px; margin: 10px; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
                                   <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 6px;">预设</h3>
                                   <ol style="margin: 0; padding-left: 16px; color: #4b5563; font-size: 14px; line-height: 1.6;">
                                     <li style="margin-bottom: 6px;">选择元素调整器样式</li>
