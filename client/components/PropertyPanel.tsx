@@ -198,7 +198,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
 
-        // 为���素生成唯一ID
+        // 为����素生成唯一ID
         getElementNodeId(element);
 
         // 根据showAllElements设置决定是否显示
@@ -278,7 +278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 检查是否有任何实际内��
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      // 尝试��找canvas-root容器，如果没有则使用body
+      // 尝试����canvas-root容器，如果没有则使用body
       const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
       const containerElement = canvasRoot || body;
 
@@ -468,7 +468,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const computedStyles = window.getComputedStyle(selectedElement);
       const styles: { [key: string]: string } = {};
       
-      // 获取常用样式�������性
+      // 获取��用样式�������性
       const styleProperties = [
         'color', 'background-color', 'font-size', 'font-weight', 'font-family',
         'text-align', 'padding', 'margin', 'width', 'height', 'border',
@@ -656,7 +656,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 同时更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选中的元素，尝试更新实际DOM
+    // 如果有选中的元素���尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -751,7 +751,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 选择父�����素
+  // 选择父��������
   const handleSelectParent = () => {
     if (!selectedElement) return;
 
@@ -794,7 +794,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // ���发父组件的内容更���
+    // ���发父组���的内容更���
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
@@ -896,7 +896,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的��������������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的���������������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -1372,7 +1372,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isHidden = false; // isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
 
-    // 检查是否是当前选中的节点（��于nodeId）
+    // 检查是否��当前选中的节点（��于nodeId）
     const nodeId = node.element.getAttribute('data-node-id');
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
@@ -1746,7 +1746,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   onBlur={(e) => {
                     // ���焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
-                    console.log('🟡 Textarea失焦，更新DOM:', newValue);
+                    console.log('🟡 Textarea失焦，更��DOM:', newValue);
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
                     }
@@ -1865,7 +1865,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字体��细</Label>
+                      <Label className="text-xs">字�����细</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
@@ -2050,6 +2050,117 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       placeholder="0"
                       className="mt-1 h-8"
                     />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 间距控制 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <Box className="w-4 h-4" />
+                    间距设置
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {/* 外边距 */}
+                  <div>
+                    <Label className="text-xs font-medium">外边距</Label>
+                    <div className="grid grid-cols-3 gap-2 items-center mt-2">
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['margin-top']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('margin-top', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                      <div className="text-center text-xs text-gray-500">外边距</div>
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['margin-right']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('margin-right', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['margin-left']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('margin-left', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                      <div></div>
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['margin-bottom']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('margin-bottom', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 内边距 */}
+                  <div>
+                    <Label className="text-xs font-medium">内边距</Label>
+                    <div className="grid grid-cols-3 gap-2 items-center mt-2">
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['padding-top']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('padding-top', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                      <div className="text-center text-xs text-gray-500">内边距</div>
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['padding-right']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('padding-right', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['padding-left']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('padding-left', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                      <div></div>
+                      <div className="flex items-center gap-1">
+                        <Input
+                          type="number"
+                          value={elementData.styles['padding-bottom']?.replace('px', '') || ''}
+                          onChange={(e) => handleStyleChange('padding-bottom', e.target.value + 'px')}
+                          placeholder="0"
+                          className="h-8 text-xs"
+                        />
+                        <span className="text-xs">px</span>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
