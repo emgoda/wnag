@@ -521,7 +521,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -583,7 +583,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -646,7 +646,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -706,7 +706,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -773,7 +773,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -840,7 +840,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -917,7 +917,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -986,7 +986,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -1057,7 +1057,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -1162,7 +1162,7 @@ export default function WebEditor() {
                   <CardContent className="space-y-2">
                     <Button variant="outline" className="w-full justify-start">
                       <Download className="w-4 h-4 mr-2" />
-                      导���所有页面
+                      导出所有页面
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="w-4 h-4 mr-2" />
