@@ -195,7 +195,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     };
   };
 
-  // 获取iframe中的DOM树
+  // 获��iframe中的DOM树
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
@@ -240,7 +240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 检查是否有任何实际内容
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      // 尝试查找canvas-root容器���如果没有则使用body
+      // 尝试查找canvas-root容器，如果没有则使用body
       const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
       const containerElement = canvasRoot || body;
 
@@ -673,7 +673,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 向下移动元素
+  // 向下移动元���
   const handleMoveElementDown = () => {
     if (!selectedElement) return;
 
@@ -719,7 +719,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const parent = selectedElement.parentElement;
     if (parent && parent !== document.body && parent !== document.documentElement) {
-      // 清除当前选��状态
+      // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
       // 选择父元素
@@ -929,7 +929,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮��支持</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择基��版
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }, 200);
     } else {
-      console.log('未在DOM树中找到目标元素');
+      console.log('未在DOM树中找到目标���素');
     }
   };
 
@@ -1138,7 +1138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // ��理右键菜单
+  // ����右键菜单
   const handleContextMenu = (e: React.MouseEvent, node: DOMNode) => {
     e.preventDefault();
     e.stopPropagation();
@@ -1274,7 +1274,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           const classSelector = className.split(' ')[0];
           targetElement = doc.querySelector(`.${classSelector}`);
         } else {
-          // ���为最后手段，使用相同的元素（如果它在iframe中）
+          // ���为最后手段，使用相同的元素（如果它在iframe中��
           if (element.ownerDocument === doc) {
             targetElement = element;
           }
@@ -1384,7 +1384,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
-        // 尝试在iframe中找到对应的元素
+        // 尝试���iframe中找到对应的元素
         let targetElement = element;
 
         // 如果元素有data-node-id，优先用这个查找
@@ -1468,15 +1468,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
-            // 单击：预览模式（轻量高亮，不锁定）
-            handleNodeSelect(node.element, 'preview');
-          }}
-          onDoubleClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // 双击：锁定模式（完全选中，锁定交互）
-            console.log('双击锁定选择');
-            handleNodeSelect(node.element, 'locked');
+            // 点击：选择元素
+            handleNodeSelect(node.element);
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
@@ -1894,7 +1887,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字体粗细</Label>
+                      <Label className="text-xs">字���粗细</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
@@ -2312,7 +2305,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('调试信息:');
+                    console.log('���试信息:');
                     console.log('domTree.length:', domTree.length);
                     console.log('domTree:', domTree);
                     const allIframes = document.querySelectorAll('iframe');
