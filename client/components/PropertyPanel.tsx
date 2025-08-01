@@ -274,7 +274,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
-                              selectedElement.querySelector('[style*="���设"]') !== null;
+                              selectedElement.querySelector('[style*="预设"]') !== null;
 
       setShowTemplateGenerator(isPresetElement);
     } else {
@@ -348,7 +348,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 当���中元素变化时，同步本地文本状态
+  // 当选中元素变化时，同步本地文本状态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -645,7 +645,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">高性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极致的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设���，提供极致的用户体验</p>
             </div>
           </div>
         </div>
@@ -801,7 +801,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">张先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技���总监</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
             </div>
@@ -994,7 +994,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加载DOM结构... 点击"刷新"重试
+                  正在���载DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -1211,7 +1211,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
-              {/* 文���样式 */}
+              {/* 文字样式 */}
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1237,7 +1237,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
                       >
                         <SelectTrigger className="mt-1 h-8">
-                          <SelectValue placeholder="选择" />
+                          <SelectValue placeholder="���择" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="normal">正常</SelectItem>
