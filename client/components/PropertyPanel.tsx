@@ -105,7 +105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       /^lucide/, // Lucide图标
       /toast/, // Toast通知组件
       /overlay/, // 遮罩层
-      /backdrop/, // 背��层
+      /backdrop/, // 背景层
       /portal/, // 传送门组件
       /popover/, // 弹出层
       /tooltip/, // 工具提示
@@ -140,7 +140,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节���(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -190,7 +190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
-      console.log('当前页面所有iframe的title属��:',
+      console.log('当前��面所有iframe的title属��:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
@@ -1369,7 +1369,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // ���查尺寸是否为0（��排除某些正常的0尺寸元素��
+          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1404,7 +1404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
     const paddingLeft = depth * 16;
 
-    // 获取元素���文本内容预览（前20个字符）
+    // 获取元素的文本内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1443,7 +1443,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isNonOperable ? '\n🔒 不可操作元素（系统/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作元素'
-          }\n右键删除元素\n双击清除选中`}
+          }${
+            isLocked ? '\n🔒 已锁定选择' :
+            isPreview ? '\n👁️ 预览模式' :
+            ''
+          }\n单击：预览 | 双击：锁定选择\n右键：删除元素`}
         >
           {hasChildren && (
             <button
@@ -1491,7 +1495,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </span>
           )}
 
-          {/* 显示��素类型信息 */}
+          {/* 显示元素类型信息 */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -2232,7 +2236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     }}
                     className="scale-75"
                   />
-                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（���括不可操作的）" : "只显示可操作元素"}>
                     {showAllElements ? "全部" : "可操作"}
                   </span>
                 </div>
@@ -2375,7 +2379,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </ScrollArea>
         </div>
 
-        {/* ��键菜单 */}
+        {/* 右键菜单 */}
         {contextMenu.show && (
           <div
             className="fixed bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
