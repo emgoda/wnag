@@ -339,38 +339,27 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleTextContentChange = (value: string) => {
     console.log('更新文本内容:', value);
 
+    // 立即更新UI状态，确保用户能看到输入的文本
+    setElementData(prev => {
+      if (prev) {
+        return { ...prev, textContent: value };
+      }
+      return prev;
+    });
+
     if (!selectedElement) {
       console.log('没有选中的元素');
       return;
     }
 
-    // 先更新UI状态，让用户立即看到输入的文本
-    setElementData(prev => prev ? { ...prev, textContent: value } : null);
-
     try {
-      // 更新iframe中的实际元素
-      // 对于某些元素，直接设置textContent可能更好
-      if (selectedElement.children.length === 0) {
-        // 如果元素没有子元素，直接设置textContent
-        selectedElement.textContent = value;
-      } else {
-        // 如果有子元素，尝试只更新文本节点
-        const textNodes = Array.from(selectedElement.childNodes).filter(
-          node => node.nodeType === Node.TEXT_NODE
-        );
-        if (textNodes.length > 0) {
-          textNodes[0].textContent = value;
-        } else {
-          // 如果没有文本节点，创建一个
-          const textNode = document.createTextNode(value);
-          selectedElement.insertBefore(textNode, selectedElement.firstChild);
-        }
-      }
+      // 直接设置textContent，这是最可靠的方法
+      selectedElement.textContent = value;
 
       console.log('已更新元素文本:', {
-        textContent: selectedElement.textContent,
-        innerText: selectedElement.innerText,
-        value: value
+        element: selectedElement,
+        newTextContent: selectedElement.textContent,
+        inputValue: value
       });
 
       // 通知父组件内容已更改
@@ -378,8 +367,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         onElementUpdate(selectedElement, 'textContent', value);
       }
 
-      // 强制更新页面内容
-      updateParentContent();
+      // 延迟更新页面内容，避免冲突
+      setTimeout(() => {
+        updateParentContent();
+      }, 100);
 
     } catch (error) {
       console.error('更新文本内容时出错:', error);
@@ -424,7 +415,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向下移动元素
+  // 向下移动���素
   const handleMoveElementDown = () => {
     if (!selectedElement) return;
 
