@@ -65,20 +65,22 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 构建DOM树 - 采用更高效的递归方法
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      if (node.nodeType === 1) { // Element
+      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
-        // 跳��script和style元素
-        if (element.tagName.toLowerCase() !== 'script' && element.tagName.toLowerCase() !== 'style') {
+        // 过滤掉script和style元素，只保留有意义的DOM元素
+        const tagName = element.tagName.toLowerCase();
+        if (tagName !== 'script' && tagName !== 'style') {
           res.push({
             element,
-            tagName: element.tagName.toLowerCase(),
+            tagName,
             id: element.id || undefined,
             className: (element.className && typeof element.className === 'string') ? element.className : undefined,
-            children: buildTree(element),
+            children: buildTree(element), // 递归构建子元素树
             isExpanded: true // 默认展开所有节点
           });
         }
@@ -194,7 +196,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选中元素变化时更��DOM树
+  // 页面加载时和选中��素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -282,7 +284,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     };
 
-    // 监听自定义DOM树刷新事件
+    // 监听��定义DOM树刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -356,7 +358,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文��内���，确保获������到正确的文本
+      // 获取文��内����，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -402,7 +404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当选中元素变化时，自动跳��到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -524,7 +526,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的���素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -899,7 +901,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">���</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
@@ -1774,7 +1776,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按钮点击���半透明</Label>
+                  <Label className="text-sm text-gray-700">按钮点击����半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
