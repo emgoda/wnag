@@ -582,7 +582,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即执行更新
     updateElementInDOM();
 
-    // ���时再��行一次确保����新成功
+    // ����时再��行一次确保����新成功
     setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
@@ -1000,7 +1000,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
+                "��队协作���率大大提升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1134,7 +1134,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       }
     } catch (error) {
       console.error('删除元素失败:', error);
-      alert('删除元素失败，请重试');
+      alert('删��元素失败，请重试');
     }
   };
 
@@ -1228,142 +1228,18 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点
+  // 选择DOM节点 - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
-    // 获取元素的nodeId
+    // 获取元素的nodeId并调用回调
     const nodeId = element.getAttribute('data-node-id');
     if (nodeId && onNodeSelect) {
       onNodeSelect(nodeId);
-      console.log('✅ DOM树选择元素，nodeId:', nodeId);
+      console.log('✅ DOM树选择元素（预览模式），nodeId:', nodeId);
     } else {
       console.warn('⚠️ DOM树元素缺少nodeId或缺少回调:', element);
     }
-
-    // 清除之前的高亮
-    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-    if (iframe && iframe.contentDocument) {
-      const doc = iframe.contentDocument;
-      // ���除之前的高亮样式
-      const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
-      previousHighlighted.forEach(el => {
-        el.classList.remove('dom-tree-selected', 'dom-tree-preview');
-        // 在预览模式下不阻止交互
-        if (mode === 'preview') {
-          el.style.removeProperty('pointer-events');
-          el.style.removeProperty('user-select');
-        }
-      });
-
-      // 找到iframe中对应���元素
-      let targetElement = null;
-      const nodeId = element.getAttribute('data-node-id');
-      if (nodeId) {
-        targetElement = doc.querySelector(`[data-node-id="${nodeId}"]`);
-      }
-
-      // 如果没有找���对应元素，尝试其他方式查找
-      if (!targetElement) {
-        // 通过标签名、id、class等特征查找
-        const tagName = element.tagName.toLowerCase();
-        const id = element.id;
-        const className = element.className;
-
-        if (id) {
-          targetElement = doc.getElementById(id);
-        } else if (className && typeof className === 'string') {
-          const classSelector = className.split(' ')[0];
-          targetElement = doc.querySelector(`.${classSelector}`);
-        } else {
-          // ���为最后手段，使用相同的元素（如果它在iframe中）
-          if (element.ownerDocument === doc) {
-            targetElement = element;
-          }
-        }
-      }
-
-      // 添加高亮样式到找到的元素
-      if (targetElement) {
-        if (mode === 'preview') {
-          targetElement.classList.add('dom-tree-preview');
-          targetElement.setAttribute('data-dom-tree-preview', 'true');
-          // 预览模式下保持交互能力
-          targetElement.style.pointerEvents = 'auto';
-        } else {
-          targetElement.classList.add('dom-tree-selected');
-          targetElement.setAttribute('data-dom-tree-selected', 'true');
-        }
-
-        // 在控制台显示详细信息
-        console.log(`${mode === 'preview' ? '👁️ 预览' : '🔒 锁定选中'}iframe中的元��:`, {
-          tagName: targetElement.tagName,
-          id: targetElement.id || '无',
-          className: targetElement.className || '无',
-          element: targetElement,
-          mode: mode
-        });
-
-        // 添加对应模式的视觉提示
-        const originalTitle = targetElement.title;
-        if (mode === 'preview') {
-          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
-          setTimeout(() => {
-            if (targetElement.getAttribute('data-dom-tree-preview')) {
-              targetElement.title = originalTitle;
-            }
-          }, 2000);
-        } else {
-          targetElement.title = '🔒 已锁定 - 双击DOM树节点或点击🔓按钮解锁';
-          setTimeout(() => {
-            if (targetElement.getAttribute('data-dom-tree-selected')) {
-              targetElement.title = originalTitle;
-            }
-          }, 3000);
-        }
-
-      } else {
-        console.warn('❌ ���找到iframe中对应的元素');
-      }
-
-      // 添加高亮样式（如果还没有的话）
-      if (!doc.querySelector('#dom-tree-styles')) {
-        const style = doc.createElement('style');
-        style.id = 'dom-tree-styles';
-        style.textContent = `
-          .dom-tree-selected {
-            outline: 2px solid #3b82f6 !important;
-            outline-offset: 2px !important;
-            background-color: rgba(59, 130, 246, 0.1) !important;
-            pointer-events: auto !important;
-            cursor: move !important;
-          }
-          .dom-tree-preview {
-            outline: 2px dashed #10b981 !important;
-            outline-offset: 2px !important;
-            background-color: rgba(16, 185, 129, 0.05) !important;
-            pointer-events: auto !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
-          }
-          .dom-tree-preview:hover {
-            background-color: rgba(16, 185, 129, 0.1) !important;
-          }
-          .dom-tree-hover {
-            outline: 1px dashed #94a3b8 !important;
-            outline-offset: 1px !important;
-            pointer-events: auto !important;
-          }
-        `;
-        doc.head.appendChild(style);
-      }
-    }
-
-    // 模�����击事件来触���父组���的选择
-    const clickEvent = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true
-    });
-    element.dispatchEvent(clickEvent);
+    // 注意：所有高亮显示逻辑现在都由Editor组件通过selectedNodeId受控处理
+    // 这确保了元素只是被高亮预览，但不会被锁定无法交互
   };
 
   // 添�����停效果
@@ -1381,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1887,7 +1763,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字体粗细</Label>
+                      <Label className="text-xs">字体��细</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
@@ -2276,7 +2152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元素"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
@@ -2442,7 +2318,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </ScrollArea>
         </div>
 
-        {/* 右键菜单 */}
+        {/* 右键菜�� */}
         {contextMenu.show && (
           <div
             className="fixed bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
