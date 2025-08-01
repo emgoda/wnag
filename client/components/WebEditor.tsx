@@ -548,7 +548,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '标题文本'
+                                      content: '���题文本'
                                     }, 'append');
                                   }
                                 }}
@@ -1452,6 +1452,8 @@ export default function WebEditor() {
                 onChange={handleContentChange}
                 pageName={selectedPage.name}
                 onElementSelect={setSelectedElement}
+                selectedNodeId={selectedNodeId}
+                onNodeSelect={setSelectedNodeId}
                 ref={(editorRef: any) => {
                   if (editorRef) {
                     (window as any).addElementToPage = editorRef.addElementToPage;
