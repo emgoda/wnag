@@ -267,7 +267,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     });
   }, []);
 
-  // 检测是否为预设元素
+  // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预设相关的内容或类名
@@ -369,38 +369,43 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     // 立即更新DOM中的对应元素
     const updateElementInDOM = () => {
-      // 获取iframe文档
-      const iframe = document.querySelector('iframe');
-      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
+      try {
+        console.log('开始更新DOM，属性:', attribute, '值:', value);
 
-      if (!iframeDoc) return;
+        // 获取iframe文档
+        const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+        const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
 
-      // 特殊处理标题更新
-      if (attribute === 'data-title') {
-        // 查找所有可能的label元素
-        const labels = iframeDoc.querySelectorAll('label[data-title], label');
-        labels.forEach(label => {
-          // 检查这个label是否与当前选中元素相关
-          const container = label.closest('div');
-          if (container && (container === selectedElement || container.contains(selectedElement) || selectedElement.contains(container))) {
-            label.textContent = value || '标题';
-            label.setAttribute('data-title', value || '标题');
+        if (!iframeDoc) {
+          console.log('无法获取iframe文档');
+          return;
+        }
+
+        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
+        if (attribute === 'data-title') {
+          const allLabels = iframeDoc.querySelectorAll('label');
+          const lastLabel = allLabels[allLabels.length - 1];
+          if (lastLabel) {
+            lastLabel.textContent = value || '标题';
+            lastLabel.setAttribute('data-title', value || '标题');
+            console.log('已更新最后一个label为:', value);
+          } else {
+            console.log('未找到label元素');
           }
-        });
-      }
+        }
 
-      // 特殊处理placeholder更新
-      if (attribute === 'placeholder') {
-        // 查找所有input元素
-        const inputs = iframeDoc.querySelectorAll('input[type="text"]');
-        inputs.forEach(input => {
-          // 检查这个input是否与当前选中元素相关
-          const container = input.closest('div');
-          if (input === selectedElement ||
-              (container && (container === selectedElement || container.contains(selectedElement) || selectedElement.contains(container)))) {
-            input.setAttribute('placeholder', value || '');
+        if (attribute === 'placeholder') {
+          const allInputs = iframeDoc.querySelectorAll('input[type="text"]');
+          const lastInput = allInputs[allInputs.length - 1];
+          if (lastInput) {
+            lastInput.setAttribute('placeholder', value || '');
+            console.log('已更新最后一个input placeholder为:', value);
+          } else {
+            console.log('未找到input元素');
           }
-        });
+        }
+      } catch (error) {
+        console.error('更新DOM出错:', error);
       }
     };
 
