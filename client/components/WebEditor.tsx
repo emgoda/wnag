@@ -46,7 +46,7 @@ export default function WebEditor() {
 <body>
     <div class="container">
         <h1>欢迎来到我的网站</h1>
-        <p>这是一个示例页面，您可以编辑HTML���容来自定义页面。</p>
+        <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
 </html>`,
@@ -220,7 +220,7 @@ export default function WebEditor() {
       const doc = parser.parseFromString(content, 'text/html');
       const title = doc.querySelector('title')?.textContent || file.name.replace('.html', '');
 
-      // ���建新页面
+      // 创建新页面
       const newPage: Page = {
         id: Date.now().toString(),
         name: `导入-${title}`,
@@ -235,7 +235,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失败，请检查文件格式');
+      alert('导入失败，请检���文件格式');
     }
 
     // 清空文件输入
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接��中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -479,7 +479,7 @@ export default function WebEditor() {
                       <CardTitle className="text-sm">基础元素</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 gap-3">
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
@@ -495,7 +495,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '标题文���'
+                                      content: '标题文本'
                                     }, 'insert');
                                   }
                                 }}
