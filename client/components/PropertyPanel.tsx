@@ -22,6 +22,8 @@ import {
 interface PropertyPanelProps {
   selectedElement?: HTMLElement | null;
   onElementUpdate?: (element: HTMLElement, property: string, value: string) => void;
+  selectedNodeId?: string | null;
+  onNodeSelect?: (nodeId: string | null) => void;
 }
 
 interface TemplateSettings {
@@ -96,7 +98,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
-      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
+      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
@@ -125,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
 
-    // 如果���以上任何一种情况，则不可操作
+    // 如果���以上任何一种情���，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -232,7 +234,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
-          console.log('DOM树构建成功，节点数:', tree.length);
+          console.log('DOM��构建成功，节点数:', tree.length);
         } else {
           console.log('使用body容器构建DOM树');
           const tree = buildDOMTree(body);
@@ -272,7 +274,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选��元素变化时更����DOM树
+  // 页面加载时和选��元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -353,7 +355,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页���内容变化，实时更新DOM树
+  // 监听页����内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -434,7 +436,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，确��获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -480,7 +482,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元���变化时，自动跳转到DOM树中对应的节点
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -720,7 +722,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 删除元素
+  // 删除��素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -1097,13 +1099,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的是当前选中的元素，清除选中状态
+          // 如果删����的���当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
           }
 
-          // ���新DOM树
+          // 刷新DOM树
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 100);
@@ -1224,7 +1226,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // ���除之前的高亮样式
+      // 移除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview');
@@ -1637,7 +1639,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     </p>
                   )}
                   <p className="text-blue-500">
-                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
+                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁����模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
