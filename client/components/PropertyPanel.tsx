@@ -90,7 +90,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
     ];
 
-    // 不可操作的UI框架元素（通过特定属性识别）
+    // 不可操作的UI框架元素（通过特定属性识���）
     const hasFrameworkAttributes =
       element.hasAttribute('data-loc') || // React/框架调试属性
       element.hasAttribute('aria-hidden') || // ARIA隐藏元素
@@ -227,7 +227,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否��构建body树
+        // 如果找到canvas-root，直接构建其子树；否��构���body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -301,7 +301,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成�������触发');
+          console.log('iframe加载完成�������触���');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -356,7 +356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 监听页���内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
-      console.log('��期更新DOM树');
+      console.log('定期更新DOM树');
       getDOMTreeFromIframe();
     };
 
@@ -390,7 +390,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     });
   }, []);
 
-  // 检��是否为预设元素
+  // 检��是���为预设元素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
@@ -437,7 +437,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内���
+      // 尝试不同的方式获取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -822,12 +822,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越���������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��������部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -858,7 +858,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           联系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          有��何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1041,7 +1041,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const elementPath = findElementPath(domTree, targetElement);
 
     if (elementPath) {
-      console.log('找到��素路径，自动展开:', elementPath.map(n => n.tagName));
+      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
 
       // 展开路径上的所有节点
       const expandPath = (nodes: DOMNode[]): DOMNode[] => {
@@ -1096,7 +1096,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             setElementData(null);
           }
 
-          // 刷新DOM树
+          // 刷新DOM���
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 100);
@@ -1147,10 +1147,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const doc = iframe.contentDocument;
 
       // 移除所有可能的选中样式
-      const highlighted = doc.querySelectorAll('.dom-tree-selected, .element-selected, .selected, [data-dom-tree-selected]');
+      const highlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview, .element-selected, .selected, [data-dom-tree-selected], [data-dom-tree-preview]');
       highlighted.forEach(el => {
-        el.classList.remove('dom-tree-selected', 'element-selected', 'selected');
+        el.classList.remove('dom-tree-selected', 'dom-tree-preview', 'element-selected', 'selected');
         el.removeAttribute('data-dom-tree-selected');
+        el.removeAttribute('data-dom-tree-preview');
 
         // 恢复原始title
         const title = el.getAttribute('title');
@@ -1178,7 +1179,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中状态');
+      console.log('已清除', highlighted.length, '个元素的选中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -2359,7 +2360,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"刷���"
+                    请确保已导入页面，���后点��"刷新"
                   </p>
                   <Button
                     variant="outline"
