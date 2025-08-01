@@ -299,7 +299,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 组件挂载时立即尝试加载DOM树
+  // 组件挂载��立即尝试加载DOM树
   useEffect(() => {
     console.log('PropertyPanel组件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -741,12 +741,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全��位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户��验</p>
             </div>
           </div>
         </div>
@@ -841,7 +841,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定���集成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业版
@@ -870,7 +870,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我��的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -923,6 +923,66 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       });
     };
     setDomTree(updateNode(domTree));
+  };
+
+  // 自动展开到指定元素并滚动到该位置
+  const autoExpandToElement = (targetElement: HTMLElement) => {
+    // 查找元素在DOM树中的路径
+    const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
+      for (const node of nodes) {
+        const currentPath = [...path, node];
+
+        if (node.element === target) {
+          return currentPath;
+        }
+
+        if (node.children.length > 0) {
+          const childPath = findElementPath(node.children, target, currentPath);
+          if (childPath) {
+            return childPath;
+          }
+        }
+      }
+      return null;
+    };
+
+    const elementPath = findElementPath(domTree, targetElement);
+
+    if (elementPath) {
+      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
+
+      // 展开路径上的所有节点
+      const expandPath = (nodes: DOMNode[]): DOMNode[] => {
+        return nodes.map(node => {
+          const shouldExpand = elementPath.some(pathNode => pathNode.element === node.element);
+          return {
+            ...node,
+            isExpanded: shouldExpand ? true : node.isExpanded,
+            children: node.children.length > 0 ? expandPath(node.children) : node.children
+          };
+        });
+      };
+
+      setDomTree(prev => expandPath(prev));
+
+      // 延时滚动到目标元素，确保DOM已更新
+      setTimeout(() => {
+        // 尝试通过元素内容查找对应的DOM树节点
+        const allTreeNodes = document.querySelectorAll('.text-sm');
+        for (const treeNode of allTreeNodes) {
+          const nodeText = treeNode.textContent || '';
+          if (nodeText.includes(`<${targetElement.tagName?.toLowerCase()}>`) &&
+              (targetElement.id ? nodeText.includes(`#${targetElement.id}`) : true) &&
+              (targetElement.className ? nodeText.includes(targetElement.className.split(' ')[0]) : true)) {
+            treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            console.log('已滚动到目标节点');
+            break;
+          }
+        }
+      }, 200);
+    } else {
+      console.log('未在DOM树中找到目标元素');
+    }
   };
 
   // 选择DOM节点
