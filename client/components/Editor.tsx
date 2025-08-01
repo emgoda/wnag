@@ -91,7 +91,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       console.log('已添加选择样式');
     }
 
-    // 获取所有可选择��元素
+    // 获取所有可选择的元素
     const elements = doc.querySelectorAll('*');
     console.log('找到可选择元素数量:', elements.length);
 
@@ -271,7 +271,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           setupElementSelection();
         }, 200);
 
-        console.log('✅ 元素添加成���:', dragData.tag);
+        console.log('✅ 元素添加成功:', dragData.tag);
         alert(`${dragData.tag} 元素已添加到页面！`);
       }
     } catch (error) {
@@ -282,7 +282,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   return (
     <div className={`flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-white' : 'flex-1'}`}>
-      {/* 编辑器头部 */}
+      {/* 编辑��头部 */}
       <div className="bg-white border-b px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h2 className="font-medium text-gray-900">{pageName}</h2>
@@ -377,16 +377,51 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
               maxHeight: '100%'
             }}
           >
-            <iframe
-              ref={iframeRef}
-              className="w-full h-full border-none"
-              title={`编辑 - ${pageName}`}
-              sandbox="allow-scripts allow-same-origin"
-            />
+            <div className="relative w-full h-full">
+              <iframe
+                ref={iframeRef}
+                className="w-full h-full border-none"
+                title={`编辑 - ${pageName}`}
+                sandbox="allow-scripts allow-same-origin"
+              />
+              {/* 拖拽覆盖层 */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ zIndex: 10 }}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.currentTarget.style.pointerEvents = 'auto';
+                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+                  e.currentTarget.style.border = '2px dashed #3b82f6';
+                  console.log('拖拽悬停在覆盖层上');
+                }}
+                onDragLeave={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.currentTarget.style.backgroundColor = '';
+                  e.currentTarget.style.border = '';
+                  e.currentTarget.style.pointerEvents = 'none';
+                  console.log('拖拽离开覆盖层');
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.currentTarget.style.backgroundColor = '';
+                  e.currentTarget.style.border = '';
+                  e.currentTarget.style.pointerEvents = 'none';
+                  handleDropOnEditor(e);
+                }}
+              >
+                <div className="flex items-center justify-center h-full text-blue-600 font-medium opacity-0 hover:opacity-100 transition-opacity">
+                  拖拽元素到这里
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         
-        {/* 元素插入�����具 */}
+        {/* 元素插入���具 */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
