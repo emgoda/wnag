@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style标签，但保留其他所有元素
+        // 跳过script和style标签，但保留其他所��元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -167,7 +167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延迟再次获���DOM树，确保内容已加载
+    // 延迟再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -311,7 +311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文本内容，确保获取到正确的文本
+      // 获取文本内容，确保获取到正确的���本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -490,7 +490,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格式是否正确');
+        alert('HTML编辑失败，请检查格式���否正确');
       }
     }
   };
@@ -629,13 +629,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越的体��
+            专业的服务，卓越的体验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，��速上线，让您���产品迅速触达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，��速上线，让您的产品迅速触达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -669,7 +669,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓名</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓��</label>
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -698,7 +698,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
         <div style="max-width: 100%; margin: 0 auto;">
           <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
-            选择适合的�����
+            选择适合的方��
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             灵活的定价��满足不同需求
@@ -782,7 +782,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "团队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
+                "团队���作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -887,7 +887,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
-    // 获取��素的文本内容预览（��20����字符）
+    // 获取元素的文本内容预览（��20����字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1153,7 +1153,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
               </div>
 
-              {/* 特���元素的内容属性 */}
+              {/* 特定元素的内容属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
