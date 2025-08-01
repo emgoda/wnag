@@ -235,7 +235,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失败，请检���文件格式');
+      alert('导入失败，请检查文件格式');
     }
 
     // 清空文件输入
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接��中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -594,124 +594,130 @@ export default function WebEditor() {
                             </div>
                           </div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
-                          <div className="font-mono text-blue-600">&lt;a&gt;</div>
-                          <div className="text-gray-600 mb-2">链接</div>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'a',
-                                    content: '链接文本',
-                                    attributes: { href: '#' }
-                                  }, 'insert');
-                                }
-                              }}
-                            >
-                              插入
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'a',
-                                    content: '链接文本',
-                                    attributes: { href: '#' }
-                                  }, 'replace');
-                                }
-                              }}
-                            >
-                              替换
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'a',
-                                    content: '链接文本',
-                                    attributes: { href: '#' }
-                                  }, 'append');
-                                }
-                              }}
-                            >
-                              追加
-                            </Button>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;a&gt;</div>
+                            <div className="text-gray-600 mb-3">链接</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'a',
+                                      content: '链接文本',
+                                      attributes: { href: '#' }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'a',
+                                      content: '链接文本',
+                                      attributes: { href: '#' }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'a',
+                                      content: '链接文本',
+                                      attributes: { href: '#' }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
                           </div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
-                          <div className="font-mono text-blue-600">&lt;img&gt;</div>
-                          <div className="text-gray-600 mb-2">图片</div>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'img',
-                                    attributes: {
-                                      src: 'https://via.placeholder.com/150x100',
-                                      alt: '图片描述'
-                                    }
-                                  }, 'insert');
-                                }
-                              }}
-                            >
-                              插入
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'img',
-                                    attributes: {
-                                      src: 'https://via.placeholder.com/150x100',
-                                      alt: '图片描述'
-                                    }
-                                  }, 'replace');
-                                }
-                              }}
-                            >
-                              替换
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'img',
-                                    attributes: {
-                                      src: 'https://via.placeholder.com/150x100',
-                                      alt: '图片描述'
-                                    }
-                                  }, 'append');
-                                }
-                              }}
-                            >
-                              追加
-                            </Button>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;img&gt;</div>
+                            <div className="text-gray-600 mb-3">图片</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'img',
+                                      attributes: {
+                                        src: 'https://via.placeholder.com/150x100',
+                                        alt: '图片描述'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'img',
+                                      attributes: {
+                                        src: 'https://via.placeholder.com/150x100',
+                                        alt: '图片描述'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'img',
+                                      attributes: {
+                                        src: 'https://via.placeholder.com/150x100',
+                                        alt: '图片描述'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
                           </div>
                         </div>
                         <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
