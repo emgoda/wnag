@@ -961,7 +961,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
-                选择企业���
+                选择企业�����
               </button>
             </div>
           </div>
@@ -1343,8 +1343,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
-          onClick={(e) => {
-            console.log('🖱️ DOM树节点被点击:', node.tagName, e);
+          onClick={() => {
             // 点击：选择元素
             handleNodeSelect(node.element);
           }}
@@ -1352,7 +1351,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操作元素（系���/框架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作元素'
           }${
@@ -2076,7 +2075,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* 选择模板 */}
+              {/* 选择���板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模���</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
@@ -2159,7 +2158,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元素"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
