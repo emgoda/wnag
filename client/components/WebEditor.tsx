@@ -46,7 +46,7 @@ export default function WebEditor() {
 <body>
     <div class="container">
         <h1>欢迎来到我的网站</h1>
-        <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
+        <p>这是一个示例页面，您可以编辑HTML���容来自定义页面。</p>
     </div>
 </body>
 </html>`,
@@ -79,7 +79,7 @@ export default function WebEditor() {
   // 添加页面
   const handleAddPage = () => {
     if (!newPageData.name.trim() || !newPageData.route.trim()) {
-      alert('请填写页面名称和���由');
+      alert('请填写页面名称和路由');
       return;
     }
 
@@ -220,7 +220,7 @@ export default function WebEditor() {
       const doc = parser.parseFromString(content, 'text/html');
       const title = doc.querySelector('title')?.textContent || file.name.replace('.html', '');
 
-      // 创建新页面
+      // ���建新页面
       const newPage: Page = {
         id: Date.now().toString(),
         name: `导入-${title}`,
@@ -310,7 +310,7 @@ export default function WebEditor() {
             onClick={() => setShowCodeEditor(!showCodeEditor)}
           >
             <Code className="w-4 h-4 mr-2" />
-            {showCodeEditor ? '关闭源码' : '源���编辑'}
+            {showCodeEditor ? '关闭源码' : '源码编辑'}
           </Button>
           <Button
             variant="outline"
@@ -495,7 +495,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '标题文本'
+                                      content: '标题文���'
                                     }, 'insert');
                                   }
                                 }}
@@ -537,58 +537,61 @@ export default function WebEditor() {
                             </div>
                           </div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
-                          <div className="font-mono text-blue-600">&lt;p&gt;</div>
-                          <div className="text-gray-600 mb-2">段落</div>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'p',
-                                    content: '段落文本'
-                                  }, 'insert');
-                                }
-                              }}
-                            >
-                              插入
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'p',
-                                    content: '段落文���'
-                                  }, 'replace');
-                                }
-                              }}
-                            >
-                              替换
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'p',
-                                    content: '段落文本'
-                                  }, 'append');
-                                }
-                              }}
-                            >
-                              追加
-                            </Button>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;p&gt;</div>
+                            <div className="text-gray-600 mb-3">段落</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'p',
+                                      content: '段落文本'
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'p',
+                                      content: '段落文本'
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'p',
+                                      content: '段落文本'
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
                           </div>
                         </div>
                         <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
@@ -895,7 +898,7 @@ export default function WebEditor() {
                             const dragDataString = JSON.stringify(dragData);
                             e.dataTransfer.setData('text/plain', dragDataString);
                             e.dataTransfer.effectAllowed = 'copy';
-                            console.log('���始拖拽 footer 元素:', dragData);
+                            console.log('开始拖拽 footer 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
