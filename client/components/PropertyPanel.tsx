@@ -130,7 +130,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const body = doc.body;
       const html = doc.documentElement;
 
-      console.log('iframe详细状态:', {
+      console.log('iframe详细��态:', {
         readyState: doc.readyState,
         bodyChildren: body?.children.length || 0,
         htmlChildren: html?.children.length || 0,
@@ -242,7 +242,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
           }
         } catch (e) {
-          console.log('无法监听iframe内容文档:', e);
+          console.log('���法监听iframe内容文档:', e);
         }
 
         // 如果iframe已经加载完成，立即获取DOM树
@@ -441,7 +441,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           if (lastLabel) {
             lastLabel.textContent = value || '标题';
             lastLabel.setAttribute('data-title', value || '标���');
-            console.log('已更新最后一个label为:', value);
+            console.log('已��新最后一个label为:', value);
           } else {
             console.log('未找到label元素');
           }
@@ -1214,7 +1214,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-medium flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            元素编辑器
+            元素编��器
           </h3>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{elementData.tagName}</Badge>
@@ -1847,6 +1847,23 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   className="h-6 px-2 text-xs"
                 >
                   展开
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    if (selectedElement) {
+                      console.log('跳转到选中元素');
+                      autoExpandToElement(selectedElement);
+                    } else {
+                      console.log('没有选中的元素');
+                    }
+                  }}
+                  className="h-6 px-2 text-xs"
+                  disabled={!selectedElement}
+                  title="跳转到当前选中的元素"
+                >
+                  🎯
                 </Button>
               </div>
             </div>
