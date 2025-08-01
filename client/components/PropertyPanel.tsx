@@ -156,7 +156,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         bodyHasContent: !!body?.innerHTML
       });
 
-      // 检查���否有任何实际内容
+      // 检查是否有任何实际内容
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
       // 尝试查找canvas-root容器，如果没有则使用body
@@ -175,7 +175,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
-          console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+          console.log('DOM树���建��功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
         // 强制展开body��点
@@ -811,7 +811,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽���回复。');">
-            发��留言
+            发送留言
           </button>
         </form>
       </section>
@@ -897,7 +897,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐���⭐⭐</div>
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
@@ -1097,7 +1097,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.style.cursor = 'default';
       });
 
-      // 移除所有可能的事件监听器影响
+      // 移除所有可能��事件监听器影响
       const allElements = doc.querySelectorAll('*');
       allElements.forEach(el => {
         el.style.removeProperty('pointer-events');
@@ -1245,7 +1245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // 检���尺寸是否为0（但排除某些正常的0尺寸元素）
+          // 检查尺寸是否为0（但排除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1293,7 +1293,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => handleNodeSelect(node.element)}
-          onDoubleClick={() => {
+          onDoubleClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('双击清除选中状态');
             clearSelection();
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
@@ -1629,7 +1632,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
                     >
                       <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="���择打开方式" />
+                        <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
