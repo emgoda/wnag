@@ -99,7 +99,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
-      element.getAttribute('role') === 'presentation' || // 纯展示���素
+      element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
     // 不可操作的CSS类名模式
@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return true;
   };
 
-  // 生成或获取元素的唯一ID
+  // 生成或获���元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
     // 如果元素已经有data-node-id，��接返回
     if (element.hasAttribute('data-node-id')) {
@@ -398,7 +398,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 组件挂载时立即尝试加载DOM���
   useEffect(() => {
-    console.log('PropertyPanel��件挂���，立即获取DOM树');
+    console.log('PropertyPanel���件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
-  // 添加全局点击事�����听器来关闭右键菜单
+  // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }, 200);
     } else {
-      console.log('未在DOM树中找到目标元素');
+      console.log('未在DOM树中找到目��元素');
     }
   };
 
@@ -1550,7 +1550,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       调试：渲染 {domTree.length} 个根节点
                     </div>
                     {domTree.map((node, index) => {
-                      console.log('渲染���点:', node.tagName, 'children:', node.children.length);
+                      console.log('渲染节点:', node.tagName, 'children:', node.children.length);
                       return renderDOMNode(node, 0, index);
                     })}
                   </div>
@@ -1762,7 +1762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
-                        <SelectItem value="_parent">父窗���</SelectItem>
+                        <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2245,7 +2245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('��转到选中元素');
+                      console.log('跳转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
