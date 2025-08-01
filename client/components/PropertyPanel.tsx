@@ -215,7 +215,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载���成，立即获取DOM树
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe���完成加载，立即获取DOM树');
           handleLoad();
@@ -260,8 +260,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 更频繁地检查DOM树变���（每500ms检查一次）
-    const interval = setInterval(updateDOMTree, 500);
+    // 定期检查DOM树变化（每3秒检查一次）
+    const interval = setInterval(updateDOMTree, 3000);
 
     return () => {
       clearInterval(interval);
@@ -272,7 +272,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
     console.log('PropertyPanel组件挂载，立即获取DOM树');
-    // 多次尝试，确保能够获取到
+    // 多次尝试，确保能够���取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
@@ -420,7 +420,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
       } catch (error) {
-        console.error('更新DOM出错:', error);
+        console.error('��新DOM出错:', error);
       }
     };
 
@@ -764,7 +764,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             选择适��的方����
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价，满足不同需求
+            灵活的定���，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
