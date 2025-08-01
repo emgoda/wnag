@@ -45,7 +45,7 @@ export default function WebEditor() {
 </head>
 <body>
     <div class="container">
-        <h1>欢����来到我的网站</h1>
+        <h1>欢���来到我的网站</h1>
         <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
@@ -205,7 +205,7 @@ export default function WebEditor() {
     }
   };
 
-  // 导入SingleFile
+  // 导���SingleFile
   const handleImportSingleFile = () => {
     fileInputRef.current?.click();
   };
@@ -768,7 +768,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 插��
+                                📝 插入
                               </Button>
                               <Button
                                 variant="outline"
@@ -818,65 +818,13 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const presetHTML = `
-                                <div style="max-width: 600px; margin: 20px auto; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
-                                  <h2 style="margin: 0 0 20px 0; text-align: center; font-size: 24px; font-weight: 600; color: #1f2937;">HTML模板预设</h2>
-
-                                  <!-- Hero区域预设 -->
-                                  <div style="margin-bottom: 30px; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; text-align: center; color: white;">
-                                    <h1 style="margin: 0 0 16px 0; font-size: 32px; font-weight: bold;">欢迎来到我们的网站</h1>
-                                    <p style="margin: 0 0 24px 0; font-size: 18px; opacity: 0.9;">创建令人惊叹的网页体验</p>
-                                    <button style="background: white; color: #667eea; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                      开始体验
-                                    </button>
-                                  </div>
-
-                                  <!-- 特性卡片预设 -->
-                                  <div style="margin-bottom: 30px;">
-                                    <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #1f2937; text-align: center;">产品特性</h3>
-                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
-                                      <div style="padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0;">
-                                        <div style="width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; color: white; font-size: 20px;">⚡</div>
-                                        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1f2937;">快速</h4>
-                                        <p style="margin: 0; font-size: 14px; color: #6b7280;">闪电般的加载速度</p>
-                                      </div>
-                                      <div style="padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0;">
-                                        <div style="width: 48px; height: 48px; background: #10b981; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; color: white; font-size: 20px;">🔒</div>
-                                        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1f2937;">安全</h4>
-                                        <p style="margin: 0; font-size: 14px; color: #6b7280;">企业级安全保护</p>
-                                      </div>
-                                      <div style="padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0;">
-                                        <div style="width: 48px; height: 48px; background: #f59e0b; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; color: white; font-size: 20px;">⭐</div>
-                                        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1f2937;">优质</h4>
-                                        <p style="margin: 0; font-size: 14px; color: #6b7280;">高质量的用户体验</p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <!-- 导航栏预设 -->
-                                  <div style="margin-bottom: 30px;">
-                                    <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #1f2937; text-align: center;">导航栏</h3>
-                                    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #1f2937; border-radius: 8px; color: white;">
-                                      <div style="font-size: 20px; font-weight: bold;">Logo</div>
-                                      <div style="display: flex; gap: 24px;">
-                                        <a href="#" style="color: white; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='white'">首页</a>
-                                        <a href="#" style="color: white; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='white'">产品</a>
-                                        <a href="#" style="color: white; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='white'">关于</a>
-                                        <a href="#" style="color: white; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='white'">联系</a>
-                                      </div>
-                                    </nav>
-                                  </div>
-
-                                  <!-- 页脚预设 -->
-                                  <div style="text-align: center; padding: 24px; background: #f8fafc; border-radius: 8px; border-top: 4px solid #3b82f6;">
-                                    <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1f2937;">联系我们</p>
-                                    <p style="margin: 0 0 16px 0; color: #6b7280; font-size: 14px;">邮箱: contact@example.com | 电话: (123) 456-7890</p>
-                                    <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 16px;">
-                                      <a href="#" style="color: #3b82f6; font-size: 20px; text-decoration: none;">📘</a>
-                                      <a href="#" style="color: #1da1f2; font-size: 20px; text-decoration: none;">🐦</a>
-                                      <a href="#" style="color: #e1306c; font-size: 20px; text-decoration: none;">📷</a>
-                                    </div>
-                                    <p style="margin: 0; color: #9ca3af; font-size: 12px;">&copy; 2024 公司名称. 保留所有权利.</p>
-                                  </div>
+                                <div style="max-width: 320px; margin: 10px; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                                  <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 6px;">预设</h3>
+                                  <ol style="margin: 0; padding-left: 16px; color: #4b5563; font-size: 14px; line-height: 1.6;">
+                                    <li style="margin-bottom: 6px;">选择元素调整器样式</li>
+                                    <li style="margin-bottom: 6px;">从右侧选择标签进行开始</li>
+                                    <li style="margin-bottom: 0;">修改文案并印刷</li>
+                                  </ol>
                                 </div>
                               `;
 
@@ -1401,7 +1349,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请选择一个页面进行编辑</p>
+                <p className="text-gray-500">请��择一个页面进行编辑</p>
               </div>
             )}
           </div>
