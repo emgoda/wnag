@@ -49,6 +49,29 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   }, [content]);
 
+  // 受控高亮显示：基于selectedNodeId更新iframe中的高亮
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe || !iframe.contentDocument) return;
+
+    const doc = iframe.contentDocument;
+
+    // 清除所有之前的选中状态
+    const prevSelected = doc.querySelectorAll('.element-selected');
+    prevSelected.forEach(el => el.classList.remove('element-selected'));
+
+    // 如果有选中的nodeId，高亮对应元素
+    if (selectedNodeId) {
+      const targetElement = doc.querySelector(`[data-node-id="${selectedNodeId}"]`);
+      if (targetElement) {
+        targetElement.classList.add('element-selected');
+        console.log('✅ Canvas高亮元素:', selectedNodeId, targetElement.tagName);
+      } else {
+        console.warn('⚠️ Canvas未找到对应元素:', selectedNodeId);
+      }
+    }
+  }, [selectedNodeId]);
+
   // 在组件挂载时确保默认为手机模式
   useEffect(() => {
     console.log('Editor组件挂载，当前预览模式:', previewMode);
@@ -120,7 +143,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     console.log('已为', addedListeners, '个元��添加事件监听器');
   };
 
-  // 鼠标悬停效果
+  // 鼠标悬停效���
   const handleMouseOver = (e: Event) => {
     if (!elementSelectMode) return;
     e.stopPropagation();
@@ -332,7 +355,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
         <div className="flex items-center gap-2">
           {/* 设备切换 */}
           <div className="flex items-center gap-1 border rounded-lg p-1">
-            {/* 桌面按钮 */}
+            {/* 桌面按��� */}
             <Button
               variant={previewMode === 'desktop' ? 'default' : 'ghost'}
               size="sm"
@@ -346,7 +369,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
               <span className="ml-1 hidden sm:inline">桌面</span>
             </Button>
 
-            {/* 手机设备下拉菜�� */}
+            {/* 手机设备下拉菜单 */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
