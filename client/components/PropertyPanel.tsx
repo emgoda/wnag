@@ -247,7 +247,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       if (containerElement) {
         // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
-          console.log('找到canvas-root容器，构建子树');
+          console.log('找到canvas-root容器，构建子��');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
@@ -1084,7 +1084,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动到目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素��容查找对应的DOM树节点
+        // 尝试通过元素���容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1482,7 +1482,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             false ? '\n🔒 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
-          }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
+          }\n点击选择元素\n右键：删��元素`}
         >
           {hasChildren && (
             <button
@@ -2210,7 +2210,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </Select>
               </div>
 
-              {/* 开始生成按钮 */}
+              {/* 开始生��按钮 */}
               <Button
                 onClick={handleTemplateGeneration}
                 className="w-full bg-blue-500 hover:bg-blue-600"
@@ -2461,7 +2461,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🗑️ 删除元素
+              🗑️ 删除元���
             </button>
             <button
               className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
