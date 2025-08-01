@@ -300,6 +300,59 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
               maxWidth: '100%',
               maxHeight: '100%'
             }}
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.currentTarget.classList.add('border-blue-400', 'border-2', 'border-dashed');
+            }}
+            onDragLeave={(e) => {
+              e.currentTarget.classList.remove('border-blue-400', 'border-2', 'border-dashed');
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              e.currentTarget.classList.remove('border-blue-400', 'border-2', 'border-dashed');
+
+              try {
+                const dragData = JSON.parse(e.dataTransfer.getData('text/plain'));
+
+                if (dragData.type === 'element') {
+                  console.log('拖拽放置元素:', dragData);
+
+                  // 创建新元素
+                  const iframe = iframeRef.current;
+                  if (iframe && iframe.contentDocument) {
+                    const doc = iframe.contentDocument;
+                    const newElement = doc.createElement(dragData.tag);
+
+                    // 设置内容
+                    if (dragData.content) {
+                      if (dragData.content.includes('<')) {
+                        newElement.innerHTML = dragData.content;
+                      } else {
+                        newElement.textContent = dragData.content;
+                      }
+                    }
+
+                    // 设置属性
+                    if (dragData.attributes) {
+                      Object.entries(dragData.attributes).forEach(([key, value]) => {
+                        newElement.setAttribute(key, value as string);
+                      });
+                    }
+
+                    // 添加到页面body
+                    doc.body.appendChild(newElement);
+
+                    // 通知内容变化
+                    const updatedHTML = doc.documentElement.outerHTML;
+                    onChange(updatedHTML);
+
+                    console.log('✅ 元素添加成功:', dragData.tag);
+                  }
+                }
+              } catch (error) {
+                console.error('拖拽处理失败:', error);
+              }
+            }}
           >
             <iframe
               ref={iframeRef}
