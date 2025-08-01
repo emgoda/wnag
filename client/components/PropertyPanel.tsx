@@ -447,7 +447,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // 更新元素数据
+  // ���新元素数据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取���本内容
+      // 尝试不同的方式获取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -978,7 +978,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">�� 所有专业功��</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素����容查找对应的DOM树���点
+        // 尝试通过元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1137,7 +1137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         try {
           iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
         } catch (crossOriginError) {
-          console.warn('跨域访问被阻止，跳过删除操作:', crossOriginError);
+          console.warn('跨域访问被��止，跳过删除操作:', crossOriginError);
           return;
         }
         if (iframeElement && iframeElement.parentNode) {
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选��DOM节点 - 纯预览模式，不锁定交互
+  // 选择DOM节点 - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1674,7 +1674,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         )}
       </div>
 
-      {/* �������区域 */}
+      {/* ����������域 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
@@ -2157,7 +2157,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <Input
                   value={elementData.id}
                   onChange={(e) => handleAttributeChange('id', e.target.value)}
-                  placeholder="元素唯��标识"
+                  placeholder="元素唯一标识"
                   className="mt-1"
                 />
               </div>
@@ -2210,7 +2210,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* ��入格式 */}
+                  {/* �����格式 */}
                   <div>
                     <div className="flex items-center gap-1 mb-1">
                       <Label className="text-xs text-gray-600">输入格式</Label>
