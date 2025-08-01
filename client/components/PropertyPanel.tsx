@@ -170,7 +170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清理错误
+            // 忽略清��错误
           }
         };
       } else {
@@ -441,9 +441,52 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素进���编辑
+                点击预览中的元素或下方DOM树进行编辑
               </p>
             </div>
+          </div>
+
+          {/* DOM树区域 */}
+          <div className="border-t bg-gray-50">
+            <div className="p-3 border-b bg-white">
+              <div className="flex items-center justify-between">
+                <h4 className="font-medium text-sm flex items-center gap-2">
+                  <Code className="w-4 h-4" />
+                  DOM 树
+                </h4>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    console.log('手动刷新DOM树（无选中状态）');
+                    getDOMTreeFromIframe();
+                  }}
+                  className="h-6 px-2 text-xs"
+                >
+                  刷新
+                </Button>
+              </div>
+              {domTree.length === 0 && (
+                <p className="text-xs text-gray-500 mt-2">
+                  正在加载DOM结构... 点击"刷新"重试
+                </p>
+              )}
+            </div>
+            <ScrollArea className="h-64">
+              <div className="p-2">
+                {domTree.length > 0 ? (
+                  domTree.map(node => renderDOMNode(node))
+                ) : (
+                  <div className="text-center text-gray-500 py-8">
+                    <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                    <p className="text-xs">DOM树为空</p>
+                    <p className="text-xs text-gray-400">
+                      请导入页面或点击"刷新"
+                    </p>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
           </div>
         </div>
       </div>
