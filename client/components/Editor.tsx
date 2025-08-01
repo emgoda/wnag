@@ -17,11 +17,12 @@ interface EditorProps {
 export default function Editor({ content, onChange, pageName, onElementSelect }: EditorProps) {
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // 设备尺寸
   const deviceSizes = {
-    desktop: { width: '100%', height: '100%', label: '桌面' },
+    desktop: { width: '100%', height: '100%', label: '桌��' },
     mobile: { width: '375px', height: '667px', label: '手机' }
   };
 
