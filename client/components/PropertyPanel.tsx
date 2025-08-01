@@ -135,9 +135,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
-    // 延迟获取DOM树，确保内容已加载
+    // 立即尝试获取DOM树
+    getDOMTreeFromIframe();
+
+    // 延迟再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
-      console.log('���始获取DOM树...');
+      console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
     }, 500);
 
