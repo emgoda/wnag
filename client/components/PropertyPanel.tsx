@@ -387,8 +387,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 暂时禁用定期检查，避免编辑时DOM树被锁定
-    // const interval = setInterval(updateDOMTree, 3000);
+    // 恢复但延长定期检查间隔，减少编辑时的干扰
+    const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
       // clearInterval(interval); // 已禁用interval
@@ -396,7 +396,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     };
   }, []);
 
-  // 组件挂载时立即尝试加载DOM���
+  // 组件挂载时立即尝试加载DOM�����
   useEffect(() => {
     console.log('PropertyPanel��件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正��');
+        alert('HTML编����败���请检查格式是否正��');
       }
     }
   };
@@ -1495,7 +1495,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "���显示��操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1744,7 +1744,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
                     >
                       <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="选择打开方式" />
+                        <SelectValue placeholder="选择打开方��" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
@@ -2056,7 +2056,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   {/* 三系法 */}
                   <div>
-                    <Label className="text-xs text-gray-600 mb-1 block">三系法</Label>
+                    <Label className="text-xs text-gray-600 mb-1 block">三��法</Label>
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
@@ -2167,7 +2167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元�����"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
