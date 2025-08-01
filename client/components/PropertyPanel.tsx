@@ -542,6 +542,274 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
+  // 处理模板生成
+  const handleTemplateGeneration = () => {
+    if (!selectedTemplate) {
+      alert('请先选择一个模板');
+      return;
+    }
+
+    const addElementToPage = (window as any).addElementToPage;
+    if (!addElementToPage) {
+      alert('页面编辑器不可用');
+      return;
+    }
+
+    let templateHTML = '';
+
+    switch (selectedTemplate) {
+      case 'hero-section':
+        templateHTML = generateHeroSection();
+        break;
+      case 'feature-cards':
+        templateHTML = generateFeatureCards();
+        break;
+      case 'contact-form':
+        templateHTML = generateContactForm();
+        break;
+      case 'pricing-table':
+        templateHTML = generatePricingTable();
+        break;
+      case 'testimonial':
+        templateHTML = generateTestimonial();
+        break;
+      default:
+        templateHTML = '<div>未知模板</div>';
+    }
+
+    // 添加到页面
+    addElementToPage({
+      tag: 'div',
+      content: templateHTML,
+      attributes: {
+        style: 'margin: 20px auto;'
+      }
+    }, 'append');
+
+    alert('模板生成成功！');
+  };
+
+  // 生成Hero区域模板
+  const generateHeroSection = () => {
+    const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 8px rgba(0,0,0,0.1);' : '';
+    const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
+    const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
+
+    return `
+      <section style="text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin: 20px 0;">
+        <div style="max-width: 800px; margin: 0 auto;">
+          <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; line-height: 1.2;">
+            欢迎来到我们的网站
+          </h1>
+          <p style="font-size: 20px; margin-bottom: 30px; opacity: 0.9; line-height: 1.6;">
+            发现无限可能，创造美好未来
+          </p>
+          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <button style="background: white; color: ${themeColor}; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              开始使用
+            </button>
+            <button style="background: transparent; color: white; border: 2px solid white; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+              了解更多
+            </button>
+          </div>
+        </div>
+      </section>
+    `;
+  };
+
+  // 生成功能卡片模板
+  const generateFeatureCards = () => {
+    const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+
+    return `
+      <section style="padding: 60px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+            我们的特色
+          </h2>
+          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
+            专业的服务，卓越的体验
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🚀</div>
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">快速部署</h3>
+              <p style="color: #6b7280; line-height: 1.6;">一键部署，快速上线，让您的产品迅速触达用户</p>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🛡️</div>
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">安全可靠</h3>
+              <p style="color: #6b7280; line-height: 1.6;">企业级安全保障，全方位保护您的数据安全</p>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">⚡</div>
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 15px; color: #1f2937;">高性能</h3>
+              <p style="color: #6b7280; line-height: 1.6;">优化的架构设计，提供极致的用户体验</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  };
+
+  // 生成联系表单模板
+  const generateContactForm = () => {
+    const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 8px rgba(0,0,0,0.1);' : '';
+    const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
+    const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
+
+    return `
+      <section style="max-width: 600px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+          联系我们
+        </h2>
+        <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">
+          有任何问题？我们很乐意为您解答
+        </p>
+        <form style="space-y: 20px;">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">姓名</label>
+            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">邮箱</label>
+            <input type="email" placeholder="请输入您的邮箱" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">留言</label>
+            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'"></textarea>
+          </div>
+          <button type="submit" style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('感谢您的留言！我们会尽快回复。');">
+            发送留言
+          </button>
+        </form>
+      </section>
+    `;
+  };
+
+  // 生成价格表模板
+  const generatePricingTable = () => {
+    const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+    const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
+    const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
+
+    return `
+      <section style="padding: 60px 20px;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+            选择适合的方案
+          </h2>
+          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
+            灵活的定价，满足不同需求
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
+              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">基础版</h3>
+              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥99</div>
+              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 基础功能</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 5GB 存储空间</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 邮件支持</li>
+              </ul>
+              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
+                选择基础版
+              </button>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid ${themeColor}; position: relative; transform: scale(1.05); transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='scale(1.05) translateY(-4px)'" onmouseout="this.style.transform='scale(1.05) translateY(0)'">
+              <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600;">推荐</div>
+              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">专业版</h3>
+              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥199</div>
+              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 所有基础功能</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 50GB 存储空间</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 优先支持</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 高级分析</li>
+              </ul>
+              <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                选择专业版
+              </button>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
+              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">企业版</h3>
+              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥399</div>
+              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 所有专业功能</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 无限存储空间</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 24/7 专属支持</li>
+                <li style="margin-bottom: 12px; color: #4b5563;">✓ 定制集成</li>
+              </ul>
+              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
+                选择企业版
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  };
+
+  // 生成客户评价模板
+  const generateTestimonial = () => {
+    const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+
+    return `
+      <section style="padding: 60px 20px; background: #f8fafc;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+            客户评价
+          </h2>
+          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
+            听听客户怎么说
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+              </p>
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">李</div>
+                <div>
+                  <div style="font-weight: 600; color: #1f2937;">李先生</div>
+                  <div style="color: #6b7280; font-size: 14px;">产品经理</div>
+                </div>
+              </div>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+                "团队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
+              </p>
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">王</div>
+                <div>
+                  <div style="font-weight: 600; color: #1f2937;">王女士</div>
+                  <div style="color: #6b7280; font-size: 14px;">运营总监</div>
+                </div>
+              </div>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+                "部署简单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
+              </p>
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">张</div>
+                <div>
+                  <div style="font-weight: 600; color: #1f2937;">张先生</div>
+                  <div style="color: #6b7280; font-size: 14px;">技术总监</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  };
+
   // 切换DOM节���展开状态
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
@@ -953,7 +1221,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">字体���小</Label>
+                      <Label className="text-xs">字体大小</Label>
                       <Input
                         value={elementData.styles['font-size'] || ''}
                         onChange={(e) => handleStyleChange('font-size', e.target.value)}
