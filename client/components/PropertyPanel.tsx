@@ -273,7 +273,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
-        // 尝试从html根元素开始构建
+        // 尝试从html根元素开始��建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -316,7 +316,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       }
 
       if (iframe) {
-        console.log('��到iframe，设置监听器');
+        console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
           console.log('iframe加载完成�������触发');
@@ -349,7 +349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         return () => {
           iframe.removeEventListener('load', handleLoad);
-          // ��禁用内容变化监听器，无需清理
+          // ��禁用内容变化监听器，无��清理
           // try {
           //   if (iframe.contentDocument) {
           //     iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
@@ -359,7 +359,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           // }
         };
       } else {
-        console.log('未���到iframe，1秒后重试...');
+        console.log('未找到iframe，1秒后重试...');
         setTimeout(findAndListenToIframe, 1000);
       }
     };
@@ -403,7 +403,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
-        console.log(`���试获取DOM树 (延迟${delay}ms)`);
+        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
         getDOMTreeFromIframe();
       }, delay);
     });
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一���相关元素（用户最新操作的）
+        // 简������略：直接更新最后一���相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -919,7 +919,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活���定价，满足不同需求
+            灵活的定价，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -1366,7 +1366,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             false ? '\n���� 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
-          }\n点击选择元素\n右键：删��元��`}
+          }\n点击选择元素\n右键：删��元素`}
         >
           {hasChildren && (
             <button
@@ -1414,7 +1414,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </span>
           )}
 
-          {/* 显��元素类型信息 */}
+          {/* �����元素类型信息 */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -1532,6 +1532,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <p className="text-green-600">
                     已加载 {domTree.length} 个根节点
                   </p>
+                  <p className="text-blue-500">
+                    第一个节点: {domTree[0]?.tagName} (子节点: {domTree[0]?.children?.length || 0})
+                  </p>
                   {!showAllElements && (
                     <p className="text-gray-500">
                       ✅ 已过滤不可操作元素
@@ -1539,7 +1542,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示所有元素（包括不可操作���）
+                      ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
 
