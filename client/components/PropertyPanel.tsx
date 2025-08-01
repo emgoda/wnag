@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // 只处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body����点
+        // 强制展开body�����点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延���再次获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内容
+      // 尝试不同的方式���取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -914,7 +914,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">��������箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���������箱</label>
             <input type="email" placeholder="请输入�����的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -980,7 +980,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点 - 纯预览模式，不锁定交互
+  // 选择DOM节点 - 纯���览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1291,7 +1291,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测元素是否隐藏��不可见
+  // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
       // 首先检查iframe中的元素（因为DOM树���的元素������来自iframe）
@@ -1620,7 +1620,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem onClick={() => handleDuplicateElement()}>
                   <Copy className="w-4 h-4 mr-2" />
-                  复制元素
+                  复制��素
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementUp()}
@@ -2261,7 +2261,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
                         className="w-full h-8 text-xs bg-white border border-gray-300 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
-                        <option value="text">���认</option>
+                        <option value="text">默认</option>
                         <option value="numeric">数字</option>
                         <option value="tel">电话</option>
                         <option value="email">邮箱</option>
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个根���点
+                  ��加载 {domTree.length} 个������点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
