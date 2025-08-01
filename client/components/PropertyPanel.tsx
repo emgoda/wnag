@@ -121,7 +121,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 系统生成的内容元素
     const isSystemGenerated =
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
-      element.querySelector('svg[class*="lucide"]') !== null; // ��含图标的按钮等
+      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
 
     // 如果是以上任何一种情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
@@ -154,7 +154,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的��素，仍然检查其子元素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -260,7 +260,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如���body为空，等��内容加��
+        // 如���body为空，等待内容加��
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -542,7 +542,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const lastInput = allInputs[allInputs.length - 1];
           if (lastInput) {
             lastInput.setAttribute('placeholder', value || '');
-            console.log('已更新最后一个input placeholder��:', value);
+            console.log('已更新最后一个input placeholder为:', value);
           } else {
             console.log('未找到input元素');
           }
@@ -675,7 +675,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           selectedElement.parentNode?.replaceChild(newElement, selectedElement);
           updateParentContent();
           setTimeout(() => getDOMTreeFromIframe(), 100);
-          console.log('HTML编辑成���');
+          console.log('HTML编辑成功');
         } else {
           alert('无效的HTML格式，请检查后重试');
         }
@@ -791,7 +791,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);"></div>
         <div style="max-width: 100%; margin: 0 auto; position: relative; z-index: 1;">
           <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 15px; line-height: 1.2; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); letter-spacing: -0.5px;">
-            欢迎来��我们的网站
+            欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
             发现���限可能，创造美好未来
@@ -1363,6 +1363,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
     const isHidden = isElementHidden(node.element);
+    const isNonOperable = !isElementOperable(node.element);
     const paddingLeft = depth * 16;
 
     // 获取元素的文本内容预览（前20个字符）
@@ -1647,7 +1648,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  本地�����: "{localTextContent}" (长度: {localTextContent.length})
+                  本地����: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
                   元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
@@ -2003,7 +2004,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   {/* 可为空和键盘类型 */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label className="text-xs text-gray-600 mb-2 block">可���空</Label>
+                      <Label className="text-xs text-gray-600 mb-2 block">可为空</Label>
                       <div className="flex items-center">
                         <div className="relative inline-block w-10 h-5">
                           <input
@@ -2166,7 +2167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('调试信息:');
+                    console.log('��试信息:');
                     console.log('domTree.length:', domTree.length);
                     console.log('domTree:', domTree);
                     const allIframes = document.querySelectorAll('iframe');
