@@ -160,7 +160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 为元素生成唯一ID
         getElementNodeId(element);
 
-        // 根据showAllElements设置决定是否��示
+        // 根据showAllElements设置决定是否显示
         if (showAllElements || operable) {
           res.push({
             element,
@@ -394,7 +394,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel���件挂���，立即获取DOM树');
+    console.log('PropertyPanel��件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -548,7 +548,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元���（用户最新操作的）
+        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -719,7 +719,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
-      // 选择父元素
+      // 选择父元���
       parent.classList.add('element-selected');
 
       // 通知父组件
@@ -859,7 +859,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">���性能</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
@@ -953,7 +953,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空�����</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -1378,7 +1378,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元���（因为DOM树中的元素���能来自iframe）
+      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1465,15 +1465,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
-            // 单击：预览模式（轻量高亮，不锁定）
-            handleNodeSelect(node.element, 'preview');
-          }}
-          onDoubleClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // 双击：锁定模式（完全选中，锁定交互）
-            console.log('双击锁定选择');
-            handleNodeSelect(node.element, 'locked');
+            // 点击：选择元素
+            handleNodeSelect(node.element);
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
@@ -1827,7 +1820,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">替代文��</Label>
+                    <Label className="text-sm font-medium">替代文本</Label>
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
@@ -1995,7 +1988,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">宽度</Label>
+                      <Label className="text-xs">���度</Label>
                       <Input
                         value={elementData.styles.width || ''}
                         onChange={(e) => handleStyleChange('width', e.target.value)}
@@ -2197,7 +2190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* ���择模板 */}
+              {/* 选择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模���</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
