@@ -203,7 +203,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 直接查找第一个可用的iframe
+    // 直接查找第一个可用��iframe
     let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -503,8 +503,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
-      // 暂时禁用自动展开，避免DOM树锁定
-      // autoExpandToElement(selectedElement);
 
       // 当画布选择元素时，自动更新selectedNodeId
       const nodeId = selectedElement.getAttribute('data-node-id');
@@ -921,7 +919,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价，满足不同需求
+            灵活的定价，���足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -1219,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中状��');
+      console.log('已清除', highlighted.length, '个元素的选中�����');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1256,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测元素是否隐藏��不可见
+  // 检测元���是否隐藏��不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
       // 首先检查iframe中的元素（因为DOM树���的元素������来自iframe）
@@ -1385,7 +1383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍���️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可���作元素">🔒</span>}
           </span>
 
@@ -1643,7 +1641,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   本地����: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
-                  元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
+                  ���素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
                 </div>
 
                 {/* 简单的input测试 */}
@@ -2103,7 +2101,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 开始生成
               </Button>
 
-              {/* 模板��置选项 */}
+              {/* 模����置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
                   <Label className="text-sm text-gray-700">输入��阴���</Label>
@@ -2225,7 +2223,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('��转到选中元素');
+                      console.log('��转到选中���素');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
@@ -2260,7 +2258,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  已加载 {domTree.length} 个根���点
+                  ��加载 {domTree.length} 个根���点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
@@ -2328,7 +2326,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🗑️ 删除元素
+              🗑️ 删除元���
             </button>
             <button
               className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
