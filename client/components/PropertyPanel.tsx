@@ -159,7 +159,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM树
+        // 如果iframe已经��载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -280,11 +280,123 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 更新文本内容
   const handleTextContentChange = (value: string) => {
     if (!selectedElement || !onElementUpdate) return;
-    
+
     selectedElement.textContent = value;
     onElementUpdate(selectedElement, 'textContent', value);
-    
+
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
+  };
+
+  // 复制元素
+  const handleDuplicateElement = () => {
+    if (!selectedElement) return;
+
+    const cloned = selectedElement.cloneNode(true) as HTMLElement;
+    selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
+
+    // 更新页面内容
+    updateParentContent();
+
+    // 重新获取DOM树
+    setTimeout(() => {
+      getDOMTreeFromIframe();
+    }, 100);
+  };
+
+  // 向上移动元素
+  const handleMoveElementUp = () => {
+    if (!selectedElement) return;
+
+    const previousSibling = selectedElement.previousElementSibling;
+    if (previousSibling) {
+      selectedElement.parentNode?.insertBefore(selectedElement, previousSibling);
+      updateParentContent();
+      setTimeout(() => getDOMTreeFromIframe(), 100);
+    }
+  };
+
+  // 向下移动元素
+  const handleMoveElementDown = () => {
+    if (!selectedElement) return;
+
+    const nextSibling = selectedElement.nextElementSibling;
+    if (nextSibling) {
+      selectedElement.parentNode?.insertBefore(nextSibling, selectedElement);
+      updateParentContent();
+      setTimeout(() => getDOMTreeFromIframe(), 100);
+    }
+  };
+
+  // 编辑元素HTML
+  const handleEditElementHTML = () => {
+    if (!selectedElement) return;
+
+    const html = selectedElement.outerHTML;
+    const newHTML = prompt('编辑元素HTML:', html);
+
+    if (newHTML && newHTML !== html) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = newHTML;
+      const newElement = tempDiv.firstElementChild;
+
+      if (newElement) {
+        selectedElement.parentNode?.replaceChild(newElement, selectedElement);
+        updateParentContent();
+        setTimeout(() => getDOMTreeFromIframe(), 100);
+      }
+    }
+  };
+
+  // 选择父元素
+  const handleSelectParent = () => {
+    if (!selectedElement) return;
+
+    const parent = selectedElement.parentElement;
+    if (parent && parent !== document.body && parent !== document.documentElement) {
+      // 清除当前选中状态
+      selectedElement.classList.remove('element-selected');
+
+      // 选择父元素
+      parent.classList.add('element-selected');
+
+      // 通知父组件
+      if (onElementUpdate) {
+        // 这里我们通过触发一个特殊的更新来选择父元素
+        const clickEvent = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        parent.dispatchEvent(clickEvent);
+      }
+    }
+  };
+
+  // 删除元素
+  const handleDeleteElement = () => {
+    if (!selectedElement) return;
+
+    if (confirm('确定要删除这个元素吗？此操作无法撤销。')) {
+      selectedElement.remove();
+      setElementData(null);
+      updateParentContent();
+      setTimeout(() => getDOMTreeFromIframe(), 100);
+    }
+  };
+
+  // 更新父组件内容
+  const updateParentContent = () => {
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (!iframe) return;
+
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+
+    const html = doc.documentElement.outerHTML;
+    if (onElementUpdate) {
+      // 触发内容更新
+      onElementUpdate(selectedElement!, 'innerHTML', html);
+    }
   };
 
   // 切换DOM节点展开状态
@@ -314,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.classList.remove('dom-tree-selected');
       });
 
-      // 添加高亮样式到当前选中的元素
+      // 添加高亮样���到当前选中的元素
       element.classList.add('dom-tree-selected');
 
       // 添加高亮样式（如果还没有的话）
@@ -357,7 +469,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 渲染DOM树节点
+  // ��染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -653,7 +765,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字体粗细</Label>
+                      <Label className="text-xs">字体粗��</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
