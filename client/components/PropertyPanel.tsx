@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本��文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -92,7 +92,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             element,
             tagName,
             id: element.id || undefined,
-            className: (element.className && typeof element.className === 'string') ? element.className : undefined,
+            className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
             isExpanded: true // 默认展开所有节点
           });
@@ -524,7 +524,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输入响应
+    // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
     // 同时更����elementData状态
@@ -1976,7 +1976,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，然后点击"刷新"
+                    请确保已导入页面，然后点��"刷新"
                   </p>
                   <Button
                     variant="outline"
