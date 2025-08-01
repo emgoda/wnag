@@ -235,7 +235,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失败，请检查文件格��');
+      alert('导入失败，请检查文件格式');
     }
 
     // 清空文件输入
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接��中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -672,7 +672,11 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮文本'
+                                      content: '按钮文本',
+                                      attributes: {
+                                        'data-element-group': '交互元素',
+                                        'data-element-type': '按钮'
+                                      }
                                     }, 'append');
                                   }
                                 }}
@@ -926,7 +930,7 @@ export default function WebEditor() {
                                         <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
                                           <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
                                           <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
-                                          <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
+                                          <li style="margin-bottom: 0; position: relative; padding-left: 4px;">���改文案并印刷</li>
                                         </ol>
                                       </div>
                                     `;
@@ -1010,7 +1014,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'form',
-                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      content: '<label>��入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
                                       attributes: {
                                         style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
                                       }
