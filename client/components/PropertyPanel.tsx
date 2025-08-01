@@ -679,7 +679,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <label style="display: block; margin-bottom: 6px; font-weight: 500; color: #374151; font-size: 14px;">留言</label>
             <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 10px 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'"></textarea>
           </div>
-          <button type="submit" style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('感谢您的留言！我们会尽快回复。');">
+          <button type="submit" style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('感谢您的留言！我们会尽快回复。');">
             发送留言
           </button>
         </form>
