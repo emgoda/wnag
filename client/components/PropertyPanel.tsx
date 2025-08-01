@@ -235,7 +235,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
 
       if (iframe) {
-        console.log('找到iframe��设置监听器');
+        console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
           console.log('iframe加载完成�������触发');
@@ -321,7 +321,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
-        console.log(`尝试获��DOM树 (延迟${delay}ms)`);
+        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
         getDOMTreeFromIframe();
       }, delay);
     });
@@ -522,7 +522,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本��入变化:', value);
+    console.log('文本输入变化:', value);
 
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
@@ -530,7 +530,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 同时更����elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选中的元素，尝试更新实际DOM
+    // 如果有选���的元素，尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -764,7 +764,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部���</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1185,8 +1185,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return (
       <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${(node.className && typeof node.className === 'string') ? node.className.replace(/\s+/g, '-') : 'no-class'}`} className="text-sm">
         <div
-          className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded transition-all duration-200 ${
-            isSelected ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]' : ''
+          className={`flex items-center gap-1 py-1 px-2 cursor-pointer rounded transition-all duration-200 ${
+            isSelected
+              ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
+              : isHidden
+                ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
+                : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => handleNodeSelect(node.element)}
@@ -1535,7 +1539,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Type className="w-4 h-4" />
-                    文��样��
+                    文字样��
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
