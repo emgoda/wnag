@@ -216,7 +216,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延���再次获取DOM树，确保内容已加载
+    // 延���再次获���DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -342,7 +342,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 更新元素数据
+  // 更新元素���据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -463,7 +463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简���策略：直接更新最后一个相关元素（用户���新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -1018,11 +1018,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 删除DOM元素
   const deleteElement = (elementToDelete: HTMLElement) => {
     try {
-      // 确认��除操作
-      if (!confirm(`确定要删除 <${elementToDelete.tagName.toLowerCase()}> 元素吗？`)) {
-        return;
-      }
-
       // 从iframe中删除元素
       const iframe = document.querySelector('iframe') as HTMLIFrameElement;
       if (iframe && iframe.contentDocument) {
@@ -1244,7 +1239,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编辑
+                点击预览中的元素或下���DOM树进行编辑
               </p>
             </div>
           </div>
@@ -1377,7 +1372,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="content">内容</TabsTrigger>
               <TabsTrigger value="style">样式</TabsTrigger>
-              <TabsTrigger value="attributes">属性</TabsTrigger>
+              <TabsTrigger value="attributes">��性</TabsTrigger>
             </TabsList>
 
             <TabsContent value="content" className="px-4 pb-4 space-y-4">
@@ -1778,7 +1773,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <option value="text">���认</option>
                         <option value="numeric">数字</option>
                         <option value="tel">电话</option>
-                        <option value="email">邮箱</option>
+                        <option value="email">���箱</option>
                         <option value="url">网址</option>
                       </select>
                     </div>
