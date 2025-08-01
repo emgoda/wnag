@@ -580,7 +580,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">当前窗口</SelectItem>
+                        <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
                         <SelectItem value="_parent">父窗口</SelectItem>
                       </SelectContent>
