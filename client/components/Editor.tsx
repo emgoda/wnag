@@ -72,7 +72,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   }, [selectedNodeId]);
 
-  // 在组件挂载时确保默认为手机模式
+  // 在组件挂载时确���默认为手机模式
   useEffect(() => {
     console.log('Editor组件挂载，当前预览模式:', previewMode);
   }, []);
@@ -461,7 +461,8 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
               ref={iframeRef}
               className="w-full h-full border-none"
               title={`编辑 - ${pageName}`}
-              sandbox="allow-scripts allow-same-origin"
+              sandbox="allow-scripts allow-same-origin allow-forms"
+              srcDoc={content}
             />
           </div>
         </div>
