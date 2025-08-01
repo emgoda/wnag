@@ -85,7 +85,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用���同��路由');
+      alert('路由已存在，请使用���同的路由');
       return;
     }
 
@@ -505,7 +505,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -564,7 +564,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -630,7 +630,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -687,7 +687,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -754,7 +754,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -821,7 +821,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -965,7 +965,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -1038,7 +1038,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
@@ -1110,7 +1110,7 @@ export default function WebEditor() {
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信用卡支付</div>
+                          <div className="text-center text-gray-600 text-xs">信用��支付</div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
@@ -1266,7 +1266,7 @@ export default function WebEditor() {
                   取消
                 </Button>
                 <Button onClick={handleUpdatePage}>
-                  保存
+                  ���存
                 </Button>
               </div>
             </div>
