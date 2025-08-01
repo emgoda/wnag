@@ -145,7 +145,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const body = doc.body;
       const html = doc.documentElement;
 
-      console.log('iframe详细��态:', {
+      console.log('iframe详细����:', {
         readyState: doc.readyState,
         bodyChildren: body?.children.length || 0,
         htmlChildren: html?.children.length || 0,
@@ -260,7 +260,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('���法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立���获取DOM树
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe���完成加载，立即获取DOM树');
           handleLoad();
@@ -420,7 +420,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 当选中元素变化时，自动��转到DOM树中对应的节��
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
-      console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
+      console.log('选中元素���化，自动跳转到DOM树节点:', selectedElement);
       autoExpandToElement(selectedElement);
     }
   }, [selectedElement, domTree]);
@@ -463,7 +463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -748,7 +748,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 生成功���卡片模板
+  // 生成功能卡片模板
   const generateFeatureCards = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
@@ -1082,9 +1082,16 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const doc = iframe.contentDocument;
 
       // 移除所有可能的选中样式
-      const highlighted = doc.querySelectorAll('.dom-tree-selected, .element-selected, .selected');
+      const highlighted = doc.querySelectorAll('.dom-tree-selected, .element-selected, .selected, [data-dom-tree-selected]');
       highlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'element-selected', 'selected');
+        el.removeAttribute('data-dom-tree-selected');
+
+        // 恢复原始title
+        const title = el.getAttribute('title');
+        if (title && title.includes('🔒 已选中')) {
+          el.removeAttribute('title');
+        }
 
         // 清除所有可能阻止交互的样式
         el.style.removeProperty('pointer-events');
@@ -1265,7 +1272,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // 检查尺寸是否为0（但排除某些正常的0尺寸元素）
+          // 检查尺寸是否为0（��排除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1535,7 +1542,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   className="text-red-600 focus:text-red-600 data-[disabled]:text-red-400"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  删除元���
+                  删除元素
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -1988,7 +1995,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模板生成��
+                模��生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2153,7 +2160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             )}
             {domTree.length > 0 && (
               <p className="text-xs text-green-600 mt-2">
-                已加载 {domTree.length} 个根节点
+                已加载 {domTree.length} 个根节��
               </p>
             )}
           </div>
