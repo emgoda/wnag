@@ -368,7 +368,7 @@ export default function WebEditor() {
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="name">页面名称</Label>
+                        <Label htmlFor="name">页面���称</Label>
                         <Input
                           id="name"
                           value={newPageData.name}
@@ -843,6 +843,140 @@ export default function WebEditor() {
                             </div>
                           </div>
                         </div>
+
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;div&gt;</div>
+                            <div className="text-gray-600 mb-3">容器</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: '容器内容',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: '容器内容',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: '容器内容',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;span&gt;</div>
+                            <div className="text-gray-600 mb-3">行内元素</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'span',
+                                      content: '行内文本',
+                                      attributes: {
+                                        style: 'padding: 4px 8px; background: #f0f0f0; border-radius: 3px;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'span',
+                                      content: '行内文本',
+                                      attributes: {
+                                        style: 'padding: 4px 8px; background: #f0f0f0; border-radius: 3px;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'span',
+                                      content: '行内文本',
+                                      attributes: {
+                                        style: 'padding: 4px 8px; background: #f0f0f0; border-radius: 3px;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -960,7 +1094,7 @@ export default function WebEditor() {
                                       content: '请输入多行文本...',
                                       attributes: {
                                         rows: '4',
-                                        placeholder: '请输入多行文本...',
+                                        placeholder: '请输入多��文本...',
                                         style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
                                       }
                                     }, 'replace');
@@ -1206,7 +1340,7 @@ export default function WebEditor() {
       <Dialog open={showEditPageDialog} onOpenChange={setShowEditPageDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>编辑页面</DialogTitle>
+            <DialogTitle>��辑页面</DialogTitle>
           </DialogHeader>
           {editingPage && (
             <div className="space-y-4">
