@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本地文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本��文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -149,7 +149,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否则构建body树
+        // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -194,7 +194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选中元素变化时更新DOM树
+  // 页面加载时和选中元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -356,7 +356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文��内���，确保获�����到正确的文本
+      // 获取文��内���，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -401,6 +401,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       setLocalTextContent('');
     }
   }, [elementData]);
+
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  useEffect(() => {
+    if (selectedElement && domTree.length > 0) {
+      console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
+      autoExpandToElement(selectedElement);
+    }
+  }, [selectedElement, domTree]);
 
   // 更新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
@@ -638,7 +646,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 处理模板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
-      alert('请先选��一个模板');
+      alert('请先选择一个模板');
       return;
     }
 
@@ -773,7 +781,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
             <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
-          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽快回复。');">
+          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽���回复。');">
             发送留言
           </button>
         </form>
@@ -881,7 +889,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">王女士</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">运营总监</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">运营总���</div>
                 </div>
               </div>
             </div>
@@ -921,7 +929,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleNodeSelect = (element: HTMLElement) => {
     setSelectedNodeElement(element);
 
-    // 清除之前的高亮
+    // 清除之前的��亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
@@ -1127,7 +1135,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入页面或点击"刷新"
+                      请导入��面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1620,7 +1628,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       >
                         <option value="text">默认</option>
                         <option value="numeric">数字</option>
-                        <option value="tel">电���</option>
+                        <option value="tel">电话</option>
                         <option value="email">邮箱</option>
                         <option value="url">网址</option>
                       </select>
@@ -1659,7 +1667,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 space-y-4">
               {/* 选择模板 */}
               <div>
-                <Label className="text-sm font-medium mb-2 block">选择模板</Label>
+                <Label className="text-sm font-medium mb-2 block">选择模���</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="-- 请��择 --" />
@@ -1686,7 +1694,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入框阴影</Label>
+                  <Label className="text-sm text-gray-700">输入框阴���</Label>
                   <Switch
                     checked={templateSettings.inputShadow}
                     onCheckedChange={(checked) =>
