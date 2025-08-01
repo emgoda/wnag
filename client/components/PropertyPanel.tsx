@@ -96,7 +96,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑器中的iframe，尝���多种选择器
+    // 查找编辑器中的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -261,11 +261,26 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
-        console.log(`尝试��取DOM树 (延迟${delay}ms)`);
+        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
         getDOMTreeFromIframe();
       }, delay);
     });
   }, []);
+
+  // 检测是否为预设元素
+  useEffect(() => {
+    if (selectedElement) {
+      // 检查元素是否包含预设相关的内容或类名
+      const elementHTML = selectedElement.outerHTML || '';
+      const isPresetElement = elementHTML.includes('预设') ||
+                              selectedElement.textContent?.includes('预设') ||
+                              selectedElement.querySelector('[style*="预设"]') !== null;
+
+      setShowTemplateGenerator(isPresetElement);
+    } else {
+      setShowTemplateGenerator(false);
+    }
+  }, [selectedElement]);
 
   // 更新元素数据
   useEffect(() => {
@@ -603,7 +618,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预���（前20个字符）
+    // 获取元素的文本内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -938,7 +953,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">字体大小</Label>
+                      <Label className="text-xs">字体���小</Label>
                       <Input
                         value={elementData.styles['font-size'] || ''}
                         onChange={(e) => handleStyleChange('font-size', e.target.value)}
