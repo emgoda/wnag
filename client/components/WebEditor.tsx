@@ -482,7 +482,7 @@ export default function WebEditor() {
                       <div className="grid grid-cols-2 gap-2">
                         <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
                           <div className="font-mono text-blue-600">&lt;h1&gt;</div>
-                          <div className="text-gray-600 mb-2">��题</div>
+                          <div className="text-gray-600 mb-2">标题</div>
                           <div className="flex gap-1">
                             <Button
                               variant="outline"
@@ -534,23 +534,59 @@ export default function WebEditor() {
                             </Button>
                           </div>
                         </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'p',
-                              content: '段落文本'
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 p 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
+                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
                           <div className="font-mono text-blue-600">&lt;p&gt;</div>
-                          <div className="text-gray-600">段落</div>
+                          <div className="text-gray-600 mb-2">段落</div>
+                          <div className="flex gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'p',
+                                    content: '段落文本'
+                                  }, 'insert');
+                                }
+                              }}
+                            >
+                              插入
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'p',
+                                    content: '段落文本'
+                                  }, 'replace');
+                                }
+                              }}
+                            >
+                              替换
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'p',
+                                    content: '段落文本'
+                                  }, 'append');
+                                }
+                              }}
+                            >
+                              追加
+                            </Button>
+                          </div>
                         </div>
                         <div
                           draggable
