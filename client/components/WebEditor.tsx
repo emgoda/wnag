@@ -35,7 +35,7 @@ export default function WebEditor() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>���页</title>
+    <title>首页</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
@@ -396,7 +396,7 @@ export default function WebEditor() {
                             <SelectItem value="landing">落地页</SelectItem>
                             <SelectItem value="about">关于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
-                            <SelectItem value="blog">博客���面</SelectItem>
+                            <SelectItem value="blog">博客�����面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
                           </SelectContent>
                         </Select>
@@ -822,7 +822,7 @@ export default function WebEditor() {
                                   <h3 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 6px;">预设</h3>
                                   <ol style="margin: 0; padding-left: 16px; color: #4b5563; font-size: 14px; line-height: 1.6;">
                                     <li style="margin-bottom: 6px;">选择元素调整器样式</li>
-                                    <li style="margin-bottom: 6px;">从右侧��择标签进行开始</li>
+                                    <li style="margin-bottom: 6px;">从右侧选择标签进行开始</li>
                                     <li style="margin-bottom: 0;">修改文案并印刷</li>
                                   </ol>
                                 </div>
@@ -893,7 +893,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'form',
-                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      content: '<label>输��框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
                                       attributes: {
                                         style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
                                       }
@@ -962,7 +962,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'textarea',
-                                      content: '请输入多行文��...',
+                                      content: '请输入多行文本...',
                                       attributes: {
                                         rows: '4',
                                         placeholder: '请输入多行文本...',
@@ -1176,8 +1176,8 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const cardIconsHTML = `
-                                <div style="max-width: 300px; margin: 20px auto; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
-                                  <h3 style="margin: 0 0 20px 0; text-align: center; font-size: 18px; font-weight: 600; color: #1f2937;">支持的支付方式</h3>
+                                <div style="max-width: 340px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                                  <h3 style="margin: 0 0 16px 0; text-align: center; font-size: 16px; font-weight: 600; color: #1f2937;">支持的支付方式</h3>
 
                                   <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <!-- VISA -->
@@ -1302,7 +1302,7 @@ export default function WebEditor() {
 
         {/* 中间编辑器区域 */}
         <div className="flex-1 flex flex-col">
-          {/* 源码编辑器（可切换显���） */}
+          {/* 源码编辑器（可切换显示） */}
           {showCodeEditor && selectedPage && (
             <div className="h-80 border-b bg-white flex flex-col">
               <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
@@ -1332,7 +1332,7 @@ export default function WebEditor() {
             </div>
           )}
 
-          {/* 页面编辑器 */}
+          {/* 页���编辑器 */}
           <div className="flex-1">
             {selectedPage ? (
               <Editor
