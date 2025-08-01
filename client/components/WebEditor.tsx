@@ -1082,7 +1082,7 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const stripePaymentHTML = `
-                                <div style="max-width: 400px; margin: 0 auto; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid #e5e7eb;">
+                                <div style="max-width: 350px; margin: 0 auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid #e5e7eb;">
                                   <div style="text-align: center; margin-bottom: 24px;">
                                     <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                                       <span style="color: white; font-size: 24px;">💳</span>
