@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处���元素节点 (nodeType === 1)，忽略文�����点(3)、注释节点(8)等
+      // 只处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔���减少编辑��的干扰
+    // 恢复但���长定期检查间隔，减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -447,7 +447,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ����新元素数据
+  // ���新元素数据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -635,7 +635,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本���状态，确保输��响����
+    // 立即更新本地状态，确保输��响����
     setLocalTextContent(value);
 
     // 同时更������elementData状态
@@ -967,7 +967,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高��分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                 选择专业��
@@ -1105,7 +1105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动���目标元素，确保DOM已更新
+      // 延时滚动���目标元素，确��DOM已更新
       setTimeout(() => {
         // 尝试通过元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -1137,7 +1137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         try {
           iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
         } catch (crossOriginError) {
-          console.warn('跨域访问被����，跳过删除操作:', crossOriginError);
+          console.warn('跨域访问被��止，跳过删除操作:', crossOriginError);
           return;
         }
         if (iframeElement && iframeElement.parentNode) {
@@ -2302,7 +2302,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div className="p-4 space-y-4">
               {/* 选择模板 */}
               <div>
-                <Label className="text-sm font-medium mb-2 block">选择模���</Label>
+                <Label className="text-sm font-medium mb-2 block">选择模板</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="-- 请��择 --" />
@@ -2339,7 +2339,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入框跟随主题色</Label>
+                  <Label className="text-sm text-gray-700">输入框跟��主题色</Label>
                   <Switch
                     checked={templateSettings.inputThemeColor}
                     onCheckedChange={(checked) =>
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可���作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
