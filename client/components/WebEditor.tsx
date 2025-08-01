@@ -318,7 +318,7 @@ export default function WebEditor() {
             onClick={handleImportSingleFile}
           >
             <Upload className="w-4 h-4 mr-2" />
-            导入SingleFile
+            导��SingleFile
           </Button>
           <Button onClick={handleSave}>
             <Save className="w-4 h-4 mr-2" />
@@ -403,7 +403,7 @@ export default function WebEditor() {
                       </div>
                       <div className="flex justify-end gap-2">
                         <Button variant="outline" onClick={() => setShowAddPageDialog(false)}>
-                          ��消
+                          取消
                         </Button>
                         <Button onClick={handleAddPage}>
                           创建
@@ -652,7 +652,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮文本'
+                                      content: '按钮��本'
                                     }, 'replace');
                                   }
                                 }}
@@ -892,9 +892,9 @@ export default function WebEditor() {
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold">&lt;form&gt;</div>
-                            <div className="text-gray-600 mb-3">表单</div>
-                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;form&gt;</div>
+                            <div className="text-gray-600 mb-2 text-center">表单</div>
+                            <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
