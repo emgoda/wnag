@@ -749,7 +749,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;div&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">容器</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">���器</div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支���信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
@@ -1302,7 +1302,7 @@ export default function WebEditor() {
 
         {/* 中间编辑器区域 */}
         <div className="flex-1 flex flex-col">
-          {/* 源码编辑器（可切换显示） */}
+          {/* 源码编辑器（可���换显示） */}
           {showCodeEditor && selectedPage && (
             <div className="h-80 border-b bg-white flex flex-col">
               <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
@@ -1379,7 +1379,7 @@ export default function WebEditor() {
                 />
               </div>
               <div>
-                <Label htmlFor="edit-route">页面路��</Label>
+                <Label htmlFor="edit-route">页面路由</Label>
                 <Input
                   id="edit-route"
                   value={editingPage.route}
@@ -1399,7 +1399,7 @@ export default function WebEditor() {
         </DialogContent>
       </Dialog>
 
-      {/* 隐藏的文���输入 */}
+      {/* 隐藏的文件输入 */}
       <input
         type="file"
         ref={fileInputRef}
