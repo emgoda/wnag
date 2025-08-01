@@ -167,7 +167,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       if (onElementSelect) {
         try {
           onElementSelect(target);
-          console.log('✅ 成功调用onElementSelect回调');
+          console.log('✅ ��功调用onElementSelect回调');
         } catch (error) {
           console.error('❌ onElementSelect回调出错:', error);
         }
@@ -282,7 +282,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   return (
     <div className={`flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-white' : 'flex-1'}`}>
-      {/* 编辑��头部 */}
+      {/* 编辑器头部 */}
       <div className="bg-white border-b px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h2 className="font-medium text-gray-900">{pageName}</h2>
@@ -350,10 +350,36 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           >
             {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
           </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              // 测试元素添加功能
+              const iframe = iframeRef.current;
+              const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+              if (doc?.body) {
+                const testH1 = doc.createElement('h1');
+                testH1.textContent = '测试标题';
+                testH1.style.color = 'red';
+                testH1.style.margin = '10px';
+                doc.body.appendChild(testH1);
+
+                const updatedHTML = doc.documentElement.outerHTML;
+                onChange(updatedHTML);
+
+                alert('测试元素已添加！');
+              } else {
+                alert('无法访问页面文档');
+              }
+            }}
+          >
+            测试添加
+          </Button>
         </div>
       </div>
 
-      {/* 页面编辑主体 */}
+      {/* 页面编辑��体 */}
       <div className="flex-1 relative">
         <div
           className={`h-full bg-gray-100 overflow-auto ${previewMode === 'desktop' ? '' : 'flex items-center justify-center'}`}
