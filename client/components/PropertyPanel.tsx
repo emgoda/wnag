@@ -152,7 +152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      // 只���理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -426,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const computedStyles = window.getComputedStyle(selectedElement);
       const styles: { [key: string]: string } = {};
       
-      // 获取常用样式�����性
+      // 获取常用样式�������
       const styleProperties = [
         'color', 'background-color', 'font-size', 'font-weight', 'font-family',
         'text-align', 'padding', 'margin', 'width', 'height', 'border',
@@ -719,7 +719,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
-      // 选择父元���
+      // 选择父元素
       parent.classList.add('element-selected');
 
       // 通知父组件
@@ -1439,8 +1439,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelected = selectedElement === node.element;
     const isHidden = isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
-    const isPreview = previewElement === node.element && selectionMode === 'preview';
-    const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
+
+    // 检查是否是当前选中的节点（基于nodeId）
+    const nodeId = node.element.getAttribute('data-node-id');
+    const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
     // 获取元素的文本内容预览（前20个字符）
@@ -1988,7 +1990,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">���度</Label>
+                      <Label className="text-xs">宽度</Label>
                       <Input
                         value={elementData.styles.width || ''}
                         onChange={(e) => handleStyleChange('width', e.target.value)}
@@ -2403,7 +2405,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                  {selectionMode === 'preview' ? '����️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
                 </p>
               </div>
             )}
