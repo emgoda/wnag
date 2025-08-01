@@ -142,12 +142,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           ));
         }, 50);
 
-        // 如果body为空，继续等待内容加载
+        // 记录body为空的情况，但不无限重试
         if (body.children.length === 0) {
-          console.log('body为空，1秒后重试...');
-          setTimeout(() => {
-            getDOMTreeFromIframe();
-          }, 1000);
+          console.log('body为空，但仍显示DOM树结构');
         }
       } else if (html && html.children.length > 0) {
         // 尝试从html根元素开始构建
@@ -218,7 +215,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM树
+        // 如果iframe已经加载���成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe���完成加载，立即获取DOM树');
           handleLoad();
@@ -263,7 +260,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 更频繁地检查DOM树变化（每500ms检查一次）
+    // 更频繁地检查DOM树变���（每500ms检查一次）
     const interval = setInterval(updateDOMTree, 500);
 
     return () => {
