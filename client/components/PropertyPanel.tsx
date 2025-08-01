@@ -90,7 +90,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    console.log('开始查找iframe...');
+    console.log('开始查���iframe...');
 
     // 列出所有可能的iframe
     const allIframes = document.querySelectorAll('iframe');
@@ -167,7 +167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延迟再次获取DOM树，确保内容已加载
+    // 延���再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -456,7 +456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即更新本地状态，确保输入响应
     setLocalTextContent(value);
 
-    // 同时更���elementData状态
+    // 同时更����elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
     // 如果有选中的元素，尝试更新实际DOM
@@ -636,7 +636,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         templateHTML = '<div>未知模板</div>';
     }
 
-    // 添加到页面
+    // 添��到页面
     addElementToPage({
       tag: 'div',
       content: templateHTML,
@@ -1715,8 +1715,16 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树');
+                    console.log('手动刷新DOM树并强制展开');
                     getDOMTreeFromIframe();
+                    // 延时确保DOM树刷新后，强制展开body节点
+                    setTimeout(() => {
+                      setDomTree(prev => prev.map(node =>
+                        node.tagName === 'body'
+                          ? { ...node, isExpanded: true }
+                          : node
+                      ));
+                    }, 100);
                   }}
                   className="h-6 px-2 text-xs"
                 >
