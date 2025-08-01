@@ -195,7 +195,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     };
   };
 
-  // 获��iframe中的DOM树
+  // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
@@ -452,7 +452,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，确保获������到正确的��本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -673,7 +673,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 向下移动元���
+  // 向下移动元素
   const handleMoveElementDown = () => {
     if (!selectedElement) return;
 
@@ -892,7 +892,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">������箱</label>
-            <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="email" placeholder="请输入������邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
@@ -929,7 +929,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮��支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择基��版
@@ -956,7 +956,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无��存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -987,7 +987,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功���强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }, 200);
     } else {
-      console.log('未在DOM树中找到目标���素');
+      console.log('未在DOM树中找到目标元素');
     }
   };
 
@@ -1138,7 +1138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // ����右键菜单
+  // ��理右键菜单
   const handleContextMenu = (e: React.MouseEvent, node: DOMNode) => {
     e.preventDefault();
     e.stopPropagation();
@@ -1274,7 +1274,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           const classSelector = className.split(' ')[0];
           targetElement = doc.querySelector(`.${classSelector}`);
         } else {
-          // ���为最后手段，使用相同的元素（如果它在iframe中��
+          // ���为最后手段，使用相同的元素（如果它在iframe中）
           if (element.ownerDocument === doc) {
             targetElement = element;
           }
@@ -1384,7 +1384,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
-        // 尝试���iframe中找到对应的元素
+        // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
         // 如果元素有data-node-id，优先用这个查找
@@ -1442,8 +1442,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelected = selectedElement === node.element;
     const isHidden = isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
-    const isPreview = previewElement === node.element && selectionMode === 'preview';
-    const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
+
+    // 检查是否是当前选中的节点（基于nodeId）
+    const nodeId = node.element.getAttribute('data-node-id');
+    const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
     // 获取元素的文本内容预览（前20个字符）
@@ -1887,7 +1889,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字���粗细</Label>
+                      <Label className="text-xs">字体粗细</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
@@ -2305,7 +2307,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('���试信息:');
+                    console.log('调试信息:');
                     console.log('domTree.length:', domTree.length);
                     console.log('domTree:', domTree);
                     const allIframes = document.querySelectorAll('iframe');
@@ -2361,7 +2363,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选中的元素');
+                      console.log('没��选中的元素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
