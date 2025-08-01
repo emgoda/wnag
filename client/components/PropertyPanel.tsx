@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内��已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑��的干扰
+    // 恢复但���长定期检查间隔，减少编辑��的��扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -447,7 +447,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ���新元素数���
+  // ���新元素数据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -560,7 +560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // ��������新DOM中的对应元素
+    // ���������新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，���性:', attribute, '值:', value);
@@ -635,7 +635,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输入响应
+    // 立即更新本地状态，确��输入响应
     setLocalTextContent(value);
 
     // 同时更新elementData状态
@@ -906,7 +906,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          有任何问题����们很乐意为��解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1262,7 +1262,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
 
-    // 如果元素没有nodeId，为其生成��个
+    // 如果元素没有nodeId，��其生成��个
     if (!nodeId) {
       nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       element.setAttribute('data-node-id', nodeId);
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：使用当前document的样式
+      // 备用检查��使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1389,7 +1389,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系����/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可����作元素'
           }${
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示��有元素（包括不可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1639,7 +1639,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  ����HTML
+                  编辑HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -1714,7 +1714,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="直接输入��本..."
+                  placeholder="直接输入文本..."
                   className="mt-1"
                 />
 
@@ -2311,7 +2311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectItem value="hero-section">Hero 区域</SelectItem>
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
-                    <SelectItem value="pricing-table">价格表</SelectItem>
+                    <SelectItem value="pricing-table">价���表</SelectItem>
                     <SelectItem value="testimonial">客户评价</SelectItem>
                   </SelectContent>
                 </Select>
@@ -2423,7 +2423,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  刷��
+                  刷新
                 </Button>
                 <Button
                   variant="ghost"
@@ -2456,7 +2456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到���前选中���元素"
+                  title="跳转到���前选中的元素"
                 >
                   🎯
                 </Button>
