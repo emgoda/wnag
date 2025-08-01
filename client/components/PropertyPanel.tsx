@@ -127,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的���钮等
 
-    // 如果���以上任何一��情况，则不可操作
+    // 如果���以上任何一����情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -199,7 +199,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列���所���可能的iframe
+    // 列���所�����能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正��');
+        alert('HTML编����败���请检查格式是否正��');
       }
     }
   };
@@ -937,7 +937,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600;">推荐</div>
-              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业版</h3>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业��</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">����199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
@@ -1208,7 +1208,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.style.cursor = 'default';
       });
 
-      // 移除所有可能的事件监听器影响
+      // 移除所有可能的事件监���器影响
       const allElements = doc.querySelectorAll('*');
       allElements.forEach(el => {
         el.style.removeProperty('pointer-events');
@@ -1520,37 +1520,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   >
                     强制刷新
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      // 测试删除功能：删除选中元素
-                      if (selectedElement) {
-                        deleteElement(selectedElement);
-                        console.log('测试删除选中���素');
-                      } else {
-                        console.log('没有选中元素');
-                        // 调试信息
-                        console.log('当前selectedElement:', selectedElement);
-                        console.log('当前selectedNodeId:', selectedNodeId);
-                        console.log('onElementUpdate回调存在:', !!onElementUpdate);
-                        console.log('onNodeSelect回调存在:', !!onNodeSelect);
 
-                        // 尝试在iframe中查找有data-node-id的元素
-                        const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-                        if (iframe && iframe.contentDocument) {
-                          const elementsWithNodeId = iframe.contentDocument.querySelectorAll('[data-node-id]');
-                          console.log('iframe中有data-node-id的元素数量:', elementsWithNodeId.length);
-                          if (elementsWithNodeId.length > 0) {
-                            console.log('第一个有nodeId的元素:', elementsWithNodeId[0]);
-                          }
-                        }
-                      }
-                    }}
-                    className="h-6 px-2 text-xs text-red-600"
-                  >
-                    测试删除
-                  </Button>
 
                 </div>
               </div>
@@ -1586,7 +1556,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 {domTree.length > 0 ? (
                   <div>
                     <div className="text-xs text-blue-600 mb-2">
-                      调试：渲染 {domTree.length} 个根节点
+                      调试：渲染 {domTree.length} 个根���点
                     </div>
                     {domTree.map((node, index) => {
                       console.log('渲染节点:', node.tagName, 'children:', node.children.length);
@@ -1649,7 +1619,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  ����HTML
+                  ������HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -2165,7 +2135,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入��阴���</Label>
+                  <Label className="text-sm text-gray-700">输入�������</Label>
                   <Switch
                     checked={templateSettings.inputShadow}
                     onCheckedChange={(checked) =>
@@ -2360,7 +2330,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     }}
                     className="text-xs h-7"
                   >
-                    强制刷新
+                    强制刷���
                   </Button>
                 </div>
               )}
