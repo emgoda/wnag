@@ -277,11 +277,23 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
+      // 获取文本内容，优先使用textContent，如果为空则尝试innerText
+      const textContent = selectedElement.textContent?.trim() ||
+                         selectedElement.innerText?.trim() ||
+                         '';
+
+      console.log('元素文本内容:', {
+        textContent: selectedElement.textContent,
+        innerText: selectedElement.innerText,
+        innerHTML: selectedElement.innerHTML,
+        final: textContent
+      });
+
       setElementData({
         tagName: selectedElement.tagName.toLowerCase(),
         id: selectedElement.id || '',
         className: selectedElement.className || '',
-        textContent: selectedElement.textContent || '',
+        textContent: textContent,
         attributes,
         styles
       });
@@ -359,7 +371,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制���元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -1138,7 +1150,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强制刷新DOM树');
+                      console.log('��制刷新DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
