@@ -152,7 +152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
-    // 立即尝试获取DOM树
+    // 立即尝试���取DOM树
     getDOMTreeFromIframe();
 
     // 延���再次获取DOM树，确保内容已加载
@@ -356,7 +356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 更新元素属性
+  // ��新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
 
@@ -709,7 +709,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          联系我们
+          联系我���
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -784,7 +784,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">�� 所有专业功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
@@ -847,7 +847,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">������生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
@@ -1057,7 +1057,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  ��新
+                  刷新
                 </Button>
               </div>
               {domTree.length === 0 && (
@@ -1259,7 +1259,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">打开方式</Label>
+                    <Label className="text-sm font-medium">打开方��</Label>
                     <Select
                       value={elementData.attributes.target || '_self'}
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
@@ -1560,7 +1560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">���盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">键盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -1703,16 +1703,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树并强制展开');
+                    console.log('手动刷新DOM树并强制展开所有节点');
                     getDOMTreeFromIframe();
-                    // 延时确保DOM树刷新后，强制展开body节点
+                    // 延时确保DOM树刷新后，强制展开所有节点
                     setTimeout(() => {
-                      setDomTree(prev => prev.map(node =>
-                        node.tagName === 'body'
-                          ? { ...node, isExpanded: true }
-                          : node
-                      ));
-                    }, 100);
+                      const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
+                        return nodes.map(node => ({
+                          ...node,
+                          isExpanded: true,
+                          children: expandAllNodes(node.children)
+                        }));
+                      };
+                      setDomTree(prev => expandAllNodes(prev));
+                    }, 200);
                   }}
                   className="h-6 px-2 text-xs"
                 >
