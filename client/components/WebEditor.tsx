@@ -270,7 +270,7 @@ export default function WebEditor() {
       });
 
       if (response.ok) {
-        alert('保���成功��');
+        alert('保���成功���');
       } else {
         throw new Error('保存失败');
       }
@@ -461,7 +461,23 @@ export default function WebEditor() {
               </div>
             </TabsContent>
 
-            <TabsContent value="elements" className="flex-1 px-4 pb-4 overflow-y-auto max-h-[calc(100vh-200px)]">
+            <TabsContent value="elements" className="flex-1 px-4 pb-4 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+              <style>{`
+                .scrollbar-thin::-webkit-scrollbar {
+                  width: 8px;
+                }
+                .scrollbar-thin::-webkit-scrollbar-track {
+                  background: #f1f1f1;
+                  border-radius: 4px;
+                }
+                .scrollbar-thin::-webkit-scrollbar-thumb {
+                  background: #c1c1c1;
+                  border-radius: 4px;
+                }
+                .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+                  background: #a1a1a1;
+                }
+              `}</style>
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-medium">HTML元素库</h3>
@@ -1221,7 +1237,7 @@ export default function WebEditor() {
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信用卡组件</div>
+                          <div className="text-center text-gray-600 text-xs">信用卡组��</div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
@@ -1323,7 +1339,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请选择一个页面进行编��</p>
+                <p className="text-gray-500">请选择一个页面进行编辑</p>
               </div>
             )}
           </div>
