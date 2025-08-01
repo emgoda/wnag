@@ -60,23 +60,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
   const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
-  // 安全访问iframe内容的辅助函数
-  const safeAccessIframe = (callback: (doc: Document) => void) => {
-    try {
-      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-      if (iframe) {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (doc) {
-          callback(doc);
-        } else {
-          console.warn('无法访问iframe文档');
-        }
-      }
-    } catch (error) {
-      console.warn('跨域访问被阻止，跳过iframe操作:', error);
-    }
-  };
-
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<string>('');
@@ -736,7 +719,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const parent = selectedElement.parentElement;
     if (parent && parent !== document.body && parent !== document.documentElement) {
-      // 清除当前选���状态
+      // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
       // 选择父元素
@@ -1432,7 +1415,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </span>
           )}
 
-          {/* �����元素类型信��� */}
+          {/* �����元素类型信息 */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -1667,7 +1650,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-3 m-4">
-              <TabsTrigger value="content">���容</TabsTrigger>
+              <TabsTrigger value="content">内容</TabsTrigger>
               <TabsTrigger value="style">样式</TabsTrigger>
               <TabsTrigger value="attributes">属性</TabsTrigger>
             </TabsList>
@@ -2306,7 +2289,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元��（包括不可操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
                 <p className="text-green-500">
@@ -2376,7 +2359,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🎯 ��择��素
+              🎯 选择��素
             </button>
           </div>
         )}

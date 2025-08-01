@@ -49,7 +49,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   }, [content]);
 
-  // 受控高亮显示：基于selectedNodeId更新iframe中的高���
+  // 受控高亮显示：基于selectedNodeId更新iframe中的高亮
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe || !iframe.contentDocument) return;
@@ -242,23 +242,20 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   // 刷新预览
   const handleRefreshPreview = () => {
     if (iframeRef.current) {
-      // 使用 srcDoc 重新设置内容，避免跨域问题
-      iframeRef.current.srcDoc = content;
+      const iframe = iframeRef.current;
+      const doc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (doc) {
+        doc.open();
+        doc.write(content);
+        doc.close();
+      }
     }
   };
 
   // 添加元素到页面
   const addElementToPage = (elementData: any, action: 'insert' | 'replace' | 'append') => {
     const iframe = iframeRef.current;
-    let doc;
-
-    try {
-      doc = iframe?.contentDocument || iframe?.contentWindow?.document;
-    } catch (error) {
-      console.error('跨域访问错误，无法访问iframe内容:', error);
-      alert('由于安全限制无法编辑内容，请刷新页面后重试');
-      return;
-    }
+    const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
 
     if (!doc || !doc.body) {
       alert('无法访问页面文档，请刷新后重试');
@@ -465,7 +462,6 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
               className="w-full h-full border-none"
               title={`编辑 - ${pageName}`}
               sandbox="allow-scripts allow-same-origin"
-              srcDoc={content}
             />
           </div>
         </div>
