@@ -352,46 +352,28 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更新文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('更新文本内容:', value);
+    console.log('文本输入变化:', value);
 
-    // 立即更新UI状态，确保用户能看到输入的文本
-    setElementData(prev => {
-      if (prev) {
-        return { ...prev, textContent: value };
+    // 立即更新本地状态，确保输入框响应
+    setLocalTextContent(value);
+
+    // 同时更新elementData状态
+    setElementData(prev => prev ? { ...prev, textContent: value } : null);
+
+    // 如果有选中的元素，尝试更新实际DOM
+    if (selectedElement) {
+      try {
+        console.log('更新DOM元素文本:', selectedElement.tagName, value);
+        selectedElement.textContent = value;
+
+        // 通知父组件
+        if (onElementUpdate) {
+          onElementUpdate(selectedElement, 'textContent', value);
+        }
+
+      } catch (error) {
+        console.error('DOM更新失败:', error);
       }
-      return prev;
-    });
-
-    // 触发强制重新渲染
-    setForceUpdate(prev => prev + 1);
-
-    if (!selectedElement) {
-      console.log('没有选中的元素');
-      return;
-    }
-
-    try {
-      // 直接设置textContent，这是最可靠的方法
-      selectedElement.textContent = value;
-
-      console.log('已更新元素文本:', {
-        element: selectedElement,
-        newTextContent: selectedElement.textContent,
-        inputValue: value
-      });
-
-      // 通知父组件内容已更改
-      if (onElementUpdate) {
-        onElementUpdate(selectedElement, 'textContent', value);
-      }
-
-      // 延迟更新页面内容，避免冲突
-      setTimeout(() => {
-        updateParentContent();
-      }, 100);
-
-    } catch (error) {
-      console.error('更新文本内容时出错:', error);
     }
   };
 
@@ -676,7 +658,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览���选择一个元素</p>
+              <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -934,7 +916,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
-                        <SelectItem value="_parent">父窗口</SelectItem>
+                        <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
