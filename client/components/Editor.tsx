@@ -462,6 +462,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
               className="w-full h-full border-none"
               title={`编辑 - ${pageName}`}
               sandbox="allow-scripts allow-same-origin"
+              srcDoc={content}
             />
           </div>
         </div>
