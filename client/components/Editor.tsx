@@ -91,7 +91,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       console.log('已添加选择样式');
     }
 
-    // 获取所有可选择的元素
+    // 获取所有可选择��元素
     const elements = doc.querySelectorAll('*');
     console.log('找到可选择元素数量:', elements.length);
 
@@ -209,6 +209,77 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   };
 
+  // 处理拖拽放置
+  const handleDropOnEditor = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    console.log('🎯 拖拽放置到编辑器！');
+
+    try {
+      const dragDataString = e.dataTransfer.getData('text/plain');
+      console.log('拖拽数据:', dragDataString);
+
+      if (!dragDataString) {
+        alert('拖拽数据为空，请重试');
+        return;
+      }
+
+      const dragData = JSON.parse(dragDataString);
+
+      if (dragData.type === 'element') {
+        // 获取iframe文档
+        const iframe = iframeRef.current;
+        const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+
+        if (!doc || !doc.body) {
+          alert('无法访问页面文档，请刷新后重试');
+          return;
+        }
+
+        // 创建新元素
+        const newElement = doc.createElement(dragData.tag);
+
+        // 设置内容
+        if (dragData.content) {
+          if (dragData.content.includes('<')) {
+            newElement.innerHTML = dragData.content;
+          } else {
+            newElement.textContent = dragData.content;
+          }
+        }
+
+        // 设置属性
+        if (dragData.attributes) {
+          Object.entries(dragData.attributes).forEach(([key, value]) => {
+            newElement.setAttribute(key, value as string);
+          });
+        }
+
+        // 添加基本样式便于查看
+        newElement.style.margin = '10px';
+
+        // 添加到页面
+        doc.body.appendChild(newElement);
+
+        // 通知内容更新
+        const updatedHTML = doc.documentElement.outerHTML;
+        onChange(updatedHTML);
+
+        // 重新设置选择功能
+        setTimeout(() => {
+          setupElementSelection();
+        }, 200);
+
+        console.log('✅ 元素添加成���:', dragData.tag);
+        alert(`${dragData.tag} 元素已添加到页面！`);
+      }
+    } catch (error) {
+      console.error('拖拽处理失败:', error);
+      alert('拖拽处理失败: ' + error.message);
+    }
+  };
+
   return (
     <div className={`flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-white' : 'flex-1'}`}>
       {/* 编辑器头部 */}
@@ -315,7 +386,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           </div>
         </div>
         
-        {/* 元素插入���具 */}
+        {/* 元素插入�����具 */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
