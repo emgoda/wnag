@@ -62,6 +62,11 @@ export default function WebEditor() {
   const [newPageData, setNewPageData] = useState({ name: '', route: '' });
   const [activeTab, setActiveTab] = useState('pages');
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
+
+  // 添加调试日志
+  useEffect(() => {
+    console.log('WebEditor selectedElement 更新:', selectedElement?.tagName || 'null');
+  }, [selectedElement]);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
 
   // 历史记录用于撤销/重做
