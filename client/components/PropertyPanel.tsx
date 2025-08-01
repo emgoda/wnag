@@ -349,6 +349,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       return prev;
     });
 
+    // 触发强制重新渲染
+    setForceUpdate(prev => prev + 1);
+
     if (!selectedElement) {
       console.log('没有选中的元素');
       return;
@@ -494,7 +497,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 更新父组件内容
+  // ��新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -1160,7 +1163,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     });
                   }}
                   className="h-6 px-2 text-xs"
-                  title="查看调���信息"
+                  title="查看调试信息"
                 >
                   🔍
                 </Button>
