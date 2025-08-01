@@ -19,7 +19,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   const [previewMode, setPreviewMode] = useState('iphone-14-pro');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
-  const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启��素选择
+  const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启元素选择
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // 设备尺寸
@@ -211,7 +211,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   };
 
-  // 添加元素到页面
+  // 添加元素���页面
   const addElementToPage = (elementData: any, action: 'insert' | 'replace' | 'append') => {
     const iframe = iframeRef.current;
     const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
