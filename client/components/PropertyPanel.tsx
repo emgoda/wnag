@@ -279,7 +279,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文本内容，优先使用textContent，如果为空则尝试innerText
+      // 获取文本内容，��先使用textContent，如果为空则尝试innerText
       const textContent = selectedElement.textContent?.trim() ||
                          selectedElement.innerText?.trim() ||
                          '';
@@ -497,7 +497,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // ��新父组件内容
+  // 更新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -805,9 +805,16 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               {/* 文本内容 */}
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
+                <div className="text-xs text-gray-500 mb-1">
+                  当前值: "{elementData.textContent}" (长度: {elementData.textContent.length})
+                </div>
                 <Textarea
-                  value={elementData.textContent}
-                  onChange={(e) => handleTextContentChange(e.target.value)}
+                  key={`textarea-${forceUpdate}`}
+                  value={elementData.textContent || ''}
+                  onChange={(e) => {
+                    console.log('Textarea onChange:', e.target.value);
+                    handleTextContentChange(e.target.value);
+                  }}
                   placeholder="输入元素的文本内容..."
                   className="mt-1 min-h-[80px]"
                 />
