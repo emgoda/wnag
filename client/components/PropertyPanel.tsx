@@ -140,7 +140,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 生成或获取元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，直接返回
+    // 如果元素已经有data-node-id，��接返回
     if (element.hasAttribute('data-node-id')) {
       return element.getAttribute('data-node-id')!;
     }
@@ -727,7 +727,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一���特殊的更新来选择父元素
+        // 这里我们通过触发一���特殊的更���来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -898,7 +898,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
             <textarea placeholder="请输入��的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
-          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽���回复。');">
+          <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽����回复。');">
             发送留言
           </button>
         </form>
@@ -1013,7 +1013,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很���时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1082,7 +1082,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动到目标元素，确保DOM已更新
+      // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
         // 尝试通过元素��容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -1191,7 +1191,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.removeAttribute('data-dom-tree-selected');
         el.removeAttribute('data-dom-tree-preview');
 
-        // 恢复原始title
+        // 恢复原��title
         const title = el.getAttribute('title');
         if (title && title.includes('🔒 已选中')) {
           el.removeAttribute('title');
@@ -1236,7 +1236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onNodeSelect(nodeId);
       console.log('✅ DOM树选择元素（预览模式），nodeId:', nodeId);
     } else {
-      console.warn('⚠️ DOM树元素缺��nodeId或缺少回调:', element);
+      console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor组件通过selectedNodeId受控处理
     // 这确保了元素只是被高亮预览，但不会被锁定无法交互
@@ -1652,11 +1652,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
-
-                    // ��即更新elementData
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
-
-                    // 更新DOM元素
+                  }}
+                  onBlur={(e) => {
+                    // 失焦时才更新DOM，避免频繁重建DOM树
+                    const newValue = e.target.value;
+                    console.log('🟢 Input失焦，更新DOM:', newValue);
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
@@ -1673,12 +1675,18 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🟡 Textarea onChange:', newValue);
                     setLocalTextContent(newValue);
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
+                  }}
+                  onBlur={(e) => {
+                    // 失焦时才更新DOM，避免频繁重建DOM树
+                    const newValue = e.target.value;
+                    console.log('🟡 Textarea失焦，更新DOM:', newValue);
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文���输入..."
+                  placeholder="多行文本输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
