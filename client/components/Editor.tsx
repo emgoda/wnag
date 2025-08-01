@@ -226,7 +226,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     if (!iframe) return;
 
     const handleLoad = () => {
-      console.log('iframe加载完成，设置元素选择');
+      console.log('iframe加载完成，设置元素��择');
       setTimeout(() => {
         setupElementSelection();
       }, 200);
@@ -242,13 +242,8 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   // 刷新预览
   const handleRefreshPreview = () => {
     if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      const doc = iframe.contentDocument || iframe.contentWindow?.document;
-      if (doc) {
-        doc.open();
-        doc.write(content);
-        doc.close();
-      }
+      // 使用 srcDoc 更新内容，避免跨域问题
+      iframeRef.current.srcDoc = content;
     }
   };
 
