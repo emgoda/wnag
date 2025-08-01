@@ -83,7 +83,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
-    // 不可操作的系统元素
+    // 不可操作��系统元素
     const nonOperableSystemTags = [
       'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
     ];
@@ -391,7 +391,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是���包含预��相关的内容���类名
+      // 检查元素是否包含预��相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -510,7 +510,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更���DOM中的对应元素
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -588,7 +588,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
-    // 同时更�������elementData状态
+    // 同时更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
     // 如果有选中的元素，尝试更新实际DOM
@@ -765,7 +765,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         templateHTML = generateTestimonial();
         break;
       default:
-        templateHTML = '<div>未���模板</div>';
+        templateHTML = '<div>未知模板</div>';
     }
 
     // 添��到页面
@@ -826,12 +826,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键���署，快速上线，让您的产品迅速到达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�������的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -864,7 +864,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">�����箱</label>
             <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -931,7 +931,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 定制集成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业���
@@ -1088,7 +1088,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删除的是当前选中的元素，清除选中状态
+          // 如果删��的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1527,7 +1527,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       className="scale-75"
                     />
                     <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
-                      {showAllElements ? "全��" : "可操作"}
+                      {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
                   <Button
@@ -1545,8 +1545,25 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  ��在加载DOM结构... 点击"���新"重���
+                  正在加载DOM结构... 点击"刷新"重试
                 </p>
+              )}
+              {domTree.length > 0 && (
+                <div className="text-xs mt-2 space-y-1">
+                  <p className="text-green-600">
+                    已加载 {domTree.length} 个根节点
+                  </p>
+                  {!showAllElements && (
+                    <p className="text-gray-500">
+                      ✅ 已过滤不可操作元素
+                    </p>
+                  )}
+                  {showAllElements && (
+                    <p className="text-yellow-600">
+                      ⚠️ 显示所有元素（包括不可操作的）
+                    </p>
+                  )}
+                </div>
               )}
             </div>
             <ScrollArea className="h-64">
