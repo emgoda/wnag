@@ -81,22 +81,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return false;
   };
 
-  // 安全访问iframe内容的辅助函数
-  const safeAccessIframe = (callback: (doc: Document) => void) => {
-    try {
-      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-      if (iframe) {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (doc) {
-          callback(doc);
-        } else {
-          console.warn('无法访问iframe文档');
-        }
-      }
-    } catch (error) {
-      console.warn('跨域访问被阻止，跳过iframe操作:', error);
-    }
-  };
+
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -212,7 +197,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isExpanded: true // 默认��开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然��查其子元素（只��在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -679,7 +664,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移��或修改ID以避免重复
+      // 如果复��的元素有ID，需要移��或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -1286,7 +1271,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     if (onNodeSelect) {
       onNodeSelect(nodeId);
-      console.log('✅ DOM树选择元素（预览模式）��nodeId:', nodeId);
+      console.log('✅ DOM树选择元素（预览模式�����nodeId:', nodeId);
     } else {
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
@@ -2077,7 +2062,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         />
                         <span className="text-xs">px</span>
                       </div>
-                      <div className="text-center text-xs text-gray-500">外边距</div>
+                      <div className="text-center text-xs text-gray-500">外边���</div>
                       <div className="flex items-center gap-1">
                         <Input
                           type="number"
