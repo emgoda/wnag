@@ -165,7 +165,7 @@ export default function WebEditor() {
   const handleContentChange = useCallback((content: string) => {
     if (!selectedPage) return;
 
-    // 添加���历史记录
+    // 添加到历史记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
       return newHistory.slice(-50); // 限制历史记录数量
@@ -293,7 +293,7 @@ export default function WebEditor() {
             disabled={historyIndex < 0}
           >
             <Undo className="w-4 h-4 mr-2" />
-            撤���
+            撤销
           </Button>
           <Button
             variant="outline"
@@ -605,14 +605,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'div',
                               content: '容器内容',
                               attributes: {
                                 style: 'padding: 20px; border: 1px solid #ddd; min-height: 100px;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 div 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -622,14 +626,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'nav',
                               content: '<ul><li><a href="#">首页</a></li><li><a href="#">关于</a></li><li><a href="#">联系</a></li></ul>',
                               attributes: {
                                 style: 'padding: 10px; background: #f8f9fa;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开��拖拽 nav 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -639,14 +647,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'section',
                               content: '<h2>区域标题</h2><p>区域内容</p>',
                               attributes: {
                                 style: 'padding: 30px; margin: 20px 0;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 section 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -656,14 +668,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'header',
                               content: '<h1>网站标题</h1><p>网站描述</p>',
                               attributes: {
                                 style: 'padding: 40px; text-align: center; background: #f8f9fa;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 header 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -673,14 +689,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'footer',
                               content: '<p>&copy; 2024 版权所有</p>',
                               attributes: {
                                 style: 'padding: 20px; text-align: center; background: #343a40; color: white;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 footer 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -690,14 +710,18 @@ export default function WebEditor() {
                         <div
                           draggable
                           onDragStart={(e) => {
-                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                            const dragData = {
                               type: 'element',
                               tag: 'aside',
                               content: '<h3>侧栏标题</h3><p>侧栏内容</p>',
                               attributes: {
                                 style: 'padding: 20px; background: #f8f9fa; width: 250px;'
                               }
-                            }));
+                            };
+                            const dragDataString = JSON.stringify(dragData);
+                            e.dataTransfer.setData('text/plain', dragDataString);
+                            e.dataTransfer.effectAllowed = 'copy';
+                            console.log('开始拖拽 aside 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -788,7 +812,7 @@ export default function WebEditor() {
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
-                        CTA按���
+                        CTA按钮
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
@@ -870,7 +894,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请选择一个页面进行编辑</p>
+                <p className="text-gray-500">���选择一个页面进行编辑</p>
               </div>
             )}
           </div>
