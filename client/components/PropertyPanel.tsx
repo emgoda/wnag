@@ -134,11 +134,16 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
       if (body) {
-        // 如果body有子元素，构建完整的DOM树
+        // 总是构建DOM树，不管body是否有子元素
         const tree = buildDOMTree(body);
-        console.log('DOM树构建成功，节点数:', tree.children.length);
-        console.log('DOM树结构:', tree);
+        console.log('DOM树构建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+        console.log('DOM树对象:', tree);
+
+        // 强制设置为展开状态
+        tree.isExpanded = true;
+
         setDomTree([tree]);
+        console.log('已设置domTree，当前长度:', 1);
 
         // 强制展开body��点
         setTimeout(() => {
@@ -161,7 +166,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如果body为空，等待内容加载
+        // 如果body为空，等待内容加��
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -409,7 +414,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const lastLabel = allLabels[allLabels.length - 1];
           if (lastLabel) {
             lastLabel.textContent = value || '标题';
-            lastLabel.setAttribute('data-title', value || '标题');
+            lastLabel.setAttribute('data-title', value || '标���');
             console.log('已更新最后一个label为:', value);
           } else {
             console.log('未找到label元素');
@@ -542,7 +547,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n注意：请确保HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n注意：请确��HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -865,7 +870,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
+                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
