@@ -1248,7 +1248,7 @@ export default function WebEditor() {
                                     </div>
                                   </div>
 
-                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(99, 91, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('支付功能演示 - 实际项目中需要集���真��支付网关')"
+                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(99, 91, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('支付功能演示 - 实际项目中需要集�������支付网关')"
                                     立即支付 ¥108.90
                                   </button>
 
@@ -1452,6 +1452,8 @@ export default function WebEditor() {
                 onChange={handleContentChange}
                 pageName={selectedPage.name}
                 onElementSelect={setSelectedElement}
+                selectedNodeId={selectedNodeId}
+                onNodeSelect={setSelectedNodeId}
                 ref={(editorRef: any) => {
                   if (editorRef) {
                     (window as any).addElementToPage = editorRef.addElementToPage;
@@ -1490,7 +1492,7 @@ export default function WebEditor() {
                 />
               </div>
               <div>
-                <Label htmlFor="edit-route">页面路由</Label>
+                <Label htmlFor="edit-route">页��路由</Label>
                 <Input
                   id="edit-route"
                   value={editingPage.route}
