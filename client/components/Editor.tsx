@@ -108,7 +108,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       }
     });
 
-    console.log('已为', addedListeners, '个元素添加��件监听器');
+    console.log('已为', addedListeners, '个元素添加事件监听器');
   };
 
   // 鼠标悬停效果
@@ -272,10 +272,20 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
                 });
 
                 // 如果页面有内容，自动选择第一个可见元素
-                const firstElement = doc.querySelector('h1, h2, h3, p, div, a, button');
+                const firstElement = doc.querySelector('h1, h2, h3, p, div, a, button, li');
                 if (firstElement && firstElement instanceof HTMLElement) {
                   console.log('自动选择第一个元素:', firstElement.tagName);
-                  firstElement.click();
+
+                  // 手动触发点击事件
+                  const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                  });
+                  firstElement.dispatchEvent(clickEvent);
+
+                  // 直接调用选择处理函数
+                  handleElementClick(clickEvent);
                 }
               }
             }}
@@ -283,6 +293,28 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             title="检查页面内容并自动选择元素"
           >
             🎯 自动选择
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              console.log('当前选中状态:', {
+                selectedElement,
+                onElementSelect: !!onElementSelect,
+                iframeDoc: iframeRef.current?.contentDocument
+              });
+
+              // 如果有选中元素，强制触发回调
+              if (selectedElement && onElementSelect) {
+                console.log('强制触发回调');
+                onElementSelect(selectedElement);
+              }
+            }}
+            className="text-xs"
+            title="检查选中状态"
+          >
+            📋 状态
           </Button>
 
           <Button
