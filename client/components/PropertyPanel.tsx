@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次获取DOM树，确保内容��加载
+    // ������再��获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑��的干��
+    // 恢复但���长定期检查间隔，减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
-      // 尝试不同的方式���取文本内容
+      // 尝试不同的方式����取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -560,7 +560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // ���������新DOM中的对应元素
+    // ��������新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，���性:', attribute, '值:', value);
@@ -633,9 +633,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变化:', value);
+    console.log('文本输入变���:', value);
 
-    // 立即更新本地状态，确保��入响应
+    // 立即更新本地状态，确保输入响应
     setLocalTextContent(value);
 
     // 同时更新elementData状态
@@ -906,7 +906,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您��答
+          有任何问题����们很乐意为您���答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1262,7 +1262,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
 
-    // 如果元素没有nodeId，为��生成��个
+    // 如果元素没有nodeId，为其生成��个
     if (!nodeId) {
       nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       element.setAttribute('data-node-id', nodeId);
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：��用当前document的样式
+      // 备用检查：使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1353,7 +1353,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
-    // 临时简化：减少隐藏检测，确保元素可见
+    // 临时简化：减少隐藏检测，确保���素可见
     const isHidden = false; // isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
 
@@ -1389,7 +1389,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操���元素（系����/框架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可����作元素'
           }${
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所��元素（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -2210,7 +2210,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* �����格式 */}
+                  {/* 输入格式 */}
                   <div>
                     <div className="flex items-center gap-1 mb-1">
                       <Label className="text-xs text-gray-600">输入格式</Label>
