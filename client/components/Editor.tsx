@@ -109,9 +109,15 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
           cursor: pointer !important;
         }
         .element-selected {
-          outline: 3px solid #ef4444 !important;
+          outline: 2px dashed #10b981 !important;
           outline-offset: 2px !important;
-          background-color: rgba(239, 68, 68, 0.1) !important;
+          background-color: rgba(16, 185, 129, 0.05) !important;
+          pointer-events: auto !important;
+          cursor: pointer !important;
+          transition: all 0.2s ease !important;
+        }
+        .element-selected:hover {
+          background-color: rgba(16, 185, 129, 0.1) !important;
         }
       `;
       doc.head.appendChild(style);
