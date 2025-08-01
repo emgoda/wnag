@@ -134,7 +134,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('从HTML根元素构建DOM树');
       } else {
         console.log('iframe内容为空，等待加载...');
-        // 如果body为空，等待内容加载
+        // 如���body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -392,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果���制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -810,7 +810,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  当前值: "{elementData.textContent}" (长度: {elementData.textContent.length})
+                  当前值: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <Textarea
                   key={`textarea-${forceUpdate}`}
