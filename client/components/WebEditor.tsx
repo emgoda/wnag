@@ -656,7 +656,11 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮��本'
+                                      content: '按钮文本',
+                                      attributes: {
+                                        'data-element-group': '交互元素',
+                                        'data-element-type': '按钮'
+                                      }
                                     }, 'replace');
                                   }
                                 }}
@@ -1171,7 +1175,7 @@ export default function WebEditor() {
                     </CardContent>
                   </Card>
 
-                  {/* 内置组件 */}
+                  {/* ���置组件 */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm">内置组件</CardTitle>
@@ -1287,7 +1291,7 @@ export default function WebEditor() {
                                       <div style="position: absolute; top: -15px; right: -15px; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 70%); border-radius: 50%; animation: pulse 3s infinite;"></div>
                                       <div style="flex: 1;">
                                         <div style="color: white; font-size: 20px; font-weight: 900; letter-spacing: 3px; font-family: 'Helvetica Neue', Arial, sans-serif; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">VISA</div>
-                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 4px; font-weight: 500;">全球通用</div>
+                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 4px; font-weight: 500;">全���通用</div>
                                       </div>
                                       <div style="color: white; font-size: 20px;">💳</div>
                                     </div>
@@ -1501,7 +1505,7 @@ export default function WebEditor() {
         </DialogContent>
       </Dialog>
 
-      {/* 隐藏的文件输入 */}
+      {/* 隐藏的���件输入 */}
       <input
         type="file"
         ref={fileInputRef}
