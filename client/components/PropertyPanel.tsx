@@ -159,7 +159,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM树
+        // ��果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -291,16 +291,26 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleDuplicateElement = () => {
     if (!selectedElement) return;
 
-    const cloned = selectedElement.cloneNode(true) as HTMLElement;
-    selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
+    try {
+      const cloned = selectedElement.cloneNode(true) as HTMLElement;
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      if (cloned.id) {
+        cloned.id = cloned.id + '_copy';
+      }
+      selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
 
-    // 更新页面内容
-    updateParentContent();
+      // 更新页面内容
+      updateParentContent();
 
-    // 重新获取DOM树
-    setTimeout(() => {
-      getDOMTreeFromIframe();
-    }, 100);
+      // 重新获取DOM树
+      setTimeout(() => {
+        getDOMTreeFromIframe();
+      }, 100);
+
+      console.log('元素复制成功');
+    } catch (error) {
+      console.error('复制元素失败:', error);
+    }
   };
 
   // 向上移动元素
@@ -722,7 +732,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">打开方式</Label>
+                    <Label className="text-sm font-medium">��开方式</Label>
                     <Select
                       value={elementData.attributes.target || '_self'}
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
@@ -979,7 +989,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  console.log('手���刷新DOM树');
+                  console.log('手动刷新DOM树');
                   getDOMTreeFromIframe();
                 }}
                 className="h-6 px-2 text-xs"
