@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script���style标签，但保留其他所有元素
+        // 跳过script���style标���，但保留其他所有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -586,7 +586,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }, 'append');
 
-    alert('模板生成成功！');
+    alert('模��生成成功！');
   };
 
   // 生成Hero区域模板
@@ -635,7 +635,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速触达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，��速上线，让您的产品迅速触达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -887,7 +887,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（��20���字符）
+    // 获取元素的文本内容预览（��20����字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1093,7 +1093,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         )}
       </div>
 
-      {/* 内容区域 */}
+      {/* 内��区域 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
@@ -1376,7 +1376,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">圆��</Label>
+                    <Label className="text-xs">圆���</Label>
                     <Input
                       value={elementData.styles['border-radius'] || ''}
                       onChange={(e) => handleStyleChange('border-radius', e.target.value)}
@@ -1469,7 +1469,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 className="w-full bg-blue-500 hover:bg-blue-600"
                 disabled={!selectedTemplate}
               >
-                开始生成
+                开���生成
               </Button>
 
               {/* 模板��置选项 */}
@@ -1571,7 +1571,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               ) : (
                 <div className="text-center text-gray-500 py-8">
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-xs mb-2">DOM树��空</p>
+                  <p className="text-xs mb-2">DOM树为空</p>
                   <p className="text-xs text-gray-400 mb-3">
                     请确保已导入页面，然后点击"刷新"
                   </p>
