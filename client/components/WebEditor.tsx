@@ -45,7 +45,7 @@ export default function WebEditor() {
 </head>
 <body>
     <div class="container">
-        <h1>欢迎来到我的网站</h1>
+        <h1>欢���来到我的网站</h1>
         <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
@@ -260,7 +260,7 @@ export default function WebEditor() {
     }
   }, [selectedPageId, selectedPage]);
 
-  // 保存到后端
+  // 保存到��端
   const handleSave = async () => {
     try {
       const response = await fetch('/api/pages', {
@@ -847,233 +847,271 @@ export default function WebEditor() {
                     </CardContent>
                   </Card>
 
-                  {/* 布局元素 */}
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm">布局元素</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'div',
-                              content: '容器内容',
-                              attributes: {
-                                style: 'padding: 20px; border: 1px solid #ddd; min-height: 100px;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 div 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;div&gt;</div>
-                          <div className="text-gray-600">容器</div>
-                        </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'nav',
-                              content: '<ul><li><a href="#">首页</a></li><li><a href="#">关于</a></li><li><a href="#">联系</a></li></ul>',
-                              attributes: {
-                                style: 'padding: 10px; background: #f8f9fa;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 nav 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;nav&gt;</div>
-                          <div className="text-gray-600">导航</div>
-                        </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'section',
-                              content: '<h2>区域标题</h2><p>区域内容</p>',
-                              attributes: {
-                                style: 'padding: 30px; margin: 20px 0;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 section 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;section&gt;</div>
-                          <div className="text-gray-600">区域</div>
-                        </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'header',
-                              content: '<h1>网站标题</h1><p>网站描述</p>',
-                              attributes: {
-                                style: 'padding: 40px; text-align: center; background: #f8f9fa;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 header 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;header&gt;</div>
-                          <div className="text-gray-600">页头</div>
-                        </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'footer',
-                              content: '<p>&copy; 2024 版权所有</p>',
-                              attributes: {
-                                style: 'padding: 20px; text-align: center; background: #343a40; color: white;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 footer 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;footer&gt;</div>
-                          <div className="text-gray-600">页脚</div>
-                        </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'aside',
-                              content: '<h3>侧栏标题</h3><p>侧栏内容</p>',
-                              attributes: {
-                                style: 'padding: 20px; background: #f8f9fa; width: 250px;'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 aside 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;aside&gt;</div>
-                          <div className="text-gray-600">侧栏</div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
                   {/* 表单元素 */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm">表单元素</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
-                          <div className="font-mono text-blue-600">&lt;form&gt;</div>
-                          <div className="text-gray-600">表单</div>
+                      <div className="grid grid-cols-1 gap-3">
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;form&gt;</div>
+                            <div className="text-gray-600 mb-3">表单</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'form',
+                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'form',
+                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'form',
+                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      attributes: {
+                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
-                          <div className="font-mono text-blue-600">&lt;label&gt;</div>
-                          <div className="text-gray-600">标签</div>
+
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;textarea&gt;</div>
+                            <div class="text-gray-600 mb-3">文本域</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'textarea',
+                                      content: '请输入多行文本...',
+                                      attributes: {
+                                        rows: '4',
+                                        placeholder: '请输入多行文本...',
+                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'textarea',
+                                      content: '请输入多行文本...',
+                                      attributes: {
+                                        rows: '4',
+                                        placeholder: '请输入多行文本...',
+                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'textarea',
+                                      content: '请输入多行文本...',
+                                      attributes: {
+                                        rows: '4',
+                                        placeholder: '请输入多行文本...',
+                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
-                          <div className="font-mono text-blue-600">&lt;textarea&gt;</div>
-                          <div className="text-gray-600">文本域</div>
-                        </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
-                          <div className="font-mono text-blue-600">&lt;select&gt;</div>
-                          <div className="text-gray-600">下拉框</div>
+
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;select&gt;</div>
+                            <div className="text-gray-600 mb-3">下拉框</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'select',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      attributes: {
+                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'select',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      attributes: {
+                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'select',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      attributes: {
+                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
 
-                  {/* 代码模板 */}
+                  {/* 内置组件 */}
                   <Card>
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm">代码模板</CardTitle>
+                      <CardTitle className="text-sm">内置组件</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        响应式网格布局
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        导航栏模板
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        卡片组件
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        联系表单
-                      </Button>
-                    </CardContent>
-                  </Card>
-
-                  {/* 自定义组件 */}
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm">自定义组件</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        Hero区域
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        特色卡片
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        价格表
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        团队介绍
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        推荐语
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        CTA按钮
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        图片轮播
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start text-xs h-8">
-                        <Copy className="w-3 h-3 mr-2" />
-                        FAQ区域
-                      </Button>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">信用卡支付</div>
+                        </div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="w-8 h-6 bg-yellow-400 rounded flex items-center justify-center text-white text-xs">📄</div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">卡图标</div>
+                        </div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">信用卡组件</div>
+                        </div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="w-8 h-6 bg-red-400 rounded-full flex items-center justify-center text-white text-xs">🕐</div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">倒计时</div>
+                        </div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="flex gap-1">
+                              <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                              <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                              <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                            </div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">加载提示</div>
+                        </div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                          <div className="flex items-center justify-center h-12 mb-2">
+                            <div className="w-6 h-6 bg-green-400 rounded flex items-center justify-center text-white text-xs">✓</div>
+                          </div>
+                          <div className="text-center text-gray-600 text-xs">完成提示</div>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
