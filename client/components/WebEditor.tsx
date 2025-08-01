@@ -368,7 +368,7 @@ export default function WebEditor() {
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="name">页面���称</Label>
+                        <Label htmlFor="name">页面名称</Label>
                         <Input
                           id="name"
                           value={newPageData.name}
@@ -1059,7 +1059,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;textarea&gt;</div>
-                            <div class="text-gray-600 mb-3">文本域</div>
+                            <div className="text-gray-600 mb-3">文本域</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -1094,7 +1094,7 @@ export default function WebEditor() {
                                       content: '请输入多行文本...',
                                       attributes: {
                                         rows: '4',
-                                        placeholder: '请输入多��文本...',
+                                        placeholder: '请输入多行文本...',
                                         style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
                                       }
                                     }, 'replace');
@@ -1340,7 +1340,7 @@ export default function WebEditor() {
       <Dialog open={showEditPageDialog} onOpenChange={setShowEditPageDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>��辑页面</DialogTitle>
+            <DialogTitle>编辑页面</DialogTitle>
           </DialogHeader>
           {editingPage && (
             <div className="space-y-4">
