@@ -95,7 +95,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.hasAttribute('data-loc') || // React/框架调试属性
       element.hasAttribute('aria-hidden') || // ARIA隐藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
-      element.hasAttribute('data-state') || // 框架状态���素
+      element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
@@ -268,7 +268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }, 1000);
       }
     } catch (error) {
-      console.error('读取iframe内容���出错:', error);
+      console.error('读取iframe内容时出错:', error);
     }
   };
 
@@ -314,7 +314,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         iframe.addEventListener('load', handleLoad);
 
-        // 监���iframe内���文档的变化
+        // 监听iframe内���文档的变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -550,7 +550,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
       } catch (error) {
-        console.error('更新DOM���错:', error);
+        console.error('更新DOM出错:', error);
       }
     };
 
@@ -590,7 +590,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
-    // 同时更������elementData状态
+    // 同时更������elementData��态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
     // 如果有选中的元素，尝试更新实际DOM
@@ -723,7 +723,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     setTimeout(() => getDOMTreeFromIframe(), 100);
   };
 
-  // ��新父组件内容
+  // ��新父组件��容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -822,13 +822,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专���的服务，卓越��������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让���的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -975,7 +975,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "����队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
+                "��队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 临时添加一个明显的视觉提示
         const originalTitle = targetElement.title;
-        targetElement.title = '🔒 已选中 - 双击DOM树节点或点击🔓按钮解锁';
+        targetElement.title = '🔒 已选中 - 双击DOM树节点或点���🔓按钮解锁';
         setTimeout(() => {
           if (targetElement.getAttribute('data-dom-tree-selected')) {
             targetElement.title = originalTitle;
@@ -1341,7 +1341,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // ���查尺寸是否为0（��排除某些正常的0尺寸��素）
+          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1391,12 +1391,16 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
-          onClick={() => handleNodeSelect(node.element)}
+          onClick={() => {
+            // 单击：预览模式（轻量高亮，不锁定）
+            handleNodeSelect(node.element, 'preview');
+          }}
           onDoubleClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('双击清除选中状态');
-            clearSelection();
+            // 双击：锁定模式（完全选中，锁定交互）
+            console.log('双击锁定选择');
+            handleNodeSelect(node.element, 'locked');
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
@@ -1508,7 +1512,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览中选择一个���素</p>
+              <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -1568,7 +1572,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示所有元素（包���不可操作的）
+                      ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
                 </div>
