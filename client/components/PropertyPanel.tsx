@@ -81,22 +81,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return false;
   };
 
-  // 安全访问iframe内容的辅助函数
-  const safeAccessIframe = (callback: (doc: Document) => void) => {
-    try {
-      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-      if (iframe) {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (doc) {
-          callback(doc);
-        } else {
-          console.warn('无法访问iframe文档');
-        }
-      }
-    } catch (error) {
-      console.warn('跨域访问被阻止，跳过iframe操作:', error);
-    }
-  };
+
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -447,7 +432,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     });
   }, []);
 
-  // 检��是否为预设元素
+  // 检��是否为预设���素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
@@ -1144,7 +1129,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 删除DOM元素
   const deleteElement = (elementToDelete: HTMLElement) => {
     try {
-      // 从iframe中删除元素
+      // ���iframe中删除元素
       const iframe = document.querySelector('iframe') as HTMLIFrameElement;
       if (iframe && iframe.contentDocument) {
         // 找到iframe中对应的元素并删除
@@ -1178,7 +1163,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       }
     } catch (error) {
       console.error('删除元素失败:', error);
-      alert('删��元素失败，请重试');
+      alert('删����元素失败，请重试');
     }
   };
 
@@ -1717,7 +1702,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地状���，不立即更新DOM
+                    // 只更新本地状���，��立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -1744,7 +1729,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // ���焦时才更新DOM，避免频繁重建DOM树
+                    // ���焦时才更新DOM，避���频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟡 Textarea失焦，更新DOM:', newValue);
                     if (selectedElement) {
