@@ -259,7 +259,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body��点
+        // 强制展开body����点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -387,7 +387,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但延长定期检查间隔，减少编辑时的干扰
+    // 恢复但���长定期检查间隔，减少编辑时的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -537,7 +537,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元素
+    // ������更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -612,7 +612,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输��响应
+    // 立即更新本地状态，确保输��响���
     setLocalTextContent(value);
 
     // 同时更������elementData状态
@@ -657,7 +657,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       console.log('元素复制���功');
     } catch (error) {
-      console.error('复制元素失败:', error);
+      console.error('复制元素失���:', error);
     }
   };
 
@@ -1115,7 +1115,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的是当前选中的元素���清除选��状态
+          // 如果删����的是当前选中的元�����清除选��状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1527,13 +1527,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       // 测试删除功能：删除选中元素
                       if (selectedElement) {
                         deleteElement(selectedElement);
-                        console.log('测试删除选中元素');
+                        console.log('测试删除选中���素');
                       } else {
                         console.log('没有选中元素');
                         // 调试信息
                         console.log('当前selectedElement:', selectedElement);
                         console.log('当前selectedNodeId:', selectedNodeId);
-                        console.log('onElementSelect回调存在:', !!onElementSelect);
+                        console.log('onElementUpdate回调存在:', !!onElementUpdate);
                         console.log('onNodeSelect回调存在:', !!onNodeSelect);
 
                         // 尝试在iframe中查找有data-node-id的元素
