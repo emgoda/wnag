@@ -90,7 +90,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
     ];
 
-    // 不可操作的UI框架元素（通过特定属性识���）
+    // 不可操作的UI框架元素（通过特定属性识别）
     const hasFrameworkAttributes =
       element.hasAttribute('data-loc') || // React/框架调试属性
       element.hasAttribute('aria-hidden') || // ARIA隐藏元素
@@ -227,9 +227,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否��构���body树
+        // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
-          console.log('找到canvas-root容器，构建子树');
+          console.log('找到canvas-root容��，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
@@ -301,7 +301,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成�������触���');
+          console.log('iframe加载完成�������触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -390,7 +390,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     });
   }, []);
 
-  // 检��是���为预设元素
+  // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
@@ -590,7 +590,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
-    // 同时更������elementData状态
+    // 同���更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
     // 如果有选中的元素，尝试更新实际DOM
@@ -822,13 +822,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业的服务，卓����������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��������部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">���键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -858,7 +858,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           联系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有��何问题����们很乐意为您解答
+          有任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1096,7 +1096,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             setElementData(null);
           }
 
-          // 刷新DOM���
+          // 刷新DOM树
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 100);
@@ -1179,10 +1179,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中状��');
+      console.log('已清除', highlighted.length, '个元素的选中状态');
     }
 
-    // 通过onElementUpdate通知父组件清除选中
+    // 通过onElementUpdate通知父��件清除选中
     if (onElementUpdate) {
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
@@ -2229,19 +2229,26 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 DOM 树
               </h4>
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1">
-                  <Switch
-                    checked={showAllElements}
-                    onCheckedChange={(checked) => {
-                      setShowAllElements(checked);
-                      // 切换显示模式后重新构建DOM树
-                      setTimeout(() => getDOMTreeFromIframe(), 100);
-                    }}
-                    className="scale-75"
-                  />
-                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
-                    {showAllElements ? "全部" : "可操作"}
-                  </span>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    <Switch
+                      checked={showAllElements}
+                      onCheckedChange={(checked) => {
+                        setShowAllElements(checked);
+                        // 切换显示模式后重新构建DOM树
+                        setTimeout(() => getDOMTreeFromIframe(), 100);
+                      }}
+                      className="scale-75"
+                    />
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                      {showAllElements ? "全部" : "可操作"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-xs">
+                    <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
+                    <span className="text-gray-400">|</span>
+                    <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
+                  </div>
                 </div>
                 <div className="flex gap-1">
                 <Button
@@ -2360,7 +2367,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"刷新"
+                    ���确保已导入页面，���后点��"刷新"
                   </p>
                   <Button
                     variant="outline"
