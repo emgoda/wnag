@@ -93,7 +93,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element,
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
-      className: element.className || undefined,
+      className: (element.className && typeof element.className === 'string') ? element.className : undefined,
       children: buildTree(element),
       isExpanded: true
     };
@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM��
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe���完成加载，立即获取DOM树');
           handleLoad();
@@ -412,7 +412,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立即更新DOM中的对应元素
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -732,7 +732,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可���</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -822,7 +822,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                选择专业版
+                选择专业��
               </button>
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -1114,7 +1114,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加载DOM结构... 点击"������"重���
+                  ��在加载DOM结构... 点击"���新"重���
                 </p>
               )}
             </div>
@@ -1178,7 +1178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  编辑HTML
+                  ��辑HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -1267,7 +1267,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文��输入..."
+                  placeholder="多行文���输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
@@ -1800,7 +1800,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               ) : (
                 <div className="text-center text-gray-500 py-8">
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-xs mb-2">DOM树为空</p>
+                  <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
                     请确保已导入页面，然后点击"刷新"
                   </p>
