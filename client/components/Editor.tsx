@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
   Monitor, Smartphone, RefreshCw,
-  Maximize, Minimize
+  Maximize, Minimize, MousePointer
 } from 'lucide-react';
 import ElementInserter from './ElementInserter';
 
@@ -90,7 +90,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     });
   };
 
-  // ��标悬停效果
+  // 鼠标悬停效果
   const handleMouseOver = (e: Event) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
