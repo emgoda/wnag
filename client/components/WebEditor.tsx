@@ -389,7 +389,7 @@ export default function WebEditor() {
                         <Label htmlFor="template">页面模板</Label>
                         <Select>
                           <SelectTrigger>
-                            <SelectValue placeholder="选择页面���板" />
+                            <SelectValue placeholder="选择页面模板" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
@@ -485,7 +485,7 @@ export default function WebEditor() {
                 </div>
 
                 <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
-                  💡 点击元素下方的按钮来插入、替���或���加元素
+                  💡 点击元素下方的按钮来插入、替换或追加元素
                 </div>
 
                 <div className="space-y-3">
@@ -641,7 +641,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 插入
+                                📝 插��
                               </Button>
                               <Button
                                 variant="outline"
@@ -1014,7 +1014,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选��2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选���3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1325,7 +1325,7 @@ export default function WebEditor() {
                   value={selectedPage.content}
                   onChange={(e) => handleContentChange(e.target.value)}
                   className="absolute inset-0 resize-none border-none rounded-none font-mono text-sm leading-relaxed"
-                  placeholder="在此编��HTML源码..."
+                  placeholder="在此编辑HTML源码..."
                   style={{ minHeight: '100%' }}
                 />
               </div>
