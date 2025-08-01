@@ -62,13 +62,11 @@ export default function WebEditor() {
   const [newPageData, setNewPageData] = useState({ name: '', route: '' });
   const [activeTab, setActiveTab] = useState('pages');
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
   // 添加调试日志
   useEffect(() => {
     console.log('WebEditor selectedElement 更新:', selectedElement?.tagName || 'null');
-    console.log('WebEditor selectedNodeId 更新:', selectedNodeId);
-  }, [selectedElement, selectedNodeId]);
+  }, [selectedElement]);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
 
   // 历史记录用于撤销/重做
@@ -877,7 +875,7 @@ export default function WebEditor() {
                                       <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
                                         <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
                                         <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
-                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整��样式</li>
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
                                           <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
                                           <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
                                         </ol>
@@ -1358,7 +1356,7 @@ export default function WebEditor() {
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信��卡组件</div>
+                          <div className="text-center text-gray-600 text-xs">信用卡组件</div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
@@ -1452,8 +1450,6 @@ export default function WebEditor() {
                 onChange={handleContentChange}
                 pageName={selectedPage.name}
                 onElementSelect={setSelectedElement}
-                selectedNodeId={selectedNodeId}
-                onNodeSelect={setSelectedNodeId}
                 ref={(editorRef: any) => {
                   if (editorRef) {
                     (window as any).addElementToPage = editorRef.addElementToPage;
@@ -1472,8 +1468,6 @@ export default function WebEditor() {
         <PropertyPanel
           selectedElement={selectedElement}
           onElementUpdate={handleElementUpdate}
-          selectedNodeId={selectedNodeId}
-          onNodeSelect={setSelectedNodeId}
         />
       </div>
 

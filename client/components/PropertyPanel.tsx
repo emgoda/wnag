@@ -22,8 +22,6 @@ import {
 interface PropertyPanelProps {
   selectedElement?: HTMLElement | null;
   onElementUpdate?: (element: HTMLElement, property: string, value: string) => void;
-  selectedNodeId?: string | null;
-  onNodeSelect?: (nodeId: string | null) => void;
 }
 
 interface TemplateSettings {
@@ -41,7 +39,7 @@ interface DOMNode {
   isExpanded: boolean;
 }
 
-export default function PropertyPanel({ selectedElement, onElementUpdate, selectedNodeId, onNodeSelect }: PropertyPanelProps) {
+export default function PropertyPanel({ selectedElement, onElementUpdate }: PropertyPanelProps) {
   const [elementData, setElementData] = useState<{
     tagName: string;
     id: string;
@@ -55,7 +53,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
-  const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括����可操作的）
+  const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
+  const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
+  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择模式：预览或锁定
+  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -95,7 +96,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
-      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
+      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
@@ -108,7 +109,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       /portal/, // 传送门组件
       /popover/, // 弹出层
       /tooltip/, // 工具提示
-      /dropdown/, // ���拉菜单内部
+      /dropdown/, // 下拉菜单内部
       /radix-/, // Radix UI组件
       /^sr-only$/, // 屏幕阅读器专用
     ];
@@ -135,20 +136,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return true;
   };
 
-  // 生成或获取元素的唯一ID
-  const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，直接返回
-    if (element.hasAttribute('data-node-id')) {
-      return element.getAttribute('data-node-id')!;
-    }
-
-    // 生成新的唯一ID
-    const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    element.setAttribute('data-node-id', nodeId);
-    return nodeId;
-  };
-
-  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -156,9 +144,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
-
-        // 为元素生成唯一ID
-        getElementNodeId(element);
 
         // 根据showAllElements设置决定是否显示
         if (showAllElements || operable) {
@@ -283,11 +268,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }, 1000);
       }
     } catch (error) {
-      console.error('读取iframe内���时出错:', error);
+      console.error('读取iframe内容时出错:', error);
     }
   };
 
-  // 页面加载时和选��元素变化时更��DOM树
+  // 页面加载时和选��元素变化时更����DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -329,7 +314,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         iframe.addEventListener('load', handleLoad);
 
-        // ���听iframe内���文档��变化
+        // 监听iframe内���文档的变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -452,7 +437,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内����
+      // 尝试不同的方式获取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -495,20 +480,20 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当选中元���变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
       autoExpandToElement(selectedElement);
 
-      // 当画布选择元素时，自动更新selectedNodeId
-      const nodeId = selectedElement.getAttribute('data-node-id');
-      if (nodeId && nodeId !== selectedNodeId && onNodeSelect) {
-        console.log('画布选择了新元素，同步到selectedNodeId:', nodeId);
-        onNodeSelect(nodeId);
+      // 如果是从画布选择的新元素，且当前是预览模式，则清除DOM树的预览状态
+      if (selectionMode === 'preview' && selectedElement !== previewElement) {
+        console.log('画布选择了新元素，清除DOM树预览状态');
+        setPreviewElement(null);
+        clearIframePreviewStyles();
       }
     }
-  }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
+  }, [selectedElement, domTree, selectionMode, previewElement]);
 
   // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
@@ -607,7 +592,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本���入变化:', value);
+    console.log('文本输入变化:', value);
 
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
@@ -652,7 +637,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元素复制�����功');
+      console.log('元素复制���功');
     } catch (error) {
       console.error('复制元素失败:', error);
     }
@@ -880,7 +865,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          ���任何问题����们很乐意为您解答
+          有任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -938,7 +923,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">����199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础���能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
@@ -984,7 +969,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1118,7 +1103,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             setElementData(null);
           }
 
-          // 刷新DOM树
+          // ���新DOM树
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 100);
@@ -1148,19 +1133,32 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     });
   };
 
-  // 关闭右键��单
+  // 关闭右键菜单
   const closeContextMenu = () => {
     setContextMenu(prev => ({ ...prev, show: false }));
+  };
+
+  // 清除iframe中的预览样式
+  const clearIframePreviewStyles = () => {
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (iframe && iframe.contentDocument) {
+      const doc = iframe.contentDocument;
+      const previewElements = doc.querySelectorAll('.dom-tree-preview, [data-dom-tree-preview]');
+      previewElements.forEach(el => {
+        el.classList.remove('dom-tree-preview');
+        el.removeAttribute('data-dom-tree-preview');
+      });
+    }
   };
 
   // 清除所有选中状态
   const clearSelection = () => {
     console.log('开始清除选中状态...');
 
-    // 清除选择状态
-    if (onNodeSelect) {
-      onNodeSelect(null);
-    }
+    // 清除组件内部状态
+    setSelectedNodeElement(null);
+    setPreviewElement(null);
+    setSelectionMode('preview');
     setElementData(null);
 
     // 清除iframe��的所有高亮和限制
@@ -1168,7 +1166,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
 
-      // ���除所有可���的选中样式
+      // 移除所有可能的选中样式
       const highlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview, .element-selected, .selected, [data-dom-tree-selected], [data-dom-tree-preview]');
       highlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview', 'element-selected', 'selected');
@@ -1201,7 +1199,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清���', highlighted.length, '个元素的选中状态');
+      console.log('已清除', highlighted.length, '个元素的选中状态');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1212,22 +1210,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点
-  const handleNodeSelect = (element: HTMLElement) => {
-    // 获取元素的nodeId
-    const nodeId = element.getAttribute('data-node-id');
-    if (nodeId && onNodeSelect) {
-      onNodeSelect(nodeId);
-      console.log('✅ DOM树选择元素，nodeId:', nodeId);
+  // 选择DOM节点（支持预览和锁定模式）
+  const handleNodeSelect = (element: HTMLElement, mode: 'preview' | 'locked' = 'preview') => {
+    if (mode === 'preview') {
+      setPreviewElement(element);
+      setSelectionMode('preview');
     } else {
-      console.warn('⚠️ DOM树元素缺少nodeId或缺少回调:', element);
+      setSelectedNodeElement(element);
+      setSelectionMode('locked');
     }
 
     // 清除之前的高亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // 移除之前的高亮样式
+      // ���除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview');
@@ -1426,10 +1423,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelected = selectedElement === node.element;
     const isHidden = isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
-
-    // 检查是否是当前选中的节点（基于nodeId）
-    const nodeId = node.element.getAttribute('data-node-id');
-    const isSelectedByNodeId = nodeId === selectedNodeId;
+    const isPreview = previewElement === node.element && selectionMode === 'preview';
+    const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
     const paddingLeft = depth * 16;
 
     // 获取元素的文本内容预览（前20个字符）
@@ -1440,33 +1435,42 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${(node.className && typeof node.className === 'string') ? node.className.replace(/\s+/g, '-') : 'no-class'}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer rounded transition-all duration-200 ${
-            isSelectedByNodeId
+            isLocked
               ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
-              : isSelected
-                ? 'bg-blue-50 border-l-2 border-blue-300'
-                : isHidden
-                  ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
-                  : isNonOperable
-                    ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
-                    : 'hover:bg-gray-100'
+              : isPreview
+                ? 'bg-green-50 border-l-3 border-green-400 shadow-sm'
+                : isSelected
+                  ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
+                  : isHidden
+                    ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
+                    : isNonOperable
+                      ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
+                      : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
-            // 点击：选择元素
-            handleNodeSelect(node.element);
+            // 单击：预览模式（轻量高亮，不锁定）
+            handleNodeSelect(node.element, 'preview');
+          }}
+          onDoubleClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // 双击：锁定模式（完全选中，锁定交互）
+            console.log('双击锁定选择');
+            handleNodeSelect(node.element, 'locked');
           }}
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
             isNonOperable ? '\n🔒 不可操作元素（系统/框架元素）' :
-            isHidden ? '\n👁️‍🗨️ 隐藏���素' :
-            '\n可操作���素'
+            isHidden ? '\n👁️‍🗨️ 隐藏元素' :
+            '\n可操作元素'
           }${
-            false ? '\n🔒 已锁定选择' :
-            false ? '\n👁️ 预览模式' :
+            isLocked ? '\n🔒 已锁定选择' :
+            isPreview ? '\n👁️ 预览模式' :
             ''
-          }\n点击：选择元素\n右键：删��元素`}
+          }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
         >
           {hasChildren && (
             <button
@@ -1569,7 +1573,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览���选择一个元素</p>
+              <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -1596,7 +1600,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       className="scale-75"
                     />
                     <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
-                      {showAllElements ? "全部" : "��操作"}
+                      {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
                   <Button
@@ -1629,7 +1633,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示���有元素（包括不可操作的）
+                      ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
                   <p className="text-blue-500">
@@ -2054,7 +2058,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div>
                 <Label className="text-sm font-medium">自定义属性</Label>
                 <div className="mt-2 space-y-4">
-                  {/* ��题���数据ID */}
+                  {/* 标题���数据ID */}
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <Label className="text-xs text-gray-600 mb-1 block">标题</Label>
@@ -2173,7 +2177,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生�����
+                模��生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2189,7 +2193,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
-                    <SelectItem value="testimonial">客户评��</SelectItem>
+                    <SelectItem value="testimonial">客户评价</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -2265,7 +2269,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </span>
                     </div>
                 </div>
-
+                  <button
+                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs transition-colors"
+                    onClick={() => {
+                      const newMode = selectionMode === 'preview' ? 'locked' : 'preview';
+                      setSelectionMode(newMode);
+                      if (newMode === 'preview') {
+                        // 切换到预览模式时清除锁定状态
+                        setSelectedNodeElement(null);
+                        clearIframePreviewStyles();
+                      }
+                      console.log(`切换到${newMode === 'preview' ? '预览' : '锁定'}模式`);
+                    }}
+                    title={`当前：${selectionMode === 'preview' ? '预览模式' : '锁定模式'}，点击切换`}
+                  >
+                    <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
+                    <span className="text-gray-400">|</span>
+                    <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
+                  </button>
                 </div>
                 <div className="flex gap-1">
                 <Button
@@ -2328,12 +2349,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选��的元素');
+                      console.log('没有选中的元素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的����"
+                  title="跳转到当前选中的元��"
                 >
                   🎯
                 </Button>
@@ -2372,7 +2393,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
-
+                <p className="text-blue-500">
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                </p>
               </div>
             )}
           </div>
@@ -2385,7 +2408,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"��新"
+                    请确保已导入页面，���后点��"刷新"
                   </p>
                   <Button
                     variant="outline"

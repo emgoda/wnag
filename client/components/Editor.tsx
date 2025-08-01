@@ -13,11 +13,9 @@ interface EditorProps {
   onChange: (content: string) => void;
   pageName: string;
   onElementSelect?: (element: HTMLElement | null) => void;
-  selectedNodeId?: string | null;
-  onNodeSelect?: (nodeId: string | null) => void;
 }
 
-const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect, selectedNodeId, onNodeSelect }, ref) => {
+const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
   const [previewMode, setPreviewMode] = useState('iphone-14-pro');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
@@ -48,29 +46,6 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
       }
     }
   }, [content]);
-
-  // 受控高亮显示：基于selectedNodeId更新iframe中的高亮
-  useEffect(() => {
-    const iframe = iframeRef.current;
-    if (!iframe || !iframe.contentDocument) return;
-
-    const doc = iframe.contentDocument;
-
-    // 清除所有之前的选中状态
-    const prevSelected = doc.querySelectorAll('.element-selected');
-    prevSelected.forEach(el => el.classList.remove('element-selected'));
-
-    // 如果有选中的nodeId，高亮对应元素
-    if (selectedNodeId) {
-      const targetElement = doc.querySelector(`[data-node-id="${selectedNodeId}"]`);
-      if (targetElement) {
-        targetElement.classList.add('element-selected');
-        console.log('✅ Canvas高亮元素:', selectedNodeId, targetElement.tagName);
-      } else {
-        console.warn('⚠️ Canvas未找到对应元素:', selectedNodeId);
-      }
-    }
-  }, [selectedNodeId]);
 
   // 在组件挂载时确保默认为手机模式
   useEffect(() => {
@@ -140,10 +115,10 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
       }
     });
 
-    console.log('已为', addedListeners, '个元��添加事件监听器');
+    console.log('已为', addedListeners, '个元素添加事件监听器');
   };
 
-  // 鼠标悬停效���
+  // 鼠标悬停效果
   const handleMouseOver = (e: Event) => {
     if (!elementSelectMode) return;
     e.stopPropagation();
@@ -162,19 +137,6 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   };
 
-  // 生成或获取元素的唯一ID
-  const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，直接返回
-    if (element.hasAttribute('data-node-id')) {
-      return element.getAttribute('data-node-id')!;
-    }
-
-    // 生成新的唯一ID
-    const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    element.setAttribute('data-node-id', nodeId);
-    return nodeId;
-  };
-
   // 元素点击选择
   const handleElementClick = (e: Event) => {
     if (!elementSelectMode) return;
@@ -185,9 +147,6 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     const target = e.target as HTMLElement;
     if (target && target !== document.documentElement && target !== document.body) {
       console.log('选中元素:', target.tagName, target.className, target.id);
-
-      // 生成或获取元素ID
-      const nodeId = getElementNodeId(target);
 
       // 清除之前的选中状态
       const iframe = iframeRef.current;
@@ -200,31 +159,22 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
       target.classList.add('element-selected');
       setSelectedElement(target);
 
-      // 通知父组件新的选择逻辑
+      // 通知父组件 - 立即调用
       console.log('通知父组件元素选择:', {
         tagName: target.tagName,
-        nodeId: nodeId,
+        hasCallback: !!onElementSelect,
         element: target
       });
 
-      // 使用新的nodeId回调
-      if (onNodeSelect) {
-        try {
-          onNodeSelect(nodeId);
-          console.log('✅ 成功调用onNodeSelect回调，nodeId:', nodeId);
-        } catch (error) {
-          console.error('❌ onNodeSelect回调出错:', error);
-        }
-      }
-
-      // 保持对旧回调的兼容
       if (onElementSelect) {
         try {
           onElementSelect(target);
-          console.log('✅ 成功调用onElementSelect回调（兼容）');
+          console.log('✅ 成功调用onElementSelect回调');
         } catch (error) {
           console.error('❌ onElementSelect回调出错:', error);
         }
+      } else {
+        console.warn('❌ onElementSelect回调不存在');
       }
     }
   };
@@ -355,7 +305,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
         <div className="flex items-center gap-2">
           {/* 设备切换 */}
           <div className="flex items-center gap-1 border rounded-lg p-1">
-            {/* 桌面按��� */}
+            {/* 桌面按钮 */}
             <Button
               variant={previewMode === 'desktop' ? 'default' : 'ghost'}
               size="sm"
