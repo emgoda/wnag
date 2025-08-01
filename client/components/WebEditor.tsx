@@ -373,7 +373,7 @@ export default function WebEditor() {
                           id="name"
                           value={newPageData.name}
                           onChange={(e) => setNewPageData(prev => ({ ...prev, name: e.target.value }))}
-                          placeholder="例如：关于我们"
+                          placeholder="例如：关���我们"
                         />
                       </div>
                       <div>
@@ -480,10 +480,10 @@ export default function WebEditor() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
+                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
                           <div className="font-mono text-blue-600">&lt;h1&gt;</div>
                           <div className="text-gray-600 mb-2">标题</div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                             <Button
                               variant="outline"
                               size="sm"
