@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import {
   Monitor, Smartphone, RefreshCw,
-  Maximize, Minimize, MousePointer
+  Maximize, Minimize, MousePointer, ChevronDown
 } from 'lucide-react';
 import ElementInserter from './ElementInserter';
 
