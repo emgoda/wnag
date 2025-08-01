@@ -64,7 +64,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) {
-      console.log('无法访���iframe文档');
+      console.log('无法访问iframe文档');
       return;
     }
 
@@ -274,6 +274,18 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             onClick={handleRefreshPreview}
           >
             <RefreshCw className="w-4 h-4" />
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              console.log('强制切换到桌面模式');
+              setPreviewMode('desktop');
+            }}
+            title="强制切换到桌面模式"
+          >
+            🖥️
           </Button>
 
           <Button
