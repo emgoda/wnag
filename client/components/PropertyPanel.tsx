@@ -167,7 +167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延迟再次获取DOM树，确保内容已加载
+    // 延迟再次获���DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -423,7 +423,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免���复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -509,7 +509,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一个特殊的更新来选择父元素
+        // 这里我们通过触发一个特殊的���新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -659,25 +659,25 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
 
     return `
-      <section style="max-width: 600px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-        <h2 style="text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+      <section style="max-width: 350px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; font-size: 22px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
           联系我们
         </h2>
-        <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">
+        <p style="text-align: center; color: #6b7280; margin-bottom: 25px; font-size: 14px;">
           有任何问题？我们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">姓名</label>
-            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 6px; font-weight: 500; color: #374151; font-size: 14px;">姓名</label>
+            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 10px 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
           </div>
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">邮箱</label>
-            <input type="email" placeholder="请输入您的邮箱" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 6px; font-weight: 500; color: #374151; font-size: 14px;">邮箱</label>
+            <input type="email" placeholder="请输入您的邮箱" style="width: 100%; padding: 10px 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'">
           </div>
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">留言</label>
-            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'"></textarea>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 6px; font-weight: 500; color: #374151; font-size: 14px;">留言</label>
+            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 10px 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical; transition: all 0.3s; ${shadowStyle} box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='${shadowStyle}'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('感谢您的留言！我们会尽快回复。');">
             发送留言
@@ -1146,7 +1146,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行��本输入..."
+                  placeholder="多行文本输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
@@ -1411,7 +1411,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Separator />
 
               <div>
-                <Label className="text-sm font-medium">自定义属性</Label>
+                <Label className="text-sm font-medium">自定义属���</Label>
                 <div className="mt-2 space-y-2 max-h-40 overflow-y-auto">
                   {Object.entries(elementData.attributes)
                     .filter(([key]) => !['id', 'class', 'src', 'alt', 'href', 'target'].includes(key))
@@ -1441,7 +1441,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模板生成器
+                模板生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -1471,7 +1471,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 开始生成
               </Button>
 
-              {/* 模板设置选项 */}
+              {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
                   <Label className="text-sm text-gray-700">输入框阴影</Label>
