@@ -62,11 +62,13 @@ export default function WebEditor() {
   const [newPageData, setNewPageData] = useState({ name: '', route: '' });
   const [activeTab, setActiveTab] = useState('pages');
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
   // 添加调试日志
   useEffect(() => {
     console.log('WebEditor selectedElement 更新:', selectedElement?.tagName || 'null');
-  }, [selectedElement]);
+    console.log('WebEditor selectedNodeId 更新:', selectedNodeId);
+  }, [selectedElement, selectedNodeId]);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
 
   // 历史记录用于撤销/重做
@@ -1356,7 +1358,7 @@ export default function WebEditor() {
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信用卡组件</div>
+                          <div className="text-center text-gray-600 text-xs">信��卡组件</div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
