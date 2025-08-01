@@ -75,7 +75,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
-      // 如果特定选择器没找到，尝试通用���择器
+      // 如果特定选择器没找到，尝试通用选择器
       editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
     }
 
@@ -143,7 +143,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     // 查找iframe并监听
     const findAndListenToIframe = () => {
-      const iframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+      let iframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
+
+      if (!iframe) {
+        iframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
+      }
+
+      if (!iframe) {
+        iframe = document.querySelector('iframe') as HTMLIFrameElement;
+      }
 
       if (iframe) {
         console.log('找到iframe，设置监听器');
@@ -289,7 +297,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } : null);
   };
 
-  // 更新文��内容
+  // 更新文本内容
   const handleTextContentChange = (value: string) => {
     if (!selectedElement || !onElementUpdate) return;
 
@@ -305,7 +313,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素��ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -372,7 +380,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格��是否正确');
+        alert('HTML编辑失败，请检查格式是否正确');
       }
     }
   };
@@ -391,7 +399,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一个特殊的更新来选择父元素
+        // 这���我们通过触发一个特殊的更新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -426,7 +434,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 切��DOM节点展开状态
+  // 切换DOM节点展开状态
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
       return nodes.map(n => {
@@ -609,7 +617,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  ������加���DOM结构... 点击"刷新"重试
+                  正���加���DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -654,7 +662,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem onClick={() => handleDuplicateElement()}>
                   <Copy className="w-4 h-4 mr-2" />
-                  复制元素
+                  复制元���
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementUp()}
@@ -673,7 +681,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  ���辑HTML
+                  编辑HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -826,7 +834,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">文���颜色</Label>
+                    <Label className="text-xs">文字颜色</Label>
                     <div className="flex gap-2 mt-1">
                       <Input
                         type="color"
@@ -953,7 +961,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">圆��</Label>
+                    <Label className="text-xs">����</Label>
                     <Input
                       value={elementData.styles['border-radius'] || ''}
                       onChange={(e) => handleStyleChange('border-radius', e.target.value)}
