@@ -247,7 +247,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       if (containerElement) {
         // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
-          console.log('找到canvas-root容器，构建子��');
+          console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
@@ -268,7 +268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ));
         }, 50);
 
-        // 记录body为空的情况，但不无限重试
+        // 记录body为空的情��，但不无限重试
         if (body.children.length === 0) {
           console.log('body为空，但仍显示DOM���结构');
         }
@@ -343,7 +343,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-          console.log('iframe���完成加载，立即获取DOM树');
+          console.log('iframe���完成加载，立��获取DOM树');
           handleLoad();
         }
 
@@ -582,7 +582,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即执行更新
     updateElementInDOM();
 
-    // ���时再��行一次确保���新成功
+    // ���时再��行一次确保����新成功
     setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
@@ -713,7 +713,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 选择父元素
+  // 选择父���素
   const handleSelectParent = () => {
     if (!selectedElement) return;
 
@@ -836,7 +836,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     `;
   };
 
-  // 生成功能卡片模板
+  // 生成��能卡片模板
   const generateFeatureCards = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
@@ -1084,7 +1084,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动到目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素���容查找对应的DOM树节点
+        // 尝试通过元素��容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1173,10 +1173,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const clearSelection = () => {
     console.log('开始清除选中状态...');
 
-    // 清除组件内部状态
-    setSelectedNodeElement(null);
-    setPreviewElement(null);
-    setSelectionMode('preview');
+    // 清除选择状态
+    if (onNodeSelect) {
+      onNodeSelect(null);
+    }
     setElementData(null);
 
     // 清除iframe��的所有高亮和限制
@@ -1366,7 +1366,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     element.dispatchEvent(clickEvent);
   };
 
-  // 添加���停效果
+  // 添�����停效果
   const handleNodeHover = (element: HTMLElement, isEnter: boolean) => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1598,7 +1598,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div className="flex items-center justify-between">
                 <h4 className="font-medium text-sm flex items-center gap-2">
                   <Code className="w-4 h-4" />
-                  DOM 树
+                  DOM ���
                 </h4>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -2210,7 +2210,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </Select>
               </div>
 
-              {/* 开始生��按钮 */}
+              {/* 开始生成按钮 */}
               <Button
                 onClick={handleTemplateGeneration}
                 className="w-full bg-blue-500 hover:bg-blue-600"
@@ -2461,7 +2461,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🗑️ 删除元���
+              🗑️ 删除元素
             </button>
             <button
               className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
