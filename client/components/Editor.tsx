@@ -22,7 +22,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 设备尺寸
   const deviceSizes = {
-    desktop: { width: '100%', height: '100%', label: '桌��' },
+    desktop: { width: '100%', height: '100%', label: '桌面' },
     mobile: { width: '375px', height: '667px', label: '手机' }
   };
 
@@ -35,9 +35,123 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         doc.open();
         doc.write(content);
         doc.close();
+
+        // 内容更新后，重新设置事件监听器
+        setTimeout(() => {
+          setupElementSelection();
+        }, 100);
       }
     }
   }, [content]);
+
+  // 设置元素选择功能
+  const setupElementSelection = () => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+
+    console.log('设置元素选择功能');
+
+    // 添加选择样式
+    let existingStyle = doc.querySelector('#element-selection-styles');
+    if (!existingStyle) {
+      const style = doc.createElement('style');
+      style.id = 'element-selection-styles';
+      style.textContent = `
+        .element-hover {
+          outline: 2px dashed #3b82f6 !important;
+          outline-offset: 2px !important;
+          cursor: pointer !important;
+        }
+        .element-selected {
+          outline: 3px solid #ef4444 !important;
+          outline-offset: 2px !important;
+          background-color: rgba(239, 68, 68, 0.1) !important;
+        }
+      `;
+      doc.head.appendChild(style);
+    }
+
+    // 清除之前的事件监听器
+    const elements = doc.querySelectorAll('*');
+    elements.forEach(el => {
+      el.removeEventListener('mouseover', handleMouseOver);
+      el.removeEventListener('mouseout', handleMouseOut);
+      el.removeEventListener('click', handleElementClick);
+    });
+
+    // 添加新的事件监听器
+    elements.forEach(el => {
+      el.addEventListener('mouseover', handleMouseOver);
+      el.addEventListener('mouseout', handleMouseOut);
+      el.addEventListener('click', handleElementClick);
+    });
+  };
+
+  // ��标悬停效果
+  const handleMouseOver = (e: Event) => {
+    e.stopPropagation();
+    const target = e.target as HTMLElement;
+    if (target && target !== document.documentElement && target !== document.body) {
+      target.classList.add('element-hover');
+    }
+  };
+
+  // 鼠标离开效果
+  const handleMouseOut = (e: Event) => {
+    const target = e.target as HTMLElement;
+    if (target) {
+      target.classList.remove('element-hover');
+    }
+  };
+
+  // 元素点击选择
+  const handleElementClick = (e: Event) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const target = e.target as HTMLElement;
+    if (target && target !== document.documentElement && target !== document.body) {
+      console.log('选中元素:', target.tagName, target.className, target.id);
+
+      // 清除之前的选中状态
+      const iframe = iframeRef.current;
+      if (iframe && iframe.contentDocument) {
+        const prevSelected = iframe.contentDocument.querySelectorAll('.element-selected');
+        prevSelected.forEach(el => el.classList.remove('element-selected'));
+      }
+
+      // 添加选中状态
+      target.classList.add('element-selected');
+      setSelectedElement(target);
+
+      // 通知父组件
+      if (onElementSelect) {
+        onElementSelect(target);
+      }
+    }
+  };
+
+  // 设置iframe加载监听器
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const handleLoad = () => {
+      console.log('iframe加载完成，设置元素选择');
+      setTimeout(() => {
+        setupElementSelection();
+      }, 200);
+    };
+
+    iframe.addEventListener('load', handleLoad);
+
+    return () => {
+      iframe.removeEventListener('load', handleLoad);
+    };
+  }, []);
 
   // 刷新预览
   const handleRefreshPreview = () => {
