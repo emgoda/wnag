@@ -701,7 +701,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             选择适合的方��
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价，满足不同需求
+            灵活的定价��满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -757,51 +757,51 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
     return `
-      <section style="padding: 40px 15px; background: #f8fafc; max-width: 350px; margin: 0 auto;">
+      <section style="padding: 50px 20px; background: linear-gradient(145deg, #f8fafc, #ffffff); max-width: 350px; margin: 0 auto; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);">
         <div style="max-width: 100%; margin: 0 auto;">
-          <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
+          <h2 style="text-align: center; font-size: 26px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
             客户评价
           </h2>
-          <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
+          <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
             听听客户怎么说
           </p>
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">李</div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">李先生</div>
-                  <div style="color: #6b7280; font-size: 12px;">产品经理</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">李先生</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经理</div>
                 </div>
               </div>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
+            <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "团队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
               </p>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">王</div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">王女士</div>
-                  <div style="color: #6b7280; font-size: 12px;">运营总监</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">王女士</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">运营总监</div>
                 </div>
               </div>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
+            <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "部署简单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
               </p>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">张</div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">张先生</div>
-                  <div style="color: #6b7280; font-size: 12px;">技术总监</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">张先生</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
             </div>
@@ -965,7 +965,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览中选择一个元素</p>
+              <p className="text-sm">在预览中选择一个���素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
