@@ -190,7 +190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
       className: element.className ? String(element.className).trim() || undefined : undefined,
-      children: buildTree(element), // 只包含子元��节点
+      children: buildTree(element), // 只包含子元素节点
       isExpanded: true
     };
   };
@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否��构建body树
+        // 如果找到canvas-root，直接���建其子树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -278,7 +278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
       } else {
-        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
+        console.log('iframe内容��空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如���body为空，等待内容加���
         setTimeout(() => {
@@ -511,7 +511,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         onNodeSelect(nodeId);
       }
     }
-  }, [selectedElement, domTree, selectionMode, previewElement]);
+  }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
   // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
@@ -641,7 +641,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移��或修改ID以避免重复
+      // 如果复制的元素有ID，需要移��或修改ID以避免���复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格���是否正��');
+        alert('HTML编��失败���请检查格式是否正��');
       }
     }
   };
@@ -727,7 +727,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一���特殊的更新来选择父元素
+        // ���里我们通过触发一���特殊的更新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -1013,7 +1013,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使���方便，性价比很高。技术支持���队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1324,7 +1324,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文���内容预览（前20个字符）
+    // 获取元素的文本内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </p>
                   )}
                   <p className="text-green-500">
-                    {true ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
+                    {true ? '👁️ 预��模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
@@ -1578,7 +1578,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   disabled={!selectedElement?.previousElementSibling}
                 >
                   <ArrowUp className="w-4 h-4 mr-2" />
-                  向上��动
+                  向上移动
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementDown()}
@@ -1732,7 +1732,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="_self">当前���口</SelectItem>
+                        <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
                         <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
@@ -1993,7 +1993,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* 可为空���键盘类型 */}
+                  {/* 可为空和键盘类型 */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label className="text-xs text-gray-600 mb-2 block">可为空</Label>
@@ -2278,7 +2278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不可操作的）
+                    ⚠️ 显示所有元素（包括不可操��的）
                   </p>
                 )}
                 <p className="text-green-500">
@@ -2348,7 +2348,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🎯 选择��素
+              🎯 选择���素
             </button>
           </div>
         )}
