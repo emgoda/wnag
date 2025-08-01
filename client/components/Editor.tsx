@@ -157,7 +157,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       target.classList.add('element-selected');
       setSelectedElement(target);
 
-      // 通知父组件 - 立即调��
+      // 通知父组件 - 立即调用
       console.log('通知父组件元素选择:', {
         tagName: target.tagName,
         hasCallback: !!onElementSelect,
@@ -270,18 +270,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             onClick={handleRefreshPreview}
           >
             <RefreshCw className="w-4 h-4" />
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              console.log('强制切换到桌面模式');
-              setPreviewMode('desktop');
-            }}
-            title="强制切换到桌面模式"
-          >
-            🖥️
           </Button>
 
           <Button
