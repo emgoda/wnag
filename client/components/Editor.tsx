@@ -17,7 +17,7 @@ interface EditorProps {
   onNodeSelect?: (nodeId: string | null) => void;
 }
 
-const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
+const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect, selectedNodeId, onNodeSelect }, ref) => {
   const [previewMode, setPreviewMode] = useState('iphone-14-pro');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
@@ -117,7 +117,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
       }
     });
 
-    console.log('已为', addedListeners, '个元素添加事件监听器');
+    console.log('已为', addedListeners, '个元��添加事件监听器');
   };
 
   // 鼠标悬停效果
@@ -245,7 +245,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     // 添加基本样式
     newElement.style.margin = '10px';
 
-    // 根据操作类���添加元素
+    // 根据操作类型添加元素
     switch (action) {
       case 'insert':
         if (selectedElement && selectedElement.parentNode) {
@@ -427,7 +427,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
           </div>
         </div>
         
-        {/* 元素插入工��� */}
+        {/* 元素插入工具 */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
