@@ -163,7 +163,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接����单节点构建方法 - 只构建元素节点树
+  // 兼容���接����单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -270,7 +270,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选��元素变化时更��DOM树
+  // 页面加载时和选���元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -794,7 +794,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-            发现���限可能，创造美好未来
+            发现���限可��，创造美好未来
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -973,7 +973,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
+                "��队协作���率大大提升，数据分析功能特别实������强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1088,9 +1088,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删除的是当前���中的元素，清除选中状态
+          // 如果删除的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
-            setSelectedElement(null);
+            setSelectedNodeElement(null);
             setElementData(null);
           }
 
@@ -1303,7 +1303,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
+      // 首先检查iframe��的元素（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1927,7 +1927,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">圆角</Label>
+                    <Label className="text-xs">圆��</Label>
                     <Input
                       value={elementData.styles['border-radius'] || ''}
                       onChange={(e) => handleStyleChange('border-radius', e.target.value)}
