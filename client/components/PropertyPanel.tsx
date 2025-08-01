@@ -156,7 +156,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然检查其子���素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -515,7 +515,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
-        console.log('开始更新DOM���属性:', attribute, '值:', value);
+        console.log('开始更新DOM，属性:', attribute, '值:', value);
 
         // 获取iframe文档
         const iframe = document.querySelector('iframe') as HTMLIFrameElement;
@@ -679,7 +679,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无���的HTML格式，请检查后重试');
+          alert('无效的HTML格式，请检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -931,7 +931,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限���储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -962,7 +962,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也���及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1282,7 +1282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.warn('❌ 未找到iframe中对应的元素');
       }
 
-      // 添加高��样式（如果还没有的话）
+      // 添加高亮样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
@@ -1400,6 +1400,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const isHidden = isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
+    const isPreview = previewElement === node.element && selectionMode === 'preview';
+    const isLocked = selectedNodeElement === node.element && selectionMode === 'locked';
     const paddingLeft = depth * 16;
 
     // 获取元素的文本内容预览（前20个字符）
@@ -1420,7 +1422,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
-            // 单击：预览模式（轻量高亮，不锁定）
+            // ���击：预览模式（轻量高亮，不锁定）
             handleNodeSelect(node.element, 'preview');
           }}
           onDoubleClick={(e) => {
@@ -1973,7 +1975,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">外���距</Label>
+                      <Label className="text-xs">外边距</Label>
                       <Input
                         value={elementData.styles.margin || ''}
                         onChange={(e) => handleStyleChange('margin', e.target.value)}
@@ -2141,7 +2143,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生成���
+                模��生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2227,7 +2229,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     className="scale-75"
                   />
                   <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
-                    {showAllElements ? "全部" : "��操作"}
+                    {showAllElements ? "全部" : "可操作"}
                   </span>
                 </div>
                 <div className="flex gap-1">
@@ -2332,7 +2334,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不可操作的）
+                    ⚠️ 显示所有���素（包括不可操作的）
                   </p>
                 )}
               </div>
