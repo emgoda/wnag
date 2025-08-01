@@ -181,16 +181,16 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     return nodeId;
   };
 
-  // 元素点击选择
+  // 元素点击选择 - 预览模式，不阻止元素交互
   const handleElementClick = (e: Event) => {
     if (!elementSelectMode) return;
 
-    e.preventDefault();
+    // 仅阻止事件冒泡，不阻止默认行为，确保元素能够正常交互
     e.stopPropagation();
 
     const target = e.target as HTMLElement;
     if (target && target !== document.documentElement && target !== document.body) {
-      console.log('选中元素:', target.tagName, target.className, target.id);
+      console.log('✅ 预览选中元素（保持交互）:', target.tagName, target.className, target.id);
 
       // 生成或获取元素ID
       const nodeId = getElementNodeId(target);
@@ -198,7 +198,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
       // 设置选中状态
       setSelectedElement(target);
 
-      // 使用新的nodeId回���
+      // 使用新的nodeId回调
       if (onNodeSelect) {
         try {
           onNodeSelect(nodeId);
@@ -369,7 +369,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
                   className="px-2"
                 >
                   <Smartphone className="w-4 h-4" />
-                  <span className="ml-1 hidden sm:inline">手机</span>
+                  <span className="ml-1 hidden sm:inline">手��</span>
                   <ChevronDown className="w-3 h-3 ml-1" />
                 </Button>
               </DropdownMenuTrigger>
