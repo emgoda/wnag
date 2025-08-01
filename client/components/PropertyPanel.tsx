@@ -424,7 +424,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } : null);
   };
 
-  // 更新元素样式
+  // 更新元素样���
   const handleStyleChange = (property: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
     
@@ -783,7 +783,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
               <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">企业版</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
-              <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
+              <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">���月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
@@ -978,6 +978,27 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <span className="text-purple-600 text-xs">.{node.className.split(' ')[0]}</span>
           )}
 
+          {/* 显示元素组信息 */}
+          {node.element.getAttribute('data-element-group') && (
+            <span className="text-orange-600 text-xs bg-orange-100 px-1 rounded">
+              组:{node.element.getAttribute('data-element-group')}
+            </span>
+          )}
+
+          {/* 显示元素类型信息 */}
+          {node.element.getAttribute('data-element-type') && (
+            <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
+              {node.element.getAttribute('data-element-type')}
+            </span>
+          )}
+
+          {/* 显示data-title信息 */}
+          {node.element.getAttribute('data-title') && (
+            <span className="text-gray-600 text-xs bg-gray-100 px-1 rounded">
+              {node.element.getAttribute('data-title')}
+            </span>
+          )}
+
           {hasText && (
             <span className="text-gray-500 text-xs italic ml-1 truncate max-w-20">
               "{textPreview}..."
@@ -1032,7 +1053,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树（无选中状态）');
+                    console.log('手���刷新DOM树（无选中状态）');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
@@ -1718,7 +1739,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强��������DOM树');
+                      console.log('强����������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
