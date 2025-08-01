@@ -720,80 +720,128 @@ export default function WebEditor() {
                             </div>
                           </div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
-                          <div className="font-mono text-blue-600">&lt;button&gt;</div>
-                          <div className="text-gray-600 mb-2">按钮</div>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'button',
-                                    content: '按钮文本'
-                                  }, 'insert');
-                                }
-                              }}
-                            >
-                              插入
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'button',
-                                    content: '按钮文本'
-                                  }, 'replace');
-                                }
-                              }}
-                            >
-                              替换
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs h-6 px-2"
-                              onClick={() => {
-                                const addElementToPage = (window as any).addElementToPage;
-                                if (addElementToPage) {
-                                  addElementToPage({
-                                    tag: 'button',
-                                    content: '按钮文本'
-                                  }, 'append');
-                                }
-                              }}
-                            >
-                              追加
-                            </Button>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;button&gt;</div>
+                            <div className="text-gray-600 mb-3">按钮</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'button',
+                                      content: '按钮文本'
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'button',
+                                      content: '按钮文本'
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'button',
+                                      content: '按钮文本'
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
                           </div>
                         </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'input',
-                              attributes: {
-                                type: 'text',
-                                placeholder: '请输入...'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 input 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
-                          <div className="font-mono text-blue-600">&lt;input&gt;</div>
-                          <div className="text-gray-600">输入框</div>
+                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="relative z-10">
+                            <div className="font-mono text-blue-600 font-semibold">&lt;input&gt;</div>
+                            <div className="text-gray-600 mb-3">输入框</div>
+                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'input',
+                                      attributes: {
+                                        type: 'text',
+                                        placeholder: '请输入...'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'input',
+                                      attributes: {
+                                        type: 'text',
+                                        placeholder: '请输入...'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    addElementToPage({
+                                      tag: 'input',
+                                      attributes: {
+                                        type: 'text',
+                                        placeholder: '请输入...'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
