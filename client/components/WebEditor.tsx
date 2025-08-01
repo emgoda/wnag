@@ -701,7 +701,9 @@ export default function WebEditor() {
                                       tag: 'div',
                                       content: inputHTML,
                                       attributes: {
-                                        'data-title': '标题'
+                                        'data-title': '标题',
+                                        'data-element-group': '表单元素',
+                                        'data-element-type': '输入框组'
                                       }
                                     }, 'insert');
                                   }
