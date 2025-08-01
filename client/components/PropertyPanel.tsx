@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处���元素节点 (nodeType === 1)，忽略�����节点(3)、注释节点(8)等
+      // 只处���元素节点 (nodeType === 1)，忽略文��节���(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但�����长定期检查间隔，减少编辑��的干扰
+    // 恢复但���长定期���查间隔，减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -881,12 +881,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">��业级安全保�����，全方位保�����的���������������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安��保�����，全方位保�����的���������������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">��化的架构设计，提供�����的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架��设计，提供�����的用户体验</p>
             </div>
           </div>
         </div>
@@ -980,7 +980,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">���� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
@@ -1001,7 +1001,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       <section style="padding: 50px 20px; background: linear-gradient(145deg, #f8fafc, #ffffff); max-width: 350px; margin: 0 auto; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);">
         <div style="max-width: 100%; margin: 0 auto;">
           <h2 style="text-align: center; font-size: 26px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-            客户评价
+            ���户评价
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
             ���听客户怎么说
@@ -1010,7 +1010,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及���。"
+                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1300,7 +1300,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
-        // 如果元素有data-node-id��优先用这个��找
+        // 如果元素有data-node-id，优先用��个��找
         const nodeId = element.getAttribute('data-node-id');
         if (nodeId) {
           const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：使用��前document的样式
+      // 备用检查：使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1389,7 +1389,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操���元素（系���/���架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素���' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可����作元素'
           }${
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括��可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1661,7 +1661,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   className="text-red-600 focus:text-red-600 data-[disabled]:text-red-400"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  删除元���
+                  删除元素
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -1805,7 +1805,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Box className="w-4 h-4" />
-                    显示方式
+                    显��方式
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -2199,7 +2199,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 提示 */}
+                  {/* 提�� */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
                     <Input
@@ -2300,7 +2300,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* ��择模板 */}
+              {/* 选择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模板</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
@@ -2456,7 +2456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到���前选中的元素"
+                  title="跳转到����前选中的元素"
                 >
                   🎯
                 </Button>
