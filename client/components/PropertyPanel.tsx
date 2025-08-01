@@ -58,7 +58,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
   const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
-  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中��元素
+  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // 安全访问iframe内容的辅助函数，处理跨域错误
   const safeAccessIframe = (callback: (doc: Document) => void): boolean => {
@@ -106,7 +106,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   });
 
   // 构建DOM树
-  // 检查元素是否���操���
+  // 检查元素是否可操���
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
@@ -174,7 +174,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return nodeId;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element��，过��文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过��文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -206,7 +206,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return res;
   };
 
-  // 兼容旧接�����单节点构建��法 - 只构建元素节点树
+  // 兼容旧接����单节点构建��法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -242,7 +242,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('���法访问iframe���档');
+        console.log('无法访问iframe���档');
         return;
       }
 
@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文��������，确保获��������正确的文本
+      // 获取文��������，确保获��������正确的��本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -981,7 +981,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ ��制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业�����
@@ -1105,7 +1105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动���目��元素，��保DOM已更新
+      // 延时滚动���目��元素，确保DOM已更新
       setTimeout(() => {
         // 尝试通��元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -1220,7 +1220,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.removeAttribute('data-dom-tree-selected');
         el.removeAttribute('data-dom-tree-preview');
 
-        // 恢复����title
+        // 恢复������title
         const title = el.getAttribute('title');
         if (title && title.includes('🔒 已选中')) {
           el.removeAttribute('title');
@@ -2048,7 +2048,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {/* 外边距 */}
+                  {/* ��边距 */}
                   <div>
                     <Label className="text-xs font-medium">外边距</Label>
                     <div className="grid grid-cols-3 gap-2 items-center mt-2">
@@ -2180,7 +2180,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   {/* 标题和数据ID */}
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">标���</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">标题</Label>
                       <Input
                         value={elementData.attributes['data-title'] || ''}
                         onChange={(e) => handleAttributeChange('data-title', e.target.value)}
@@ -2339,7 +2339,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输��框跟随主题色</Label>
+                  <Label className="text-sm text-gray-700">输��框跟随主题��</Label>
                   <Switch
                     checked={templateSettings.inputThemeColor}
                     onCheckedChange={(checked) =>
@@ -2492,7 +2492,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元��（包括不可操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
                 <p className="text-green-500">
