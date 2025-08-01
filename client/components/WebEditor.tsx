@@ -476,27 +476,94 @@ export default function WebEditor() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'h1',
+                              content: '标题文本'
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;h1&gt;</div>
                           <div className="text-gray-600">标题</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'p',
+                              content: '段落文本'
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;p&gt;</div>
                           <div className="text-gray-600">段落</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'a',
+                              content: '链接文本',
+                              attributes: { href: '#' }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;a&gt;</div>
                           <div className="text-gray-600">链接</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'img',
+                              attributes: {
+                                src: 'https://via.placeholder.com/150x100',
+                                alt: '图片描述'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;img&gt;</div>
                           <div className="text-gray-600">图片</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'button',
+                              content: '按钮文本'
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;button&gt;</div>
                           <div className="text-gray-600">按钮</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'input',
+                              attributes: {
+                                type: 'text',
+                                placeholder: '请输入...'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;input&gt;</div>
                           <div className="text-gray-600">输入框</div>
                         </div>
