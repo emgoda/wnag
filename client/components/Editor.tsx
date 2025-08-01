@@ -25,7 +25,8 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   // 设备尺寸
   const deviceSizes = {
     desktop: { width: '100%', height: '100%', label: '桌面' },
-    mobile: { width: '375px', height: '667px', label: '手机' }
+    'iphone-14-pro': { width: '393px', height: '852px', label: 'iPhone 14 Pro' },
+    'android-14': { width: '360px', height: '800px', label: 'Android 14' }
   };
 
   // 更新预览内容
