@@ -235,7 +235,7 @@ export default function WebEditor() {
       alert('SingleFile导入成功！');
     } catch (error) {
       console.error('导入失败:', error);
-      alert('导入失败，请检查文件格式');
+      alert('导入失败，请检查文件格��');
     }
 
     // 清空文件输入
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接��中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -636,7 +636,11 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮文本'
+                                      content: '按钮文本',
+                                      attributes: {
+                                        'data-element-group': '交互元素',
+                                        'data-element-type': '按钮'
+                                      }
                                     }, 'insert');
                                   }
                                 }}
