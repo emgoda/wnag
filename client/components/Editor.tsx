@@ -200,6 +200,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
             页面编辑器
           </Badge>
+          {selectedElement && (
+            <Badge variant="secondary" className="bg-blue-50 text-blue-700">
+              已选中: {selectedElement.tagName.toLowerCase()}
+            </Badge>
+          )}
         </div>
         
         <div className="flex items-center gap-2">
