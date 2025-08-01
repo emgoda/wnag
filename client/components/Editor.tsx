@@ -29,7 +29,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     'android-14': { width: '360px', height: '800px', label: 'Android 14' }
   };
 
-  // 更新预��内容
+  // 更新预览内容
   useEffect(() => {
     if (iframeRef.current) {
       const iframe = iframeRef.current;
@@ -243,7 +243,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     // 添加基本样式
     newElement.style.margin = '10px';
 
-    // 根据操作类型添加元素
+    // 根据操作类型��加元素
     switch (action) {
       case 'insert':
         if (selectedElement && selectedElement.parentNode) {
@@ -305,22 +305,60 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
         <div className="flex items-center gap-2">
           {/* 设备切换 */}
           <div className="flex items-center gap-1 border rounded-lg p-1">
-            {Object.entries(deviceSizes).map(([key, device]) => (
-              <Button
-                key={key}
-                variant={previewMode === key ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => {
-                  console.log('切换预览模式到:', key);
-                  setPreviewMode(key);
-                }}
-                className="px-2"
-              >
-                {key === 'desktop' && <Monitor className="w-4 h-4" />}
-                {key === 'mobile' && <Smartphone className="w-4 h-4" />}
-                <span className="ml-1 hidden sm:inline">{device.label}</span>
-              </Button>
-            ))}
+            {/* 桌面按钮 */}
+            <Button
+              variant={previewMode === 'desktop' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => {
+                console.log('切换预览模式到: desktop');
+                setPreviewMode('desktop');
+              }}
+              className="px-2"
+            >
+              <Monitor className="w-4 h-4" />
+              <span className="ml-1 hidden sm:inline">桌面</span>
+            </Button>
+
+            {/* 手机设备下拉菜单 */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant={previewMode !== 'desktop' ? 'default' : 'ghost'}
+                  size="sm"
+                  className="px-2"
+                >
+                  <Smartphone className="w-4 h-4" />
+                  <span className="ml-1 hidden sm:inline">手机</span>
+                  <ChevronDown className="w-3 h-3 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem
+                  onClick={() => {
+                    console.log('切换预览模式到: iphone-14-pro');
+                    setPreviewMode('iphone-14-pro');
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span>📱</span>
+                    <span>iPhone 14 Pro</span>
+                    <span className="text-xs text-gray-500">(393×852)</span>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => {
+                    console.log('切换预览模式到: android-14');
+                    setPreviewMode('android-14');
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span>🤖</span>
+                    <span>Android 14</span>
+                    <span className="text-xs text-gray-500">(360×800)</span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <Button
