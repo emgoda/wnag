@@ -66,7 +66,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     buttonTransparent: false
   });
 
-  // 右键菜单���态
+  // 右键菜单��态
   const [contextMenu, setContextMenu] = useState<{
     show: boolean;
     x: number;
@@ -95,14 +95,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
-      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
+      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可���焦元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
     // 不可操作的CSS类名模式
     const nonOperableClassPatterns = [
       /^lucide/, // Lucide图标
-      /toast/, // Toast通知��件
+      /toast/, // Toast通知组件
       /overlay/, // 遮罩层
       /backdrop/, // 背景层
       /portal/, // 传送门组件
@@ -142,7 +142,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       return element.getAttribute('data-node-id')!;
     }
 
-    // ���成新的唯一ID
+    // 生成新的唯一ID
     const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     element.setAttribute('data-node-id', nodeId);
     return nodeId;
@@ -171,7 +171,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然��查其子元���（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -351,7 +351,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清理错误
+            // 忽略���理错误
           }
         };
       } else {
@@ -682,7 +682,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 编辑元素HTML
+  // 编辑元���HTML
   const handleEditElementHTML = () => {
     if (!selectedElement) return;
 
@@ -766,7 +766,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const addElementToPage = (window as any).addElementToPage;
     if (!addElementToPage) {
-      alert('页面编辑器不可用');
+      alert('页面��辑器不可用');
       return;
     }
 
@@ -903,7 +903,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     `;
   };
 
-  // 生成价���表���板
+  // 生成价格表���板
   const generatePricingTable = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
     const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
@@ -1170,10 +1170,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const clearSelection = () => {
     console.log('开始清除选中状态...');
 
-    // 清除组件内部状态
-    setSelectedNodeElement(null);
-    setPreviewElement(null);
-    setSelectionMode('preview');
+    // 清除选择状态
+    if (onNodeSelect) {
+      onNodeSelect(null);
+    }
     setElementData(null);
 
     // 清除iframe��的所有高亮和限制
@@ -1375,7 +1375,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测元素是否隐藏或不可见
+  // 检测元素是否���藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
       // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
@@ -1504,7 +1504,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍����️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可操作元素">🔒</span>}
           </span>
 
@@ -1603,7 +1603,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       checked={showAllElements}
                       onCheckedChange={(checked) => {
                         setShowAllElements(checked);
-                        // 切换显示模式后重新构建DOM树
+                        // 切换显示模式后���新构建DOM树
                         setTimeout(() => getDOMTreeFromIframe(), 100);
                       }}
                       className="scale-75"
@@ -2382,7 +2382,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包��不可操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
 
