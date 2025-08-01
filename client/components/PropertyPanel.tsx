@@ -78,7 +78,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
+  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -108,7 +108,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element,
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
-      className: (element.className && typeof element.className === 'string') ? element.className : undefined,
+      className: element.className ? String(element.className).trim() || undefined : undefined,
       children: buildTree(element), // 只包含子元素节点
       isExpanded: true
     };
@@ -425,7 +425,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement, domTree]);
 
-  // 添加全局点击事件监听器来关闭右键菜单
+  // 添加全局点击事件监听器来关闭右键��单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -681,7 +681,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     const addElementToPage = (window as any).addElementToPage;
     if (!addElementToPage) {
-      alert('页面编辑器不可用');
+      alert('���面编辑器不可用');
       return;
     }
 
@@ -905,7 +905,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">李先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经理</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经���</div>
                 </div>
               </div>
             </div>
@@ -925,7 +925,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使用方便，性价比很���。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1769,7 +1769,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">�����类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
