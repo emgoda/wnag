@@ -99,7 +99,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
-    // 不可操作��CSS类名模式
+    // 不可操作的CSS类名模式
     const nonOperableClassPatterns = [
       /^lucide/, // Lucide图标
       /toast/, // Toast通知组件
@@ -137,7 +137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 生成或获取元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，直接返���
+    // 如果元素已经有data-node-id，直接返回
     if (element.hasAttribute('data-node-id')) {
       return element.getAttribute('data-node-id')!;
     }
@@ -160,7 +160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 为元素生成唯一ID
         getElementNodeId(element);
 
-        // 根据showAllElements设置决定是否显示
+        // 根据showAllElements设置决定是否��示
         if (showAllElements || operable) {
           res.push({
             element,
@@ -168,7 +168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
-            isExpanded: true // 默���展开所有节点
+            isExpanded: true // 默认展开所有节点
           });
         } else {
           // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
@@ -394,7 +394,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel��件挂���，立即获取DOM树');
+    console.log('PropertyPanel���件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
-      const isPresetElement = elementHTML.includes('预��') ||
+      const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
                               selectedElement.querySelector('[style*="���设"]') !== null;
 
@@ -480,7 +480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同����本地文本��态
+      setLocalTextContent(textContent); // 同���本地文本��态
     } else {
       setElementData(null);
     }
@@ -548,7 +548,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一个相关元���（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -687,7 +687,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n��意：请确����HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n��意：请确��HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -859,7 +859,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">���性能</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
@@ -953,7 +953,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空�����</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -1041,7 +1041,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开到指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // 查找元素在DOM��中的路径
+    // 查找元素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1081,7 +1081,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动到目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝��通过元素内容查找对应的DOM树节点
+        // 尝试通过元素内容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1225,14 +1225,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点（支持预览和锁定模式）
-  const handleNodeSelect = (element: HTMLElement, mode: 'preview' | 'locked' = 'preview') => {
-    if (mode === 'preview') {
-      setPreviewElement(element);
-      setSelectionMode('preview');
+  // 选择DOM节点
+  const handleNodeSelect = (element: HTMLElement) => {
+    // 获取元素的nodeId
+    const nodeId = element.getAttribute('data-node-id');
+    if (nodeId && onNodeSelect) {
+      onNodeSelect(nodeId);
+      console.log('✅ DOM树选择元素，nodeId:', nodeId);
     } else {
-      setSelectedNodeElement(element);
-      setSelectionMode('locked');
+      console.warn('⚠️ DOM树元素缺少nodeId或缺少回调:', element);
     }
 
     // 清除之前的高亮
@@ -1301,7 +1302,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 添加对应模式的视觉提示
         const originalTitle = targetElement.title;
         if (mode === 'preview') {
-          targetElement.title = '👁️ 预览模�� - 双击DOM树节点锁定选择';
+          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
           setTimeout(() => {
             if (targetElement.getAttribute('data-dom-tree-preview')) {
               targetElement.title = originalTitle;
@@ -1377,7 +1378,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
+      // 首先检查iframe中的元���（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1633,7 +1634,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加载DOM结构... ���击"刷新"重试
+                  正在加载DOM结构... 点击"刷新"重试
                 </p>
               )}
               {domTree.length > 0 && (
@@ -1826,7 +1827,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">替代文本</Label>
+                    <Label className="text-sm font-medium">替代文��</Label>
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
@@ -2196,7 +2197,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* 选择模板 */}
+              {/* ���择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模���</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
