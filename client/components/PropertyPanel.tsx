@@ -137,7 +137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     // 延迟获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
-      console.log('开始获取DOM树...');
+      console.log('���始获取DOM树...');
       getDOMTreeFromIframe();
     }, 500);
 
@@ -313,7 +313,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素��ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -399,7 +399,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这���我们通过触发一个特殊的更新来选择父元素
+        // 这里我们通过触发一个特殊的更新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -662,7 +662,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem onClick={() => handleDuplicateElement()}>
                   <Copy className="w-4 h-4 mr-2" />
-                  复制元���
+                  复制元素
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementUp()}
@@ -961,7 +961,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   </div>
 
                   <div>
-                    <Label className="text-xs">����</Label>
+                    <Label className="text-xs">圆��</Label>
                     <Input
                       value={elementData.styles['border-radius'] || ''}
                       onChange={(e) => handleStyleChange('border-radius', e.target.value)}
@@ -1044,6 +1044,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             {domTree.length === 0 && (
               <p className="text-xs text-gray-500 mt-2">
                 正在加载DOM结构... 点击"刷新"重试
+              </p>
+            )}
+            {domTree.length > 0 && (
+              <p className="text-xs text-green-600 mt-2">
+                已加载 {domTree.length} 个根节点
               </p>
             )}
           </div>
