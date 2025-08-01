@@ -198,7 +198,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
 
-        // 为元素生成唯一ID
+        // 为���素生成唯一ID
         getElementNodeId(element);
 
         // 根据showAllElements设置决定是否显示
@@ -468,7 +468,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const computedStyles = window.getComputedStyle(selectedElement);
       const styles: { [key: string]: string } = {};
       
-      // 获取常用样式�����性
+      // 获取常用样式�������性
       const styleProperties = [
         'color', 'background-color', 'font-size', 'font-weight', 'font-family',
         'text-align', 'padding', 'margin', 'width', 'height', 'border',
@@ -742,7 +742,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML���辑成功');
         } else {
-          alert('无效的HTML格式，请检查后重试');
+          alert('无效的HTML格式，请检查后重��');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -1148,7 +1148,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const iframe = document.querySelector('iframe') as HTMLIFrameElement;
       if (iframe && iframe.contentDocument) {
         // 找到iframe中对应的元素并删除
-        const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
+        let iframeElement;
+        try {
+          iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
+        } catch (crossOriginError) {
+          console.warn('跨域访问被阻止，跳过删除操作:', crossOriginError);
+          return;
+        }
         if (iframeElement && iframeElement.parentNode) {
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
@@ -1280,7 +1286,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     if (onNodeSelect) {
       onNodeSelect(nodeId);
-      console.log('✅ DOM树选择元素（预览模式），nodeId:', nodeId);
+      console.log('✅ DOM树选择元素（预览模式）��nodeId:', nodeId);
     } else {
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
@@ -1510,7 +1516,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM���进行编辑
+                点击预览中的元素或下方DOM�����进行编辑
               </p>
             </div>
           </div>
