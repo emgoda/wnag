@@ -311,7 +311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
-        // 尝试从html根元素开始��建
+        // 尝试从html��元素开始��建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -437,7 +437,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 组件挂载时立即尝试加载DOM���
   useEffect(() => {
     console.log('PropertyPanel��件挂���，立即获取DOM树');
-    // 多次尝试，确保能够获取到
+    // 多次尝���，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
@@ -545,7 +545,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 当画布选择元素时，自动更新selectedNodeId
       const nodeId = selectedElement.getAttribute('data-node-id');
       if (nodeId && nodeId !== selectedNodeId && onNodeSelect) {
-        console.log('画布选择了新元素，同步到selectedNodeId:', nodeId);
+        console.log('���布选择了新元素，同步到selectedNodeId:', nodeId);
         onNodeSelect(nodeId);
       }
     }
@@ -1057,7 +1057,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技���总监</div>
                 </div>
               </div>
             </div>
@@ -1215,7 +1215,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 清除所有选��状态
   const clearSelection = () => {
-    console.log('开始清除选中状态...');
+    console.log('开始清��选中状态...');
 
     // 清除选择状态
     if (onNodeSelect) {
@@ -1815,6 +1815,36 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
+              {/* 显示方式 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <Box className="w-4 h-4" />
+                    显示方式
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div>
+                    <Label className="text-xs">显示方式</Label>
+                    <Select
+                      value={elementData.styles['display'] || 'block'}
+                      onValueChange={(value) => handleStyleChange('display', value)}
+                    >
+                      <SelectTrigger className="mt-1 h-8">
+                        <SelectValue placeholder="选择显示方式" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="block">整行</SelectItem>
+                        <SelectItem value="inline">行内</SelectItem>
+                        <SelectItem value="inline-block">行内块</SelectItem>
+                        <SelectItem value="flex">弹性</SelectItem>
+                        <SelectItem value="none">隐藏</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* 文字样式 */}
               <Card>
                 <CardHeader className="pb-3">
@@ -2270,7 +2300,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('展开所有DOM节点');
+                    console.log('展开所有DOM节���');
                     const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
                       return nodes.map(node => ({
                         ...node,
