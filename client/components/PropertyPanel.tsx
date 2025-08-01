@@ -65,26 +65,37 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
-    const children: DOMNode[] = [];
-
-    // 只处理Element节点，跳过文本节点和注释节点
-    Array.from(element.children).forEach(child => {
-      if (child instanceof HTMLElement) {
-        // 跳��script和style�����，但保��其他���有元素
-        if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
-          children.push(buildDOMTree(child, depth + 1));
+  // 构建DOM树 - 采用更高效的递归方法
+  const buildTree = (root: HTMLElement): DOMNode[] => {
+    const res: DOMNode[] = [];
+    root.childNodes.forEach((node) => {
+      if (node.nodeType === 1) { // Element
+        const element = node as HTMLElement;
+        // 跳过script和style元素
+        if (element.tagName.toLowerCase() !== 'script' && element.tagName.toLowerCase() !== 'style') {
+          res.push({
+            element,
+            tagName: element.tagName.toLowerCase(),
+            id: element.id || undefined,
+            className: element.className || undefined,
+            children: buildTree(element),
+            isExpanded: true // 默认展开所有节点
+          });
         }
       }
     });
+    return res;
+  };
 
+  // 兼容旧接口的单节点构建方法
+  const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
       className: element.className || undefined,
-      children,
-      isExpanded: depth < 5 || ['body', 'html', 'div'].includes(element.tagName.toLowerCase()) // 默认展开前5层��重要容器节点总是展开
+      children: buildTree(element),
+      isExpanded: true
     };
   };
 
@@ -753,7 +764,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
-            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
+            <textarea placeholder="请��入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽快回复。');">
             发送留言
@@ -935,7 +946,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟��击事件来触发父组件的选择
+    // 模拟��击事件来���发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -1109,7 +1120,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入页面或点击"刷新"
+                      请导入页面或点击"��新"
                     </p>
                   </div>
                 )}
@@ -1233,7 +1244,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="直接输入文本..."
+                  placeholder="直接��入文本..."
                   className="mt-1"
                 />
 
