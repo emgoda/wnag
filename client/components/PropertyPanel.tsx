@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文���������，确保获��������正确的文本
+      // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ����中元素变化时，同步本地文本���态
+  // ����中元素变化时，同步本地文本��态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -1010,7 +1010,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强��，完全满足了��们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1185,7 +1185,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setContextMenu(prev => ({ ...prev, show: false }));
   };
 
-  // 清除iframe中的预览样���
+  // 清除iframe中的预览样式
   const clearIframePreviewStyles = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点 - 纯���览模式，���锁定交互
+  // 选择DOM节点 - 纯���览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1294,10 +1294,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
+      // 首先检查iframe中的元素（���为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
-        // 尝试在iframe中找到对应的元素
+        // 尝试在iframe中找到���应的元素
         let targetElement = element;
 
         // 如果元素有data-node-id，优先用这个��找
@@ -1421,7 +1421,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">����️‍🗨️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可���作元素">🔒</span>}
           </span>
 
@@ -1555,7 +1555,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     已加载 {domTree.length} 个根节点
                   </p>
                   <p className="text-blue-500">
-                    第一个节点: {domTree[0]?.tagName} (���节点: {domTree[0]?.children?.length || 0})
+                    第一个节点: {domTree[0]?.tagName} (子节点: {domTree[0]?.children?.length || 0})
                   </p>
                   {!showAllElements && (
                     <p className="text-gray-500">
@@ -2008,7 +2008,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">内�������</Label>
+                      <Label className="text-xs">内边距</Label>
                       <Input
                         value={elementData.styles.padding || ''}
                         onChange={(e) => handleStyleChange('padding', e.target.value)}
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可���作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "���示所有元��（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
