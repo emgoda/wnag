@@ -211,7 +211,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   };
 
-  // 添加元素���页面
+  // 添加元素到页面
   const addElementToPage = (elementData: any, action: 'insert' | 'replace' | 'append') => {
     const iframe = iframeRef.current;
     const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
