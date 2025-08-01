@@ -13,6 +13,8 @@ interface EditorProps {
   onChange: (content: string) => void;
   pageName: string;
   onElementSelect?: (element: HTMLElement | null) => void;
+  selectedNodeId?: string | null;
+  onNodeSelect?: (nodeId: string | null) => void;
 }
 
 const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
