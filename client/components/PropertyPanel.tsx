@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style标签，但保留其他��有元素
+        // 跳过script和style���签，但保留其他��有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -189,7 +189,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完���事件触��');
+          console.log('iframe加载完成事��触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -586,7 +586,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }, 'append');
 
-    alert('模��生成成功！');
+    alert('模��生成��功！');
   };
 
   // 生��Hero区域模板
@@ -635,12 +635,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，��速上线，让您的产品迅速��达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，����上线，让您的产品迅速��达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保���，全方位保护您的数��安全</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保���，全方位保护您的数�����全</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -1093,7 +1093,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         )}
       </div>
 
-      {/* 内��区域 */}
+      {/* �����区域 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
