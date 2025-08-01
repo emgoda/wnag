@@ -110,7 +110,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       /tooltip/, // 工具提示
       /dropdown/, // 下拉菜单内部
       /radix-/, // Radix UI组件
-      /^sr-only$/, // 屏幕阅读器专用
+      /^sr-only$/, // 屏幕阅读器���用
     ];
 
     // 检查类名是否匹配不可操作模式
@@ -383,7 +383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 定期检查DOM树变化（每3秒检查一次）
+    // 定期检查DOM树变化（每3秒检查��次）
     const interval = setInterval(updateDOMTree, 3000);
 
     return () => {
@@ -534,7 +534,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元素
+    // 立���更新DOM中的��应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -789,7 +789,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         templateHTML = generateTestimonial();
         break;
       default:
-        templateHTML = '<div>未知模板</div>';
+        templateHTML = '<div>未��模板</div>';
     }
 
     // 添��到页面
@@ -860,7 +860,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的���构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -1168,7 +1168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 清除所有选中状态
   const clearSelection = () => {
-    console.log('开始清除选中状态...');
+    console.log('开始��除选中状态...');
 
     // 清除组件内部状态
     setSelectedNodeElement(null);
@@ -1240,7 +1240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // 移除之前的高亮样式
+      // ���除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview');
@@ -1584,7 +1584,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编辑
+                点击预览中的元素��下方DOM树进行编辑
               </p>
             </div>
           </div>
@@ -1864,7 +1864,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
-              {/* 文字样式 */}
+              {/* 文字��式 */}
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -2278,24 +2278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </span>
                     </div>
                 </div>
-                  <button
-                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs transition-colors"
-                    onClick={() => {
-                      const newMode = selectionMode === 'preview' ? 'locked' : 'preview';
-                      setSelectionMode(newMode);
-                      if (newMode === 'preview') {
-                        // 切换到预览模式时清除锁定状态
-                        setSelectedNodeElement(null);
-                        clearIframePreviewStyles();
-                      }
-                      console.log(`切换到${newMode === 'preview' ? '预览' : '锁定'}模式`);
-                    }}
-                    title={`当前：${selectionMode === 'preview' ? '预览模式' : '锁定模式'}，点击切换`}
-                  >
-                    <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
-                    <span className="text-gray-400">|</span>
-                    <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
-                  </button>
+
                 </div>
                 <div className="flex gap-1">
                 <Button
