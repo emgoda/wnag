@@ -461,7 +461,7 @@ export default function WebEditor() {
               </div>
             </TabsContent>
 
-            <TabsContent value="elements" className="flex-1 px-4 pb-4">
+            <TabsContent value="elements" className="flex-1 px-4 pb-4 overflow-y-auto max-h-[calc(100vh-200px)]">
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-medium">HTML元素库</h3>
@@ -1323,7 +1323,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请选择一个页面进行编辑</p>
+                <p className="text-gray-500">请选择一个页面进行编��</p>
               </div>
             )}
           </div>
