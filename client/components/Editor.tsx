@@ -24,7 +24,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启元素选择
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // 设备尺寸
+  // ��备尺寸
   const deviceSizes = {
     desktop: { width: '100%', height: '100%', label: '桌面' },
     'iphone-14-pro': { width: '393px', height: '852px', label: 'iPhone 14 Pro' },
@@ -67,7 +67,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
         targetElement.classList.add('element-selected');
         console.log('✅ Canvas高亮元素:', selectedNodeId, targetElement.tagName);
       } else {
-        console.warn('⚠️ Canvas未找到对应元素:', selectedNodeId);
+        console.warn('⚠️ Canvas未找到对应��素:', selectedNodeId);
       }
     }
   }, [selectedNodeId]);
@@ -239,7 +239,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     };
   }, []);
 
-  // 刷新预览
+  // 刷新预���
   const handleRefreshPreview = () => {
     if (iframeRef.current) {
       // 使用 srcDoc 更新内容，避免跨域问题
@@ -372,7 +372,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
                   className="px-2"
                 >
                   <Smartphone className="w-4 h-4" />
-                  <span className="ml-1 hidden sm:inline">手��</span>
+                  <span className="ml-1 hidden sm:inline">手机</span>
                   <ChevronDown className="w-3 h-3 ml-1" />
                 </Button>
               </DropdownMenuTrigger>
