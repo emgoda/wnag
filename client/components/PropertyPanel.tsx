@@ -77,7 +77,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑器中的iframe，尝试多种选择器
+    // 查找编辑��中的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -131,7 +131,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('从HTML根元素构建DOM树');
       } else {
         console.log('iframe内容为空，等待加载...');
-        // 如果body为空，等待内容���载
+        // 如果body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -194,7 +194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-          console.log('iframe已完成加载，立即获取DOM树');
+          console.log('iframe已完成加载���立即获取DOM树');
           handleLoad();
         }
 
@@ -562,7 +562,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模�����击事件来触发父组件的选择
+    // 模拟��击事件来触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -583,7 +583,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 渲染DOM树节点
+  // 渲染DOM树���点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -669,7 +669,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编��
+                点击预览中的元素或下方DOM树进行编辑
               </p>
             </div>
           </div>
@@ -812,9 +812,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <Textarea
                   value={elementData.textContent}
                   onChange={(e) => handleTextContentChange(e.target.value)}
-                  placeholder="元素文本内容"
+                  placeholder="输入元素的文本内容..."
                   className="mt-1 min-h-[80px]"
                 />
+                {elementData.textContent && (
+                  <div className="mt-2 p-2 bg-gray-50 rounded text-xs">
+                    <span className="text-gray-600">预览:</span>
+                    <div className="mt-1 text-gray-800">{elementData.textContent}</div>
+                  </div>
+                )}
               </div>
 
               {/* 特定元素的内容属性 */}
