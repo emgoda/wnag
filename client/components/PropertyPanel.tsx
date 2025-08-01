@@ -209,7 +209,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选中元素变化时更��DOM树
+  // 页面加载时和选��元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -297,7 +297,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     };
 
-    // 监听自定义DOM树刷新事件
+    // 监��自定义DOM树刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -371,7 +371,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文��内���，确保获������到正确的文本
+      // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -417,7 +417,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当选中元素变化时，自动��转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -1017,7 +1017,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 删除DOM元素
   const deleteElement = (elementToDelete: HTMLElement) => {
     try {
-      // 确认删除操作
+      // 确认��除操作
       if (!confirm(`确定要删除 <${elementToDelete.tagName.toLowerCase()}> 元素吗？`)) {
         return;
       }
@@ -1054,7 +1054,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 处理右键菜单
+  // ��理右键菜单
   const handleContextMenu = (e: React.MouseEvent, node: DOMNode) => {
     e.preventDefault();
     e.stopPropagation();
@@ -1492,7 +1492,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Type className="w-4 h-4" />
-                    文字样式
+                    文字样��
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -1996,6 +1996,41 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </div>
           </ScrollArea>
         </div>
+
+        {/* 右键菜单 */}
+        {contextMenu.show && (
+          <div
+            className="fixed bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
+            style={{
+              left: `${contextMenu.x}px`,
+              top: `${contextMenu.y}px`,
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="w-full px-3 py-2 text-left hover:bg-red-50 text-red-600 text-sm flex items-center gap-2"
+              onClick={() => {
+                if (contextMenu.node) {
+                  deleteElement(contextMenu.node.element);
+                  closeContextMenu();
+                }
+              }}
+            >
+              🗑️ 删除元素
+            </button>
+            <button
+              className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
+              onClick={() => {
+                if (contextMenu.node) {
+                  handleNodeSelect(contextMenu.node.element);
+                  closeContextMenu();
+                }
+              }}
+            >
+              🎯 选择元素
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
