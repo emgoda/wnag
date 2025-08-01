@@ -100,7 +100,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
-      element.getAttribute('role') === 'none'; // 无语义元素
+      element.getAttribute('role') === 'none'; // 无��义元素
 
     // 不可操作的CSS类名模式
     const nonOperableClassPatterns = [
@@ -140,7 +140,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 生成或获取元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，��接返回
+    // 如��元素已经有data-node-id，��接返回
     if (element.hasAttribute('data-node-id')) {
       return element.getAttribute('data-node-id')!;
     }
@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接构建其子树；否��构建body树
+        // 如果找到canvas-root，直接构建其���树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -278,7 +278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
       } else {
-        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
+        console.log('iframe内容��空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如���body为空，等待内容加���
         setTimeout(() => {
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
-  // 添��全局点击事���监听器来关闭右键菜单
+  // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -763,7 +763,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 处理���板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
-      alert('请先选择一个模板');
+      alert('请先选择一个模��');
       return;
     }
 
@@ -828,7 +828,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               开始使用
             </button>
             <button style="background: rgba(255, 255, 255, 0.1); color: white; border: 2px solid rgba(255, 255, 255, 0.8); padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);" onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(255, 255, 255, 0.1)'">
-              了解更���
+              了解更多
             </button>
           </div>
         </div>
@@ -1217,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的��中状��');
+      console.log('已清除', highlighted.length, '个元素的选中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1328,7 +1328,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isHidden = false; // isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
 
-    // 检查是否是当前选中的节点（基于nodeId）
+    // 检查是否是当前选中的节点（��于nodeId）
     const nodeId = node.element.getAttribute('data-node-id');
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
@@ -1673,11 +1673,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地状态，不立即更新DOM
+                    // 只更新本地状���，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // 失焦时才更新DOM，避免频繁重建DOM树
+                    // 失焦��才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟢 Input失焦，更新DOM:', newValue);
                     if (selectedElement) {
@@ -1762,7 +1762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
-                        <SelectItem value="_parent">��窗��</SelectItem>
+                        <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2253,7 +2253,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元��"
+                  title="跳转到当前选中的元素"
                 >
                   🎯
                 </Button>
@@ -2289,7 +2289,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不��操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
                 <p className="text-green-500">
