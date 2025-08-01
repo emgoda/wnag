@@ -125,7 +125,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
 
-    // 如果是以上任何一种情况，则不可操作
+    // 如果���以上任何一种情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -862,7 +862,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          联系我们
+          ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -905,7 +905,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
-              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">���础版</h3>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">����础版</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
@@ -1097,7 +1097,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删��的是当前选中的元素，清除选中状态
+          // 如果删����的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -2268,12 +2268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-xs">
-                      <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
-                      <span className="text-gray-400">|</span>
-                      <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
-                    </div>
-                  </div>
+                </div>
                   <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-xs">
                     <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
                     <span className="text-gray-400">|</span>
