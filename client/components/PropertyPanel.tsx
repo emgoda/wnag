@@ -268,7 +268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ));
         }, 50);
 
-        // 记录body为空的情��，但不无限重试
+        // 记录body��空的情��，但不无限重试
         if (body.children.length === 0) {
           console.log('body为空，但仍显示DOM���结构');
         }
@@ -947,7 +947,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                选择专业��
+                选择���业��
               </button>
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -998,7 +998,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </div>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐��⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "��队协作���率大�����升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
@@ -1247,7 +1247,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor��件通过selectedNodeId受控处理
-    // 这确保了元素只是被高亮预览，但不��被锁定无法交互
+    // 这���保了元素只是被高亮预览，但不��被锁��无法交互
   };
 
   // 添�����停效果
@@ -1552,13 +1552,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <ScrollArea className="h-64">
               <div className="p-2">
                 {domTree.length > 0 ? (
-                  domTree.map((node, index) => renderDOMNode(node, 0, index))
+                  <div>
+                    <div className="text-xs text-blue-600 mb-2">
+                      调试：渲染 {domTree.length} 个根节点
+                    </div>
+                    {domTree.map((node, index) => {
+                      console.log('渲染节点:', node.tagName, 'children:', node.children.length);
+                      return renderDOMNode(node, 0, index);
+                    })}
+                  </div>
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请���入��面或点击"刷新"
+                      请导入页面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1799,7 +1807,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                           <SelectValue placeholder="选择" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="normal">正常</SelectItem>
+                          <SelectItem value="normal">正���</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
                           <SelectItem value="lighter">细体</SelectItem>
                         </SelectContent>
