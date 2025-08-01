@@ -232,7 +232,7 @@ export default function WebEditor() {
 
       setPages(prev => [...prev, newPage]);
       setSelectedPageId(newPage.id);
-      alert('SingleFile导入成功！');
+      alert('SingleFile导入���功！');
     } catch (error) {
       console.error('导入失败:', error);
       alert('导入失败，请检查文件格式');
@@ -276,7 +276,7 @@ export default function WebEditor() {
       }
     } catch (error) {
       console.error('保存失败:', error);
-      alert('保存失败，请重试');
+      alert('保存失败，��重试');
     }
   };
 
@@ -465,7 +465,11 @@ export default function WebEditor() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-medium">HTML元素库</h3>
-                  <Badge variant="outline">拖拽或复制</Badge>
+                  <Badge variant="outline">拖拽到右侧</Badge>
+                </div>
+
+                <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
+                  💡 拖拽元素到中间的页面编辑区域来添加到页面
                 </div>
 
                 <div className="space-y-3">
@@ -637,7 +641,7 @@ export default function WebEditor() {
                             const dragDataString = JSON.stringify(dragData);
                             e.dataTransfer.setData('text/plain', dragDataString);
                             e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开��拖拽 nav 元素:', dragData);
+                            console.log('开始拖拽 nav 元素:', dragData);
                           }}
                           className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
@@ -894,7 +898,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">���选择一个页面进行编辑</p>
+                <p className="text-gray-500">请选择一个页面进行编辑</p>
               </div>
             )}
           </div>
