@@ -168,7 +168,7 @@ export default function WebEditor() {
     // 添加到历��记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
-      return newHistory.slice(-50); // ���制历史记录�����
+      return newHistory.slice(-50); // 限制历史记录数量
     });
     setHistoryIndex(prev => prev + 1);
 
@@ -389,7 +389,7 @@ export default function WebEditor() {
                         <Label htmlFor="template">页面模板</Label>
                         <Select>
                           <SelectTrigger>
-                            <SelectValue placeholder="选择页面���板" />
+                            <SelectValue placeholder="选择页面模板" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
@@ -480,7 +480,7 @@ export default function WebEditor() {
               `}</style>
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-medium">HTML���素库</h3>
+                  <h3 className="font-medium">HTML元素库</h3>
                   <Badge variant="outline">点击按钮操作</Badge>
                 </div>
 
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">��项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
