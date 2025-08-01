@@ -65,7 +65,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     buttonTransparent: false
   });
 
-  // 右键菜单状态
+  // 右键菜单��态
   const [contextMenu, setContextMenu] = useState<{
     show: boolean;
     x: number;
@@ -444,7 +444,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元素文本内容:', {
+      console.log('获取���素文本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -486,7 +486,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement, domTree]);
 
-  // 添加全局点击事件监听器来关闭右键菜单
+  // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -567,7 +567,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } : null);
   };
 
-  // 更新元素样式
+  // ���新元素样式
   const handleStyleChange = (property: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
     
@@ -869,7 +869,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
-            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
+            <textarea placeholder="请输入��的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽���回复。');">
             发送留言
@@ -1236,7 +1236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         // 添加更明显的选中指示
         targetElement.setAttribute('data-dom-tree-selected', 'true');
 
-        // 在控制台显示详细信息
+        // 在控制台显���详细信息
         console.log('✅ 已选中iframe中的元素:', {
           tagName: targetElement.tagName,
           id: targetElement.id || '无',
@@ -1303,7 +1303,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树中的元素可能来自iframe）
+      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1724,7 +1724,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
-                        <SelectItem value="_blank">新窗口</SelectItem>
+                        <SelectItem value="_blank">���窗口</SelectItem>
                         <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
                     </Select>
@@ -1959,7 +1959,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     </div>
                   </div>
 
-                  {/* 提示 */}
+                  {/* 提�� */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
                     <Input
@@ -2130,7 +2130,22 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <Code className="w-4 h-4" />
                 DOM 树
               </h4>
-              <div className="flex gap-1">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <Switch
+                    checked={showAllElements}
+                    onCheckedChange={(checked) => {
+                      setShowAllElements(checked);
+                      // 切换显示模式后重新构建DOM树
+                      setTimeout(() => getDOMTreeFromIframe(), 100);
+                    }}
+                    className="scale-75"
+                  />
+                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                    {showAllElements ? "全部" : "可操作"}
+                  </span>
+                </div>
+                <div className="flex gap-1">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -2212,6 +2227,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 >
                   🔓
                 </Button>
+                </div>
               </div>
             </div>
             {domTree.length === 0 && (
