@@ -449,7 +449,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，确保获�������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -735,7 +735,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 删除元素
+  // 删除��素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -984,7 +984,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
+                "非���棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1463,7 +1463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作���素'
           }${
-            isLocked ? '\n🔒 已锁定选择' :
+            false ? '\n🔒 已锁定选择' :
             isPreview ? '\n👁️ 预览模式' :
             ''
           }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
@@ -2385,7 +2385,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"��新"
+                    请确保已导入页面，�����点��"��新"
                   </p>
                   <Button
                     variant="outline"
