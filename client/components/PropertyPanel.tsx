@@ -58,7 +58,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
   const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
-  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览���的元素
+  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -201,7 +201,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     // 列���所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
-    console.log('页面中���有iframe:', allIframes.length, allIframes);
+    console.log('页面中所有iframe:', allIframes.length, allIframes);
 
     // 直接查找第一个可用的iframe
     let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
@@ -213,7 +213,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       return;
     }
 
-    console.log('���到iframe:', editorIframe, '标题:', editorIframe.title);
+    console.log('���到iframe:', editorIframe, '���题:', editorIframe.title);
 
     try {
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
@@ -240,7 +240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 检查是否有任何实际内��
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      // 尝试��找canvas-root容器，��果没有则使用body
+      // 尝试��找canvas-root容器，如果没有则使用body
       const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
       const containerElement = canvasRoot || body;
 
@@ -273,7 +273,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
-        // 尝试从html根���素开始��建
+        // 尝试从html根元素开始��建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -558,7 +558,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           if (lastLabel) {
             lastLabel.textContent = value || '标题';
             lastLabel.setAttribute('data-title', value || '标���');
-            console.log('已��新最后一��label���:', value);
+            console.log('已��新最后一���label���:', value);
           } else {
             console.log('未找到label元素');
           }
@@ -727,7 +727,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一���特殊的更���来选择父元素
+        // 这里我们通过触发一���特殊的更���来选���父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -916,7 +916,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
         <div style="max-width: 100%; margin: 0 auto;">
           <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
-            选择适��的方�������
+            选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             灵活的定价，满足不同需求
@@ -1000,7 +1000,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大�����升，数据分析功��特别实�������强烈推荐给其他企业！"
+                "��队协作���率大�����升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1013,7 +1013,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很���时。"
+                "部署��单，使���方便���性价比很高。技术支持团队专业且耐心，解���问题很���时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（前20个字符）
+    // 获取元素的文本内容��览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1530,6 +1530,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         console.log('测试删除选中元素');
                       } else {
                         console.log('没有选中元素');
+                        // 调试信息
+                        console.log('当前selectedElement:', selectedElement);
+                        console.log('当前selectedNodeId:', selectedNodeId);
+                        console.log('onElementSelect回调存在:', !!onElementSelect);
+                        console.log('onNodeSelect回调存在:', !!onNodeSelect);
+
+                        // 尝试在iframe中查找有data-node-id的元素
+                        const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+                        if (iframe && iframe.contentDocument) {
+                          const elementsWithNodeId = iframe.contentDocument.querySelectorAll('[data-node-id]');
+                          console.log('iframe中有data-node-id的元素数量:', elementsWithNodeId.length);
+                          if (elementsWithNodeId.length > 0) {
+                            console.log('第一个有nodeId的元素:', elementsWithNodeId[0]);
+                          }
+                        }
                       }
                     }}
                     className="h-6 px-2 text-xs text-red-600"
