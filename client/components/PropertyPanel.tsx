@@ -89,14 +89,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接口的单节点构建方法
+  // 兼容旧接口的单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
       tagName: element.tagName.toLowerCase(),
       id: element.id || undefined,
       className: (element.className && typeof element.className === 'string') ? element.className : undefined,
-      children: buildTree(element),
+      children: buildTree(element), // 只包含子元素节点
       isExpanded: true
     };
   };
@@ -186,7 +186,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如果body为空，等待内容加��
+        // 如���body为空，等待内容加��
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -196,7 +196,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选中��素变化时更��DOM树
+  // 页面加载时和选中元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -284,7 +284,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     };
 
-    // 监听��定义DOM树刷新事件
+    // 监听自定义DOM树刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -358,7 +358,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文��内����，确保获������到正确的文本
+      // 获取文��内���，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -404,7 +404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳��到DOM树中对应的节点
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -436,7 +436,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -472,7 +472,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // 更新本地状态
+    // ��新本地状态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -526,7 +526,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的���素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -901,7 +901,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">���</div>
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
@@ -1262,7 +1262,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   })()}
                 >
                   <Move className="w-4 h-4 mr-2" />
-                  选择父元素
+                  ���择父元素
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -1776,7 +1776,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按钮点击����半透明</Label>
+                  <Label className="text-sm text-gray-700">按钮点击���半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
@@ -1855,7 +1855,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('跳转到选中元素');
+                      console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
