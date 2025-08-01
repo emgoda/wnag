@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return true;
   };
 
-  // 构建DOM树 - 只显示元���节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -521,7 +521,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立����更新DOM中的对应元素
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -645,7 +645,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 向上移动元����
+  // 向上移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -831,7 +831,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越����������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -842,7 +842,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位�������的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -1187,7 +1187,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.style.removeProperty('position');
         el.style.removeProperty('z-index');
 
-        // 强制恢复交��能力
+        // 强制恢复交互能力
         el.style.pointerEvents = 'auto';
         el.style.cursor = 'default';
       });
@@ -1212,14 +1212,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点（支持预览和锁定模式）
-  const handleNodeSelect = (element: HTMLElement, mode: 'preview' | 'locked' = 'preview') => {
-    if (mode === 'preview') {
-      setPreviewElement(element);
-      setSelectionMode('preview');
+  // 选择DOM节点
+  const handleNodeSelect = (element: HTMLElement) => {
+    // 获取元素的nodeId
+    const nodeId = element.getAttribute('data-node-id');
+    if (nodeId && onNodeSelect) {
+      onNodeSelect(nodeId);
+      console.log('✅ DOM树选择元素，nodeId:', nodeId);
     } else {
-      setSelectedNodeElement(element);
-      setSelectionMode('locked');
+      console.warn('⚠️ DOM树元素缺少nodeId或缺少回调:', element);
     }
 
     // 清除之前的高亮
@@ -1244,7 +1245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         targetElement = doc.querySelector(`[data-node-id="${nodeId}"]`);
       }
 
-      // 如果没有找到对应元素，尝试其他方式查找
+      // 如果没有找���对应元素，尝试其他方式查找
       if (!targetElement) {
         // 通过标签名、id、class等特征查找
         const tagName = element.tagName.toLowerCase();
@@ -1726,7 +1727,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   className="text-red-600 focus:text-red-600 data-[disabled]:text-red-400"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  删除元素
+                  删除元���
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
