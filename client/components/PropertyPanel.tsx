@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style�����，但保��其他��有元素
+        // 跳��script和style�����，但保��其他��有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -443,7 +443,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向上移动元素
+  // 向上移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -486,7 +486,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效���HTML格式，��检查后重试');
+          alert('无效的HTML格式，请检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -1356,7 +1356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">内边距</Label>
+                      <Label className="text-xs">内边��</Label>
                       <Input
                         value={elementData.styles.padding || ''}
                         onChange={(e) => handleStyleChange('padding', e.target.value)}
