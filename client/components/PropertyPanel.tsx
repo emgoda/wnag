@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，确保获��������正确的文本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -1105,7 +1105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动���目标元素，确保DOM已更新
+      // 延时滚动���目��元素，确保DOM已更新
       setTimeout(() => {
         // 尝试通��元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -2329,7 +2329,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入��阴���</Label>
+                  <Label className="text-sm text-gray-700">输入框阴影</Label>
                   <Switch
                     checked={templateSettings.inputShadow}
                     onCheckedChange={(checked) =>
@@ -2339,7 +2339,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入框跟随主题色</Label>
+                  <Label className="text-sm text-gray-700">输��框跟随主题色</Label>
                   <Switch
                     checked={templateSettings.inputThemeColor}
                     onCheckedChange={(checked) =>
