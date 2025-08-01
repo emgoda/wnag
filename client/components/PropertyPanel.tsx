@@ -78,24 +78,83 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 构建DOM树 - 只显示元素节点（Element���，过滤文本节点、注释节点等
+  // 检查元素是否可操作
+  const isElementOperable = (element: HTMLElement): boolean => {
+    const tagName = element.tagName.toLowerCase();
+
+    // 不可操作的系统元素
+    const nonOperableSystemTags = [
+      'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
+    ];
+
+    // 不可操作的UI框架元素（通过特定属性识别）
+    const hasFrameworkAttributes =
+      element.hasAttribute('data-loc') || // React/框架调试属性
+      element.hasAttribute('aria-hidden') || // ARIA隐藏元素
+      element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
+      element.hasAttribute('data-state') || // 框架状态元素
+      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
+      element.getAttribute('role') === 'presentation' || // 纯展示元素
+      element.getAttribute('role') === 'none'; // 无语义元素
+
+    // 不可操作的CSS类名模式
+    const nonOperableClassPatterns = [
+      /^lucide/, // Lucide图标
+      /toast/, // Toast通知组件
+      /overlay/, // 遮罩层
+      /backdrop/, // 背景层
+      /portal/, // 传送门组件
+      /popover/, // 弹出层
+      /tooltip/, // 工具提示
+      /dropdown/, // 下拉菜单内部
+      /radix-/, // Radix UI组件
+      /^sr-only$/, // 屏幕阅读器专用
+    ];
+
+    // 检查类名是否匹配不可操作模式
+    const hasNonOperableClass = element.className &&
+      nonOperableClassPatterns.some(pattern =>
+        String(element.className).split(' ').some(cls => pattern.test(cls))
+      );
+
+    // 系统生成的内容元素
+    const isSystemGenerated =
+      element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
+      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
+
+    // 如果是以上任何一种情况，则不可操作
+    if (nonOperableSystemTags.includes(tagName) ||
+        hasFrameworkAttributes ||
+        hasNonOperableClass ||
+        isSystemGenerated) {
+      return false;
+    }
+
+    return true;
+  };
+
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)��忽略文本节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
-        // 过滤掉script和style元素，只保留有意义的DOM元素
-        const tagName = element.tagName.toLowerCase();
-        if (tagName !== 'script' && tagName !== 'style') {
+
+        // 检查元素是否可操作
+        if (isElementOperable(element)) {
           res.push({
             element,
-            tagName,
+            tagName: element.tagName.toLowerCase(),
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
             isExpanded: true // 默认展开所有节点
           });
+        } else {
+          // 对于不可操作的元素，仍然检查其子元素
+          const operableChildren = buildTree(element);
+          res.push(...operableChildren);
         }
       }
     });
@@ -189,7 +248,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 记录body为空的情况，但不无限重试
         if (body.children.length === 0) {
-          console.log('body为空，但仍显示DOM��结构');
+          console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
         // 尝试从html根元素开始构建
@@ -602,7 +661,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n注意：请确��HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n��意：请确��HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -856,7 +915,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                 选择专业��
@@ -868,7 +927,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
@@ -1076,7 +1135,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     setSelectedNodeElement(null);
     setElementData(null);
 
-    // 清除iframe中的所有高亮和限制
+    // 清除iframe��的所有高亮和限制
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
@@ -1136,7 +1195,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected');
-        // 确保移除任何可能阻止交互的内联样式
+        // 确保移除任何可能阻止交互的内联样���
         el.style.removeProperty('pointer-events');
         el.style.removeProperty('user-select');
       });
@@ -2135,7 +2194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元素"
+                  title="跳转到当前选中的元��"
                 >
                   🎯
                 </Button>
