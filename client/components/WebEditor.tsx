@@ -284,7 +284,7 @@ export default function WebEditor() {
     <div className="h-screen flex flex-col bg-gray-50">
       {/* 顶部工具栏 */}
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">网页制作工具</h1>
+        <h1 className="text-2xl font-bold text-gray-900">网���制作工具</h1>
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
@@ -328,7 +328,7 @@ export default function WebEditor() {
       </div>
 
       <div className="flex-1 flex">
-        {/* 左侧面板 */}
+        {/* ���侧面板 */}
         <div className="w-80 bg-white border-r flex flex-col">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col justify-start items-center overflow-hidden" style={{ width: '315.2px', margin: '0 auto' }}>
             <TabsList className="grid w-full grid-cols-3 m-4">
@@ -572,7 +572,7 @@ export default function WebEditor() {
                                       tag: 'img',
                                       attributes: {
                                         src: 'https://via.placeholder.com/150x100',
-                                        alt: '图片描述'
+                                        alt: '图��描述'
                                       }
                                     }, 'insert');
                                   }
@@ -1200,9 +1200,76 @@ export default function WebEditor() {
                           </div>
                           <div className="text-center text-gray-600 text-xs">信用卡支付</div>
                         </div>
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                        <div
+                          className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
+                          onClick={() => {
+                            const addElementToPage = (window as any).addElementToPage;
+                            if (addElementToPage) {
+                              const cardIconsHTML = `
+                                <div style="max-width: 300px; margin: 20px auto; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                                  <h3 style="margin: 0 0 20px 0; text-align: center; font-size: 18px; font-weight: 600; color: #1f2937;">支持的支付方式</h3>
+
+                                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <!-- VISA -->
+                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #1a1f71; border-radius: 8px; background: linear-gradient(135deg, #1a1f71 0%, #0f3cc9 100%); position: relative; overflow: hidden;">
+                                      <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transform: rotate(45deg);"></div>
+                                      <div style="flex: 1;">
+                                        <div style="color: white; font-size: 20px; font-weight: bold; letter-spacing: 2px; font-family: Arial, sans-serif;">VISA</div>
+                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-top: 2px;">全球通用</div>
+                                      </div>
+                                      <div style="color: white; font-size: 24px;">💳</div>
+                                    </div>
+
+                                    <!-- MASTERCARD -->
+                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #eb001b; border-radius: 8px; background: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%); position: relative; overflow: hidden;">
+                                      <div style="position: absolute; top: -5px; right: 20px; width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50%;"></div>
+                                      <div style="flex: 1;">
+                                        <div style="color: white; font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">MasterCard</div>
+                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 2px;">安全便捷</div>
+                                      </div>
+                                      <div style="display: flex; align-items: center;">
+                                        <div style="width: 20px; height: 20px; background: #eb001b; border-radius: 50%; margin-right: -8px; z-index: 1;"></div>
+                                        <div style="width: 20px; height: 20px; background: #f79e1b; border-radius: 50%; z-index: 2;"></div>
+                                      </div>
+                                    </div>
+
+                                    <!-- AMERICAN EXPRESS -->
+                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #006fcf; border-radius: 8px; background: linear-gradient(135deg, #006fcf 0%, #00aadd 100%); position: relative; overflow: hidden;">
+                                      <div style="position: absolute; bottom: -15px; left: -15px; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%;"></div>
+                                      <div style="flex: 1;">
+                                        <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif;">AMERICAN</div>
+                                        <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif; margin-top: -2px;">EXPRESS</div>
+                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 11px; margin-top: 2px;">高端服务</div>
+                                      </div>
+                                      <div style="color: white; font-size: 24px;">◆</div>
+                                    </div>
+                                  </div>
+
+                                  <div style="text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
+                                    <p style="margin: 0; color: #6b7280; font-size: 12px;">
+                                      <span style="color: #10b981;">🔒</span>
+                                      所有支付均受SSL保护
+                                    </p>
+                                  </div>
+                                </div>
+                              `;
+
+                              addElementToPage({
+                                tag: 'div',
+                                content: cardIconsHTML,
+                                attributes: {
+                                  style: 'margin: 20px auto;'
+                                }
+                              }, 'append');
+                            }
+                          }}
+                        >
                           <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="w-8 h-6 bg-yellow-400 rounded flex items-center justify-center text-white text-xs">📄</div>
+                            <div className="flex gap-1">
+                              <div className="w-3 h-2 bg-blue-600 rounded-sm flex items-center justify-center text-white text-xs font-bold">V</div>
+                              <div className="w-3 h-2 bg-red-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">M</div>
+                              <div className="w-3 h-2 bg-blue-400 rounded-sm flex items-center justify-center text-white text-xs font-bold">A</div>
+                            </div>
                           </div>
                           <div className="text-center text-gray-600 text-xs">卡图标</div>
                         </div>
