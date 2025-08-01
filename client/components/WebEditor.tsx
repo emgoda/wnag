@@ -548,7 +548,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '���题文本'
+                                      content: '标题文本'
                                     }, 'append');
                                   }
                                 }}
@@ -718,7 +718,7 @@ export default function WebEditor() {
                                       tag: 'div',
                                       content: inputHTML,
                                       attributes: {
-                                        'data-title': '标题',
+                                        'data-title': '标���',
                                         'data-element-group': '表单元素',
                                         'data-element-type': '输入框组'
                                       }
@@ -877,7 +877,7 @@ export default function WebEditor() {
                                       <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
                                         <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
                                         <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
-                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素��整器样式</li>
                                           <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
                                           <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
                                         </ol>
@@ -1472,6 +1472,8 @@ export default function WebEditor() {
         <PropertyPanel
           selectedElement={selectedElement}
           onElementUpdate={handleElementUpdate}
+          selectedNodeId={selectedNodeId}
+          onNodeSelect={setSelectedNodeId}
         />
       </div>
 
