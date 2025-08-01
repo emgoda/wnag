@@ -216,7 +216,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延���再次获���DOM树，确保内容已加载
+    // 延���再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -251,7 +251,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         iframe.addEventListener('load', handleLoad);
 
-        // 监听iframe内容文档的变化
+        // 监听iframe内���文档的变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -342,7 +342,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 更新元素���据
+  // 更新元素数据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -463,7 +463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简���策略：直接更新最后一个相关元素（用户���新操作的）
+        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -620,7 +620,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正确');
+        alert('HTML编��失败���请检查格式是否正��');
       }
     }
   };
@@ -828,7 +828,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
         <div style="max-width: 100%; margin: 0 auto;">
           <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
-            选择适��的方����
+            选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             灵活的定价，满足不同需求
@@ -1125,6 +1125,52 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
+  // 检测元素是否隐藏或不可见
+  const isElementHidden = (element: HTMLElement): boolean => {
+    try {
+      // 获取计算样式
+      const computedStyle = window.getComputedStyle(element);
+
+      // 检查各种隐藏条件
+      if (
+        computedStyle.display === 'none' ||
+        computedStyle.visibility === 'hidden' ||
+        computedStyle.opacity === '0' ||
+        parseFloat(computedStyle.opacity) === 0
+      ) {
+        return true;
+      }
+
+      // 检查尺寸是否为0
+      const rect = element.getBoundingClientRect();
+      if (rect.width === 0 && rect.height === 0) {
+        return true;
+      }
+
+      // 检查是否在iframe中
+      const iframe = document.querySelector('iframe');
+      if (iframe && iframe.contentDocument) {
+        const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${element.getAttribute('data-node-id')}"]`);
+        if (iframeElement) {
+          const iframeComputedStyle = iframe.contentWindow?.getComputedStyle(iframeElement);
+          if (iframeComputedStyle) {
+            return (
+              iframeComputedStyle.display === 'none' ||
+              iframeComputedStyle.visibility === 'hidden' ||
+              iframeComputedStyle.opacity === '0' ||
+              parseFloat(iframeComputedStyle.opacity) === 0
+            );
+          }
+        }
+      }
+
+      return false;
+    } catch (error) {
+      // 如果检测出错，默认不是隐藏的
+      return false;
+    }
+  };
+
   // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
@@ -1239,7 +1285,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下���DOM树进行编辑
+                点击预览中的元素或下方DOM树进行编辑
               </p>
             </div>
           </div>
@@ -1365,14 +1411,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         )}
       </div>
 
-      {/* ������区域 */}
+      {/* �������区域 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="content">内容</TabsTrigger>
               <TabsTrigger value="style">样式</TabsTrigger>
-              <TabsTrigger value="attributes">��性</TabsTrigger>
+              <TabsTrigger value="attributes">属性</TabsTrigger>
             </TabsList>
 
             <TabsContent value="content" className="px-4 pb-4 space-y-4">
@@ -1773,7 +1819,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <option value="text">���认</option>
                         <option value="numeric">数字</option>
                         <option value="tel">电话</option>
-                        <option value="email">���箱</option>
+                        <option value="email">邮箱</option>
                         <option value="url">网址</option>
                       </select>
                     </div>
