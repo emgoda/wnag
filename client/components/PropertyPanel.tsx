@@ -1729,7 +1729,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // ���焦时才更新DOM，避免频繁重建DOM树
+                    // 失焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟡 Textarea失焦，更��DOM:', newValue);
                     if (selectedElement) {
@@ -1742,7 +1742,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
               </div>
 
-              {/* 特定��素的内��属性 */}
+              {/* 特�����素的内��属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（��括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个������点
+                  ��加载 {domTree.length} 个根�����点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
