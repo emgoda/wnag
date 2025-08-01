@@ -1065,7 +1065,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         {hasChildren && node.isExpanded && (
           <div>
-            {node.children.map(child => renderDOMNode(child, depth + 1))}
+            {node.children.map((child, index) => renderDOMNode(child, depth + 1, index))}
           </div>
         )}
       </div>
@@ -1653,7 +1653,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模板生成��
+                模��生成��
               </h4>
             </div>
             <div className="p-4 space-y-4">
