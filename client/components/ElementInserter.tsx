@@ -33,7 +33,7 @@ const elementTypes = [
     id: 'button', 
     label: '按钮', 
     icon: MousePointer, 
-    html: '<button style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">点击按钮</button>' 
+    html: '<button style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 12px 24px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform=\'translateY(-2px) scale(1.02)\'; this.style.boxShadow=\'0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)\'" onmouseout="this.style.transform=\'translateY(0) scale(1)\'; this.style.boxShadow=\'0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)\'">点击按钮</button>' 
   },
   { 
     id: 'link', 
