@@ -256,6 +256,9 @@ export default function WebEditor() {
             ? { ...p, content: updatedHTML, updated: new Date() }
             : p
         ));
+
+        // 触发DOM树刷新事件
+        window.dispatchEvent(new CustomEvent('domTreeRefresh'));
       }
     }
   }, [selectedPageId, selectedPage]);
@@ -659,7 +662,7 @@ export default function WebEditor() {
                                       content: '按钮文本',
                                       attributes: {
                                         'data-element-group': '交互元素',
-                                        'data-element-type': '按钮'
+                                        'data-element-type': '按��'
                                       }
                                     }, 'replace');
                                   }
@@ -1375,7 +1378,7 @@ export default function WebEditor() {
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-6 h-6 bg-green-400 rounded flex items-center justify-center text-white text-xs">✓</div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">完成提示</div>
+                          <div className="text-center text-gray-600 text-xs">完��提示</div>
                         </div>
                       </div>
                     </CardContent>
