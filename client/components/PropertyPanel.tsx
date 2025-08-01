@@ -65,7 +65,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // 构建DOM树 - 采用更高效的递归方法
+  // 构���DOM树 - 采用更高效的递归方法
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -144,7 +144,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 检查是否有任何实际内容
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      // 尝试查找canvas-root容器，如果没有则使用body
+      // 尝试查找canvas-root��器，如果没有则使用body
       const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
       const containerElement = canvasRoot || body;
 
@@ -177,7 +177,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('body为空，但仍显示DOM树结构');
         }
       } else if (html && html.children.length > 0) {
-        // 尝试从html根元素开始构建
+        // 尝试从html根元素开���构建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -1019,7 +1019,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <span className="text-green-600 text-xs font-medium">#{node.id}</span>
           )}
 
-          {node.className && (
+          {node.className && typeof node.className === 'string' && (
             <span className="text-purple-600 text-xs">.{node.className.split(' ')[0]}</span>
           )}
 
@@ -1667,7 +1667,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <SelectContent>
                     <SelectItem value="hero-section">Hero 区域</SelectItem>
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
-                    <SelectItem value="contact-form">联系表单</SelectItem>
+                    <SelectItem value="contact-form">联系表���</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
                     <SelectItem value="testimonial">客户评价</SelectItem>
                   </SelectContent>
