@@ -190,7 +190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
-      console.log('当前��面所有iframe的title属��:',
+      console.log('当前页面所有iframe的title属��:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
@@ -356,7 +356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 监听页���内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
-      console.log('定期更新DOM树');
+      console.log('��期更新DOM树');
       getDOMTreeFromIframe();
     };
 
@@ -437,7 +437,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内容
+      // 尝试不同的方式获取文本内���
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -822,7 +822,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业的服务，卓越���������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1041,7 +1041,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const elementPath = findElementPath(domTree, targetElement);
 
     if (elementPath) {
-      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
+      console.log('找到��素路径，自动展开:', elementPath.map(n => n.tagName));
 
       // 展开路径上的所有节点
       const expandPath = (nodes: DOMNode[]): DOMNode[] => {
@@ -1137,6 +1137,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     // 清除组件内部状态
     setSelectedNodeElement(null);
+    setPreviewElement(null);
+    setSelectionMode('preview');
     setElementData(null);
 
     // 清除iframe��的所有高亮和限制
@@ -2236,7 +2238,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     }}
                     className="scale-75"
                   />
-                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（���括不可操作的）" : "只显示可操作元素"}>
+                  <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
                     {showAllElements ? "全部" : "可操作"}
                   </span>
                 </div>
@@ -2357,7 +2359,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"刷新"
+                    请确保已导入页面，���后点��"刷���"
                   </p>
                   <Button
                     variant="outline"
