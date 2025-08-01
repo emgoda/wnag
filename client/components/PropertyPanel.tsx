@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强��展开body����点
+        // 强制展开body����点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑时的干扰
+    // 恢复但���长定期检查间隔，减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -522,7 +522,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当��中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -560,7 +560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // ������更新DOM中的对应元素
+    // ��������新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，���性:', attribute, '值:', value);
@@ -633,9 +633,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变��:', value);
+    console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输��响���
+    // 立即更新本地状态，确保输��响����
     setLocalTextContent(value);
 
     // 同时更������elementData状态
@@ -678,9 +678,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元素��制���功');
+      console.log('元素复制���功');
     } catch (error) {
-      console.error('复制元素失���:', error);
+      console.error('复制元��失���:', error);
     }
   };
 
@@ -903,7 +903,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          ����系我们
+          ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -914,8 +914,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">����������箱</label>
-            <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">��������箱</label>
+            <input type="email" placeholder="请输入�����的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素��容查找对应的DOM树����点
+        // 尝试通过元素��容查找对应的DOM树���点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1137,7 +1137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         try {
           iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
         } catch (crossOriginError) {
-          console.warn('跨域��问被阻止，跳过删除操作:', crossOriginError);
+          console.warn('跨域访问被阻止，跳过删除操作:', crossOriginError);
           return;
         }
         if (iframeElement && iframeElement.parentNode) {
@@ -1220,7 +1220,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.removeAttribute('data-dom-tree-selected');
         el.removeAttribute('data-dom-tree-preview');
 
-        // 恢复原��title
+        // 恢复����title
         const title = el.getAttribute('title');
         if (title && title.includes('🔒 已选中')) {
           el.removeAttribute('title');
@@ -1835,7 +1835,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Type className="w-4 h-4" />
-                    文字�����
+                    文字样式
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -2098,7 +2098,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 内���距 */}
+                  {/* 内边距 */}
                   <div>
                     <Label className="text-xs font-medium">内边距</Label>
                     <div className="grid grid-cols-3 gap-2 items-center mt-2">
@@ -2308,7 +2308,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectValue placeholder="-- 请��择 --" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="hero-section">Hero ��域</SelectItem>
+                    <SelectItem value="hero-section">Hero 区域</SelectItem>
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
