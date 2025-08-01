@@ -543,7 +543,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '标题文���'
+                                      content: '标题文本'
                                     }, 'append');
                                   }
                                 }}
@@ -695,7 +695,7 @@ export default function WebEditor() {
                                       tag: 'input',
                                       attributes: {
                                         type: 'text',
-                                        placeholder: '请输入...',
+                                        
                                         style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'insert');
@@ -715,7 +715,7 @@ export default function WebEditor() {
                                       tag: 'input',
                                       attributes: {
                                         type: 'text',
-                                        placeholder: '请输入...',
+                                        
                                         style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'replace');
@@ -735,7 +735,7 @@ export default function WebEditor() {
                                       tag: 'input',
                                       attributes: {
                                         type: 'text',
-                                        placeholder: '请输入...',
+                                        
                                         style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'append');
