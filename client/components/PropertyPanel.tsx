@@ -392,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更新文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变化:', value);
+    console.log('文本��入变化:', value);
 
     // 立即更新本地状态，确保输入��响应
     setLocalTextContent(value);
@@ -965,7 +965,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">���预览中选择一个元素</p>
+              <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -1147,7 +1147,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文本输入..."
+                  placeholder="多行文��输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
