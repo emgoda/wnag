@@ -101,7 +101,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       // 如果特定选择器没找到，尝试通用选择器
-      editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
+      editorIframe = document.querySelector('iframe[title*="编��"]') as HTMLIFrameElement;
       console.log('使用title选择器找到iframe:', !!editorIframe);
     }
 
@@ -167,7 +167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延迟再次获���DOM树，确保内容已���载
+    // 延迟再次获���DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -256,7 +256,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel组件挂载，立��获取DOM树');
+    console.log('PropertyPanel组件挂载，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -756,51 +756,51 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
     return `
-      <section style="padding: 60px 20px; background: #f8fafc;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+      <section style="padding: 40px 15px; background: #f8fafc; max-width: 350px; margin: 0 auto;">
+        <div style="max-width: 100%; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
             客户评价
           </h2>
-          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
-            听���客户怎么说
+          <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
+            听听客户怎么说
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
-            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
                 "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
-              <div style="display: flex; align-items: center; gap: 15px;">
-                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">李</div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">李</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937;">李先生</div>
-                  <div style="color: #6b7280; font-size: 14px;">产品经理</div>
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">李先生</div>
+                  <div style="color: #6b7280; font-size: 12px;">产品经理</div>
                 </div>
               </div>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
                 "团队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
               </p>
-              <div style="display: flex; align-items: center; gap: 15px;">
-                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">王</div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">王</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937;">王女士</div>
-                  <div style="color: #6b7280; font-size: 14px;">运营总监</div>
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">王女士</div>
+                  <div style="color: #6b7280; font-size: 12px;">运营总监</div>
                 </div>
               </div>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-              <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
-              <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
+            <div style="background: white; border-radius: 12px; padding: 20px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="color: #fbbf24; font-size: 16px; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+              <p style="color: #4b5563; line-height: 1.5; margin-bottom: 15px; font-style: italic; font-size: 13px;">
                 "部署简单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
               </p>
-              <div style="display: flex; align-items: center; gap: 15px;">
-                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">张</div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">张</div>
                 <div>
-                  <div style="font-weight: 600; color: #1f2937;">张先生</div>
-                  <div style="color: #6b7280; font-size: 14px;">技术总监</div>
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">张先生</div>
+                  <div style="color: #6b7280; font-size: 12px;">技术总监</div>
                 </div>
               </div>
             </div>
@@ -840,7 +840,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
-      // 添加高亮样式（如果还没有的话）
+      // 添加高��样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
@@ -1435,7 +1435,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </Tabs>
         </div>
 
-        {/* 模板生成��区域 */}
+        {/* 模板生成器区域 */}
         {showTemplateGenerator && (
           <div className="border-t bg-gradient-to-r from-blue-50 to-indigo-50">
             <div className="p-4 border-b bg-white">
