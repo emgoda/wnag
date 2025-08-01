@@ -148,7 +148,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return nodeId;
   };
 
-  // ��建DOM树 - 只显示元素节点���Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -216,7 +216,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('无法访问iframe�����');
+        console.log('无法访问iframe���档');
         return;
       }
 
@@ -270,7 +270,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('body为空，但仍显示DOM���结构');
         }
       } else if (html && html.children.length > 0) {
-        // 尝试从html根元素开始构建
+        // ���试从html根元素开始构建
         const tree = buildDOMTree(html);
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
@@ -287,7 +287,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 页面加载时和选�����素变化时更��DOM树
+  // 页面加载时和选��元素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -501,11 +501,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
       autoExpandToElement(selectedElement);
 
-      // 如果是从画布选择的新元素，且当前是预览模式，则清除DOM树的预览状态
-      if (selectionMode === 'preview' && selectedElement !== previewElement) {
-        console.log('画布选择了新元素，清除DOM树预览状态');
-        setPreviewElement(null);
-        clearIframePreviewStyles();
+      // 当画布选择元素时，自动更新selectedNodeId
+      const nodeId = selectedElement.getAttribute('data-node-id');
+      if (nodeId && nodeId !== selectedNodeId && onNodeSelect) {
+        console.log('画布选择了新元素，同步到selectedNodeId:', nodeId);
+        onNodeSelect(nodeId);
       }
     }
   }, [selectedElement, domTree, selectionMode, previewElement]);
@@ -990,7 +990,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">李先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经理</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品��理</div>
                 </div>
               </div>
             </div>
@@ -1404,7 +1404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // ��用检查：使用当前document的样式
+      // 备用检查：使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
