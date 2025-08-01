@@ -49,7 +49,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   const setupElementSelection = () => {
     const iframe = iframeRef.current;
     if (!iframe) {
-      console.log('iframe引用不存在');
+      console.log('iframe引��不存在');
       return;
     }
 
@@ -152,12 +152,22 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       target.classList.add('element-selected');
       setSelectedElement(target);
 
-      // 通知父组件
-      console.log('通知父组件元素选择:', target.tagName, !!onElementSelect);
+      // 通知父组件 - 立即调用
+      console.log('通知父组件元素选择:', {
+        tagName: target.tagName,
+        hasCallback: !!onElementSelect,
+        element: target
+      });
+
       if (onElementSelect) {
-        onElementSelect(target);
+        try {
+          onElementSelect(target);
+          console.log('✅ 成功调用onElementSelect回调');
+        } catch (error) {
+          console.error('❌ onElementSelect回调出错:', error);
+        }
       } else {
-        console.warn('onElementSelect回调不存在');
+        console.warn('❌ onElementSelect回调不存在');
       }
     }
   };
@@ -276,7 +286,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
                 if (firstElement && firstElement instanceof HTMLElement) {
                   console.log('自动选择第一个元素:', firstElement.tagName);
 
-                  // 手动触发点击事件
+                  // 手动���发点击事件
                   const clickEvent = new MouseEvent('click', {
                     view: window,
                     bubbles: true,
