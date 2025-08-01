@@ -52,7 +52,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style标签，但保留其他所有元素
+        // 跳��script和style标签，但保留其他所有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -71,25 +71,35 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
+    console.log('开始查找iframe...');
+
+    // 列出所有可能的iframe
+    const allIframes = document.querySelectorAll('iframe');
+    console.log('页面中所有iframe:', allIframes.length, allIframes);
+
     // 查找编辑器中的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
       // 如果特定选择器没找到，尝试通用选择器
       editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
+      console.log('使用title选择器找到iframe:', !!editorIframe);
     }
 
     if (!editorIframe) {
       // 最后尝试找任何iframe
       editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
+      console.log('使用通用选择器找到iframe:', !!editorIframe);
     }
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
+      console.log('当前页面所有iframe的title属性:',
+        Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
 
-    console.log('找到iframe:', editorIframe);
+    console.log('找到iframe:', editorIframe, '标题:', editorIframe.title);
 
     try {
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
@@ -160,7 +170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成事件触发');
+          console.log('iframe加���完成事件触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -195,7 +205,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // ��略清��错误
+            // 忽略清��错误
           }
         };
       } else {
@@ -378,7 +388,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n注意：请确保HTML格式正确', html);
+    const newHTML = prompt('编辑��素HTML:\n\n注意：请确保HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -768,7 +778,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">��代文本</Label>
+                    <Label className="text-sm font-medium">替代文本</Label>
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
@@ -801,7 +811,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="_self">当前窗口</SelectItem>
+                        <SelectItem value="_self">���前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
                         <SelectItem value="_parent">父窗口</SelectItem>
                       </SelectContent>
