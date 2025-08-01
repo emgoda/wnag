@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接��的单节点构建方法 - 只构建元素节点树
+  // 兼容旧接����单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -417,7 +417,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动��转到DOM树中对应的节点
+  // 当选中元素变化时，自动��转到DOM树中对应的节��
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -1005,7 +1005,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               (targetElement.className ?
                 nodeText.includes(String(targetElement.className).split(' ')[0]) : true)) {
             treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            console.log('已滚动到目标节点');
+            console.log('��滚动到目标节点');
             break;
           }
         }
@@ -1123,7 +1123,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const classSelector = className.split(' ')[0];
           targetElement = doc.querySelector(`.${classSelector}`);
         } else {
-          // 作为最后手段，使用相同的元素（如果它在iframe中）
+          // ���为最后手段，使用相同的元素（如果它在iframe中）
           if (element.ownerDocument === doc) {
             targetElement = element;
           }
@@ -1160,7 +1160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟��击事件来触发父组件的选择
+    // 模拟��击事件来触���父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -1233,7 +1233,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       );
 
     } catch (error) {
-      // 如果检测出错，默认不是隐藏的
+      // 如果��测出错，默认不是隐藏的
       console.warn('隐藏检测出错:', error);
       return false;
     }
@@ -2078,6 +2078,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 >
                   🎯
                 </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearSelection}
+                  className="h-6 px-2 text-xs"
+                  title="清除选中状态，恢复元素交互"
+                >
+                  ✨
+                </Button>
               </div>
             </div>
             {domTree.length === 0 && (
@@ -2106,7 +2115,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强���������DOM树');
+                      console.log('强�����������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
