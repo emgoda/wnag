@@ -15,7 +15,7 @@ interface EditorProps {
 }
 
 export default function Editor({ content, onChange, pageName, onElementSelect }: EditorProps) {
-  const [previewMode, setPreviewMode] = useState('desktop');
+  const [previewMode, setPreviewMode] = useState('mobile');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
   const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启��素选择
