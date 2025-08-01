@@ -68,7 +68,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
 
-    // 只处理Element节点，跳过文本节点���注释节点
+    // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
         // 跳��script和style�����，但保��其他���有元素
@@ -203,7 +203,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         };
 
         const handleContentChange = () => {
-          console.log('iframe内容变化');
+          console.log('iframe内���变化');
           getDOMTreeFromIframe();
         };
 
@@ -248,7 +248,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页面内容变化，实时更新DOM树
+  // 监听页���内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -360,7 +360,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同步本地文本状态
+      setLocalTextContent(textContent); // 同���本地文本状态
     } else {
       setElementData(null);
     }
@@ -472,7 +472,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
         selectedElement.textContent = value;
 
-        // ��知父组件
+        // 通知父组件
         if (onElementUpdate) {
           onElementUpdate(selectedElement, 'textContent', value);
         }
@@ -754,7 +754,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 生成价格表模板
+  // 生成价格表���板
   const generatePricingTable = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
     const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
@@ -848,7 +848,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "����协作效率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
+                "��队协作效率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1023,6 +1023,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </span>
           )}
 
+          {!hasChildren && node.tagName === 'body' && (
+            <span className="text-gray-400 text-xs italic ml-1">
+              (空容器)
+            </span>
+          )}
+
           {hasChildren && (
             <span className="text-gray-400 text-xs ml-auto">
               {node.children.length}
@@ -1071,7 +1077,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树（无选中状态）');
+                    console.log('手动刷新DOM树（无���中状态）');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
