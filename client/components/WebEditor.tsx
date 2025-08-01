@@ -554,66 +554,7 @@ export default function WebEditor() {
                           </div>
                         </div>
 
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                          <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold">&lt;a&gt;</div>
-                            <div className="text-gray-600 mb-3">链接</div>
-                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
-                                onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
-                                  if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'a',
-                                      content: '链接文本',
-                                      attributes: { href: '#' }
-                                    }, 'insert');
-                                  }
-                                }}
-                              >
-                                📝 插入
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
-                                onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
-                                  if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'a',
-                                      content: '链接文本',
-                                      attributes: { href: '#' }
-                                    }, 'replace');
-                                  }
-                                }}
-                              >
-                                🔄 替换
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
-                                onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
-                                  if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'a',
-                                      content: '链接文本',
-                                      attributes: { href: '#' }
-                                    }, 'append');
-                                  }
-                                }}
-                              >
-                                ➕ 追加
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
+
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
