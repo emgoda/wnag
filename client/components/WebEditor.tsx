@@ -148,7 +148,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复（排除当前页面）
     if (pages.some(p => p.id !== editingPage.id && p.route === editingPage.route)) {
-      alert('���由已存在，请使用不同的路由');
+      alert('路由已存在，请使用不同的路由');
       return;
     }
 
@@ -652,7 +652,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按�����本'
+                                      content: '按钮��本'
                                     }, 'replace');
                                   }
                                 }}
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选���2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1082,24 +1082,24 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const stripePaymentHTML = `
-                                <div style="max-width: 350px; margin: 0 auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid #e5e7eb;">
+                                <div style="max-width: 350px; margin: 0 auto; padding: 24px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);"
                                   <div style="text-align: center; margin-bottom: 24px;">
-                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                                    <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 20px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);"
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
-                                    <h2 style="margin: 0; font-size: 20px; font-weight: 600; color: #1f2937;">安全支付</h2>
+                                    <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
                                     <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
                                     <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">邮箱地址</label>
-                                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
+                                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
                                     <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">卡号</label>
                                     <div style="position: relative;">
-                                      <input type="text" placeholder="1234 1234 1234 1234" maxlength="19" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim()">
+                                      <input type="text" placeholder="1234 1234 1234 1234" maxlength="19" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'" oninput="this.value = this.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim()"
                                       <div style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: flex; gap: 4px;">
                                         <span style="font-size: 18px;">💳</span>
                                       </div>
@@ -1109,17 +1109,17 @@ export default function WebEditor() {
                                   <div style="display: flex; gap: 12px; margin-bottom: 20px;">
                                     <div style="flex: 1;">
                                       <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">过期日期</label>
-                                      <input type="text" placeholder="MM/YY" maxlength="5" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\D/g, '').replace(/(.{2})/, '$1/').substr(0, 5)">
+                                      <input type="text" placeholder="MM/YY" maxlength="5" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'" oninput="this.value = this.value.replace(/\D/g, '').replace(/(.{2})/, '$1/').substr(0, 5)"
                                     </div>
                                     <div style="flex: 1;">
                                       <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">CVC</label>
-                                      <input type="text" placeholder="123" maxlength="4" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\D/g, '')">
+                                      <input type="text" placeholder="123" maxlength="4" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'" oninput="this.value = this.value.replace(/\D/g, '')"
                                     </div>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
                                     <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">持卡人姓名</label>
-                                    <input type="text" placeholder="John Doe" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
+                                    <input type="text" placeholder="John Doe" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"
                                   </div>
 
                                   <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-bottom: 20px;">
@@ -1137,7 +1137,7 @@ export default function WebEditor() {
                                     </div>
                                   </div>
 
-                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 8px; padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 16px;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 91, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('支付功能演示 - 实际项目中需要集成真实支付网关')">
+                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(99, 91, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('支付功能演示 - 实际项目中需要集成真实支付网关')"
                                     立即支付 ¥108.90
                                   </button>
 
