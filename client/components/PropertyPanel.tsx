@@ -135,6 +135,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return true;
   };
 
+  // 生成或获取元素的唯一ID
+  const getElementNodeId = (element: HTMLElement): string => {
+    // 如果元素已经有data-node-id，直接返回
+    if (element.hasAttribute('data-node-id')) {
+      return element.getAttribute('data-node-id')!;
+    }
+
+    // 生成新的唯一ID
+    const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    element.setAttribute('data-node-id', nodeId);
+    return nodeId;
+  };
+
   // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
@@ -144,7 +157,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
 
-        // 根据showAllElements设置决定是否显示
+        // 根据showAllElements设置决��是否显示
         if (showAllElements || operable) {
           res.push({
             element,
@@ -180,7 +193,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所���可能的iframe
+    // 列出所���可���的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -532,7 +545,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一个���关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -2361,7 +2374,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('点击清除按钮');
+                    console.log('点击清除���钮');
                     clearSelection();
                   }}
                   className="h-6 px-2 text-xs hover:bg-red-50 hover:text-red-600"
@@ -2393,7 +2406,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁���' : '🔒 锁定模式：元素已锁定选择'}
                 </p>
               </div>
             )}
