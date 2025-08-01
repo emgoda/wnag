@@ -45,7 +45,7 @@ export default function WebEditor() {
 </head>
 <body>
     <div class="container">
-        <h1>欢迎来到我的网站</h1>
+        <h1>欢迎��到我的网站</h1>
         <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
@@ -76,7 +76,7 @@ export default function WebEditor() {
 
   const selectedPage = pages.find(p => p.id === selectedPageId);
 
-  // 添�����页面
+  // 添加页面
   const handleAddPage = () => {
     if (!newPageData.name.trim() || !newPageData.route.trim()) {
       alert('请填写页面名称和路由');
@@ -364,7 +364,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>新增页面</DialogTitle>
+                      <DialogTitle>新���页面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
@@ -1087,8 +1087,8 @@ export default function WebEditor() {
                                     <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 20px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);"
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
-                                    <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安��支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                    <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">���输入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
