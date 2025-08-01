@@ -49,7 +49,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
 
-    // 只处理Element节点，跳过文本节点和注释节点
+    // 只处理Element节点，���过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
         // 跳过script和style标签，但保留其他所有元素
@@ -435,7 +435,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // 移除之前的高亮样式
+      // 移除之前的高亮样���
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected');
@@ -644,11 +644,17 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Copy className="w-4 h-4 mr-2" />
                   复制元素
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleMoveElementUp()}>
+                <DropdownMenuItem
+                  onClick={() => handleMoveElementUp()}
+                  disabled={!selectedElement?.previousElementSibling}
+                >
                   <ArrowUp className="w-4 h-4 mr-2" />
                   向上移动
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleMoveElementDown()}>
+                <DropdownMenuItem
+                  onClick={() => handleMoveElementDown()}
+                  disabled={!selectedElement?.nextElementSibling}
+                >
                   <ArrowDown className="w-4 h-4 mr-2" />
                   向下移动
                 </DropdownMenuItem>
@@ -657,14 +663,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Edit3 className="w-4 h-4 mr-2" />
                   编辑HTML
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleSelectParent()}>
+                <DropdownMenuItem
+                  onClick={() => handleSelectParent()}
+                  disabled={!selectedElement?.parentElement ||
+                           selectedElement?.parentElement === document.body ||
+                           selectedElement?.parentElement === document.documentElement}
+                >
                   <Move className="w-4 h-4 mr-2" />
                   选择父元素
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => handleDeleteElement()}
-                  className="text-red-600 focus:text-red-600"
+                  className="text-red-600 focus:text-red-600 data-[disabled]:text-red-400"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
                   删除元素
