@@ -125,7 +125,7 @@ export default function WebEditor() {
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一���页面');
+      alert('至少需要保留一个页面');
       return;
     }
 
@@ -302,7 +302,7 @@ export default function WebEditor() {
             disabled={historyIndex >= history.length - 1}
           >
             <Redo className="w-4 h-4 mr-2" />
-            重���
+            重做
           </Button>
           <Button
             variant="outline"
@@ -389,14 +389,14 @@ export default function WebEditor() {
                         <Label htmlFor="template">页面模板</Label>
                         <Select>
                           <SelectTrigger>
-                            <SelectValue placeholder="选择页面模板" />
+                            <SelectValue placeholder="选择页面���板" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="blank">空白页面</SelectItem>
                             <SelectItem value="landing">落地页</SelectItem>
                             <SelectItem value="about">关于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
-                            <SelectItem value="blog">博客���面</SelectItem>
+                            <SelectItem value="blog">博客页面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
                           </SelectContent>
                         </Select>
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的��付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
@@ -1302,7 +1302,7 @@ export default function WebEditor() {
 
         {/* 中间编辑器区域 */}
         <div className="flex-1 flex flex-col">
-          {/* 源码编辑器（��切换显示） */}
+          {/* 源码编辑器（可切换显示） */}
           {showCodeEditor && selectedPage && (
             <div className="h-80 border-b bg-white flex flex-col">
               <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
@@ -1325,7 +1325,7 @@ export default function WebEditor() {
                   value={selectedPage.content}
                   onChange={(e) => handleContentChange(e.target.value)}
                   className="absolute inset-0 resize-none border-none rounded-none font-mono text-sm leading-relaxed"
-                  placeholder="在此编辑HTML源码..."
+                  placeholder="在此编��HTML源码..."
                   style={{ minHeight: '100%' }}
                 />
               </div>
