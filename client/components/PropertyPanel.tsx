@@ -197,7 +197,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isExpanded: true // 默认��开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然��查其子元素（只��在不显示所有元素时）
+          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获������到正确的文本
+      // 获取文�������，��保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -631,7 +631,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     } : null);
   };
 
-  // 更���文本内容
+  // 更���文本���容
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
@@ -664,7 +664,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复��的元素有ID，需要移��或修改ID以避免重复
+      // 如果复制的元素有ID，需要移��或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -967,7 +967,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高���分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                 选择专业��
@@ -1008,7 +1008,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">�����⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
               </p>
@@ -1105,7 +1105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动���目标元素，确保DOM已更新
+      // 延时滚动���目标元素，确保DOM���更新
       setTimeout(() => {
         // 尝试通过元素��容查找对应的DOM树���点
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，元素可自由交互');
+    console.log('所有选��状态已清除，元素可自由交互');
   };
 
   // 选择DOM节点 - 纯预览模式，不锁定交互
@@ -1271,7 +1271,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     if (onNodeSelect) {
       onNodeSelect(nodeId);
-      console.log('✅ DOM树选择元素（预览模式�����nodeId:', nodeId);
+      console.log('✅ DOM树选择元素（预览模式）��nodeId:', nodeId);
     } else {
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
@@ -1362,7 +1362,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const isSelectedByNodeId = nodeId === selectedNodeId;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容��览（前20个字符）
+    // 获���元素的文本内容��览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1679,7 +1679,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-3 m-4">
-              <TabsTrigger value="content">���容</TabsTrigger>
+              <TabsTrigger value="content">内容</TabsTrigger>
               <TabsTrigger value="style">样式</TabsTrigger>
               <TabsTrigger value="attributes">属性</TabsTrigger>
             </TabsList>
@@ -1736,7 +1736,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文本输入..."
+                  placeholder="多行文本输���..."
                   className="mt-2 min-h-[60px]"
                 />
 
@@ -2062,7 +2062,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         />
                         <span className="text-xs">px</span>
                       </div>
-                      <div className="text-center text-xs text-gray-500">外边���</div>
+                      <div className="text-center text-xs text-gray-500">外边距</div>
                       <div className="flex items-center gap-1">
                         <Input
                           type="number"
