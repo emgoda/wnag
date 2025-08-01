@@ -272,7 +272,7 @@ export default function WebEditor() {
       if (response.ok) {
         alert('保存成功！');
       } else {
-        throw new Error('保存失败');
+        throw new Error('保存失��');
       }
     } catch (error) {
       console.error('保存失败:', error);
@@ -691,12 +691,17 @@ export default function WebEditor() {
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
+                                    const inputHTML = `
+                                      <div style="display: inline-block; margin: 10px;">
+                                        <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 4px; font-weight: 500;" data-title="标题">标题</label>
+                                        <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
+                                      </div>
+                                    `;
                                     addElementToPage({
-                                      tag: 'input',
+                                      tag: 'div',
+                                      content: inputHTML,
                                       attributes: {
-                                        type: 'text',
-                                        
-                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        'data-title': '标题'
                                       }
                                     }, 'insert');
                                   }
@@ -711,12 +716,17 @@ export default function WebEditor() {
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
+                                    const inputHTML = `
+                                      <div style="display: inline-block; margin: 10px;">
+                                        <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 4px; font-weight: 500;" data-title="标题">标题</label>
+                                        <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
+                                      </div>
+                                    `;
                                     addElementToPage({
-                                      tag: 'input',
+                                      tag: 'div',
+                                      content: inputHTML,
                                       attributes: {
-                                        type: 'text',
-                                        
-                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        'data-title': '标题'
                                       }
                                     }, 'replace');
                                   }
@@ -731,12 +741,17 @@ export default function WebEditor() {
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
+                                    const inputHTML = `
+                                      <div style="display: inline-block; margin: 10px;">
+                                        <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 4px; font-weight: 500;" data-title="标题">标题</label>
+                                        <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
+                                      </div>
+                                    `;
                                     addElementToPage({
-                                      tag: 'input',
+                                      tag: 'div',
+                                      content: inputHTML,
                                       attributes: {
-                                        type: 'text',
-                                        
-                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        'data-title': '标题'
                                       }
                                     }, 'append');
                                   }
@@ -790,7 +805,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                🔄 替换
+                                ���� 替换
                               </Button>
                               <Button
                                 variant="outline"
@@ -1076,7 +1091,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center">&lt;select&gt;</div>
-                            <div className="text-gray-600 mb-2 text-center">下拉框</div>
+                            <div className="text-gray-600 mb-2 text-center">���拉框</div>
                             <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
