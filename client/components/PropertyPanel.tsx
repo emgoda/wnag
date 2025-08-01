@@ -99,7 +99,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
-    // 不可操作的CSS类名模式
+    // 不可操作��CSS类名模式
     const nonOperableClassPatterns = [
       /^lucide/, // Lucide图标
       /toast/, // Toast通知组件
@@ -137,7 +137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 生成或获取元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
-    // 如果元素已经有data-node-id，直接返回
+    // 如果元素已经有data-node-id，直接返���
     if (element.hasAttribute('data-node-id')) {
       return element.getAttribute('data-node-id')!;
     }
@@ -157,7 +157,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
 
-        // 根据showAllElements设置决��是否显示
+        // 为元素生成唯一ID
+        getElementNodeId(element);
+
+        // 根据showAllElements设置决定是否显示
         if (showAllElements || operable) {
           res.push({
             element,
@@ -165,7 +168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
-            isExpanded: true // 默认展开所有节点
+            isExpanded: true // 默���展开所有节点
           });
         } else {
           // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
@@ -193,7 +196,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所���可���的iframe
+    // 列出所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -407,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (selectedElement) {
       // 检查元素是否包含预��相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
-      const isPresetElement = elementHTML.includes('预设') ||
+      const isPresetElement = elementHTML.includes('预��') ||
                               selectedElement.textContent?.includes('预设') ||
                               selectedElement.querySelector('[style*="���设"]') !== null;
 
@@ -477,7 +480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同���本地文本��态
+      setLocalTextContent(textContent); // 同����本地文本��态
     } else {
       setElementData(null);
     }
@@ -545,7 +548,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一个���关元素（用户最新操作的）
+        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -684,7 +687,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n��意：请确��HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n��意：请确����HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -1038,7 +1041,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开到指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // 查找元素在DOM树中的路径
+    // 查找元素在DOM��中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1078,7 +1081,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动到目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素内容查找对应的DOM树节点
+        // 尝��通过元素内容查找对应的DOM树节点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1298,7 +1301,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 添加对应模式的视觉提示
         const originalTitle = targetElement.title;
         if (mode === 'preview') {
-          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
+          targetElement.title = '👁️ 预览模�� - 双击DOM树节点锁定选择';
           setTimeout(() => {
             if (targetElement.getAttribute('data-dom-tree-preview')) {
               targetElement.title = originalTitle;
@@ -1630,7 +1633,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正在加载DOM结构... 点击"刷新"重试
+                  正在加载DOM结构... ���击"刷新"重试
                 </p>
               )}
               {domTree.length > 0 && (
@@ -2374,7 +2377,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('点击清除���钮');
+                    console.log('点击清除按钮');
                     clearSelection();
                   }}
                   className="h-6 px-2 text-xs hover:bg-red-50 hover:text-red-600"
@@ -2406,7 +2409,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁���' : '🔒 锁定模式：元素已锁定选择'}
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
                 </p>
               </div>
             )}
