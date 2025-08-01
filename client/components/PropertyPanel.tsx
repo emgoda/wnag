@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同���本地文本状态
+      setLocalTextContent(textContent); // 同���本地文本��态
     } else {
       setElementData(null);
     }
@@ -527,7 +527,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
-    // 同时更����elementData状态
+    // 同时更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
     // 如果有选中的元素，尝试更新实际DOM
@@ -660,7 +660,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     setTimeout(() => getDOMTreeFromIframe(), 100);
   };
 
-  // 更新父组件内容
+  // ��新父组件内容
   const updateParentContent = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (!iframe || !onElementUpdate || !selectedElement) return;
@@ -1262,10 +1262,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => handleNodeSelect(node.element)}
+          onDoubleClick={() => {
+            clearSelection();
+          }}
           onContextMenu={(e) => handleContextMenu(e, node)}
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
-          title={`${node.tagName}${node.id ? `#${node.id}` : ''}\n右键删除元素`}
+          title={`${node.tagName}${node.id ? `#${node.id}` : ''}\n右键删除元素\n双击清除选中`}
         >
           {hasChildren && (
             <button
@@ -1614,7 +1617,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Type className="w-4 h-4" />
-                    文字样��
+                    文字�����
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -2084,7 +2087,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             )}
             {domTree.length > 0 && (
               <p className="text-xs text-green-600 mt-2">
-                已加载 {domTree.length} ��根节点
+                已加载 {domTree.length} 个根节点
               </p>
             )}
           </div>
