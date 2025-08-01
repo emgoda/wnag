@@ -310,7 +310,7 @@ export default function WebEditor() {
             onClick={() => setShowCodeEditor(!showCodeEditor)}
           >
             <Code className="w-4 h-4 mr-2" />
-            {showCodeEditor ? '关闭���码' : '源码编辑'}
+            {showCodeEditor ? '关闭源码' : '源码编辑'}
           </Button>
           <Button
             variant="outline"
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接在中间画布编辑页面元素，���击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -771,7 +771,7 @@ export default function WebEditor() {
                     <CardContent className="space-y-2">
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
-                        响应式��格布局
+                        响应式网格布局
                       </Button>
                       <Button variant="outline" className="w-full justify-start text-xs h-8">
                         <Copy className="w-3 h-3 mr-2" />
@@ -895,6 +895,11 @@ export default function WebEditor() {
                 onChange={handleContentChange}
                 pageName={selectedPage.name}
                 onElementSelect={setSelectedElement}
+                ref={(editorRef: any) => {
+                  if (editorRef) {
+                    (window as any).addElementToPage = editorRef.addElementToPage;
+                  }
+                }}
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
