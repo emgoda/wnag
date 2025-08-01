@@ -126,7 +126,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         bodyHTML: body?.innerHTML?.substring(0, 100) || 'empty'
       });
 
-      if (body && body.children.length > 0) {
+      if (body) {
         // 如果body有子元素，构建完整的DOM树
         const tree = buildDOMTree(body);
         console.log('DOM树构建成功，节点数:', tree.children.length);
@@ -147,7 +147,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
       } else {
-        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
+        console.log('iframe��容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如果body为空，等待内容加载
         setTimeout(() => {
@@ -188,7 +188,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成�������触发');
+          console.log('iframe加载完成���������触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -277,7 +277,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     });
   }, []);
 
-  // 检��是否为预设元素
+  // 检��是否为���设元素
   useEffect(() => {
     if (selectedElement) {
       // 检查元素是否包含预设相关的内容或类名
@@ -427,7 +427,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // 更新本地状态
+    // 更新本地状���
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -1063,7 +1063,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树（无选中状态）');
+                    console.log('手���刷新DOM树（无选中状态）');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
