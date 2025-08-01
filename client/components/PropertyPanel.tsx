@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // ���处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强��展开body�������点
+        // 强制展开body�������点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // �����自定义DOM���刷新事件
+    // 监���自定义DOM���刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -1010,7 +1010,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强����，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强��，��全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1259,7 +1259,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 选择DOM节点 - 纯���览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
-    // 获取或生成��素的nodeId
+    // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
 
     // 如果元素没有nodeId，为其生成��个
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
+      // 首先检查iframe���的元素（因为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1968,7 +1968,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div>
-                    <Label className="text-xs">背景颜色</Label>
+                    <Label className="text-xs">��景颜色</Label>
                     <div className="flex gap-2 mt-1">
                       <Input
                         type="color"
@@ -2508,7 +2508,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               ) : (
                 <div className="text-center text-gray-500 py-8">
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-xs mb-2">DOM��为空</p>
+                  <p className="text-xs mb-2">DOM树为空</p>
                   <p className="text-xs text-gray-400 mb-3">
                     请确保已导入页面，然后点击"刷新"
                   </p>
