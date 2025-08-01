@@ -887,7 +887,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（��20个字符）
+    // 获取元素的文本内容预览（��20���字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -994,7 +994,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </div>
               {domTree.length === 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  正���加���DOM结构... 点击"刷新"重试
+                  正在加载DOM结构... 点击"刷新"重试
                 </p>
               )}
             </div>
@@ -1390,7 +1390,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
             <TabsContent value="attributes" className="px-4 pb-4 space-y-4">
               <div>
-                <Label className="text-sm font-medium">元素ID</Label>
+                <Label className="text-sm font-medium">��素ID</Label>
                 <Input
                   value={elementData.id}
                   onChange={(e) => handleAttributeChange('id', e.target.value)}
@@ -1579,7 +1579,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强制刷新DOM树');
+                      console.log('强制��新DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
