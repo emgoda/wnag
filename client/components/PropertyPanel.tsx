@@ -220,9 +220,22 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
 
     // 更频繁地检查DOM树变化
-    const interval = setInterval(updateDOMTree, 3000);
+    const interval = setInterval(updateDOMTree, 2000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  // 组件挂载时立即尝试加载DOM树
+  useEffect(() => {
+    console.log('PropertyPanel组件挂载，立即获取DOM树');
+    // 多次尝试，确保能够获取到
+    const attempts = [100, 500, 1000, 2000];
+    attempts.forEach(delay => {
+      setTimeout(() => {
+        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
+        getDOMTreeFromIframe();
+      }, delay);
+    });
   }, []);
 
   // 更新元素数据
@@ -417,7 +430,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
-    if (confirm('确定要删除这个元素吗？此操作无法撤销。')) {
+    if (confirm('���定要删除这个元素吗？此操作无法撤销。')) {
       selectedElement.remove();
       setElementData(null);
       updateParentContent();
@@ -759,7 +772,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
-                      placeholder="图片描述"
+                      placeholder="图片���述"
                       className="mt-1"
                     />
                   </div>
