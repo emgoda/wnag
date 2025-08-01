@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源��编辑"查看HTML代码
                 </p>
               </div>
 
@@ -956,12 +956,12 @@ export default function WebEditor() {
                           </div>
                         </div>
 
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                        <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold">&lt;textarea&gt;</div>
-                            <div className="text-gray-600 mb-3">文本域</div>
-                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;textarea&gt;</div>
+                            <div className="text-gray-600 mb-2 text-center">文本域</div>
+                            <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -1029,12 +1029,12 @@ export default function WebEditor() {
                           </div>
                         </div>
 
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
+                        <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold">&lt;select&gt;</div>
-                            <div className="text-gray-600 mb-3">下拉框</div>
-                            <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;select&gt;</div>
+                            <div className="text-gray-600 mb-2 text-center">下拉框</div>
+                            <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
