@@ -167,7 +167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延迟再次获���DOM树，确保内容已加载
+    // 延迟再次获���DOM树，确保内容已���载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -256,7 +256,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel组件挂载，立即获取DOM树');
+    console.log('PropertyPanel组件挂载，立��获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -694,54 +694,54 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
 
     return `
-      <section style="padding: 60px 20px;">
-        <div style="max-width: 1000px; margin: 0 auto;">
-          <h2 style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #1f2937;">
+      <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
+        <div style="max-width: 100%; margin: 0 auto;">
+          <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
             选择适合的方案
           </h2>
-          <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
+          <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             灵活的定价，满足不同需求
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
-              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">基础版</h3>
-              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥99</div>
-              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
-              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 基础功能</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 5GB 存储空间</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 邮件支持</li>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">基础版</h3>
+              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
+              <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
-              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
+              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择基础版
               </button>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid ${themeColor}; position: relative; transform: scale(1.05); transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='scale(1.05) translateY(-4px)'" onmouseout="this.style.transform='scale(1.05) translateY(0)'">
-              <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600;">推荐</div>
-              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">专业版</h3>
-              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥199</div>
-              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
-              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 所有基础功能</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 50GB 存储空间</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 优先支持</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 高级分析</li>
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600;">推荐</div>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业版</h3>
+              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥199</div>
+              <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
               </ul>
-              <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                 选择专业版
               </button>
             </div>
-            <div style="background: white; border-radius: 12px; padding: 30px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
-              <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1f2937;">企业版</h3>
-              <div style="font-size: 48px; font-weight: bold; color: ${themeColor}; margin-bottom: 10px;">¥399</div>
-              <div style="color: #6b7280; margin-bottom: 30px;">每月</div>
-              <ul style="text-align: left; margin-bottom: 30px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 所有专业功能</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 无限存储空间</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 24/7 专属支持</li>
-                <li style="margin-bottom: 12px; color: #4b5563;">✓ 定制集成</li>
+            <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">企业版</h3>
+              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
+              <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
+              <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
-              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
+              <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业版
               </button>
             </div>
@@ -762,7 +762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             客户评价
           </h2>
           <p style="text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 50px;">
-            听听客户怎么说
+            听���客户怎么说
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
             <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -1435,7 +1435,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </Tabs>
         </div>
 
-        {/* 模板生成器区域 */}
+        {/* 模板生成��区域 */}
         {showTemplateGenerator && (
           <div className="border-t bg-gradient-to-r from-blue-50 to-indigo-50">
             <div className="p-4 border-b bg-white">
