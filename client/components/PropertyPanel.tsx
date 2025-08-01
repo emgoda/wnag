@@ -280,7 +280,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如���body为空，等待内容加���
+        // ������body为空，等待内容加���
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -354,7 +354,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清理��误
+            // 忽略清理错误
           }
         };
       } else {
@@ -411,7 +411,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含����相关的内容���类名
+      // 检查元素是否包含预����关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -505,7 +505,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       autoExpandToElement(selectedElement);
 
       // 如果是从画布选择的新元素，且当前是预览模式，则清除DOM树的预览状态
-      if (selectionMode === 'preview' && selectedElement !== previewElement) {
+      if (true && selectedElement !== previewElement) {
         console.log('画布选择了新元素，清除DOM树预览状态');
         setPreviewElement(null);
         clearIframePreviewStyles();
@@ -769,7 +769,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const addElementToPage = (window as any).addElementToPage;
     if (!addElementToPage) {
-      alert('页面编辑器��可用');
+      alert('页面编辑器不可用');
       return;
     }
 
@@ -1228,7 +1228,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节�� - 纯预览模式，不锁定交互
+  // 选择DOM节点 - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取元素的nodeId并调用回调
     const nodeId = element.getAttribute('data-node-id');
@@ -1355,7 +1355,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作元素'
           }${
-            false ? '\n🔒 已锁定��择' :
+            false ? '\n🔒 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
           }\n点击选择元素\n右键：删��元素`}
@@ -1516,7 +1516,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                   {!showAllElements && (
                     <p className="text-gray-500">
-                      ✅ 已过滤不可操作元素
+                      ✅ ���过滤不可操作元素
                     </p>
                   )}
                   {showAllElements && (
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </p>
                   )}
                   <p className="text-green-500">
-                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
+                    {true ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
@@ -2160,7 +2160,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <button
                     className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs transition-colors"
                     onClick={() => {
-                      const newMode = selectionMode === 'preview' ? 'locked' : 'preview';
+                      const newMode = true ? 'locked' : 'preview';
                       setSelectionMode(newMode);
                       if (newMode === 'preview') {
                         // 切换到预览模式时清除锁定状态
@@ -2169,9 +2169,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }
                       console.log(`切换到${newMode === 'preview' ? '预览' : '锁定'}模式`);
                     }}
-                    title={`当前：${selectionMode === 'preview' ? '预览模式' : '锁定模式'}，点击切换`}
+                    title={`当前：${true ? '预览模式' : '锁定模式'}，点击切换`}
                   >
-                    <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
+                    <span className={`${true ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
                     <span className="text-gray-400">|</span>
                     <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
                   </button>
@@ -2215,7 +2215,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('展开所有DOM节点');
+                    console.log('展开所有DOM���点');
                     const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
                       return nodes.map(node => ({
                         ...node,
@@ -2282,7 +2282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-green-500">
-                  👁️ 预览模式：选中元素保持可交互
+                  👁️ 预览模式：选中元素保持可���互
                 </p>
               </div>
             )}
