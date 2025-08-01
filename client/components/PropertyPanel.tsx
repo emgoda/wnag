@@ -212,7 +212,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         };
       } else {
-        console.log('��找到iframe，1秒后重试...');
+        console.log('未找到iframe，1秒后重试...');
         setTimeout(findAndListenToIframe, 1000);
       }
     };
@@ -292,7 +292,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元素���本内容:', {
+      console.log('获取元素文本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -381,7 +381,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
       } catch (error) {
-        console.error('DOM���新失败:', error);
+        console.error('DOM更新失败:', error);
       }
     }
   };
@@ -709,7 +709,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入页面或点击"刷新"
+                      请导��页面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -865,13 +865,28 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      const testText = "测试文本";
+                      const testText = "测试文本 " + Date.now();
                       console.log('测试设置文本:', testText);
                       handleTextContentChange(testText);
                     }}
                     className="text-xs h-7"
                   >
                     ✏️ 测试
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      console.log('输入框状态:', {
+                        localTextContent,
+                        elementData: elementData?.textContent,
+                        selectedElement: selectedElement?.tagName,
+                        inputValue: document.querySelector('textarea')?.value
+                      });
+                    }}
+                    className="text-xs h-7"
+                  >
+                    🔍 输入状态
                   </Button>
                 </div>
               </div>
@@ -1224,7 +1239,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM树为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，然后点击"刷���"
+                    请确保已导入页面，然后点击"刷新"
                   </p>
                   <Button
                     variant="outline"
