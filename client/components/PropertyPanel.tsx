@@ -155,7 +155,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素���点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -207,7 +207,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
-      console.log('未找到iframe元素');
+      console.log('未找��iframe元素');
       console.log('当前页面所有iframe的title属��:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
@@ -278,7 +278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
       } else {
-        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
+        console.log('iframe内���为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如���body为空，等待内容加���
         setTimeout(() => {
@@ -297,7 +297,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延���再次获取DOM树，确保内容���加载
+    // 延���再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -387,7 +387,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但延长定期检查间隔，减少编��时的干扰
+    // 恢复但延长定期检查间隔，减少编辑时的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -499,7 +499,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [elementData]);
 
-  // 当选中元素��化时，自动跳转到DOM树中对应的节点
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -537,7 +537,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元��
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -594,7 +594,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     } : null);
   };
 
-  // ���新元素样��
+  // �����新元素样��
   const handleStyleChange = (property: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
     
@@ -661,7 +661,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 向��移动元���
+  // 向上移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -883,7 +883,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题�����们很乐意为您解答
+          有任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -987,7 +987,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应���很及时。"
+                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1106,7 +1106,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 删除DOM元素
   const deleteElement = (elementToDelete: HTMLElement) => {
     try {
-      // 从iframe中删除元素
+      // ��iframe中删除元素
       const iframe = document.querySelector('iframe') as HTMLIFrameElement;
       if (iframe && iframe.contentDocument) {
         // 找到iframe中对应的元素并删除
@@ -1271,7 +1271,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
-        // 如果���素有data-node-id，优先用这个��找
+        // 如果元素有data-node-id，优先用这个��找
         const nodeId = element.getAttribute('data-node-id');
         if (nodeId) {
           const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
@@ -1367,7 +1367,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             false ? '\n���� 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
-          }\n点击选择元素\n右键：删��元素`}
+          }\n点击选择元素\n右键：删����素`}
         >
           {hasChildren && (
             <button
@@ -1477,7 +1477,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
           </div>
 
-          {/* DOM树区域 */}
+          {/* DOM��区域 */}
           <div className="border-t bg-gray-50">
             <div className="p-3 border-b bg-white">
               <div className="flex items-center justify-between">
@@ -1687,7 +1687,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   onBlur={(e) => {
                     // 失焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
-                    console.log('🟢 Input失焦，更新DOM:', newValue);
+                    console.log('🟢 Input失���，更新DOM:', newValue);
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
@@ -1715,7 +1715,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       selectedElement.textContent = newValue;
                     }
                   }}
-                  placeholder="多行文本输入..."
+                  placeholder="多行��本输入..."
                   className="mt-2 min-h-[60px]"
                 />
 
@@ -2315,7 +2315,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点����"刷新"
+                    请确保已导入页面，然后点击"刷新"
                   </p>
                   <Button
                     variant="outline"
