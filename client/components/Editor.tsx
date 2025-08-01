@@ -425,7 +425,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
           </div>
         </div>
         
-        {/* 元素插入���具 */}
+        {/* 元素插入工具 */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
