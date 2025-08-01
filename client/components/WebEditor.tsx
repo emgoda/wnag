@@ -373,7 +373,7 @@ export default function WebEditor() {
                           id="name"
                           value={newPageData.name}
                           onChange={(e) => setNewPageData(prev => ({ ...prev, name: e.target.value }))}
-                          placeholder="例如：关���我们"
+                          placeholder="例如：关于我们"
                         />
                       </div>
                       <div>
@@ -534,10 +534,10 @@ export default function WebEditor() {
                             </Button>
                           </div>
                         </div>
-                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
+                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors group">
                           <div className="font-mono text-blue-600">&lt;p&gt;</div>
                           <div className="text-gray-600 mb-2">段落</div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                             <Button
                               variant="outline"
                               size="sm"
@@ -890,7 +890,7 @@ export default function WebEditor() {
                     </CardContent>
                   </Card>
 
-                  {/* 自定义组件 */}
+                  {/* 自定义组��� */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm">自定义组件</CardTitle>
@@ -1005,7 +1005,7 @@ export default function WebEditor() {
               />
             ) : (
               <div className="flex-1 flex items-center justify-center">
-                <p className="text-gray-500">请选择一个页面进行编辑</p>
+                <p className="text-gray-500">请��择一个页面进行编辑</p>
               </div>
             )}
           </div>
