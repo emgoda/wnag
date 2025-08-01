@@ -90,7 +90,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    console.log('开始查���iframe...');
+    console.log('开始查����iframe...');
 
     // 列出所有可能的iframe
     const allIframes = document.querySelectorAll('iframe');
@@ -152,7 +152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
-    // 立即尝试���取DOM树
+    // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
     // 延���再次获取DOM树，确保内容已加载
@@ -356,7 +356,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // ��新元素属性
+  // 更新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
 
@@ -380,7 +380,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -416,7 +416,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // 更新本地状态
+    // 更新��地状态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -709,7 +709,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          联系我���
+          联系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -770,7 +770,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">��199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所���基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
@@ -799,7 +799,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 生成客户评价模板
+  // 生成��户评价模板
   const generateTestimonial = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
@@ -847,7 +847,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">������生</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
                 </div>
               </div>
@@ -1259,7 +1259,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">打开方��</Label>
+                    <Label className="text-sm font-medium">打开方式</Label>
                     <Select
                       value={elementData.attributes.target || '_self'}
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
@@ -1703,23 +1703,30 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树并强制展开所有节点');
+                    console.log('手动刷新DOM树');
                     getDOMTreeFromIframe();
-                    // 延时确保DOM树刷新后，强制展开所有节点
-                    setTimeout(() => {
-                      const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
-                        return nodes.map(node => ({
-                          ...node,
-                          isExpanded: true,
-                          children: expandAllNodes(node.children)
-                        }));
-                      };
-                      setDomTree(prev => expandAllNodes(prev));
-                    }, 200);
                   }}
                   className="h-6 px-2 text-xs"
                 >
                   刷新
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    console.log('展开所有DOM节点');
+                    const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
+                      return nodes.map(node => ({
+                        ...node,
+                        isExpanded: true,
+                        children: expandAllNodes(node.children)
+                      }));
+                    };
+                    setDomTree(prev => expandAllNodes(prev));
+                  }}
+                  className="h-6 px-2 text-xs"
+                >
+                  展开
                 </Button>
               </div>
             </div>
