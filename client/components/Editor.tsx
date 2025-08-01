@@ -91,7 +91,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       console.log('已添加选择样式');
     }
 
-    // 获取所有可选择的元素
+    // 获取所���可选择的元素
     const elements = doc.querySelectorAll('*');
     console.log('找到可选择元素数量:', elements.length);
 
@@ -219,7 +219,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       return;
     }
 
-    // 创建新��素
+    // 创建新元素
     const newElement = doc.createElement(elementData.tag);
 
     // 设置内容
@@ -348,32 +348,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             onClick={() => setIsFullscreen(!isFullscreen)}
           >
             {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              // 测试元素添加功能
-              const iframe = iframeRef.current;
-              const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
-              if (doc?.body) {
-                const testH1 = doc.createElement('h1');
-                testH1.textContent = '测试标题';
-                testH1.style.color = 'red';
-                testH1.style.margin = '10px';
-                doc.body.appendChild(testH1);
-
-                const updatedHTML = doc.documentElement.outerHTML;
-                onChange(updatedHTML);
-
-                alert('测试元素已添加！');
-              } else {
-                alert('无法访问页面文档');
-              }
-            }}
-          >
-            测试添加
           </Button>
         </div>
       </div>
