@@ -110,7 +110,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
-    // 不可操作��系统元素
+    // 不可操�����系统元素
     const nonOperableSystemTags = [
       'script', 'style', 'link', 'meta', 'head', 'title', 'base', 'noscript'
     ];
@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文�������，确保获��������正确的文本
+      // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ����中元素变化时，同步本地文本状态
+  // ����中元素变化时，同步本地文本��态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -922,7 +922,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <textarea placeholder="请输入��的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽����回复。');">
-            发送留言
+            发送���言
           </button>
         </form>
       </section>
@@ -1036,7 +1036,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使���方便���性价比很高。技术支持团队专业且耐心，解���问题很���时。"
+                "部署��单，使���方便���性价比很高。技术支持团队专业且耐心，解�����题很���时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1065,7 +1065,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setDomTree(updateNode(domTree));
   };
 
-  // 自动展开��指定元素并滚动到该位置
+  // 自动展开��指定元素并滚动到该���置
   const autoExpandToElement = (targetElement: HTMLElement) => {
     // 查找元素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
@@ -2349,7 +2349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">��钮点击���半透明</Label>
+                  <Label className="text-sm text-gray-700">按钮点击时半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
