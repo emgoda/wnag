@@ -165,7 +165,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接����单节点构建方法 - 只构建元素节点树
+  // 兼容旧接�����单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -201,7 +201,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('无法访问iframe���档');
+        console.log('无法访问iframe������');
         return;
       }
 
@@ -465,7 +465,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同���本地文本����态
+      setLocalTextContent(textContent); // 同���本地文本��态
     } else {
       setElementData(null);
     }
@@ -480,7 +480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动��转到DOM树中对应的节��
+  // 当选中元素变化时，自动���转到DOM树中对应的节��
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素���化，自动跳转到DOM树节点:', selectedElement);
@@ -636,7 +636,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向上��动元���
+  // 向上移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -731,7 +731,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // 触发父组件的内容更新
+    // 触发父组件��内容更新
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
@@ -822,7 +822,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务���卓越��������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -833,12 +833,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极�����用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -1184,7 +1184,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态���清除，元素可自由交互');
+    console.log('所有选中状态已清除，元素可自由交互');
   };
 
   // 选择DOM节点（支持预览和锁定模式）
@@ -1219,7 +1219,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         targetElement = doc.querySelector(`[data-node-id="${nodeId}"]`);
       }
 
-      // 如果没有找到对应元素，尝试���他方式查找
+      // 如果没有找到对应元素，尝试其他方式查找
       if (!targetElement) {
         // 通过标签名、id、class等特征查找
         const tagName = element.tagName.toLowerCase();
@@ -1251,22 +1251,32 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           targetElement.setAttribute('data-dom-tree-selected', 'true');
         }
 
-        // 在控制台显���详细信息
-        console.log('✅ 已选中iframe中的元素:', {
+        // 在控制台显示详细信息
+        console.log(`${mode === 'preview' ? '👁️ 预览' : '🔒 锁定选中'}iframe中的元素:`, {
           tagName: targetElement.tagName,
           id: targetElement.id || '无',
           className: targetElement.className || '无',
-          element: targetElement
+          element: targetElement,
+          mode: mode
         });
 
-        // 临时添加一个明显的视觉提示
+        // 添加对应模式的视觉提示
         const originalTitle = targetElement.title;
-        targetElement.title = '🔒 已选中 - 双击DOM树节点或点击🔓按钮解锁';
-        setTimeout(() => {
-          if (targetElement.getAttribute('data-dom-tree-selected')) {
-            targetElement.title = originalTitle;
-          }
-        }, 3000);
+        if (mode === 'preview') {
+          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
+          setTimeout(() => {
+            if (targetElement.getAttribute('data-dom-tree-preview')) {
+              targetElement.title = originalTitle;
+            }
+          }, 2000);
+        } else {
+          targetElement.title = '🔒 已锁定 - 双击DOM树节点或点击🔓按钮解锁';
+          setTimeout(() => {
+            if (targetElement.getAttribute('data-dom-tree-selected')) {
+              targetElement.title = originalTitle;
+            }
+          }, 3000);
+        }
 
       } else {
         console.warn('❌ 未找到iframe中对应的元素');
@@ -1333,7 +1343,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
 
-        // 使用iframe的window来获取计算样式
+        // ���用iframe的window来获取计算样式
         const iframeWindow = iframe.contentWindow;
         if (iframeWindow && targetElement.ownerDocument === iframe.contentDocument) {
           const computedStyle = iframeWindow.getComputedStyle(targetElement);
@@ -1718,11 +1728,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="直接输入文本..."
+                  placeholder="���接输入文本..."
                   className="mt-1"
                 />
 
-                {/* Textarea���为备用 */}
+                {/* Textarea作为备用 */}
                 <Textarea
                   value={localTextContent}
                   onChange={(e) => {
@@ -2306,7 +2316,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
-                    ✅ 已过滤不可操作元素
+                    ✅ 已过滤不可��作元素
                   </p>
                 )}
                 {showAllElements && (
