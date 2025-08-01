@@ -96,7 +96,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
-      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
+      element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
 
@@ -272,7 +272,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 页面加载时和选��元素变化时更��DOM树
+  // 页面加载时和选��元素变化时更����DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -480,7 +480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当选中元���变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -1103,7 +1103,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             setElementData(null);
           }
 
-          // 刷新DOM树
+          // ���新DOM树
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 100);
@@ -1224,7 +1224,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // 移除之前的高亮样式
+      // ���除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview');
@@ -2269,11 +2269,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </span>
                     </div>
                 </div>
-                  <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-xs">
+                  <button
+                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs transition-colors"
+                    onClick={() => {
+                      const newMode = selectionMode === 'preview' ? 'locked' : 'preview';
+                      setSelectionMode(newMode);
+                      if (newMode === 'preview') {
+                        // 切换到预览模式时清除锁定状态
+                        setSelectedNodeElement(null);
+                        clearIframePreviewStyles();
+                      }
+                      console.log(`切换到${newMode === 'preview' ? '预览' : '锁定'}模式`);
+                    }}
+                    title={`当前：${selectionMode === 'preview' ? '预览模式' : '锁定模式'}，点击切换`}
+                  >
                     <span className={`${selectionMode === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
                     <span className="text-gray-400">|</span>
                     <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
-                  </div>
+                  </button>
                 </div>
                 <div className="flex gap-1">
                 <Button
