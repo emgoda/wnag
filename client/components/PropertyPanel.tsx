@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强���展开body����点
+        // 强��展开body����点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不��的方式获取文本内容
+      // 尝试不同的方式获取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -633,7 +633,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变���:', value);
+    console.log('文本输入变��:', value);
 
     // 立即更新本地状态，确保输��响���
     setLocalTextContent(value);
@@ -678,7 +678,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元素���制���功');
+      console.log('元素��制���功');
     } catch (error) {
       console.error('复制元素失���:', error);
     }
@@ -903,7 +903,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          �����系我们
+          ����系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -914,7 +914,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">��������箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">����������箱</label>
             <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素��容查找对应的DOM树�����点
+        // 尝试通过元素��容查找对应的DOM树����点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1137,7 +1137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         try {
           iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
         } catch (crossOriginError) {
-          console.warn('跨域���问被阻止，跳过删除操作:', crossOriginError);
+          console.warn('跨域��问被阻止，跳过删除操作:', crossOriginError);
           return;
         }
         if (iframeElement && iframeElement.parentNode) {
@@ -1185,7 +1185,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     setContextMenu(prev => ({ ...prev, show: false }));
   };
 
-  // 清除iframe中的��览样式
+  // 清除iframe中的预览样式
   const clearIframePreviewStyles = () => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点 - 纯预览模式，��锁定交互
+  // 选择DOM节点 - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1791,7 +1791,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
-                        <SelectItem value="_parent">父窗��</SelectItem>
+                        <SelectItem value="_parent">父窗口</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2098,7 +2098,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 内边距 */}
+                  {/* 内���距 */}
                   <div>
                     <Label className="text-xs font-medium">内边距</Label>
                     <div className="grid grid-cols-3 gap-2 items-center mt-2">
@@ -2308,7 +2308,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectValue placeholder="-- 请��择 --" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="hero-section">Hero 区域</SelectItem>
+                    <SelectItem value="hero-section">Hero ��域</SelectItem>
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} ��根���点
+                  ��加载 {domTree.length} 个根���点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
