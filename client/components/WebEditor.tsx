@@ -695,7 +695,7 @@ export default function WebEditor() {
                                       tag: 'input',
                                       attributes: {
                                         type: 'text',
-                                        placeholder: '请输入...'
+                                        placeholder: '��输入...'
                                       }
                                     }, 'insert');
                                   }
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选���2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1176,26 +1176,26 @@ export default function WebEditor() {
                             const addElementToPage = (window as any).addElementToPage;
                             if (addElementToPage) {
                               const cardIconsHTML = `
-                                <div style="max-width: 340px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
-                                  <h3 style="margin: 0 0 16px 0; text-align: center; font-size: 16px; font-weight: 600; color: #1f2937;">支持的支付方式</h3>
+                                <div style="max-width: 340px; margin: 20px auto; padding: 24px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                  <h3 style="margin: 0 0 20px 0; text-align: center; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">支持的支付方式</h3>
 
-                                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                                  <div style="display: flex; flex-direction: column; gap: 16px;">
                                     <!-- VISA -->
-                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #1a1f71; border-radius: 8px; background: linear-gradient(135deg, #1a1f71 0%, #0f3cc9 100%); position: relative; overflow: hidden;">
-                                      <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transform: rotate(45deg);"></div>
+                                    <div style="display: flex; align-items: center; padding: 16px 20px; border: none; border-radius: 16px; background: linear-gradient(135deg, #1a1f71 0%, #0f3cc9 100%); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(26, 31, 113, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 16px 40px rgba(26, 31, 113, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(26, 31, 113, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'">
+                                      <div style="position: absolute; top: -15px; right: -15px; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 70%); border-radius: 50%; animation: pulse 3s infinite;"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 18px; font-weight: bold; letter-spacing: 2px; font-family: Arial, sans-serif;">VISA</div>
-                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-top: 2px;">全球通用</div>
+                                        <div style="color: white; font-size: 20px; font-weight: 900; letter-spacing: 3px; font-family: 'Helvetica Neue', Arial, sans-serif; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">VISA</div>
+                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 4px; font-weight: 500;">全球通用</div>
                                       </div>
                                       <div style="color: white; font-size: 20px;">💳</div>
                                     </div>
 
                                     <!-- MASTERCARD -->
-                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #eb001b; border-radius: 8px; background: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%); position: relative; overflow: hidden;">
-                                      <div style="position: absolute; top: -5px; right: 20px; width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50%;"></div>
+                                    <div style="display: flex; align-items: center; padding: 16px 20px; border: none; border-radius: 16px; background: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(235, 0, 27, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 16px 40px rgba(235, 0, 27, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(235, 0, 27, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'">
+                                      <div style="position: absolute; top: -10px; right: 15px; width: 50px; height: 50px; background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 70%); border-radius: 50%;"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 15px; font-weight: bold; font-family: Arial, sans-serif;">MasterCard</div>
-                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 2px;">安全便捷</div>
+                                        <div style="color: white; font-size: 16px; font-weight: 900; font-family: 'Helvetica Neue', Arial, sans-serif; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">MasterCard</div>
+                                        <div style="color: rgba(255, 255, 255, 0.95); font-size: 12px; margin-top: 4px; font-weight: 500;">安全便捷</div>
                                       </div>
                                       <div style="display: flex; align-items: center;">
                                         <div style="width: 20px; height: 20px; background: #eb001b; border-radius: 50%; margin-right: -8px; z-index: 1;"></div>
@@ -1204,12 +1204,12 @@ export default function WebEditor() {
                                     </div>
 
                                     <!-- AMERICAN EXPRESS -->
-                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #006fcf; border-radius: 8px; background: linear-gradient(135deg, #006fcf 0%, #00aadd 100%); position: relative; overflow: hidden;">
-                                      <div style="position: absolute; bottom: -15px; left: -15px; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%;"></div>
+                                    <div style="display: flex; align-items: center; padding: 16px 20px; border: none; border-radius: 16px; background: linear-gradient(135deg, #006fcf 0%, #00aadd 100%); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 111, 207, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 16px 40px rgba(0, 111, 207, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0, 111, 207, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'">
+                                      <div style="position: absolute; bottom: -20px; left: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 70%); border-radius: 50%;"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 13px; font-weight: bold; font-family: Arial, sans-serif;">AMERICAN</div>
-                                        <div style="color: white; font-size: 13px; font-weight: bold; font-family: Arial, sans-serif; margin-top: -2px;">EXPRESS</div>
-                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 11px; margin-top: 2px;">高端服务</div>
+                                        <div style="color: white; font-size: 13px; font-weight: 900; font-family: 'Helvetica Neue', Arial, sans-serif; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">AMERICAN</div>
+                                        <div style="color: white; font-size: 13px; font-weight: 900; font-family: 'Helvetica Neue', Arial, sans-serif; margin-top: -2px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">EXPRESS</div>
+                                        <div style="color: rgba(255, 255, 255, 0.9); font-size: 11px; margin-top: 4px; font-weight: 500;">高端服务</div>
                                       </div>
                                       <div style="color: white; font-size: 20px;">◆</div>
                                     </div>
