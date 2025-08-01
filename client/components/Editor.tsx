@@ -108,7 +108,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       }
     });
 
-    console.log('已为', addedListeners, '个元素添加事件监听器');
+    console.log('已为', addedListeners, '个元素添加��件监听器');
   };
 
   // 鼠标悬停效果
@@ -153,8 +153,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       setSelectedElement(target);
 
       // 通知父组件
+      console.log('通知父组件元素选择:', target.tagName, !!onElementSelect);
       if (onElementSelect) {
         onElementSelect(target);
+      } else {
+        console.warn('onElementSelect回调不存在');
       }
     }
   };
