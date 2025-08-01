@@ -257,6 +257,34 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           <Button
             variant="outline"
             size="sm"
+            onClick={() => {
+              const iframe = iframeRef.current;
+              if (iframe && iframe.contentDocument) {
+                const doc = iframe.contentDocument;
+                console.log('页面内容检查:', {
+                  title: doc.title,
+                  bodyHTML: doc.body?.innerHTML?.substring(0, 200),
+                  elementCount: doc.querySelectorAll('*').length,
+                  hasContent: doc.body?.children.length > 0
+                });
+
+                // 如果页面有内容，自动选择第一个可见元素
+                const firstElement = doc.querySelector('h1, h2, h3, p, div, a, button');
+                if (firstElement && firstElement instanceof HTMLElement) {
+                  console.log('自动选择第一个元素:', firstElement.tagName);
+                  firstElement.click();
+                }
+              }
+            }}
+            className="text-xs"
+            title="检查页面内容并自动选择元素"
+          >
+            🎯 自动选择
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleRefreshPreview}
           >
             <RefreshCw className="w-4 h-4" />
