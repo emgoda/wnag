@@ -46,7 +46,7 @@ export default function WebEditor() {
 <body>
     <div class="container">
         <h1>欢���来到我的网站</h1>
-        <p>这是一个示例页面，您可以编��HTML内容来自定义页面。</p>
+        <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
     </div>
 </body>
 </html>`,
@@ -85,7 +85,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用���同的路由');
+      alert('路由已存在，请使用�����同的路由');
       return;
     }
 
@@ -485,7 +485,7 @@ export default function WebEditor() {
                 </div>
 
                 <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
-                  💡 点击元素下方的按钮来插入、替换或���加元素
+                  💡 点击元素下方的按钮来插入、替换或���加元��
                 </div>
 
                 <div className="space-y-3">
@@ -917,7 +917,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
