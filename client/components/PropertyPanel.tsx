@@ -9,11 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import {
   Settings, Type, Palette, Box, Image, Link2,
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
   Bold, Italic, Underline, Eye, EyeOff, ChevronRight, ChevronDown,
-  Code, FileText
+  Code, FileText, MoreVertical, Copy, Trash2, Move, Edit3,
+  ArrowUp, ArrowDown
 } from 'lucide-react';
 
 interface PropertyPanelProps {
