@@ -125,7 +125,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
 
-    // 如果是以上任何一种情况，则不可操作
+    // 如果是以上任何一种情况，则不���操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -190,7 +190,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
-      console.log('当前页面���有iframe的title属��:',
+      console.log('当前页面所有iframe的title属��:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
@@ -232,7 +232,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
-          console.log('DOM树构建成功，节点数:', tree.length);
+          console.log('DOM树构建成功，节��数:', tree.length);
         } else {
           console.log('使用body容器构建DOM树');
           const tree = buildDOMTree(body);
@@ -587,13 +587,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输����应
+    // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
 
     // 同时更������elementData状态
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
 
-    // 如果有选中的元素，尝试更新实际DOM
+    // 如果有选中的���素，尝试更新实际DOM
     if (selectedElement) {
       try {
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
@@ -838,7 +838,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优��的架构设计，提供极���的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -902,7 +902,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基���功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
@@ -991,7 +991,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">����</div>
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">���先生</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
@@ -1222,7 +1222,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         targetElement = doc.querySelector(`[data-node-id="${nodeId}"]`);
       }
 
-      // 如果没有找到对应元素，尝试其他方式查找
+      // 如果没有找��对应元素，尝试其他方式查找
       if (!targetElement) {
         // 通过标签名、id、class等特征查找
         const tagName = element.tagName.toLowerCase();
@@ -1255,7 +1255,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
 
         // 在控制台显示详细信息
-        console.log(`${mode === 'preview' ? '👁�� 预览' : '🔒 锁定选中'}iframe中的元素:`, {
+        console.log(`${mode === 'preview' ? '👁️ 预览' : '🔒 锁定选中'}iframe中的元素:`, {
           tagName: targetElement.tagName,
           id: targetElement.id || '无',
           className: targetElement.className || '无',
@@ -1616,6 +1616,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
+                  <p className="text-blue-500">
+                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                  </p>
                 </div>
               )}
             </div>
@@ -2175,7 +2178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </Select>
               </div>
 
-              {/* 开始生��按钮 */}
+              {/* 开始生成按钮 */}
               <Button
                 onClick={handleTemplateGeneration}
                 className="w-full bg-blue-500 hover:bg-blue-600"
@@ -2318,12 +2321,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选中的元素');
+                      console.log('没有选中的���素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元��"
+                  title="跳转到当前选中的元����"
                 >
                   🎯
                 </Button>
@@ -2354,14 +2357,17 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
-                    ✅ 已过滤��可操作元素
+                    ✅ 已过滤不可操作元素
                   </p>
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括���可操作的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
+                <p className="text-blue-500">
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                </p>
               </div>
             )}
           </div>
