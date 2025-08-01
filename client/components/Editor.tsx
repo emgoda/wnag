@@ -162,6 +162,19 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     }
   };
 
+  // 生成或获取元素的唯一ID
+  const getElementNodeId = (element: HTMLElement): string => {
+    // 如果元素已经有data-node-id，直接返回
+    if (element.hasAttribute('data-node-id')) {
+      return element.getAttribute('data-node-id')!;
+    }
+
+    // 生成新的唯一ID
+    const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    element.setAttribute('data-node-id', nodeId);
+    return nodeId;
+  };
+
   // 元素点击选择
   const handleElementClick = (e: Event) => {
     if (!elementSelectMode) return;
@@ -173,33 +186,30 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     if (target && target !== document.documentElement && target !== document.body) {
       console.log('选中元素:', target.tagName, target.className, target.id);
 
-      // 清除之前的选中状态
-      const iframe = iframeRef.current;
-      if (iframe && iframe.contentDocument) {
-        const prevSelected = iframe.contentDocument.querySelectorAll('.element-selected');
-        prevSelected.forEach(el => el.classList.remove('element-selected'));
-      }
+      // 生成或获取元素ID
+      const nodeId = getElementNodeId(target);
 
-      // 添加选中状态
-      target.classList.add('element-selected');
+      // 设置选中状态
       setSelectedElement(target);
 
-      // 通知父组件 - 立即调用
-      console.log('通知父组件元素选择:', {
-        tagName: target.tagName,
-        hasCallback: !!onElementSelect,
-        element: target
-      });
+      // 使用新的nodeId回���
+      if (onNodeSelect) {
+        try {
+          onNodeSelect(nodeId);
+          console.log('✅ 成功调用onNodeSelect回调，nodeId:', nodeId);
+        } catch (error) {
+          console.error('❌ onNodeSelect回调出错:', error);
+        }
+      }
 
+      // 保持对旧回调的兼容
       if (onElementSelect) {
         try {
           onElementSelect(target);
-          console.log('✅ 成功调用onElementSelect回调');
+          console.log('✅ 成功调用onElementSelect回调（兼容）');
         } catch (error) {
           console.error('❌ onElementSelect回调出错:', error);
         }
-      } else {
-        console.warn('❌ onElementSelect回调不存在');
       }
     }
   };
