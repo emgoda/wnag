@@ -280,7 +280,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       } else {
         console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // ������body为空，等待内容加���
+        // 如���body为空，等待内容加���
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -411,7 +411,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含预����关的内容���类名
+      // 检查元素是否包含预��相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -601,7 +601,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     selectedElement.style.setProperty(property, value);
     onElementUpdate(selectedElement, property, value);
     
-    // 更新本���状态
+    // 更���本���状态
     setElementData(prev => prev ? {
       ...prev,
       styles: { ...prev.styles, [property]: value }
@@ -1044,7 +1044,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开��指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // 查找元素在DOM树中的路径
+    // 查找��素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1495,7 +1495,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      console.log('手动刷新DOM树（无选中状态）');
+                      console.log('手动刷新DOM树（无��中状态）');
                       getDOMTreeFromIframe();
                     }}
                     className="h-6 px-2 text-xs"
@@ -1516,7 +1516,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                   {!showAllElements && (
                     <p className="text-gray-500">
-                      ✅ ���过滤不可操作元素
+                      ✅ 已过滤不可操作元素
                     </p>
                   )}
                   {showAllElements && (
@@ -2173,7 +2173,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   >
                     <span className={`${true ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
                     <span className="text-gray-400">|</span>
-                    <span className={`${selectionMode === 'locked' ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
+                    <span className={`${false ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
                   </button>
                 </div>
                 <div className="flex gap-1">
@@ -2215,7 +2215,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('展开所有DOM���点');
+                    console.log('展开所有DOM节点');
                     const expandAllNodes = (nodes: DOMNode[]): DOMNode[] => {
                       return nodes.map(node => ({
                         ...node,
@@ -2282,7 +2282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-green-500">
-                  👁️ 预览模式：选中元素保持可���互
+                  👁️ 预览模式：选中元素保持可交互
                 </p>
               </div>
             )}
