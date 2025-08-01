@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本�����文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -463,7 +463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       };
 
       setElementData(newElementData);
-      setLocalTextContent(textContent); // 同���本地文本����态
+      setLocalTextContent(textContent); // 同���本地文本��态
     } else {
       setElementData(null);
     }
@@ -634,7 +634,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向上��动元���
+  // 向上移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -820,7 +820,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务���卓越��������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -831,12 +831,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保�����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极�����用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -861,7 +861,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓名</label>
-            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="text" placeholder="请输��您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���箱</label>
@@ -1039,7 +1039,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const elementPath = findElementPath(domTree, targetElement);
 
     if (elementPath) {
-      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
+      console.log('找��元素路径，自动展开:', elementPath.map(n => n.tagName));
 
       // 展开路径上的所有节点
       const expandPath = (nodes: DOMNode[]): DOMNode[] => {
@@ -1182,7 +1182,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，��素可自由交互');
+    console.log('所有选中状态已清除，元素可自由交互');
   };
 
   // 选择DOM节点
@@ -1412,9 +1412,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           )}
           {!hasChildren && <div className="w-4" />}
 
-          <span className={`font-mono text-xs ${isHidden ? 'text-orange-600' : 'text-blue-600'}`}>
+          <span className={`font-mono text-xs ${
+            isHidden ? 'text-orange-600' :
+            isNonOperable ? 'text-red-600' :
+            'text-blue-600'
+          }`}>
             &lt;{node.tagName}&gt;
             {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
+            {isNonOperable && <span className="text-red-500 ml-1" title="不可操作元素">🔒</span>}
           </span>
 
           {node.id && (
@@ -1764,7 +1769,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">字体大���</Label>
+                      <Label className="text-xs">字体大小</Label>
                       <Input
                         value={elementData.styles['font-size'] || ''}
                         onChange={(e) => handleStyleChange('font-size', e.target.value)}
@@ -2192,7 +2197,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    console.log('手动刷新DOM树');
+                    console.log('手动刷��DOM树');
                     getDOMTreeFromIframe();
                   }}
                   className="h-6 px-2 text-xs"
@@ -2225,7 +2230,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选中的元��');
+                      console.log('没有选中的元素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
