@@ -284,7 +284,7 @@ export default function WebEditor() {
     <div className="h-screen flex flex-col bg-gray-50">
       {/* 顶部工具栏 */}
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">网���制作工具</h1>
+        <h1 className="text-2xl font-bold text-gray-900">网页制作工具</h1>
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
@@ -318,7 +318,7 @@ export default function WebEditor() {
             onClick={handleImportSingleFile}
           >
             <Upload className="w-4 h-4 mr-2" />
-            导��SingleFile
+            导入SingleFile
           </Button>
           <Button onClick={handleSave}>
             <Save className="w-4 h-4 mr-2" />
@@ -485,7 +485,7 @@ export default function WebEditor() {
                 </div>
 
                 <div className="p-2 bg-blue-50 rounded text-xs text-blue-800">
-                  💡 点击元素下方的按钮来插入、替换或���加元素
+                  💡 点击元素下方的按钮来插入、替���或���加元素
                 </div>
 
                 <div className="space-y-3">
@@ -1137,7 +1137,7 @@ export default function WebEditor() {
                                     </div>
                                   </div>
 
-                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(99, 91, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('支付功能演示 - 实际项目中需要集成真实支付网关')"
+                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(99, 91, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(99, 91, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('支付功能演示 - 实际项目中需要集���真实支付网关')"
                                     立即支付 ¥108.90
                                   </button>
 
@@ -1287,7 +1287,7 @@ export default function WebEditor() {
                   <CardContent className="space-y-2">
                     <Button variant="outline" className="w-full justify-start">
                       <Download className="w-4 h-4 mr-2" />
-                      导出所有页���
+                      导出所有页面
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="w-4 h-4 mr-2" />
