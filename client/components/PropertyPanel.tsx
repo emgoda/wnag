@@ -95,7 +95,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 不可操作的UI框架元素（通过特定属性识别）
     const hasFrameworkAttributes =
       element.hasAttribute('data-loc') || // React/框架调试属性
-      element.hasAttribute('aria-hidden') || // ARIA��藏元素
+      element.hasAttribute('aria-hidden') || // ARIA��藏��素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
@@ -125,7 +125,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 系统生成的内容元素
     const isSystemGenerated =
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
-      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
+      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的���钮等
 
     // 如果���以上任何一��情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
@@ -237,7 +237,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         bodyHasContent: !!body?.innerHTML
       });
 
-      // 检查是否有任何实际内容
+      // 检查是否有任何实际内��
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
       // 尝试查找canvas-root容器，如果没有则使用body
@@ -395,7 +395,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     };
   }, []);
 
-  // 组件挂载时立即尝试加载DOM树
+  // 组件挂载时立即尝试加载DOM���
   useEffect(() => {
     console.log('PropertyPanel��件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一个相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一���相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -587,7 +587,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // ��新本地���态
+    // ��新本�����态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -970,7 +970,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     `;
   };
 
-  // 生成客户评价模板
+  // 生成客户评价��板
   const generateTestimonial = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
@@ -1217,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中状态');
+      console.log('已清除', highlighted.length, '个元素的选中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测元素是否隐藏或不可见
+  // 检测元素是否隐藏��不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
       // 首先检查iframe中的元素（因为DOM树���的元素���能来自iframe）
@@ -1343,7 +1343,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
-          onClick={() => {
+          onClick={(e) => {
+            console.log('🖱️ DOM树节点被点击:', node.tagName, e);
             // 点击：选择元素
             handleNodeSelect(node.element);
           }}
