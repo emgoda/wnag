@@ -348,7 +348,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 当选中元素变化时，同步本地文本状态
+  // 当���中元素变化时，同步本地文本状态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -701,7 +701,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             选择适合的方��
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价��满足不同需求
+            灵活的定价，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -801,7 +801,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">张先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技术总监</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">技���总监</div>
                 </div>
               </div>
             </div>
@@ -1211,7 +1211,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
-              {/* 文字样式 */}
+              {/* 文���样式 */}
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
