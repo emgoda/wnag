@@ -41,7 +41,7 @@ interface DOMNode {
   isExpanded: boolean;
 }
 
-export default function PropertyPanel({ selectedElement, onElementUpdate }: PropertyPanelProps) {
+export default function PropertyPanel({ selectedElement, onElementUpdate, selectedNodeId, onNodeSelect }: PropertyPanelProps) {
   const [elementData, setElementData] = useState<{
     tagName: string;
     id: string;
@@ -127,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
 
-    // 如果���以上任何一种情���，则不可操作
+    // 如果���以上任何一种情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return true;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素���点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -234,7 +234,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
-          console.log('DOM��构建成功，节点数:', tree.length);
+          console.log('DOM树构建成功，节点数:', tree.length);
         } else {
           console.log('使用body容器构建DOM树');
           const tree = buildDOMTree(body);
@@ -355,7 +355,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页����内容变化，实时更新DOM树
+  // 监听页���内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -436,7 +436,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文�������，确��获������到正确的文本
+      // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -553,7 +553,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const lastInput = allInputs[allInputs.length - 1];
           if (lastInput) {
             lastInput.setAttribute('placeholder', value || '');
-            console.log('已更新最后一个input placeholder为:', value);
+            console.log('已更新���后一个input placeholder为:', value);
           } else {
             console.log('未找到input元素');
           }
@@ -722,7 +722,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 删除��素
+  // 删除元素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -779,7 +779,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         templateHTML = '<div>未知模板</div>';
     }
 
-    // 添��到页面
+    // ����到页面
     addElementToPage({
       tag: 'div',
       content: templateHTML,
@@ -831,7 +831,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业的服务，卓越����������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -842,7 +842,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保������的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的���当前选中的元素，清除选中状态
+          // 如果删����的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1155,7 +1155,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 清除所有选中状态
   const clearSelection = () => {
-    console.log('开始清除选中状态...');
+    console.log('开始清除选��状态...');
 
     // 清除组件内部状态
     setSelectedNodeElement(null);
@@ -1639,7 +1639,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     </p>
                   )}
                   <p className="text-blue-500">
-                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁����模式：元素已锁定选择'}
+                    {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
@@ -2200,7 +2200,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </Select>
               </div>
 
-              {/* 开始生成按钮 */}
+              {/* 开���生成按钮 */}
               <Button
                 onClick={handleTemplateGeneration}
                 className="w-full bg-blue-500 hover:bg-blue-600"
