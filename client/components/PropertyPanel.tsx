@@ -131,7 +131,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('从HTML根元素构建DOM树');
       } else {
         console.log('iframe内容为空，等待加载...');
-        // 如果body为空，等待内容加载
+        // 如果body为空，等待内容���载
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -349,8 +349,29 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       // 更新iframe中的实际元素
-      selectedElement.textContent = value;
-      console.log('已更新元素textContent:', selectedElement.textContent);
+      // 对于某些元素，直接设置textContent可能更好
+      if (selectedElement.children.length === 0) {
+        // 如果元素没有子元素，直接设置textContent
+        selectedElement.textContent = value;
+      } else {
+        // 如果有子元素，尝试只更新文本节点
+        const textNodes = Array.from(selectedElement.childNodes).filter(
+          node => node.nodeType === Node.TEXT_NODE
+        );
+        if (textNodes.length > 0) {
+          textNodes[0].textContent = value;
+        } else {
+          // 如果没有文本节点，创建一个
+          const textNode = document.createTextNode(value);
+          selectedElement.insertBefore(textNode, selectedElement.firstChild);
+        }
+      }
+
+      console.log('已更新元素文本:', {
+        textContent: selectedElement.textContent,
+        innerText: selectedElement.innerText,
+        value: value
+      });
 
       // 通知父组件内容已更改
       if (onElementUpdate) {
@@ -371,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制���元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -541,7 +562,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟��击事件来触发父组件的选择
+    // 模�����击事件来触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -648,7 +669,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编辑
+                点击预览中的元素或下方DOM树进行编��
               </p>
             </div>
           </div>
@@ -1150,7 +1171,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('��制刷新DOM树');
+                      console.log('强制刷新DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
