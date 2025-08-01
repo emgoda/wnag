@@ -293,7 +293,7 @@ export default function WebEditor() {
             disabled={historyIndex < 0}
           >
             <Undo className="w-4 h-4 mr-2" />
-            撤销
+            撤��
           </Button>
           <Button
             variant="outline"
@@ -516,7 +516,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 插入
+                                📝 ��入
                               </Button>
                               <Button
                                 variant="outline"
@@ -1087,7 +1087,7 @@ export default function WebEditor() {
                                     <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
-                                    <h2 style="margin: 0; font-size: 24px; font-weight: 600; color: #1f2937;">安全支付</h2>
+                                    <h2 style="margin: 0; font-size: 20px; font-weight: 600; color: #1f2937;">安全支付</h2>
                                     <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
                                   </div>
 
