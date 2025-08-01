@@ -24,6 +24,12 @@ interface PropertyPanelProps {
   onElementUpdate?: (element: HTMLElement, property: string, value: string) => void;
 }
 
+interface TemplateSettings {
+  inputShadow: boolean;
+  inputThemeColor: boolean;
+  buttonTransparent: boolean;
+}
+
 interface DOMNode {
   element: HTMLElement;
   tagName: string;
@@ -93,12 +99,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!editorIframe) {
       // 最后尝试找任何iframe
       editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
-      console.log('使用通用选择器找到iframe:', !!editorIframe);
+      console.log('使用通���选择器找到iframe:', !!editorIframe);
     }
 
     if (!editorIframe) {
       console.log('未找到iframe元素');
-      console.log('当前页面��有iframe的title属性:',
+      console.log('当前页面所有iframe的title属性:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
     }
@@ -132,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         // 尝试从html根元素开始构建
         const tree = buildDOMTree(html);
         setDomTree([tree]);
-        console.log('从HTML根元素构建DOM树');
+        console.log('从HTML根元��构建DOM树');
       } else {
         console.log('iframe内容为空，等待加载...');
         // 如果body为空，等待内容加载
@@ -226,7 +232,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页面内容变化，实���更新DOM树
+  // 监听页面内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -399,7 +405,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
       selectedElement.parentNode?.insertBefore(cloned, selectedElement.nextSibling);
 
-      // 更新页面���容
+      // 更新页面内容
       updateParentContent();
 
       // 重新获取DOM树
@@ -800,7 +806,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="content">内容</TabsTrigger>
-              <TabsTrigger value="style">样式</TabsTrigger>
+              <TabsTrigger value="style">样��</TabsTrigger>
               <TabsTrigger value="attributes">属性</TabsTrigger>
             </TabsList>
 
