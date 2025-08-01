@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // ��地文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本地文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -189,7 +189,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载完成�����触发');
+          console.log('iframe加载完成�������触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -311,7 +311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文本内���，确保获�����到正确的文本
+      // 获取文��内���，确保获�����到正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -367,38 +367,32 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 特��处理：当修改data-title时，同时更新对应的label文本
+    // 特殊处理：当修改data-title时，同时更新对应的label文本
     if (attribute === 'data-title') {
-      let labelElement = null;
+      // 使用延时确保DOM已更新
+      setTimeout(() => {
+        let labelElement = null;
+        let targetElement = selectedElement;
 
-      // 情况1：当前元素就是包含label的容器
-      labelElement = selectedElement.querySelector('label');
-
-      // 情况2：当前元素是input，需要找到同级的label
-      if (!labelElement && selectedElement.tagName === 'INPUT') {
-        const container = selectedElement.parentElement;
-        if (container) {
-          labelElement = container.querySelector('label');
+        // 如果选中的是input，向上找容器
+        if (selectedElement.tagName === 'INPUT') {
+          targetElement = selectedElement.parentElement || selectedElement;
         }
-      }
 
-      // 情况3：当前元素是label本身
-      if (!labelElement && selectedElement.tagName === 'LABEL') {
-        labelElement = selectedElement;
-      }
+        // 在目标元素及其父元素中查找label
+        labelElement = targetElement.querySelector('label');
+        if (!labelElement && targetElement.parentElement) {
+          labelElement = targetElement.parentElement.querySelector('label');
+        }
 
-      // 情况4：在父元素中查找
-      if (!labelElement && selectedElement.parentElement) {
-        labelElement = selectedElement.parentElement.querySelector('label');
-      }
-
-      if (labelElement) {
-        labelElement.textContent = value || '标题';
-        labelElement.setAttribute('data-title', value || '标题');
-        console.log('已更新标题为:', value);
-      } else {
-        console.log('未找到label元素，选中的元素是:', selectedElement.tagName, selectedElement);
-      }
+        if (labelElement) {
+          labelElement.textContent = value || '标题';
+          labelElement.setAttribute('data-title', value || '标题');
+          console.log('已更新标题为:', value, '找到的label:', labelElement);
+        } else {
+          console.log('未找到label元素，选中的元素是:', selectedElement.tagName, selectedElement.outerHTML?.substring(0, 100));
+        }
+      }, 50);
     }
 
     onElementUpdate(selectedElement, attribute, value);
@@ -759,7 +753,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ ���先支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
@@ -816,7 +810,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
+                "��队协作效率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -862,7 +856,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleNodeSelect = (element: HTMLElement) => {
     setSelectedNodeElement(element);
 
-    // 清除��前的高亮
+    // 清除之前的高亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
@@ -1039,7 +1033,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-xs">DOM树��空</p>
+                    <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
                       请导入页面或点击"刷新"
                     </p>
@@ -1162,7 +1156,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     // 更新DOM元素
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
-                      console.log('🟢 DOM更新完��:', selectedElement.textContent);
+                      console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
                   placeholder="直接输入文本..."
