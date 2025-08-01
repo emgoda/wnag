@@ -641,7 +641,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 插��
+                                📝 插入
                               </Button>
                               <Button
                                 variant="outline"
@@ -668,7 +668,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按���文本'
+                                      content: '按钮文本'
                                     }, 'append');
                                   }
                                 }}
@@ -1014,7 +1014,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选��2</option><option value="3">选项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选���3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
