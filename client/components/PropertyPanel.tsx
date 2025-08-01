@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     root.childNodes.forEach((node) => {
       if (node.nodeType === 1) { // Element
         const element = node as HTMLElement;
-        // 跳过script和style元素
+        // 跳��script和style元素
         if (element.tagName.toLowerCase() !== 'script' && element.tagName.toLowerCase() !== 'style') {
           res.push({
             element,
@@ -144,17 +144,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 检查是否有任何实际内容
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      if (body) {
-        // 总是构建DOM树，不管body是否有子元素
-        const tree = buildDOMTree(body);
-        console.log('DOM树构建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
-        console.log('DOM树对象:', tree);
+      // 尝试查找canvas-root容器，如果没有则使用body
+      const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
+      const containerElement = canvasRoot || body;
 
-        // 强制设置为展开状态
-        tree.isExpanded = true;
-
-        setDomTree([tree]);
-        console.log('已设置domTree，当前长度:', 1);
+      if (containerElement) {
+        // 如果找到canvas-root，直接构建其子树；否则构建body树
+        if (canvasRoot) {
+          console.log('找到canvas-root容器，构建子树');
+          const tree = buildTree(canvasRoot);
+          setDomTree(tree);
+          console.log('DOM树构建成功，节点数:', tree.length);
+        } else {
+          console.log('使用body容器构建DOM树');
+          const tree = buildDOMTree(body);
+          tree.isExpanded = true;
+          setDomTree([tree]);
+          console.log('DOM树构建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+        }
 
         // 强制展开body��点
         setTimeout(() => {
@@ -764,7 +771,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
-            <textarea placeholder="请��入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
+            <textarea placeholder="请输入您的留言..." style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; min-height: 120px; resize: vertical; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"></textarea>
           </div>
           <button type="submit" style="width: 100%; background: linear-gradient(135deg, ${themeColor}, #1d4ed8); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-2px) scale(1.02)'; this.style.boxShadow='0 16px 40px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'" onclick="alert('感谢您的留言！我们会尽快回复。');">
             发送留言
@@ -800,7 +807,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
-                选择基础版
+                选择基��版
               </button>
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -946,7 +953,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟��击事件来���发父组件的选择
+    // 模拟��击事件来触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -1120,7 +1127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入页面或点击"��新"
+                      请导入页面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1244,7 +1251,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="直接��入文本..."
+                  placeholder="直接输入文本..."
                   className="mt-1"
                 />
 
