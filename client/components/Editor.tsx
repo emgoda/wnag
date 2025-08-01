@@ -302,52 +302,96 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             }}
             onDragOver={(e) => {
               e.preventDefault();
-              e.currentTarget.classList.add('border-blue-400', 'border-2', 'border-dashed');
+              e.stopPropagation();
+              const target = e.currentTarget as HTMLElement;
+              target.style.border = '2px dashed #3b82f6';
+              target.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+              console.log('拖拽悬停在编辑器上');
             }}
             onDragLeave={(e) => {
-              e.currentTarget.classList.remove('border-blue-400', 'border-2', 'border-dashed');
+              e.preventDefault();
+              e.stopPropagation();
+              const target = e.currentTarget as HTMLElement;
+              target.style.border = '';
+              target.style.backgroundColor = '';
+              console.log('拖拽离开编辑器');
             }}
             onDrop={(e) => {
               e.preventDefault();
-              e.currentTarget.classList.remove('border-blue-400', 'border-2', 'border-dashed');
+              e.stopPropagation();
+
+              const target = e.currentTarget as HTMLElement;
+              target.style.border = '';
+              target.style.backgroundColor = '';
+
+              console.log('拖拽放置事件触发');
 
               try {
-                const dragData = JSON.parse(e.dataTransfer.getData('text/plain'));
+                const dragDataString = e.dataTransfer.getData('text/plain');
+                console.log('获取到的拖拽数据字符串:', dragDataString);
+
+                if (!dragDataString) {
+                  console.error('拖拽数据为空');
+                  return;
+                }
+
+                const dragData = JSON.parse(dragDataString);
+                console.log('解析后的拖拽数据:', dragData);
 
                 if (dragData.type === 'element') {
-                  console.log('拖拽放置元素:', dragData);
+                  console.log('开始处理元素拖拽:', dragData);
+
+                  // 获取iframe和文档
+                  const iframe = iframeRef.current;
+                  if (!iframe) {
+                    console.error('iframe引用不存在');
+                    return;
+                  }
+
+                  const doc = iframe.contentDocument || iframe.contentWindow?.document;
+                  if (!doc) {
+                    console.error('无法访问iframe文档');
+                    return;
+                  }
+
+                  console.log('iframe文档访问成功，body存在:', !!doc.body);
 
                   // 创建新元素
-                  const iframe = iframeRef.current;
-                  if (iframe && iframe.contentDocument) {
-                    const doc = iframe.contentDocument;
-                    const newElement = doc.createElement(dragData.tag);
+                  const newElement = doc.createElement(dragData.tag);
+                  console.log('创建元素:', newElement.tagName);
 
-                    // 设置内容
-                    if (dragData.content) {
-                      if (dragData.content.includes('<')) {
-                        newElement.innerHTML = dragData.content;
-                      } else {
-                        newElement.textContent = dragData.content;
-                      }
+                  // 设置内容
+                  if (dragData.content) {
+                    if (dragData.content.includes('<')) {
+                      newElement.innerHTML = dragData.content;
+                    } else {
+                      newElement.textContent = dragData.content;
                     }
-
-                    // 设置属性
-                    if (dragData.attributes) {
-                      Object.entries(dragData.attributes).forEach(([key, value]) => {
-                        newElement.setAttribute(key, value as string);
-                      });
-                    }
-
-                    // 添加到页面body
-                    doc.body.appendChild(newElement);
-
-                    // 通知内容变化
-                    const updatedHTML = doc.documentElement.outerHTML;
-                    onChange(updatedHTML);
-
-                    console.log('✅ 元素添加成功:', dragData.tag);
+                    console.log('设置元素内容:', dragData.content);
                   }
+
+                  // 设置属性
+                  if (dragData.attributes) {
+                    Object.entries(dragData.attributes).forEach(([key, value]) => {
+                      newElement.setAttribute(key, value as string);
+                    });
+                    console.log('设置元素属性:', dragData.attributes);
+                  }
+
+                  // 添加到页面body
+                  doc.body.appendChild(newElement);
+                  console.log('元素已添加到body，当前body子元素数:', doc.body.children.length);
+
+                  // 重新设置元素选择功能
+                  setTimeout(() => {
+                    setupElementSelection();
+                  }, 100);
+
+                  // 通知内容变化
+                  const updatedHTML = doc.documentElement.outerHTML;
+                  onChange(updatedHTML);
+
+                  console.log('✅ 元素添加成功，已通知父组件更新内容');
                 }
               } catch (error) {
                 console.error('拖拽处理失败:', error);
@@ -363,7 +407,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           </div>
         </div>
         
-        {/* 元素插入工具 */}
+        {/* 元素插入���具 */}
         <ElementInserter
           iframeRef={iframeRef}
           onContentChange={onChange}
