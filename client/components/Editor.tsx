@@ -226,7 +226,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     if (!iframe) return;
 
     const handleLoad = () => {
-      console.log('iframe加载完成，设置元素��择');
+      console.log('iframe加载完成，设置元素选择');
       setTimeout(() => {
         setupElementSelection();
       }, 200);
@@ -250,7 +250,15 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
   // 添加元素到页面
   const addElementToPage = (elementData: any, action: 'insert' | 'replace' | 'append') => {
     const iframe = iframeRef.current;
-    const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+    let doc;
+
+    try {
+      doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+    } catch (error) {
+      console.error('跨域访问被阻止:', error);
+      alert('由于安全限制无法编辑内容，请刷新页面后重试');
+      return;
+    }
 
     if (!doc || !doc.body) {
       alert('无法访问页面文档，请刷新后重试');
