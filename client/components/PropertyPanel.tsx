@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style标签，但保留其他所��元素
+        // 跳过script和style标签，但保留其他所有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -189,7 +189,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加载���成事件触发');
+          console.log('iframe加载完成事件触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -311,7 +311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文本内容，确保获取到正确的���本
+      // 获取文本内容，确保获取到��确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -490,7 +490,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格式���否正确');
+        alert('HTML编辑失败，请检��格式是否正确');
       }
     }
   };
@@ -603,7 +603,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-            发现无限可能，创造美好未来
+            发现无限可能，创造美���未来
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -669,7 +669,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓��</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓名</label>
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -782,7 +782,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "团队���作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
+                "团队协作效率大大提升，数据分析功能特别实用，强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -887,7 +887,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const isSelected = selectedElement === node.element;
     const paddingLeft = depth * 16;
 
-    // 获取元素的文本内容预览（��20����字符）
+    // 获取元素的文本内容预览（��20������符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1240,7 +1240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                           <SelectValue placeholder="选择" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="normal">正常</SelectItem>
+                          <SelectItem value="normal">���常</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
                           <SelectItem value="lighter">细体</SelectItem>
                         </SelectContent>
