@@ -287,6 +287,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         <div
           className={`h-full bg-gray-100 overflow-auto ${previewMode === 'desktop' ? '' : 'flex items-center justify-center'}`}
           style={{ minHeight: 'calc(100vh - 200px)' }}
+          onDragOver={(e) => {
+            e.preventDefault();
+            console.log('外层容器 dragOver');
+          }}
+          onDrop={handleDropOnEditor}
         >
           <div
             className={`transition-all duration-300 ${
@@ -299,103 +304,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
               height: deviceSizes[previewMode as keyof typeof deviceSizes].height,
               maxWidth: '100%',
               maxHeight: '100%'
-            }}
-            onDragOver={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              const target = e.currentTarget as HTMLElement;
-              target.style.border = '2px dashed #3b82f6';
-              target.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-              console.log('拖拽悬停在编辑器上');
-            }}
-            onDragLeave={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              const target = e.currentTarget as HTMLElement;
-              target.style.border = '';
-              target.style.backgroundColor = '';
-              console.log('拖拽离开编辑器');
-            }}
-            onDrop={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-
-              const target = e.currentTarget as HTMLElement;
-              target.style.border = '';
-              target.style.backgroundColor = '';
-
-              console.log('拖拽放置事件触发');
-
-              try {
-                const dragDataString = e.dataTransfer.getData('text/plain');
-                console.log('获取到的拖拽数据字符串:', dragDataString);
-
-                if (!dragDataString) {
-                  console.error('拖拽数据为空');
-                  return;
-                }
-
-                const dragData = JSON.parse(dragDataString);
-                console.log('解析后的拖拽数据:', dragData);
-
-                if (dragData.type === 'element') {
-                  console.log('开始处理元素拖拽:', dragData);
-
-                  // 获取iframe和文档
-                  const iframe = iframeRef.current;
-                  if (!iframe) {
-                    console.error('iframe引用不存在');
-                    return;
-                  }
-
-                  const doc = iframe.contentDocument || iframe.contentWindow?.document;
-                  if (!doc) {
-                    console.error('无法访问iframe文档');
-                    return;
-                  }
-
-                  console.log('iframe文档访问成功，body存在:', !!doc.body);
-
-                  // 创建新元素
-                  const newElement = doc.createElement(dragData.tag);
-                  console.log('创建元素:', newElement.tagName);
-
-                  // 设置内容
-                  if (dragData.content) {
-                    if (dragData.content.includes('<')) {
-                      newElement.innerHTML = dragData.content;
-                    } else {
-                      newElement.textContent = dragData.content;
-                    }
-                    console.log('设置元素内容:', dragData.content);
-                  }
-
-                  // 设置属性
-                  if (dragData.attributes) {
-                    Object.entries(dragData.attributes).forEach(([key, value]) => {
-                      newElement.setAttribute(key, value as string);
-                    });
-                    console.log('设置元素属性:', dragData.attributes);
-                  }
-
-                  // 添加到页面body
-                  doc.body.appendChild(newElement);
-                  console.log('元素已添加到body，当前body子元素数:', doc.body.children.length);
-
-                  // 重新设置元素选择功能
-                  setTimeout(() => {
-                    setupElementSelection();
-                  }, 100);
-
-                  // 通知内容变化
-                  const updatedHTML = doc.documentElement.outerHTML;
-                  onChange(updatedHTML);
-
-                  console.log('✅ 元素添加成功，已通知父组件更新内容');
-                }
-              } catch (error) {
-                console.error('拖拽处理失败:', error);
-              }
             }}
           >
             <iframe
