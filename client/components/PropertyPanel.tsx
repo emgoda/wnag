@@ -57,7 +57,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
-  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：���览或锁定
+  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
   const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // Template generation states
@@ -127,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的���钮等
 
-    // 如果���以上任何一���情况，则不可操作
+    // 如果���以上任何一��情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -354,7 +354,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清理错误
+            // 忽���清理错误
           }
         };
       } else {
@@ -390,7 +390,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // const interval = setInterval(updateDOMTree, 3000);
 
     return () => {
-      clearInterval(interval);
+      // clearInterval(interval); // 已禁用interval
       window.removeEventListener('domTreeRefresh', handleDOMTreeRefresh);
     };
   }, []);
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一����相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一���相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -594,7 +594,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     } : null);
   };
 
-  // ���新元素样式
+  // ���新元素样��
   const handleStyleChange = (property: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
     
@@ -970,7 +970,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     `;
   };
 
-  // 生成客户评价����
+  // 生成���户评价��板
   const generateTestimonial = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
@@ -1217,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素��选中状��');
+      console.log('已清除', highlighted.length, '个元素的选中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1254,10 +1254,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测��素是否隐藏��不可见
+  // 检测元素是否隐藏��不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素���能来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1353,7 +1353,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
             isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
-            '\n可操作元素'
+            '\n可���作元素'
           }${
             false ? '\n🔒 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
@@ -1521,7 +1521,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ⚠️ 显示所有元素（包括不可操作的）
+                      ⚠️ 显示所有元素（包括不可操作���）
                     </p>
                   )}
 
@@ -2104,7 +2104,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入框阴���</Label>
+                  <Label className="text-sm text-gray-700">输入��阴���</Label>
                   <Switch
                     checked={templateSettings.inputShadow}
                     onCheckedChange={(checked) =>
@@ -2158,7 +2158,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示���有元素（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
