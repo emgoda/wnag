@@ -155,7 +155,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -349,13 +349,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         return () => {
           iframe.removeEventListener('load', handleLoad);
-          try {
-            if (iframe.contentDocument) {
-              iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
-            }
-          } catch (e) {
-            // 忽���清理错误
-          }
+          // 已禁用内容变化监听器，无需清理
+          // try {
+          //   if (iframe.contentDocument) {
+          //     iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
+          //   }
+          // } catch (e) {
+          //   // 忽略清理错误
+          // }
         };
       } else {
         console.log('未找到iframe，1秒后重试...');
@@ -847,13 +848,13 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业的服务，卓越���������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一�����署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -1169,7 +1170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 清除所有选中状态
+  // 清除所有选��状态
   const clearSelection = () => {
     console.log('开始清除选中状态...');
 
@@ -1203,7 +1204,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.style.removeProperty('position');
         el.style.removeProperty('z-index');
 
-        // 强制恢复交互能力
+        // 强���恢复交互能力
         el.style.pointerEvents = 'auto';
         el.style.cursor = 'default';
       });
@@ -1537,7 +1538,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入��面或点击"刷新"
+                      请���入��面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -1985,7 +1986,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* 输入格式 */}
+                  {/* ��入格式 */}
                   <div>
                     <div className="flex items-center gap-1 mb-1">
                       <Label className="text-xs text-gray-600">输入格式</Label>
