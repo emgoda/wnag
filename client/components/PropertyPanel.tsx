@@ -685,7 +685,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 编辑元素HTML
+  // ���辑元素HTML
   const handleEditElementHTML = () => {
     if (!selectedElement) return;
 
@@ -1463,7 +1463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编辑
+                点击预览中的元素或下方DOM���进行编辑
               </p>
             </div>
           </div>
@@ -1524,9 +1524,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       ⚠️ 显示所有元素（包括不可操作的）
                     </p>
                   )}
-                  <p className="text-green-500">
-                    {true ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
-                  </p>
+
                 </div>
               )}
             </div>
@@ -1888,7 +1886,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">内�����</Label>
+                      <Label className="text-xs">内�������</Label>
                       <Input
                         value={elementData.styles.padding || ''}
                         onChange={(e) => handleStyleChange('padding', e.target.value)}
@@ -2081,7 +2079,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
-                    <SelectItem value="testimonial">客��评价</SelectItem>
+                    <SelectItem value="testimonial">�����评价</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
