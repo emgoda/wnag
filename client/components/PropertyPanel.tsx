@@ -84,7 +84,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       id: element.id || undefined,
       className: element.className || undefined,
       children,
-      isExpanded: depth < 5 || ['body', 'html', 'div'].includes(element.tagName.toLowerCase()) // 默认展开前5层，重要容器节点总是展开
+      isExpanded: depth < 5 || ['body', 'html', 'div'].includes(element.tagName.toLowerCase()) // 默认展开前5层��重要容器节点总是展开
     };
   };
 
@@ -119,12 +119,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const body = doc.body;
       const html = doc.documentElement;
 
-      console.log('iframe状态:', {
+      console.log('iframe详细状态:', {
         readyState: doc.readyState,
         bodyChildren: body?.children.length || 0,
         htmlChildren: html?.children.length || 0,
-        bodyHTML: body?.innerHTML?.substring(0, 100) || 'empty'
+        bodyHTML: body?.innerHTML?.substring(0, 200) || 'empty',
+        docTitle: doc.title,
+        docURL: doc.URL,
+        bodyTagName: body?.tagName,
+        bodyHasContent: !!body?.innerHTML
       });
+
+      // 检查是否有任何实际内容
+      const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
       if (body) {
         // 如果body有子元素，构建完整的DOM树
@@ -272,7 +279,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
     console.log('PropertyPanel组件挂载，立即获取DOM树');
-    // 多次尝试，确保能够���取到
+    // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
@@ -285,7 +292,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含预设相关的内容或类名
+      // 检查元素是否包含预��相关的内容或类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -420,7 +427,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
       } catch (error) {
-        console.error('��新DOM出错:', error);
+        console.error('更新DOM出错:', error);
       }
     };
 
@@ -572,7 +579,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一个特殊的更新来选择父元素
+        // 这里我们通过触发一���特殊的更新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -764,7 +771,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             选择适��的方����
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定���，满足不同需求
+            灵活的定价，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -858,7 +865,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署简单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
+                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解决问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">张</div>
@@ -932,7 +939,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     element.dispatchEvent(clickEvent);
   };
 
-  // 添加悬停效果
+  // 添加���停效果
   const handleNodeHover = (element: HTMLElement, isEnter: boolean) => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1676,7 +1683,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">按钮点击时半透明</Label>
+                  <Label className="text-sm text-gray-700">按钮点击���半透明</Label>
                   <Switch
                     checked={templateSettings.buttonTransparent}
                     onCheckedChange={(checked) =>
