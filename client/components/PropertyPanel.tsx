@@ -173,7 +173,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     }, 500);
 
-    // 查��iframe并监听
+    // 查找iframe并监听
     const findAndListenToIframe = () => {
       let iframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
@@ -405,6 +405,37 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             console.log('已更新标题为:', value, '找到的label:', labelElement.textContent);
           } else {
             console.log('未找到label元素，选中的元素是:', selectedElement.tagName, 'data-title值:', value);
+          }
+        }, 100);
+      }
+    }
+
+    // 特殊处理：当修改placeholder时，同时更新对应的input元素
+    if (attribute === 'placeholder') {
+      // 获取iframe的document
+      const iframe = document.querySelector('iframe');
+      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
+
+      if (iframeDoc && selectedElement) {
+        setTimeout(() => {
+          let inputElement = null;
+
+          // 如果选中的就是input元素
+          if (selectedElement.tagName === 'INPUT') {
+            inputElement = selectedElement;
+          } else {
+            // 在选中元素中查找input
+            inputElement = selectedElement.querySelector('input');
+            if (!inputElement && selectedElement.parentElement) {
+              inputElement = selectedElement.parentElement.querySelector('input');
+            }
+          }
+
+          if (inputElement) {
+            inputElement.setAttribute('placeholder', value || '');
+            console.log('已更新placeholder为:', value, '找到的input:', inputElement);
+          } else {
+            console.log('未找到input元素，选中的元素是:', selectedElement.tagName, 'placeholder值:', value);
           }
         }, 100);
       }
