@@ -392,9 +392,9 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更新文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本��入变化:', value);
+    console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输入��响应
+    // 立即更新本地状态，确保输入响应
     setLocalTextContent(value);
 
     // 同时更新elementData状态
@@ -486,7 +486,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效的HTML格式，��检查后重试');
+          alert('无效���HTML格式，��检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -634,7 +634,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，����上线，让您的产品迅速��达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -665,7 +665,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           联系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题？我们很乐意为您解答
+          有任何问题��我们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
