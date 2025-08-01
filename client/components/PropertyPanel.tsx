@@ -66,7 +66,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     buttonTransparent: false
   });
 
-  // 右键菜单��态
+  // 右键菜单���态
   const [contextMenu, setContextMenu] = useState<{
     show: boolean;
     x: number;
@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 不可操作的CSS类名模式
     const nonOperableClassPatterns = [
       /^lucide/, // Lucide图标
-      /toast/, // Toast通知组件
+      /toast/, // Toast通知��件
       /overlay/, // 遮罩层
       /backdrop/, // 背景层
       /portal/, // 传送门组件
@@ -110,7 +110,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       /tooltip/, // 工具提示
       /dropdown/, // 下拉菜单内部
       /radix-/, // Radix UI组件
-      /^sr-only$/, // 屏幕阅读器���用
+      /^sr-only$/, // 屏幕阅读器专用
     ];
 
     // 检查类名是否匹配不可操作模式
@@ -142,7 +142,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       return element.getAttribute('data-node-id')!;
     }
 
-    // 生成新的唯一ID
+    // ���成新的唯一ID
     const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     element.setAttribute('data-node-id', nodeId);
     return nodeId;
@@ -171,7 +171,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然��查其子元���（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -383,7 +383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 定期检查DOM树变化（每3秒检查��次）
+    // 定期检查DOM树变化（每3秒检查一次）
     const interval = setInterval(updateDOMTree, 3000);
 
     return () => {
@@ -534,7 +534,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的��应元素
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -789,7 +789,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         templateHTML = generateTestimonial();
         break;
       default:
-        templateHTML = '<div>未��模板</div>';
+        templateHTML = '<div>未知模板</div>';
     }
 
     // 添��到页面
@@ -860,7 +860,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的���构设计，提供极���的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -903,7 +903,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     `;
   };
 
-  // 生成价格表���板
+  // 生成价���表���板
   const generatePricingTable = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
     const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
@@ -1168,7 +1168,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 清除所有选中状态
   const clearSelection = () => {
-    console.log('开始��除选中状态...');
+    console.log('开始清除选中状态...');
 
     // 清除组件内部状态
     setSelectedNodeElement(null);
@@ -1240,7 +1240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // ���除之前的高亮样式
+      // 移除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected, .dom-tree-preview');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected', 'dom-tree-preview');
@@ -1504,7 +1504,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍����️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可操作元素">🔒</span>}
           </span>
 
@@ -1584,7 +1584,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素��下方DOM树进行编辑
+                点击预览中的元素或下方DOM树进行编辑
               </p>
             </div>
           </div>
@@ -1864,7 +1864,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
-              {/* 文字��式 */}
+              {/* 文字样式 */}
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -2382,12 +2382,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不可操作的）
+                    ⚠️ 显示所有元素（包��不可操作的）
                   </p>
                 )}
-                <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
-                </p>
+
               </div>
             )}
           </div>
