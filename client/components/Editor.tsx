@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -14,7 +14,7 @@ interface EditorProps {
   onElementSelect?: (element: HTMLElement | null) => void;
 }
 
-export default function Editor({ content, onChange, pageName, onElementSelect }: EditorProps) {
+const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
   const [previewMode, setPreviewMode] = useState('mobile');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
@@ -91,7 +91,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       console.log('已添加选择样式');
     }
 
-    // 获取所���可选择的元素
+    // 获取所有可选择的元素
     const elements = doc.querySelectorAll('*');
     console.log('找到可选择元素数量:', elements.length);
 
@@ -279,6 +279,11 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     console.log('✅ 元素添加成功:', elementData.tag, action);
   };
 
+  // 暴露函数给父组件
+  useImperativeHandle(ref, () => ({
+    addElementToPage
+  }));
+
   return (
     <div className={`flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-white' : 'flex-1'}`}>
       {/* 编辑器头部 */}
@@ -388,4 +393,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       </div>
     </div>
   );
-}
+});
+
+export default Editor;
