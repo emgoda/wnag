@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // ���处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body����点
+        // 强制展开body�����点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // 监��自定义DOM树刷新事件
+    // 监��自定义DOM树刷新��件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文�������，确保获������到正确的文本
       let textContent = '';
 
-      // 尝试不同的方式获取文本内容
+      // 尝试不同的方式获���文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -946,7 +946,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
-              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">����础版</h3>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">������础版</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥99</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过���素��容查找对应的DOM树���点
+        // 尝试通过元素��容查找对应的DOM树���点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1257,7 +1257,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // ��择DOM节点 - 纯预览模式，不锁定交互
+  // 选择DOM节点 - 纯预览模式，不锁定交互
   const handleNodeSelect = (element: HTMLElement) => {
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
@@ -1586,7 +1586,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-xs">DOM树为空</p>
+                    <p className="text-xs">DOM��为空</p>
                     <p className="text-xs text-gray-400">
                       请导入页面或点击"刷新"
                     </p>
@@ -1685,7 +1685,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </TabsList>
 
             <TabsContent value="content" className="px-4 pb-4 space-y-4">
-              {/* 文本内容 */}
+              {/* 文本内��� */}
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
@@ -1702,7 +1702,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地状���，不立即更新DOM
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
@@ -2448,7 +2448,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('���转到选中元���');
+                      console.log('跳转到选中元���');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个根���点
+                  ��加载 {domTree.length} 个������点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
@@ -2551,7 +2551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🗑�� 删除元素
+              🗑️ 删除元素
             </button>
             <button
               className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
