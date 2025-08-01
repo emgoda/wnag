@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内容��加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // 监��自定义DOM���刷新���件
+    // 监��自定义DOM���刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑��的干扰
+    // 恢复但���长定期检查间隔，减少编辑��的干��
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
-      // 尝试不同的方式���取文��内容
+      // 尝试不同的方式���取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -560,7 +560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // ��������新DOM中的对应元素
+    // ���������新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，���性:', attribute, '值:', value);
@@ -635,7 +635,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输入响应
+    // 立即更新本地状态，确保��入响应
     setLocalTextContent(value);
 
     // 同时更新elementData状态
@@ -906,7 +906,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          有任何问题����们很乐意为您��答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1262,7 +1262,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
 
-    // 如果元素没有nodeId，为其生成��个
+    // 如果元素没有nodeId，为��生成��个
     if (!nodeId) {
       nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       element.setAttribute('data-node-id', nodeId);
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素���������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：使用当前document的样式
+      // 备用检查：��用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1389,7 +1389,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系����/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可����作元素'
           }${
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所��元素（包括不可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1859,7 +1859,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                           <SelectValue placeholder="选择" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="normal">��常</SelectItem>
+                          <SelectItem value="normal">正常</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
                           <SelectItem value="lighter">细体</SelectItem>
                         </SelectContent>
@@ -2199,7 +2199,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 提�� */}
+                  {/* 提示 */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
                     <Input
@@ -2224,7 +2224,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     />
                   </div>
 
-                  {/* ���为空和键盘类型 */}
+                  {/* 可为空和键盘类型 */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label className="text-xs text-gray-600 mb-2 block">可为空</Label>
@@ -2270,7 +2270,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 三���法 */}
+                  {/* 三系法 */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">三系法</Label>
                     <div className="flex items-center gap-2">
