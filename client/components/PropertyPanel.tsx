@@ -392,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移除或修改ID以避免重复
+      // 如果复制的元素有ID，��要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -709,7 +709,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导��页面或点击"刷新"
+                      请导入页面或点击"刷新"
                     </p>
                   </div>
                 )}
@@ -810,17 +810,47 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  当前值: "{localTextContent}" (长度: {localTextContent.length})
+                  本地状态: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
-                <Textarea
-                  key={`textarea-${forceUpdate}`}
+                <div className="text-xs text-blue-500 mb-1">
+                  元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
+                </div>
+
+                {/* 简单的input测试 */}
+                <Input
                   value={localTextContent}
                   onChange={(e) => {
-                    console.log('Textarea onChange:', e.target.value);
-                    handleTextContentChange(e.target.value);
+                    const newValue = e.target.value;
+                    console.log('🔵 Input onChange:', newValue);
+                    setLocalTextContent(newValue);
+
+                    // 立即更新elementData
+                    setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
+
+                    // 更新DOM元素
+                    if (selectedElement) {
+                      selectedElement.textContent = newValue;
+                      console.log('🟢 DOM更新完成:', selectedElement.textContent);
+                    }
                   }}
-                  placeholder="输入元素的文本内容..."
-                  className="mt-1 min-h-[80px]"
+                  placeholder="直接输入文本..."
+                  className="mt-1"
+                />
+
+                {/* Textarea作为备用 */}
+                <Textarea
+                  value={localTextContent}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    console.log('🟡 Textarea onChange:', newValue);
+                    setLocalTextContent(newValue);
+                    setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
+                    if (selectedElement) {
+                      selectedElement.textContent = newValue;
+                    }
+                  }}
+                  placeholder="多行文本输入..."
+                  className="mt-2 min-h-[60px]"
                 />
                 {localTextContent && (
                   <div className="mt-2 p-2 bg-gray-50 rounded text-xs">
