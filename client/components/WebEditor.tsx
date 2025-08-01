@@ -354,7 +354,7 @@ export default function WebEditor() {
               </div>
 
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-medium">���面列表</h3>
+                <h3 className="font-medium">页面列表</h3>
                 <Dialog open={showAddPageDialog} onOpenChange={setShowAddPageDialog}>
                   <DialogTrigger asChild>
                     <Button size="sm">
@@ -543,7 +543,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'h1',
-                                      content: '标题文本'
+                                      content: '标题文���'
                                     }, 'append');
                                   }
                                 }}
@@ -696,7 +696,7 @@ export default function WebEditor() {
                                       attributes: {
                                         type: 'text',
                                         placeholder: '请输入...',
-                                        style: 'width: 200px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'insert');
                                   }
@@ -716,7 +716,7 @@ export default function WebEditor() {
                                       attributes: {
                                         type: 'text',
                                         placeholder: '请输入...',
-                                        style: 'width: 200px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'replace');
                                   }
@@ -736,7 +736,7 @@ export default function WebEditor() {
                                       attributes: {
                                         type: 'text',
                                         placeholder: '请输入...',
-                                        style: 'width: 200px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
+                                        style: 'width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;'
                                       }
                                     }, 'append');
                                   }
@@ -1145,7 +1145,7 @@ export default function WebEditor() {
                   {/* 内置组件 */}
                   <Card>
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm">内置��件</CardTitle>
+                      <CardTitle className="text-sm">内置组件</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
@@ -1364,7 +1364,7 @@ export default function WebEditor() {
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="w-4 h-4 mr-2" />
-                      ��布到线上
+                      发布到线上
                     </Button>
                   </CardContent>
                 </Card>
