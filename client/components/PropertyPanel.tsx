@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本地文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // ��地文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -241,7 +241,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 监听页面内容变化，实时��新DOM树
+  // 监听页面内容变化，实时更新DOM树
   useEffect(() => {
     const updateDOMTree = () => {
       console.log('定期更新DOM树');
@@ -367,22 +367,37 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 特殊处理：当修改data-title时，同时更新对应的label文本
+    // 特��处理：当修改data-title时，同时更新对应的label文本
     if (attribute === 'data-title') {
-      // 尝试多种方式找到label元素
-      let labelElement = selectedElement.querySelector('label[data-title]');
-      if (!labelElement) {
-        labelElement = selectedElement.querySelector('label');
+      let labelElement = null;
+
+      // 情况1：当前元素就是包含label的容器
+      labelElement = selectedElement.querySelector('label');
+
+      // 情况2：当前元素是input，需要找到同级的label
+      if (!labelElement && selectedElement.tagName === 'INPUT') {
+        const container = selectedElement.parentElement;
+        if (container) {
+          labelElement = container.querySelector('label');
+        }
       }
+
+      // 情况3：当前元素是label本身
+      if (!labelElement && selectedElement.tagName === 'LABEL') {
+        labelElement = selectedElement;
+      }
+
+      // 情况4：在父元素中查找
       if (!labelElement && selectedElement.parentElement) {
         labelElement = selectedElement.parentElement.querySelector('label');
       }
 
       if (labelElement) {
         labelElement.textContent = value || '标题';
+        labelElement.setAttribute('data-title', value || '标题');
         console.log('已更新标题为:', value);
       } else {
-        console.log('未找到label元素');
+        console.log('未找到label元素，选中的元素是:', selectedElement.tagName, selectedElement);
       }
     }
 
@@ -626,7 +641,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              开��使用
+              开始使用
             </button>
             <button style="background: rgba(255, 255, 255, 0.1); color: white; border: 2px solid rgba(255, 255, 255, 0.8); padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);" onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(255, 255, 255, 0.1)'">
               了解更多
@@ -693,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">邮箱</label>
-            <input type="email" placeholder="请输�����的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">留言</label>
@@ -744,7 +759,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ ���先支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
@@ -847,7 +862,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleNodeSelect = (element: HTMLElement) => {
     setSelectedNodeElement(element);
 
-    // 清除之前的高亮
+    // 清除��前的高亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
@@ -1024,7 +1039,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-xs">DOM树为空</p>
+                    <p className="text-xs">DOM树��空</p>
                     <p className="text-xs text-gray-400">
                       请导入页面或点击"刷新"
                     </p>
@@ -1147,7 +1162,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     // 更新DOM元素
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
-                      console.log('🟢 DOM更新完成:', selectedElement.textContent);
+                      console.log('🟢 DOM更新完��:', selectedElement.textContent);
                     }
                   }}
                   placeholder="直接输入文本..."
