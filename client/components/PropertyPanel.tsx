@@ -50,7 +50,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本地文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本��文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -101,7 +101,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     if (!editorIframe) {
       // 如果特定选择器没找到，尝试通用选择器
-      editorIframe = document.querySelector('iframe[title*="编��"]') as HTMLIFrameElement;
+      editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
       console.log('使用title选择器找到iframe:', !!editorIframe);
     }
 
@@ -149,7 +149,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         setDomTree([tree]);
         console.log('从HTML根元素构建DOM树');
       } else {
-        console.log('iframe内容为空，等待加载...');
+        console.log('iframe���容���������等待加载...');
         // 如果body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
@@ -270,7 +270,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检测是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含预设相关的内容或类名
+      // 检查元素是否包含���设相关的内容或类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -348,7 +348,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 当选中元素变化时，同步本地文本状态
+  // 当选��元素变化时，同步本地文本状态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -394,7 +394,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输入框响应
+    // 立即更新本地���态，确保输入框响应
     setLocalTextContent(value);
 
     // 同时更新elementData状态
@@ -596,19 +596,20 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
 
     return `
-      <section style="text-align: center; padding: 50px 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin: 15px 0; max-width: 350px; margin-left: auto; margin-right: auto;">
-        <div style="max-width: 100%; margin: 0 auto;">
-          <h1 style="font-size: 28px; font-weight: bold; margin-bottom: 15px; line-height: 1.2;">
+      <section style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 24px; margin: 20px auto; max-width: 350px; position: relative; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);">
+        <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);"></div>
+        <div style="max-width: 100%; margin: 0 auto; position: relative; z-index: 1;">
+          <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 15px; line-height: 1.2; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); letter-spacing: -0.5px;">
             欢迎来到我们的网站
           </h1>
-          <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.9; line-height: 1.6;">
+          <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
             发现无限可能，创造美好未来
           </p>
-          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-            <button style="background: white; color: ${themeColor}; border: none; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               开始使用
             </button>
-            <button style="background: transparent; color: white; border: 2px solid white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+            <button style="background: rgba(255, 255, 255, 0.1); color: white; border: 2px solid rgba(255, 255, 255, 0.8); padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);" onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(255, 255, 255, 0.1)'">
               了解更多
             </button>
           </div>
@@ -697,7 +698,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       <section style="padding: 40px 15px; max-width: 350px; margin: 0 auto;">
         <div style="max-width: 100%; margin: 0 auto;">
           <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #1f2937;">
-            选择适合的方案
+            选择适合的方��
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
             灵活的定价，满足不同需求
@@ -840,7 +841,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
-      // 添加高��样式（如果还没有的话）
+      // 添加高亮样式（如果还没��的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
