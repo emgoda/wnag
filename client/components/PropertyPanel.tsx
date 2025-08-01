@@ -299,7 +299,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     };
   }, []);
 
-  // 组件挂载时立即尝试加载DOM树
+  // 组件挂载时立即��试加载DOM树
   useEffect(() => {
     console.log('PropertyPanel组件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -368,7 +368,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元素文本内容:', {
+      console.log('获取元���文本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -426,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简化策略：直接更新最后��个相关元素（用户最新操作的）
+        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -583,7 +583,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编��失败���请检查格式是否正确');
+        alert('HTML编��失败���请检查格式���否正确');
       }
     }
   };
@@ -638,7 +638,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 处理模板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
-      alert('请先选���一个模板');
+      alert('请先选择一个模板');
       return;
     }
 
@@ -904,7 +904,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 切换DOM节点展开状态
+  // 切换DOM节点展开状���
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
       return nodes.map(n => {
@@ -985,7 +985,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const hasText = textPreview && textPreview.length > 0;
 
     return (
-      <div key={`${node.tagName}-${node.element.getAttribute('data-node-id') || node.id || ''}-${node.className?.replace(/\s+/g, '-') || ''}-${Math.random().toString(36).substr(2, 9)}`} className="text-sm">
+      <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${node.className?.replace(/\s+/g, '-') || 'no-class'}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded transition-colors ${
             isSelected ? 'bg-blue-100 border-l-2 border-blue-500' : ''
@@ -1808,7 +1808,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强����������DOM树');
+                      console.log('强��������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
