@@ -168,7 +168,7 @@ export default function WebEditor() {
     // 添加到历��记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
-      return newHistory.slice(-50); // ���制历史记录数量
+      return newHistory.slice(-50); // ���制历史记录数���
     });
     setHistoryIndex(prev => prev + 1);
 
@@ -1106,7 +1106,95 @@ export default function WebEditor() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                        <div
+                          className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
+                          onClick={() => {
+                            const addElementToPage = (window as any).addElementToPage;
+                            if (addElementToPage) {
+                              const stripePaymentHTML = `
+                                <div style="max-width: 400px; margin: 0 auto; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid #e5e7eb;">
+                                  <div style="text-align: center; margin-bottom: 24px;">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                                      <span style="color: white; font-size: 24px;">💳</span>
+                                    </div>
+                                    <h2 style="margin: 0; font-size: 24px; font-weight: 600; color: #1f2937;">安全支付</h2>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                  </div>
+
+                                  <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">邮箱地址</label>
+                                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
+                                  </div>
+
+                                  <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">卡号</label>
+                                    <div style="position: relative;">
+                                      <input type="text" placeholder="1234 1234 1234 1234" maxlength="19" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim()">
+                                      <div style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: flex; gap: 4px;">
+                                        <span style="font-size: 18px;">💳</span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                                    <div style="flex: 1;">
+                                      <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">过期日期</label>
+                                      <input type="text" placeholder="MM/YY" maxlength="5" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\D/g, '').replace(/(.{2})/, '$1/').substr(0, 5)">
+                                    </div>
+                                    <div style="flex: 1;">
+                                      <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">CVC</label>
+                                      <input type="text" placeholder="123" maxlength="4" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/\D/g, '')">
+                                    </div>
+                                  </div>
+
+                                  <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">持卡人姓名</label>
+                                    <input type="text" placeholder="John Doe" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
+                                  </div>
+
+                                  <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-bottom: 20px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                      <span style="color: #6b7280; font-size: 14px;">小计</span>
+                                      <span style="color: #1f2937; font-size: 14px;">¥99.00</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                      <span style="color: #6b7280; font-size: 14px;">税费</span>
+                                      <span style="color: #1f2937; font-size: 14px;">¥9.90</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #e5e7eb;">
+                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">总计</span>
+                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">¥108.90</span>
+                                    </div>
+                                  </div>
+
+                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 8px; padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 16px;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 91, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('支付功能演示 - 实际项目中需要集成真实支付网关')">
+                                    立即支付 ¥108.90
+                                  </button>
+
+                                  <div style="text-align: center;">
+                                    <p style="margin: 0; color: #9ca3af; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                      <span style="color: #10b981;">🔒</span>
+                                      由 SSL 加密保护
+                                    </p>
+                                    <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+                                      <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 10px; color: #6b7280;">VISA</span>
+                                      <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 10px; color: #6b7280;">MasterCard</span>
+                                      <span style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 10px; color: #6b7280;">American Express</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              `;
+
+                              addElementToPage({
+                                tag: 'div',
+                                content: stripePaymentHTML,
+                                attributes: {
+                                  style: 'margin: 20px auto; max-width: 500px;'
+                                }
+                              }, 'append');
+                            }
+                          }}
+                        >
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
                           </div>
