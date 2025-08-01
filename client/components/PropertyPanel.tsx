@@ -439,7 +439,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       console.log('元素复制成功');
     } catch (error) {
-      console.error('复制元素失败:', error);
+      console.error('��制元素失败:', error);
     }
   };
 
@@ -486,11 +486,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效的HTML格式，请检查后重试');
+          alert('无效的HTML格式，��检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格式���否正确');
+        alert('HTML编辑失败，请检查格式是否正确');
       }
     }
   };
@@ -645,7 +645,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">高性能</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极致的用户体验</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
         </div>
@@ -720,7 +720,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600;">推荐</div>
               <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业版</h3>
-              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥199</div>
+              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">��199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
