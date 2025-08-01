@@ -244,7 +244,7 @@ export default function WebEditor() {
 
   // 处理元素更新
   const handleElementUpdate = useCallback((element: HTMLElement, property: string, value: string) => {
-    // 更新对���页面的内容
+    // 更新对应页面的内容
     if (selectedPage) {
       // 获取更新后的完整HTML
       const iframe = document.querySelector('iframe');
@@ -556,7 +556,7 @@ export default function WebEditor() {
 
 
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;img&gt;</div>
                             <div className="text-gray-600 mb-3">图片</div>
@@ -622,7 +622,7 @@ export default function WebEditor() {
                           </div>
                         </div>
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;button&gt;</div>
                             <div className="text-gray-600 mb-3">按钮</div>
@@ -679,7 +679,7 @@ export default function WebEditor() {
                           </div>
                         </div>
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;input&gt;</div>
                             <div className="text-gray-600 mb-3">输入框</div>
@@ -746,7 +746,7 @@ export default function WebEditor() {
                         </div>
 
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;div&gt;</div>
                             <div className="text-gray-600 mb-3">容器</div>
@@ -813,7 +813,7 @@ export default function WebEditor() {
                         </div>
 
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold">&lt;span&gt;</div>
                             <div className="text-gray-600 mb-3">行内元素</div>
@@ -890,7 +890,7 @@ export default function WebEditor() {
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center">&lt;form&gt;</div>
                             <div className="text-gray-600 mb-2 text-center">表单</div>
@@ -957,7 +957,7 @@ export default function WebEditor() {
                         </div>
 
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center">&lt;textarea&gt;</div>
                             <div className="text-gray-600 mb-2 text-center">文本域</div>
@@ -1030,7 +1030,7 @@ export default function WebEditor() {
                         </div>
 
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center">&lt;select&gt;</div>
                             <div className="text-gray-600 mb-2 text-center">下拉框</div>
@@ -1162,7 +1162,7 @@ export default function WebEditor() {
                   <CardContent className="space-y-2">
                     <Button variant="outline" className="w-full justify-start">
                       <Download className="w-4 h-4 mr-2" />
-                      导出所有页面
+                      导���所有页面
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       <Globe className="w-4 h-4 mr-2" />
@@ -1237,7 +1237,7 @@ export default function WebEditor() {
         />
       </div>
 
-      {/* 编辑页面对话框 */}
+      {/* 编辑页面对���框 */}
       <Dialog open={showEditPageDialog} onOpenChange={setShowEditPageDialog}>
         <DialogContent>
           <DialogHeader>
