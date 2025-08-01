@@ -1041,7 +1041,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                ���� 替换
+                                🔄 替换
                               </Button>
                               <Button
                                 variant="outline"
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您���支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
