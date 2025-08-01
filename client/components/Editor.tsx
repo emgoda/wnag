@@ -18,9 +18,10 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
+  const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启元素选择
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // 设备尺寸
+  // 设��尺寸
   const deviceSizes = {
     desktop: { width: '100%', height: '100%', label: '桌面' },
     mobile: { width: '375px', height: '667px', label: '手机' }
