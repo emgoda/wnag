@@ -99,7 +99,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
-      element.getAttribute('role') === 'presentation' || // 纯展示元素
+      element.getAttribute('role') === 'presentation' || // 纯展示���素
       element.getAttribute('role') === 'none'; // 无语义元素
 
     // 不可操作的CSS类名模式
@@ -127,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的���钮等
 
-    // 如果���以上任何一����情况，则不可操作
+    // 如果���以上任何一��情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -199,7 +199,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列���所�����能的iframe
+    // 列���所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
-  // 添加全局点击事���监听器来关闭右键菜单
+  // 添加全局点击事�����听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编����败���请检查格式是否正��');
+        alert('HTML编��失败���请检查格式是否正��');
       }
     }
   };
@@ -937,7 +937,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600;">推荐</div>
-              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业��</h3>
+              <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业版</h3>
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">����199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
@@ -1208,7 +1208,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.style.cursor = 'default';
       });
 
-      // 移除所有可能的事件监���器影响
+      // 移除所有可能的事件监听器影响
       const allElements = doc.querySelectorAll('*');
       allElements.forEach(el => {
         el.style.removeProperty('pointer-events');
@@ -1504,21 +1504,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     variant="ghost"
                     size="sm"
                     onClick={() => {
-                      console.log('强制刷新DOM树');
-                      console.log('当前domTree长度:', domTree.length);
+                      console.log('刷新DOM树');
                       getDOMTreeFromIframe();
-
-                      // 额外尝试：直接从iframe获取所有元素
-                      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
-                      if (iframe && iframe.contentDocument) {
-                        const allElements = iframe.contentDocument.querySelectorAll('*');
-                        console.log('iframe中总元素数:', allElements.length);
-                        console.log('iframe body:', iframe.contentDocument.body);
-                      }
                     }}
                     className="h-6 px-2 text-xs"
                   >
-                    强制刷新
+                    刷新
                   </Button>
 
 
@@ -1556,10 +1547,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 {domTree.length > 0 ? (
                   <div>
                     <div className="text-xs text-blue-600 mb-2">
-                      调试：渲染 {domTree.length} 个根���点
+                      调试：渲染 {domTree.length} 个根节点
                     </div>
                     {domTree.map((node, index) => {
-                      console.log('渲染节点:', node.tagName, 'children:', node.children.length);
+                      console.log('渲染���点:', node.tagName, 'children:', node.children.length);
                       return renderDOMNode(node, 0, index);
                     })}
                   </div>
@@ -1619,7 +1610,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  ������HTML
+                  ����HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -1771,7 +1762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
-                        <SelectItem value="_parent">父窗��</SelectItem>
+                        <SelectItem value="_parent">父窗���</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2135,7 +2126,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入�������</Label>
+                  <Label className="text-sm text-gray-700">输入��阴���</Label>
                   <Switch
                     checked={templateSettings.inputShadow}
                     onCheckedChange={(checked) =>
@@ -2330,7 +2321,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     }}
                     className="text-xs h-7"
                   >
-                    强制刷���
+                    强制刷新
                   </Button>
                 </div>
               )}
