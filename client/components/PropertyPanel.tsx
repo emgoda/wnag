@@ -360,15 +360,23 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 更新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
-    
+
     if (value) {
       selectedElement.setAttribute(attribute, value);
     } else {
       selectedElement.removeAttribute(attribute);
     }
-    
+
+    // 特殊处理：当修改data-title时，同时更新对应的label文本
+    if (attribute === 'data-title') {
+      const labelElement = selectedElement.querySelector('label[data-title]');
+      if (labelElement) {
+        labelElement.textContent = value || '标题';
+      }
+    }
+
     onElementUpdate(selectedElement, attribute, value);
-    
+
     // 更新本地状态
     setElementData(prev => prev ? {
       ...prev,
@@ -390,7 +398,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } : null);
   };
 
-  // 更新文本内容
+  // 更��文本内容
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
@@ -1108,7 +1116,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div>
                 <Label className="text-sm font-medium">文本内容</Label>
                 <div className="text-xs text-gray-500 mb-1">
-                  本地��态: "{localTextContent}" (长度: {localTextContent.length})
+                  本地����: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
                   元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
