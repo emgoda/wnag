@@ -173,7 +173,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     }, 500);
 
-    // 查找iframe并监听
+    // 查��iframe并监听
     const findAndListenToIframe = () => {
       let iframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
@@ -369,30 +369,45 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     // 特殊处理：当修改data-title时，同时更新对应的label文本
     if (attribute === 'data-title') {
-      // 使用延时确保DOM已更新
-      setTimeout(() => {
-        let labelElement = null;
-        let targetElement = selectedElement;
+      // 获取iframe的document
+      const iframe = document.querySelector('iframe');
+      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
 
-        // 如果选中的是input，向上找容器
-        if (selectedElement.tagName === 'INPUT') {
-          targetElement = selectedElement.parentElement || selectedElement;
-        }
+      if (iframeDoc && selectedElement) {
+        // 使用延时确保DOM已更新
+        setTimeout(() => {
+          let labelElement = null;
+          let targetElement = selectedElement;
 
-        // 在目标元素及其父元素中查找label
-        labelElement = targetElement.querySelector('label');
-        if (!labelElement && targetElement.parentElement) {
-          labelElement = targetElement.parentElement.querySelector('label');
-        }
+          // 如果选中的是input，向上找容器
+          if (selectedElement.tagName === 'INPUT') {
+            targetElement = selectedElement.parentElement || selectedElement;
+          }
 
-        if (labelElement) {
-          labelElement.textContent = value || '标题';
-          labelElement.setAttribute('data-title', value || '标题');
-          console.log('已更新标题为:', value, '找到的label:', labelElement);
-        } else {
-          console.log('未找到label元素，选中的元素是:', selectedElement.tagName, selectedElement.outerHTML?.substring(0, 100));
-        }
-      }, 50);
+          // 在目标元素中查找label
+          labelElement = targetElement.querySelector('label');
+          if (!labelElement && targetElement.parentElement) {
+            labelElement = targetElement.parentElement.querySelector('label');
+          }
+
+          // 如果还是找不到，试试在iframe文档中按data-title查找
+          if (!labelElement) {
+            const elements = iframeDoc.querySelectorAll('label[data-title]');
+            labelElement = Array.from(elements).find(el =>
+              el.closest('[data-title]') === targetElement ||
+              el.parentElement === targetElement
+            ) || elements[elements.length - 1]; // 取最后一个作为fallback
+          }
+
+          if (labelElement) {
+            labelElement.textContent = value || '标题';
+            labelElement.setAttribute('data-title', value || '标题');
+            console.log('已更新标题为:', value, '找到的label:', labelElement.textContent);
+          } else {
+            console.log('未找到label元素，选中的元素是:', selectedElement.tagName, 'data-title值:', value);
+          }
+        }, 100);
+      }
     }
 
     onElementUpdate(selectedElement, attribute, value);
