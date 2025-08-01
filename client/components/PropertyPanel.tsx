@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接口的单节点构建方法 - 只构建元素节点树
+  // 兼容旧接��的单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('无法访问iframe文档');
+        console.log('无法访问iframe���档');
         return;
       }
 
@@ -494,7 +494,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即执行更新
     updateElementInDOM();
 
-    // ���时再��行一次确保更新成功
+    // ���时再��行一次确保���新成功
     setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
@@ -912,7 +912,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作效率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
+                "��队协作���率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1141,7 +1141,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const hasText = textPreview && textPreview.length > 0;
 
     return (
-      <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${node.className?.replace(/\s+/g, '-') || 'no-class'}`} className="text-sm">
+      <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${(node.className && typeof node.className === 'string') ? node.className.replace(/\s+/g, '-') : 'no-class'}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded transition-all duration-200 ${
             isSelected ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]' : ''
@@ -1399,7 +1399,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
 
-                    // 立即更新elementData
+                    // ��即更新elementData
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
 
                     // 更新DOM元素
