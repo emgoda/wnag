@@ -55,10 +55,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
-  const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
-  const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
-  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择模式：预览或锁定
-  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
+  const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括���可操作的）
 
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
@@ -138,7 +135,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return true;
   };
 
-  // 构建DOM树 - 只显示元素���点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -553,7 +550,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           const lastInput = allInputs[allInputs.length - 1];
           if (lastInput) {
             lastInput.setAttribute('placeholder', value || '');
-            console.log('已更新���后一个input placeholder为:', value);
+            console.log('已更新最后一个input placeholder为:', value);
           } else {
             console.log('未找到input元素');
           }
@@ -779,7 +776,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         templateHTML = '<div>未知模板</div>';
     }
 
-    // ����到页面
+    // 添��到页面
     addElementToPage({
       tag: 'div',
       content: templateHTML,
@@ -831,7 +828,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越����������验
+            专业的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -842,7 +839,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保������的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -1155,7 +1152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 清除所有选中状态
   const clearSelection = () => {
-    console.log('开始清除选��状态...');
+    console.log('开始清除选中状态...');
 
     // 清除组件内部状态
     setSelectedNodeElement(null);
@@ -2195,12 +2192,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
-                    <SelectItem value="testimonial">客户评价</SelectItem>
+                    <SelectItem value="testimonial">客户评��</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* 开���生成按钮 */}
+              {/* 开始生成按钮 */}
               <Button
                 onClick={handleTemplateGeneration}
                 className="w-full bg-blue-500 hover:bg-blue-600"
@@ -2410,7 +2407,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p className="text-xs mb-2">DOM��为空</p>
                   <p className="text-xs text-gray-400 mb-3">
-                    请确保已导入页面，���后点��"刷新"
+                    请确保已导入页面，���后点��"��新"
                   </p>
                   <Button
                     variant="outline"
