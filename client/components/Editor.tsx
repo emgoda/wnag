@@ -203,11 +203,30 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
           <Button
             variant={elementSelectMode ? 'default' : 'outline'}
             size="sm"
-            onClick={() => setElementSelectMode(!elementSelectMode)}
+            onClick={() => {
+              setElementSelectMode(!elementSelectMode);
+              // 立即重新设置选择功能
+              setTimeout(() => {
+                setupElementSelection();
+              }, 100);
+            }}
             className="flex items-center gap-2"
           >
             <MousePointer className="w-4 h-4" />
             {elementSelectMode ? '选择模式' : '浏览模式'}
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              console.log('强制设置元素选择功能');
+              setupElementSelection();
+            }}
+            className="flex items-center gap-2"
+            title="如果无法选择元素，点击此按钮"
+          >
+            🔧
           </Button>
 
           <Button
