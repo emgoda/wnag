@@ -52,7 +52,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本������本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -268,7 +268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ));
         }, 50);
 
-        // 记录body��空的情��，但不无限重试
+        // 记录body为空的情��，但不无限重试
         if (body.children.length === 0) {
           console.log('body为空，但仍显示DOM���结构');
         }
@@ -947,7 +947,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                选择���业��
+                选择专业��
               </button>
             </div>
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -958,7 +958,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制���成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业�����
@@ -987,7 +987,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -998,7 +998,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </div>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐��⭐</div>
+              <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
                 "��队协作���率大�����升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
@@ -1115,7 +1115,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的是当前选中的元素，清除选��状态
+          // 如果删����的是当前选中的元素���清除选��状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1247,7 +1247,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor��件通过selectedNodeId受控处理
-    // 这���保了元素只是被高亮预览，但不��被锁��无法交互
+    // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
   // 添�����停效果
@@ -1324,7 +1324,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
-    const isHidden = isElementHidden(node.element);
+    // 临时简化：减少隐藏检测，确保元素可见
+    const isHidden = false; // isElementHidden(node.element);
     const isNonOperable = !isElementOperable(node.element);
 
     // 检查是否是当前选中的节点（基于nodeId）
@@ -1789,7 +1790,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">字体大小</Label>
+                      <Label className="text-xs">字体��小</Label>
                       <Input
                         value={elementData.styles['font-size'] || ''}
                         onChange={(e) => handleStyleChange('font-size', e.target.value)}
@@ -1807,7 +1808,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                           <SelectValue placeholder="选择" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="normal">正���</SelectItem>
+                          <SelectItem value="normal">正常</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
                           <SelectItem value="lighter">细体</SelectItem>
                         </SelectContent>
@@ -1961,7 +1962,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <Input
                   value={elementData.id}
                   onChange={(e) => handleAttributeChange('id', e.target.value)}
-                  placeholder="元素唯一标识"
+                  placeholder="元素唯��标识"
                   className="mt-1"
                 />
               </div>
