@@ -60,6 +60,44 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
   const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
+  // 安全访问iframe内容的辅助函数，处理跨域错误
+  const safeAccessIframe = (callback: (doc: Document) => void): boolean => {
+    try {
+      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+      if (iframe) {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (doc) {
+          callback(doc);
+          return true;
+        } else {
+          console.warn('无法访问iframe文档 - 可能还未加载');
+          return false;
+        }
+      }
+    } catch (error) {
+      console.warn('跨域访问被阻止，跳过iframe操作:', error);
+      return false;
+    }
+    return false;
+  };
+
+  // 安全访问iframe内容的辅助函数
+  const safeAccessIframe = (callback: (doc: Document) => void) => {
+    try {
+      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+      if (iframe) {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (doc) {
+          callback(doc);
+        } else {
+          console.warn('无法访问iframe文档');
+        }
+      }
+    } catch (error) {
+      console.warn('跨域访问被阻止，跳过iframe操作:', error);
+    }
+  };
+
   // Template generation states
   const [showTemplateGenerator, setShowTemplateGenerator] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<string>('');
@@ -341,7 +379,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         //   console.log('无法监听iframe内容文档:', e);
         // }
 
-        // 如果iframe已经加载完成，立即获取DOM树
+        // 如果iframe已经加��完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe���完成加载，立��获取DOM树');
           handleLoad();
@@ -719,7 +757,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const parent = selectedElement.parentElement;
     if (parent && parent !== document.body && parent !== document.documentElement) {
-      // 清除当前选中状态
+      // 清除当前选���状态
       selectedElement.classList.remove('element-selected');
 
       // 选择父元素
@@ -1084,7 +1122,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素��容查找对应的DOM树节点
+        // 尝试通过元素��容查找对应的DOM树���点
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1415,7 +1453,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </span>
           )}
 
-          {/* �����元素类型信息 */}
+          {/* �����元素类型信��� */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -1550,7 +1588,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       调试：渲染 {domTree.length} 个根节点
                     </div>
                     {domTree.map((node, index) => {
-                      console.log('渲染节点:', node.tagName, 'children:', node.children.length);
+                      console.log('��染节点:', node.tagName, 'children:', node.children.length);
                       return renderDOMNode(node, 0, index);
                     })}
                   </div>
@@ -1650,7 +1688,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-3 m-4">
-              <TabsTrigger value="content">内容</TabsTrigger>
+              <TabsTrigger value="content">���容</TabsTrigger>
               <TabsTrigger value="style">样式</TabsTrigger>
               <TabsTrigger value="attributes">属性</TabsTrigger>
             </TabsList>
@@ -2253,7 +2291,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元素"
+                  title="跳转到���前选中的元素"
                 >
                   🎯
                 </Button>
@@ -2289,7 +2327,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不可操作的）
+                    ⚠️ 显示所有元��（包括不可操作的）
                   </p>
                 )}
                 <p className="text-green-500">
@@ -2359,7 +2397,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🎯 选择��素
+              🎯 ��择��素
             </button>
           </div>
         )}
