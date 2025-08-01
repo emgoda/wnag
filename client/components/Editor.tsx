@@ -18,7 +18,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   const [previewMode, setPreviewMode] = useState('desktop');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
-  const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启元素选择
+  const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启��素选择
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // 设备尺寸
@@ -200,7 +200,15 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             ))}
           </div>
 
-
+          <Button
+            variant={elementSelectMode ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setElementSelectMode(!elementSelectMode)}
+            className="flex items-center gap-2"
+          >
+            <MousePointer className="w-4 h-4" />
+            {elementSelectMode ? '选择模式' : '浏览模式'}
+          </Button>
 
           <Button
             variant="outline"
