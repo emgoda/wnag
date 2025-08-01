@@ -90,7 +90,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    console.log('开始查����iframe...');
+    console.log('开始查���iframe...');
 
     // 列出所有可能的iframe
     const allIframes = document.querySelectorAll('iframe');
@@ -129,15 +129,26 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       if (body && body.children.length > 0) {
         // 如果body有子元素，构建完整的DOM树
         const tree = buildDOMTree(body);
-        setDomTree([tree]);
         console.log('DOM树构建成功，节点数:', tree.children.length);
+        console.log('DOM树结构:', tree);
+        setDomTree([tree]);
+
+        // 强制展开body��点
+        setTimeout(() => {
+          setDomTree(prev => prev.map(node =>
+            node.tagName === 'body'
+              ? { ...node, isExpanded: true }
+              : node
+          ));
+        }, 50);
       } else if (html && html.children.length > 0) {
         // 尝试从html根元素开始构建
         const tree = buildDOMTree(html);
+        console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
-        console.log('从HTML根元素构建DOM树');
       } else {
-        console.log('iframe内容为空，等待加载...');
+        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
+        console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如果body为空，等待内容加载
         setTimeout(() => {
           getDOMTreeFromIframe();
@@ -201,7 +212,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-          console.log('iframe已完成加载，立即获取DOM树');
+          console.log('iframe���完成加载，立即获取DOM树');
           handleLoad();
         }
 
@@ -380,7 +391,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           return;
         }
 
-        // 简���策略：直接更新最后一个相关元素（用户最新操作的）
+        // 简化策略：直接更新最后一个相关元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -416,7 +427,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // 更新��地状态
+    // 更新本地状态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -682,12 +693,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速到达用户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保��您的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
@@ -767,10 +778,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid ${themeColor}; position: relative; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: ${themeColor}; color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600;">推荐</div>
               <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1f2937;">专业版</h3>
-              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">��199</div>
+              <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">����199</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所���基础功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 高级分析</li>
@@ -799,7 +810,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // 生成��户评价模板
+  // 生成客户评价模板
   const generateTestimonial = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 16px rgba(0,0,0,0.1);' : 'box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
 
