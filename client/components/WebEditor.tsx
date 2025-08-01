@@ -589,41 +589,35 @@ export default function WebEditor() {
                           </div>
                         </div>
                         <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'a',
-                              content: '链接文本',
-                              attributes: { href: '#' }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 a 元素:', dragData);
+                          className="p-2 border rounded cursor-pointer hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                          onClick={() => {
+                            const addElementToPage = (window as any).addElementToPage;
+                            if (addElementToPage) {
+                              addElementToPage({
+                                tag: 'a',
+                                content: '链接文本',
+                                attributes: { href: '#' }
+                              }, 'append');
+                            }
                           }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
                           <div className="font-mono text-blue-600">&lt;a&gt;</div>
                           <div className="text-gray-600">链接</div>
                         </div>
                         <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'img',
-                              attributes: {
-                                src: 'https://via.placeholder.com/150x100',
-                                alt: '图片描述'
-                              }
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 img 元素:', dragData);
+                          className="p-2 border rounded cursor-pointer hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                          onClick={() => {
+                            const addElementToPage = (window as any).addElementToPage;
+                            if (addElementToPage) {
+                              addElementToPage({
+                                tag: 'img',
+                                attributes: {
+                                  src: 'https://via.placeholder.com/150x100',
+                                  alt: '图片描述'
+                                }
+                              }, 'append');
+                            }
                           }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
                         >
                           <div className="font-mono text-blue-600">&lt;img&gt;</div>
                           <div className="text-gray-600">图片</div>
