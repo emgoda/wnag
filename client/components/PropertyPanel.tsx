@@ -52,7 +52,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [localTextContent, setLocalTextContent] = useState(''); // 本���文本状态
+  const [localTextContent, setLocalTextContent] = useState(''); // 本���文���状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -136,6 +136,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
 
     return true;
+  };
+
+  // 生成或获取元素的唯一ID
+  const getElementNodeId = (element: HTMLElement): string => {
+    // 如果元素已经有data-node-id，直接返回
+    if (element.hasAttribute('data-node-id')) {
+      return element.getAttribute('data-node-id')!;
+    }
+
+    // 生成新的唯一ID
+    const nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    element.setAttribute('data-node-id', nodeId);
+    return nodeId;
   };
 
   // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
@@ -283,7 +296,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     // 延���再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
-      console.log('延迟获取DOM树...');
+      console.log('延��获取DOM树...');
       getDOMTreeFromIframe();
     }, 500);
 
@@ -370,7 +383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 定期检查DOM树变化（每3秒检查一次）
+    // 定期检查DOM树变化（每3秒检查一次��
     const interval = setInterval(updateDOMTree, 3000);
 
     return () => {
@@ -872,7 +885,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">姓名</label>
-            <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
+            <input type="text" placeholder="请输��您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">������箱</label>
@@ -1077,7 +1090,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               (targetElement.className ?
                 nodeText.includes(String(targetElement.className).split(' ')[0]) : true)) {
             treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            console.log('��滚动到目标节点');
+            console.log('����滚动到目标节点');
             break;
           }
         }
@@ -1289,7 +1302,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 添加对应模式的视觉提示
         const originalTitle = targetElement.title;
         if (mode === 'preview') {
-          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
+          targetElement.title = '👁️ 预览模式 - ���击DOM树节点锁定选择';
           setTimeout(() => {
             if (targetElement.getAttribute('data-dom-tree-preview')) {
               targetElement.title = originalTitle;
@@ -1365,7 +1378,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏或不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树中的元素���能来自iframe）
+      // 首先检查iframe中的元素（因为DOM树中的元素�����能来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
