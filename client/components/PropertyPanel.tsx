@@ -152,7 +152,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只���理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
+      // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -283,7 +283,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }, 1000);
       }
     } catch (error) {
-      console.error('读取iframe内容时出错:', error);
+      console.error('读取iframe内���时出错:', error);
     }
   };
 
@@ -329,7 +329,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         iframe.addEventListener('load', handleLoad);
 
-        // 监听iframe内���文档的变化
+        // ���听iframe内���文档的变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -426,7 +426,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const computedStyles = window.getComputedStyle(selectedElement);
       const styles: { [key: string]: string } = {};
       
-      // 获取常用样式�������
+      // 获取常用样式�����性
       const styleProperties = [
         'color', 'background-color', 'font-size', 'font-weight', 'font-family',
         'text-align', 'padding', 'margin', 'width', 'height', 'border',
@@ -607,7 +607,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变化:', value);
+    console.log('文本���入变化:', value);
 
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
@@ -652,7 +652,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         getDOMTreeFromIframe();
       }, 100);
 
-      console.log('元素复制���功');
+      console.log('元素复制�����功');
     } catch (error) {
       console.error('复制元素失败:', error);
     }
@@ -984,7 +984,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应��很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1453,17 +1453,15 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       <div key={`${node.tagName}-d${depth}-i${index}-${node.id || ''}-${(node.className && typeof node.className === 'string') ? node.className.replace(/\s+/g, '-') : 'no-class'}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer rounded transition-all duration-200 ${
-            isLocked
+            isSelectedByNodeId
               ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
-              : isPreview
-                ? 'bg-green-50 border-l-3 border-green-400 shadow-sm'
-                : isSelected
-                  ? 'bg-blue-100 border-l-4 border-blue-500 shadow-sm transform scale-[1.02]'
-                  : isHidden
-                    ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
-                    : isNonOperable
-                      ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
-                      : 'hover:bg-gray-100'
+              : isSelected
+                ? 'bg-blue-50 border-l-2 border-blue-300'
+                : isHidden
+                  ? 'bg-orange-50 hover:bg-orange-100 border-l-2 border-orange-400 text-orange-700'
+                  : isNonOperable
+                    ? 'bg-red-50 hover:bg-red-100 border-l-2 border-red-300 text-red-600 opacity-75'
+                    : 'hover:bg-gray-100'
           }`}
           style={{ paddingLeft: paddingLeft + 8 }}
           onClick={() => {
@@ -2188,7 +2186,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生成��
+                模��生�����
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2360,12 +2358,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
-                      console.log('没有选中的元素');
+                      console.log('没有选��的元素');
                     }
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到当前选中的元��"
+                  title="跳转到当前选中的����"
                 >
                   🎯
                 </Button>
@@ -2405,7 +2403,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '����️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
                 </p>
               </div>
             )}
