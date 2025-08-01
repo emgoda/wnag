@@ -967,7 +967,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 50GB 存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 优先支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高��分析</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 高级分析</li>
               </ul>
               <button style="width: 100%; background: ${themeColor}; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                 选择专业��
@@ -1028,7 +1028,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">王女士</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">��女士</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">运营总���</div>
                 </div>
               </div>
@@ -1067,7 +1067,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开��指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // 查找元素在DOM树中的路径
+    // ��找元素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1105,7 +1105,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       setDomTree(prev => expandPath(prev));
 
-      // 延时滚动���目标元素，确��DOM已更新
+      // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
         // 尝试通过元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
@@ -1349,7 +1349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 渲染DOM树节点
+  // 渲染DOM树节���
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -1725,7 +1725,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🟡 Textarea onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地状态，不立即更新DOM
+                    // 只��新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -2044,7 +2044,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Box className="w-4 h-4" />
-                    间距设置
+                    间距设���
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -2255,7 +2255,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">����盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -2312,7 +2312,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
                     <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
-                    <SelectItem value="testimonial">�����评价</SelectItem>
+                    <SelectItem value="testimonial">客户评价</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -2339,7 +2339,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输入框跟��主题色</Label>
+                  <Label className="text-sm text-gray-700">输入框跟随主题色</Label>
                   <Switch
                     checked={templateSettings.inputThemeColor}
                     onCheckedChange={(checked) =>
