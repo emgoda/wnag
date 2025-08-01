@@ -279,7 +279,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
-          console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+          console.log('DOM树���建成功 - ��签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
         // 强制展开body�������点
@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次��取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
-      // 尝试不同的方式����取文本内容
+      // 尝试不同的方式���取文本内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -906,7 +906,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解���
+          有任何问题����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素���������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1333,7 +1333,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：使���当前document的样式
+      // 备用检查：使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1389,7 +1389,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操���元素（系�����/框架元素）' :
+            isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可����作元素'
           }${
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有���素（包括不可操作的）" : "只显示可操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1714,7 +1714,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="��接输入文本..."
+                  placeholder="直接输入文本..."
                   className="mt-1"
                 />
 
@@ -1805,7 +1805,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Box className="w-4 h-4" />
-                    显示���式
+                    显示方式
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -2456,7 +2456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到�����前选中的元素"
+                  title="跳转到���前选中的元素"
                 >
                   🎯
                 </Button>
@@ -2483,7 +2483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个������点
+                  已加载 {domTree.length} 个根节点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
