@@ -43,6 +43,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   } | null>(null);
 
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [localTextContent, setLocalTextContent] = useState(''); // 本地文本状态
 
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
@@ -548,7 +549,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
-      // 添加高亮样式（如果还没有的话）
+      // 添加���亮样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
@@ -970,7 +971,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <SelectContent>
                           <SelectItem value="normal">正常</SelectItem>
                           <SelectItem value="bold">粗体</SelectItem>
-                          <SelectItem value="lighter">细体</SelectItem>
+                          <SelectItem value="lighter">���体</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -1205,7 +1206,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  ��新
+                  刷新
                 </Button>
               </div>
             </div>
