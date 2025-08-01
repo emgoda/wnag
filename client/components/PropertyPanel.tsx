@@ -159,7 +159,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // ��果iframe已经加载完成，立即获取DOM树
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -342,17 +342,25 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:', html);
+    const newHTML = prompt('编辑元素HTML:\n\n注意：请确保HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = newHTML;
-      const newElement = tempDiv.firstElementChild;
+      try {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = newHTML.trim();
+        const newElement = tempDiv.firstElementChild;
 
-      if (newElement) {
-        selectedElement.parentNode?.replaceChild(newElement, selectedElement);
-        updateParentContent();
-        setTimeout(() => getDOMTreeFromIframe(), 100);
+        if (newElement) {
+          selectedElement.parentNode?.replaceChild(newElement, selectedElement);
+          updateParentContent();
+          setTimeout(() => getDOMTreeFromIframe(), 100);
+          console.log('HTML编辑成功');
+        } else {
+          alert('无效的HTML格式，请检查后重试');
+        }
+      } catch (error) {
+        console.error('HTML编辑失败:', error);
+        alert('HTML编辑失败，请检查格式是否正确');
       }
     }
   };
@@ -732,7 +740,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">��开方式</Label>
+                    <Label className="text-sm font-medium">打开方式</Label>
                     <Select
                       value={elementData.attributes.target || '_self'}
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
