@@ -392,7 +392,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，��要移除或修改ID以避免重复
+      // 如果复制的元素有ID，需要移除或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -911,12 +911,52 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         localTextContent,
                         elementData: elementData?.textContent,
                         selectedElement: selectedElement?.tagName,
-                        inputValue: document.querySelector('textarea')?.value
+                        inputValue: document.querySelector('input')?.value,
+                        textareaValue: document.querySelector('textarea')?.value
                       });
                     }}
                     className="text-xs h-7"
                   >
                     🔍 输入状态
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      console.log('🔄 强制初始化状态');
+
+                      if (selectedElement) {
+                        const currentText = selectedElement.textContent || '';
+                        console.log('从元素获取文本:', currentText);
+
+                        setLocalTextContent(currentText);
+                        setElementData(prev => prev ? { ...prev, textContent: currentText } : null);
+                        setForceUpdate(prev => prev + 1);
+
+                        console.log('✅ 状态初始化完成');
+                      }
+                    }}
+                    className="text-xs h-7"
+                  >
+                    🔄 初始化
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const directText = "直接设置文本 " + Date.now();
+                      console.log('📝 直接设置:', directText);
+
+                      setLocalTextContent(directText);
+                      setElementData(prev => prev ? { ...prev, textContent: directText } : null);
+
+                      if (selectedElement) {
+                        selectedElement.textContent = directText;
+                      }
+                    }}
+                    className="text-xs h-7"
+                  >
+                    📝 直接设置
                   </Button>
                 </div>
               </div>
