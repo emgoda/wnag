@@ -447,7 +447,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ���新元素数据
+  // ���新元素数���
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -476,7 +476,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 获取文��������，确保获��������正确的��本
+      // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
       // 尝试不同的方式���取文本内容
@@ -981,7 +981,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ ��制�����成</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择企业�����
@@ -1220,7 +1220,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         el.removeAttribute('data-dom-tree-selected');
         el.removeAttribute('data-dom-tree-preview');
 
-        // 恢复������title
+        // 恢复����title
         const title = el.getAttribute('title');
         if (title && title.includes('🔒 已选中')) {
           el.removeAttribute('title');
@@ -1620,7 +1620,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem onClick={() => handleDuplicateElement()}>
                   <Copy className="w-4 h-4 mr-2" />
-                  复制��素
+                  复制元素
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleMoveElementUp()}
@@ -1714,7 +1714,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="直接输入文本..."
+                  placeholder="直接输入��本..."
                   className="mt-1"
                 />
 
@@ -2048,7 +2048,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {/* ��边距 */}
+                  {/* 外边距 */}
                   <div>
                     <Label className="text-xs font-medium">外边距</Label>
                     <div className="grid grid-cols-3 gap-2 items-center mt-2">
@@ -2339,7 +2339,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm text-gray-700">输��框跟随主题��</Label>
+                  <Label className="text-sm text-gray-700">输��框跟随主题色</Label>
                   <Switch
                     checked={templateSettings.inputThemeColor}
                     onCheckedChange={(checked) =>
@@ -2423,7 +2423,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  刷新
+                  刷��
                 </Button>
                 <Button
                   variant="ghost"
@@ -2456,7 +2456,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   }}
                   className="h-6 px-2 text-xs"
                   disabled={!selectedElement}
-                  title="跳转到���前选中的元素"
+                  title="跳转到���前选中���元素"
                 >
                   🎯
                 </Button>
