@@ -78,7 +78,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   });
 
   // 构建DOM树
-  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -175,7 +175,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
-          console.log('DOM树构建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
+          console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
         // 强制展开body��点
@@ -425,7 +425,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement, domTree]);
 
-  // 添加全局点击事件监听器来关闭右键��单
+  // 添加全局点击事件监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -672,7 +672,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 处理模板生成
+  // 处理���板生成
   const handleTemplateGeneration = () => {
     if (!selectedTemplate) {
       alert('请先选择一个模板');
@@ -681,7 +681,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
     const addElementToPage = (window as any).addElementToPage;
     if (!addElementToPage) {
-      alert('���面编辑器不可用');
+      alert('页面编辑器不可用');
       return;
     }
 
@@ -873,7 +873,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
-                选择企业版
+                选择企业���
               </button>
             </div>
           </div>
@@ -905,14 +905,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
                 <div>
                   <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">李先生</div>
-                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经���</div>
+                  <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">产品经理</div>
                 </div>
               </div>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大提升，数据分析功能特别实用���强烈推荐给其他企业！"
+                "��队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -925,7 +925,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使用方便，性价比很���。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1002,8 +1002,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const nodeText = treeNode.textContent || '';
           if (nodeText.includes(`<${targetElement.tagName?.toLowerCase()}>`) &&
               (targetElement.id ? nodeText.includes(`#${targetElement.id}`) : true) &&
-              (targetElement.className && typeof targetElement.className === 'string' ?
-                nodeText.includes(targetElement.className.split(' ')[0]) : true)) {
+              (targetElement.className ?
+                nodeText.includes(String(targetElement.className).split(' ')[0]) : true)) {
             treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
             console.log('已滚动到目标节点');
             break;
@@ -1769,7 +1769,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">�����类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -2028,7 +2028,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 }
               }}
             >
-              🎯 选择元素
+              🎯 选择��素
             </button>
           </div>
         )}
