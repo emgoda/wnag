@@ -628,23 +628,59 @@ export default function WebEditor() {
                           <div className="font-mono text-blue-600">&lt;img&gt;</div>
                           <div className="text-gray-600">图片</div>
                         </div>
-                        <div
-                          draggable
-                          onDragStart={(e) => {
-                            const dragData = {
-                              type: 'element',
-                              tag: 'button',
-                              content: '按钮文本'
-                            };
-                            const dragDataString = JSON.stringify(dragData);
-                            e.dataTransfer.setData('text/plain', dragDataString);
-                            e.dataTransfer.effectAllowed = 'copy';
-                            console.log('开始拖拽 button 元素:', dragData);
-                          }}
-                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
-                        >
+                        <div className="p-2 border rounded hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors">
                           <div className="font-mono text-blue-600">&lt;button&gt;</div>
-                          <div className="text-gray-600">按钮</div>
+                          <div className="text-gray-600 mb-2">按钮</div>
+                          <div className="flex gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'button',
+                                    content: '按钮文本'
+                                  }, 'insert');
+                                }
+                              }}
+                            >
+                              插入
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'button',
+                                    content: '按钮文本'
+                                  }, 'replace');
+                                }
+                              }}
+                            >
+                              替换
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-6 px-2"
+                              onClick={() => {
+                                const addElementToPage = (window as any).addElementToPage;
+                                if (addElementToPage) {
+                                  addElementToPage({
+                                    tag: 'button',
+                                    content: '按钮文本'
+                                  }, 'append');
+                                }
+                              }}
+                            >
+                              追加
+                            </Button>
+                          </div>
                         </div>
                         <div
                           draggable
