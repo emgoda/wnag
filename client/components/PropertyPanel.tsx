@@ -84,7 +84,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       id: element.id || undefined,
       className: element.className || undefined,
       children,
-      isExpanded: depth < 3 || element.tagName.toLowerCase() === 'body' // 默认展开前三层，body节点总是展开
+      isExpanded: depth < 5 || ['body', 'html', 'div'].includes(element.tagName.toLowerCase()) // 默认展开前5层，重要容器节点总是展开
     };
   };
 
@@ -408,7 +408,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     };
 
-    // ���即执行更新
+    // 立即执行更新
     updateElementInDOM();
 
     // ���时再执行一次确保更新成功
@@ -784,7 +784,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">�� 所有专业功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空间</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制集成</li>
@@ -1057,7 +1057,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  刷新
+                  ��新
                 </Button>
               </div>
               {domTree.length === 0 && (
@@ -1560,7 +1560,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">键盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">���盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -1605,7 +1605,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* ��择模板 */}
+              {/* 选择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模板</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
