@@ -45,7 +45,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   }, [content]);
 
-  // 在组件挂载时确保默认���手机模式
+  // 在组件挂载时确保默认为手机模式
   useEffect(() => {
     console.log('Editor组件挂载，当前预览模式:', previewMode);
   }, []);
@@ -88,7 +88,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
         }
       `;
       doc.head.appendChild(style);
-      console.log('已添加���择样式');
+      console.log('已添加选择样式');
     }
 
     // 获取所有可选择的元素
@@ -209,75 +209,74 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
     }
   };
 
-  // 处理拖拽放置
-  const handleDropOnEditor = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  // 添加元素到页面
+  const addElementToPage = (elementData: any, action: 'insert' | 'replace' | 'append') => {
+    const iframe = iframeRef.current;
+    const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
 
-    console.log('🎯 拖拽放置到编辑器！');
-
-    try {
-      const dragDataString = e.dataTransfer.getData('text/plain');
-      console.log('拖拽数据:', dragDataString);
-
-      if (!dragDataString) {
-        alert('拖拽数据为空，请重试');
-        return;
-      }
-
-      const dragData = JSON.parse(dragDataString);
-
-      if (dragData.type === 'element') {
-        // 获取iframe文档
-        const iframe = iframeRef.current;
-        const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
-
-        if (!doc || !doc.body) {
-          alert('无法访问页面文档，请刷新后重试');
-          return;
-        }
-
-        // 创建新元素
-        const newElement = doc.createElement(dragData.tag);
-
-        // 设置内容
-        if (dragData.content) {
-          if (dragData.content.includes('<')) {
-            newElement.innerHTML = dragData.content;
-          } else {
-            newElement.textContent = dragData.content;
-          }
-        }
-
-        // 设置属性
-        if (dragData.attributes) {
-          Object.entries(dragData.attributes).forEach(([key, value]) => {
-            newElement.setAttribute(key, value as string);
-          });
-        }
-
-        // 添加基本样式便于查看
-        newElement.style.margin = '10px';
-
-        // 添加到页面
-        doc.body.appendChild(newElement);
-
-        // 通知内容更新
-        const updatedHTML = doc.documentElement.outerHTML;
-        onChange(updatedHTML);
-
-        // 重新设置选择功能
-        setTimeout(() => {
-          setupElementSelection();
-        }, 200);
-
-        console.log('✅ 元素添加成功:', dragData.tag);
-        alert(`${dragData.tag} 元素已添加到页面！`);
-      }
-    } catch (error) {
-      console.error('拖拽处理失败:', error);
-      alert('拖拽处理失败: ' + error.message);
+    if (!doc || !doc.body) {
+      alert('无法访问页面文档，请刷新后重试');
+      return;
     }
+
+    // 创建新��素
+    const newElement = doc.createElement(elementData.tag);
+
+    // 设置内容
+    if (elementData.content) {
+      if (elementData.content.includes('<')) {
+        newElement.innerHTML = elementData.content;
+      } else {
+        newElement.textContent = elementData.content;
+      }
+    }
+
+    // 设置属性
+    if (elementData.attributes) {
+      Object.entries(elementData.attributes).forEach(([key, value]) => {
+        newElement.setAttribute(key, value as string);
+      });
+    }
+
+    // 添加基本样式
+    newElement.style.margin = '10px';
+
+    // 根据操作类型添加元素
+    switch (action) {
+      case 'insert':
+        if (selectedElement && selectedElement.parentNode) {
+          selectedElement.parentNode.insertBefore(newElement, selectedElement);
+        } else {
+          doc.body.appendChild(newElement);
+        }
+        break;
+      case 'replace':
+        if (selectedElement && selectedElement.parentNode) {
+          selectedElement.parentNode.replaceChild(newElement, selectedElement);
+          setSelectedElement(newElement);
+        } else {
+          doc.body.appendChild(newElement);
+        }
+        break;
+      case 'append':
+        if (selectedElement && selectedElement.tagName !== 'IMG' && selectedElement.tagName !== 'INPUT') {
+          selectedElement.appendChild(newElement);
+        } else {
+          doc.body.appendChild(newElement);
+        }
+        break;
+    }
+
+    // 通知内容更新
+    const updatedHTML = doc.documentElement.outerHTML;
+    onChange(updatedHTML);
+
+    // 重新设置选择功能
+    setTimeout(() => {
+      setupElementSelection();
+    }, 200);
+
+    console.log('✅ 元素添加成功:', elementData.tag, action);
   };
 
   return (
