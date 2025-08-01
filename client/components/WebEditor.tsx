@@ -125,7 +125,7 @@ export default function WebEditor() {
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页面');
+      alert('至少需要保留一个页���');
       return;
     }
 
@@ -205,7 +205,7 @@ export default function WebEditor() {
     }
   };
 
-  // 导���SingleFile
+  // 导入SingleFile
   const handleImportSingleFile = () => {
     fileInputRef.current?.click();
   };
@@ -260,7 +260,7 @@ export default function WebEditor() {
     }
   }, [selectedPageId, selectedPage]);
 
-  // 保存到��端
+  // ���存到��端
   const handleSave = async () => {
     try {
       const response = await fetch('/api/pages', {
@@ -364,7 +364,7 @@ export default function WebEditor() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>新增页面</DialogTitle>
+                      <DialogTitle>新增��面</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
@@ -1033,7 +1033,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">��项3</option>',
+                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
                                       attributes: {
                                         style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
                                       }
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请��入您的支付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
@@ -1118,7 +1118,7 @@ export default function WebEditor() {
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
-                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">持卡人姓名</label>
+                                    <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">��卡人姓名</label>
                                     <input type="text" placeholder="John Doe" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box; background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px);" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 4px rgba(99, 91, 255, 0.12), 0 4px 12px rgba(99, 91, 255, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'"
                                   </div>
 
