@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接���建其子树；否��构建body树
+        // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -278,7 +278,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('从HTML根元素构建DOM树，节点数:', tree.children.length);
         setDomTree([tree]);
       } else {
-        console.log('iframe内容��空，body子元素数:', body?.children.length || 0);
+        console.log('iframe内容为空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
         // 如���body为空，等待内容加���
         setTimeout(() => {
@@ -641,7 +641,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     try {
       const cloned = selectedElement.cloneNode(true) as HTMLElement;
-      // 如果复制的元素有ID，需要移��或修改ID以避免���复
+      // 如果复制的元素有ID，需要移��或修改ID以避免重复
       if (cloned.id) {
         cloned.id = cloned.id + '_copy';
       }
@@ -727,7 +727,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // ���里我们通过触发一���特殊的更新来选择父元素
+        // 这里我们通过触发一���特殊的更新来选择父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -1013,7 +1013,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单，使���方便，性价比很高。技术支持���队专业且耐心，解���问题很及时。"
+                "部署��单，使���方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -1115,7 +1115,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的是当前选中的元素，清除选中状态
+          // 如果删����的是当前选中的元素，清除选��状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1236,7 +1236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onNodeSelect(nodeId);
       console.log('✅ DOM树选择元素（预览模式），nodeId:', nodeId);
     } else {
-      console.warn('⚠️ DOM树元素缺少nodeId或缺少回调:', element);
+      console.warn('⚠️ DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor组件通过selectedNodeId受控处理
     // 这确保了元素只是被高亮预览，但不会被锁定无法交互
@@ -1525,7 +1525,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </p>
                   )}
                   <p className="text-green-500">
-                    {true ? '👁️ 预��模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
+                    {true ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁���模式：元素已锁定选择'}
                   </p>
                 </div>
               )}
@@ -2157,24 +2157,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </span>
                     </div>
                 </div>
-                  <button
-                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs transition-colors"
-                    onClick={() => {
-                      const newMode = true ? 'locked' : 'preview';
-                      setSelectionMode(newMode);
-                      if (newMode === 'preview') {
-                        // 切换到预览模式时清除锁定状态
-                        setSelectedNodeElement(null);
-                        clearIframePreviewStyles();
-                      }
-                      console.log(`切换到${newMode === 'preview' ? '预览' : '锁定'}模式`);
-                    }}
-                    title={`当前：${true ? '预览模式' : '锁定模式'}，点击切换`}
-                  >
-                    <span className={`${true ? 'text-green-600' : 'text-gray-400'}`}>👁️</span>
-                    <span className="text-gray-400">|</span>
-                    <span className={`${false ? 'text-blue-600' : 'text-gray-400'}`}>🔒</span>
-                  </button>
+
                 </div>
                 <div className="flex gap-1">
                 <Button
@@ -2263,7 +2246,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </div>
             {domTree.length === 0 && (
               <p className="text-xs text-gray-500 mt-2">
-                正在加载DOM结构... 点击"刷新"重试
+                正在加载DOM结构... 点击"刷新"重���
               </p>
             )}
             {domTree.length > 0 && (
@@ -2278,7 +2261,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显示所有元素（包括不可操��的）
+                    ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
                 <p className="text-green-500">
@@ -2348,7 +2331,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🎯 选择���素
+              🎯 选择��素
             </button>
           </div>
         )}
