@@ -911,7 +911,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "部署��单��使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
+                "部署��单，使用方便，性价比很高。技术支持团队专业且耐心，解���问题很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">��</div>
@@ -998,6 +998,64 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     } else {
       console.log('未在DOM树中找到目标元素');
     }
+  };
+
+  // 删除DOM元素
+  const deleteElement = (elementToDelete: HTMLElement) => {
+    try {
+      // 确认删除操作
+      if (!confirm(`确定要删除 <${elementToDelete.tagName.toLowerCase()}> 元素吗？`)) {
+        return;
+      }
+
+      // 从iframe中删除元素
+      const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+      if (iframe && iframe.contentDocument) {
+        // 找到iframe中对应的元素并删除
+        const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
+        if (iframeElement && iframeElement.parentNode) {
+          iframeElement.parentNode.removeChild(iframeElement);
+          console.log('已删除元素:', elementToDelete.tagName);
+
+          // 如果删除的是当前选中的元素，清除选中状态
+          if (selectedElement === elementToDelete) {
+            setSelectedElement(null);
+            setElementData(null);
+          }
+
+          // 刷新DOM树
+          setTimeout(() => {
+            getDOMTreeFromIframe();
+          }, 100);
+
+          // 触发页面更新
+          if (onElementUpdate) {
+            onElementUpdate(elementToDelete, 'delete', '');
+          }
+        }
+      }
+    } catch (error) {
+      console.error('删除元素失败:', error);
+      alert('删除元素失败，请重试');
+    }
+  };
+
+  // 处理右键菜单
+  const handleContextMenu = (e: React.MouseEvent, node: DOMNode) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setContextMenu({
+      show: true,
+      x: e.clientX,
+      y: e.clientY,
+      node
+    });
+  };
+
+  // 关闭右键���单
+  const closeContextMenu = () => {
+    setContextMenu(prev => ({ ...prev, show: false }));
   };
 
   // 选择DOM节点
@@ -1210,7 +1268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
                     <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
-                      请导入��面或点击"刷新"
+                      请导入��面或点击"刷��"
                     </p>
                   </div>
                 )}
@@ -1405,7 +1463,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
-                        <SelectItem value="_parent">父窗����</SelectItem>
+                        <SelectItem value="_parent">父窗��</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
