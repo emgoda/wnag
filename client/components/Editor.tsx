@@ -16,7 +16,7 @@ interface EditorProps {
 }
 
 const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onElementSelect }, ref) => {
-  const [previewMode, setPreviewMode] = useState('mobile');
+  const [previewMode, setPreviewMode] = useState('iphone-14-pro');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
   const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启��素选择
@@ -29,7 +29,7 @@ const Editor = forwardRef<any, EditorProps>(({ content, onChange, pageName, onEl
     'android-14': { width: '360px', height: '800px', label: 'Android 14' }
   };
 
-  // 更新预览内容
+  // 更新预��内容
   useEffect(() => {
     if (iframeRef.current) {
       const iframe = iframeRef.current;
