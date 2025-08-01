@@ -95,7 +95,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.hasAttribute('data-loc') || // React/框架调试属性
       element.hasAttribute('aria-hidden') || // ARIA隐藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
-      element.hasAttribute('data-state') || // 框架状态元素
+      element.hasAttribute('data-state') || // 框架状态���素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚焦元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
@@ -153,7 +153,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
             children: buildTree(element), // 递归构建子元素树
-            isExpanded: true // 默���展开所有节点
+            isExpanded: true // 默认展开所有节点
           });
         } else {
           // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
@@ -229,7 +229,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       if (containerElement) {
         // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
-          console.log('���到canvas-root容器，构建子树');
+          console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
@@ -268,7 +268,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }, 1000);
       }
     } catch (error) {
-      console.error('读取iframe内容时出错:', error);
+      console.error('读取iframe内容���出错:', error);
     }
   };
 
@@ -314,7 +314,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         iframe.addEventListener('load', handleLoad);
 
-        // 监听iframe内���文档的变化
+        // 监���iframe内���文档的变化
         try {
           if (iframe.contentDocument) {
             iframe.contentDocument.addEventListener('DOMContentLoaded', handleContentChange);
@@ -512,7 +512,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立�����新DOM中的对应元素
+    // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -550,7 +550,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
       } catch (error) {
-        console.error('更新DOM出错:', error);
+        console.error('更新DOM���错:', error);
       }
     };
 
@@ -767,7 +767,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         templateHTML = generateTestimonial();
         break;
       default:
-        templateHTML = '<div>��知模板</div>';
+        templateHTML = '<div>未知模板</div>';
     }
 
     // 添��到页面
@@ -822,7 +822,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业��服务，卓越��������验
+            专���的服务，卓越��������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -956,7 +956,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             客户评价
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            ���听客户怎么说
+            �����听客户怎么说
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -975,7 +975,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
+                "����队协作���率大大提升，数据分析功能特别实�����强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1184,12 +1184,18 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选中状态已清除，元素可���由交互');
+    console.log('所有选中状态已清除，元素可自由交互');
   };
 
-  // 选择DOM节点
-  const handleNodeSelect = (element: HTMLElement) => {
-    setSelectedNodeElement(element);
+  // 选择DOM节点（支持预览和锁定模式）
+  const handleNodeSelect = (element: HTMLElement, mode: 'preview' | 'locked' = 'preview') => {
+    if (mode === 'preview') {
+      setPreviewElement(element);
+      setSelectionMode('preview');
+    } else {
+      setSelectedNodeElement(element);
+      setSelectionMode('locked');
+    }
 
     // 清除之前的��亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
@@ -1335,7 +1341,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             return true;
           }
 
-          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
+          // ���查尺寸是否为0（��排除某些正常的0尺寸��素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1502,7 +1508,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="text-center text-gray-500">
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-sm">在预览中选择一个元素</p>
+              <p className="text-sm">在预览中选择一个���素</p>
               <p className="text-xs text-gray-400 mt-2">
                 点击预览中的元素或下方DOM树进行编辑
               </p>
@@ -1562,7 +1568,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   )}
                   {showAllElements && (
                     <p className="text-yellow-600">
-                      ��️ 显示所有元素（包括不可操作的）
+                      ⚠️ 显示所有元素（包���不可操作的）
                     </p>
                   )}
                 </div>
@@ -1723,7 +1729,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
               </div>
 
-              {/* 特定����的内��属性 */}
+              {/* 特定��素的内��属性 */}
               {elementData.tagName === 'img' && (
                 <>
                   <Separator />
