@@ -21,7 +21,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   const [elementSelectMode, setElementSelectMode] = useState(true); // 默认开启元素选择
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // 设��尺寸
+  // 设备尺寸
   const deviceSizes = {
     desktop: { width: '100%', height: '100%', label: '桌面' },
     mobile: { width: '375px', height: '667px', label: '手机' }
@@ -93,6 +93,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 鼠标悬停效果
   const handleMouseOver = (e: Event) => {
+    if (!elementSelectMode) return;
     e.stopPropagation();
     const target = e.target as HTMLElement;
     if (target && target !== document.documentElement && target !== document.body) {
@@ -102,6 +103,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 鼠标离开效果
   const handleMouseOut = (e: Event) => {
+    if (!elementSelectMode) return;
     const target = e.target as HTMLElement;
     if (target) {
       target.classList.remove('element-hover');
@@ -110,6 +112,8 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 元素点击选择
   const handleElementClick = (e: Event) => {
+    if (!elementSelectMode) return;
+
     e.preventDefault();
     e.stopPropagation();
 
