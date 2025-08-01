@@ -64,7 +64,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) {
-      console.log('无法访问iframe文档');
+      console.log('无法访���iframe文档');
       return;
     }
 
@@ -237,7 +237,10 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
                 key={key}
                 variant={previewMode === key ? 'default' : 'ghost'}
                 size="sm"
-                onClick={() => setPreviewMode(key)}
+                onClick={() => {
+                  console.log('切换预览模式到:', key);
+                  setPreviewMode(key);
+                }}
                 className="px-2"
               >
                 {key === 'desktop' && <Monitor className="w-4 h-4" />}
