@@ -83,7 +83,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   });
 
   // 构建DOM树
-  // 检查元素是否可操作
+  // 检查元素是否可操���
   const isElementOperable = (element: HTMLElement): boolean => {
     const tagName = element.tagName.toLowerCase();
 
@@ -151,7 +151,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return nodeId;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过��文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -183,7 +183,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return res;
   };
 
-  // 兼容旧接����单节点构建方法 - 只构建元素节点树
+  // 兼容旧接����单节点构建��法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -891,7 +891,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">������箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">��������箱</label>
             <input type="email" placeholder="请输入���的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -955,7 +955,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功能</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制���成</li>
@@ -1233,7 +1233,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 获取或生成元素的nodeId
     let nodeId = element.getAttribute('data-node-id');
 
-    // 如果元素没有nodeId，为其生成一个
+    // 如果元素没有nodeId，为其生成��个
     if (!nodeId) {
       nodeId = `node-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       element.setAttribute('data-node-id', nodeId);
@@ -1271,7 +1271,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
-        // 如果元素有data-node-id，优先用这个查找
+        // 如果元素有data-node-id，优先用这个��找
         const nodeId = element.getAttribute('data-node-id');
         if (nodeId) {
           const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
@@ -1363,7 +1363,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可���作元素'
           }${
-            false ? '\n🔒 已锁定选择' :
+            false ? '\n���� 已锁定选择' :
             isSelectedByNodeId ? '\n✅ 当前选中' :
             ''
           }\n点击选择元素\n右键：删��元素`}
@@ -1510,24 +1510,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   >
                     刷新
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      console.log('DOM树调试信息:');
-                      console.log('domTree.length:', domTree.length);
-                      console.log('selectedNodeId:', selectedNodeId);
-                      console.log('onNodeSelect:', !!onNodeSelect);
-                      if (domTree.length > 0) {
-                        const firstNode = domTree[0];
-                        console.log('第一个节点:', firstNode.tagName, firstNode.element);
-                        console.log('第一个节点的nodeId:', firstNode.element.getAttribute('data-node-id'));
-                      }
-                    }}
-                    className="h-6 px-2 text-xs"
-                  >
-                    调试
-                  </Button>
+
                 </div>
               </div>
               {domTree.length === 0 && (
@@ -1614,7 +1597,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleEditElementHTML()}>
                   <Edit3 className="w-4 h-4 mr-2" />
-                  ��辑HTML
+                  ����HTML
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
@@ -1704,7 +1687,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // 失焦时才更新DOM，避免频繁重建DOM树
+                    // ���焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟡 Textarea失焦，更新DOM:', newValue);
                     if (selectedElement) {
