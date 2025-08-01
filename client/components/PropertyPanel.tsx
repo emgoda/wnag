@@ -408,7 +408,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [selectedElement]);
 
-  // 当选中元素变化时，同步本地文本状态
+  // ��选中元素变化时，同步本地文本状态
   useEffect(() => {
     if (elementData) {
       setLocalTextContent(elementData.textContent);
@@ -1002,7 +1002,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const nodeText = treeNode.textContent || '';
           if (nodeText.includes(`<${targetElement.tagName?.toLowerCase()}>`) &&
               (targetElement.id ? nodeText.includes(`#${targetElement.id}`) : true) &&
-              (targetElement.className ? nodeText.includes(targetElement.className.split(' ')[0]) : true)) {
+              (targetElement.className && typeof targetElement.className === 'string' ?
+                nodeText.includes(targetElement.className.split(' ')[0]) : true)) {
             treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
             console.log('已滚动到目标节点');
             break;
@@ -1981,7 +1982,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      console.log('强��������DOM树');
+                      console.log('强���������DOM树');
                       // 立即尝试多次
                       for (let i = 0; i < 3; i++) {
                         setTimeout(() => getDOMTreeFromIframe(), i * 200);
