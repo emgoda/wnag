@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body�����点
+        // 强制展开body�������点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -402,7 +402,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       getDOMTreeFromIframe();
     };
 
-    // 监��自定义DOM树刷新事件
+    // 监��自定义DOM���刷新事件
     const handleDOMTreeRefresh = () => {
       console.log('收到DOM树刷新事件');
       getDOMTreeFromIframe();
@@ -761,7 +761,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 删除元素
+  // 删除���素
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
@@ -874,7 +874,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
-              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">����</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一�����署，快��上线，让您的产品迅速到达用户</p>
             </div>
@@ -1028,7 +1028,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
                 <div>
-                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">��女士</div>
+                  <div style="font-weight: 700; color: #1f2937; font-size: 15px; letter-spacing: -0.2px;">王女士</div>
                   <div style="color: #6b7280; font-size: 12px; font-weight: 500; margin-top: 2px;">运营总���</div>
                 </div>
               </div>
@@ -1067,7 +1067,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 自动展开��指定元素并滚动到该位置
   const autoExpandToElement = (targetElement: HTMLElement) => {
-    // ��找元素在DOM树中的路径
+    // 查找元素在DOM树中的路径
     const findElementPath = (nodes: DOMNode[], target: HTMLElement, path: DOMNode[] = []): DOMNode[] | null => {
       for (const node of nodes) {
         const currentPath = [...path, node];
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目标元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通过元素��容查找对应的DOM树�����
+        // 尝试通��元素��容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的元素������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素��������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1349,7 +1349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 渲染DOM树节���
+  // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -1725,7 +1725,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🟡 Textarea onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只��新本地状态，不立即更新DOM
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -2044,7 +2044,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Box className="w-4 h-4" />
-                    间距设���
+                    间距设置
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -2255,7 +2255,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">����盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
@@ -2264,7 +2264,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         <option value="text">默认</option>
                         <option value="numeric">数字</option>
                         <option value="tel">电话</option>
-                        <option value="email">邮箱</option>
+                        <option value="email">���箱</option>
                         <option value="url">网址</option>
                       </select>
                     </div>
@@ -2305,7 +2305,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <Label className="text-sm font-medium mb-2 block">选择模板</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="-- 请��择 --" />
+                    <SelectValue placeholder="-- 请选择 --" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="hero-section">Hero 区域</SelectItem>
