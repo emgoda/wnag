@@ -125,7 +125,7 @@ export default function WebEditor() {
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页面');
+      alert('至少需要保留一���页面');
       return;
     }
 
@@ -302,7 +302,7 @@ export default function WebEditor() {
             disabled={historyIndex >= history.length - 1}
           >
             <Redo className="w-4 h-4 mr-2" />
-            重做
+            重���
           </Button>
           <Button
             variant="outline"
@@ -328,7 +328,7 @@ export default function WebEditor() {
       </div>
 
       <div className="flex-1 flex">
-        {/* ���侧面板 */}
+        {/* 左侧面板 */}
         <div className="w-80 bg-white border-r flex flex-col">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col justify-start items-center overflow-hidden" style={{ width: '315.2px', margin: '0 auto' }}>
             <TabsList className="grid w-full grid-cols-3 m-4">
@@ -682,7 +682,7 @@ export default function WebEditor() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
                             <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;input&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">输���框</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">输入框</div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -1088,7 +1088,7 @@ export default function WebEditor() {
                                       <span style="color: white; font-size: 24px;">💳</span>
                                     </div>
                                     <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">安全支付</h2>
-                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的支付信息</p>
+                                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">请输入您的��付信息</p>
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
@@ -1132,7 +1132,7 @@ export default function WebEditor() {
                                       <span style="color: #1f2937; font-size: 14px;">¥9.90</span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #e5e7eb;">
-                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">总���</span>
+                                      <span style="color: #1f2937; font-size: 16px; font-weight: 600;">总计</span>
                                       <span style="color: #1f2937; font-size: 16px; font-weight: 600;">¥108.90</span>
                                     </div>
                                   </div>
@@ -1302,7 +1302,7 @@ export default function WebEditor() {
 
         {/* 中间编辑器区域 */}
         <div className="flex-1 flex flex-col">
-          {/* 源码编辑器（可切换显示） */}
+          {/* 源码编辑器（��切换显示） */}
           {showCodeEditor && selectedPage && (
             <div className="h-80 border-b bg-white flex flex-col">
               <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
