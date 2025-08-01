@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
-      element.getAttribute('role') === 'none'; // 无����元素
+      element.getAttribute('role') === 'none'; // 无��义元素
 
     // 不可操作的CSS类名模式
     const nonOperableClassPatterns = [
@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 生成或获取元素的唯一ID
   const getElementNodeId = (element: HTMLElement): string => {
-    // 如���元素已经有data-node-id，��接返回
+    // 如��元素已经有data-node-id，��接返回
     if (element.hasAttribute('data-node-id')) {
       return element.getAttribute('data-node-id')!;
     }
@@ -212,7 +212,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             isExpanded: true // 默认��开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然��查其子元素（只有在不显���所有元素时）
+          // 对于不可操作的元素，仍然��查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -318,7 +318,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       } else {
         console.log('iframe内容��空，body子元素数:', body?.children.length || 0);
         console.log('body innerHTML:', body?.innerHTML?.substring(0, 200) || 'empty');
-        // 如���body为空，等待���容加���
+        // 如���body为空，等待内容加���
         setTimeout(() => {
           getDOMTreeFromIframe();
         }, 1000);
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
-  // 添加全局点击事���监听器��关闭右键菜单
+  // 添加全局点击事���监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -765,7 +765,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通���触发一���特殊的更���来选���父元素
+        // 这里我们通过触发一���特殊的更���来选���父元素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -1405,7 +1405,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
             isNonOperable ? '\n🔒 不可操���元素（系���/框架元素）' :
-            isHidden ? '\n👁️‍����️ 隐藏元素' :
+            isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可���作元素'
           }${
             false ? '\n���� 已锁定选择' :
@@ -1815,157 +1815,6 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </TabsContent>
 
             <TabsContent value="style" className="px-4 pb-4 space-y-4">
-              {/* 新的样式编辑面板 */}
-              <Tabs defaultValue="general" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="general">通用</TabsTrigger>
-                  <TabsTrigger value="custom">自定义样式</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="general" className="space-y-4 mt-4">
-                  {/* 显示方式 */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">显示方式</Label>
-                    <Select
-                      value={elementData.styles['display'] || 'block'}
-                      onValueChange={(value) => handleStyleChange('display', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="选择显示方式" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="block">整行</SelectItem>
-                        <SelectItem value="inline">行内</SelectItem>
-                        <SelectItem value="inline-block">行内块</SelectItem>
-                        <SelectItem value="flex">弹性</SelectItem>
-                        <SelectItem value="none">隐藏</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* 颜色设置 */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium">文本颜色</Label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={elementData.styles['color'] || '#000000'}
-                          onChange={(e) => handleStyleChange('color', e.target.value)}
-                          className="w-8 h-8 rounded border"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium">背景颜色</Label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={elementData.styles['background-color'] || '#ffffff'}
-                          onChange={(e) => handleStyleChange('background-color', e.target.value)}
-                          className="w-8 h-8 rounded border"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 字体大小 */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">字体大小</Label>
-                    <div className="flex items-center gap-2">
-                      <Input
-                        type="number"
-                        value={elementData.styles['font-size']?.replace('px', '') || ''}
-                        onChange={(e) => handleStyleChange('font-size', e.target.value + 'px')}
-                        placeholder="16"
-                        className="h-8"
-                      />
-                      <span className="text-xs text-gray-500">px</span>
-                    </div>
-                  </div>
-
-                  {/* 文本对齐 */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">文本对齐</Label>
-                    <div className="flex gap-1">
-                      {[
-                        { value: '', label: '默认' },
-                        { value: 'left', label: '左对齐' },
-                        { value: 'center', label: '居中' },
-                        { value: 'right', label: '右对齐' }
-                      ].map((align) => (
-                        <Button
-                          key={align.value}
-                          variant={elementData.styles['text-align'] === align.value ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => handleStyleChange('text-align', align.value)}
-                          className="flex-1 h-8 text-xs"
-                        >
-                          {align.label}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 字体样式 */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">字体样式</Label>
-                    <div className="flex flex-wrap gap-2">
-                      <label className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          checked={elementData.styles['font-weight'] === 'bold'}
-                          onChange={(e) => handleStyleChange('font-weight', e.target.checked ? 'bold' : 'normal')}
-                          className="rounded"
-                        />
-                        <span className="text-xs">粗体</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          checked={elementData.styles['font-style'] === 'italic'}
-                          onChange={(e) => handleStyleChange('font-style', e.target.checked ? 'italic' : 'normal')}
-                          className="rounded"
-                        />
-                        <span className="text-xs">斜体</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          checked={elementData.styles['text-decoration'] === 'underline'}
-                          onChange={(e) => handleStyleChange('text-decoration', e.target.checked ? 'underline' : 'none')}
-                          className="rounded"
-                        />
-                        <span className="text-xs">下划线</span>
-                      </label>
-                    </div>
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="custom" className="space-y-4 mt-4">
-                  {/* 自定义CSS */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">自定义CSS样式</Label>
-                    <Textarea
-                      value={Object.entries(elementData.styles).map(([key, value]) => `${key}: ${value};`).join('\n')}
-                      onChange={(e) => {
-                        // 解析CSS文本并更新样式
-                        const lines = e.target.value.split('\n');
-                        const newStyles: { [key: string]: string } = {};
-                        lines.forEach(line => {
-                          const [key, value] = line.split(':').map(s => s.trim());
-                          if (key && value) {
-                            newStyles[key] = value.replace(';', '');
-                          }
-                        });
-                        setElementData(prev => prev ? { ...prev, styles: newStyles } : null);
-                      }}
-                      placeholder="输入CSS样式，例如：&#10;color: red;&#10;font-size: 16px;"
-                      className="min-h-[120px] text-xs font-mono"
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
               {/* 文字样式 */}
               <Card>
                 <CardHeader className="pb-3">
