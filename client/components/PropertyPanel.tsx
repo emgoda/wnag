@@ -325,12 +325,32 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更新文本内容
   const handleTextContentChange = (value: string) => {
-    if (!selectedElement || !onElementUpdate) return;
+    console.log('更新文本内容:', value);
 
-    selectedElement.textContent = value;
-    onElementUpdate(selectedElement, 'textContent', value);
+    if (!selectedElement) {
+      console.log('没有选中的元素');
+      return;
+    }
 
+    // 先更新UI状态，让用户立即看到输入的文本
     setElementData(prev => prev ? { ...prev, textContent: value } : null);
+
+    try {
+      // 更新iframe中的实际元素
+      selectedElement.textContent = value;
+      console.log('已更新元素textContent:', selectedElement.textContent);
+
+      // 通知父组件内容已更改
+      if (onElementUpdate) {
+        onElementUpdate(selectedElement, 'textContent', value);
+      }
+
+      // 强制更新页面内容
+      updateParentContent();
+
+    } catch (error) {
+      console.error('更新文本内容时出错:', error);
+    }
   };
 
   // 复制元素
@@ -782,7 +802,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
-                      placeholder="图片描述"
+                      placeholder="��片描述"
                       className="mt-1"
                     />
                   </div>
