@@ -71,7 +71,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳过script和style标签，但保留其他所有元素
+        // 跳过script和style标签，但保留其他��有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -144,7 +144,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         setDomTree([tree]);
         console.log('DOM树构建成功，节点数:', tree.children.length);
       } else if (html && html.children.length > 0) {
-        // 尝试从html根元素���始构建
+        // 尝试从html根元素开始构建
         const tree = buildDOMTree(html);
         setDomTree([tree]);
         console.log('从HTML根元素构建DOM树');
@@ -311,7 +311,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取��本内容，确保获取到正确的文本
+      // 获取��本内容，确保获取���正确的文本
       let textContent = '';
 
       // 尝试不同的方式获取文本内容
@@ -490,7 +490,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编辑失败，请检查格式是否正确');
+        alert('HTML编辑失败���请检查格式是否正确');
       }
     }
   };
@@ -653,7 +653,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     `;
   };
 
-  // ���成联系表单模板
+  // ���成���系表单模板
   const generateContactForm = () => {
     const shadowStyle = templateSettings.inputShadow ? 'box-shadow: 0 4px 8px rgba(0,0,0,0.1);' : '';
     const themeColor = templateSettings.inputThemeColor ? '#3b82f6' : '#6b7280';
