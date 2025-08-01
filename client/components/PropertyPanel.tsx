@@ -199,11 +199,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const getDOMTreeFromIframe = () => {
     console.log('开始查����iframe...');
 
-    // 列出所���可能的iframe
+    // 列���所���可能的iframe
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 直接查找第一个可用��iframe
+    // 直接查找第一个可用的iframe
     let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -582,7 +582,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即执行更新
     updateElementInDOM();
 
-    // ����时再��行一次确保����新成功
+    // ����时再��行一次确保�����新成功
     setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
@@ -624,7 +624,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         console.log('更新DOM元素文本:', selectedElement.tagName, value);
         selectedElement.textContent = value;
 
-        // 通知父组件
+        // ��知父组件
         if (onElementUpdate) {
           onElementUpdate(selectedElement, 'textContent', value);
         }
@@ -756,7 +756,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // 触发父组件的内容更���
+    // ���发父组件的内容更���
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
@@ -821,7 +821,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-            发现���限可能，创造美好未来
+            发现���限可能，创造美好未���
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -919,7 +919,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             选择适��的方������
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 30px;">
-            灵活的定价，���足不同需求
+            灵活的定价，满足不同需求
           </p>
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; border: 2px solid #e5e7eb; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.borderColor='${themeColor}'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'">
@@ -1000,7 +1000,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大��升，数据分析功能特别实�������强烈推荐给其他企业！"
+                "��队协作���率大�����升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1093,7 +1093,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               (targetElement.className ?
                 nodeText.includes(String(targetElement.className).split(' ')[0]) : true)) {
             treeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            console.log('��滚动到目标节点');
+            console.log('��滚动到目标节��');
             break;
           }
         }
@@ -1217,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选中�����');
+      console.log('已清除', highlighted.length, '个元素的选中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 检测元���是否隐藏��不可见
+  // 检测元素是否隐藏��不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
       // 首先检查iframe中的元素（因为DOM树���的元素������来自iframe）
@@ -1383,7 +1383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             'text-blue-600'
           }`}>
             &lt;{node.tagName}&gt;
-            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍���️</span>}
+            {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
             {isNonOperable && <span className="text-red-500 ml-1" title="不可���作元素">🔒</span>}
           </span>
 
@@ -1482,7 +1482,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       checked={showAllElements}
                       onCheckedChange={(checked) => {
                         setShowAllElements(checked);
-                        // 切换显示模式后重新构建DOM树
+                        // 切换显示模式后重���构建DOM树
                         setTimeout(() => getDOMTreeFromIframe(), 100);
                       }}
                       className="scale-75"
@@ -1501,6 +1501,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     className="h-6 px-2 text-xs"
                   >
                     刷新
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      console.log('DOM树调试信息:');
+                      console.log('domTree.length:', domTree.length);
+                      console.log('selectedNodeId:', selectedNodeId);
+                      console.log('onNodeSelect:', !!onNodeSelect);
+                      if (domTree.length > 0) {
+                        const firstNode = domTree[0];
+                        console.log('第一个节点:', firstNode.tagName, firstNode.element);
+                        console.log('第一个节点的nodeId:', firstNode.element.getAttribute('data-node-id'));
+                      }
+                    }}
+                    className="h-6 px-2 text-xs"
+                  >
+                    调试
                   </Button>
                 </div>
               </div>
@@ -1641,7 +1659,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   本地����: "{localTextContent}" (长度: {localTextContent.length})
                 </div>
                 <div className="text-xs text-blue-500 mb-1">
-                  ���素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
+                  元素状态: "{elementData.textContent}" (长度: {elementData.textContent.length})
                 </div>
 
                 {/* 简单的input测试 */}
@@ -2101,7 +2119,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 开始生成
               </Button>
 
-              {/* 模����置选项 */}
+              {/* 模板��置选项 */}
               <div className="space-y-3 pt-2 border-t">
                 <div className="flex items-center justify-between">
                   <Label className="text-sm text-gray-700">输入��阴���</Label>
@@ -2223,7 +2241,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   size="sm"
                   onClick={() => {
                     if (selectedElement) {
-                      console.log('��转到选中���素');
+                      console.log('��转到选中元素');
                       autoExpandToElement(selectedElement);
                     } else {
                       console.log('没有选中的元素');
@@ -2258,7 +2276,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             {domTree.length > 0 && (
               <div className="text-xs mt-2 space-y-1">
                 <p className="text-green-600">
-                  ��加载 {domTree.length} 个根���点
+                  已加载 {domTree.length} 个根���点
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
@@ -2326,7 +2344,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 }
               }}
             >
-              🗑️ 删除元���
+              🗑️ 删除元素
             </button>
             <button
               className="w-full px-3 py-2 text-left hover:bg-gray-50 text-gray-600 text-sm flex items-center gap-2"
