@@ -49,7 +49,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     const children: DOMNode[] = [];
 
-    // 只处理Element节点，���过文本节点和注释节点
+    // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
         // 跳过script和style标签，但保留其他所有元素
@@ -435,7 +435,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
-      // 移除之前的高亮样���
+      // 移除之前的高亮样式
       const previousHighlighted = doc.querySelectorAll('.dom-tree-selected');
       previousHighlighted.forEach(el => {
         el.classList.remove('dom-tree-selected');
@@ -665,9 +665,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => handleSelectParent()}
-                  disabled={!selectedElement?.parentElement ||
-                           selectedElement?.parentElement === document.body ||
-                           selectedElement?.parentElement === document.documentElement}
+                  disabled={(() => {
+                    if (!selectedElement?.parentElement) return true;
+                    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+                    if (!iframe?.contentDocument) return true;
+                    const doc = iframe.contentDocument;
+                    return selectedElement.parentElement === doc.body ||
+                           selectedElement.parentElement === doc.documentElement;
+                  })()}
                 >
                   <Move className="w-4 h-4 mr-2" />
                   选择父元素
