@@ -52,7 +52,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 只处理Element节点，跳过文本节点和注释节点
     Array.from(element.children).forEach(child => {
       if (child instanceof HTMLElement) {
-        // 跳��script和style标签，但保留其他所有元素
+        // 跳过script和style标签，但保留其他所有元素
         if (child.tagName.toLowerCase() !== 'script' && child.tagName.toLowerCase() !== 'style') {
           children.push(buildDOMTree(child, depth + 1));
         }
@@ -170,7 +170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.log('找到iframe，设置监听器');
 
         const handleLoad = () => {
-          console.log('iframe加���完成事件触发');
+          console.log('iframe加载完成事件触发');
           setTimeout(() => {
             getDOMTreeFromIframe();
           }, 300);
@@ -388,7 +388,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑��素HTML:\n\n注意：请确保HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n注意：请确保HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -509,7 +509,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟点击事件来触发父组件的选择
+    // 模拟��击事件来触发父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -811,7 +811,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="_self">���前窗口</SelectItem>
+                        <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
                         <SelectItem value="_parent">父窗口</SelectItem>
                       </SelectContent>
@@ -1055,17 +1055,42 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <Code className="w-4 h-4" />
                 DOM 树
               </h4>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  console.log('手动刷新DOM树');
-                  getDOMTreeFromIframe();
-                }}
-                className="h-6 px-2 text-xs"
-              >
-                刷新
-              </Button>
+              <div className="flex gap-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    console.log('调试信息:');
+                    console.log('domTree.length:', domTree.length);
+                    console.log('domTree:', domTree);
+                    const allIframes = document.querySelectorAll('iframe');
+                    console.log('所有iframe:', allIframes);
+                    allIframes.forEach((iframe, index) => {
+                      console.log(`iframe ${index}:`, {
+                        title: iframe.title,
+                        src: iframe.src,
+                        contentDocument: iframe.contentDocument,
+                        ready: iframe.contentDocument?.readyState
+                      });
+                    });
+                  }}
+                  className="h-6 px-2 text-xs"
+                  title="查看调试信息"
+                >
+                  🔍
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    console.log('手动刷新DOM树');
+                    getDOMTreeFromIframe();
+                  }}
+                  className="h-6 px-2 text-xs"
+                >
+                  刷新
+                </Button>
+              </div>
             </div>
             {domTree.length === 0 && (
               <p className="text-xs text-gray-500 mt-2">
