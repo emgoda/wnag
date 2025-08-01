@@ -590,6 +590,47 @@ export default function WebEditor() {
                       </Button>
                     </CardContent>
                   </Card>
+
+                  {/* 自定义组件 */}
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">自定义组件</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        Hero区域
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        特色卡片
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        价格表
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        团队介绍
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        推荐语
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        CTA按钮
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        图片轮播
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-xs h-8">
+                        <Copy className="w-3 h-3 mr-2" />
+                        FAQ区域
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </TabsContent>
