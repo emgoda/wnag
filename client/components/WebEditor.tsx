@@ -578,7 +578,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 ���入
+                                📝 插入
                               </Button>
                               <Button
                                 variant="outline"
@@ -1137,7 +1137,7 @@ export default function WebEditor() {
                                     </div>
                                   </div>
 
-                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 8px; padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 16px;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 91, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('支付��能演示 - 实际项目中需要集成真实支付网关')">
+                                  <button style="width: 100%; background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%); color: white; border: none; border-radius: 8px; padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 16px;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 91, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="alert('支付功能演示 - 实际项目中需要集成真实支付网关')">
                                     立即支付 ¥108.90
                                   </button>
 
@@ -1209,7 +1209,7 @@ export default function WebEditor() {
                                       <div style="flex: 1;">
                                         <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif;">AMERICAN</div>
                                         <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif; margin-top: -2px;">EXPRESS</div>
-                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 11px; margin-top: 2px;">高���服务</div>
+                                        <div style="color: rgba(255, 255, 255, 0.8); font-size: 11px; margin-top: 2px;">高端服务</div>
                                       </div>
                                       <div style="color: white; font-size: 24px;">◆</div>
                                     </div>
@@ -1366,7 +1366,7 @@ export default function WebEditor() {
       <Dialog open={showEditPageDialog} onOpenChange={setShowEditPageDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>编辑页面</DialogTitle>
+            <DialogTitle>编辑页���</DialogTitle>
           </DialogHeader>
           {editingPage && (
             <div className="space-y-4">
