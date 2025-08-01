@@ -194,7 +194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM树
+        // 如果iframe已经加载完成，立即获取DOM���
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -279,12 +279,21 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         }
       }
 
-      // 获取文本内容，��先使用textContent，如果为空则尝试innerText
-      const textContent = selectedElement.textContent?.trim() ||
-                         selectedElement.innerText?.trim() ||
-                         '';
+      // 获取文本内容，确保获取到正确的文本
+      let textContent = '';
 
-      console.log('元素文本内容:', {
+      // 尝试不同的方式获取文本内容
+      if (selectedElement.textContent) {
+        textContent = selectedElement.textContent.trim();
+      } else if (selectedElement.innerText) {
+        textContent = selectedElement.innerText.trim();
+      } else if (selectedElement.innerHTML && !selectedElement.innerHTML.includes('<')) {
+        textContent = selectedElement.innerHTML.trim();
+      }
+
+      console.log('获取元素文本内容:', {
+        element: selectedElement,
+        tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
         innerText: selectedElement.innerText,
         innerHTML: selectedElement.innerHTML,
@@ -404,7 +413,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       console.log('元素复制成功');
     } catch (error) {
-      console.error('复制元素失败:', error);
+      console.error('复制元素失��:', error);
     }
   };
 
@@ -451,7 +460,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效的HTML格式，请检查后重试');
+          alert('无效的HTML格式，请检查后重��');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -536,7 +545,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.classList.remove('dom-tree-selected');
       });
 
-      // 添加高亮样式到当前选中的元素
+      // 添加高亮样式���当前选中的元素
       element.classList.add('dom-tree-selected');
 
       // 添加高亮样式（如果还没有的话）
@@ -579,7 +588,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 渲染DOM树节点
+  // ��染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -1170,7 +1179,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     });
                   }}
                   className="h-6 px-2 text-xs"
-                  title="查看调试信息"
+                  title="���看调试信息"
                 >
                   🔍
                 </Button>
