@@ -41,7 +41,7 @@ interface DOMNode {
   isExpanded: boolean;
 }
 
-export default function PropertyPanel({ selectedElement, onElementUpdate }: PropertyPanelProps) {
+export default function PropertyPanel({ selectedElement, onElementUpdate, selectedNodeId, onNodeSelect }: PropertyPanelProps) {
   const [elementData, setElementData] = useState<{
     tagName: string;
     id: string;
@@ -97,7 +97,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       element.hasAttribute('data-loc') || // React/框架调试属性
       element.hasAttribute('aria-hidden') || // ARIA��藏元素
       element.hasAttribute('data-radix-collection-item') || // Radix UI内部元素
-      element.hasAttribute('data-state') || // 框架状态���素
+      element.hasAttribute('data-state') || // 框架状态元素
       element.hasAttribute('tabindex') && element.getAttribute('tabindex') === '-1' || // 不可聚��元素
       element.getAttribute('role') === 'presentation' || // 纯展示元素
       element.getAttribute('role') === 'none'; // 无语义元素
@@ -138,7 +138,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return true;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // 构建DOM树 - 只显示元���节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -236,7 +236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setDomTree(tree);
           console.log('DOM树构建成功，节点数:', tree.length);
         } else {
-          console.log('使用body���器构建DOM树');
+          console.log('使用body容器构建DOM树');
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
@@ -521,7 +521,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元素
+    // 立����更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -645,7 +645,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // 向上移动元���
+  // 向上移动元����
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -831,7 +831,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             我们的特色
           </h2>
           <p style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 35px; font-weight: 500;">
-            专业的服务，卓越��������验
+            专业的服务，卓越����������验
           </p>
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -842,11 +842,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">安全可靠</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位保�����的数����������</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">企业级安全保����，全方位�������的数����������</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">⚡</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性���</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��性能</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">优化的架构设计，提供极���的用户体验</p>
             </div>
           </div>
@@ -971,7 +971,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强大，完全满足��我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1187,7 +1187,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.style.removeProperty('position');
         el.style.removeProperty('z-index');
 
-        // 强制恢复交互能力
+        // 强制恢复交��能力
         el.style.pointerEvents = 'auto';
         el.style.cursor = 'default';
       });
@@ -1288,14 +1288,14 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         // 添加对应模式的视觉提示
         const originalTitle = targetElement.title;
         if (mode === 'preview') {
-          targetElement.title = '👁️ 预览模式 - 双击DOM树��点锁定选择';
+          targetElement.title = '👁️ 预览模式 - 双击DOM树节点锁定选择';
           setTimeout(() => {
             if (targetElement.getAttribute('data-dom-tree-preview')) {
               targetElement.title = originalTitle;
             }
           }, 2000);
         } else {
-          targetElement.title = '🔒 ���锁定 - 双击DOM树节点或点击🔓按钮解锁';
+          targetElement.title = '🔒 已锁定 - 双击DOM树节点或点击🔓按钮解锁';
           setTimeout(() => {
             if (targetElement.getAttribute('data-dom-tree-selected')) {
               targetElement.title = originalTitle;
@@ -1370,7 +1370,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
-        // 如果元素有data-node-id，优先用���个查找
+        // 如果元素有data-node-id，优先用这个查找
         const nodeId = element.getAttribute('data-node-id');
         if (nodeId) {
           const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
