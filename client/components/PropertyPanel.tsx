@@ -148,7 +148,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return nodeId;
   };
 
-  // ��建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
+  // ��建DOM树 - 只显示元素节点���Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
@@ -216,7 +216,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('无法访问iframe���档');
+        console.log('无法访问iframe�����');
         return;
       }
 
@@ -287,7 +287,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 页面加载时和选��元素变化时更��DOM树
+  // 页面加载时和选�����素变化时更��DOM树
   useEffect(() => {
     console.log('PropertyPanel useEffect 触发');
 
@@ -1404,7 +1404,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }
 
-      // 备用检查：使用当前document的样式
+      // ��用检查：使用当前document的样式
       const computedStyle = window.getComputedStyle(element);
       return (
         computedStyle.display === 'none' ||
@@ -1466,7 +1466,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             false ? '\n🔒 已锁定选择' :
             false ? '\n👁️ 预览模式' :
             ''
-          }\n单击：预览 | 双击：锁定选择\n右键：删��元素`}
+          }\n点击：选择元素\n右键：删��元素`}
         >
           {hasChildren && (
             <button
