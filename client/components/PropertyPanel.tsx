@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次获取DOM树，确保内容已加载
+    // ������再次获取DOM树，确保内��已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -903,7 +903,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return `
       <section style="max-width: 350px; margin: 30px auto; padding: 32px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <h2 style="text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 15px; color: #1f2937; background: linear-gradient(135deg, #1f2937, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">
-          ���系我们
+          �����我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
           有任何问题����们很乐意为您解答
@@ -914,7 +914,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <input type="text" placeholder="请输入您的姓名" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">���������箱</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px;">�����������箱</label>
             <input type="email" placeholder="请输入�����的邮箱" style="width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(248, 250, 252, 0.6); backdrop-filter: blur(4px); box-sizing: border-box;" onfocus="this.style.borderColor='${themeColor}'; this.style.boxShadow='0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(59, 130, 246, 0.15)'; this.style.background='white'; this.style.transform='translateY(-1px)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(248, 250, 252, 0.6)'; this.style.transform='translateY(0)'">
           </div>
           <div style="margin-bottom: 20px;">
@@ -978,7 +978,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div style="font-size: 32px; font-weight: bold; color: ${themeColor}; margin-bottom: 8px;">¥399</div>
               <div style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">每月</div>
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功��</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 所有专业功���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 无限存储空���</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">��� 24/7 专属支持</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
@@ -1107,7 +1107,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 延时滚动���目��元素，确保DOM已更新
       setTimeout(() => {
-        // 尝试通��元素��容查找对应的DOM树�����
+        // 尝试通��元素���容查找对应的DOM树�����
         const allTreeNodes = document.querySelectorAll('.text-sm');
         for (const treeNode of allTreeNodes) {
           const nodeText = treeNode.textContent || '';
@@ -1254,7 +1254,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       onElementUpdate(document.createElement('div'), 'clear-selection', '');
     }
 
-    console.log('所有选���状态已清除，元素可自由交互');
+    console.log('所有选中状态已清除，元素可自由交互');
   };
 
   // 选择DOM节点 - 纯���览模式，不锁定交互
@@ -1276,7 +1276,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
     // 注意：所有高亮显示逻辑现在都由Editor��件通过selectedNodeId受控处理
-    // 这确保了元素只是被高亮预览，但����被锁定无法交互
+    // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
   // 添�����停效果
@@ -1607,7 +1607,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-medium flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            元素编��器
+            元素编辑器
           </h3>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{elementData.tagName}</Badge>
@@ -1786,7 +1786,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
                     >
                       <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="选择打开方式" />
+                        <SelectValue placeholder="选择��开方式" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
