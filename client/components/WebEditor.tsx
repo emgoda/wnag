@@ -812,41 +812,111 @@ export default function WebEditor() {
                           </div>
                         </div>
 
-                        <div
-                          className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden cursor-pointer"
-                          onClick={() => {
-                            const addElementToPage = (window as any).addElementToPage;
-                            if (addElementToPage) {
-                              const presetHTML = `
-                                <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
-                                  <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
-                                  <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
-                                    <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
-                                    <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
-                                    <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
-                                  </ol>
-                                </div>
-                              `;
+                        <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-purple-400/5 to-pink-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-center h-12 mb-2">
+                              <div className="flex gap-1">
+                                <div className="w-2 h-3 bg-gradient-to-b from-blue-400 to-blue-600 rounded-sm"></div>
+                                <div className="w-2 h-3 bg-gradient-to-b from-green-400 to-green-600 rounded-sm"></div>
+                                <div className="w-2 h-3 bg-gradient-to-b from-purple-400 to-purple-600 rounded-sm"></div>
+                                <div className="w-2 h-3 bg-gradient-to-b from-orange-400 to-orange-600 rounded-sm"></div>
+                              </div>
+                            </div>
+                            <div className="text-center text-gray-600 text-xs mb-1">预设</div>
+                            <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    const presetHTML = `
+                                      <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
+                                        <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
+                                          <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
+                                        </ol>
+                                      </div>
+                                    `;
 
-                              addElementToPage({
-                                tag: 'div',
-                                content: presetHTML,
-                                attributes: {
-                                  style: 'margin: 20px auto;'
-                                }
-                              }, 'append');
-                            }
-                          }}
-                        >
-                          <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="flex gap-1">
-                              <div className="w-2 h-3 bg-gradient-to-b from-blue-400 to-blue-600 rounded-sm"></div>
-                              <div className="w-2 h-3 bg-gradient-to-b from-green-400 to-green-600 rounded-sm"></div>
-                              <div className="w-2 h-3 bg-gradient-to-b from-purple-400 to-purple-600 rounded-sm"></div>
-                              <div className="w-2 h-3 bg-gradient-to-b from-orange-400 to-orange-600 rounded-sm"></div>
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: presetHTML,
+                                      attributes: {
+                                        style: 'margin: 20px auto;'
+                                      }
+                                    }, 'insert');
+                                  }
+                                }}
+                              >
+                                📝 插入
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    const presetHTML = `
+                                      <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
+                                        <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
+                                          <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
+                                        </ol>
+                                      </div>
+                                    `;
+
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: presetHTML,
+                                      attributes: {
+                                        style: 'margin: 20px auto;'
+                                      }
+                                    }, 'replace');
+                                  }
+                                }}
+                              >
+                                🔄 替换
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                onClick={() => {
+                                  const addElementToPage = (window as any).addElementToPage;
+                                  if (addElementToPage) {
+                                    const presetHTML = `
+                                      <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: #1f2937; background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-bottom: 3px solid transparent; background-image: linear-gradient(white, white), linear-gradient(135deg, #3b82f6, #1d4ed8); background-origin: border-box; background-clip: content-box, border-box; padding-bottom: 8px;">预设</h3>
+                                        <ol style="margin: 0; padding-left: 20px; color: #374151; font-size: 14px; line-height: 1.7; font-weight: 500;">
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">选择元素调整器样式</li>
+                                          <li style="margin-bottom: 8px; position: relative; padding-left: 4px;">从右侧选择标签进行开始</li>
+                                          <li style="margin-bottom: 0; position: relative; padding-left: 4px;">修改文案并印刷</li>
+                                        </ol>
+                                      </div>
+                                    `;
+
+                                    addElementToPage({
+                                      tag: 'div',
+                                      content: presetHTML,
+                                      attributes: {
+                                        style: 'margin: 20px auto;'
+                                      }
+                                    }, 'append');
+                                  }
+                                }}
+                              >
+                                ➕ 追加
+                              </Button>
                             </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">预设</div>
                         </div>
                       </div>
                     </CardContent>
