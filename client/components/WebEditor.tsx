@@ -276,7 +276,7 @@ export default function WebEditor() {
       }
     } catch (error) {
       console.error('保存失败:', error);
-      alert('保存失败，请重试');
+      alert('保存失败，请���试');
     }
   };
 
@@ -293,7 +293,7 @@ export default function WebEditor() {
             disabled={historyIndex < 0}
           >
             <Undo className="w-4 h-4 mr-2" />
-            撤��
+            撤销
           </Button>
           <Button
             variant="outline"
@@ -516,7 +516,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                📝 ��入
+                                📝 插入
                               </Button>
                               <Button
                                 variant="outline"
@@ -714,7 +714,7 @@ export default function WebEditor() {
                                       tag: 'input',
                                       attributes: {
                                         type: 'text',
-                                        placeholder: '请输入...'
+                                        placeholder: '���输入...'
                                       }
                                     }, 'replace');
                                   }
@@ -874,7 +874,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'form',
-                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      content: '<label>��入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
                                       attributes: {
                                         style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
                                       }
@@ -1093,7 +1093,7 @@ export default function WebEditor() {
 
                                   <div style="margin-bottom: 20px;">
                                     <label style="display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #374151;">邮箱地址</label>
-                                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
+                                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#635bff'; this.style.boxShadow='0 0 0 3px rgba(99, 91, 255, 0.1)'" onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'">
                                   </div>
 
                                   <div style="margin-bottom: 20px;">
