@@ -292,7 +292,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         textContent = selectedElement.innerHTML.trim();
       }
 
-      console.log('获取元素文本内容:', {
+      console.log('获��元素文本内容:', {
         element: selectedElement,
         tagName: selectedElement.tagName,
         textContent: selectedElement.textContent,
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
-  // 切换DOM节点展开状态
+  // 切换DOM节���展开状态
   const toggleNodeExpansion = (node: DOMNode) => {
     const updateNode = (nodes: DOMNode[]): DOMNode[] => {
       return nodes.map(n => {
@@ -852,113 +852,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   placeholder="多行文本输入..."
                   className="mt-2 min-h-[60px]"
                 />
-                {localTextContent && (
-                  <div className="mt-2 p-2 bg-gray-50 rounded text-xs">
-                    <span className="text-gray-600">预览:</span>
-                    <div className="mt-1 text-gray-800">{localTextContent}</div>
-                  </div>
-                )}
-                <div className="mt-2 flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      console.log('文本调试信息:', {
-                        selectedElement,
-                        textContent: selectedElement?.textContent,
-                        innerText: selectedElement?.innerText,
-                        innerHTML: selectedElement?.innerHTML,
-                        elementData: elementData?.textContent
-                      });
-                    }}
-                    className="text-xs h-7"
-                  >
-                    🔍 调试文本
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      if (selectedElement) {
-                        // 强制刷新元素数据
-                        const textContent = selectedElement.textContent?.trim() ||
-                                           selectedElement.innerText?.trim() || '';
-                        setElementData(prev => prev ? { ...prev, textContent } : null);
-                        setForceUpdate(prev => prev + 1);
-                      }
-                    }}
-                    className="text-xs h-7"
-                  >
-                    🔄 刷新
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      const testText = "测试文本 " + Date.now();
-                      console.log('测试设置文本:', testText);
-                      handleTextContentChange(testText);
-                    }}
-                    className="text-xs h-7"
-                  >
-                    ✏️ 测试
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      console.log('输入框状态:', {
-                        localTextContent,
-                        elementData: elementData?.textContent,
-                        selectedElement: selectedElement?.tagName,
-                        inputValue: document.querySelector('input')?.value,
-                        textareaValue: document.querySelector('textarea')?.value
-                      });
-                    }}
-                    className="text-xs h-7"
-                  >
-                    🔍 输入状态
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      console.log('🔄 强制初始化状态');
 
-                      if (selectedElement) {
-                        const currentText = selectedElement.textContent || '';
-                        console.log('从元素获取文本:', currentText);
-
-                        setLocalTextContent(currentText);
-                        setElementData(prev => prev ? { ...prev, textContent: currentText } : null);
-                        setForceUpdate(prev => prev + 1);
-
-                        console.log('✅ 状态初始化完成');
-                      }
-                    }}
-                    className="text-xs h-7"
-                  >
-                    🔄 初始化
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      const directText = "直接设置文本 " + Date.now();
-                      console.log('📝 直接设置:', directText);
-
-                      setLocalTextContent(directText);
-                      setElementData(prev => prev ? { ...prev, textContent: directText } : null);
-
-                      if (selectedElement) {
-                        selectedElement.textContent = directText;
-                      }
-                    }}
-                    className="text-xs h-7"
-                  >
-                    📝 直接设置
-                  </Button>
-                </div>
               </div>
 
               {/* 特定元素的内容属性 */}
