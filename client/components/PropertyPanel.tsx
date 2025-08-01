@@ -57,7 +57,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [domTree, setDomTree] = useState<DOMNode[]>([]);
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
-  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择模式：预览或锁定
+  const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
   const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
 
   // Template generation states
@@ -127,7 +127,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
       element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的��钮等
 
-    // 如果���以上任何一种情况，则不可操作
+    // 如果���以上任何一��情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
         hasFrameworkAttributes ||
         hasNonOperableClass ||
@@ -587,7 +587,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // ��新本地状态
+    // ��新本地���态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -1287,7 +1287,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             return true;
           }
 
-          // ���查尺寸是否为0（��排除某些正常的0尺寸元素）
+          // ���查尺寸是否为0（����除某些正常的0尺寸元素）
           const rect = targetElement.getBoundingClientRect();
           if (rect.width === 0 && rect.height === 0 &&
               !['br', 'hr', 'meta', 'link', 'script', 'style'].includes(targetElement.tagName.toLowerCase())) {
@@ -1351,7 +1351,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           onMouseEnter={() => handleNodeHover(node.element, true)}
           onMouseLeave={() => handleNodeHover(node.element, false)}
           title={`${node.tagName}${node.id ? `#${node.id}` : ''}${
-            isNonOperable ? '\n🔒 不可操作元素（系统/框架元素）' :
+            isNonOperable ? '\n🔒 不可操作元素（系���/框架元素）' :
             isHidden ? '\n👁️‍🗨️ 隐藏元素' :
             '\n可操作元素'
           }${
@@ -1384,7 +1384,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           }`}>
             &lt;{node.tagName}&gt;
             {isHidden && <span className="text-orange-500 ml-1" title="元素已隐藏">👁️‍🗨️</span>}
-            {isNonOperable && <span className="text-red-500 ml-1" title="不可操作元素">🔒</span>}
+            {isNonOperable && <span className="text-red-500 ml-1" title="不可���作元素">🔒</span>}
           </span>
 
           {node.id && (
@@ -2281,8 +2281,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     ⚠️ 显示所有元素（包括不可操作的）
                   </p>
                 )}
-                <p className="text-blue-500">
-                  {selectionMode === 'preview' ? '👁️ 预览模式：单击预览，双击锁定' : '🔒 锁定模式：元素已锁定选择'}
+                <p className="text-green-500">
+                  👁️ 预览模式：选中元素保持可交互
                 </p>
               </div>
             )}
