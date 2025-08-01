@@ -391,12 +391,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
-      // clearInterval(interval); // 已禁用interval
+      clearInterval(interval); // 恢复interval清理
       window.removeEventListener('domTreeRefresh', handleDOMTreeRefresh);
     };
   }, []);
 
-  // 组件挂载时立即尝试加载DOM�����
+  // 组件挂载时立即尝试加载DOM���
   useEffect(() => {
     console.log('PropertyPanel��件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
@@ -551,7 +551,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           return;
         }
 
-        // 简�����略：直接更新最后一���相关元素（用户最新操作的）
+        // 简�����略：直接更新最后一���相���元素（用户最新操作的）
         if (attribute === 'data-title') {
           const allLabels = iframeDoc.querySelectorAll('label');
           const lastLabel = allLabels[allLabels.length - 1];
@@ -587,7 +587,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     onElementUpdate(selectedElement, attribute, value);
 
-    // ��新本�����态
+    // ��新本������态
     setElementData(prev => prev ? {
       ...prev,
       attributes: { ...prev.attributes, [attribute]: value }
@@ -708,7 +708,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
-        alert('HTML编����败���请检查格式是否正��');
+        alert('HTML编��失败���请检查格式是否正��');
       }
     }
   };
@@ -1099,7 +1099,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       }, 200);
     } else {
-      console.log('未在DOM树中找到目标元素');
+      console.log('���在DOM树中找到目标元素');
     }
   };
 
@@ -1250,7 +1250,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
-  // 添�����停效果
+  // 添������停效果
   const handleNodeHover = (element: HTMLElement, isEnter: boolean) => {
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
@@ -1364,7 +1364,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             '\n可���作元素'
           }${
             false ? '\n���� 已锁定选择' :
-            isSelectedByNodeId ? '\n✅ 当前选中' :
+            isSelectedByNodeId ? '\n✅ 当前选���' :
             ''
           }\n点击选择元素\n右键：删��元素`}
         >
@@ -1495,7 +1495,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "���显示��操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
@@ -1744,7 +1744,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       onValueChange={(value) => handleAttributeChange('target', value === '_self' ? '' : value)}
                     >
                       <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="选择打开方��" />
+                        <SelectValue placeholder="选择打开方式" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
@@ -1983,7 +1983,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     </div>
                   </div>
 
-                  {/* 提�� */}
+                  {/* ����� */}
                   <div>
                     <Label className="text-xs text-gray-600 mb-1 block">提示</Label>
                     <Input
@@ -2056,7 +2056,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
                   {/* 三系法 */}
                   <div>
-                    <Label className="text-xs text-gray-600 mb-1 block">三��法</Label>
+                    <Label className="text-xs text-gray-600 mb-1 block">三系法</Label>
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
@@ -2167,7 +2167,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元�����"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
