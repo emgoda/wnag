@@ -29,11 +29,6 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
 
   // 更新预览内容
   useEffect(() => {
-    // 当内容更新时，强制重置为桌面模式
-    if (previewMode !== 'desktop') {
-      setPreviewMode('desktop');
-    }
-
     if (iframeRef.current) {
       const iframe = iframeRef.current;
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
@@ -49,6 +44,15 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
       }
     }
   }, [content]);
+
+  // 在组件挂载时确保默认为桌面模式
+  useEffect(() => {
+    console.log('Editor组件挂载，当前预览模式:', previewMode);
+    if (previewMode !== 'desktop') {
+      console.log('重置为桌面模式');
+      setPreviewMode('desktop');
+    }
+  }, []);
 
   // 设置元素选择功能
   const setupElementSelection = () => {
