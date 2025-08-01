@@ -58,7 +58,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const [selectedNodeElement, setSelectedNodeElement] = useState<HTMLElement | null>(null);
   const [showAllElements, setShowAllElements] = useState(false); // 控制是否显示所有元素（包括不可操作的）
   const [selectionMode, setSelectionMode] = useState<'preview' | 'locked'>('preview'); // 选择���式：预览或锁定
-  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览中的元素
+  const [previewElement, setPreviewElement] = useState<HTMLElement | null>(null); // 预览���的元素
 
   // 安全访问iframe内容的辅助函数，处理跨域错误
   const safeAccessIframe = (callback: (doc: Document) => void): boolean => {
@@ -148,7 +148,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 系统生成的内容元素
     const isSystemGenerated =
       element.getAttribute('aria-label')?.includes('Notifications') || // 通知系统
-      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的���钮等
+      element.querySelector('svg[class*="lucide"]') !== null; // 包含图标的按钮等
 
     // 如果���以上任何一��情况，则不可操作
     if (nonOperableSystemTags.includes(tagName) ||
@@ -206,7 +206,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     return res;
   };
 
-  // 兼容旧接����单节点构建��法 - 只构建元素节点树
+  // 兼容���接����单节点构建��法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -309,7 +309,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }, 1000);
       }
     } catch (error) {
-      console.error('读取iframe内容时出错:', error);
+      console.error('读取iframe内��时出错:', error);
     }
   };
 
@@ -550,7 +550,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     };
   }, [contextMenu.show]);
 
-  // 更新元素属性
+  // ��新元素属性
   const handleAttributeChange = (attribute: string, value: string) => {
     if (!selectedElement || !onElementUpdate) return;
 
@@ -713,7 +713,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     if (!selectedElement) return;
 
     const html = selectedElement.outerHTML;
-    const newHTML = prompt('编辑元素HTML:\n\n��意：请确��HTML格式正确', html);
+    const newHTML = prompt('编辑元素HTML:\n\n��意：请确����HTML格式正确', html);
 
     if (newHTML && newHTML !== html) {
       try {
@@ -750,7 +750,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
       // 通知父组件
       if (onElementUpdate) {
-        // 这里我们通过触发一���特殊的更���来选���父元素
+        // 这里我们通过触发一���特殊的更���来选���父��素
         const clickEvent = new MouseEvent('click', {
           view: window,
           bubbles: true,
@@ -1444,7 +1444,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             </span>
           )}
 
-          {/* �����元素类型信��� */}
+          {/* �����元素��型信��� */}
           {node.element.getAttribute('data-element-type') && (
             <span className="text-indigo-600 text-xs bg-indigo-100 px-1 rounded">
               {node.element.getAttribute('data-element-type')}
@@ -1674,7 +1674,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         )}
       </div>
 
-      {/* ����������域 */}
+      {/* ������������ */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           <Tabs defaultValue="content" className="w-full">
@@ -1731,7 +1731,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   onBlur={(e) => {
                     // 失焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
-                    console.log('🟡 Textarea失焦，更��DOM:', newValue);
+                    console.log('🟡 Textarea失焦，更���DOM:', newValue);
                     if (selectedElement) {
                       selectedElement.textContent = newValue;
                     }
@@ -1791,7 +1791,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">新窗口</SelectItem>
-                        <SelectItem value="_parent">父窗口</SelectItem>
+                        <SelectItem value="_parent">��窗口</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1850,7 +1850,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">字�����细</Label>
+                      <Label className="text-xs">字��������</Label>
                       <Select
                         value={elementData.styles['font-weight'] || 'normal'}
                         onValueChange={(value) => handleStyleChange('font-weight', value)}
