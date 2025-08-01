@@ -240,7 +240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 检查是否有任何实际内��
       const hasRealContent = body?.innerHTML && body.innerHTML.trim().length > 0;
 
-      // 尝试查找canvas-root容器，如果没有则使用body
+      // 尝试��找canvas-root容器，如果没有则使用body
       const canvasRoot = doc.querySelector('.canvas-root') as HTMLElement;
       const containerElement = canvasRoot || body;
 
@@ -349,7 +349,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
         return () => {
           iframe.removeEventListener('load', handleLoad);
-          // 已禁用内容变化监听器，无需清理
+          // ��禁用内容变化监听器，无需清理
           // try {
           //   if (iframe.contentDocument) {
           //     iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
@@ -499,11 +499,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [elementData]);
 
-  // 当选中元���变化时，自动跳转到DOM树中对应的节点
+  // 当选中元素变化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
-      autoExpandToElement(selectedElement);
+      // 暂时禁用自动展开，避免DOM树锁定
+      // autoExpandToElement(selectedElement);
 
       // 当画布选择元素时，自动更新selectedNodeId
       const nodeId = selectedElement.getAttribute('data-node-id');
@@ -714,7 +715,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 选择父���素
+  // 选择父�����素
   const handleSelectParent = () => {
     if (!selectedElement) return;
 
@@ -757,7 +758,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // 触发父组件的内容更新
+    // 触发父组件的内容更���
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
@@ -1001,7 +1002,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "��队协作���率大大提升，数据分析功能特别实�������强烈推荐给其他企业！"
+                "��队协作���率大大��升，数据分析功能特别实�������强烈推荐给其他企业！"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">王</div>
@@ -1067,7 +1068,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     const elementPath = findElementPath(domTree, targetElement);
 
     if (elementPath) {
-      console.log('找到元素路径，自动展开:', elementPath.map(n => n.tagName));
+      console.log('找到元素路径，自���展开:', elementPath.map(n => n.tagName));
 
       // 展开路径上的所有节点
       const expandPath = (nodes: DOMNode[]): DOMNode[] => {
@@ -1239,7 +1240,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     } else {
       console.warn('⚠�� DOM树元素缺��nodeId或缺少回调:', element);
     }
-    // 注意：所有高亮显示逻辑现在都由Editor组件通过selectedNodeId受控处理
+    // 注意：所有高亮显示逻辑现在都由Editor��件通过selectedNodeId受控处理
     // 这确保了元素只是被高亮预览，但不��被锁定无法交互
   };
 
@@ -1307,7 +1308,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       );
 
     } catch (error) {
-      // ��果��测出错，默认不是隐藏的
+      // ��果��测出错，默��不是隐藏的
       console.warn('隐藏检测出错:', error);
       return false;
     }
@@ -2272,7 +2273,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   </p>
                 )}
                 <p className="text-green-500">
-                  👁️ 预览模式：选中元素保持可交互
+                  👁�� 预览模式：选中元素保持可交互
                 </p>
               </div>
             )}
