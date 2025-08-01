@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // 只处���元素节点 (nodeType === 1)，忽略文�����点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑��的干扰
+    // 恢复但���长定期检查间隔���减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -447,7 +447,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement]);
 
-  // ���新元素数据
+  // ����新元素数据
   useEffect(() => {
     if (selectedElement) {
       const computedStyles = window.getComputedStyle(selectedElement);
@@ -635,7 +635,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const handleTextContentChange = (value: string) => {
     console.log('文本输入变化:', value);
 
-    // 立即更新本地状态，确保输��响����
+    // 立即更新本���状态，确保输��响����
     setLocalTextContent(value);
 
     // 同时更������elementData状态
@@ -1137,7 +1137,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         try {
           iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${elementToDelete.getAttribute('data-node-id')}"]`) || elementToDelete;
         } catch (crossOriginError) {
-          console.warn('跨域访问被��止，跳过删除操作:', crossOriginError);
+          console.warn('跨域访问被����，跳过删除操作:', crossOriginError);
           return;
         }
         if (iframeElement && iframeElement.parentNode) {
@@ -2300,7 +2300,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               </h4>
             </div>
             <div className="p-4 space-y-4">
-              {/* 选择���板 */}
+              {/* 选择模板 */}
               <div>
                 <Label className="text-sm font-medium mb-2 block">选择模���</Label>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
@@ -2383,7 +2383,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         }}
                         className="scale-75"
                       />
-                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可操作的）" : "只显��可操作元���"}>
+                      <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元��（包括不可���作的）" : "只显��可操作元���"}>
                         {showAllElements ? "全部" : "可操作"}
                       </span>
                     </div>
