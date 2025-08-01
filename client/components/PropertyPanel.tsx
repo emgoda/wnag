@@ -504,7 +504,47 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <Settings className="w-5 h-5" />
             元素编辑器
           </h3>
-          <Badge variant="secondary">{elementData.tagName}</Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="secondary">{elementData.tagName}</Badge>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                  <MoreVertical className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => handleDuplicateElement()}>
+                  <Copy className="w-4 h-4 mr-2" />
+                  复制元素
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleMoveElementUp()}>
+                  <ArrowUp className="w-4 h-4 mr-2" />
+                  向上移动
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleMoveElementDown()}>
+                  <ArrowDown className="w-4 h-4 mr-2" />
+                  向下移动
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => handleEditElementHTML()}>
+                  <Edit3 className="w-4 h-4 mr-2" />
+                  编辑HTML
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleSelectParent()}>
+                  <Move className="w-4 h-4 mr-2" />
+                  选择父元素
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => handleDeleteElement()}
+                  className="text-red-600 focus:text-red-600"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  删除元素
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
         {elementData.id && (
           <Badge variant="outline" className="text-xs">
