@@ -170,7 +170,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             tagName: element.tagName.toLowerCase(),
             id: element.id || undefined,
             className: element.className ? String(element.className).trim() || undefined : undefined,
-            children: buildTree(element), // 递���构建子元素树
+            children: buildTree(element), // 递归构建子元素树
             isExpanded: true // 默认��开所有节点
           });
         } else {
@@ -207,7 +207,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     let editorIframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
-      console.log('未找到iframe���素');
+      console.log('未找到iframe元素');
       console.log('当前页面所有iframe的title属��:',
         Array.from(allIframes).map(iframe => iframe.title));
       return;
@@ -245,7 +245,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       const containerElement = canvasRoot || body;
 
       if (containerElement) {
-        // 如果找到canvas-root，直接��建其子树；否��构建body树
+        // 如果找到canvas-root，直接构建其子树；否��构建body树
         if (canvasRoot) {
           console.log('找到canvas-root容器，构建子树');
           const tree = buildTree(canvasRoot);
@@ -513,7 +513,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [selectedElement, domTree, selectedNodeId, onNodeSelect]);
 
-  // 添加全局点击事���监听器来关闭右键菜单
+  // 添��全局点击事���监听器来关闭右键菜单
   useEffect(() => {
     const handleGlobalClick = () => {
       if (contextMenu.show) {
@@ -719,7 +719,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     const parent = selectedElement.parentElement;
     if (parent && parent !== document.body && parent !== document.documentElement) {
-      // 清除当前���中状态
+      // 清除当前选中状态
       selectedElement.classList.remove('element-selected');
 
       // 选择父元素
@@ -828,7 +828,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               开始使用
             </button>
             <button style="background: rgba(255, 255, 255, 0.1); color: white; border: 2px solid rgba(255, 255, 255, 0.8); padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);" onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(255, 255, 255, 0.1)'">
-              了解更多
+              了解更���
             </button>
           </div>
         </div>
@@ -961,7 +961,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 定制�����成</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
-                选择企业������
+                选择企业�����
               </button>
             </div>
           </div>
@@ -1115,7 +1115,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           iframeElement.parentNode.removeChild(iframeElement);
           console.log('已删除元素:', elementToDelete.tagName);
 
-          // 如果删����的是当前选中的元�����清除选��状态
+          // 如果删除的是当前选中的元素，清除选中状态
           if (selectedElement === elementToDelete) {
             setSelectedNodeElement(null);
             setElementData(null);
@@ -1217,7 +1217,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         }
       });
 
-      console.log('已清除', highlighted.length, '个元素的选���状��');
+      console.log('已清除', highlighted.length, '个元素的��中状��');
     }
 
     // 通过onElementUpdate通知父组件清除选中
@@ -1700,7 +1700,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // �����焦时才更新DOM，避免频繁重建DOM树
+                    // ���焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟡 Textarea失焦，更新DOM:', newValue);
                     if (selectedElement) {
@@ -1762,7 +1762,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       <SelectContent>
                         <SelectItem value="_self">当前窗口</SelectItem>
                         <SelectItem value="_blank">���窗口</SelectItem>
-                        <SelectItem value="_parent">父窗��</SelectItem>
+                        <SelectItem value="_parent">��窗��</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -2289,7 +2289,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                 )}
                 {showAllElements && (
                   <p className="text-yellow-600">
-                    ⚠️ 显��所有元素（包括不可操作的）
+                    ⚠️ 显示所有元素（包括不��操作的）
                   </p>
                 )}
                 <p className="text-green-500">
