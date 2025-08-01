@@ -96,7 +96,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const allIframes = document.querySelectorAll('iframe');
     console.log('页面中所有iframe:', allIframes.length, allIframes);
 
-    // 查找编辑器中的iframe，尝试多种选择器
+    // 查找编辑器���的iframe，尝试多种选择器
     let editorIframe = document.querySelector('[data-loc*="Editor.tsx"] iframe') as HTMLIFrameElement;
 
     if (!editorIframe) {
@@ -596,19 +596,19 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const buttonOpacity = templateSettings.buttonTransparent ? 'opacity: 0.8;' : '';
 
     return `
-      <section style="text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin: 20px 0;">
-        <div style="max-width: 800px; margin: 0 auto;">
-          <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; line-height: 1.2;">
+      <section style="text-align: center; padding: 50px 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; margin: 15px 0; max-width: 350px; margin-left: auto; margin-right: auto;">
+        <div style="max-width: 100%; margin: 0 auto;">
+          <h1 style="font-size: 28px; font-weight: bold; margin-bottom: 15px; line-height: 1.2;">
             欢迎来到我们的网站
           </h1>
-          <p style="font-size: 20px; margin-bottom: 30px; opacity: 0.9; line-height: 1.6;">
+          <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.9; line-height: 1.6;">
             发现无限可能，创造美好未来
           </p>
-          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <button style="background: white; color: ${themeColor}; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <button style="background: white; color: ${themeColor}; border: none; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
               开始使用
             </button>
-            <button style="background: transparent; color: white; border: 2px solid white; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+            <button style="background: transparent; color: white; border: 2px solid white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
               了解更多
             </button>
           </div>
@@ -768,7 +768,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: white; border-radius: 12px; padding: 30px; transition: all 0.3s; ${shadowStyle}" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="color: #fbbf24; font-size: 20px; margin-bottom: 20px;">⭐⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-style: italic;">
-                "非常棒的产品！界面友好，功能强大，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强大，完全满足了我���的需求。客服响应也很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 15px;">
                 <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">李</div>
