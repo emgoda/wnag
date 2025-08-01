@@ -134,16 +134,17 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return true;
   };
 
-  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并过滤不可操作元素
+  // 构建DOM树 - 只显示元素节点（Element），过滤文本节点、注释节点等，并根据设置过滤不可操作元素
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
       // 只处理元素节点 (nodeType === 1)，忽略文本节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
+        const operable = isElementOperable(element);
 
-        // 检查元素是否可操作
-        if (isElementOperable(element)) {
+        // 根据showAllElements设置决定是否显示
+        if (showAllElements || operable) {
           res.push({
             element,
             tagName: element.tagName.toLowerCase(),
@@ -153,7 +154,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然检查其子元素
+          // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -235,7 +236,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           const tree = buildDOMTree(body);
           tree.isExpanded = true;
           setDomTree([tree]);
-          console.log('DOM树���建成功 - 标签:', tree.tagName, '��节点数:', tree.children.length);
+          console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
         // 强制展开body��点
@@ -390,7 +391,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   // 检��是否为预设元素
   useEffect(() => {
     if (selectedElement) {
-      // 检查元素是否包含预��相关的内容或类名
+      // 检查元素是否包含预��相关的内容���类名
       const elementHTML = selectedElement.outerHTML || '';
       const isPresetElement = elementHTML.includes('预设') ||
                               selectedElement.textContent?.includes('预设') ||
@@ -824,7 +825,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">������部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键��署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1278,7 +1279,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
     }
 
-    // 模拟��击事件来触���父组件的选择
+    // 模�����击事件来触���父组件的选择
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -1878,7 +1879,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label className="text-xs">内边��</Label>
+                      <Label className="text-xs">内边���</Label>
                       <Input
                         value={elementData.styles.padding || ''}
                         onChange={(e) => handleStyleChange('padding', e.target.value)}
