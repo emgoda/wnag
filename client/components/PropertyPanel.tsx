@@ -235,7 +235,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       }
 
       if (iframe) {
-        console.log('找到iframe，设置监听器');
+        console.log('找到iframe��设置监听器');
 
         const handleLoad = () => {
           console.log('iframe加载完成�������触发');
@@ -321,7 +321,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
       setTimeout(() => {
-        console.log(`尝试获取DOM树 (延迟${delay}ms)`);
+        console.log(`尝试获��DOM树 (延迟${delay}ms)`);
         getDOMTreeFromIframe();
       }, delay);
     });
@@ -522,7 +522,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输入变化:', value);
+    console.log('文本��入变化:', value);
 
     // 立即更新本地状态，确保输��响应
     setLocalTextContent(value);
@@ -1175,9 +1175,10 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const renderDOMNode = (node: DOMNode, depth = 0, index = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
+    const isHidden = isElementHidden(node.element);
     const paddingLeft = depth * 16;
 
-    // 获��元素���文本内容预览（前20个字符）
+    // 获取元素的文本内容预览（前20个字符）
     const textPreview = node.element.textContent?.trim().slice(0, 20);
     const hasText = textPreview && textPreview.length > 0;
 
@@ -1534,7 +1535,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Type className="w-4 h-4" />
-                    文字样��
+                    文��样��
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
