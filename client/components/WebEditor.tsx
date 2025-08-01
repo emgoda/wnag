@@ -46,7 +46,7 @@ export default function WebEditor() {
 <body>
     <div class="container">
         <h1>欢���来到我的网站</h1>
-        <p>这是一个示例页面，您可以编辑HTML内容来自定义页面。</p>
+        <p>这是一个示例页面，您可以编��HTML内容来自定义页面。</p>
     </div>
 </body>
 </html>`,
@@ -349,7 +349,7 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源��编辑"查看HTML代码
+                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
@@ -898,7 +898,7 @@ export default function WebEditor() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-xs h-7 px-3 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
+                                className="text-xs h-6 px-2 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
                                   const addElementToPage = (window as any).addElementToPage;
                                   if (addElementToPage) {
