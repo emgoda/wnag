@@ -101,7 +101,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 获取iframe中的DOM树
   const getDOMTreeFromIframe = () => {
-    console.log('开始查���iframe...');
+    console.log('开始查����iframe...');
 
     // 列出所有可能的iframe
     const allIframes = document.querySelectorAll('iframe');
@@ -174,7 +174,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
         // 记录body为空的情况，但不无限重试
         if (body.children.length === 0) {
-          console.log('body为空，但仍显示DOM树结构');
+          console.log('body为空，但仍显示DOM��结构');
         }
       } else if (html && html.children.length > 0) {
         // 尝试从html根元素开始构建
@@ -301,7 +301,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
   // 组件挂载时立即尝试加载DOM树
   useEffect(() => {
-    console.log('PropertyPanel组件挂载，立即获取DOM树');
+    console.log('PropertyPanel组件挂���，立即获取DOM树');
     // 多次尝试，确保能够获取到
     const attempts = [100, 500, 1000, 2000];
     attempts.forEach(delay => {
@@ -457,7 +457,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立即执行更新
     updateElementInDOM();
 
-    // ���时再执行一次确保更新成功
+    // ���时再��行一次确保更新成功
     setTimeout(updateElementInDOM, 100);
 
     onElementUpdate(selectedElement, attribute, value);
@@ -985,7 +985,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const hasText = textPreview && textPreview.length > 0;
 
     return (
-      <div key={`${node.tagName}-${node.id || node.className || Math.random()}`} className="text-sm">
+      <div key={`${node.tagName}-${node.element.getAttribute('data-node-id') || node.id || ''}-${node.className?.replace(/\s+/g, '-') || ''}-${Math.random().toString(36).substr(2, 9)}`} className="text-sm">
         <div
           className={`flex items-center gap-1 py-1 px-2 cursor-pointer hover:bg-gray-100 rounded transition-colors ${
             isSelected ? 'bg-blue-100 border-l-2 border-blue-500' : ''
@@ -1612,7 +1612,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       </div>
                     </div>
                     <div>
-                      <Label className="text-xs text-gray-600 mb-1 block">键盘类型</Label>
+                      <Label className="text-xs text-gray-600 mb-1 block">��盘类型</Label>
                       <select
                         value={elementData.attributes['inputmode'] || 'text'}
                         onChange={(e) => handleAttributeChange('inputmode', e.target.value)}
