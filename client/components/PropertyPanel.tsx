@@ -155,7 +155,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处理元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // 只处理元素���点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -297,7 +297,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // 延���再次获取DOM树，确保内容已加载
+    // 延���再次获取DOM树，确保内容���加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -387,7 +387,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但延长定期检查间隔，减少编辑时的干扰
+    // 恢复但延长定期检查间隔，减少编��时的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -499,7 +499,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动跳转到DOM树中对应的节点
+  // 当选中元素��化时，自动跳转到DOM树中对应的节点
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素变化，自动跳转到DOM树节点:', selectedElement);
@@ -537,7 +537,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       selectedElement.removeAttribute(attribute);
     }
 
-    // 立���更新DOM中的对应元素
+    // 立���更新DOM中的对应元��
     const updateElementInDOM = () => {
       try {
         console.log('开始更新DOM，属性:', attribute, '值:', value);
@@ -661,7 +661,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     }
   };
 
-  // 向上移动元���
+  // 向��移动元���
   const handleMoveElementUp = () => {
     if (!selectedElement) return;
 
@@ -883,7 +883,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           ���系我们
         </h2>
         <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px; font-weight: 500;">
-          有任何问题����们很乐意为您解答
+          有任何问题�����们很乐意为您解答
         </p>
         <form style="space-y: 20px;">
           <div style="margin-bottom: 20px;">
@@ -987,7 +987,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应���很及时。"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1271,7 +1271,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
         // 尝试在iframe中找到对应的元素
         let targetElement = element;
 
-        // 如果元素有data-node-id，优先用这个��找
+        // 如果���素有data-node-id，优先用这个��找
         const nodeId = element.getAttribute('data-node-id');
         if (nodeId) {
           const iframeElement = iframe.contentDocument.querySelector(`[data-node-id="${nodeId}"]`);
@@ -1483,7 +1483,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
               <div className="flex items-center justify-between">
                 <h4 className="font-medium text-sm flex items-center gap-2">
                   <Code className="w-4 h-4" />
-                  DOM ���
+                  DOM 树
                 </h4>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -1491,12 +1491,12 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                       checked={showAllElements}
                       onCheckedChange={(checked) => {
                         setShowAllElements(checked);
-                        // 切换显示模式后重���构建DOM树
+                        // 切换显示模式后重新构建DOM树
                         setTimeout(() => getDOMTreeFromIframe(), 100);
                       }}
                       className="scale-75"
                     />
-                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示��操作元素"}>
+                    <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
                       {showAllElements ? "全部" : "可操作"}
                     </span>
                   </div>
