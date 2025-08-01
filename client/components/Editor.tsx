@@ -49,7 +49,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
   const setupElementSelection = () => {
     const iframe = iframeRef.current;
     if (!iframe) {
-      console.log('iframe引��不存在');
+      console.log('iframe引用不存在');
       return;
     }
 
@@ -254,78 +254,7 @@ export default function Editor({ content, onChange, pageName, onElementSelect }:
             {elementSelectMode ? '选择模式' : '浏览模式'}
           </Button>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              console.log('强制设置元素选择功能');
-              setupElementSelection();
-            }}
-            className="flex items-center gap-2"
-            title="如果无法选择元素，点击此按钮"
-          >
-            🔧
-          </Button>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              const iframe = iframeRef.current;
-              if (iframe && iframe.contentDocument) {
-                const doc = iframe.contentDocument;
-                console.log('页面内容检查:', {
-                  title: doc.title,
-                  bodyHTML: doc.body?.innerHTML?.substring(0, 200),
-                  elementCount: doc.querySelectorAll('*').length,
-                  hasContent: doc.body?.children.length > 0
-                });
-
-                // 如果页面有内容，自动选择第一个可见元素
-                const firstElement = doc.querySelector('h1, h2, h3, p, div, a, button, li');
-                if (firstElement && firstElement instanceof HTMLElement) {
-                  console.log('自动选择第一个元素:', firstElement.tagName);
-
-                  // 手动���发点击事件
-                  const clickEvent = new MouseEvent('click', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: true
-                  });
-                  firstElement.dispatchEvent(clickEvent);
-
-                  // 直接调用选择处理函数
-                  handleElementClick(clickEvent);
-                }
-              }
-            }}
-            className="text-xs"
-            title="检查页面内容并自动选择元素"
-          >
-            🎯 自动选择
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              console.log('当前选中状态:', {
-                selectedElement,
-                onElementSelect: !!onElementSelect,
-                iframeDoc: iframeRef.current?.contentDocument
-              });
-
-              // 如果有选中元素，强制触发回调
-              if (selectedElement && onElementSelect) {
-                console.log('强制触发回调');
-                onElementSelect(selectedElement);
-              }
-            }}
-            className="text-xs"
-            title="检查选中状态"
-          >
-            📋 状态
-          </Button>
 
           <Button
             variant="outline"
