@@ -194,7 +194,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           console.log('无法监听iframe内容文档:', e);
         }
 
-        // 如果iframe已经加载完成，立即获取DOM���
+        // 如果iframe已经加载完成，立即获取DOM树
         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
           console.log('iframe已完成加载，立即获取DOM树');
           handleLoad();
@@ -413,7 +413,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
 
       console.log('元素复制成功');
     } catch (error) {
-      console.error('复制元素失��:', error);
+      console.error('复制元素失败:', error);
     }
   };
 
@@ -460,7 +460,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效的HTML格式，请检查后重��');
+          alert('无效的HTML格式，请检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -545,7 +545,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         el.classList.remove('dom-tree-selected');
       });
 
-      // 添加高亮样式���当前选中的元素
+      // 添加高亮样式到当前选中的元素
       element.classList.add('dom-tree-selected');
 
       // 添加高亮样式（如果还没有的话）
@@ -588,7 +588,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   };
 
-  // ��染DOM树节点
+  // 渲染DOM树节点
   const renderDOMNode = (node: DOMNode, depth = 0) => {
     const hasChildren = node.children.length > 0;
     const isSelected = selectedElement === node.element;
@@ -859,11 +859,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                         const textContent = selectedElement.textContent?.trim() ||
                                            selectedElement.innerText?.trim() || '';
                         setElementData(prev => prev ? { ...prev, textContent } : null);
+                        setForceUpdate(prev => prev + 1);
                       }
                     }}
                     className="text-xs h-7"
                   >
                     🔄 刷新
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const testText = "测试文本";
+                      console.log('测试设置文本:', testText);
+                      handleTextContentChange(testText);
+                    }}
+                    className="text-xs h-7"
+                  >
+                    ✏️ 测试
                   </Button>
                 </div>
               </div>
@@ -1179,7 +1192,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     });
                   }}
                   className="h-6 px-2 text-xs"
-                  title="���看调试信息"
+                  title="查看调试信息"
                 >
                   🔍
                 </Button>
@@ -1192,7 +1205,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                   }}
                   className="h-6 px-2 text-xs"
                 >
-                  刷新
+                  ��新
                 </Button>
               </div>
             </div>
