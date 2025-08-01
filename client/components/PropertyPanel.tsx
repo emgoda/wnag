@@ -178,7 +178,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   const buildTree = (root: HTMLElement): DOMNode[] => {
     const res: DOMNode[] = [];
     root.childNodes.forEach((node) => {
-      // 只处���元素节点 (nodeType === 1)，忽略文��节点(3)、注释节点(8)等
+      // 只处���元素节点 (nodeType === 1)，忽略文���节点(3)、注释节点(8)等
       if (node.nodeType === Node.ELEMENT_NODE) {
         const element = node as HTMLElement;
         const operable = isElementOperable(element);
@@ -282,7 +282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           console.log('DOM树���建成功 - 标签:', tree.tagName, '子节点数:', tree.children.length);
         }
 
-        // 强制展开body���������点
+        // 强制展开body�������点
         setTimeout(() => {
           setDomTree(prev => prev.map(node =>
             node.tagName === 'body'
@@ -320,7 +320,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
     // 立即尝试获取DOM树
     getDOMTreeFromIframe();
 
-    // ������再次获取DOM树，确保内容已加载
+    // ������再次获取DOM���，确保内容已加载
     const timer = setTimeout(() => {
       console.log('延迟获取DOM树...');
       getDOMTreeFromIframe();
@@ -410,7 +410,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
     window.addEventListener('domTreeRefresh', handleDOMTreeRefresh);
 
-    // 恢复但���长定期检查间隔，减少编辑��的干扰
+    // 恢复但�����定期检查间隔，减少编辑��的干扰
     const interval = setInterval(updateDOMTree, 10000); // 改为10秒一次
 
     return () => {
@@ -479,7 +479,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
       // 获取文��������，确保获��������正确的文本
       let textContent = '';
 
-      // 尝试不同的方�����取文本内容
+      // 尝试不同的方式���取文���内容
       if (selectedElement.textContent) {
         textContent = selectedElement.textContent.trim();
       } else if (selectedElement.innerText) {
@@ -633,7 +633,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
 
   // 更���文本内容
   const handleTextContentChange = (value: string) => {
-    console.log('文本输���变化:', value);
+    console.log('文本输入变化:', value);
 
     // 立即更新本地状态，确保输入响应
     setLocalTextContent(value);
@@ -875,7 +875,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
           <div style="display: flex; flex-direction: column; gap: 24px;">
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">����</div>
-              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">��速部署</h3>
+              <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快速部署</h3>
               <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -1010,7 +1010,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="color: #fbbf24; font-size: 18px; margin-bottom: 18px; filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));">���⭐⭐⭐⭐</div>
               <p style="color: #4b5563; line-height: 1.6; margin-bottom: 18px; font-style: italic; font-size: 14px; font-weight: 400;">
-                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时。"
+                "非常棒的产品！界面友好，功能强��，完全满足了我们的需求。客服响应也很及时��"
               </p>
               <div style="display: flex; align-items: center; gap: 16px;">
                 <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">李</div>
@@ -1294,7 +1294,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
   // 检测元素是否隐藏���不可见
   const isElementHidden = (element: HTMLElement): boolean => {
     try {
-      // 首先检查iframe中的元素（因为DOM树���的��素��������来自iframe）
+      // 首先检查iframe中的元素（因为DOM树���的元素����������来自iframe）
       const iframe = document.querySelector('iframe');
       if (iframe && iframe.contentDocument) {
         // 尝试在iframe中找到对应的元素
@@ -1702,7 +1702,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     const newValue = e.target.value;
                     console.log('🔵 Input onChange:', newValue);
                     setLocalTextContent(newValue);
-                    // 只更新本地��态，不立即更新DOM
+                    // 只更新本地状态，不立即更新DOM
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
@@ -1729,7 +1729,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                     setElementData(prev => prev ? { ...prev, textContent: newValue } : null);
                   }}
                   onBlur={(e) => {
-                    // 失焦时才更新DOM，���免频繁重建DOM树
+                    // 失焦时才更新DOM，避免频繁重建DOM树
                     const newValue = e.target.value;
                     console.log('🟡 Textarea失焦，更��DOM:', newValue);
                     if (selectedElement) {
@@ -2296,7 +2296,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生成��
+                模板生成器
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2310,7 +2310,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                   <SelectContent>
                     <SelectItem value="hero-section">Hero 区域</SelectItem>
                     <SelectItem value="feature-cards">功能卡片</SelectItem>
-                    <SelectItem value="contact-form">联系表���</SelectItem>
+                    <SelectItem value="contact-form">联系表单</SelectItem>
                     <SelectItem value="pricing-table">价格表</SelectItem>
                     <SelectItem value="testimonial">客户评价</SelectItem>
                   </SelectContent>
@@ -2378,7 +2378,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate, select
                         checked={showAllElements}
                         onCheckedChange={(checked) => {
                           setShowAllElements(checked);
-                          // 切换显示模式后重新构建DOM树
+                          // 切换显示���式后重新构建DOM树
                           setTimeout(() => getDOMTreeFromIframe(), 100);
                         }}
                         className="scale-75"
