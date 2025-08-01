@@ -76,7 +76,7 @@ export default function WebEditor() {
 
   const selectedPage = pages.find(p => p.id === selectedPageId);
 
-  // 添加页面
+  // 添���页面
   const handleAddPage = () => {
     if (!newPageData.name.trim() || !newPageData.route.trim()) {
       alert('请填写页面名称和路由');
@@ -168,7 +168,7 @@ export default function WebEditor() {
     // 添加到历��记录
     setHistory(prev => {
       const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
-      return newHistory.slice(-50); // 限制历史记录数量
+      return newHistory.slice(-50); // ���制历史记录数量
     });
     setHistoryIndex(prev => prev + 1);
 
@@ -496,11 +496,11 @@ export default function WebEditor() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                        <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;h1&gt;</div>
-                            <div className="text-gray-600 mb-2 text-center">标题</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;h1&gt;</div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">标题</div>
                             <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
@@ -668,7 +668,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'button',
-                                      content: '按钮文本'
+                                      content: '按���文本'
                                     }, 'append');
                                   }
                                 }}
@@ -1071,7 +1071,7 @@ export default function WebEditor() {
                                   }
                                 }}
                               >
-                                🔄 替换
+                                ���� 替换
                               </Button>
                               <Button
                                 variant="outline"
