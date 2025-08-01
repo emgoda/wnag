@@ -156,7 +156,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             isExpanded: true // 默认展开所有节点
           });
         } else {
-          // 对于不可操作的元素，仍然检查其子元素（只有在不显示所有元素时）
+          // 对于不可操作的元素，仍然检查其子���素（只有在不显示所有元素时）
           const operableChildren = buildTree(element);
           res.push(...operableChildren);
         }
@@ -165,7 +165,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     return res;
   };
 
-  // 兼容旧接�����单节点构建方法 - 只构建元素节点树
+  // 兼容旧接����单节点构建方法 - 只构建元素节点树
   const buildDOMTree = (element: HTMLElement, depth = 0): DOMNode => {
     return {
       element,
@@ -201,7 +201,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       const doc = editorIframe.contentDocument || editorIframe.contentWindow?.document;
 
       if (!doc) {
-        console.log('无法访问iframe������');
+        console.log('无法访问iframe���档');
         return;
       }
 
@@ -480,7 +480,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     }
   }, [elementData]);
 
-  // 当选中元素变化时，自动���转到DOM树中对应的节��
+  // 当选中元素变化时，自动��转到DOM树中对应的节��
   useEffect(() => {
     if (selectedElement && domTree.length > 0) {
       console.log('选中元素���化，自动跳转到DOM树节点:', selectedElement);
@@ -515,7 +515,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     // 立���更新DOM中的对应元素
     const updateElementInDOM = () => {
       try {
-        console.log('开始更新DOM，属性:', attribute, '值:', value);
+        console.log('开始更新DOM���属性:', attribute, '值:', value);
 
         // 获取iframe文档
         const iframe = document.querySelector('iframe') as HTMLIFrameElement;
@@ -679,7 +679,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           setTimeout(() => getDOMTreeFromIframe(), 100);
           console.log('HTML编辑成功');
         } else {
-          alert('无效的HTML格式，请检查后重试');
+          alert('无���的HTML格式，请检查后重试');
         }
       } catch (error) {
         console.error('HTML编辑失败:', error);
@@ -731,7 +731,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
     if (!doc) return;
 
-    // 触发父组件��内容更新
+    // 触发父组件的内容更新
     onElementUpdate(selectedElement, 'dom-update', doc.documentElement.outerHTML);
   };
 
@@ -1282,7 +1282,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         console.warn('❌ 未找到iframe中对应的元素');
       }
 
-      // 添���高亮样式（如果还没有的话）
+      // 添加高��样式（如果还没有的话）
       if (!doc.querySelector('#dom-tree-styles')) {
         const style = doc.createElement('style');
         style.id = 'dom-tree-styles';
@@ -1293,6 +1293,17 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             background-color: rgba(59, 130, 246, 0.1) !important;
             pointer-events: auto !important;
             cursor: move !important;
+          }
+          .dom-tree-preview {
+            outline: 2px dashed #10b981 !important;
+            outline-offset: 2px !important;
+            background-color: rgba(16, 185, 129, 0.05) !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+          }
+          .dom-tree-preview:hover {
+            background-color: rgba(16, 185, 129, 0.1) !important;
           }
           .dom-tree-hover {
             outline: 1px dashed #94a3b8 !important;
@@ -1343,7 +1354,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
 
-        // ���用iframe的window来获取计算样式
+        // 使用iframe的window来获取计算样式
         const iframeWindow = iframe.contentWindow;
         if (iframeWindow && targetElement.ownerDocument === iframe.contentDocument) {
           const computedStyle = iframeWindow.getComputedStyle(targetElement);
@@ -1728,7 +1739,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       console.log('🟢 DOM更新完成:', selectedElement.textContent);
                     }
                   }}
-                  placeholder="���接输入文本..."
+                  placeholder="直接输入文本..."
                   className="mt-1"
                 />
 
@@ -1962,7 +1973,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                       />
                     </div>
                     <div>
-                      <Label className="text-xs">外边距</Label>
+                      <Label className="text-xs">外���距</Label>
                       <Input
                         value={elementData.styles.margin || ''}
                         onChange={(e) => handleStyleChange('margin', e.target.value)}
@@ -2130,7 +2141,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div className="p-4 border-b bg-white">
               <h4 className="font-medium text-sm flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-blue-500" />
-                模��生成��
+                模��生成���
               </h4>
             </div>
             <div className="p-4 space-y-4">
@@ -2216,7 +2227,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     className="scale-75"
                   />
                   <span className="text-xs text-gray-600" title={showAllElements ? "显示所有元素（包括不可操作的）" : "只显示可操作元素"}>
-                    {showAllElements ? "全部" : "可操作"}
+                    {showAllElements ? "全部" : "��操作"}
                   </span>
                 </div>
                 <div className="flex gap-1">
@@ -2316,7 +2327,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </p>
                 {!showAllElements && (
                   <p className="text-gray-500">
-                    ✅ 已过滤不可��作元素
+                    ✅ 已过滤不可操作元素
                   </p>
                 )}
                 {showAllElements && (
