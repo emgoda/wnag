@@ -578,27 +578,105 @@ export default function WebEditor() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'div',
+                              content: '容器内容',
+                              attributes: {
+                                style: 'padding: 20px; border: 1px solid #ddd; min-height: 100px;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;div&gt;</div>
                           <div className="text-gray-600">容器</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'nav',
+                              content: '<ul><li><a href="#">首页</a></li><li><a href="#">关于</a></li><li><a href="#">联系</a></li></ul>',
+                              attributes: {
+                                style: 'padding: 10px; background: #f8f9fa;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;nav&gt;</div>
                           <div className="text-gray-600">导航</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'section',
+                              content: '<h2>区域标题</h2><p>区域内容</p>',
+                              attributes: {
+                                style: 'padding: 30px; margin: 20px 0;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;section&gt;</div>
                           <div className="text-gray-600">区域</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'header',
+                              content: '<h1>网站标题</h1><p>网站描述</p>',
+                              attributes: {
+                                style: 'padding: 40px; text-align: center; background: #f8f9fa;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;header&gt;</div>
                           <div className="text-gray-600">页头</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'footer',
+                              content: '<p>&copy; 2024 版权所有</p>',
+                              attributes: {
+                                style: 'padding: 20px; text-align: center; background: #343a40; color: white;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;footer&gt;</div>
                           <div className="text-gray-600">页脚</div>
                         </div>
-                        <div className="p-2 border rounded cursor-pointer hover:bg-gray-50 text-xs">
+                        <div
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', JSON.stringify({
+                              type: 'element',
+                              tag: 'aside',
+                              content: '<h3>侧栏标题</h3><p>侧栏内容</p>',
+                              attributes: {
+                                style: 'padding: 20px; background: #f8f9fa; width: 250px;'
+                              }
+                            }));
+                          }}
+                          className="p-2 border rounded cursor-move hover:bg-blue-50 hover:border-blue-300 text-xs transition-colors"
+                        >
                           <div className="font-mono text-blue-600">&lt;aside&gt;</div>
                           <div className="text-gray-600">侧栏</div>
                         </div>
