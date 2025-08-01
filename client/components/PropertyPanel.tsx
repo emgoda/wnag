@@ -102,7 +102,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
     if (!editorIframe) {
       // 如果特定选择器没找到，尝试通用选择器
       editorIframe = document.querySelector('iframe[title*="编辑"]') as HTMLIFrameElement;
-      console.log('使用title选择器找到iframe:', !!editorIframe);
+      console.log('使用title选择器��到iframe:', !!editorIframe);
     }
 
     if (!editorIframe) {
@@ -248,8 +248,8 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
       getDOMTreeFromIframe();
     };
 
-    // 更频繁地检查DOM树变化
-    const interval = setInterval(updateDOMTree, 2000);
+    // 更频繁地检查DOM树变化（每500ms检查一次）
+    const interval = setInterval(updateDOMTree, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -405,7 +405,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
           }
         }
       } catch (error) {
-        console.error('更新DOM��错:', error);
+        console.error('更新DOM出错:', error);
       }
     };
 
@@ -651,7 +651,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             欢迎来到我们的网站
           </h1>
           <p style="font-size: 16px; margin-bottom: 25px; opacity: 0.95; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-            发现���限可能，��造美好未来
+            发现���限可能，创造美好未来
           </p>
           <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button style="background: white; color: ${themeColor}; border: none; padding: 14px 24px; border-radius: 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); ${buttonOpacity} box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
@@ -683,7 +683,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🚀</div>
               <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1f2937; letter-spacing: -0.3px;">快���部署</h3>
-              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速到达���户</p>
+              <p style="color: #4b5563; line-height: 1.6; font-size: 13px; font-weight: 400;">一键部署，快速上线，让您的产品迅速到达用户</p>
             </div>
             <div style="background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.transform='translateY(-6px) scale(1.02)'; this.style.boxShadow='0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'">
               <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 20px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);">🛡️</div>
@@ -759,7 +759,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <ul style="text-align: left; margin-bottom: 20px; padding-left: 0; list-style: none;">
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 基础功能</li>
                 <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 5GB 存储空间</li>
-                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ ��件支持</li>
+                <li style="margin-bottom: 8px; color: #4b5563; font-size: 13px;">✓ 邮件支持</li>
               </ul>
               <button style="width: 100%; background: transparent; color: ${themeColor}; border: 2px solid ${themeColor}; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; ${buttonOpacity}" onmouseover="this.style.background='${themeColor}'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='${themeColor}'">
                 选择基础版
@@ -876,7 +876,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleNodeSelect = (element: HTMLElement) => {
     setSelectedNodeElement(element);
 
-    // 清除之前的高亮
+    // ���除之前的高亮
     const iframe = document.querySelector('iframe') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const doc = iframe.contentDocument;
@@ -1027,7 +1027,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
         <div className="p-4 border-b">
           <h3 className="font-medium flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            元素编辑器
+            元素��辑器
           </h3>
         </div>
         <div className="flex-1 flex flex-col">
@@ -1074,7 +1074,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-xs">DOM树为��</p>
+                    <p className="text-xs">DOM树为空</p>
                     <p className="text-xs text-gray-400">
                       请导入页面或点击"刷新"
                     </p>
