@@ -195,7 +195,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               iframe.contentDocument.removeEventListener('DOMContentLoaded', handleContentChange);
             }
           } catch (e) {
-            // 忽略清��错误
+            // ��略清��错误
           }
         };
       } else {
@@ -430,7 +430,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
   const handleDeleteElement = () => {
     if (!selectedElement) return;
 
-    if (confirm('���定要删除这个元素吗？此操作无法撤销。')) {
+    if (confirm('确定要删除这个元素吗？此操作无法撤销。')) {
       selectedElement.remove();
       setElementData(null);
       updateParentContent();
@@ -768,11 +768,11 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                     />
                   </div>
                   <div>
-                    <Label className="text-sm font-medium">替代文本</Label>
+                    <Label className="text-sm font-medium">��代文本</Label>
                     <Input
                       value={elementData.attributes.alt || ''}
                       onChange={(e) => handleAttributeChange('alt', e.target.value)}
-                      placeholder="图片���述"
+                      placeholder="图片描述"
                       className="mt-1"
                     />
                   </div>
@@ -1075,10 +1075,24 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               ) : (
                 <div className="text-center text-gray-500 py-8">
                   <Code className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-xs">DOM树为空</p>
-                  <p className="text-xs text-gray-400">
-                    请点击"刷新"按钮重新加载
+                  <p className="text-xs mb-2">DOM树为空</p>
+                  <p className="text-xs text-gray-400 mb-3">
+                    请确保已导入页面，然后点击"刷新"
                   </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      console.log('强制刷新DOM树');
+                      // 立即尝试多次
+                      for (let i = 0; i < 3; i++) {
+                        setTimeout(() => getDOMTreeFromIframe(), i * 200);
+                      }
+                    }}
+                    className="text-xs h-7"
+                  >
+                    强制刷新
+                  </Button>
                 </div>
               )}
             </div>
