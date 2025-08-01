@@ -660,7 +660,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
               <Eye className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-sm">在预览中选择一个元素</p>
               <p className="text-xs text-gray-400 mt-2">
-                点击预览中的元素或下方DOM树进行编辑
+                点击预览中的元���或下方DOM树进行编辑
               </p>
             </div>
           </div>
@@ -805,7 +805,7 @@ export default function PropertyPanel({ selectedElement, onElementUpdate }: Prop
                 </div>
                 <Textarea
                   key={`textarea-${forceUpdate}`}
-                  value={elementData.textContent || ''}
+                  value={localTextContent}
                   onChange={(e) => {
                     console.log('Textarea onChange:', e.target.value);
                     handleTextContentChange(e.target.value);
