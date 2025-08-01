@@ -396,7 +396,7 @@ export default function WebEditor() {
                             <SelectItem value="landing">落地页</SelectItem>
                             <SelectItem value="about">关于页面</SelectItem>
                             <SelectItem value="contact">联系页面</SelectItem>
-                            <SelectItem value="blog">博客�����面</SelectItem>
+                            <SelectItem value="blog">博客���面</SelectItem>
                             <SelectItem value="portfolio">作品集</SelectItem>
                           </SelectContent>
                         </Select>
@@ -893,7 +893,7 @@ export default function WebEditor() {
                                   if (addElementToPage) {
                                     addElementToPage({
                                       tag: 'form',
-                                      content: '<label>输��框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
                                       attributes: {
                                         style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
                                       }
@@ -1181,20 +1181,20 @@ export default function WebEditor() {
 
                                   <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <!-- VISA -->
-                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #1a1f71; border-radius: 8px; background: linear-gradient(135deg, #1a1f71 0%, #0f3cc9 100%); position: relative; overflow: hidden;">
+                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #1a1f71; border-radius: 8px; background: linear-gradient(135deg, #1a1f71 0%, #0f3cc9 100%); position: relative; overflow: hidden;">
                                       <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transform: rotate(45deg);"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 20px; font-weight: bold; letter-spacing: 2px; font-family: Arial, sans-serif;">VISA</div>
+                                        <div style="color: white; font-size: 18px; font-weight: bold; letter-spacing: 2px; font-family: Arial, sans-serif;">VISA</div>
                                         <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-top: 2px;">全球通用</div>
                                       </div>
-                                      <div style="color: white; font-size: 24px;">💳</div>
+                                      <div style="color: white; font-size: 20px;">💳</div>
                                     </div>
 
                                     <!-- MASTERCARD -->
-                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #eb001b; border-radius: 8px; background: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%); position: relative; overflow: hidden;">
+                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #eb001b; border-radius: 8px; background: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%); position: relative; overflow: hidden;">
                                       <div style="position: absolute; top: -5px; right: 20px; width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50%;"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">MasterCard</div>
+                                        <div style="color: white; font-size: 15px; font-weight: bold; font-family: Arial, sans-serif;">MasterCard</div>
                                         <div style="color: rgba(255, 255, 255, 0.9); font-size: 12px; margin-top: 2px;">安全便捷</div>
                                       </div>
                                       <div style="display: flex; align-items: center;">
@@ -1204,14 +1204,14 @@ export default function WebEditor() {
                                     </div>
 
                                     <!-- AMERICAN EXPRESS -->
-                                    <div style="display: flex; align-items: center; padding: 12px 16px; border: 2px solid #006fcf; border-radius: 8px; background: linear-gradient(135deg, #006fcf 0%, #00aadd 100%); position: relative; overflow: hidden;">
+                                    <div style="display: flex; align-items: center; padding: 10px 14px; border: 2px solid #006fcf; border-radius: 8px; background: linear-gradient(135deg, #006fcf 0%, #00aadd 100%); position: relative; overflow: hidden;">
                                       <div style="position: absolute; bottom: -15px; left: -15px; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); border-radius: 50%;"></div>
                                       <div style="flex: 1;">
-                                        <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif;">AMERICAN</div>
-                                        <div style="color: white; font-size: 14px; font-weight: bold; font-family: Arial, sans-serif; margin-top: -2px;">EXPRESS</div>
+                                        <div style="color: white; font-size: 13px; font-weight: bold; font-family: Arial, sans-serif;">AMERICAN</div>
+                                        <div style="color: white; font-size: 13px; font-weight: bold; font-family: Arial, sans-serif; margin-top: -2px;">EXPRESS</div>
                                         <div style="color: rgba(255, 255, 255, 0.8); font-size: 11px; margin-top: 2px;">高端服务</div>
                                       </div>
-                                      <div style="color: white; font-size: 24px;">◆</div>
+                                      <div style="color: white; font-size: 20px;">◆</div>
                                     </div>
                                   </div>
 
@@ -1332,7 +1332,7 @@ export default function WebEditor() {
             </div>
           )}
 
-          {/* 页���编辑器 */}
+          {/* 页面编辑器 */}
           <div className="flex-1">
             {selectedPage ? (
               <Editor
