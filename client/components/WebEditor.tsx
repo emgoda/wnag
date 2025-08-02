@@ -87,7 +87,7 @@ export default function WebEditor() {
 
     // 检查路由是否重复
     if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存在，请使用不同的路由');
+      alert('路由已存��，请使用不同的路由');
       return;
     }
 
@@ -1360,7 +1360,61 @@ export default function WebEditor() {
                           </div>
                           <div className="text-center text-gray-600 text-xs">信用卡组件</div>
                         </div>
-                        <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
+                        <div
+                          className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
+                          onClick={() => {
+                            const addElementToPage = (window as any).addElementToPage;
+                            if (addElementToPage) {
+                              const countdownHTML = `
+                                <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+                                  <div style="position: relative; width: 160px; height: 160px;">
+                                    <svg height="140" width="140" style="transform: rotate(-90deg);">
+                                      <circle stroke="#e5e7eb" fill="transparent" stroke-width="8" r="62" cx="70" cy="70"/>
+                                      <circle stroke="#3b82f6" fill="transparent" stroke-width="8" stroke-dasharray="389.557 389.557" stroke-dashoffset="0" stroke-linecap="round" r="62" cx="70" cy="70" class="countdown-progress"/>
+                                    </svg>
+                                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                                      <span style="font-size: 24px; font-weight: 600;" class="countdown-text">05:00</span>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    (function() {
+                                      const timer = document.currentScript.parentElement;
+                                      let timeLeft = 300;
+                                      const totalTime = 300;
+                                      const circumference = 389.557;
+                                      const progressCircle = timer.querySelector('.countdown-progress');
+                                      const timeText = timer.querySelector('.countdown-text');
+
+                                      function updateTimer() {
+                                        const strokeOffset = circumference - (timeLeft / totalTime) * circumference;
+                                        progressCircle.style.strokeDashoffset = strokeOffset;
+
+                                        const minutes = Math.floor(timeLeft / 60);
+                                        const seconds = timeLeft % 60;
+                                        timeText.textContent = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+                                        if (timeLeft > 0) {
+                                          timeLeft--;
+                                          setTimeout(updateTimer, 1000);
+                                        }
+                                      }
+
+                                      updateTimer();
+                                    })();
+                                  </script>
+                                </div>
+                              `;
+
+                              addElementToPage({
+                                tag: 'div',
+                                content: countdownHTML,
+                                attributes: {
+                                  style: 'margin: 20px auto;'
+                                }
+                              }, 'append');
+                            }
+                          }}
+                        >
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="w-8 h-6 bg-red-400 rounded-full flex items-center justify-center text-white text-xs">🕐</div>
                           </div>
