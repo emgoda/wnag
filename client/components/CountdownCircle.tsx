@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const CountdownCircle = ({ duration = 300, onComplete }) => {
   // duration in seconds
@@ -19,24 +19,20 @@ const CountdownCircle = ({ duration = 300, onComplete }) => {
       return;
     }
     const timer = setInterval(() => {
-      setTimeLeft(prev => Math.max(prev - 1, 0));
+      setTimeLeft((prev) => Math.max(prev - 1, 0));
     }, 1000);
     return () => clearInterval(timer);
   }, [timeLeft, onComplete]);
 
-  const formatTime = sec => {
-    const m = String(Math.floor(sec / 60)).padStart(2, '0');
-    const s = String(sec % 60).padStart(2, '0');
+  const formatTime = (sec) => {
+    const m = String(Math.floor(sec / 60)).padStart(2, "0");
+    const s = String(sec % 60).padStart(2, "0");
     return `${m}:${s}`;
   };
 
   return (
     <div className="relative w-40 h-40">
-      <svg
-        height={radius * 2}
-        width={radius * 2}
-        className="-rotate-90"
-      >
+      <svg height={radius * 2} width={radius * 2} className="-rotate-90">
         {/* Background circle */}
         <circle
           stroke="#e5e7eb"

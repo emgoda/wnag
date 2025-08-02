@@ -1,19 +1,44 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Plus, Edit3, Trash2, Save, Upload, Undo, Redo, Eye, Code,
-  FileText, Globe, Download, Settings, Monitor, Copy
-} from 'lucide-react';
-import Editor from './Editor';
-import PropertyPanel from './PropertyPanel';
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import {
+  Plus,
+  Edit3,
+  Trash2,
+  Save,
+  Upload,
+  Undo,
+  Redo,
+  Eye,
+  Code,
+  FileText,
+  Globe,
+  Download,
+  Settings,
+  Monitor,
+  Copy,
+} from "lucide-react";
+import Editor from "./Editor";
+import PropertyPanel from "./PropertyPanel";
 
 interface Page {
   id: string;
@@ -27,9 +52,9 @@ interface Page {
 export default function WebEditor() {
   const [pages, setPages] = useState<Page[]>([
     {
-      id: '1',
-      name: '首页',
-      route: '/',
+      id: "1",
+      name: "首页",
+      route: "/",
       content: `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -51,23 +76,28 @@ export default function WebEditor() {
 </body>
 </html>`,
       created: new Date(),
-      updated: new Date()
-    }
+      updated: new Date(),
+    },
   ]);
 
-  const [selectedPageId, setSelectedPageId] = useState<string>('1');
+  const [selectedPageId, setSelectedPageId] = useState<string>("1");
   const [showAddPageDialog, setShowAddPageDialog] = useState(false);
   const [showEditPageDialog, setShowEditPageDialog] = useState(false);
   const [editingPage, setEditingPage] = useState<Page | null>(null);
-  const [newPageData, setNewPageData] = useState({ name: '', route: '' });
-  const [activeTab, setActiveTab] = useState('pages');
-  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
+  const [newPageData, setNewPageData] = useState({ name: "", route: "" });
+  const [activeTab, setActiveTab] = useState("pages");
+  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
+    null,
+  );
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
   // 添加调试日志
   useEffect(() => {
-    console.log('WebEditor selectedElement 更新:', selectedElement?.tagName || 'null');
-    console.log('WebEditor selectedNodeId 更新:', selectedNodeId);
+    console.log(
+      "WebEditor selectedElement 更新:",
+      selectedElement?.tagName || "null",
+    );
+    console.log("WebEditor selectedNodeId 更新:", selectedNodeId);
   }, [selectedElement, selectedNodeId]);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
 
@@ -76,18 +106,18 @@ export default function WebEditor() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const selectedPage = pages.find(p => p.id === selectedPageId);
+  const selectedPage = pages.find((p) => p.id === selectedPageId);
 
   // 添加页面
   const handleAddPage = () => {
     if (!newPageData.name.trim() || !newPageData.route.trim()) {
-      alert('请填写页面名称和路由');
+      alert("请填写页面名称和路由");
       return;
     }
 
     // 检查路由是否重复
-    if (pages.some(p => p.route === newPageData.route)) {
-      alert('路由已存��，请使用不同的路由');
+    if (pages.some((p) => p.route === newPageData.route)) {
+      alert("路由已存��，请使用不同的路由");
       return;
     }
 
@@ -115,26 +145,26 @@ export default function WebEditor() {
 </body>
 </html>`,
       created: new Date(),
-      updated: new Date()
+      updated: new Date(),
     };
 
-    setPages(prev => [...prev, newPage]);
+    setPages((prev) => [...prev, newPage]);
     setSelectedPageId(newPage.id);
-    setNewPageData({ name: '', route: '' });
+    setNewPageData({ name: "", route: "" });
     setShowAddPageDialog(false);
   };
 
   // 删除页面
   const handleDeletePage = (pageId: string) => {
     if (pages.length <= 1) {
-      alert('至少需要保留一个页面');
+      alert("至少需要保留一个页面");
       return;
     }
 
-    if (confirm('确定要删除这个页面吗？')) {
-      setPages(prev => prev.filter(p => p.id !== pageId));
+    if (confirm("确定要删除这个页面吗？")) {
+      setPages((prev) => prev.filter((p) => p.id !== pageId));
       if (selectedPageId === pageId) {
-        setSelectedPageId(pages.find(p => p.id !== pageId)?.id || '');
+        setSelectedPageId(pages.find((p) => p.id !== pageId)?.id || "");
       }
     }
   };
@@ -149,61 +179,75 @@ export default function WebEditor() {
     if (!editingPage) return;
 
     // 检查路由是否重复（排除当前页面）
-    if (pages.some(p => p.id !== editingPage.id && p.route === editingPage.route)) {
-      alert('路由已存在，请使用不同的路由');
+    if (
+      pages.some(
+        (p) => p.id !== editingPage.id && p.route === editingPage.route,
+      )
+    ) {
+      alert("路由已存在，请使用不同的路由");
       return;
     }
 
-    setPages(prev => prev.map(p => 
-      p.id === editingPage.id 
-        ? { ...editingPage, updated: new Date() }
-        : p
-    ));
+    setPages((prev) =>
+      prev.map((p) =>
+        p.id === editingPage.id ? { ...editingPage, updated: new Date() } : p,
+      ),
+    );
     setShowEditPageDialog(false);
     setEditingPage(null);
   };
 
   // 更新页面内容
-  const handleContentChange = useCallback((content: string) => {
-    if (!selectedPage) return;
+  const handleContentChange = useCallback(
+    (content: string) => {
+      if (!selectedPage) return;
 
-    // 添加到历��记录
-    setHistory(prev => {
-      const newHistory = [...prev.slice(0, historyIndex + 1), selectedPage.content];
-      return newHistory.slice(-50); // 限制历史记录数量
-    });
-    setHistoryIndex(prev => prev + 1);
+      // 添加到历��记录
+      setHistory((prev) => {
+        const newHistory = [
+          ...prev.slice(0, historyIndex + 1),
+          selectedPage.content,
+        ];
+        return newHistory.slice(-50); // 限制历史记录数量
+      });
+      setHistoryIndex((prev) => prev + 1);
 
-    setPages(prev => prev.map(p => 
-      p.id === selectedPageId 
-        ? { ...p, content, updated: new Date() }
-        : p
-    ));
-  }, [selectedPage, selectedPageId, historyIndex]);
+      setPages((prev) =>
+        prev.map((p) =>
+          p.id === selectedPageId ? { ...p, content, updated: new Date() } : p,
+        ),
+      );
+    },
+    [selectedPage, selectedPageId, historyIndex],
+  );
 
   // 撤销
   const handleUndo = () => {
     if (historyIndex >= 0 && history[historyIndex]) {
       const previousContent = history[historyIndex];
-      setPages(prev => prev.map(p => 
-        p.id === selectedPageId 
-          ? { ...p, content: previousContent, updated: new Date() }
-          : p
-      ));
-      setHistoryIndex(prev => prev - 1);
+      setPages((prev) =>
+        prev.map((p) =>
+          p.id === selectedPageId
+            ? { ...p, content: previousContent, updated: new Date() }
+            : p,
+        ),
+      );
+      setHistoryIndex((prev) => prev - 1);
     }
   };
 
   // 重做
   const handleRedo = () => {
     if (historyIndex < history.length - 1) {
-      setHistoryIndex(prev => prev + 1);
+      setHistoryIndex((prev) => prev + 1);
       const nextContent = history[historyIndex + 1];
-      setPages(prev => prev.map(p => 
-        p.id === selectedPageId 
-          ? { ...p, content: nextContent, updated: new Date() }
-          : p
-      ));
+      setPages((prev) =>
+        prev.map((p) =>
+          p.id === selectedPageId
+            ? { ...p, content: nextContent, updated: new Date() }
+            : p,
+        ),
+      );
     }
   };
 
@@ -212,76 +256,85 @@ export default function WebEditor() {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     try {
       const content = await file.text();
       const parser = new DOMParser();
-      const doc = parser.parseFromString(content, 'text/html');
-      const title = doc.querySelector('title')?.textContent || file.name.replace('.html', '');
+      const doc = parser.parseFromString(content, "text/html");
+      const title =
+        doc.querySelector("title")?.textContent ||
+        file.name.replace(".html", "");
 
       // 创建新页面
       const newPage: Page = {
         id: Date.now().toString(),
         name: `导入-${title}`,
-        route: `/${title.toLowerCase().replace(/\s+/g, '-')}`,
+        route: `/${title.toLowerCase().replace(/\s+/g, "-")}`,
         content: content,
         created: new Date(),
-        updated: new Date()
+        updated: new Date(),
       };
 
-      setPages(prev => [...prev, newPage]);
+      setPages((prev) => [...prev, newPage]);
       setSelectedPageId(newPage.id);
-      alert('SingleFile导入成功！');
+      alert("SingleFile导入成功！");
     } catch (error) {
-      console.error('导入失败:', error);
-      alert('导入失败，请���查文件格式');
+      console.error("导入失败:", error);
+      alert("导入失败，请���查文件格式");
     }
 
     // 清空文件输入
-    event.target.value = '';
+    event.target.value = "";
   };
 
   // 处理元素更新
-  const handleElementUpdate = useCallback((element: HTMLElement, property: string, value: string) => {
-    // 更新对应页面的内容
-    if (selectedPage) {
-      // 获取更新后的完整HTML
-      const iframe = document.querySelector('iframe');
-      if (iframe && iframe.contentDocument) {
-        const updatedHTML = iframe.contentDocument.documentElement.outerHTML;
+  const handleElementUpdate = useCallback(
+    (element: HTMLElement, property: string, value: string) => {
+      // 更新对应页面的内容
+      if (selectedPage) {
+        // 获取更新后的完整HTML
+        const iframe = document.querySelector("iframe");
+        if (iframe && iframe.contentDocument) {
+          const updatedHTML = iframe.contentDocument.documentElement.outerHTML;
 
-        setPages(prev => prev.map(p =>
-          p.id === selectedPageId
-            ? { ...p, content: updatedHTML, updated: new Date() }
-            : p
-        ));
+          setPages((prev) =>
+            prev.map((p) =>
+              p.id === selectedPageId
+                ? { ...p, content: updatedHTML, updated: new Date() }
+                : p,
+            ),
+          );
 
-        // 触发DOM树刷新事件
-        window.dispatchEvent(new CustomEvent('domTreeRefresh'));
+          // 触发DOM树刷新事件
+          window.dispatchEvent(new CustomEvent("domTreeRefresh"));
+        }
       }
-    }
-  }, [selectedPageId, selectedPage]);
+    },
+    [selectedPageId, selectedPage],
+  );
 
   // 保存到��端
   const handleSave = async () => {
     try {
-      const response = await fetch('/api/pages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pages })
+      const response = await fetch("/api/pages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pages }),
       });
 
       if (response.ok) {
-        alert('保存成功！');
+        alert("保存成功！");
       } else {
-        throw new Error('保存失��');
+        throw new Error("保存失��");
       }
     } catch (error) {
-      console.error('保存失败:', error);
-      alert('保存失败，请重试');
+      console.error("保存失败:", error);
+      alert("保存失败，请重试");
     }
   };
 
@@ -315,13 +368,9 @@ export default function WebEditor() {
             onClick={() => setShowCodeEditor(!showCodeEditor)}
           >
             <Code className="w-4 h-4 mr-2" />
-            {showCodeEditor ? '关闭源码' : '源码编辑'}
+            {showCodeEditor ? "关闭源码" : "源码编辑"}
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleImportSingleFile}
-          >
+          <Button variant="outline" size="sm" onClick={handleImportSingleFile}>
             <Upload className="w-4 h-4 mr-2" />
             导入SingleFile
           </Button>
@@ -335,7 +384,12 @@ export default function WebEditor() {
       <div className="flex-1 flex">
         {/* 左侧面板 */}
         <div className="w-80 bg-white border-r flex flex-col">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col justify-start items-center overflow-hidden" style={{ width: '315.2px', margin: '0 auto' }}>
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="flex-1 flex flex-col justify-start items-center overflow-hidden"
+            style={{ width: "315.2px", margin: "0 auto" }}
+          >
             <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="pages" className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
@@ -354,13 +408,17 @@ export default function WebEditor() {
             <TabsContent value="pages" className="flex-1 px-4 pb-4">
               <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-800">
-                  💡 现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
+                  💡
+                  现在可以直接在中间画布编辑页面元素，点击顶部"源码编辑"查看HTML代码
                 </p>
               </div>
 
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-medium">页面列表</h3>
-                <Dialog open={showAddPageDialog} onOpenChange={setShowAddPageDialog}>
+                <Dialog
+                  open={showAddPageDialog}
+                  onOpenChange={setShowAddPageDialog}
+                >
                   <DialogTrigger asChild>
                     <Button size="sm">
                       <Plus className="w-4 h-4 mr-2" />
@@ -377,7 +435,12 @@ export default function WebEditor() {
                         <Input
                           id="name"
                           value={newPageData.name}
-                          onChange={(e) => setNewPageData(prev => ({ ...prev, name: e.target.value }))}
+                          onChange={(e) =>
+                            setNewPageData((prev) => ({
+                              ...prev,
+                              name: e.target.value,
+                            }))
+                          }
                           placeholder="例如：关于我们"
                         />
                       </div>
@@ -386,7 +449,12 @@ export default function WebEditor() {
                         <Input
                           id="route"
                           value={newPageData.route}
-                          onChange={(e) => setNewPageData(prev => ({ ...prev, route: e.target.value }))}
+                          onChange={(e) =>
+                            setNewPageData((prev) => ({
+                              ...prev,
+                              route: e.target.value,
+                            }))
+                          }
                           placeholder="例如：/about"
                         />
                       </div>
@@ -407,12 +475,13 @@ export default function WebEditor() {
                         </Select>
                       </div>
                       <div className="flex justify-end gap-2">
-                        <Button variant="outline" onClick={() => setShowAddPageDialog(false)}>
+                        <Button
+                          variant="outline"
+                          onClick={() => setShowAddPageDialog(false)}
+                        >
                           取消
                         </Button>
-                        <Button onClick={handleAddPage}>
-                          创建
-                        </Button>
+                        <Button onClick={handleAddPage}>创建</Button>
                       </div>
                     </div>
                   </DialogContent>
@@ -420,11 +489,11 @@ export default function WebEditor() {
               </div>
 
               <div className="space-y-2">
-                {pages.map(page => (
-                  <Card 
-                    key={page.id} 
+                {pages.map((page) => (
+                  <Card
+                    key={page.id}
                     className={`cursor-pointer transition-colors ${
-                      selectedPageId === page.id ? 'ring-2 ring-blue-500' : ''
+                      selectedPageId === page.id ? "ring-2 ring-blue-500" : ""
                     }`}
                     onClick={() => setSelectedPageId(page.id)}
                   >
@@ -466,7 +535,10 @@ export default function WebEditor() {
               </div>
             </TabsContent>
 
-            <TabsContent value="elements" className="flex-1 px-4 pb-4 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+            <TabsContent
+              value="elements"
+              className="flex-1 px-4 pb-4 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            >
               <style>{`
                 .scrollbar-thin::-webkit-scrollbar {
                   width: 8px;
@@ -504,20 +576,28 @@ export default function WebEditor() {
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;h1&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">标题</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">
+                              &lt;h1&gt;
+                            </div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">
+                              标题
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'h1',
-                                      content: '标题文本'
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "h1",
+                                        content: "标题文本",
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -528,12 +608,16 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'h1',
-                                      content: '标题文本'
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "h1",
+                                        content: "标题文本",
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -544,12 +628,16 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'h1',
-                                      content: '标题文本'
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "h1",
+                                        content: "标题文本",
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -559,27 +647,34 @@ export default function WebEditor() {
                           </div>
                         </div>
 
-
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;img&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">图片</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">
+                              &lt;img&gt;
+                            </div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">
+                              图片
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'img',
-                                      attributes: {
-                                        src: 'https://via.placeholder.com/150x100',
-                                        alt: '图��描述'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "img",
+                                        attributes: {
+                                          src: "https://via.placeholder.com/150x100",
+                                          alt: "图��描述",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -590,15 +685,19 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'img',
-                                      attributes: {
-                                        src: 'https://via.placeholder.com/150x100',
-                                        alt: '图片描述'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "img",
+                                        attributes: {
+                                          src: "https://via.placeholder.com/150x100",
+                                          alt: "图片描述",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -609,15 +708,19 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'img',
-                                      attributes: {
-                                        src: 'https://via.placeholder.com/150x100',
-                                        alt: '图片描述'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "img",
+                                        attributes: {
+                                          src: "https://via.placeholder.com/150x100",
+                                          alt: "图片描述",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -629,24 +732,32 @@ export default function WebEditor() {
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;button&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">按钮</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">
+                              &lt;button&gt;
+                            </div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">
+                              按钮
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'button',
-                                      content: '按钮文本',
-                                      attributes: {
-                                        'data-element-group': '交互元素',
-                                        'data-element-type': '按钮'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "button",
+                                        content: "按钮文本",
+                                        attributes: {
+                                          "data-element-group": "交互元素",
+                                          "data-element-type": "按钮",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -657,16 +768,20 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'button',
-                                      content: '按钮文本',
-                                      attributes: {
-                                        'data-element-group': '交互元素',
-                                        'data-element-type': '按��'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "button",
+                                        content: "按钮文本",
+                                        attributes: {
+                                          "data-element-group": "交互元素",
+                                          "data-element-type": "按��",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -677,16 +792,20 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'button',
-                                      content: '按钮文本',
-                                      attributes: {
-                                        'data-element-group': '交互元素',
-                                        'data-element-type': '按钮'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "button",
+                                        content: "按钮文本",
+                                        attributes: {
+                                          "data-element-group": "交互元素",
+                                          "data-element-type": "按钮",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -698,15 +817,20 @@ export default function WebEditor() {
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;input&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">输入框</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">
+                              &lt;input&gt;
+                            </div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">
+                              输入框
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const inputHTML = `
                                       <div style="display: inline-block; margin: 10px;">
@@ -714,15 +838,18 @@ export default function WebEditor() {
                                         <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
                                       </div>
                                     `;
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: inputHTML,
-                                      attributes: {
-                                        'data-title': '标���',
-                                        'data-element-group': '表单元素',
-                                        'data-element-type': '输入框组'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: inputHTML,
+                                        attributes: {
+                                          "data-title": "标���",
+                                          "data-element-group": "表单元素",
+                                          "data-element-type": "输入框组",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -733,7 +860,8 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const inputHTML = `
                                       <div style="display: inline-block; margin: 10px;">
@@ -741,15 +869,18 @@ export default function WebEditor() {
                                         <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
                                       </div>
                                     `;
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: inputHTML,
-                                      attributes: {
-                                        'data-title': '标题',
-                                        'data-element-group': '表单元素',
-                                        'data-element-type': '输入框组'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: inputHTML,
+                                        attributes: {
+                                          "data-title": "标题",
+                                          "data-element-group": "表单元素",
+                                          "data-element-type": "输入框组",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -760,7 +891,8 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const inputHTML = `
                                       <div style="display: inline-block; margin: 10px;">
@@ -768,15 +900,18 @@ export default function WebEditor() {
                                         <input type="text" style="width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white;" />
                                       </div>
                                     `;
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: inputHTML,
-                                      attributes: {
-                                        'data-title': '标题',
-                                        'data-element-group': '表单元素',
-                                        'data-element-type': '输入框组'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: inputHTML,
+                                        attributes: {
+                                          "data-title": "标题",
+                                          "data-element-group": "表单元素",
+                                          "data-element-type": "输入框组",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -789,23 +924,32 @@ export default function WebEditor() {
                         <div className="relative p-1.5 border rounded hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-sm text-xs transition-all duration-200 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">&lt;div&gt;</div>
-                            <div className="text-gray-600 mb-1 text-center text-xs">容器</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center text-xs">
+                              &lt;div&gt;
+                            </div>
+                            <div className="text-gray-600 mb-1 text-center text-xs">
+                              容器
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: '容器内容',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: "容器内容",
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -816,15 +960,20 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: '容器内容',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: "容器内容",
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -835,15 +984,20 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: '容器内容',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: "容器内容",
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; min-height: 50px; border-radius: 4px;",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -864,14 +1018,17 @@ export default function WebEditor() {
                                 <div className="w-2 h-3 bg-gradient-to-b from-orange-400 to-orange-600 rounded-sm"></div>
                               </div>
                             </div>
-                            <div className="text-center text-gray-600 text-xs mb-1">预设</div>
+                            <div className="text-center text-gray-600 text-xs mb-1">
+                              预设
+                            </div>
                             <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-0.5 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const presetHTML = `
                                       <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
@@ -884,13 +1041,16 @@ export default function WebEditor() {
                                       </div>
                                     `;
 
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: presetHTML,
-                                      attributes: {
-                                        style: 'margin: 20px auto;'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: presetHTML,
+                                        attributes: {
+                                          style: "margin: 20px auto;",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -901,7 +1061,8 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const presetHTML = `
                                       <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
@@ -914,13 +1075,16 @@ export default function WebEditor() {
                                       </div>
                                     `;
 
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: presetHTML,
-                                      attributes: {
-                                        style: 'margin: 20px auto;'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: presetHTML,
+                                        attributes: {
+                                          style: "margin: 20px auto;",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -931,7 +1095,8 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
                                     const presetHTML = `
                                       <div style="max-width: 350px; margin: 10px; padding: 20px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);">
@@ -944,13 +1109,16 @@ export default function WebEditor() {
                                       </div>
                                     `;
 
-                                    addElementToPage({
-                                      tag: 'div',
-                                      content: presetHTML,
-                                      attributes: {
-                                        style: 'margin: 20px auto;'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "div",
+                                        content: presetHTML,
+                                        attributes: {
+                                          style: "margin: 20px auto;",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -973,23 +1141,33 @@ export default function WebEditor() {
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;form&gt;</div>
-                            <div className="text-gray-600 mb-2 text-center">表单</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center">
+                              &lt;form&gt;
+                            </div>
+                            <div className="text-gray-600 mb-2 text-center">
+                              表单
+                            </div>
                             <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'form',
-                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "form",
+                                        content:
+                                          '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; border-radius: 8px;",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -1000,15 +1178,21 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'form',
-                                      content: '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "form",
+                                        content:
+                                          '<label>输入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; border-radius: 8px;",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -1019,15 +1203,21 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-6 px-2 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'form',
-                                      content: '<label>��入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
-                                      attributes: {
-                                        style: 'padding: 20px; border: 1px solid #ddd; border-radius: 8px;'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "form",
+                                        content:
+                                          '<label>��入框:</label><input type="text" placeholder="请输入内容"><button type="submit">提交</button>',
+                                        attributes: {
+                                          style:
+                                            "padding: 20px; border: 1px solid #ddd; border-radius: 8px;",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -1040,25 +1230,34 @@ export default function WebEditor() {
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;textarea&gt;</div>
-                            <div className="text-gray-600 mb-2 text-center">文本域</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center">
+                              &lt;textarea&gt;
+                            </div>
+                            <div className="text-gray-600 mb-2 text-center">
+                              文本域
+                            </div>
                             <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'textarea',
-                                      content: '请输入多行文本...',
-                                      attributes: {
-                                        rows: '4',
-                                        placeholder: '请输入多行文本...',
-                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "textarea",
+                                        content: "请输入多行文本...",
+                                        attributes: {
+                                          rows: "4",
+                                          placeholder: "请输入多行文本...",
+                                          style:
+                                            "width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -1069,17 +1268,22 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'textarea',
-                                      content: '请输入多行文本...',
-                                      attributes: {
-                                        rows: '4',
-                                        placeholder: '请输入多行文本...',
-                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "textarea",
+                                        content: "请输入多行文本...",
+                                        attributes: {
+                                          rows: "4",
+                                          placeholder: "请输入多行文本...",
+                                          style:
+                                            "width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -1090,17 +1294,22 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'textarea',
-                                      content: '请输入多行文本...',
-                                      attributes: {
-                                        rows: '4',
-                                        placeholder: '请输入多行文本...',
-                                        style: 'width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "textarea",
+                                        content: "请输入多行文本...",
+                                        attributes: {
+                                          rows: "4",
+                                          placeholder: "请输入多行文本...",
+                                          style:
+                                            "width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -1113,23 +1322,33 @@ export default function WebEditor() {
                         <div className="relative p-2 border rounded-lg hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:border-blue-300 hover:shadow-md text-xs transition-all duration-300 group overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-indigo-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded"></div>
                           <div className="relative z-10">
-                            <div className="font-mono text-blue-600 font-semibold text-center">&lt;select&gt;</div>
-                            <div className="text-gray-600 mb-2 text-center">下拉框</div>
+                            <div className="font-mono text-blue-600 font-semibold text-center">
+                              &lt;select&gt;
+                            </div>
+                            <div className="text-gray-600 mb-2 text-center">
+                              下拉框
+                            </div>
                             <div className="flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
-                                      attributes: {
-                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
-                                      }
-                                    }, 'insert');
+                                    addElementToPage(
+                                      {
+                                        tag: "select",
+                                        content:
+                                          '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                        attributes: {
+                                          style:
+                                            "padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;",
+                                        },
+                                      },
+                                      "insert",
+                                    );
                                   }
                                 }}
                               >
@@ -1140,15 +1359,21 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-orange-100 border-orange-200 text-orange-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
-                                      attributes: {
-                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
-                                      }
-                                    }, 'replace');
+                                    addElementToPage(
+                                      {
+                                        tag: "select",
+                                        content:
+                                          '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                        attributes: {
+                                          style:
+                                            "padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;",
+                                        },
+                                      },
+                                      "replace",
+                                    );
                                   }
                                 }}
                               >
@@ -1159,15 +1384,21 @@ export default function WebEditor() {
                                 size="sm"
                                 className="text-xs h-5 px-1.5 bg-white/80 hover:bg-green-100 border-green-200 text-green-700 font-medium shadow-sm hover:shadow-md transition-all duration-200"
                                 onClick={() => {
-                                  const addElementToPage = (window as any).addElementToPage;
+                                  const addElementToPage = (window as any)
+                                    .addElementToPage;
                                   if (addElementToPage) {
-                                    addElementToPage({
-                                      tag: 'select',
-                                      content: '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
-                                      attributes: {
-                                        style: 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;'
-                                      }
-                                    }, 'append');
+                                    addElementToPage(
+                                      {
+                                        tag: "select",
+                                        content:
+                                          '<option value="">请选择...</option><option value="1">选项1</option><option value="2">选项2</option><option value="3">选项3</option>',
+                                        attributes: {
+                                          style:
+                                            "padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;",
+                                        },
+                                      },
+                                      "append",
+                                    );
                                   }
                                 }}
                               >
@@ -1190,7 +1421,8 @@ export default function WebEditor() {
                         <div
                           className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
                           onClick={() => {
-                            const addElementToPage = (window as any).addElementToPage;
+                            const addElementToPage = (window as any)
+                              .addElementToPage;
                             if (addElementToPage) {
                               const stripePaymentHTML = `
                                 <div style="max-width: 350px; margin: 0 auto; padding: 24px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);"
@@ -1266,25 +1498,34 @@ export default function WebEditor() {
                                 </div>
                               `;
 
-                              addElementToPage({
-                                tag: 'div',
-                                content: stripePaymentHTML,
-                                attributes: {
-                                  style: 'margin: 20px auto; max-width: 370px;'
-                                }
-                              }, 'append');
+                              addElementToPage(
+                                {
+                                  tag: "div",
+                                  content: stripePaymentHTML,
+                                  attributes: {
+                                    style:
+                                      "margin: 20px auto; max-width: 370px;",
+                                  },
+                                },
+                                "append",
+                              );
                             }
                           }}
                         >
                           <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
+                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">
+                              💳
+                            </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信用卡支付</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            信用卡支付
+                          </div>
                         </div>
                         <div
                           className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
                           onClick={() => {
-                            const addElementToPage = (window as any).addElementToPage;
+                            const addElementToPage = (window as any)
+                              .addElementToPage;
                             if (addElementToPage) {
                               const cardIconsHTML = `
                                 <div style="max-width: 340px; margin: 20px auto; padding: 24px; background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
@@ -1335,35 +1576,51 @@ export default function WebEditor() {
                                 </div>
                               `;
 
-                              addElementToPage({
-                                tag: 'div',
-                                content: cardIconsHTML,
-                                attributes: {
-                                  style: 'margin: 20px auto;'
-                                }
-                              }, 'append');
+                              addElementToPage(
+                                {
+                                  tag: "div",
+                                  content: cardIconsHTML,
+                                  attributes: {
+                                    style: "margin: 20px auto;",
+                                  },
+                                },
+                                "append",
+                              );
                             }
                           }}
                         >
                           <div className="flex items-center justify-center h-12 mb-2">
                             <div className="flex gap-1">
-                              <div className="w-3 h-2 bg-blue-600 rounded-sm flex items-center justify-center text-white text-xs font-bold">V</div>
-                              <div className="w-3 h-2 bg-red-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">M</div>
-                              <div className="w-3 h-2 bg-blue-400 rounded-sm flex items-center justify-center text-white text-xs font-bold">A</div>
+                              <div className="w-3 h-2 bg-blue-600 rounded-sm flex items-center justify-center text-white text-xs font-bold">
+                                V
+                              </div>
+                              <div className="w-3 h-2 bg-red-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">
+                                M
+                              </div>
+                              <div className="w-3 h-2 bg-blue-400 rounded-sm flex items-center justify-center text-white text-xs font-bold">
+                                A
+                              </div>
                             </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">卡图标</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            卡图标
+                          </div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">💳</div>
+                            <div className="w-8 h-6 bg-blue-400 rounded flex items-center justify-center text-white text-xs">
+                              💳
+                            </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">信用卡组件</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            信用卡组件
+                          </div>
                         </div>
                         <div
                           className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer"
                           onClick={() => {
-                            const addElementToPage = (window as any).addElementToPage;
+                            const addElementToPage = (window as any)
+                              .addElementToPage;
                             if (addElementToPage) {
                               const countdownHTML = `
                                 <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
@@ -1405,20 +1662,27 @@ export default function WebEditor() {
                                 </div>
                               `;
 
-                              addElementToPage({
-                                tag: 'div',
-                                content: countdownHTML,
-                                attributes: {
-                                  style: 'margin: 20px auto;'
-                                }
-                              }, 'append');
+                              addElementToPage(
+                                {
+                                  tag: "div",
+                                  content: countdownHTML,
+                                  attributes: {
+                                    style: "margin: 20px auto;",
+                                  },
+                                },
+                                "append",
+                              );
                             }
                           }}
                         >
                           <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="w-8 h-6 bg-red-400 rounded-full flex items-center justify-center text-white text-xs">🕐</div>
+                            <div className="w-8 h-6 bg-red-400 rounded-full flex items-center justify-center text-white text-xs">
+                              🕐
+                            </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">倒计时</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            倒计时
+                          </div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
@@ -1428,13 +1692,19 @@ export default function WebEditor() {
                               <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
                             </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">加载提���</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            加载提���
+                          </div>
                         </div>
                         <div className="relative p-3 border rounded-lg hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 hover:border-purple-300 hover:shadow-md text-xs transition-all duration-300 group cursor-pointer">
                           <div className="flex items-center justify-center h-12 mb-2">
-                            <div className="w-6 h-6 bg-green-400 rounded flex items-center justify-center text-white text-xs">✓</div>
+                            <div className="w-6 h-6 bg-green-400 rounded flex items-center justify-center text-white text-xs">
+                              ✓
+                            </div>
                           </div>
-                          <div className="text-center text-gray-600 text-xs">完��提示</div>
+                          <div className="text-center text-gray-600 text-xs">
+                            完��提示
+                          </div>
                         </div>
                       </div>
                     </CardContent>
@@ -1473,8 +1743,12 @@ export default function WebEditor() {
               <div className="flex items-center justify-between px-4 py-2 border-b bg-gray-50">
                 <div className="flex items-center gap-2">
                   <Code className="w-4 h-4" />
-                  <span className="text-sm text-gray-700 font-medium">HTML源码编辑</span>
-                  <Badge variant="outline" className="text-xs">实时同步</Badge>
+                  <span className="text-sm text-gray-700 font-medium">
+                    HTML源码编辑
+                  </span>
+                  <Badge variant="outline" className="text-xs">
+                    实时同步
+                  </Badge>
                 </div>
                 <Button
                   variant="ghost"
@@ -1491,7 +1765,7 @@ export default function WebEditor() {
                   onChange={(e) => handleContentChange(e.target.value)}
                   className="absolute inset-0 resize-none border-none rounded-none font-mono text-sm leading-relaxed"
                   placeholder="在此编辑HTML源码..."
-                  style={{ minHeight: '100%' }}
+                  style={{ minHeight: "100%" }}
                 />
               </div>
             </div>
@@ -1510,7 +1784,8 @@ export default function WebEditor() {
                 onNodeSelect={setSelectedNodeId}
                 ref={(editorRef: any) => {
                   if (editorRef) {
-                    (window as any).addElementToPage = editorRef.addElementToPage;
+                    (window as any).addElementToPage =
+                      editorRef.addElementToPage;
                   }
                 }}
               />
@@ -1544,7 +1819,11 @@ export default function WebEditor() {
                 <Input
                   id="edit-name"
                   value={editingPage.name}
-                  onChange={(e) => setEditingPage(prev => prev ? { ...prev, name: e.target.value } : null)}
+                  onChange={(e) =>
+                    setEditingPage((prev) =>
+                      prev ? { ...prev, name: e.target.value } : null,
+                    )
+                  }
                 />
               </div>
               <div>
@@ -1552,16 +1831,21 @@ export default function WebEditor() {
                 <Input
                   id="edit-route"
                   value={editingPage.route}
-                  onChange={(e) => setEditingPage(prev => prev ? { ...prev, route: e.target.value } : null)}
+                  onChange={(e) =>
+                    setEditingPage((prev) =>
+                      prev ? { ...prev, route: e.target.value } : null,
+                    )
+                  }
                 />
               </div>
               <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => setShowEditPageDialog(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowEditPageDialog(false)}
+                >
                   取消
                 </Button>
-                <Button onClick={handleUpdatePage}>
-                  保存
-                </Button>
+                <Button onClick={handleUpdatePage}>保存</Button>
               </div>
             </div>
           )}
@@ -1574,7 +1858,7 @@ export default function WebEditor() {
         ref={fileInputRef}
         accept=".html"
         onChange={handleFileChange}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
       />
     </div>
   );
