@@ -71,11 +71,53 @@ const elementTypes = [
     icon: Menu, 
     html: '<nav style="display: flex; gap: 20px; padding: 16px; background: #f8fafc; border-radius: 6px;"><a href="#" style="color: #374151; text-decoration: none;">首页</a><a href="#" style="color: #374151; text-decoration: none;">关于</a><a href="#" style="color: #374151; text-decoration: none;">联系</a></nav>' 
   },
-  { 
-    id: 'form', 
-    label: '表单', 
-    icon: Square, 
-    html: '<form style="padding: 20px; border: 1px solid #d1d5db; border-radius: 6px;"><div style="margin-bottom: 16px;"><label style="display: block; margin-bottom: 4px;">姓名:</label><input type="text" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;" /></div><div style="margin-bottom: 16px;"><label style="display: block; margin-bottom: 4px;">邮箱:</label><input type="email" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;" /></div><button type="submit" style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 4px;">提交</button></form>' 
+  {
+    id: 'form',
+    label: '表单',
+    icon: Square,
+    html: '<form style="padding: 20px; border: 1px solid #d1d5db; border-radius: 6px;"><div style="margin-bottom: 16px;"><label style="display: block; margin-bottom: 4px;">姓名:</label><input type="text" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;" /></div><div style="margin-bottom: 16px;"><label style="display: block; margin-bottom: 4px;">邮箱:</label><input type="email" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;" /></div><button type="submit" style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 4px;">提交</button></form>'
+  },
+  {
+    id: 'countdown',
+    label: '倒计时',
+    icon: Clock,
+    html: `<div class="countdown-timer" style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+      <div style="position: relative; width: 160px; height: 160px;">
+        <svg height="140" width="140" style="transform: rotate(-90deg);">
+          <circle stroke="#e5e7eb" fill="transparent" stroke-width="8" r="62" cx="70" cy="70"/>
+          <circle stroke="#3b82f6" fill="transparent" stroke-width="8" stroke-dasharray="389.557 389.557" stroke-dashoffset="0" stroke-linecap="round" r="62" cx="70" cy="70" class="countdown-progress"/>
+        </svg>
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 24px; font-weight: 600;" class="countdown-text">05:00</span>
+        </div>
+      </div>
+      <script>
+        (function() {
+          const timer = document.currentScript.parentElement.querySelector('.countdown-timer');
+          let timeLeft = 300; // 5 minutes
+          const totalTime = 300;
+          const circumference = 389.557;
+          const progressCircle = timer.querySelector('.countdown-progress');
+          const timeText = timer.querySelector('.countdown-text');
+
+          function updateTimer() {
+            const strokeOffset = circumference - (timeLeft / totalTime) * circumference;
+            progressCircle.style.strokeDashoffset = strokeOffset;
+
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timeText.textContent = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+            if (timeLeft > 0) {
+              timeLeft--;
+              setTimeout(updateTimer, 1000);
+            }
+          }
+
+          updateTimer();
+        })();
+      </script>
+    </div>`
   }
 ];
 
